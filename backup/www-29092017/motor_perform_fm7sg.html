@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html>
+    <head>       
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+<!--         <script type="text/javascript" src="master_opc/js/opc-lib-min.js"></script>
+ -->        <script src="js/highstock.js"></script>
+        <script src="js/highcharts-more.js"></script>
+        <script src="js/exporting.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            // OPC_config = {
+            //     token: '7e61b230-481d-4551-b24b-ba9046e3d8f2',
+            //     serverURL: 'http://10.15.3.146:58725'
+            // };
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+			   $( ".head-menu" ).scrollLeft(293);
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+        </style>
+        <title>Motor Performance</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                            <li><a>PLANT OPERATION</a></li>
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MANTENANCE</a>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTERY</a>
+                    <li><a onclick="goto_opco('finance_si', 'finance_si')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="index_login2.html"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+						<button class="burger-menu burger-menu-x" id="menu-toggle">
+							<span>toggle menu</span>
+						</button>
+						<a class="logopis" href="">PRODUCTION</a>
+						<a class="logo" href="index.html"><img src="img/logo.png"></a>
+					</header>
+                    <div class="wrapper bg-white">
+						<div class="head-menu">
+							<ul>
+								<li><a onclick="goto_opco('prod_rm_sg')">PROD. REPORT</a></li>
+								<li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li>
+								<li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+								<li class="haschild">
+									<a class="active">MOTOR PERFORM</a>
+									<div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+										<a onclick="goto_opco('motor_perform_rm3sg')">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+										</a>
+										<a onclick="goto_opco('motor_perform_cm3sg')">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+										</a>
+										<a onclick="goto_opco('motor_perform_kl3sg')">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+										</a>                                    
+										<a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry" 		aria-hidden="true"></i>&nbsp;&nbsp;Finish Mill
+										</a>
+									</div>
+								</li>
+								<li class="haschild">
+									<a>ANALITYCAL KILN</a>
+									<div id="myDropdown" class="dropdown-content dd-new" align="left">
+										<a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+										</a>
+										<a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+										</a>
+									</div>
+								</li>
+								<li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+								<li class="haschild">
+									<a>ID FAN KILN</a>
+									<div id="myDropdown" class="dropdown-content dd-new" align="left">
+										<a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+										</a>
+										<a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+										</a>
+									</div>
+								</li>
+								<li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+								<li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+								<li><a>PLANT OPERATION</a></li>
+							</ul>
+						</div>
+                        <div class="spacer-menu"></div>
+                        <div class=" headsix2 cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center">
+                                <img src="img/icKota1.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px; "> <p class="opco">SEMEN GRESIK</p>
+                                <p class="planttittle">Motor Finish Mill</p>
+                            </div>
+                        </div>
+
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home" style="padding-left: 10px; padding-right: 10px; font-size: 14px; color: #afafaf;">Finish Mill 7</a></li>
+                            <li><a data-toggle="tab" href="#menu1"  style="padding-left: 10px; padding-right: 10px; font-size: 14px; color: #afafaf;">Finish Mill 8</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="home" class="col-xs-12 noPadding box_sdow2 tab-pane fade in active" style="margin-bottom: 0px">
+                                <div class="col-xs-12 noPadding box_sdow">
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm7_motorpower" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.FM7_Motor_Power.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0</span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;POWER (kW)</p></div> -->
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm7_amp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.FM7_Motor_Ampere.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE (%)</p></div> -->
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm7_motorpowerv">0</span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;POWER (kW)</p></div>
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm7_ampv"></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE (%)</p></div>
+
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow">
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm7_temp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.FM7_Motor_Bearing_Temp.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP (&#x2103;)</p></div> -->
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm7_vib" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.FM7_Motor_Vibration.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI (mm/s)</p></div> -->
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm7_tempv"></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP (&#x2103;)</p></div>
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm7_vibv"></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI (mm/s)</p></div>
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;&nbsp;Motor Power Graph</span>
+                                    <div style="overflow-x: scroll; ">
+                                        <div id="power7" style="width:1200px; min-height: 220px"></div>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;&nbsp;Ampere Graph</span>
+                                    <div style="overflow-x: scroll; ">
+                                        <div id="ampere7" style="width:1200px; min-height: 220px"></div>
+                                    </div>                            
+                                </div>
+
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;&nbsp;Temperature Graph</span>
+                                    <div style="overflow-x: scroll; ">
+                                        <div id="temperature7" style="width:1200px; min-height: 220px"></div>
+                                    </div>                            
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; margin-bottom:64px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;&nbsp;Vibration Graph</span>
+                                    <div style="overflow-x: scroll; ">
+                                        <div id="vibrasi7" style="width:1200px; min-height: 220px"></div>
+                                    </div>                            
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                            <div id="menu1" class="col-xs-12 noPadding box_sdow2 tab-pane fade" style="margin-bottom: 0px">
+                                <div class="col-xs-12 noPadding box_sdow">
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm8_motorpower" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.FM8_Motor_Power.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0</span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;MOTOR POWER (kW)</p></div> -->
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm8_amp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.FM8_Motor_Ampere.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE (%)</p></div> -->
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm8_motorpowerv">0</span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;MOTOR POWER (kW)</p></div>
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm8_ampv"></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE (%)</p></div>
+
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow">
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm8_temp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.FM8_Motor_Bearing_Temp.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP (&#x2103;)</p></div> -->
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm8_vib" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.FM8_Motor_Vibration.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI (mm/s)</p></div> -->
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm8_tempv"></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP (&#x2103;)</p></div>
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="fm8_vibv"></span>&nbsp;<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI (mm/s)</p></div>
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;&nbsp;Motor Power Graph</span>
+                                    <div style="overflow-x: scroll; ">
+                                        <div id="power8" style="width:1200px; min-height: 220px"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;&nbsp;Ampere Graph</span>
+                                    <div style="overflow-x: scroll; ">
+                                        <div id="ampere8" style="width:1200px; min-height: 220px"></div>
+                                    </div>                            
+                                </div>
+
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;&nbsp;Temperature Graph</span>
+                                    <div style="overflow-x: scroll; ">
+                                        <div id="temperature8" style="width:1200px; min-height: 220px"></div>
+                                    </div>                            
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; margin-bottom:64px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;&nbsp;Vibration Graph</span>
+                                    <div style="overflow-x: scroll; ">
+                                        <div id="vibrasi8" style="width:1200px; min-height: 220px"></div>
+                                    </div>                            
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+
+                        <footer >
+<div class="regular" >
+
+
+                            <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="motor_perform_fm7sg.html" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+                            <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="motor_perform_fm7sg.html" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+                            <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="motor_perform_fm7st.html" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div> 
+                            <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="motor_perform_fm7tl.html" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div> 
+                         <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                Highcharts.setOptions({
+                    global: {
+                        useUTC: false
+                    }
+                });
+                 $.ajax({
+                            url: url_src+'/json/GetFMPlantTuban.php',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+                                console.log(data3);
+
+              
+                                //spped
+                                pwr7 = dataJson[0].tags[0].props[0].val;
+                                pwr7 = parseFloat(pwr7.replace(',','.')).toFixed(2);
+                                console.log(pwr7);
+                                //ampere
+                                amp7 = dataJson[0].tags[1].props[0].val;
+                                amp7 = parseFloat(amp7.replace(',','.')).toFixed(2);
+                                //temp
+                                temp7 = dataJson[0].tags[2].props[0].val;
+                                temp7 = parseFloat(temp7.replace(',','.')).toFixed(2);
+                                //TORSI3
+                                tor7 = dataJson[0].tags[3].props[0].val;
+                                tor7 = parseFloat(tor7.replace(',','.')).toFixed(2);
+
+
+                                //spped
+                                pwr8 = dataJson[0].tags[4].props[0].val;
+                                pwr8 = parseFloat(pwr8.replace(',','.')).toFixed(2);
+                                console.log(pwr8);
+                                //ampere
+                                amp8 = dataJson[0].tags[5].props[0].val;
+                                amp8 = parseFloat(amp8.replace(',','.')).toFixed(2);
+                                //temp
+                                temp8 = dataJson[0].tags[6].props[0].val;
+                                temp8 = parseFloat(temp8.replace(',','.')).toFixed(2);
+                                //TORSI3
+                                tor8 = dataJson[0].tags[7].props[0].val;
+                                tor8 = parseFloat(tor8.replace(',','.')).toFixed(2);
+
+                                
+                                //$("#cm3_pmrv").html(pwr3);
+                                $("#fm7_motorpowerv").html(pwr7);
+                                $("#fm7_ampv").html(amp7);
+                                $("#fm7_tempv").html(temp7);
+                                $("#fm7_vibv").html(tor7);
+
+
+                                //$("#cm3_pmrv").html(pwr3);
+                                $("#fm8_motorpowerv").html(pwr8);
+                                $("#fm8_ampv").html(amp8);
+                                $("#fm8_tempv").html(temp8);
+                                $("#fm8_vibv").html(tor8);
+                                
+                               
+                            }
+                        })
+                function getMachine(url, id){
+                 $.ajax({
+                     url: url,
+                     type: 'GET',
+                     success: function (data) {
+                         var data1 = data.replace("<title>Json</title>", "");
+                         var data2 = data1.replace("(", "[");
+                         var data3 = data2.replace(");", "]");
+                         var dataJson = JSON.parse(data3);
+                         $('#fm'+id+'_motorpower').html(setFormat(dataJson[0].tags[0].props[0].val,2));
+                         $('#fm'+id+'_amp').html(setFormat(dataJson[0].tags[1].props[0].val,2));
+                         $('#fm'+id+'_temp').html(setFormat(dataJson[0].tags[2].props[0].val,2));
+                         $('#fm'+id+'_vib').html(setFormat(dataJson[0].tags[3].props[0].val,2));
+                     }
+                 })                    
+                }
+//                setInterval(function(){
+//                 getMachine(url_src+'/json/GetPowerFM_sg.php?s=fm7',7);
+//                 getMachine(url_src+'/json/GetPowerFM_sg.php?s=fm8',8);
+//                }, 300);
+                              
+                $.ajax({
+                    url: url_src+'/json/_FMTuban34.php',
+                    type: 'GET',
+                    success: function (data) {
+                        // var data1 = data.replace("<title>Json</title>", "");
+                        // var data2 = data1.replace("(", "[");
+                        // var data3 = data2.replace(");", "]");
+
+                        // var dataJson = JSON.parse(data3);
+                        // var myLogData = dataJson['7000'].Acc_FM;
+
+                        // var labelArray = [];
+                        // var dataRate1 = [];
+                        // var dataRate2 = [];
+                        // var dataRate3 = [];
+                        // var index = [];
+
+                        // for (var x in myLogData) {
+                        //     index.push(x);
+                        //     labelArray.push(x);
+                        //     nilaiRate1 = dataJson['7000'].Acc_FM[x].FM7_MotAmp;
+                        //     dataRate1.push(parseInt(nilaiRate1.replace(',', '.')));
+
+                        //     nilaiRate2 = dataJson['7000'].Acc_FM[x].FM7_MotBearTemp;
+                        //     dataRate2.push(parseInt(nilaiRate2.replace(',', '.')));
+
+                        //     nilaiRate3 = dataJson['7000'].Acc_FM[x].FM7_MotVib;
+                        //     dataRate3.push(parseInt(nilaiRate3.replace(',', '.')));
+                        // }
+
+                        $('#ampere7').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 350,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Ampere',
+                                    color: '#E2B13C',
+                                    data: [70, 249, 155, 245, 120, 221, 125, 50, 223, 183, 123, 46]
+                                // dataRate1
+                                }]
+                        });
+
+                        $('#vibrasi7').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 15,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Vibrasi',
+                                    color: '#59ABE3',
+                                    data: [10, 9, 5, 5, 10, 11, 15, 10, 13, 13, 13, 6]
+                                // dataRate3
+                                }]
+                        });
+
+                        $('#temperature7').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 80,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Temperature',
+                                    color: '#87D37C',
+                                    data: [70, 49, 55, 45, 20, 21, 25, 50, 23, 63, 13, 46]
+                                // dataRate2
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            });
+            $(function () {
+                Highcharts.setOptions({
+                    global: {
+                        useUTC: false
+                    }
+                });
+
+                $.ajax({
+                    url: url_src+'/json/_FMTuban34.php',
+                    type: 'GET',
+                    success: function (data) {
+                        // var data1 = data.replace("<title>Json</title>", "");
+                        // var data2 = data1.replace("(", "[");
+                        // var data3 = data2.replace(");", "]");
+
+                        // var dataJson = JSON.parse(data3);
+                        // var myLogData = dataJson['7000'].Acc_FM;
+
+                        // var labelArray = [];
+                        // var dataRate1 = [];
+                        // var dataRate2 = [];
+                        // var dataRate3 = [];
+                        // var index = [];
+
+                        // for (var x in myLogData) {
+                        //     index.push(x);
+                        //     labelArray.push(x);
+                        //     nilaiRate1 = dataJson['7000'].Acc_FM[x].FM8_MotAmp;
+                        //     dataRate1.push(parseInt(nilaiRate1.replace(',', '.')));
+
+                        //     nilaiRate2 = dataJson['7000'].Acc_FM[x].FM8_MotBearTemp;
+                        //     dataRate2.push(parseInt(nilaiRate2.replace(',', '.')));
+
+                        //     nilaiRate3 = dataJson['7000'].Acc_FM[x].FM8_MotVib;
+                        //     dataRate3.push(parseInt(nilaiRate3.replace(',', '.')));
+                        // }
+
+                        $('#ampere8').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 350,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Ampere',
+                                    color: '#E2B13C',
+                                    data: [170, 249, 155, 45, 220, 21, 125, 50, 123, 183, 13, 246]
+                                // dataRate1
+                                }]
+                        });
+
+                        $('#vibrasi8').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 15,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Vibrasi',
+                                    color: '#59ABE3',
+                                    data: [10, 9, 5, 4, 10, 11, 15, 10, 13, 8, 13, 6]
+                                // dataRate3
+                                }]
+                        });
+
+                        $('#temperature8').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 80,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Temperature',
+                                    color: '#87D37C',
+                                    data: [70, 49, 55, 45, 20, 21, 25, 50, 23, 23, 13, 46]
+                                // dataRate2
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            });
+            
+            $(function () {
+                Highcharts.setOptions({
+                    global: {
+                        useUTC: false
+                    }
+                });
+
+                $.ajax({
+                    url: url_src+'/json/AddTuban34.php',
+                    type: 'GET',
+                    success: function (data) {
+                        // var data1 = data.replace("<title>Json</title>", "");
+                        // var data2 = data1.replace("(", "[");
+                        // var data3 = data2.replace(");", "]");
+
+                        // var dataJson = JSON.parse(data3);
+                        // var myLogData = dataJson['7000'].Additional;
+
+                        // var labelArray = [];
+                        // var dataRate1 = [];
+                        // var dataRate2 = [];
+                        // var index = [];
+
+                        // for (var x in myLogData) {
+                        //     index.push(x);
+                        //     labelArray.push(x);
+                        //     nilaiRate1 = dataJson['7000'].Additional[x].fm7_mp;
+                        //     dataRate1.push(parseInt(nilaiRate1.replace(',', '')));
+                            
+                        //     //console.log('1:'+dataRate1);
+                        //     nilaiRate2 = dataJson['7000'].Additional[x].fm8_mp;
+                        //     dataRate2.push(parseInt(nilaiRate2.replace(',', '')));
+                        //     //console.log('2:'+dataRate2);
+                        // }
+
+                        $('#power7').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 3000,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Power',
+                                    color: '#F62459',
+                                    data: [70, 149, 555, 745, 1020, 721, 2225, 850, 1323, 2283, 113, 546]
+                                // dataRate1
+                                }]
+                        });
+
+                        $('#power8').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 3000,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Power',
+                                    color: '#F62459',
+                                    data: [70, 149, 555, 745, 1020, 721, 2225, 850, 1323, 2283, 113, 546]
+                                // dataRate2
+                                }]
+                        });
+
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            });
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular2").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

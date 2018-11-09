@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <!--<script type="text/javascript" src="master_opc/js/opc-lib-min.js"></script>-->
+        <script src="js/highstock.js"></script>
+        <script src="js/highcharts-more.js"></script>
+        <script src="js/exporting.js"></script>
+        <script src="js/loader.js"></script>
+        <script type="text/javascript" charset="utf-8">
+//            OPC_config = {
+//                token: '7e61b230-481d-4551-b24b-ba9046e3d8f2',
+//                serverURL: 'http://10.15.3.146:58725'
+//            };
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+
+//                $('a[href="#tab-click"]').click(function (e) {
+//                    e.preventDefault();
+//                    var r = $(this).attr('rel');
+//                    if (r == 'data-sp') {
+//                        $('#tab-sp').removeClass('img_foot2');
+//                        $('#tab-sg').addClass('img_foot2');
+//                        $('#tab-st').addClass('img_foot2');
+//                        $('#tab-tl').addClass('img_foot2');
+//                    } else if (r == 'data-sg') {
+//                        $('#tab-sp').addClass('img_foot2');
+//                        $('#tab-sg').removeClass('img_foot2');
+//                        $('#tab-st').addClass('img_foot2');
+//                        $('#tab-tl').addClass('img_foot2');
+//                    } else if (r == 'data-st') {
+//                        $('#tab-sp').addClass('img_foot2');
+//                        $('#tab-sg').addClass('img_foot2');
+//                        $('#tab-st').removeClass('img_foot2');
+//                        $('#tab-tl').addClass('img_foot2');
+//                    } else if (r == 'data-tl') {
+//                        $('#tab-sp').addClass('img_foot2');
+//                        $('#tab-sg').addClass('img_foot2');
+//                        $('#tab-st').addClass('img_foot2');
+//                        $('#tab-tl').removeClass('img_foot2');
+//                    }
+//                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category{
+                font-size: 12px;
+            }
+            .imgttl{
+                position: absolute;
+                top: -1px;
+            }
+        </style>
+        <title>KILN Analysis</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="height: 37px; line-height: 39px;font-size: small;">
+                            <a href="portal_prod1.html" class="pull-left" style="margin-left:10px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+                            ANALYTICAL KILN
+                        </h2>
+                        <div class=" headsix2 cubesRun2 headone whitebg">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota1.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px;">
+                                <p class="opco" style="margin-top: 2px; font-size: 22px">SEMEN GRESIK</p>
+                                <p class="opco" style="margin-top: 0px; font-size: 20px; font-weight: bold;">Plant Tuban 4</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 noPadding box_sdowby2">Hood Draft (mm)
+                            <div id="kl4_hooddraft" class="font4box_sdowby4" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Hood_Draft.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0.00<sup>&nbsp;mm</sup></div>
+                        </div>
+                        <div class="col-xs-6 noPadding box_sdowby2">Speed Cooler (stroke/min)
+                            <div id="kl4_coolspeed" class="font4box_sdowby4" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Cooler4_Speed.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0.00</div>
+                        </div>
+                        <div class="col-xs-6 noPadding box_sdowby2">Temp Kiln (&#x2103;)
+                            <div class="font4box_sdowby4" id="kl4_temp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Bearing_Temp.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0.00</div>
+                            <!--                            <div class="col-xs-6 font4box_sdowby4"><sup>&nbsp;&#x2103;</sup></div>-->
+                        </div>
+                        <div class="col-xs-6 noPadding box_sdowby2">Deep Cooler (mm)
+                            <div id="kl4_cooldepth" class="font4box_sdowby4" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Depth_Cooler.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0.00<sup>&nbsp;mm</sup></div>
+                        </div>
+
+                        <div class="col-xs-6 noPadding box_sdowby2" style="margin-bottom: 5px;">Kiln Burner (T/H)
+                            <div style="padding: 0px;" id="kl4_coalburn" class="font4box_sdowby4" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Coal_Mill4_Product.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0.00<span>&nbsp;T/H</span></div>
+
+                            <!-- <div style="padding: 0px; class="col-xs-6 font4box_sdowby4" style="font-size: 12px;">&nbsp;T/H</div>-->
+                        </div>
+                        <div class="col-xs-6 noPadding box_sdowby2" style="margin-bottom: 5px">Heat Consumption (kCal/Kg)
+                            <div id="kl4_heatcons" class="font4box_sdowby4 " opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Heat_Cons.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0.00<sup>&nbsp;BTU</sup></div>
+                        </div>
+                        <div class="col-xs-12 noPadding box_sdow" style="height: 335px; margin-bottom: 63px;">
+                            <div class="col-xs-12 noPadding tab_uper" align="center" style="margin-top: 7px;">
+                                <img src="img/t2.png" class="img-responsive imgttl">
+                                <span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;">KILN</span></div>
+                            <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                    <br>
+                                    <tr>
+                                        <td>Rate</td>
+                                        <td id="kl4_ilcrate" style="color: brown;" opc-tag-txt='{"tag":"KL4_Tuban_Feed.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0.00</td>
+                                        <td><div align="left">T/H</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 1 Speed</td>
+                                        <td id="kl4_f1speed" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Speed_IdF1.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">%</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 1 Current</td>
+                                        <td id="kl4_f1power" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Amp_IdF1.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">A</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 1 Vibrasi 1</td>
+                                        <td id="kl4_f1vib1" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Vib1_IdF1.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">mm/s</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 1 Vibrasi 2</td>
+                                        <td id="kl4_f1vib2" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Vib2_IdF1.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">mm/s</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 1 Damper</td>
+                                        <td id="kl4_f1damp" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Damp_IdF1.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">%</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 2 Speed</td>
+                                        <td id="kl4_f2speed" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Speed_IdF2.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">%</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 2 Current</td>
+                                        <td id="kl4_f2power" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Amp_IdF2.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">A</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 2 Vibrasi 1</td>
+                                        <td id="kl4_f2vib1" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Vib1_IdF2.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">mm/s</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 2 Vibrasi 2</td>
+                                        <td id="kl4_f2vib2" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Vib2_IdF2.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">mm/s</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ID Fan 2 Damper</td>
+                                        <td id="kl4_f2damp" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_Damp_IdF2.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">%</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>EXT 1 Temp 1</td>
+                                        <td id="kl4_exit1temp1" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_ExTemp11.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">&#x2103;</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>EXT 1 Temp 2</td>
+                                        <td id="kl4_exit1temp2" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_ExTemp12.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">&#x2103;</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>EXT 2 Temp 1</td>
+                                        <td id="kl4_exit2temp1" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_ExTemp21.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">&#x2103;</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>EXT 2 Temp 2</td>
+                                        <td id="kl4_exit2temp2" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Ops_ExTemp22.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></td>
+                                        <td><div align="left">&#x2103;</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rate Coal Bumer</td>
+                                        <td id="kl4_coalrateilc" style="color: brown;" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_CoalBurner_ILC.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0.00</td>
+                                        <td><div align="left">T/H</div></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="spacer"></div>
+                    </div>
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            function dataUpdate() {
+                $.ajax({
+                    url: url_src+'/json/KL4AnalyticTuban.php',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+                        var dataJson = JSON.parse(data3);
+
+                        KL4_Hood_Draft = parseFloat(dataJson[0].tags[0].props[0].val).toFixed(2);
+                        Cooler4_Speed = parseFloat(dataJson[0].tags[1].props[0].val).toFixed(2);
+                        KL4_Bearing_Temp = parseFloat(dataJson[0].tags[2].props[0].val).toFixed(2);
+                        KL4_Depth_Cooler = parseFloat(dataJson[0].tags[3].props[0].val).toFixed(2);
+                        Coal_Mill4_Product = parseFloat(dataJson[0].tags[4].props[0].val).toFixed(2);
+                        KL4_Heat_Cons = parseFloat(dataJson[0].tags[5].props[0].val).toFixed(2);
+                        KL4_Tuban_Feed = parseFloat(dataJson[0].tags[6].props[0].val).toFixed(2);
+                        KL4_Ops_Speed_IdF1 = parseFloat(dataJson[0].tags[7].props[0].val).toFixed(2);
+                        KL4_Ops_Amp_IdF1 = parseFloat(dataJson[0].tags[8].props[0].val).toFixed(2);
+                        KL4_Ops_Vib1_IdF1 = parseFloat(dataJson[0].tags[9].props[0].val).toFixed(2);
+                        KL4_Ops_Vib2_IdF1 = parseFloat(dataJson[0].tags[10].props[0].val).toFixed(2);
+                        KL4_Ops_Damp_IdF1 = parseFloat(dataJson[0].tags[11].props[0].val).toFixed(2);
+                        KL4_Ops_Speed_IdF2 = parseFloat(dataJson[0].tags[12].props[0].val).toFixed(2);
+                        KL4_Ops_Amp_IdF2 = parseFloat(dataJson[0].tags[13].props[0].val).toFixed(2);
+                        KL4_Ops_Vib1_IdF2 = parseFloat(dataJson[0].tags[14].props[0].val).toFixed(2);
+                        KL4_Ops_Vib2_IdF2 = parseFloat(dataJson[0].tags[15].props[0].val).toFixed(2);
+                        KL4_Ops_Damp_IdF2 = parseFloat(dataJson[0].tags[16].props[0].val).toFixed(2);
+                        KL4_Ops_ExTemp11 = parseFloat(dataJson[0].tags[17].props[0].val).toFixed(2);
+                        KL4_Ops_ExTemp12 = parseFloat(dataJson[0].tags[18].props[0].val).toFixed(2);
+                        KL4_Ops_ExTemp21 = parseFloat(dataJson[0].tags[19].props[0].val).toFixed(2);
+                        KL4_Ops_ExTemp22 = parseFloat(dataJson[0].tags[20].props[0].val).toFixed(2);
+                        KL4_CoalBurner_ILC = parseFloat(dataJson[0].tags[21].props[0].val).toFixed(2);
+
+                        $("#kl4_hooddraft").html(KL4_Hood_Draft);
+                        $("#kl4_coolspeed").html(Cooler4_Speed);
+                        $("#kl4_temp").html(KL4_Bearing_Temp);
+                        $("#kl4_cooldepth").html(KL4_Depth_Cooler);
+                        $("#kl4_coalburn").html(Coal_Mill4_Product);
+                        $("#kl4_heatcons").html(KL4_Heat_Cons);
+                        $("#kl4_ilcrate").html(KL4_Tuban_Feed);
+                        $("#kl4_f1speed").html(KL4_Ops_Speed_IdF1);
+                        $("#kl4_f1power").html(KL4_Ops_Amp_IdF1);
+                        $("#kl4_f1vib1").html(KL4_Ops_Vib1_IdF1);
+                        $("#kl4_f1vib2").html(KL4_Ops_Vib2_IdF1);
+                        $("#kl4_f1damp").html(KL4_Ops_Damp_IdF1);
+                        $("#kl4_f2speed").html(KL4_Ops_Speed_IdF2);
+                        $("#kl4_f2power").html(KL4_Ops_Amp_IdF2);
+                        $("#kl4_f2vib1").html(KL4_Ops_Vib1_IdF2);
+                        $("#kl4_f2vib2").html(KL4_Ops_Vib2_IdF2);
+                        $("#kl4_f2damp").html(KL4_Ops_Damp_IdF2);
+                        $("#kl4_exit1temp1").html(KL4_Ops_ExTemp11);
+                        $("#kl4_exit1temp2").html(KL4_Ops_ExTemp12);
+                        $("#kl4_exit2temp1").html(KL4_Ops_ExTemp21);
+                        $("#kl4_exit2temp2").html(KL4_Ops_ExTemp22);
+                        $("#kl4_coalrateilc").html(KL4_CoalBurner_ILC);
+                    }
+                }).done(function (data) {}).fail(function () {
+                });
+
+            }
+            ;
+            setInterval(dataUpdate, 300);
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

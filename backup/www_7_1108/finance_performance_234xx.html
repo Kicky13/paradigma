@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script src="js/modernizr.js"></script>
+        <script src="js/highcharts_working.js"></script>
+        <script src="js/waitMe.min.js"></script>
+        <script src="js/loader.js"></script>
+        <script src="js/accounting.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <title>Finance Performance</title>
+        <script>
+            var month = new Array();
+            month[0] = "Januari";
+            month[1] = "Februari";
+            month[2] = "Maret";
+            month[3] = "April";
+            month[4] = "Mei";
+            month[5] = "Juni";
+            month[6] = "Juli";
+            month[7] = "Agustus";
+            month[8] = "September";
+            month[9] = "Oktober";
+            month[10] = "November";
+            month[11] = "Desember";
+
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                     //var bulan = moment().format('MM');
+                     var bulan = moment().subtract(7,"month").format('MM');
+                     $('#namabulan').html(month[bulan-1]+' '+moment().format('YYYY'));
+                     $('.namabulan').html(month[bulan-1]);
+                     $.ajax({
+                            url: url_src+'/api/index.php/f_performance/performance?company=ALL&bulan='+bulan,
+                            type: 'GET',
+                            success: function (data) {
+                              var dataJson = JSON.parse(data);
+                              $('#real_value').html(setFormat(dataJson.ebitdabulan_real / 1000000000,2));
+                              $('#rkap_value').html(setFormat(dataJson.ebitdbulan_rkap / 1000000000,2));
+                              $('#ebitda_value').html(setFormat(dataJson.ebitdbulanvarian / 1000000000,2));
+                                
+                              $('#smi_volume_real').html(setFormat(dataJson.real_vol / 1000000000,2));
+                              $('#smi_price_real').html(setFormat(dataJson.real_price / 1000000000,2));
+                              $('#smi_cost_real').html(setFormat(dataJson.realbiaya / 1000000000,2));
+                             }
+                       }); 
+                     $.ajax({
+                            url: url_src+'/api/index.php/f_performance/performance?company=7000&bulan='+bulan,
+                            type: 'GET',
+                            success: function (data) {
+                              var dataJson = JSON.parse(data);
+                              $('#ebit_real_sg').html(setFormat(dataJson.ebitdabulan_real / 1000000000,2));
+                              $('#ebit_rkap_sg').html(setFormat(dataJson.ebitdbulan_rkap / 1000000000,2));
+                              $('#ebit_var_sg').html(setFormat(dataJson.ebitdbulanvarian / 1000000000,2));
+                              var ebit_persen = (dataJson.ebitdabulan_real / dataJson.ebitdbulan_rkap) * 100;
+                              if (isNaN(ebit_persen) || !isFinite(ebit_persen)){
+                               ebit_persen = 100; 
+                              }
+                              if (dataJson.ebitdabulan_real == 0){
+                               ebit_persen = 0; 
+                              }
+                              $('#ebit_per_sg').html(setFormat(ebit_persen,0)+'%');
+                              $('#ebit_real_up_sg').html(setFormat(dataJson.ebitdarun_real / 1000000000,2));
+                              $('#ebit_rkap_up_sg').html(setFormat(dataJson.ebitdrun_rkap / 1000000000,2));
+                              $('#ebit_var_up_sg').html(setFormat(dataJson.ebitdrunvarian / 1000000000,2));
+                              var ebit_up_persen = (dataJson.ebitdarun_real / dataJson.ebitdrun_rkap) * 100;
+                              if (isNaN(ebit_up_persen) || !isFinite(ebit_up_persen)){
+                               ebit_up_persen = 100; 
+                              }
+                              if (dataJson.ebitdarun_real == 0){
+                               ebit_up_persen = 0; 
+                              }
+                              $('#ebit_per_up_sg').html(setFormat(ebit_up_persen,0)+'%');
+                              $('#vol_real_sg').html(setFormat(dataJson.real_vol / 1000000000,2));
+                              $('#vol_rkap_sg').html(setFormat(dataJson.rkap_vol / 1000000000,2));
+                              $('#vol_var_sg').html(setFormat(dataJson.variance_vol / 1000000000,2));
+                              $('#vol_real_up_sg').html(setFormat(dataJson.real_vol_up / 1000000000,2));
+                              $('#vol_rkap_up_sg').html(setFormat(dataJson.rkap_vol_up / 1000000000,2));
+                              $('#vol_var_up_sg').html(setFormat(dataJson.variance_vol_up / 1000000000,2));
+                              $('#price_real_sg').html(setFormat(dataJson.real_price / 1000000000,2));
+                              $('#price_rkap_sg').html(setFormat(dataJson.rkap_price / 1000000000,2));
+                              $('#price_var_sg').html(setFormat(dataJson.variance_price / 1000000000,2));
+                              $('#price_real_up_sg').html(setFormat(dataJson.real_price_up / 1000000000,2));
+                              $('#price_rkap_up_sg').html(setFormat(dataJson.rkap_price_up / 1000000000,2));
+                              $('#biaya_var_up_sg').html(setFormat(dataJson.variance_price_up / 1000000000,2));
+                              $('#biaya_real_sg').html(setFormat(dataJson.real_biaya / 1000000000,2));
+                              $('#biaya_rkap_sg').html(setFormat(dataJson.rkap_biaya / 1000000000,2));
+                              $('#biaya_var_sg').html(setFormat(dataJson.variance_biaya / 1000000000,2));
+                              $('#biaya_real_up_sg').html(setFormat(dataJson.real_price_up / 1000000000,2));
+                              $('#biaya_rkap_up_sg').html(setFormat(dataJson.rkap_biaya_up / 1000000000,2));
+                              $('#biaya_var_up_sg').html(setFormat(dataJson.variance_biaya_up / 1000000000,2));
+                         
+                             }
+                       });
+                     $.ajax({
+                            url: url_src+'/api/index.php/f_performance/performance?company=6000&bulan='+bulan,
+                            type: 'GET',
+                            success: function (data) {
+                              var dataJson = JSON.parse(data);
+                              $('#ebit_real_tl').html(setFormat(dataJson.ebitdabulan_real / 1000000000,2));
+                              $('#ebit_rkap_tl').html(setFormat(dataJson.ebitdbulan_rkap / 1000000000,2));
+                              $('#ebit_var_tl').html(setFormat(dataJson.ebitdbulanvarian / 1000000000,2));
+                              var ebit_persen = (dataJson.ebitdabulan_real / dataJson.ebitdbulan_rkap) * 100;
+                              if (isNaN(ebit_persen) || !isFinite(ebit_persen)){
+                               ebit_persen = 100; 
+                              }
+                              if (dataJson.ebitdabulan_real == 0){
+                               ebit_persen = 0; 
+                              }
+                              $('#ebit_per_tl').html(setFormat(ebit_persen,0)+'%');
+                              $('#ebit_real_up_tl').html(setFormat(dataJson.ebitdarun_real / 1000000000,2));
+                              $('#ebit_rkap_up_tl').html(setFormat(dataJson.ebitdrun_rkap / 1000000000,2));
+                              $('#ebit_var_up_tl').html(setFormat(dataJson.ebitdrunvarian / 1000000000,2));
+                              var ebit_up_persen = (dataJson.ebitdarun_real / dataJson.ebitdrun_rkap) * 100;
+                              if (isNaN(ebit_up_persen) || !isFinite(ebit_up_persen)){
+                               ebit_up_persen = 100; 
+                              }
+                              if (dataJson.ebitdarun_real == 0){
+                               ebit_up_persen = 0; 
+                              }
+                              $('#ebit_per_up_tl').html(setFormat(ebit_up_persen,0)+'%');
+                              $('#vol_real_tl').html(setFormat(dataJson.real_vol / 1000000000,2));
+                              $('#vol_rkap_tl').html(setFormat(dataJson.rkap_vol / 1000000000,2));
+                              $('#vol_var_tl').html(setFormat(dataJson.variance_vol / 1000000000,2));
+                              $('#vol_real_up_tl').html(setFormat(dataJson.real_vol_up / 1000000000,2));
+                              $('#vol_rkap_up_tl').html(setFormat(dataJson.rkap_vol_up / 1000000000,2));
+                              $('#vol_var_up_tl').html(setFormat(dataJson.variance_vol_up / 1000000000,2));
+                              $('#price_real_tl').html(setFormat(dataJson.real_price / 1000000000,2));
+                              $('#price_rkap_tl').html(setFormat(dataJson.rkap_price / 1000000000,2));
+                              $('#price_var_tl').html(setFormat(dataJson.variance_price / 1000000000,2));
+                              $('#price_real_up_tl').html(setFormat(dataJson.real_price_up / 1000000000,2));
+                              $('#price_rkap_up_tl').html(setFormat(dataJson.rkap_price_up / 1000000000,2));
+                              $('#biaya_var_up_tl').html(setFormat(dataJson.variance_price_up / 1000000000,2));
+                              $('#biaya_real_tl').html(setFormat(dataJson.real_biaya / 1000000000,2));
+                              $('#biaya_rkap_tl').html(setFormat(dataJson.rkap_biaya / 1000000000,2));
+                              $('#biaya_var_tl').html(setFormat(dataJson.variance_biaya / 1000000000,2));
+                              $('#biaya_real_up_tl').html(setFormat(dataJson.real_price_up / 1000000000,2));
+                              $('#biaya_rkap_up_tl').html(setFormat(dataJson.rkap_biaya_up / 1000000000,2));
+                              $('#biaya_var_up_tl').html(setFormat(dataJson.variance_biaya_up / 1000000000,2));
+                         
+                             }
+                       });                                      
+                     $.ajax({
+                            url: url_src+'/api/index.php/f_performance/performance?company=4000&bulan='+bulan,
+                            type: 'GET',
+                            success: function (data) {
+                              var dataJson = JSON.parse(data);
+                              $('#ebit_real_st').html(setFormat(dataJson.ebitdabulan_real / 1000000000,2));
+                              $('#ebit_rkap_st').html(setFormat(dataJson.ebitdbulan_rkap / 1000000000,2));
+                              $('#ebit_var_st').html(setFormat(dataJson.ebitdbulanvarian / 1000000000,2));
+                              var ebit_persen = (dataJson.ebitdabulan_real / dataJson.ebitdbulan_rkap) * 100;
+                              if (isNaN(ebit_persen) || !isFinite(ebit_persen)){
+                               ebit_persen = 100; 
+                              }
+                              if (dataJson.ebitdabulan_real == 0){
+                               ebit_persen = 0; 
+                              }
+                              $('#ebit_per_st').html(setFormat(ebit_persen,0)+'%');
+                              $('#ebit_real_up_st').html(setFormat(dataJson.ebitdarun_real / 1000000000,2));
+                              $('#ebit_rkap_up_st').html(setFormat(dataJson.ebitdrun_rkap / 1000000000,2));
+                              $('#ebit_var_up_st').html(setFormat(dataJson.ebitdrunvarian / 1000000000,2));
+                              var ebit_up_persen = (dataJson.ebitdarun_real / dataJson.ebitdrun_rkap) * 100;
+                              if (isNaN(ebit_up_persen) || !isFinite(ebit_up_persen)){
+                               ebit_up_persen = 100; 
+                              }
+                              if (dataJson.ebitdarun_real == 0){
+                               ebit_up_persen = 0; 
+                              }
+                              $('#ebit_per_up_st').html(setFormat(ebit_up_persen,0)+'%');
+                              $('#vol_real_st').html(setFormat(dataJson.real_vol / 1000000000,2));
+                              $('#vol_rkap_st').html(setFormat(dataJson.rkap_vol / 1000000000,2));
+                              $('#vol_var_st').html(setFormat(dataJson.variance_vol / 1000000000,2));
+                              $('#vol_real_up_st').html(setFormat(dataJson.real_vol_up / 1000000000,2));
+                              $('#vol_rkap_up_st').html(setFormat(dataJson.rkap_vol_up / 1000000000,2));
+                              $('#vol_var_up_st').html(setFormat(dataJson.variance_vol_up / 1000000000,2));
+                              $('#price_real_st').html(setFormat(dataJson.real_price / 1000000000,2));
+                              $('#price_rkap_st').html(setFormat(dataJson.rkap_price / 1000000000,2));
+                              $('#price_var_st').html(setFormat(dataJson.variance_price / 1000000000,2));
+                              $('#price_real_up_st').html(setFormat(dataJson.real_price_up / 1000000000,2));
+                              $('#price_rkap_up_st').html(setFormat(dataJson.rkap_price_up / 1000000000,2));
+                              $('#biaya_var_up_st').html(setFormat(dataJson.variance_price_up / 1000000000,2));
+                              $('#biaya_real_st').html(setFormat(dataJson.real_biaya / 1000000000,2));
+                              $('#biaya_rkap_st').html(setFormat(dataJson.rkap_biaya / 1000000000,2));
+                              $('#biaya_var_st').html(setFormat(dataJson.variance_biaya / 1000000000,2));
+                              $('#biaya_real_up_st').html(setFormat(dataJson.real_price_up / 1000000000,2));
+                              $('#biaya_rkap_up_st').html(setFormat(dataJson.rkap_biaya_up / 1000000000,2));
+                              $('#biaya_var_up_st').html(setFormat(dataJson.variance_biaya_up / 1000000000,2));
+                         
+                             }
+                       }); 
+                     $.ajax({
+                            url: url_src+'/api/index.php/f_performance/performance?company=3000&bulan='+bulan,
+                            type: 'GET',
+                            success: function (data) {
+                              var dataJson = JSON.parse(data);
+                              $('#ebit_real_sp').html(setFormat(dataJson.ebitdabulan_real / 1000000000,2));
+                              $('#ebit_rkap_sp').html(setFormat(dataJson.ebitdbulan_rkap / 1000000000,2));
+                              $('#ebit_var_sp').html(setFormat(dataJson.ebitdbulanvarian / 1000000000,2));
+                              var ebit_persen = (dataJson.ebitdabulan_real / dataJson.ebitdbulan_rkap) * 100;
+                              if (isNaN(ebit_persen) || !isFinite(ebit_persen)){
+                               ebit_persen = 100; 
+                              }
+                              if (dataJson.ebitdabulan_real == 0){
+                               ebit_persen = 0; 
+                              }
+                              $('#ebit_per_sp').html(setFormat(ebit_persen,0)+'%');
+                              $('#ebit_real_up_sp').html(setFormat(dataJson.ebitdarun_real / 1000000000,2));
+                              $('#ebit_rkap_up_sp').html(setFormat(dataJson.ebitdrun_rkap / 1000000000,2));
+                              $('#ebit_var_up_sp').html(setFormat(dataJson.ebitdrunvarian / 1000000000,2));
+                              var ebit_up_persen = (dataJson.ebitdarun_real / dataJson.ebitdrun_rkap) * 100;
+                              if (isNaN(ebit_up_persen) || !isFinite(ebit_up_persen)){
+                               ebit_up_persen = 100; 
+                              }
+                              if (dataJson.ebitdarun_real == 0){
+                               ebit_up_persen = 0; 
+                              }
+                              $('#ebit_per_up_sp').html(setFormat(ebit_up_persen,0)+'%');
+                              $('#vol_real_sp').html(setFormat(dataJson.real_vol / 1000000000,2));
+                              $('#vol_rkap_sp').html(setFormat(dataJson.rkap_vol / 1000000000,2));
+                              $('#vol_var_sp').html(setFormat(dataJson.variance_vol / 1000000000,2));
+                              $('#vol_real_up_sp').html(setFormat(dataJson.real_vol_up / 1000000000,2));
+                              $('#vol_rkap_up_sp').html(setFormat(dataJson.rkap_vol_up / 1000000000,2));
+                              $('#vol_var_up_sp').html(setFormat(dataJson.variance_vol_up / 1000000000,2));
+                              $('#price_real_sp').html(setFormat(dataJson.real_price / 1000000000,2));
+                              $('#price_rkap_sp').html(setFormat(dataJson.rkap_price / 1000000000,2));
+                              $('#price_var_sp').html(setFormat(dataJson.variance_price / 1000000000,2));
+                              $('#price_real_up_sp').html(setFormat(dataJson.real_price_up / 1000000000,2));
+                              $('#price_rkap_up_sp').html(setFormat(dataJson.rkap_price_up / 1000000000,2));
+                              $('#biaya_var_up_sp').html(setFormat(dataJson.variance_price_up / 1000000000,2));
+                              $('#biaya_real_sp').html(setFormat(dataJson.real_biaya / 1000000000,2));
+                              $('#biaya_rkap_sp').html(setFormat(dataJson.rkap_biaya / 1000000000,2));
+                              $('#biaya_var_sp').html(setFormat(dataJson.variance_biaya / 1000000000,2));
+                              $('#biaya_real_up_sp').html(setFormat(dataJson.real_price_up / 1000000000,2));
+                              $('#biaya_rkap_up_sp').html(setFormat(dataJson.rkap_biaya_up / 1000000000,2));
+                              $('#biaya_var_up_sp').html(setFormat(dataJson.variance_biaya_up / 1000000000,2));
+                         
+                             }
+                       }); 
+
+            }
+        </script>
+        <style type="text/css">
+            <!--
+            .wrapper {
+                width: 100%; 
+                overflow-x: hidden;
+                background: #fff;
+            }
+            .wrapper a, .wrapper a:hover {
+             text-decoration: none;
+             color:#000;
+            }
+            .blur {
+              opacity:0.3;
+            }
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .colorsp {
+                color:#333333
+            }
+            .padding5 {
+                padding:5px;
+            }
+            .heading{
+                font-weight: bold;
+                color: #bb0e2a;
+                font-family: "Open Sans";
+                font-size: 16px;
+                margin-top: 2px;
+            }
+            .text-black {
+                color: #000;
+            }
+            .text-red {
+              color:#d9534f;
+            }
+            .pattern {
+                height:auto;
+                border-right: 1px solid #b9b9b9;
+                margin-bottom:6px;
+            }
+            .tl{
+                font-size:9px;
+                border-bottom:1px solid #d2d2d2;
+                color:#333333;
+                margin-bottom:1px;
+            }
+            .tldown{
+                font-size:11px;
+                color:#333333;
+            }
+            .t1{font-size: 10px; margin-bottom: 1px;}
+            .borddown{
+                border-right:1px solid #d2d2d2;
+                margin-bottom:4px;}
+
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            #chart {
+                background: #fff;
+                height: 400px;
+            }
+            .text-label {
+              width:100%;
+              text-align: left;
+                  margin-top: 5px;
+    font-size: 18px;
+    font-weight: 400;
+            }
+            .bg-label {
+              /*background-color: #EEECEC;*/
+              background-color: #f2f2f2;
+            }
+            .highcharts-credits {
+                display: none;
+            }
+            .col-btn {
+             border: 1px solid transparent;
+             border-radius: 4px; 
+             padding:10px;
+            }
+            .no-border {
+              border:none;
+            }
+            .shad{
+              -webkit-box-shadow: 0px 4px 11px 0px rgba(212,212,212,1);
+-moz-box-shadow: 0px 4px 11px 0px rgba(212,212,212,1);
+box-shadow: 0px 4px 11px 0px rgba(212,212,212,1);
+            }
+            .br_red{
+                  border-left: 5px solid #f37878;
+    border-bottom: 6px solid #f37878;
+            }
+            .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.prc{
+      color: #000;
+    font-size: 22px;
+    padding: 0px 12px 0px 0px;
+    margin-top: 6px;
+    display: inline-block;
+}
+.det_dwn{
+      font-size: 12px;
+    color: black;
+    margin-bottom: 7px;
+    display: inline-block;
+}
+#namabulan, .namabulan {
+  color:black;
+}
+            -->
+        </style>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+             $(".se-pre-con").fadeOut("slow");
+             $('.finance_drop').click(function(e){
+              e.preventDefault();
+              var t = $(this).attr('target');
+              if ($('#vpc-'+t).hasClass('hidden')){
+               view(t);
+              }else{
+               view('');
+              }
+             })
+             function view(t){
+              $("#vpc-gresik").addClass('hidden'); 
+              $("#vpc-padang").addClass('hidden');
+              $("#vpc-tonasa").addClass('hidden'); 
+              $("#vpc-tlcc").addClass('hidden'); 
+              if (t != ''){
+               $("#vpc-"+t).removeClass('hidden'); 
+              }
+             }
+            });
+        </script>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+                    </header>
+                    <div class="wrapper">
+                        <div class="col-xs-12 noPadding">
+                            <h2 class="titular" style="background: #e3000e;height: 37px;line-height: 39px;font-size: small;">FINANCE PERFORMANCE</h2>
+                            <div class="cubesRun2" style="margin-bottom: 5px;"> 
+                             <img src="img/teks semen indo.png" class="imgsi">
+                             <div style="width:100%;text-align:center;margin-top:-5px;" id="namabulan">NOVEMBER 2016</div>
+                             <div class="col-xs-12 noPadding" style="text-align:center;"><h5>EBITDA VARIANCE</h5></div>
+                             <div class="row padding5" style="text-align: center;">
+                              <div class="col-xs-3" style="margin-top: 14px;">
+                               <div id="real_value" style="font-size:20px;">0</div>
+                               <span style="color:#000;">Real</span>
+                              </div>     
+                              <div class="col-xs-6">
+                               <div id="ebitda_value" style="font-size:34px;">0</div> 
+                               <span style="color:#000;">* in IDR BIO</span>  
+                              </div>
+                              <div class="col-xs-3" style="margin-top: 14px;">
+                               <div id="rkap_value" style="font-size:20px;">0</div>
+                               <span style="color:#000;">RKAP</span>
+                              </div>
+                             </div>
+                             <div class="row padding5" style="text-align: center;">
+                              <div class="col-xs-4">
+                               <div>VOLUME</div>
+                               <div id="smi_volume_real" class="col-btn btn-success" style="font-size:20px;padding:5px;">0</div>
+                              </div>
+                              <div class="col-xs-4">
+                               <div>PRICE</div>
+                               <div id="smi_price_real" class="col-btn btn-danger" style="font-size:20px;padding:5px;">0</div>
+                              </div>
+                              <div class="col-xs-4">
+                               <div>COST</div>
+                               <div id="smi_cost_real" class="col-btn btn-success" style="font-size:20px;padding:5px;">0</div>
+                              </div>
+                             </div>
+                             <div style="margin-top:5px;width:100%;text-align:center;font-weight: bold;font-size:12px;">EBITDA</div>
+                             <div class="table-responsive" style="width:100%;margin:0;">
+                              <table class="table table-condensed no-border" style="font-size: 13px;width:100%;" cellpadding="0" cellspacing="0">
+                               <tbody>
+                              <!--  ########SG########## -->
+                               <tr>
+                                <td align="center">
+                                  <img src="img/icKota1a.png" style="width:18px; margin-left: -8px;"><span style="color: black;padding-left: 6px; ">SG</span>
+                                </td>
+                                <td colspan="2" align="center"><span class="namabulan">November</span></td>
+                                <td></td>
+                                <td colspan="2" align="center">Up to <span class="namabulan">November</span></td>
+                               </tr>                               
+                               <tr class="shad">
+                                <td style="text-align: left; padding-left: 27px;" class="finance_drop" target="gresik">
+                                <span style="    color: #000;font-size: 9px;">Real</span><br><span id="ebit_real_sg" class="det_dwn">0</span><br>
+                                <span style="    color: #000;font-size: 9px;">RKAP</span><br><span id="ebit_rkap_sg" style="font-size: 12px;color: black;">0</span>
+                               </td>
+                                
+                                <td colspan="2" style="text-align: right; border-right: 1px solid #d9d9d9;">
+                                <span style="font-size:10px;color:#000;padding-right:10px;">Variance</span>
+                                <br>
+                                <span class="inex label label-danger" id="ebit_var_sg" style=" font-size: 19px; display: inline-block;">0</span><br>
+                                <span class="prc" id="ebit_per_sg">0%</span></td>
+                                <td style="text-align: left; padding-left: 27px;" class="finance_drop" target="gresik">
+                                <span style="    color: #000;font-size: 9px;">Real</span><br><span id="ebit_real_up_sg" class="det_dwn">0</span><br>
+                                <span style="    color: #000;font-size: 9px;">RKAP</span><br><span id="ebit_rkap_up_sg" style="font-size: 12px;color: black;">0</span>
+                               </td>
+                                <td colspan="2" style="text-align: right; border-right: 1px solid #d9d9d9;">
+                                <span style="font-size:10px;color:#000;padding-right:10px;">Variance</span>
+                                <br>
+                                <span class="inex label label-danger" id="ebit_var_up_sg" style=" font-size: 19px; display: inline-block;">0</span><br>
+                                <span class="prc" id="ebit_per_up_sg">0%</span></td>
+                               </tr>
+                               <!--  ######## HIDDEN - SG ########## -->
+                               <tr id="vpc-gresik" class="hidden br_red">
+                                <td colspan="5" class="bg-label">
+                                 <div class="text-label">Volume</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+<tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="vol_var_sg" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="vol_var_up_sg" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+
+                                  <tr>
+                                   <td align="center" style="font-size:10px;">Target<div id="vol_rkap_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;" >Actual<div id="vol_real_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="vol_rkap_up_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="vol_real_up_sg" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  
+                                 </table>
+                                 <div class="text-label">Price</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+<tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="price_var_sg" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="price_var_up_sg" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" style="font-size:10px;" >Target<div id="price_rkap_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="price_real_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="price_rkap_up_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="price_real_up_sg" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  
+                                 </table>
+                                 <div class="text-label">Cost</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px;"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+
+<tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="cost_var_sg" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="cost_var_up_sg" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" style="font-size:10px;">Target<div id="cost_rkap_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="cost_real_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="cost_rkap_up_sg" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="cost_real_up_sg" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  
+                                 </table>                                                                  
+                                </td>
+                               </tr>
+<!--  ######## SP ########## -->
+                               <tr>
+                                <td align="center">
+                                  <img src="img/icKota2a.png" style="width:18px;margin-left: -8px;"><span style="color: black;padding-left: 6px;">SP</span>
+                                </td>
+                                <td colspan="2" align="center"><span class="namabulan">November</span></td>
+                                <td></td>
+                                <td colspan="2" align="center">Up to <span class="namabulan">November</span></td>
+                               </tr>                               
+                               <tr class="shad">
+                                <td style="text-align: left; padding-left: 27px;" class="finance_drop" target="padang">
+                                <span style="    color: #000;font-size: 9px;">Real</span><br><span id="ebit_real_sp" class="det_dwn">0</span><br>
+                                <span style="    color: #000;font-size: 9px;">RKAP</span><br><span id="ebit_rkap_sp" style="    font-size: 12px;color: black;">0</span>
+                               </td>
+                                
+                                <td colspan="2" style="text-align: right; border-right: 1px solid #d9d9d9;">
+                                <span style="font-size:10px;color:#000;padding-right:10px;">Variance</span>
+                                <br>
+                                <span class="inex label label-success" id="ebit_var_sp" style=" font-size: 19px; display: inline-block;">0</span><br>
+                                <span class="prc" id="ebit_per_sp">0%</span></td>
+                                <td style="text-align: left; padding-left: 27px;" class="finance_drop" target="padang">
+                                <span style="    color: #000;font-size: 9px;">Real</span><br><span id="ebit_real_up_sp" class="det_dwn">0</span><br>
+                                <span style="    color: #000;font-size: 9px;">RKAP</span><br><span id="ebit_rkap_up_sp" style="    font-size: 12px;color: black;">0</span>
+                               </td>
+                                <td colspan="2" style="text-align: right; border-right: 1px solid #d9d9d9;">
+                                <span style="font-size:10px;color:#000;padding-right:10px;">Variance</span>
+                                <br>
+                                <span class="inex label label-danger" id="ebit_var_up_sp" style=" font-size: 19px; display: inline-block;">0</span><br>
+                                <span class="prc" id="ebit_per_up_sp">0%</span></td>
+                               </tr>
+                               <tr id="vpc-padang" class="hidden br_red">
+                                <td colspan="5" class="bg-label">
+                                 <div class="text-label">Volume</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px; ">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px;"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+<tr style="padding: 5px;">
+                                    <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="vol_var_sp" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                    <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="vol_var_up_sp" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                  <tr style="padding: 5px;">
+                                   <td align="center" style="font-size:10px;">Target<div id="vol_rkap_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="vol_real_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="vol_rkap_up_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="vol_real_up_sp" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  
+                                 </table>
+                                 <div class="text-label">Price</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+ <tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="price_vol_sp" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="price_vol_up_sp" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" style="font-size:10px; ">Target<div id="price_rkap_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="price_real_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="price_rkap_up_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="price_real_up_sp" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                 
+                                 </table>
+                                 <div class="text-label">Cost</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px;"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+<tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="cost_var_sp" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="cost_var_up_sp" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" style="font-size:10px;">Target<div id="cost_rkap_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="cost_real_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="cost_rkap_up_sp" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="cost_real_up_sp" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  
+                                 </table>                                                                  
+                                </td>
+                               </tr>  
+                               <!-- ST                              -->
+                               <tr>
+                                <td align="center">
+                                  <img src="img/icKota3a.png" style="width:18px;margin-left: -8px;"><span style="color: black;padding-left: 6px;">ST</span>
+                                </td>
+                                <td colspan="2" align="center"><span class="namabulan">November</span></td>
+                                <td></td>
+                                <td colspan="2" align="center">Up to <span class="namabulan">November</span></td>
+                               </tr>                               
+                               <tr class="shad">
+                                <td style="text-align: left; padding-left: 27px;" class="finance_drop" target="tonasa">
+                                <span style="    color: #000;font-size: 9px;">Real</span><br><span id="ebit_real_st" class="det_dwn">0</span><br>
+                                <span style="    color: #000;font-size: 9px;">RKAP</span><br><span id="ebit_rkap_st" style="    font-size: 12px;color: black;">0</span>
+                               </td>
+                                
+                                <td colspan="2" style="text-align: right; border-right: 1px solid #d9d9d9;">
+                                <span style="font-size:10px;color:#000;padding-right:10px;">Variance</span>
+                                <br>
+                                <span class="inex label label-danger" id="ebit_var_st" style=" font-size: 19px; display: inline-block;">0</span><br>
+                                <span class="prc" id="ebit_per_st">0%</span></td>
+                                <td style="text-align: left; padding-left: 27px;" class="finance_drop" target="tonasa">
+                                <span style="    color: #000;font-size: 9px;">Real</span><br><span id="ebit_real_up_st" class="det_dwn">0</span><br>
+                                <span style="    color: #000;font-size: 9px;">RKAP</span><br><span id="ebit_rkap_up_st" style="    font-size: 12px;color: black;">0</span>
+                               </td>
+                                <td colspan="2" style="text-align: right; border-right: 1px solid #d9d9d9;">
+                                <span style="font-size:10px;color:#000;padding-right:10px;">Variance</span>
+                                <br>
+                                <span class="inex label label-success" id="ebit_var_up_st" style=" font-size: 19px; display: inline-block;">0</span><br>
+                                <span class="prc" id="ebit_per_up_st">0%</span></td>
+                               </tr>
+                               <!-- ST -->
+                               <tr id="vpc-tonasa" class="hidden br_red">
+                                <td colspan="5" class="bg-label">
+                                 <div class="text-label">Volume</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+
+                                  <tr>
+                                   <td align="center" style="font-size:10px;">Target<div id="vol_rkap_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;" >Actual<div id="vol_rkap_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="vol_rkap_up_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="vol_real_up_st" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="vol_var_st" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="vol_var_up_st" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                 </table>
+                                 <div class="text-label">Price</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" style="font-size:10px;" >Target<div id="price_rkap_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="price_real_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="price_rkap_up_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="price_real_up_st" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="price_var_st" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="price_var_up_st" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                 </table>
+                                 <div class="text-label">Cost</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px;"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" style="font-size:10px;">Target<div id="cost_rkap_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="cost_real_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="cost_rkap_up_st" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="cost_real_up_st" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="cost_var_st" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="cost_var_up_st" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                 </table>                                                                  
+                                </td>
+                               </tr>                               
+                               
+<!--  ######## SP ########## -->
+                                <tr>
+                                <td align="center">
+                                  <img src="img/icKota4a.png" style="width:18px;margin-left: -8px;"><span style="color: black;padding-left: 6px;">TL</span>
+                                </td>
+                                <td colspan="2" align="center"><span class="namabulan">November</span></td>
+                                <td></td>
+                                <td colspan="2" align="center">Up to <span class="namabulan">November</span></td>
+                               </tr>                               
+                               <tr class="shad">
+                                <td style="text-align: left; padding-left: 27px;" class="finance_drop" target="tlcc">
+                                <span style="    color: #000;font-size: 9px;">Real</span><br><span id="ebit_real_tl" class="det_dwn">0</span><br>
+                                <span style="    color: #000;font-size: 9px;">RKAP</span><br><span id="ebit_rkap_tl" style="    font-size: 12px;color: black;">0</span>
+                               </td>
+                                
+                                <td colspan="2" style="text-align: right; border-right: 1px solid #d9d9d9;">
+                                <span style="font-size:10px;color:#000;padding-right:10px;">Variance</span>
+                                <br>
+                                <span class="inex label label-danger" id="ebit_var_tl" style=" font-size: 19px; display: inline-block;">0</span><br>
+                                <span class="prc" id="ebit_per_tl">0%</span></td>
+                                <td style="text-align: left; padding-left: 27px;" class="finance_drop" target="tlcc">
+                                <span style="    color: #000;font-size: 9px;">Real</span><br><span id="ebit_real_up_tl" class="det_dwn">0</span><br>
+                                <span style="    color: #000;font-size: 9px;">RKAP</span><br><span id="ebit_rkap_up_tl" style="    font-size: 12px;color: black;">0</span>
+                               </td>
+                                <td colspan="2" style="text-align: right; border-right: 1px solid #d9d9d9;">
+                                <span style="font-size:10px;color:#000;padding-right:10px;">Variance</span>
+                                <br>
+                                <span class="inex label label-success" id="ebit_var_up_tl" style=" font-size: 19px; display: inline-block;">0</span><br>
+                                <span class="prc" id="ebit_per_up_tl">0%</span></td>
+                               </tr>
+                               <tr id="vpc-tlcc" class="hidden br_red">
+                                <td colspan="5" class="bg-label">
+                                 <div class="text-label">Volume</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+
+                                  <tr>
+                                   <td align="center" style="font-size:10px;">Target<div id="vol_rkap_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;" >Actual<div id="vol_real_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="vol_rkap_up_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="vol_real_up_tl" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="vol_var_tl" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="vol_var_up_tl" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                 </table>
+                                 <div class="text-label">Price</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" style="font-size:10px;" >Target<div id="price_rkap_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="price_real_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="price_rkap_up_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="price_real_up_tl" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="price_var_tl" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="price_var_up_tl" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                 </table>
+                                 <div class="text-label">Cost</div>
+                                 <table width="100%" align="center" style="background-color: white; margin-bottom: 12px;">
+                                  <tr style="border-bottom: 1px solid #d9d9d9; padding: 5px;">
+                                   <td colspan="2" width="50%" align="center" style="border-right: 1px solid #d9d9d9; padding: 5px;"><span class="namabulan">November</span></td>
+                                   <td colspan="2" width="50%" align="center">Up to <span class="namabulan">November</span></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" style="font-size:10px;">Target<div id="cost_rkap_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px; border-right: 1px solid #d9d9d9;">Actual<div id="cost_real_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Target<div id="cost_rkap_up_tl" style="font-size:16px;">0</div></td>
+                                   <td align="center" style="font-size:10px;">Actual<div id="cost_real_up_tl" style="font-size:16px;">0</div></td>
+                                  </tr>
+                                  <tr>
+                                   <td align="center" colspan="2" style="border-right: 1px solid #d9d9d9;"><span style="font-size:10px;color:#000;">Variance</span><div id="cost_var_tl" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                   <td align="center" colspan="2"><span style="font-size:10px;color:#000;">Variance</span><div id="cost_var_up_tl" class="col-btn btn-danger" style="font-size:18px;padding:3px;width:90px;text-align:center;">0</div></td>
+                                  </tr>
+                                 </table>                                                                  
+                                </td>
+                               </tr>                                 
+                               </tbody>
+                              </table>
+                             </div>                            
+                            </div>
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

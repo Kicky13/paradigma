@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/highstock.js"></script>
+        <script src="js/loader.js"></script>
+        <script src="js/exporting.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "Cement Production";
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "Clinker Production";
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                        myspan.innerText = "Raw Meal Production";
+                    }
+                })
+                var myspan = document.getElementById('head');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_sg.html';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'prod_rm_tlcc.html';
+                    }
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader {
+                display: none;
+            }
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active {
+                border-top: 1px solid #1481ed;
+            }
+            .inex {
+                font-size: 25px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+            }
+            .tit_head {
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .tab-active {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                font-family: "Open Sans";
+            }
+            .prosen1 {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+            .mencapai {
+                color: #06bf79;
+            }
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <title>Production Report</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                        <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                        <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                        <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                        <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                        <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                        <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                        <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="height: 37px; line-height: 39px; font-size: small;">
+                            <a href="portal_prod1.html" class="pull-left" style="margin-left:10px;">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            </a>PRODUCTION REPORT</h2>
+                        <div class=" headsix2 cubesRun2 headone whitebg">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota4.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px;" >
+                                <p class="opco">THANG LONG</p>
+                                <p class="prodtittle" style="font-size: 20px;" id="head">Cement Production</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 tab_dual">
+                            <div class="col-xs-12 bg_rds">
+                                <div id="tab-volume" class="col-xs-4 center zero_padd left_tb act_tb">
+                                    <a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/pack.png" width="18px"> 
+                                        <span class="tx_tab">&nbsp;&nbsp;Finish Mill</span></a></div>
+
+                                <div id="tab-revenue" class="col-xs-4 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-revenue" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                        <span class="tx_tab">&nbsp;&nbsp;Kiln</span></a></div>
+
+                                <div id="tab-price" class="col-xs-4 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-price" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                        <span class="tx_tab">&nbsp;&nbsp;Raw Mill</span></a></div>
+                            </div>
+                        </div>
+                        <div id="data-price" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px;">
+                                <div align="center" class="headsixbg cubesRun2" style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION THIS MONTH (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"> <span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" style="color:#22A7F0;">0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"> <span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realmonthrm" style="color:#22A7F0;"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1">0</span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION UP TO (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"><span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" style="color:#22A7F0;">0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"><span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realuptorm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1">0 </span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 10px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER DAY THIS MONTH</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="prodrm" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 56px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER MONTH THIS YEAR</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="monthrm" style="min-height: 300px;width:900px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                        <!--######################menu1###########################-->
+                        <div id="data-revenue" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION THIS MONTH (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"> <span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="rkapmonthkl" style="color:#22A7F0;"> 0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"> <span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realmonthkl" style="color:#22A7F0;"> 0</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="percentmonthkl"> 0</span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION UP TO (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"><span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="rkapuptokl" style="color:#22A7F0;"> 0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"><span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realuptokl" style="color:#22A7F0;">0</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="percentuptokl"> 0</span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 10px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER DAY THIS MONTH</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="prodkl" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 56px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER MONTH THIS YEAR</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="monthkl" style="min-height: 300px;width:900px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                        <!--######################menu2###########################-->
+                        <div id="data-volume">
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION THIS MONTH (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"> <span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="rkapmonthfm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"> <span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realmonthfm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="percentmonthfm">0</span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION UP TO (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"><span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="rkapuptofm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"><span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realuptofm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="percentuptofm">0</span> <span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 10px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER DAY THIS MONTH</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="prodfm" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 56px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER MONTH THIS YEAR</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="monthfm" style="min-height: 300px;width:900px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer>
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="prod_rm_sp.html" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="prod_rm_sg.html" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="prod_rm_st.html" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <script>
+            var myMonth = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+            var d = moment().format('DD');
+            var m = moment().format('MM');
+            var y = moment().format('YYYY');
+            var today = d + ' ' + myMonth[parseInt(m) - 1] + ' ' + y;
+            $('#last_updated').html(today);
+            var strBulan = 's' + bulanSekarang;
+            $(".bulan").html(bulan + ' ' + tahun);
+            function n(n) {
+                return n > 9 ? "" + n : "0" + n;
+            }
+            $.ajax({
+                url: url_src + '/api/index.php/plant_tlcc/get_proddaily',
+                type: 'GET',
+                success: function (data) {
+                    var data1 = data.replace("<title>Json</title>", "");
+                    var data2 = data1.replace("(", "[");
+                    var data3 = data2.replace(");", "]");
+
+                    var dataJson = JSON.parse(data3);
+
+                    var obj = dataJson['TLCC.RM1'].produksi;
+                    var count = Object.keys(obj).length;
+                    var now = moment();
+                    var days = moment(now).daysInMonth();
+
+                    var labelArray = [];
+                    var dataRate1 = [];
+                    var dataProd1 = [];
+
+                    var dataRate1kl = [];
+                    var dataProd1kl = [];
+
+                    var dataRate1fm = [];
+                    var dataProd1fm = [];
+                    var dataRate2fm = [];
+                    var dataProd2fm = [];
+
+                    for (i = 1; i <= count; i++) {
+                        //Raw Mill
+                        labelArray.push(i);
+                        nilaiRate1 = dataJson['TLCC.RM1'].produksi[n(i)].rate ? (dataJson['TLCC.RM1'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1 = dataJson['TLCC.RM1'].produksi[n(i)].prod ? (dataJson['TLCC.RM1'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1.push(parseInt(nilaiRate1.replace(',', '.')));
+                        dataProd1.push(parseInt(nilaiProd1.replace(',', '.')));
+
+                        //Kiln
+                        nilaiRate1kl = dataJson['TLCC.KL'].produksi[n(i)].rate ? (dataJson['TLCC.KL'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1kl = dataJson['TLCC.KL'].produksi[n(i)].prod ? (dataJson['TLCC.KL'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1kl.push(parseInt(nilaiRate1kl.replace(',', '.')));
+                        dataProd1kl.push(parseInt(nilaiProd1kl.replace(',', '.')));
+
+                        //Finish Mill
+                        nilaiRate1fm = dataJson['TLCC.FMMP'].produksi[n(i)].rate ? (dataJson['TLCC.FMMP'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1fm = dataJson['TLCC.FMMP'].produksi[n(i)].prod ? (dataJson['TLCC.FMMP'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1fm.push(parseInt(nilaiRate1fm.replace(',', '.')));
+                        dataProd1fm.push(parseInt(nilaiProd1fm.replace(',', '.')));
+
+                        nilaiRate2fm = dataJson['TLCC.FM_HCM'].produksi[n(i)].rate ? (dataJson['TLCC.FM_HCM'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd2fm = dataJson['TLCC.FM_HCM'].produksi[n(i)].prod ? (dataJson['TLCC.FM_HCM'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate2fm.push(parseInt(nilaiRate2fm.replace(',', '.')));
+                        dataProd2fm.push(parseInt(nilaiProd2fm.replace(',', '.')));
+                    }
+
+                    $('.raterm').click(function (e) {
+                        var tar = $(this).attr('rel');
+                        var chart = $('#raterm').highcharts();
+                        var mini = chart.xAxis[0].min;
+                        var maxi = chart.xAxis[0].max;
+                        if (tar == 'kiri') {
+                            if (mini > 0) {
+                                chart.xAxis[0].update({
+                                    min: mini - 6,
+                                    max: maxi - 6
+                                });
+                            }
+                        } else if (tar == 'kanan') {
+                            if (maxi < (days - (days - count))) {
+                                chart.xAxis[0].update({
+                                    min: mini + 6,
+                                    max: maxi + 6,
+                                    categories: days
+                                });
+                            }
+                        }
+                    })
+                    $('#raterm').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'TLCC',
+                                color: '#87D37C',
+                                data: dataRate1
+                            }]
+                    });
+                    $('#prodrm').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'TLCC',
+                                color: '#87D37C',
+                                data: dataProd1
+                            }]
+                    });
+
+                    $('#ratekl').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'TLCC',
+                                color: '#87D37C',
+                                data: dataRate1kl
+                            }]
+                    });
+                    $('#prodkl').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'TLCC',
+                                color: '#87D37C',
+                                data: dataProd1kl
+                            }]
+                    });
+
+                    $('#ratefm').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'MP (Quang Ninh)',
+                                color: '#E74C3C',
+                                data: dataRate1fm
+                            }, {
+                                name: 'Ho Chi Minh',
+                                color: '#87D37C',
+                                data: dataRate2fm
+                            }]
+                    });
+                    $('#prodfm').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'MP (Quang Ninh)',
+                                color: '#E74C3C',
+                                data: dataProd1fm
+                            }, {
+                                name: 'Ho Chi Minh',
+                                color: '#19B5FE',
+                                data: dataProd2fm
+                            }]
+                    });
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            //===================== MONTH ======
+            $.ajax({
+                url: url_src + '/api/index.php/plant_tlcc/get_prodmonth',
+                type: 'GET',
+                success: function (data) {
+                    var data1 = data.replace("<title>Json</title>", "");
+                    var data2 = data1.replace("(", "[");
+                    var data3 = data2.replace(");", "]");
+
+                    var dataJson = JSON.parse(data3);
+                    var myLogData = dataJson['7000'].prod;
+                    var myRKAP = dataJson['7000'].rkap;
+//                    var count = Object.keys(myLogData).length;
+
+                    var labelArray = [];
+                    var index = [];
+                    var prodkl1 = [];
+                    var prodrm1 = [];
+                    var prodfmmp = [];
+                    var prodfmgp = [];
+
+                    var rkap_cement = [];
+                    var rkap_clinker = [];
+
+                    for (var x in myLogData) {
+                        index.push(x);
+                        labelArray.push(x);
+                        kl1 = dataJson['7000'].prod[x].kl1;
+                        prodkl1.push(parseFloat(kl1.replace(',', '.')));
+
+                        rm1 = dataJson['7000'].prod[x].rm1;
+                        prodrm1.push(parseFloat(rm1.replace(',', '.')));
+
+                        fmmp = dataJson['7000'].prod[x].fm_mp;
+                        prodfmmp.push(parseFloat(fmmp.replace(',', '.')));
+
+                        fmgp = dataJson['7000'].prod[x].fm_gp;
+                        prodfmgp.push(parseFloat(fmgp.replace(',', '.')));
+
+                        kl1 = dataJson['7000'].rkap[x].rkap_cement;
+                        rkap_cement.push(parseFloat(kl1.replace(',', '.')));
+
+                        rm1 = dataJson['7000'].rkap[x].rkap_clinker;
+                        rkap_clinker.push(parseFloat(rm1.replace(',', '.')));
+                    }
+
+                    $('#monthrm').highcharts({
+                        chart: {
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal'
+                            }
+                        },
+                        series: [{
+                                name: 'TLCC',
+                                type: 'column',
+                                color: '#87D37C',
+                                data: prodrm1
+                            }]
+                    });
+
+                    $('#monthkl').highcharts({
+                        chart: {
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal'
+                            }
+                        },
+                        series: [
+                            {
+                                name: 'TLCC',
+                                type: 'column',
+                                color: '#87D37C',
+                                data: prodkl1
+                            }, {
+                                name: 'RKAP',
+                                type: 'spline',
+                                color: '#E74C3C',
+                                data: rkap_clinker
+                            }]
+                    });
+
+                    $('#monthfm').highcharts({
+                        chart: {
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal'
+                            }
+                        },
+                        series: [
+                            {
+                                name: 'MP (Quang Ninh)',
+                                type: 'column',
+                                color: '#F7CA18',
+                                data: prodfmmp
+                            }, {
+                                name: 'Ho Chi Minh',
+                                type: 'column',
+                                color: '#87D37C',
+                                data: prodfmgp
+                            }, {
+                                name: 'RKAP',
+                                type: 'spline',
+                                color: '#E74C3C',
+                                data: rkap_cement
+                            }]
+                    });
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            //==================== RAW MILL ====================//
+            $.ajax({
+                url: url_src + '/api/index.php/plant_tlcc/get_upto',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realuptorm").html(FormatNumberBy3(parseFloat(dataJson.rawmill).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            var alamat = url_src + '/api/index.php/plant_tlcc/get_totaltahun?bulan=' + bulanSekarang + '&tahun=' + tahun;
+            $.ajax({
+                url: alamat,
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realmonthrm").html(FormatNumberBy3(parseFloat(dataJson.rawmill).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            //==================== KILN ====================//
+            $.ajax({
+                url: url_src + '/api/index.php/plant_tlcc/get_upto',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realuptokl").html(FormatNumberBy3(parseFloat(dataJson.kiln).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+
+            function real(data_clin) {
+                var alamat = url_src + '/api/index.php/plant_tlcc/get_totaltahun?bulan=' + bulanSekarang + '&tahun=' + tahun;
+                $.ajax({
+                    url: alamat,
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+                        $("#realmonthkl").html(FormatNumberBy3(parseFloat(dataJson.kiln).toFixed(0), ",", "."));
+                        var data_real = dataJson.kiln;
+
+                        var prosenprod = (data_real / data_clin) * 100;
+                        $("#percentmonthkl").html(prosenprod.toFixed(2));
+
+                        if (parseFloat(prosenprod) >= 100) {
+                            $("#percentmonthkl").addClass('mencapai');
+                        } else {
+                            $("#percentmonthkl").addClass('tidak_mencapai');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+
+            function mine(year_clin) {
+                var alamat = url_src + '/api/index.php/plant_tlcc/get_upto';
+                $.ajax({
+                    url: alamat,
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+                        var year_real = dataJson.kiln;
+
+                        var prosenyear = (year_real / year_clin) * 100;
+                        $("#percentuptokl").html(prosenyear.toFixed(2));
+
+                        if (parseFloat(prosenyear) >= 100) {
+                            $("#percentuptokl").addClass('mencapai');
+                        } else {
+                            $("#percentuptokl").addClass('tidak_mencapai');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+
+            $.ajax({
+                url: url_src + '/api/index.php/rkap/get_rkap_month?company=6000',
+                type: 'GET',
+                success: function (data) {
+                    var data = eval('(' + data + ')');
+                    var data_clin = data[strBulan].clinker;
+                    $("#rkapmonthkl").html(FormatNumberBy3(data_clin, ",", "."));
+                    real(data_clin);
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+
+            $.ajax({
+                url: url_src + '/api/index.php/rkap/get_rkap_year?company=6000',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    var year_clin = dataJson['s6000'].clinker;
+                    $("#rkapuptokl").html(FormatNumberBy3(year_clin, ",", "."));
+                    mine(year_clin);
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            //==================== FINISH MILL ====================//
+            $.ajax({
+                url: url_src + '/api/index.php/plant_tlcc/get_upto',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realuptofm").html(FormatNumberBy3(parseFloat(dataJson.finishmill).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            var alamat = url_src + '/api/index.php/plant_tlcc/get_totaltahun?bulan=' + bulanSekarang + '&tahun=' + tahun;
+            $.ajax({
+                url: alamat,
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realmonthfm").html(FormatNumberBy3(parseFloat(dataJson.finishmill).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            function real_fm(data_cement) {
+                var alamat = url_src + '/api/index.php/plant_tlcc/get_totaltahun?bulan=' + bulanSekarang + '&tahun=' + tahun;
+                $.ajax({
+                    url: alamat,
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+                        var data_real = dataJson.finishmill;
+
+                        var prosenprod = (data_real / data_cement) * 100;
+                        $("#percentmonthfm").html(prosenprod.toFixed(2));
+
+                        if (parseFloat(prosenprod) >= 100) {
+                            $("#percentmonthfm").addClass('mencapai');
+                        } else {
+                            $("#percentmonthfm").addClass('tidak_mencapai');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+
+            function mine_fm(year_cement) {
+                var alamat = url_src + '/api/index.php/plant_tlcc/get_upto';
+                $.ajax({
+                    url: alamat,
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+                        var year_real = dataJson.finishmill;
+
+                        var prosenyear = (year_real / year_cement) * 100;
+                        $("#percentuptofm").html(prosenyear.toFixed(2));
+
+                        if (parseFloat(prosenyear) >= 100) {
+                            $("#percentuptofm").addClass('mencapai');
+                        } else {
+                            $("#percentuptofm").addClass('tidak_mencapai');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+
+            $.ajax({
+                url: url_src + '/api/index.php/rkap/get_rkap_month?company=6000',
+                type: 'GET',
+                success: function (data) {
+                    var data = eval('(' + data + ')');
+                    var data_cement = data[strBulan].cement;
+                    $("#rkapmonthfm").html(FormatNumberBy3(parseFloat(data_cement).toFixed(0), ",", "."));
+                    real_fm(data_cement);
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+
+            $.ajax({
+                url: url_src + '/api/index.php/rkap/get_rkap_year?company=6000',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    var year_cement = dataJson['s6000'].cement;
+                    $("#rkapuptofm").html(FormatNumberBy3(parseFloat(year_cement).toFixed(0), ",", "."));
+                    mine_fm(year_cement);
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        <script src="js/phase2/sidenav.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/ip_highcharts.js"></script>
+        <script src="js/ip_highcharts-3d.js"></script>
+        <script src="js/ip_exporting.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+
+                $('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x = Number(tahun); x > 2016; x--) {
+                    if (x == tahun) {
+                        opt_year += '<option value="' + x + '" selected="selected">' + x + '</option>';
+                    } else {
+                        opt_year += '<option value="' + x + '">' + x + '</option>';
+                    }
+                }
+                $('.selyear').html(opt_year);
+                var opt_month;
+                $.each(month, function (key, val) {
+                    if (key + 1 <= 12) {
+                        if ((key + 1) < 10) {
+                            var v = '0' + (key + 1);
+                        } else {
+                            var v = key + 1;
+                        }
+                        if ((key + 1) == bulanSekarang) {
+                            opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                        } else {
+                            opt_month += '<option value="' + v + '">' + val + '</option>';
+                        }
+                    }
+
+                })
+                $('.selmonth').html(opt_month);
+
+                var myspan = document.getElementById('head');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "Report Yield";
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "Report Utilisasi";
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                        myspan.innerText = "Report Efisiensi";
+                    }
+                })
+
+                $('a[href="#tab-yield"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-yieldtb1') {
+                        $('#data-yieldtb1').removeClass('hidden');
+                        $('#data-yieldtb2').addClass('hidden');
+                        $('#data-yieldtb3').addClass('hidden');
+                        $('#data-yieldtb4').addClass('hidden');
+
+                        $('#yield-tb1').addClass('act_tb');
+                        $('#yield-tb2').removeClass('act_tb');
+                        $('#yield-tb3').removeClass('act_tb');
+                        $('#yield-tb4').removeClass('act_tb');
+                    } else if (r == 'data-yieldtb2') {
+                        $('#data-yieldtb1').addClass('hidden');
+                        $('#data-yieldtb2').removeClass('hidden');
+                        $('#data-yieldtb3').addClass('hidden');
+                        $('#data-yieldtb4').addClass('hidden');
+
+                        $('#yield-tb1').removeClass('act_tb');
+                        $('#yield-tb2').addClass('act_tb');
+                        $('#yield-tb3').removeClass('act_tb');
+                        $('#yield-tb4').removeClass('act_tb');
+                    } else if (r == 'data-yieldtb3') {
+                        $('#data-yieldtb1').addClass('hidden');
+                        $('#data-yieldtb2').addClass('hidden');
+                        $('#data-yieldtb3').removeClass('hidden');
+                        $('#data-yieldtb4').addClass('hidden');
+
+                        $('#yield-tb1').removeClass('act_tb');
+                        $('#yield-tb2').removeClass('act_tb');
+                        $('#yield-tb3').addClass('act_tb');
+                        $('#yield-tb4').removeClass('act_tb');
+                    } else if (r == 'data-yieldtb4') {
+                        $('#data-yieldtb1').addClass('hidden');
+                        $('#data-yieldtb2').addClass('hidden');
+                        $('#data-yieldtb3').addClass('hidden');
+                        $('#data-yieldtb4').removeClass('hidden');
+
+                        $('#yield-tb1').removeClass('act_tb');
+                        $('#yield-tb2').removeClass('act_tb');
+                        $('#yield-tb3').removeClass('act_tb');
+                        $('#yield-tb4').addClass('act_tb');
+                    }
+                })
+
+                $('a[href="#tab-util"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-utiltb1') {
+                        $('#data-utiltb1').removeClass('hidden');
+                        $('#data-utiltb2').addClass('hidden');
+                        $('#data-utiltb3').addClass('hidden');
+                        $('#data-utiltb4').addClass('hidden');
+
+                        $('#util-tb1').addClass('act_tb');
+                        $('#util-tb2').removeClass('act_tb');
+                        $('#util-tb3').removeClass('act_tb');
+                        $('#util-tb4').removeClass('act_tb');
+                    } else if (r == 'data-utiltb2') {
+                        $('#data-utiltb1').addClass('hidden');
+                        $('#data-utiltb2').removeClass('hidden');
+                        $('#data-utiltb3').addClass('hidden');
+                        $('#data-utiltb4').addClass('hidden');
+
+                        $('#util-tb1').removeClass('act_tb');
+                        $('#util-tb2').addClass('act_tb');
+                        $('#util-tb3').removeClass('act_tb');
+                        $('#util-tb4').removeClass('act_tb');
+                    } else if (r == 'data-utiltb3') {
+                        $('#data-utiltb1').addClass('hidden');
+                        $('#data-utiltb2').addClass('hidden');
+                        $('#data-utiltb3').removeClass('hidden');
+                        $('#data-utiltb4').addClass('hidden');
+
+                        $('#util-tb1').removeClass('act_tb');
+                        $('#util-tb2').removeClass('act_tb');
+                        $('#util-tb3').addClass('act_tb');
+                        $('#util-tb4').removeClass('act_tb');
+                    } else if (r == 'data-utiltb4') {
+                        $('#data-utiltb1').addClass('hidden');
+                        $('#data-utiltb2').addClass('hidden');
+                        $('#data-utiltb3').addClass('hidden');
+                        $('#data-utiltb4').removeClass('hidden');
+
+                        $('#util-tb1').removeClass('act_tb');
+                        $('#util-tb2').removeClass('act_tb');
+                        $('#util-tb3').removeClass('act_tb');
+                        $('#util-tb4').addClass('act_tb');
+                    }
+                })
+
+                $('a[href="#tab-eff"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-efftb1') {
+                        $('#data-efftb1').removeClass('hidden');
+                        $('#data-efftb2').addClass('hidden');
+                        $('#data-efftb3').addClass('hidden');
+                        $('#data-efftb4').addClass('hidden');
+
+                        $('#eff-tb1').addClass('act_tb');
+                        $('#eff-tb2').removeClass('act_tb');
+                        $('#eff-tb3').removeClass('act_tb');
+                        $('#eff-tb4').removeClass('act_tb');
+                    } else if (r == 'data-efftb2') {
+                        $('#data-efftb1').addClass('hidden');
+                        $('#data-efftb2').removeClass('hidden');
+                        $('#data-efftb3').addClass('hidden');
+                        $('#data-efftb4').addClass('hidden');
+
+                        $('#eff-tb1').removeClass('act_tb');
+                        $('#eff-tb2').addClass('act_tb');
+                        $('#eff-tb3').removeClass('act_tb');
+                        $('#eff-tb4').removeClass('act_tb');
+                    } else if (r == 'data-efftb3') {
+                        $('#data-efftb1').addClass('hidden');
+                        $('#data-efftb2').addClass('hidden');
+                        $('#data-efftb3').removeClass('hidden');
+                        $('#data-efftb4').addClass('hidden');
+
+                        $('#eff-tb1').removeClass('act_tb');
+                        $('#eff-tb2').removeClass('act_tb');
+                        $('#eff-tb3').addClass('act_tb');
+                        $('#eff-tb4').removeClass('act_tb');
+                    } else if (r == 'data-efftb4') {
+                        $('#data-efftb1').addClass('hidden');
+                        $('#data-efftb2').addClass('hidden');
+                        $('#data-efftb3').addClass('hidden');
+                        $('#data-efftb4').removeClass('hidden');
+
+                        $('#eff-tb1').removeClass('act_tb');
+                        $('#eff-tb2').removeClass('act_tb');
+                        $('#eff-tb3').removeClass('act_tb');
+                        $('#eff-tb4').addClass('act_tb');
+                    }
+                })
+                $( ".head-menu" ).scrollLeft(100);
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+
+            .font-category {
+                font-size: 12px;
+            }
+
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .no-js #loader {
+                display: none;
+            }
+
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .nav-tabs > li.active {
+                border-top: 1px solid #1481ed;
+            }
+
+            .inex {
+                font-size: 25px;
+                font-family: "Open Sans";
+                margin-bottom: 0px;
+            }
+
+            .tit_head {
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+            }
+
+            .tab-active > a, .tab-active > a:focus, .tab-active > a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration: none;
+
+            }
+
+            .tab-active {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration: none;
+            }
+
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color: #000;
+            }
+
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                font-family: "Open Sans";
+            }
+
+            .prosen1 {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+
+            .mencapai {
+                color: #06bf79;
+            }
+
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <title>Production Report</title>
+    </head>
+    <body onLoad="onLoad()">
+        <div class="app">
+            <div id="deviceready">
+                <div id="backdrop"></div>
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                            <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                            <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a href="scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a href="#" class="active"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" style="background:#f5f5f5;">
+                     <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle"><span>toggle menu</span></button>
+                        <b class="logopis">PERFORMANCE REPORT</b>
+                        <a class="logo" href="index.html"><img src="img/logo.png"></a>
+                    </header>
+                    <div class="wrapper">
+                        <div class="head-menu">
+                            <ul>
+                                <li><a href="maint_inspection_si.html">INSPECTION</a></li>
+                                <li><a onclick="alert('Backlog data will available soon')">BACKLOG</a></li>
+                                <li><a class="active">PERFORMANCE</a></li>
+                                <li><a href="maint_cost_sg.html">MAINT. COST</a></li>
+                                <li><a href="maint_fmea_si.html">FMEA</a></li>
+                            </ul>
+                        </div>
+                        <div class="spacer-menu""></div>
+                        <div class="headsix add_fix cubesRun2">
+                            <div align="center">
+                                <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="prodtittle" style="font-weight: 600;font-size: 23px;display: inline-block;float: none;margin-bottom: 6px;">SEMEN INDONESIA</p>
+                            </div>
+
+                            <div style="width: 100%;margin-top: 0px; margin-bottom: 6px; text-align: center;">
+                                Month : <select id="month" class="selmonth" rel="vol"></select>
+                                Year : <select id="year" class="selyear" rel="vol"></select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 tab_dual">
+                            <div class="col-xs-12 bg_rds">
+                                <div id="tab-volume" class="col-xs-4 center zero_padd left_tb act_tb">
+                                    <a href="#tab-click" rel="data-volume" class="no-text-style">
+                                        <span class="tx_tab">Yield</span></a></div>
+
+                                <div id="tab-revenue" class="col-xs-4 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-revenue" class="no-text-style">
+                                        <span class="tx_tab">Availability</span></a></div>
+
+                                <div id="tab-price" class="col-xs-4 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-price" class="no-text-style">
+                                        <span class="tx_tab">OEE</span></a></div>
+                            </div>
+                        </div>
+                        <div id="data-volume">
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;">
+                                    <center><span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;YIELD TOTAL</span></center>
+                                </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center"
+                                     style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="dash_yield" style="height: 250px; width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 tab_dual" style="margin-top: 12px">
+                                <div class="col-xs-12 bg_rds">
+                                    <div id="yield-tb1" class="col-xs-3 center zero_padd left_tb act_tb">
+                                        <a href="#tab-yield" rel="data-yieldtb1" class="no-text-style">
+                                            <span class="tx_tab">Tuban 1</span></a></div>
+
+                                    <div id="yield-tb2" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-yield" rel="data-yieldtb2" class="no-text-style">
+                                            <span class="tx_tab">Tuban 2</span></a></div>
+
+                                    <div id="yield-tb3" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-yield" rel="data-yieldtb3" class="no-text-style">
+                                            <span class="tx_tab">Tuban 3</span></a></div>
+
+                                    <div id="yield-tb4" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-yield" rel="data-yieldtb4" class="no-text-style">
+                                            <span class="tx_tab">Tuban 4</span></a></div>
+                                </div>
+                            </div>
+                            <div id="data-yieldtb1">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;">
+                                        <img src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 1</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_yield_tb1" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-yieldtb2" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px;border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 2</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_yield_tb2" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-yieldtb3" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px;border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 3</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_yield_tb3" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-yieldtb4" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 4</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_yield_tb4" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+                        <div id="data-revenue" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;">
+                                    <center><span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;AVAILABILITY TOTAL</span></center>
+                                </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center"
+                                     style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="dash_util" style="height: 250px; width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 tab_dual"  style="margin-top: 12px">
+                                <div class="col-xs-12 bg_rds">
+                                    <div id="util-tb1" class="col-xs-3 center zero_padd left_tb act_tb">
+                                        <a href="#tab-util" rel="data-utiltb1" class="no-text-style">
+                                            <span class="tx_tab">Tuban 1</span></a></div>
+
+                                    <div id="util-tb2" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-util" rel="data-utiltb2" class="no-text-style">
+                                            <span class="tx_tab">Tuban 2</span></a></div>
+
+                                    <div id="util-tb3" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-util" rel="data-utiltb3" class="no-text-style">
+                                            <span class="tx_tab">Tuban 3</span></a></div>
+
+                                    <div id="util-tb4" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-util" rel="data-utiltb4" class="no-text-style">
+                                            <span class="tx_tab">Tuban 4</span></a></div>
+                                </div>
+                            </div>
+                            <div id="data-utiltb1">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;">
+                                        <img src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 1</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_util_tb1" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-utiltb2" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px;margin-top: 10px; border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 2</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_util_tb2" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-utiltb3" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 3</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_util_tb3" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-utiltb4" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 4</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_util_tb4" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+                        <div id="data-price" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;">
+                                    <center><span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;OEE TOTAL</span></center>
+                                </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center"
+                                     style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="dash_eff" style="height: 250px; width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 tab_dual" style="margin-top: 12px">
+                                <div class="col-xs-12 bg_rds">
+                                    <div id="eff-tb1" class="col-xs-3 center zero_padd left_tb act_tb">
+                                        <a href="#tab-eff" rel="data-efftb1" class="no-text-style">
+                                            <span class="tx_tab">Tuban 1</span></a></div>
+
+                                    <div id="eff-tb2" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-eff" rel="data-efftb2" class="no-text-style">
+                                            <span class="tx_tab">Tuban 2</span></a></div>
+
+                                    <div id="eff-tb3" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-eff" rel="data-efftb3" class="no-text-style">
+                                            <span class="tx_tab">Tuban 3</span></a></div>
+
+                                    <div id="eff-tb4" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-eff" rel="data-efftb4" class="no-text-style">
+                                            <span class="tx_tab">Tuban 4</span></a></div>
+                                </div>
+                            </div>
+                            <div id="data-efftb1">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;">
+                                        <img src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 1</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_eff_tb1" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-efftb2" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 2</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_eff_tb2" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-efftb3" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 3</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_eff_tb3" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="data-efftb4" class="hidden">
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left"
+                                         style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"><img
+                                            src="img/clo.png" width="15px" style="margin-left: 5px;">
+                                        <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Tuban 4</span>
+                                    </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center"
+                                         style="border-top: 1px solid burlywood">
+                                        <div>
+                                            <div id="board_eff_tb4" style="height: 250px; width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+                    </div>
+                    <footer >
+                        <div class="regular" >
+                            <a href="maint_performance_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
+                            <a href="maint_performance_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
+                            <a href="maint_performance_si.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;"><img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
+                            <a href="maint_performance_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
+                            <a href="maint_performance_tl.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            $(document).on('ready', function () {
+               $(".regular").slick({ 
+                    infinite: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    arrows:false,
+                    centerMode: false
+                }); 
+            });
+            var m = moment().format('MM');
+            var y = moment().format('YYYY');
+
+            var strBulan = 's' + bulanSekarang;
+            $(".bulan").html(bulan + ' ' + tahun);
+            function n(n) {
+                return n > 9 ? "" + n : "0" + n;
+            }
+            reloadChart(y, m);
+
+            $('.selmonth').change(function () {
+                bulanSekarang = $(this).val();
+                tahun = $('.selyear').val();
+                var t = $(this).attr('rel');
+                if (t == 'vol') {
+                    reloadChart(tahun, bulanSekarang);
+                } else {
+                    reloadChart(tahun, bulanSekarang);
+                }
+            })
+            $('.selyear').change(function () {
+                tahun = $(this).val();
+                bulanSekarang = $('.selmonth').val();
+                var t = $(this).attr('rel');
+                if (t == 'vol') {
+                    reloadChart(tahun, bulanSekarang);
+                } else {
+                    reloadChart(tahun, bulanSekarang);
+                }
+            })
+
+            function reloadChart(my_tahun, my_bulan) {
+//                my_bulan = '04';
+                var tag_target = '';
+                var myMonth = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+                var today = myMonth[parseInt(my_bulan) - 1] + ' ' + my_tahun;
+                $('#last_update').html(today);
+
+                run_waitMe('#data-volume', 'facebook');
+                tag_target = '#data-volume';
+                run_waitMe('#dash_yield', 'facebook');
+                run_waitMe('#dash_util', 'facebook');
+                run_waitMe('#dash_eff', 'facebook');
+
+                run_waitMe('#board_yield_tb1', 'ios');
+                run_waitMe('#board_yield_tb2', 'ios');
+                run_waitMe('#board_yield_tb3', 'ios');
+                run_waitMe('#board_yield_tb4', 'ios');
+
+                run_waitMe('#board_util_tb1', 'ios');
+                run_waitMe('#board_util_tb2', 'ios');
+                run_waitMe('#board_util_tb3', 'ios');
+                run_waitMe('#board_util_tb4', 'ios');
+
+                run_waitMe('#board_eff_tb1', 'ios');
+                run_waitMe('#board_eff_tb2', 'ios');
+                run_waitMe('#board_eff_tb3', 'ios');
+                run_waitMe('#board_eff_tb4', 'ios');
+
+                var wc_util = [90, 90, 90, 90, 90];
+                var wc_yield = [95, 95, 95, 95, 95];
+                var wc_eff = [85, 85, 85, 85, 85];
+
+                var wc_util_ = [90, 90, 90, 90, 90, 90];
+                var wc_yield_ = [95, 95, 95, 95, 95, 95];
+                var wc_eff_ = [85, 85, 85, 85, 85, 85];
+
+                //Dashboard
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_pm_dash?tahun=' + my_tahun + '&bulan=' + my_bulan,
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var U_tb1 = parseFloat(dataJson.tbn2.UTILISASI.persen);
+                        var Y_tb1 = parseFloat(dataJson.tbn2.YIELD.persen);
+                        var E_tb1 = parseFloat(dataJson.tbn2.EFISIENSI.persen);
+
+                        var U_tb2 = parseFloat(dataJson.tbn2.UTILISASI.persen);
+                        var Y_tb2 = parseFloat(dataJson.tbn2.YIELD.persen);
+                        var E_tb2 = parseFloat(dataJson.tbn2.EFISIENSI.persen);
+
+                        var U_tb3 = parseFloat(dataJson.tbn3.UTILISASI.persen);
+                        var Y_tb3 = parseFloat(dataJson.tbn3.YIELD.persen);
+                        var E_tb3 = parseFloat(dataJson.tbn3.EFISIENSI.persen);
+
+                        var U_tb4 = parseFloat(dataJson.tbn4.UTILISASI.persen);
+                        var Y_tb4 = parseFloat(dataJson.tbn4.YIELD.persen);
+                        var E_tb4 = parseFloat(dataJson.tbn4.EFISIENSI.persen);
+
+                        var total_U = ((U_tb1 + U_tb2 + U_tb3 + U_tb4) / 4);
+                        var total_Y = ((Y_tb1 + Y_tb2 + Y_tb3 + Y_tb4) / 4);
+                        var total_E = ((E_tb1 + E_tb2 + E_tb3 + E_tb4) / 4);
+                        stop_waitMe('#dash');
+                        $('#dash_yield').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Total', 'Tb 1', 'Tb 2', 'Tb 3', 'Tb 4'],
+                                title: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: ''
+                            },
+                            tooltip: {
+                                shared: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y:.1f}%'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            series: [{
+                                    name: 'Data Total',
+                                    color: '#2ED573',
+                                    data: [{
+                                            name: 'Total',
+                                            color: '#2ED573',
+                                            y: total_Y
+                                        }, {
+                                            name: 'Tuban 1',
+                                            color: '#1E90FF',
+                                            y: Y_tb1
+                                        }, {
+                                            name: 'Tuban 2',
+                                            color: '#FFA502',
+                                            y: Y_tb2
+                                        }, {
+                                            name: 'Tuban 3',
+                                            color: '#FF6348',
+                                            y: Y_tb3
+                                        }, {
+                                            name: 'Tuban 4',
+                                            color: '#3742FA',
+                                            y: Y_tb4
+                                        }]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_yield
+                                }]
+                        });
+
+                        $('#dash_util').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Total', 'Tb 1', 'Tb 2', 'Tb 3', 'Tb 4'],
+                                title: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: ''
+                            },
+                            tooltip: {
+                                shared: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y:.1f}%'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            series: [{
+                                    name: 'Data Total',
+                                    color: '#2ED573',
+                                    data: [{
+                                            name: 'Total',
+                                            color: '#2ED573',
+                                            y: total_U
+                                        }, {
+                                            name: 'Tuban 1',
+                                            color: '#1E90FF',
+                                            y: U_tb1
+                                        }, {
+                                            name: 'Tuban 2',
+                                            color: '#FFA502',
+                                            y: U_tb2
+                                        }, {
+                                            name: 'Tuban 3',
+                                            color: '#FF6348',
+                                            y: U_tb3
+                                        }, {
+                                            name: 'Tuban 4',
+                                            color: '#3742FA',
+                                            y: U_tb4
+                                        }]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_util
+                                }]
+                        });
+
+                        $('#dash_eff').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Total', 'Tb 1', 'Tb 2', 'Tb 3', 'Tb 4'],
+                                title: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: ''
+                            },
+                            tooltip: {
+                                shared: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y:.1f}%'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            series: [{
+                                    name: 'Data Total',
+                                    color: '#2ED573',
+                                    data: [{
+                                            name: 'Total',
+                                            color: '#2ED573',
+                                            y: total_E
+                                        }, {
+                                            name: 'Tuban 1',
+                                            color: '#1E90FF',
+                                            y: E_tb1
+                                        }, {
+                                            name: 'Tuban 2',
+                                            color: '#FFA502',
+                                            y: E_tb2
+                                        }, {
+                                            name: 'Tuban 3',
+                                            color: '#FF6348',
+                                            y: E_tb3
+                                        }, {
+                                            name: 'Tuban 4',
+                                            color: '#3742FA',
+                                            y: E_tb4
+                                        }]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_eff
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //Chart Tuban 1
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_pm_detail?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn1',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var U_CR_tbn1 = parseFloat(dataJson.tbn1.UTILISASI.CRUSHER.data);
+                        var U_RM_tbn1 = parseFloat(dataJson.tbn1.UTILISASI.RAW_MILL.data);
+                        var U_KL_tbn1 = parseFloat(dataJson.tbn1.UTILISASI.KILN.data);
+                        var U_CM_tbn1 = parseFloat(dataJson.tbn1.UTILISASI.COAL_MILL.data);
+                        var U_FM_tbn1 = parseFloat(dataJson.tbn1.UTILISASI.FINISH_MILL.data);
+                        var U_PK_tbn1 = parseFloat(dataJson.tbn1.UTILISASI.PACKER.data);
+                        var Y_CR_tbn1 = parseFloat(dataJson.tbn1.YIELD.CRUSHER.data);
+                        var Y_RM_tbn1 = parseFloat(dataJson.tbn1.YIELD.RAW_MILL.data);
+                        var Y_KL_tbn1 = parseFloat(dataJson.tbn1.YIELD.KILN.data);
+                        var Y_CM_tbn1 = parseFloat(dataJson.tbn1.YIELD.COAL_MILL.data);
+                        var Y_FM_tbn1 = parseFloat(dataJson.tbn1.YIELD.FINISH_MILL.data);
+                        var Y_PK_tbn1 = parseFloat(dataJson.tbn1.YIELD.PACKER.data);
+                        var E_CR_tbn1 = parseFloat(dataJson.tbn1.EFISIENSI.CRUSHER.data);
+                        var E_RM_tbn1 = parseFloat(dataJson.tbn1.EFISIENSI.RAW_MILL.data);
+                        var E_KL_tbn1 = parseFloat(dataJson.tbn1.EFISIENSI.KILN.data);
+                        var E_CM_tbn1 = parseFloat(dataJson.tbn1.EFISIENSI.COAL_MILL.data);
+                        var E_FM_tbn1 = parseFloat(dataJson.tbn1.EFISIENSI.FINISH_MILL.data);
+                        var E_PK_tbn1 = parseFloat(dataJson.tbn1.EFISIENSI.PACKER.data);
+
+                        stop_waitMe('#board_yield_tb1');
+                        $('#board_yield_tb1').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Yield',
+                                    color: '#1E90FF',
+                                    stack: 'male',
+                                    data: [Y_CR_tbn1, Y_RM_tbn1, Y_KL_tbn1, Y_CM_tbn1, Y_FM_tbn1, Y_PK_tbn1]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_yield_
+                                }]
+                        });
+
+                        $('#board_util_tb1').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Utilisasi',
+                                    color: '#1E90FF',
+                                    stack: 'male',
+                                    data: [U_CR_tbn1, U_RM_tbn1, U_KL_tbn1, U_CM_tbn1, U_FM_tbn1, U_PK_tbn1]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_util_
+                                }]
+                        });
+
+                        $('#board_eff_tb1').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Efisiensi',
+                                    color: '#1E90FF',
+                                    stack: 'male',
+                                    data: [E_CR_tbn1, E_RM_tbn1, E_KL_tbn1, E_CM_tbn1, E_FM_tbn1, E_PK_tbn1]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_eff_
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Chart Tuban 2
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_pm_detail?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn2',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var U_CR_tbn2 = parseFloat(dataJson.tbn2.UTILISASI.CRUSHER.data);
+                        var U_RM_tbn2 = parseFloat(dataJson.tbn2.UTILISASI.RAW_MILL.data);
+                        var U_KL_tbn2 = parseFloat(dataJson.tbn2.UTILISASI.KILN.data);
+                        var U_CM_tbn2 = parseFloat(dataJson.tbn2.UTILISASI.COAL_MILL.data);
+                        var U_FM_tbn2 = parseFloat(dataJson.tbn2.UTILISASI.FINISH_MILL.data);
+                        var U_PK_tbn2 = parseFloat(dataJson.tbn2.UTILISASI.PACKER.data);
+                        var Y_CR_tbn2 = parseFloat(dataJson.tbn2.YIELD.CRUSHER.data);
+                        var Y_RM_tbn2 = parseFloat(dataJson.tbn2.YIELD.RAW_MILL.data);
+                        var Y_KL_tbn2 = parseFloat(dataJson.tbn2.YIELD.KILN.data);
+                        var Y_CM_tbn2 = parseFloat(dataJson.tbn2.YIELD.COAL_MILL.data);
+                        var Y_FM_tbn2 = parseFloat(dataJson.tbn2.YIELD.FINISH_MILL.data);
+                        var Y_PK_tbn2 = parseFloat(dataJson.tbn2.YIELD.PACKER.data);
+                        var E_CR_tbn2 = parseFloat(dataJson.tbn2.EFISIENSI.CRUSHER.data);
+                        var E_RM_tbn2 = parseFloat(dataJson.tbn2.EFISIENSI.RAW_MILL.data);
+                        var E_KL_tbn2 = parseFloat(dataJson.tbn2.EFISIENSI.KILN.data);
+                        var E_CM_tbn2 = parseFloat(dataJson.tbn2.EFISIENSI.COAL_MILL.data);
+                        var E_FM_tbn2 = parseFloat(dataJson.tbn2.EFISIENSI.FINISH_MILL.data);
+                        var E_PK_tbn2 = parseFloat(dataJson.tbn2.EFISIENSI.PACKER.data);
+
+                        stop_waitMe('#board_yield_tb2');
+                        $('#board_yield_tb2').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Yield',
+                                    color: '#FFA502',
+                                    stack: 'male',
+                                    data: [Y_CR_tbn2, Y_RM_tbn2, Y_KL_tbn2, Y_CM_tbn2, Y_FM_tbn2, Y_PK_tbn2]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_yield_
+                                }]
+                        });
+
+                        $('#board_util_tb2').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Utilisasi',
+                                    color: '#FFA502',
+                                    stack: 'male',
+                                    data: [U_CR_tbn2, U_RM_tbn2, U_KL_tbn2, U_CM_tbn2, U_FM_tbn2, U_PK_tbn2]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_util_
+                                }]
+                        });
+
+                        $('#board_eff_tb2').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Efisiensi',
+                                    color: '#FFA502',
+                                    stack: 'male',
+                                    data: [E_CR_tbn2, E_RM_tbn2, E_KL_tbn2, E_CM_tbn2, E_FM_tbn2, E_PK_tbn2]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_eff_
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Chart Tuban 3
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_pm_detail?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn3',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var U_CR_tbn3 = parseFloat(dataJson.tbn3.UTILISASI.CRUSHER.data);
+                        var U_RM_tbn3 = parseFloat(dataJson.tbn3.UTILISASI.RAW_MILL.data);
+                        var U_KL_tbn3 = parseFloat(dataJson.tbn3.UTILISASI.KILN.data);
+                        var U_CM_tbn3 = parseFloat(dataJson.tbn3.UTILISASI.COAL_MILL.data);
+                        var U_FM_tbn3 = parseFloat(dataJson.tbn3.UTILISASI.FINISH_MILL.data);
+                        var U_PK_tbn3 = parseFloat(dataJson.tbn3.UTILISASI.PACKER.data);
+                        var Y_CR_tbn3 = parseFloat(dataJson.tbn3.YIELD.CRUSHER.data);
+                        var Y_RM_tbn3 = parseFloat(dataJson.tbn3.YIELD.RAW_MILL.data);
+                        var Y_KL_tbn3 = parseFloat(dataJson.tbn3.YIELD.KILN.data);
+                        var Y_CM_tbn3 = parseFloat(dataJson.tbn3.YIELD.COAL_MILL.data);
+                        var Y_FM_tbn3 = parseFloat(dataJson.tbn3.YIELD.FINISH_MILL.data);
+                        var Y_PK_tbn3 = parseFloat(dataJson.tbn3.YIELD.PACKER.data);
+                        var E_CR_tbn3 = parseFloat(dataJson.tbn3.EFISIENSI.CRUSHER.data);
+                        var E_RM_tbn3 = parseFloat(dataJson.tbn3.EFISIENSI.RAW_MILL.data);
+                        var E_KL_tbn3 = parseFloat(dataJson.tbn3.EFISIENSI.KILN.data);
+                        var E_CM_tbn3 = parseFloat(dataJson.tbn3.EFISIENSI.COAL_MILL.data);
+                        var E_FM_tbn3 = parseFloat(dataJson.tbn3.EFISIENSI.FINISH_MILL.data);
+                        var E_PK_tbn3 = parseFloat(dataJson.tbn3.EFISIENSI.PACKER.data);
+
+                        stop_waitMe('#board_yield_tb3');
+                        $('#board_yield_tb3').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Yield',
+                                    color: '#FF6348',
+                                    stack: 'male',
+                                    data: [Y_CR_tbn3, Y_RM_tbn3, Y_KL_tbn3, Y_CM_tbn3, Y_FM_tbn3, Y_PK_tbn3]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_yield_
+                                }]
+                        });
+
+                        $('#board_util_tb3').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Utilisasi',
+                                    color: '#FF6348',
+                                    stack: 'male',
+                                    data: [U_CR_tbn3, U_RM_tbn3, U_KL_tbn3, U_CM_tbn3, U_FM_tbn3, U_PK_tbn3]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_util_
+                                }]
+                        });
+
+                        $('#board_eff_tb3').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Efisiensi',
+                                    color: '#FF6348',
+                                    stack: 'male',
+                                    data: [E_CR_tbn3, E_RM_tbn3, E_KL_tbn3, E_CM_tbn3, E_FM_tbn3, E_PK_tbn3]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_eff_
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Chart Tuban 4
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_pm_detail?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn4',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var U_CR_tbn4 = parseFloat(dataJson.tbn4.UTILISASI.CRUSHER.data);
+                        var U_RM_tbn4 = parseFloat(dataJson.tbn4.UTILISASI.RAW_MILL.data);
+                        var U_KL_tbn4 = parseFloat(dataJson.tbn4.UTILISASI.KILN.data);
+                        var U_CM_tbn4 = parseFloat(dataJson.tbn4.UTILISASI.COAL_MILL.data);
+                        var U_FM_tbn4 = parseFloat(dataJson.tbn4.UTILISASI.FINISH_MILL.data);
+                        var U_PK_tbn4 = parseFloat(dataJson.tbn4.UTILISASI.PACKER.data);
+                        var Y_CR_tbn4 = parseFloat(dataJson.tbn4.YIELD.CRUSHER.data);
+                        var Y_RM_tbn4 = parseFloat(dataJson.tbn4.YIELD.RAW_MILL.data);
+                        var Y_KL_tbn4 = parseFloat(dataJson.tbn4.YIELD.KILN.data);
+                        var Y_CM_tbn4 = parseFloat(dataJson.tbn4.YIELD.COAL_MILL.data);
+                        var Y_FM_tbn4 = parseFloat(dataJson.tbn4.YIELD.FINISH_MILL.data);
+                        var Y_PK_tbn4 = parseFloat(dataJson.tbn4.YIELD.PACKER.data);
+                        var E_CR_tbn4 = parseFloat(dataJson.tbn4.EFISIENSI.CRUSHER.data);
+                        var E_RM_tbn4 = parseFloat(dataJson.tbn4.EFISIENSI.RAW_MILL.data);
+                        var E_KL_tbn4 = parseFloat(dataJson.tbn4.EFISIENSI.KILN.data);
+                        var E_CM_tbn4 = parseFloat(dataJson.tbn4.EFISIENSI.COAL_MILL.data);
+                        var E_FM_tbn4 = parseFloat(dataJson.tbn4.EFISIENSI.FINISH_MILL.data);
+                        var E_PK_tbn4 = parseFloat(dataJson.tbn4.EFISIENSI.PACKER.data);
+                        stop_waitMe('#board_yield_tb4');
+                        $('#board_yield_tb4').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Yield',
+                                    color: '#3742FA',
+                                    stack: 'male',
+                                    data: [Y_CR_tbn4, Y_RM_tbn4, Y_KL_tbn4, Y_CM_tbn4, Y_FM_tbn4, Y_PK_tbn4]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_yield_
+                                }]
+                        });
+
+                        $('#board_util_tb4').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Utilisasi',
+                                    color: '#3742FA',
+                                    stack: 'male',
+                                    data: [U_CR_tbn4, U_RM_tbn4, U_KL_tbn4, U_CM_tbn4, U_FM_tbn4, U_PK_tbn4]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_util_
+                                }]
+                        });
+
+                        $('#board_eff_tb4').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            xAxis: {
+                                categories: ['CRUSHER', 'RAW MILL', 'KILN', 'COAL MILL', 'FINISH MILL', 'PACKER']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'Efisiensi',
+                                    color: '#3742FA',
+                                    stack: 'male',
+                                    data: [E_CR_tbn4, E_RM_tbn4, E_KL_tbn4, E_CM_tbn4, E_FM_tbn4, E_PK_tbn4]
+                                }, {
+                                    name: '<b>World Class</b>',
+                                    type: 'spline',
+                                    color: '#FF4757',
+                                    data: wc_eff_
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+                stop_waitMe('#data-volume');
+
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_pm_note',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var count_CR = dataJson.CRUSHER === undefined ? 0 : dataJson.CRUSHER;
+                        var c_CR = Object.keys(count_CR).length;
+                        var count_FM = dataJson.FINISHMILL === undefined ? 0 : dataJson.FINISHMILL;
+                        var c_FM = Object.keys(count_FM).length;
+                        var count_KL = dataJson.KILN === undefined ? 0 : dataJson.KILN;
+                        var c_KL = Object.keys(count_KL).length;
+                        var count_RM = dataJson.RAWMILL === undefined ? 0 : dataJson.RAWMILL;
+                        var c_RM = Object.keys(count_RM).length;
+
+                        if (count_FM !== 0) {
+                            var data_FM = '';
+                            for (var i = 1; i <= c_FM; i++) {
+                                var plant = dataJson.FINISHMILL[i].plant;
+                                var opco = dataJson.FINISHMILL[i].opco;
+                                var tgl = dataJson.FINISHMILL[i].tgl;
+                                var equipment = dataJson.FINISHMILL[i].equipment;
+                                var problem_desc = dataJson.FINISHMILL[i].problem_desc;
+                                var duration = dataJson.FINISHMILL[i].duration;
+                                var frequency = dataJson.FINISHMILL[i].frequency;
+
+                                data_FM += '<tr><td>' + plant + '</td><td>' + opco + '</td><td>' + tgl + '</td><td>' + equipment + '</td><td>' + problem_desc + '</td><td>' + '</td><td>' + duration + '</td><td>' + '</td><td>' + frequency + '</td></tr>';
+                            }
+                        } else {
+                            console.log('FM DATA TIDAK ADA')
+                        }
+
+                        if (count_CR !== 0) {
+                            var data_CR = '';
+                            for (var i = 1; i <= c_CR; i++) {
+                                var plant = dataJson.CRUSHER[i].plant;
+                                var opco = dataJson.CRUSHER[i].opco;
+                                var tgl = dataJson.CRUSHER[i].tgl;
+                                var equipment = dataJson.CRUSHER[i].equipment;
+                                var problem_desc = dataJson.CRUSHER[i].problem_desc;
+                                var duration = dataJson.CRUSHER[i].duration;
+                                var frequency = dataJson.CRUSHER[i].frequency;
+
+                                data_FM += '<tr><td>' + plant + '</td><td>' + opco + '</td><td>' + tgl + '</td><td>' + equipment + '</td><td>' + problem_desc + '</td><td>' + '</td><td>' + duration + '</td><td>' + '</td><td>' + frequency + '</td></tr>';
+                            }
+                        } else {
+                            console.log('CR DATA TIDAK ADA')
+                        }
+
+                        var data_KL = '';
+                        for (var i = 1; i <= c_KL; i++) {
+                            var plant = dataJson.KILN[i].plant;
+                            var opco = dataJson.KILN[i].opco;
+                            var tgl = dataJson.KILN[i].tgl;
+                            var equipment = dataJson.KILN[i].equipment;
+                            var problem_desc = dataJson.KILN[i].problem_desc;
+                            var duration = dataJson.KILN[i].duration;
+                            var frequency = dataJson.KILN[i].frequency;
+
+                            data_FM += '<tr><td>' + plant + '</td><td>' + opco + '</td><td>' + tgl + '</td><td>' + equipment + '</td><td>' + problem_desc + '</td><td>' + '</td><td>' + duration + '</td><td>' + '</td><td>' + frequency + '</td></tr>';
+                        }
+
+                        var data_RM = '';
+                        for (var i = 1; i <= c_RM; i++) {
+                            var plant = dataJson.RAWMILL[i].plant;
+                            var opco = dataJson.RAWMILL[i].opco;
+                            var tgl = dataJson.RAWMILL[i].tgl;
+                            var equipment = dataJson.RAWMILL[i].equipment;
+                            var problem_desc = dataJson.RAWMILL[i].problem_desc;
+                            var duration = dataJson.RAWMILL[i].duration;
+                            var frequency = dataJson.RAWMILL[i].frequency;
+
+                            data_FM += '<tr><td>' + plant + '</td><td>' + opco + '</td><td>' + tgl + '</td><td>' + equipment + '</td><td>' + problem_desc + '</td><td>' + '</td><td>' + duration + '</td><td>' + '</td><td>' + frequency + '</td></tr>';
+                        }
+                        console.log(data_FM);
+
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+            }
+        </script>
+    </body>
+</html>

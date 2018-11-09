@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/loader.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/Session.js"></script>
+
+        <style>
+            table, th, td {
+                /*                border: 1px solid black;
+                */            }
+            .opco{
+                float:left; 
+                font-size:14px; 
+                color:#333333; 
+                margin-top: 10px; 
+                margin-bottom:1px;
+                font-family:"Open Sans";
+
+            }
+            .planttittle{
+                text-align:center; 
+                color:black; 
+                font-size:25px; 
+                font-size:bold; 
+                float:left;
+                font-family:"Open Sans";
+            }
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .box_sdow2{
+                width: 100%;
+                background-color: #FFFFFF;
+                margin-bottom: 13px;
+                /* color: #CCCCCC; */
+                font-size: 9px;
+            }
+            .bg-white {background:#fff;}
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .tab-tittle{
+                font-family:"Open Sans";
+                font-size:10px;
+            }
+            .text-small {font:normal 10px arial;color:#000;}
+            .text-medium {font:normal 11px arial;color:#000;}
+            .center {text-align: center;}
+            .padding5 {padding:5px;}
+            .border-down {
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {text-decoration: none;color:#000;}
+            .highcharts-credits {
+                display:none;  
+            }
+            .sticky_bottom {
+                position: absolute;
+                bottom:10px;
+                width: 100%;
+            }
+            .lower_logo {
+                margin:10px;
+            }
+
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active{
+                border-top: 1px solid #1481ed;
+            }
+            .jud{
+                color: #434343;
+                font-size: 22px;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 2px solid #e64c65;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab{
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .nyala-ON{
+                background-color: #6fc962;
+                text-align: center;
+            }
+            .nyala-OFF{
+                background-color: #e54b37;
+                text-align: center;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <!--<script type="text/javascript" src="master_opc/js/opc-lib-min.js"></script>-->
+
+        <script type="text/javascript" charset="utf-8">
+//            OPC_config = {
+//                token: '7e61b230-481d-4551-b24b-ba9046e3d8f2',
+//                serverURL: 'http://10.15.3.146:58725'
+//            };
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                    }
+                })
+            }
+        </script>
+        <title>Plant Overview</title>
+    </head>
+    <body onLoad="onLoad()">
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="height: 37px; line-height: 39px; font-size: small;">
+                            <a href="portal_prod1.html" class="pull-left" style="margin-left:10px;">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            </a>POWER DISTRIBUTION</h2>
+                        <div class=" headsix2 cubesRun2 headone whitebg">
+                            <div class="col-xs-4" style="padding:0px;" align="center">
+                                <img src="img/icKota4.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px"> <p class="opco">SEMEN THANGLONG</p>
+                                <p class="planttittle">Power Plants</p>
+                            </div>
+                        </div>
+                       
+
+
+                       
+
+
+                        
+                        <!--                                ######Menu 2###-->                                
+                        <div id="data-price">
+
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                             <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                <div class="table-responsive" >
+                                    <table class="table table-striped" width="100%" style="font-size: 13px;">
+                                        <tr class="hidden">
+                                            <td  height="0%"><div align="right">&nbsp;</div></td>
+                                            <td  height="0%">&nbsp;</td>
+                                            <!--<td>&nbsp;</td>-->
+                                        </tr>
+                                        <tr style="font-weight: bold;">
+                                            <td  height="0%"><img src="img/plant_ico.png" width="27px" /><span class="jud">&nbsp;&nbsp;TOTAL UNIT ABCD</span></td>
+                                            <td style="text-align: right;">&nbsp;</td>
+                                        </tr>
+                                        <tr style="background-color: #ececec; font-weight: bold;">
+                                            <td  height="0%">EQUIPMENT</td>
+                                            <td style="text-align: right;">MW</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">PLTU A</div></td>
+                                            <td><div align="right" id="silo1"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">PLTU B</div></td>
+                                            <td><div align="right" id="silo2"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">PLTU C</div></td>
+                                            <td><div align="right" id="silo3"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">PLTU D</div></td>
+                                            <td><div align="right" id="silo4"></div></td>
+                                        </tr>
+                                        <tr style="font-weight: bold;">
+                                            <td  height="0%"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp; SELF USED </span></td>
+                                            <td style="text-align: right;">&nbsp;</td>
+                                        </tr>
+                                        <tr style="background-color: #ececec; font-weight: bold;">
+                                            <td  height="0%">EQUIPMENT</td>
+                                            <td style="text-align: right;">MW</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">PLTU A</div></td>
+                                            <td><div align="right" id="silo5"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">PLTU B</div></td>
+                                            <td><div align="right"id="silo6" ></div></td> <!---->
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">PLTU C</div></td>
+                                            <td><div align="right" id="silo7"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">PLTU D</div></td>
+                                            <td><div align="right" id="silo8"></div></td>
+                                        </tr>
+                                        <tr style=" font-weight: bold;">
+                                            <td  height="0%"><img src="img/plant_ico.png" width="27px" /><span class="jud">&nbsp;&nbsp;HARBOUR</span></td>
+                                            <td style="text-align: right;">&nbsp;</td>
+                                        </tr>
+                                        <tr style="background-color: #ececec; font-weight: bold;">
+                                            <td  height="0%">EQUIPMENT</td>
+                                            <td style="text-align: right;">MW</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">HARBOUR</div></td>
+                                            <td><div align="right" id="silo09"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TL+CUS</div></td>
+                                            <td><div align="right" id="silo10"></div></td>
+                                        </tr>
+                                        <!--<tr>
+                                            <td align="left"><div align="left">Silo 11</div></td>
+                                            <td><div align="right" id="silo11" ></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">Silo 12</div></td>
+                                            <td><div align="right" id="silo12" ></div></td>
+                                        </tr>-->
+                                        <tr style="font-weight: bold;">
+                                            <td  height="0%"><img src="img/plant_ico.png" width="27px" /><span class="jud">&nbsp;&nbsp;PLN</span></td>
+                                            <td style="text-align: right;">&nbsp;</td>
+                                        </tr>
+                                        <tr style="background-color: #ececec; font-weight: bold;">
+                                            <td  height="0%">EQUIPMENT</td>
+                                            <td style="text-align: right;">MW</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 5 580HV03</div></td>                                                
+                                            <td><div align="right" id="silo13"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 2/3 Q0</div></td>                                                
+                                            <td><div align="right" id="silo14"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 2/3 HVSG87</div></td>                                                
+                                            <td><div align="right" id="silo15"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 3 Q1</div></td>                                                
+                                            <td><div align="right" id="silo16"></div></td>
+                                        </tr>
+										<tr>
+                                            <td align="left"><div align="left">TONASA 4 HVSQ07-Q1</div></td>                                                
+                                            <td><div align="right" id="silo16"></div></td>
+                                        </tr>
+										<tr style="font-weight: bold;">
+                                            <td  height="0%"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp; PLTU TO T2/3 </span></td>
+                                            <td style="text-align: right;">&nbsp;</td>
+                                        </tr>
+                                        <tr style="background-color: #ececec; font-weight: bold;">
+                                            <td  height="0%">EQUIPMENT</td>
+                                            <td style="text-align: right;">MW</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 3 Q1</div></td>
+                                            <td><div align="right" id="silo5"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 4 SS3 AH 5</div></td>
+                                            <td><div align="right"id="silo6" ></div></td> <!---->
+                                        </tr>
+                                        <tr style="font-weight: bold;">
+                                            <td  height="0%"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp; PLTU TO T4 </span></td>
+                                            <td style="text-align: right;">&nbsp;</td>
+                                        </tr>
+                                        <tr style="background-color: #ececec; font-weight: bold;">
+                                            <td  height="0%">EQUIPMENT</td>
+                                            <td style="text-align: right;">MW</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 4 HVSG01</div></td>
+                                            <td><div align="right" id="silo5"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 4 HVSG02</div></td>
+                                            <td><div align="right"id="silo6" ></div></td> <!---->
+                                        </tr>
+										<tr style="font-weight: bold;">
+                                            <td  height="0%"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp; TOTAL LOSSES </span></td>
+                                            <td style="text-align: right;">&nbsp;</td>
+                                        </tr>
+                                        <tr style="background-color: #ececec; font-weight: bold;">
+                                            <td  height="0%">EQUIPMENT</td>
+                                            <td style="text-align: right;">MW</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TOTAL TRANSMISI B10</div></td>
+                                            <td><div align="right" id="">47.66</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left"><div align="left">TONASA 5 580HV01</div></td>
+                                            <td><div align="right"id="" >8.56</div></td> <!---->
+                                        </tr>
+                                    <tr>
+                                            <td align="left"><div align="left">TONASA 5 580HV02</div></td>
+                                            <td><div align="right"id="" >8.47</div></td> <!---->
+                                        </tr>
+                                    <tr>
+                                            <td align="left"><div align="left">TONASA 4 HVSG01</div></td>
+                                            <td><div align="right"id="" >15.35</div></td> <!---->
+                                        </tr>
+                                    <tr>
+                                            <td align="left"><div align="left">TONASA 4 HVSG02</div></td>
+                                            <td><div align="right"id="" >15.15</div></td> <!---->
+                                        </tr>
+                                    
+									</table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="production-value" >
+                            <div class="chartBox" style="margin-top: 5px; margin-bottom: 44px;">
+                            </div>
+                            <footer >
+<div class="regular" >
+
+
+                                <div id="tab-sp" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="power_plant_sp.html" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+                                <div id="tab-sg" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="power_plant_sg.html" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+                                <div id="tab-st" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="power_plant_st.html" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div> 
+                                <div id="tab-tl" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="power_plant_tl.html" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div> 
+                             <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                            <div class="spacer"></div>  
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function dataUpdate() {
+                        $.ajax({
+                            url: url_src+'/api/index.php/plant_tuban/get_statefeedtb12',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+
+                                // KILN 1
+                                OnOffKL1 = dataJson[0].tags[10].props[0].val;
+                                ValKL1 = dataJson[0].tags[5].props[0].val;
+                                //KILN 2
+                                OnOffKL2 = dataJson[0].tags[25].props[0].val;
+                                myValKLa = dataJson[0].tags[18].props[0].val;
+                                myValKLb = dataJson[0].tags[22].props[0].val;
+
+                                ValKL2 = parseFloat(myValKLa) + parseFloat(myValKLb);
+                                //Raw Mill 1
+                                OnOffRM1 = dataJson[0].tags[3].props[0].val;
+                                ValRM1 = dataJson[0].tags[1].props[0].val;
+                                //Raw Mill 2
+                                OnOffRM2 = dataJson[0].tags[17].props[0].val;
+                                ValRM2 = dataJson[0].tags[21].props[0].val;
+                                //Coal Mill 1
+                                OnOffCM1 = dataJson[0].tags[4].props[0].val;
+                                //Coal Mill 2
+                                OnOffCM2 = dataJson[0].tags[19].props[0].val;
+                                //Finish Mill 1
+                                OnOffFM1 = dataJson[0].tags[6].props[0].val;
+                                OnOffHRC1 = dataJson[0].tags[9].props[0].val;
+                                ValFM1 = dataJson[0].tags[13].props[0].val;
+                                //Finish Mill 2
+                                OnOffFM2 = dataJson[0].tags[11].props[0].val;
+                                OnOffHRC2 = dataJson[0].tags[0].props[0].val;
+                                ValFM2 = dataJson[0].tags[8].props[0].val;
+                                //Finish Mill 3
+                                OnOffFM3 = dataJson[0].tags[24].props[0].val;
+                                OnOffHRC3 = dataJson[0].tags[14].props[0].val;
+                                ValFM3 = dataJson[0].tags[23].props[0].val;
+                                //Finish Mill 4
+                                OnOffFM4 = dataJson[0].tags[20].props[0].val;
+                                OnOffHRC4 = dataJson[0].tags[15].props[0].val;
+                                ValFM4 = dataJson[0].tags[16].props[0].val;
+                                //Finish Mill 9
+                                OnOffNVM = dataJson[0].tags[12].props[0].val;
+                                OnOffATX = dataJson[0].tags[7].props[0].val;
+                                ValFM9 = dataJson[0].tags[2].props[0].val;
+
+                                if (OnOffKL1 == 'Run' || OnOffKL1 == 'True') {
+                                    $("#okl1tb1").addClass('nyala-ON');
+                                } else {
+                                    $("#okl1tb1").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffKL2 == 'Run' || OnOffKL2 == 'True') {
+                                    $("#okl1tb2").addClass('nyala-ON');
+                                } else {
+                                    $("#okl1tb2").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffRM1 == 'Run' || OnOffRM1 == 'True') {
+                                    $("#orm1tb1").addClass('nyala-ON');
+                                } else {
+                                    $("#orm1tb1").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffRM2 == 'Run' || OnOffRM2 == 'True') {
+                                    $("#orm1tb2").addClass('nyala-ON');
+                                } else {
+                                    $("#orm1tb2").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffCM1 == 'Run' || OnOffCM1 == 'True') {
+                                    $("#ocm1tb1").addClass('nyala-ON');
+                                } else {
+                                    $("#ocm1tb1").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffCM2 == 'Run' || OnOffCM2 == 'True') {
+                                    $("#ocm1tb2").addClass('nyala-ON');
+                                } else {
+                                    $("#ocm1tb2").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffFM1 == 'Run' || OnOffFM1 == 'True') {
+                                    $("#ofm1tb1").addClass('nyala-ON');
+                                } else {
+                                    $("#ofm1tb1").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffFM2 == 'Run' || OnOffFM2 == 'True') {
+                                    $("#ofm2tb1").addClass('nyala-ON');
+                                } else {
+                                    $("#ofm2tb1").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffFM3 == 'Run' || OnOffFM3 == 'True') {
+                                    $("#ofm1tb2").addClass('nyala-ON');
+                                } else {
+                                    $("#ofm1tb2").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffFM4 == 'Run' || OnOffFM4 == 'True') {
+                                    $("#ofm2tb2").addClass('nyala-ON');
+                                } else {
+                                    $("#ofm2tb2").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffHRC1 == 'Run' || OnOffHRC1 == 'True') {
+                                    $("#ohrc1tb1").addClass('nyala-ON');
+                                } else {
+                                    $("#ohrc1tb1").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffHRC2 == 'Run' || OnOffHRC2 == 'True') {
+                                    $("#ohrc2tb1").addClass('nyala-ON');
+                                } else {
+                                    $("#ohrc2tb1").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffHRC3 == 'Run' || OnOffHRC3 == 'True') {
+                                    $("#ohrc1tb2").addClass('nyala-ON');
+                                } else {
+                                    $("#ohrc1tb2").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffHRC4 == 'Run' || OnOffHRC4 == 'True') {
+                                    $("#ohrc2tb2").addClass('nyala-ON');
+                                } else {
+                                    $("#ohrc2tb2").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffNVM == 'Run' || OnOffNVM == 'True') {
+                                    $("#onvmtb1").addClass('nyala-ON');
+                                } else {
+                                    $("#onvmtb1").addClass('nyala-OFF');
+                                }
+
+                                if (OnOffATX == 'Run' || OnOffATX == 'True') {
+                                    $("#oatxtb1").addClass('nyala-ON');
+                                } else {
+                                    $("#oatxtb1").addClass('nyala-OFF');
+                                }
+
+                                $("#kl1tb1").html(ValKL1);
+                                $("#kl1tb2").html(ValKL2);
+                                $("#rm1tb1").html(ValRM1);
+                                $("#rm1tb2").html(ValRM2);
+                                $("#fm1tb1").html(ValFM1);
+                                $("#fm2tb1").html(ValFM2);
+                                $("#fm1tb2").html(ValFM3);
+                                $("#fm2tb2").html(ValFM4);
+                                $("#nvmtb1").html(ValFM9);
+                            }
+                        }).done(function (data) {}).fail(function () {
+
+                        });
+
+                        $.ajax({
+                            url: url_src+'/api/index.php/plant_tuban/get_statefeed',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+
+                                // KILN 3
+                                OnOffKL1 = dataJson[0].tags[10].props[0].val;
+                                ValKL1 = dataJson[0].tags[2].props[0].val;
+                                ValKL1 = parseFloat(ValKL1.replace(',', '.')).toFixed(2);
+                                //KILN 4
+                                OnOffKL2 = dataJson[0].tags[11].props[0].val;
+                                ValKL2 = dataJson[0].tags[3].props[0].val;
+                                ValKL2 = parseFloat(ValKL2.replace(',', '.')).toFixed(2);
+                                //Raw Mill 3
+                                OnOffRM1 = dataJson[0].tags[8].props[0].val;
+                                ValRM1 = dataJson[0].tags[0].props[0].val;
+                                ValRM1 = parseFloat(ValRM1.replace(',', '.')).toFixed(2);
+                                //Raw Mill 4
+                                OnOffRM2 = dataJson[0].tags[9].props[0].val;
+                                ValRM2 = dataJson[0].tags[1].props[0].val;
+                                ValRM2 = parseFloat(ValRM2.replace(',', '.')).toFixed(2);
+                                //Coal Mill 3
+                                OnOffCM1 = dataJson[0].tags[12].props[0].val;
+                                ValCM1 = dataJson[0].tags[17].props[0].val;
+                                ValCM1 = parseFloat(ValCM1.replace(',', '.')).toFixed(2);
+                                //Coal Mill 4
+                                OnOffCM2 = dataJson[0].tags[13].props[0].val;
+                                ValCM2 = dataJson[0].tags[18].props[0].val;
+                                ValCM2 = parseFloat(ValCM2.replace(',', '.')).toFixed(2);
+                                //Finish Mill 5
+                                OnOffFM1 = dataJson[0].tags[14].props[0].val;
+                                OnOffHRC1 = dataJson[0].tags[20].props[0].val;
+                                ValFM1 = dataJson[0].tags[4].props[0].val;
+                                ValFM1 = parseFloat(ValFM1.replace(',', '.')).toFixed(2);
+                                //Finish Mill 6
+                                OnOffFM2 = dataJson[0].tags[16].props[0].val;
+                                OnOffHRC2 = dataJson[0].tags[21].props[0].val;
+                                ValFM2 = dataJson[0].tags[6].props[0].val;
+                                ValFM2 = parseFloat(ValFM2.replace(',', '.')).toFixed(2);
+                                //Finish Mill 7
+                                OnOffFM3 = dataJson[0].tags[15].props[0].val;
+                                ValFM3 = dataJson[0].tags[5].props[0].val;
+                                ValFM3 = parseFloat(ValFM3.replace(',', '.')).toFixed(2);
+                                //Finish Mill 8
+                                OnOffFM4 = dataJson[0].tags[19].props[0].val;
+                                ValFM4 = dataJson[0].tags[7].props[0].val;
+                                ValFM4 = parseFloat(ValFM4.replace(',', '.')).toFixed(2);
+
+
+                                if (OnOffKL1 == 'Run' || OnOffKL1 == 'True') {
+                                    $("#okl1tb3").addClass('nyala-ON');
+                                    $("#okl1tb3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#okl1tb3").addClass('nyala-OFF');
+                                    $("#okl1tb3").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffKL2 == 'Run' || OnOffKL2 == 'True') {
+                                    $("#okl1tb4").addClass('nyala-ON');
+                                    $("#okl1tb4").removeClass('nyala-OFF');
+                                } else {
+                                    $("#okl1tb4").addClass('nyala-OFF');
+                                    $("#okl1tb4").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffRM1 == 'Run' || OnOffRM1 == 'True') {
+                                    $("#orm1tb3").addClass('nyala-ON');
+                                    $("#orm1tb3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#orm1tb3").addClass('nyala-OFF');
+                                    $("#orm1tb3").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffRM2 == 'Run' || OnOffRM2 == 'True') {
+                                    $("#orm1tb4").addClass('nyala-ON');
+                                    $("#orm1tb4").removeClass('nyala-OFF');
+                                } else {
+                                    $("#orm1tb4").addClass('nyala-OFF');
+                                    $("#orm1tb4").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffCM1 == 'Run' || OnOffCM1 == 'True') {
+                                    $("#ocm1tb3").addClass('nyala-ON');
+                                    $("#ocm1tb3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ocm1tb3").addClass('nyala-OFF');
+                                    $("#ocm1tb3").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffCM2 == 'Run' || OnOffCM2 == 'True') {
+                                    $("#ocm1tb4").addClass('nyala-ON');
+                                    $("#ocm1tb4").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ocm1tb4").addClass('nyala-OFF');
+                                    $("#ocm1tb4").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffFM1 == 'Run' || OnOffFM1 == 'True') {
+                                    $("#ofm1tb3").addClass('nyala-ON');
+                                    $("#ofm1tb3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ofm1tb3").addClass('nyala-OFF');
+                                    $("#ofm1tb3").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffFM2 == 'Run' || OnOffFM2 == 'True') {
+                                    $("#ofm2tb3").addClass('nyala-ON');
+                                    $("#ofm2tb3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ofm2tb3").addClass('nyala-OFF');
+                                    $("#ofm2tb3").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffFM3 == 'Run' || OnOffFM3 == 'True') {
+                                    $("#ofm1tb4").addClass('nyala-ON');
+                                    $("#ofm1tb4").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ofm1tb4").addClass('nyala-OFF');
+                                    $("#ofm1tb4").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffFM4 == 'Run' || OnOffFM4 == 'True') {
+                                    $("#ofm2tb4").addClass('nyala-ON');
+                                    $("#ofm2tb4").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ofm2tb4").addClass('nyala-OFF');
+                                    $("#ofm2tb4").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffHRC1 == 'Run' || OnOffHRC1 == 'True') {
+                                    $("#ohrc1tb3").addClass('nyala-ON');
+                                    $("#ohrc1tb3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ohrc1tb3").addClass('nyala-OFF');
+                                    $("#ohrc1tb3").removeClass('nyala-ON');
+                                }
+
+                                if (OnOffHRC2 == 'Run' || OnOffHRC2 == 'True') {
+                                    $("#ohrc2tb3").addClass('nyala-ON');
+                                    $("#ohrc2tb3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ohrc2tb3").addClass('nyala-OFF');
+                                    $("#ohrc2tb3").removeClass('nyala-ON');
+                                }
+
+                                $("#kl1tb3").html(ValKL1);
+                                $("#kl1tb4").html(ValKL2);
+
+                                $("#rm1tb3").html(ValRM1);
+                                $("#rm1tb4").html(ValRM2);
+
+                                $("#cm1tb3").html(ValCM1);
+                                $("#cm1tb4").html(ValCM2);
+
+                                $("#fm1tb3").html(ValFM1);
+                                $("#fm2tb3").html(ValFM2);
+                                $("#fm1tb4").html(ValFM3);
+                                $("#fm2tb4").html(ValFM4);
+                            }
+                        }).done(function (data) {}).fail(function () {
+
+                        });
+
+//                        $.ajax({
+//                            url: url_src+'/api/index.php/plant_tuban/get_emissiontb12',
+//                            type: 'GET',
+//                            success: function (data) {
+//                                var data1 = data.replace("<title>Json</title>", "");
+//                                var data2 = data1.replace("(", "[");
+//                                var data3 = data2.replace(");", "]");
+//                                var dataJson = JSON.parse(data3);
+//
+//                                EPKL1 = dataJson[0].tags[0].props[0].val;
+//                                EPKL2 = dataJson[0].tags[3].props[0].val;
+//                                EPRM1 = dataJson[0].tags[1].props[0].val;
+//                                EPRM2 = dataJson[0].tags[2].props[0].val;
+//
+//                                $("#epkl1tb1").html(EPKL1);
+//                                $("#epkl1tb2").html(EPKL2);
+//                                $("#eprm1tb1").html(EPRM1);
+//                                $("#eprm1tb2").html(EPRM2);
+//                            }
+//                        }).done(function (data) {}).fail(function () {
+//                        });
+//
+//                        $.ajax({
+//                            url: url_src+'/api/index.php/plant_tuban/get_emission',
+//                            type: 'GET',
+//                            success: function (data) {
+//                                var data1 = data.replace("<title>Json</title>", "");
+//                                var data2 = data1.replace("(", "[");
+//                                var data3 = data2.replace(");", "]");
+//                                var dataJson = JSON.parse(data3);
+//
+//                                EPKL1 = dataJson[0].tags[2].props[0].val;
+//                                EPKL1 = parseFloat(EPKL1.replace(',', '.')).toFixed(2);
+//                                EPKL2 = dataJson[0].tags[3].props[0].val;
+//                                EPKL2 = parseFloat(EPKL2.replace(',', '.')).toFixed(2);
+//                                EPRM1 = dataJson[0].tags[0].props[0].val;
+//                                EPRM1 = parseFloat(EPRM1.replace(',', '.')).toFixed(2);
+//                                EPRM2 = dataJson[0].tags[1].props[0].val;
+//                                EPRM2 = parseFloat(EPRM2.replace(',', '.')).toFixed(2);
+//
+//                                $("#epkl1tb3").html(EPKL1);
+//                                $("#epkl1tb4").html(EPKL2);
+//                                $("#eprm1tb3").html(EPRM1);
+//                                $("#eprm1tb4").html(EPRM2);
+//                            }
+//                        }).done(function (data) {}).fail(function () {
+//                        });
+
+                        $.ajax({
+                            url: url_src+'/api/index.php/plant_tuban/get_silo',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+
+                                tonageSilo09 = dataJson[0].tags[0].props[0].val;
+                                tonageSilo10 = dataJson[0].tags[1].props[0].val;
+                                tonageSilo11 = dataJson[0].tags[2].props[0].val;
+                                tonageSilo12 = dataJson[0].tags[3].props[0].val;
+                                tonageSilo13 = dataJson[0].tags[4].props[0].val;
+                                tonageSilo14 = dataJson[0].tags[5].props[0].val;
+                                tonageSilo15 = dataJson[0].tags[6].props[0].val;
+                                tonageSilo16 = dataJson[0].tags[7].props[0].val;
+
+                                tonageSilo09 = parseFloat(tonageSilo09.replace(',', '.')).toFixed(2);
+                                tonageSilo10 = parseFloat(tonageSilo10.replace(',', '.')).toFixed(2);
+                                tonageSilo11 = parseFloat(tonageSilo11.replace(',', '.')).toFixed(2);
+                                tonageSilo12 = parseFloat(tonageSilo12.replace(',', '.')).toFixed(2);
+                                tonageSilo13 = parseFloat(tonageSilo13.replace(',', '.')).toFixed(2);
+                                tonageSilo14 = parseFloat(tonageSilo14.replace(',', '.')).toFixed(2);
+                                tonageSilo15 = parseFloat(tonageSilo15.replace(',', '.')).toFixed(2);
+                                tonageSilo16 = parseFloat(tonageSilo16.replace(',', '.')).toFixed(2);
+
+
+                                $("#silo09").html(tonageSilo09);
+                                $("#silo10").html(tonageSilo10);
+                                $("#silo11").html(tonageSilo11);
+                                $("#silo12").html(tonageSilo12);
+                                $("#silo13").html(tonageSilo13);
+                                $("#silo14").html(tonageSilo14);
+                                $("#silo15").html(tonageSilo15);
+                                $("#silo16").html(tonageSilo16);
+                            }
+                        }).done(function (data) {
+                        }).fail(function () {
+
+                        });
+
+                        $.ajax({
+                            url: url_src+'/api/index.php/plant_tuban/get_silotb12',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+
+                                ValSilo1 = dataJson[0].tags[6].props[0].val;
+                                ValSilo2 = dataJson[0].tags[4].props[0].val;
+                                ValSilo3 = dataJson[0].tags[7].props[0].val;
+                                ValSilo4 = dataJson[0].tags[5].props[0].val;
+                                ValSilo5 = dataJson[0].tags[1].props[0].val;
+                                ValSilo6 = dataJson[0].tags[0].props[0].val;
+                                ValSilo7 = dataJson[0].tags[2].props[0].val;
+                                ValSilo8 = dataJson[0].tags[3].props[0].val;
+
+                                $("#silo1").html(ValSilo1);
+                                $("#silo2").html(ValSilo2);
+                                $("#silo3").html(ValSilo3);
+                                $("#silo4").html(ValSilo4);
+                                $("#silo5").html(ValSilo5);
+                                $("#silo6").html(ValSilo6);
+                                $("#silo7").html(ValSilo7);
+                                $("#silo8").html(ValSilo8);
+
+                            }
+                        }).done(function (data) {}).fail(function () {
+                        });
+                    }
+                    ;
+                    setInterval(dataUpdate, 500);
+                </script>
+            </div>
+        </div>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

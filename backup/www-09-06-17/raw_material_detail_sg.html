@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/archon.css"> -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+  <script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script src="js/highcharts_working.js"></script>
+ <script src="js/loader.js"></script>
+<script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<title>Raw Material & Fuel</title>
+<script>
+ function onLoad(){
+  $(".burger-menu").click(function (e){
+   if ($(this).hasClass("is-active")){
+    $(this).removeClass("is-active");
+    $("#content").removeClass("slideMenu");
+    $("#content").addClass("closeMenu");
+   }else{
+   $(this).addClass("is-active");
+   $("#content").removeClass("closeMenu");
+   $("#content").addClass("slideMenu");
+   }
+  });
+ }
+ var d = new Date();
+ var month = new Array();
+ month[0] = "January";
+ month[1] = "February";
+ month[2] = "March";
+ month[3] = "April";
+ month[4] = "May";
+ month[5] = "June";
+ month[6] = "July";
+ month[7] = "August";
+ month[8] = "September";
+ month[9] = "October";
+ month[10] = "November";
+ month[11] = "December";
+ var bulan = month[d.getMonth()];
+ var bulanSekarang = d.getMonth() + 1;
+ var tahun = d.getFullYear();
+</script>
+<style type="text/css">
+<!--
+.style1 {
+	font-size: 12px;
+	color: #333333;
+}
+.colorsp {
+	color:#333333
+}
+.margin-top {
+ margin-top: 25%;
+}
+.heading {
+font-weight: bold;
+color: #bb0e2a;
+font-family: "Open Sans";
+font-size: 16px;
+}
+.smaller {font-size: 14px;}
+.tl{
+font-size:9px;
+border-bottom:1px solid #d2d2d2;
+color:#333333;
+margin-bottom:1px;
+}
+.tldown{
+font-size:11px;
+color:#333333;
+}
+.t1{font-size: 10px; margin-bottom: 1px;}
+.borddown{
+border-right:1px solid #d2d2d2;
+margin-bottom:4px;}
+-->
+</style>
+</head>
+<body onLoad="onLoad()" style="font-family: Segoe UI;">
+<div class="app">
+<div id="deviceready">
+ <nav id="sideMenu">
+                   <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+  </nav>
+  <div id="content" class="animated" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+    <div class="wrapper">
+          <h2 class="titular" style="background: #e3000e;height: 37px;    line-height: 39px;font-size: small;">RAW MATERIAL & FUEL</h2>
+
+                             <div class=" headsix2 cubesRun2">
+
+     <div class="row" style="margin:auto">
+                                    <div class="col-xs-4"; style="padding:0px;" align="center">
+                                        <img src="img/icKota1.png"></div>
+                                    <div class="col-xs-8"; style="padding:0px"> <img src="img/teks%20semen%20indo.png"; style="width:50%; float:left; margin-top:14px;";  >
+                                        <p style="text-align:center; color:black; font-weight:bold; font-size:20px; font-size:bold; float:left">SEMEN GRESIK</p>
+                                    </div>
+                                </div>
+
+
+ 
+
+
+
+
+
+        <div align="center" style="    margin-top: 5px; color:#656565;  margin-bottom: 22px;">
+          <span class="upercent">TOTAL STOCK</span><br>
+            <i class="fa fa-sort-asc fa-3x" aria-hidden="true" align="left" style="color: crimson;" ></i>IDR <span class="prosen" style="color: #5d5d5d;">8.372,6B</span><br>
+                 <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+
+                 <br></div>
+            
+            
+            <div class="col-xs-2 noPadding headdown cubesTit">
+       <a href="#raw_material" rel="sp">
+        <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b></b> </div>
+        <div class="col-xs-12 noPadding" align="center" style="color:#33CC33;" > </div>
+       </a>
+      </div>
+      <div class="col-xs-5 noPadding headdown cubesTit">
+       <a href="#raw_material" rel="st">
+        <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> November </b></div>
+        <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+       </a>
+      </div>
+      <div class="col-xs-5 noPadding headdown cubesTit">
+       <a href="#raw_material" rel="tlcc">
+        <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" > <b>Up to November</b> </div>
+        <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+       </a>
+      </div>
+      <div class="col-xs-2 noPadding headdown cubesRun" style="min-height: 154px;">
+       <a href="#">
+        <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+         <h4 class="margin-top heading smaller">BAHAN BAKU</h4>
+        </div>
+       </a>
+      </div>
+      <div class="col-xs-5 noPadding headdown cubesRun" style="min-height: 76px;">
+       <div id="baku_bulan"></div>
+      </div>
+      <div class="col-xs-5 noPadding headdown cubesRun" style="min-height: 76px;">
+       <div id="baku_to_bulan"></div>
+      </div>
+      <div class="col-xs-12"></div>
+      <div class="col-xs-2 noPadding headdown cubesRun" style="min-height: 154px;">
+       <a href="#">
+        <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+         <h4 class="margin-top heading smaller">BAHAN BAKAR</h4>
+        </div>
+       </a>
+      </div>
+      <div class="col-xs-5 noPadding headdown cubesRun" style="min-height: 76px;">
+       <div id="bakar_bulan"></div>
+      </div>
+      <div class="col-xs-5 noPadding headdown cubesRun" style="min-height: 76px;">
+       <div id="bakar_to_bulan"></div>
+      </div>
+            <br><p>&nbsp;</p>
+            
+          <div class="col-xs-12 noPadding headsixbg" style="margin-top: 12px;">  
+        <i class="fa fa-bar-chart" aria-hidden="true"></i><span style="color: #5d5d5d;font-size: 12px;">&nbsp;&nbsp;&nbsp;Monthly Report</span><br>
+        <div id="raw_data" style="width:100%; height:1000px"></div>
+     </div>
+
+      <div align="center">
+        <!--<div class="col-xs-2 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        <div class="col-xs-5 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        <div class="col-xs-5 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>-->
+      </div>
+      <div class="col-xs-12 noPadding">
+
+        <div class="spacer"></div>
+        <script>
+
+
+                        </script>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--       <script type="text/javascript" src="cordova.js"></script>-->
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/raw_material_detail_data.js"></script>
+<script type="text/javascript" src="js/mm_sg.js"></script>
+<script type="text/javascript">
+  $(function(){
+      materialDetailData('sg');
+  });
+</script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

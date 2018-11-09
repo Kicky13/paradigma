@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/waitMe.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script src="js/config.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/accounting.min.js"></script>
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script src="js/loader.js"></script>
+    <script src="js/paradigma.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script type="text/javascript" src="js/moment.min.js"></script>
+
+    <script src="js/phase2/global.js"></script>
+    <script src="js/phase2/cement_clinker_prod_view.js"></script>
+
+
+    <script type="text/javascript" charset="utf-8">
+        var selectedDate;
+        var selectedLastYear;
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+        function onLoad() {
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var pengurang = 1;
+            var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+            var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+            var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+            var dd = d.getDate();
+            var mm = d.getMonth() + 1; //January is 0!
+            var yyyy = d.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            var today = dd + '/' + mm + '/' + yyyy;
+            $('.last-update').html('Last Update : ' + today);
+            var opco = '4000';
+            setParam(opco, bulanSekarang, tahun);
+
+            var yearnow = tahun;
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
+                }
+            });
+
+            var data_active = 1;
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'page1') {
+                    data_active = 1;
+                    $('#page1').removeClass('hidden');
+                    $('#page2').addClass('hidden');
+                    $('#tab-page1').addClass('act_tb');
+                    $('#tab-page2').removeClass('act_tb');
+
+                } else if (r == 'page2') {
+                    data_active = 2;
+                    $('#page1').addClass('hidden');
+                    $('#page2').removeClass('hidden');
+                    $('#tab-page1').removeClass('act_tb');
+                    $('#tab-page2').addClass('act_tb');
+
+                }
+            });
+            $('a[href="#tab-page"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'data-sp') {
+                    window.location.href = 'p2_cli_cem_prod_sp.html#' + data_active;
+                } else if (r == 'data-sg') {
+                    window.location.href = 'p2_cli_cem_prod_sg.html#' + data_active;
+                } else if (r == 'data-st') {
+                    window.location.href = 'p2_cli_cem_prod_st.html#' + data_active;
+                } else if (r == 'data-tl') {
+                    window.location.href = 'p2_cli_cem_prod_tl.html#' + data_active;
+                } else if (r == 'data-smi') {
+                    $('#tab-smi').removeClass('img_foot2');
+                    window.location.href = 'p2_cli_cem_prod_pc.html#' + data_active;
+                }
+            });
+
+            $('.selmonth').empty();
+            var opt_month;
+            $.each(month, function (key, val) {
+                if (key + 1 <= 12) {
+                    if ((key + 1) < 10) {
+                        var v = '0' + (key + 1);
+                    } else {
+                        var v = key + 1;
+                    }
+                    if ((key + 1) == bulanSekarang) {
+                        opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                    } else {
+                        opt_month += '<option value="' + v + '">' + val + '</option>';
+                    }
+                }
+            })
+            $('.selmonth').html(opt_month);
+            var opco = '4000';
+            var yearnow = tahun;
+            var lastyear = tahun - 1;
+            var labels = bulanSekarang;
+            var AngkaBulanSaja = bulanSekarang;
+            cost_data(bulanSekarang, opco, yearnow);
+            selectedDate = yearnow + '.' + bulanSekarang;
+            selectedLastYear = lastyear + '.' + bulanSekarang;
+            getChartTabel(opco, labels, AngkaBulanSaja, yearnow);
+            getPerformDataTable(opco, selectedDate, labels);
+            opcoGroupNew(opco, selectedDate, selectedLastYear);
+            $('.selmonth').change(function () {
+                bulanSekarang = $(this).val();
+                tahun = $('.selyear').val();
+                setParam(opco, bulanSekarang, tahun);
+                var yearnow = tahun;
+                var lastyear = tahun - 1;
+                var labels = bulanSekarang;
+                var AngkaBulanSaja = bulanSekarang;
+                selectedDate = yearnow + '.' + bulanSekarang;
+                selectedLastYear = lastyear + '.' + bulanSekarang;
+                getChartTabel(opco, labels, AngkaBulanSaja, tahun);
+                getPerformDataTable(opco, selectedDate, labels);
+                opcoGroupNew(opco, selectedDate, selectedLastYear);
+                cost_data(bulanSekarang, opco, yearnow);
+            })
+            var opt_year;
+            for (var thn = 2010; thn <= yyyy; thn++) {
+                if (thn == yyyy) {
+                    opt_year += '<option value="' + thn + '" selected="selected">' + thn + '</option>';
+                } else {
+                    opt_year += '<option value="' + thn + '">' + thn + '</option>';
+                }
+            }
+            $('.selyear').html(opt_year);
+            $('.selyear').change(function () {
+                bulanSekarang = $('.selmonth').val();
+                tahun = $(this).val();
+                setParam(opco, bulanSekarang, tahun);
+                var yearnow = tahun;
+                var lastyear = tahun - 1;
+                var labels = bulanSekarang;
+                var AngkaBulanSaja = bulanSekarang;
+                selectedDate = yearnow + '.' + bulanSekarang;
+                selectedLastYear = lastyear + '.' + bulanSekarang;
+                getChartTabel(opco, labels, AngkaBulanSaja, tahun);
+                getPerformDataTable(opco, selectedDate, labels);
+                opcoGroupNew(opco, selectedDate, selectedLastYear);
+                cost_data(bulanSekarang, opco, yearnow);
+            })
+
+            if (window.location.hash == '#2') {
+                $('#page1').addClass('hidden');
+                $('#page2').removeClass('hidden');
+                $('#tab-page1').removeClass('act_tb');
+                $('#tab-page2').addClass('act_tb');
+
+            }
+
+        }
+
+        function gotochart(url) {
+            var to = url + '#' + selectedDate;
+            window.location.replace(to);
+        }
+    </script>
+    <script>
+
+        $(function () {
+
+        })
+    </script>
+    <style>
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .tab_syle {
+            color: #666666;
+            font-size: 12px;
+            border: none;
+            /* padding-left: 8px; */
+            margin-left: 3px;
+        }
+
+        .font-category {
+            font-size: 12px;
+        }
+
+        .overflowing {
+            /*width: 30em;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+        }
+
+        .collapse.in {
+            display: block;
+        }
+
+        tr.collapse.in {
+            display: table-row;
+        }
+
+        .num {
+            text-align: right;
+        }
+
+        .inex {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .titl {
+            background-color: #e54b37;
+            padding: 9px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+            font-size: 12px;
+            margin-bottom: 0px;
+            border-radius: 3px 3px 0px 0px;
+
+        }
+
+        .boxf {
+            /* background-color: #e54b37; */
+            padding: 0px;
+            margin-bottom: 3px;
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            /* margin: auto; */
+            min-height: 209px;
+            /* border-radius: 8px; */
+            /* margin-right: 1px; */
+            border: 1px solid rgb(197, 197, 197, 0.7);
+            /*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+            -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+            box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+            border-right: 1px solid #b6b6b6;*/
+        }
+
+        .bagan:hover, .bagan:visited {
+            opacity: 0.6;
+        }
+
+        .titab {
+            font-weight: 500;
+            color: white;
+            display: inline-block;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .lyear {
+            color: black;
+            font-size: 16px;
+            padding-left: 10px;
+            border-left: 3px solid #e54b37;
+        }
+
+        .ryear {
+            color: black;
+            font-size: 16px;
+            padding-right: 10px;
+            border-right: 3px solid #e54b37;
+        }
+
+        .jud {
+            color: #000000;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 13px;
+            display: inline-block;
+        }
+
+        /*.til{
+            padding-bottom: 1px;
+        border-bottom: 1px solid #b6b6b6;
+        background-color: ghostwhite;
+        }*/
+        .label-success {
+            background-color: #5cb85c;
+            border: 1.5px solid white;
+        }
+
+        .label-danger {
+            background-color: #d9534f;
+            border: 1.5px solid white;
+        }
+
+        .subox {
+            height: 137px;
+            border-bottom: 3px solid #e54b37;
+        }
+
+        .subox2 {
+            height: 137px;
+            border-bottom: 3px solid #626262;
+        }
+
+        .hijau {
+            color: #669966;
+        }
+
+        .merah {
+            color: #DC0033;
+        }
+
+        .float_bgg {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            padding: 4px 12px;;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #e54b37;
+            border-radius: 0px 0px 6px 6px;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+
+        .float_bgg_wdmax {
+            display: inline-block;
+            /*max-width: 100%;*/
+            width: 100%;
+            height: auto;
+            padding: 4px 12px;;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #e54b37;
+            border-radius: 0px 0px 6px 6px;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+
+        .htittle {
+            margin: 0px;
+            border-radius: 6px 6px 0px 0px;
+            background-color: #e54b37;
+            height: 27px;
+            text-align: left;
+            font-size: 14px;
+            padding: 5px 0px 4px 9px;
+        }
+
+        .te {
+            background: #EB1717;
+            height: 37px;
+            line-height: 39px;
+            font-size: small;
+            background: rgba(245, 81, 81, 1);
+            background: -moz-linear-gradient(top, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 81, 81, 1)), color-stop(46%, rgba(245, 81, 81, 1)), color-stop(57%, rgba(229, 75, 55, 1)), color-stop(100%, rgba(229, 75, 55, 1)));
+            background: -webkit-linear-gradient(top, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            background: -o-linear-gradient(top, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            background: linear-gradient(to bottom, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f55151', endColorstr='#e54b37', GradientType=0);
+        }
+
+        .no-text-style, .no-text-style:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .bold_op {
+            font-weight: 600;
+        }
+    </style>
+    <script src="js/modernizr.js"></script>
+    <script>
+        //paste this code under head tag or in a seperate js file.
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");
+        });
+    </script>
+    <title>Clinker & Cement Production</title>
+</head>
+<body onLoad="onLoad()">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                            <li><a>PLANT OPERATION</a></li>
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a>
+                    </li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img
+                            src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTERY</a>
+                    </li><li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li><li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <nav id="sideMenu">
+            <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+            </ul>
+        </nav>
+        <div id="content" style="background:#f5f5f5;">
+            <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle"><span>toggle menu</span></button>
+                <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo"
+                                                                                        href="index.html"><img
+                    src="img/logo.png"></a>
+            </header>
+            <div class="wrapper">
+                <h2 class="titular te" style=" ">
+                    <a href="portal_finance.html" class="pull-left" style="margin-left:10px;"><i
+                            class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>Clinker & Cement Production
+                </h2>
+
+                <div class="head-menu">
+                    <ul>
+                        <li><a class="active">PRODUCTION</a></li>
+                        <li><a onclick="goto_opco('p2_fin_sales_smi', 'p2_fin_sales_smi')">SALES</a></li>
+                        <li><a onclick="goto_opco('p2_mbalance_daily_st', 'p2_mbalance_daily_st')">MATERIAL BALANCE</a></li>
+                        <li style="display:none"><a onclick="goto_opco('p2_cost_sheet', 'p2_cost_sheet')">COST SHEET</a></li>
+                        <li><a onclick="goto_opco('fin_cost_str_pc', 'fin_cost_str_pc')">COST STRUCTURE</a></li>
+                        <li><a onclick="goto_opco('finance_perform_dash', 'finance_perform_dash')">CORP. PERFORMANCE</a>
+                        </li>
+                        <li><a onclick="goto_opco('balance_semen', 'balance_semen')">BALANCE SHEET</a></li>
+                        <li><a onclick="goto_opco('fin_rec_mng', 'fin_rec_mng')">RECEVABLE MNGT</a></li>
+                    </ul>
+                </div>
+                <div class="spacer-menu"></div>
+                <div class="col-xs-12" style="background-color: white; margin-top: 5px">                     <div class="col-xs-12 bg_rds">                         <div id="tab-page1" class="col-xs-6 center zero_padd left_tb act_tb ">                             <a href="#tab-click" rel="page1" class="no-text-style"><img src="img/pack.png" width="18px">                                 <span class="tx_tab">&nbsp;&nbsp;Comparison</span></a></div>                         <div id="tab-page2" class="col-xs-6 center zero_padd left_tb  ">                             <a href="#tab-click" rel="page2" class="no-text-style"> <img src="img/gdg.png" width="18px">                                 <span class="tx_tab">&nbsp;&nbsp;Performance</span></a></div>                     </div>                 </div>
+                <div class="headsix add_fix cubesRun2" style="margin-bottom: 116px; margin-top: 18px;">
+                    <div class=" cubesRun2 headone">
+                        <div class="col-xs-4" style="padding:0px;" align="center"><img src="img/icKota3.png"
+                                                                                       class="img_log"></div>
+                        <div class="col-xs-8" style="padding:0px; padding-right: 31px;">
+                            <img src="img/teks semen indo.png" class="imgsi"
+                                 style="padding-top: 12px;width: 131px; margin: 0;">
+                            <p class="prodtittle" id="head"
+                               style="    font-weight: 600;    font-size: 23px;    display: inline-block;">SEMEN
+                                TONASA</p>
+
+                        </div>
+                    </div>
+                    <center>
+                        Bulan: <select id="month" class="selmonth" rel="vol"></select> <select id="year"
+                                                                                               class="selyear"></select>
+                    </center>
+                    <!-- Page COMPARISON-->
+                    <div id="page1" class="active">
+                        <div class="col-xs-12" align="center" style="margin: 10px 0 3px 0;">
+                            <span class="lyear" style="border: none;">Cement</span>
+                            <br>
+                        </div>
+                        <div class="headsix add_fix cubesRun2"
+                             style="margin-bottom: 20px; height: 280px; margin-top: 19px;    border-top: 2px solid #d1d1d1;border-radius: 26px 26px 0px 0px;">
+                            <div align="left" class="col-xs-8" style="margin-bottom: 8px;">
+                                <i class="fa fa-calendar" aria-hidden="true"
+                                   style="font-size: 17px;color: #e54b37;"></i>&nbsp;&nbsp;<span
+                                    class="ttl_fp" id="ton_tag_current_cost1"> DESEMBER</span>
+                            </div>
+                            <div align="right" class="col-xs-4"><a onmousedown="gotochart('p2_fin_st_pc_chart.html')"><i
+                                    class="fa fa-line-chart right grp_ico" aria-hidden="true"></i> </a></div>
+
+                            <a href="#" rel="asset" class="bagan">
+                                <div class="col-xs-12 boxf noPadding">
+
+                                    <div class="col-xs-12" style="padding: 2px;">
+                                        <h4 class="htittle"><span id="tag_current_cost5">-</span><i
+                                                class="fa fa-window-maximize" aria-hidden="true"
+                                                style="float:right;padding-right: 12px;"></i></h4>
+                                        <div class="float_bgg_wdmax">
+
+                                            <div align="center " style="margin-bottom:12px;">
+
+                                                <div class="col-xs-12 " align="center">
+                                                </div>
+                                                <div class="col-xs-6 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                    <span style="color:black;" id="RealCementComp">0</span>
+
+                                                </div>
+                                                <div class="col-xs-6 noPadding" align="right">
+
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                    <span style="color:black;" id="RKAPCementComp">0</span>
+                                                </div>
+                                                <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                    <i class="fa fa-sort-desc" aria-hidden="true"
+                                                       style="color: red;"></i>
+                                                    <span style="color:black; font-size: 29px" id="perc3a">0</span>
+                                                    <span style="color:black; font-size: 16px">%</span><br>
+
+                                                </div>
+                                                <div class="col-xs-6 noPadding" align="left">
+                                                <span style="font-size: 12px; font-weight: 300; color:black;"
+                                                      id="tag_ly4">Real 2015</span><br>
+                                                    <span style="color:black;" id="REALcementLastyear">0</span>
+
+                                                </div>
+                                                <div class="col-xs-6 noPadding" align="right">
+
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                                    <span style="color:black;" id="yoy_current_Cement">0 %</span>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="headsix add_fix cubesRun2"
+                             style="margin-bottom: 20px; height: 280px; margin-top: 20px;    border-top: 2px solid #d1d1d1;border-radius: 26px 26px 0px 0px;">
+
+                            <div class="col-xs-12" align="center" style="margin: 10px 0 3px 0;">
+                                <span class="lyear" style="border: none;">Clinker</span>
+                                <br>
+                            </div>
+
+                            <div align="left" class="col-xs-8" style="margin-bottom: 8px;">
+                                <i class="fa fa-calendar" aria-hidden="true"
+                                   style="font-size: 17px;color: #e54b37;"></i>&nbsp;&nbsp;<span
+                                    class="ttl_fp" id="ton_tag_current_cost2"> DESEMBER</span>
+                            </div>
+                            <div align="right" class="col-xs-4"><a
+                                    onmousedown="gotochart('p2_fin_st_pc_chart2.html')"><i
+                                    class="fa fa-line-chart right grp_ico" aria-hidden="true"></i> </a></div>
+
+                            <a href="#" rel="asset" class="bagan">
+                                <div class="col-xs-12 boxf noPadding">
+                                    <div class="col-xs-12" style="padding: 2px;">
+                                        <h4 class="htittle"><span id="tag_current_cost7">-</span><i
+                                                class="fa fa-window-maximize" aria-hidden="true"
+                                                style="float:right;padding-right: 12px;"></i></h4>
+                                        <div class="float_bgg_wdmax">
+                                            <div align="center " style="margin-bottom:12px;">
+
+                                                <div class="col-xs-12 " align="center">
+                                                </div>
+                                                <div class="col-xs-6 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                    <span style="color:black;" id="RealClinkerComp">0</span>
+
+                                                </div>
+                                                <div class="col-xs-6 noPadding" align="right">
+
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                    <span style="color:black;" id="RKAPClinkerComp">0</span>
+                                                </div>
+                                                <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                    <i class="fa fa-sort-desc" aria-hidden="true"
+                                                       style="color: red;"></i>
+                                                    <span style="color:black; font-size: 29px" id="perc4a">0</span>
+                                                    <span style="color:black; font-size: 16px">%</span><br>
+
+                                                </div>
+                                                <div class="col-xs-6 noPadding" align="left">
+                                                <span style="font-size: 12px; font-weight: 300; color:black;"
+                                                      id="tag_ly6">Real 2015</span><br>
+                                                    <span style="color:black;" id="REALclinkerLastyear">0</span>
+
+                                                </div>
+                                                <div class="col-xs-6 noPadding" align="right">
+
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                                    <span style="color:black;" id="yoy_current_Clinker">0 %</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+
+                        </div>
+
+                        <div id="container" style="width: 100%;margin: 0 auto;padding: 6px;">
+                            <table class="table table-striped"
+                                   style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                                <thead>
+                                <tr class="headtr">
+                                    <td><strong>Plant</strong></td>
+                                    <td align="center" valign="middle"><strong>Cement</strong></td>
+                                    <td align="center" valign="middle"><strong>Clinker</strong></td>
+                                </tr>
+                                </thead>
+                                <tbody id="issueTbody">
+                                <tr>
+                                    <td class="">Plant Tonasa II & III</td>
+                                    <td align="right"><span style="color: black; text-align: right"
+                                                            id="CemenTonasa2">0</span></td>
+                                    <td align="right"><span style="color: black; text-align: right;"
+                                                            id="ClinkerTonasa2">0</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="">Plant Tonasa IV</td>
+                                    <td align="right"><span style="color: black;  text-align: right"
+                                                            id="CmTonasa4">0</span></td>
+                                    <td align="right"><span style="color: black;  text-align: right"
+                                                            id="ClnTonasa4">0</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="">Plant Tonasa V</td>
+                                    <td align="right"><span style="color: black;  text-align: right"
+                                                            id="CmtTonasa5">0</span></td>
+                                    <td align="right"><span style="color: black;  text-align: right"
+                                                            id="ClnTonasa5">0</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="bold_op">Total Semen Tonasa</td>
+                                    <td align="right"><span style="color: black;  text-align: right"
+                                                            id="totCemTonasa">0</span>
+                                    </td>
+                                    <td align="right"><span style="color: black; text-align: right"
+                                                            id="totClinTonasa">0</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                        <br>
+                        <div align="left">
+                            <p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+                        </div>
+
+
+                    </div>
+                    <div id="page2" class="hidden">
+                        <!--<div id="container" style="width: 100%;margin: 0 auto;padding: 6px;">-->
+                        <!--<table class="table table-striped"-->
+                        <!--style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">-->
+                        <!--<thead>-->
+                        <!--<tr class="headtr">-->
+                        <!--<td><strong>Plant</strong></td>-->
+                        <!--<td align="center" valign="middle"><strong>Cement</strong></td>-->
+                        <!--<td align="center" valign="middle"><strong>Clinker</strong></td>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody id="issueTbody">-->
+                        <!--<tr>-->
+                        <!--<td class="">Plant Tonasa II & III </td>-->
+                        <!--<td align="right"><span style="color: black; text-align: right" id="CemenTonasa2a">0</span></td>-->
+                        <!--<td align="right"><span style="color: black; text-align: right;" id="ClinkerTonasa2a">0</span></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td class="">Plant Tonasa IV</td>-->
+                        <!--<td align="right"><span style="color: black;  text-align: right" id="CmTonasa4a">0</span></td>-->
+                        <!--<td align="right"><span style="color: black;  text-align: right" id="ClnTonasa4a">0</span></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td class="">Plant Tonasa V</td>-->
+                        <!--<td align="right"><span style="color: black;  text-align: right" id="CmtTonasa5a">0</span></td>-->
+                        <!--<td align="right"><span style="color: black;  text-align: right" id="ClnTonasa5a">0</span></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td class="bold_op">Total Semen Tonasa</td>-->
+                        <!--<td align="right"><span style="color: black;  text-align: right" id="totCemTonasa1">0</span>-->
+                        <!--</td>-->
+                        <!--<td align="right"><span style="color: black; text-align: right" id="totClinTonasa1">0</span>-->
+                        <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                        <!--</table>-->
+                        <!--<br>-->
+                        <!--</div>-->
+                        <br>
+                        <br>
+
+
+                        <!--<div class="headsix add_fix cubesRun2"-->
+                        <!--style="margin-bottom: 20px; height: 280px; margin-top: 19px;    border-top: 2px solid #d1d1d1;border-radius: 26px 26px 0px 0px;">-->
+                        <div class="col-xs-12" align="left" style="margin: 15px 0px 15px 0px;">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 16px;color: #e54b37;"></i>
+                            <span style="color: #666160; font-size: 16px"> &nbsp; Total Tonasa</span>
+                        </div>
+
+
+                        <div id="graphic_totCemClin" style=" height: 300px; margin: 0 auto; width:100%"></div>
+                        <!-- END OF CHART HOLDING -->
+                        <br><br>
+                        <br><br>
+
+
+                        <div class="col-xs-12" align="left" style="margin: 15px 0px 15px 0px;">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 16px;color: #e54b37;"></i>
+                            <span style="color: #666160; font-size: 16px"> &nbsp; Total Cement / Opco</span>
+                        </div>
+
+
+                        <div id="graphic_totAllOpco" style=" height: 300px; margin: 0 auto; width:100%"></div>
+                        <!-- END OF CHART HOLDING -->
+                        <br><br>
+                        <br><br>
+                        <br><br>
+
+
+                        <div class="col-xs-12" align="left" style="margin: 15px 0px 15px 0px;">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 16px;color: #e54b37;"></i>
+                            <span style="color: #666160; font-size: 16px"> &nbsp; Total Clinker / Opco</span>
+                        </div>
+
+
+                        <div id="graphic_totAllOpco1" style=" height: 300px; margin: 0 auto; width:100%"></div>
+                        <!-- END OF CHART HOLDING -->
+                        <br><br>
+                        <br><br>
+                        <br><br>
+
+
+                        <br>
+
+
+                        <div align="left">
+                            <p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+                        </div>
+
+                    </div><!-- END OF DIV PAEge2 -->
+
+
+                </div>
+
+
+                <footer>
+                    <div class="regular">
+                        <div id="tab-smi" class="col-xs-4 noPadding tab_uper img_foot2 col-ft-4" align="center"
+                             style="margin-top: 7px;">
+                            <a href="#tab-page" rel="data-smi">
+                                <img src="img/smi.png" style="width : 36%;"/>
+                            </a>
+                        </div>
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper img_foot2 col-ft-3 " align="center"
+                             style="margin-top: 7px; width: 16.66%;">
+                            <a href="#tab-page" rel="data-sp">
+                                <img src="img/icKota2a.png" style="width:60%;"/>
+                            </a>
+                        </div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper img_foot2 col-ft-3" align="center"
+                             style="margin-top: 7px; width: 16.66%;">
+                            <a href="#tab-page" rel="data-sg">
+                                <img src="img/icKota1a.png" style="width:60%;"/>
+                            </a>
+                        </div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3" align="center"
+                             style="margin-top: 7px; width: 16.66%;">
+                            <a href="#tab-page" rel="data-st">
+                                <img src="img/icKota3a.png" style="width:60%;"/>
+                            </a>
+                        </div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper img_foot2 col-ft-3" align="center"
+                             style="margin-top: 7px; width: 16.66%;">
+                            <a href="#tab-page" rel="data-tl">
+                                <img src="img/icKota4a.png" style="width:60%;"/>
+                            </a>
+                        </div>
+                        <!-- <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 5px; width: 16%;"> -->
+                        <!-- <a href="#tab-page" rel="data-kso" > -->
+                        <!-- <img src="img/icKSO.png" style="width:100%;"/> -->
+                        <!-- </a> -->
+                        <!-- </div> -->
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>This is a small modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

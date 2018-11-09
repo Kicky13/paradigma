@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+        <script src="js/highcharts_working.js"></script>
+        <script src="js/highcharts-more.js"></script>
+         <script src="js/loader.js"></script>
+        <script src="js/solid-gauge.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <title>Backlog</title>
+        <script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                var labelArrays = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+                var d = moment().format('DD');
+                var m = moment().format('MM');
+                var y = moment().format('YYYY');
+                var today = d + ' ' + labelArrays[parseInt(m) - 1] + ' ' + y;
+                $('#last_updated').html(today);
+                //console.log(today);
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-notification') {
+                        $('#data-notification').removeClass('hidden');
+                        $('#data-work-order').addClass('hidden');
+                        $('#tab-notification').addClass('border-down-active');
+                        $('#tab-work-order').removeClass('border-down-active');
+                    } else if (r == 'data-work-order') {
+                        $('#data-notification').addClass('hidden');
+                        $('#data-work-order').removeClass('hidden');
+                        $('#tab-notification').removeClass('border-down-active');
+                        $('#tab-work-order').addClass('border-down-active');
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+
+        </script>
+        <style type="text/css">
+            <!--
+            .bg-white {background:#fff;}
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .text-small {font:normal 10px arial;color:#000;}
+            .center {text-align: center;}
+            .padding5 {padding:5px;}
+            .border-down {
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {text-decoration: none;color:#000;}
+            .highcharts-credits {
+                display:none;  
+            }
+            -->
+        </style>
+    </head>
+    <body onLoad="onLoad()" style="font-family: Segoe UI;">
+        <div class="app">
+            <div id="deviceready">
+                <nav id="sideMenu">
+                    <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="portal_prod1.html">PRODUCTION</a></li>
+                    <li><a href="portal_sales.html">SALES</a></li>
+                    <li><a href="portal_finance.html">FINANCE</a></li>
+                    <li><a href="portal_project.html">PROJECT</a>
+                    </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+                    </header>
+                    <div class="wrapper bg-white">
+                        <h2 class="titular" style=" height: 48px;font-size:20px; color: #FFFFFF;"><b>BACKLOG</b></h2>
+                        <div id="tab-notification" class="col-xs-6 center padding5 border-down border-down-active"><a href="#tab-click" rel="data-notification" class="no-text-style"><i class="fa fa-bell-o fa-lg"></i> Notification</a></div><div id="tab-work-order" class="col-xs-6 center padding5 border-down"><a href="#tab-click" rel="data-work-order" class="no-text-style"><i class="fa fa-list-ol fa-lg"></i> Work Order</a></div>
+                        <div id="data-notification">
+                            <div style="width:100%;padding:10px;">
+                                <div style="display:inline-block;width:45%;"><h4 style="margin-bottom:2px;font-size:20px">Notification</h4><span style="font-size:10px;color:#000;">Last Updated <span id="last_updated" class="text-small"></span></span></div>
+                                <div style="display:inline-block;width:45%;float:right;text-align:right;"><span style="font-size:12px;color:#000;">TOTAL BACKLOG</span><h4 id="total_backlog" style="font-size:28px;margin-top:2px;"></h4></div>
+                            </div>
+                            <div style="width:45%;margin-left: 10px"><img src ="img/teks semen indo.png" width="200px" height="50%"/></div>
+                            <div style="width:45%;margin-left: 10px"><span style="font-size:10px;color:#000;">Monthly Report</span></div>
+                            <div id="backlog-chart" class="headsixbg" style="width: 100%;height: 200px; margin: 0;"></div>
+                            <div style="width:100%;padding:10px;">
+                                <div style="display:block;width:100%;color:#000;text-align:center;font:normal 16px tahoma;margin-bottom: 5px;">OPCO DETAIL</div>
+
+                                <div class="headsixbg" style="width: 49%;margin: 0 auto;display:inline-block;text-align: center;"><div id="backlog-gauge2" class="gauge" target="gresik" style="width: 100%;height: 20%; margin: 0 auto;"></div><span class="text-small">Backlog Value</span></div> 
+                                <div class="headsixbg" style="width: 49%;margin: 0 auto;display:inline-block;text-align: center;"><div id="backlog-gauge1" class="gauge" target="padang" style="width: 100%;height: 20%;  margin: 0 auto;"></div><span class="text-small">Backlog Value</span></div> 
+                                <div class="headsixbg" style="width: 49%;margin: 0 auto;display:inline-block;text-align: center;"><div id="backlog-gauge3" class="gauge" target="tonasa" style="width: 100%;height: 20%; margin: 0 auto;"></div><span class="text-small">Backlog Value</span></div> 
+                                <div class="headsixbg" style="width: 49%;margin: 0 auto;display:inline-block;text-align: center;"><div id="backlog-gauge4" class="gauge" target="tlcc" style="width: 100%;height: 20%; margin: 0 auto;"></div><span class="text-small">Backlog Value</span></div>         
+                                <!--
+                                       <div class="headsixbg" style="width: 24%;margin: 0 auto;display:inline-block;text-align: center;"><div id="backlog-gauge2" class="gauge" target="gresik" style="height: 100px; margin: 0 auto;"></div><span class="text-small">Backlog Value</span></div> 
+                                       <div class="headsixbg" style="width: 24%;margin: 0 auto;display:inline-block;text-align: center;"><div id="backlog-gauge1" class="gauge" target="padang" style="height: 100px; margin: 0 auto;"></div><span class="text-small">Backlog Value</span></div> 
+                                       <div class="headsixbg" style="width: 24%;margin: 0 auto;display:inline-block;text-align: center;"><div id="backlog-gauge3" class="gauge" target="tonasa" style="height: 100px; margin: 0 auto;"></div><span class="text-small">Backlog Value</span></div> 
+                                       <div class="headsixbg" style="width: 24%;margin: 0 auto;display:inline-block;text-align: center;"><div id="backlog-gauge4" class="gauge" target="tlcc" style="height: 100px; margin: 0 auto;"></div><span class="text-small">Backlog Value</span></div>  
+                                -->
+                            </div> 
+                        </div>
+                        <div id="data-work-order" class="hidden">
+                            <!-- Data Work Order Tab Place -->
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/backlog_data_speedo.js"></script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            <!-- $(".regular").slick({ -->
+        <!-- infinite: true, -->
+        <!-- slidesToShow: 4, -->
+        <!-- slidesToScroll: 4, -->
+        <!-- arrows:true, -->
+         <!-- centerMode: true -->
+        <!-- // variableWidth: true -->
+      <!-- }); -->
+            });
+        </script>
+        </body>
+</html>

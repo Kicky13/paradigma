@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script src="js/stupidtable.js?dev"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script src="js/loader.js"></script>
+        <script src="js/paradigma.js"></script>
+        <!-- <script src="js/exporting.js"></script> -->
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+            	
+            var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                // setParam('6000');
+                $("table").stupidtable();
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                 $('a[href="#tab-bs"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'asset') {
+                        $('#asset').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#equity').addClass('hidden');
+                       
+                    } else if (r == 'liability') {
+                        $('#liability').removeClass('hidden');
+                        $('#asset').addClass('hidden');
+                        $('#equity').addClass('hidden');
+
+                    } else if (r === 'equity') {
+                         $('#equity').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#asset').addClass('hidden');
+                    }
+                });
+
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('3000');
+                        window.location.href = 'sales_detail.html';
+                        
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('7000');
+                        window.location.href = 'sales_detail.html';
+
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('4000');
+                        window.location.href = 'sales_detail.html';
+                        
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('6000');
+                        window.location.href = 'sales_detail.html';
+
+                    } else if (r == 'data-sm') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').removeClass('img_foot2');
+                        window.location.href = 'sales_detail.html';
+                        
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            
+        </script>
+
+        <script>
+             $(function(){
+                var tmp = getParam();
+                var opco = (getParam('opco')!='null')?getParam('opco'):7000;
+                console.log(opco+'=>'+getParam('opco'));
+                console.log(tmp);
+                // bulanSekarang = (getParam('bln')!='null')?getParam('bln'):(bulanSekarang);
+                // tahun = (getParam('thn')!='null')?getParam('thn'):tahun;
+                // console.log(tahun);
+
+                // if (opco == 'undefined' || opco == 'all' || opco == 'ALL') {
+                //     console.log('test');
+                //     opco = 7000;
+                //     console.log(opco);
+                // } 
+
+
+                if (opco == 7000) {
+                    $('.img_log').attr('src', 'img/icKota1.png');
+                    $('#head_log').text('SEMEN GRESIK');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').removeClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }else if (opco==3000) {
+                    $('.img_log').attr('src', 'img/icKota2.png');
+                    $('#head_log').text('SEMEN PADANG');
+
+                    $('#tab-sp').removeClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }if (opco==4000) {
+                    $('.img_log').attr('src', 'img/icKota3.png');
+                    $('#head_log').text('SEMEN TONASA');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').removeClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }if (opco==6000) {
+                    $('.img_log').attr('src', 'img/icKota4.png');
+                    $('#head_log').text('THANG LONG');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').removeClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }
+
+                load_data(opco);
+                
+              
+            })
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+			        font-size: 25px;
+                font-weight: bold;
+            	    padding-right: 12px;
+            }
+
+            .bagan:hover, .bagan:visited {
+            	opacity: 0.6;
+            }
+            .titab{
+            padding: 16px;
+                font-size: 14px;
+                font-weight: 500;
+            	}
+            .ylbox{
+            background-color:#f9bf3b;
+            }
+            .ylhead{
+            background-color:#f39c32;
+            }
+            .grbox{
+            background-color:#6fc962;
+            }
+            .grhead{
+            background-color:#68BA5B;
+            }
+            .tab_tittle{
+                margin-top: 12px;
+                color: black;
+                font-size: 23px;
+                padding-left: 9px;
+                display: inline-block;
+            	}
+
+                        .no-text-style, .no-text-style:hover {
+                            text-decoration: none;
+                            color:#000;
+                        }
+            .tx_tab {
+                            margin-top: 5px;
+                            color: #525252;
+                            display: inline-block;
+                            font-size: 15px;
+                            font-family: "Open Sans";
+                        }
+
+                        .center {
+                text-align: center;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            
+
+            });
+        </script>
+        <title>scm hm</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                          <h2 class="titular" style="height: 37px;line-height: 39px;font-size: small;">
+                          <a href="sales_dashboard.html" class="pull-left" style="margin-left:10px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+
+                          SALES MONITORING DETAIL</h2>
+                          
+                        <div class="headsix cubesRun2" style="margin-bottom: 116px; min-height: 919px;"> 
+                          <!-- <img src="img/teks semen indo.png" class="imgsi" style="margin-top: 7px;padding-bottom: 7px;"> -->
+
+
+                            <div class=" cubesRun2 headone">
+                                    <div class="col-xs-4" style="padding:0px;" align="center"> <img id="img_log" class="img_log"></div>
+                                    <div class="col-xs-8" style="padding:0px; padding-right: 31px;">
+                                         <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                        <p class="prodtittle" id="head_log" style="    font-weight: 600;    font-size: 23px;    display: inline-block;"></p>
+                                       
+                                    </div>
+                            </div>
+
+
+                          <center>
+                         <!--  Bulan:
+                          <select>
+                          <option value="volvo">Januari</option>
+                          <option value="saab">Februari</option>
+                          <option value="opel">Maret</option>
+                          <option value="audi">April</option>
+                        </select>  -->
+                        
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                          </center>
+          
+                                      
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                    
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN INDONESIA</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;">Revenue</span><br>
+                                        <span class="inex fblack" id="R_D" style="padding-left: 16px;">452.826.725,9</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;">Percentage</span><br>
+                                        <span class="inex fblack" id="PRS_D"> 87.4 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="V_D" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="P_D" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    
+                                    </div><br>
+                                    
+                                    <div align="center" style="">
+               
+          
+      
+      
+      
+    <br>
+     
+      
+      <p class="tab_tittle" align="left" style="    float: left;font-size: 16px;margin: 13px 0px 6px 0px;">Detail of Province</p>
+     <!-- <div id="container" style="width: 100%; margin: 0 auto"></div>-->
+           <!--<table class="table table-striped" style="margin-bottom: 0px; font-size:14px;">
+      <thead>
+        <tr style="background-color: #e2e2e2;">
+          <td><strong>No. </strong></td>
+          <td valign="middle"><strong>Lokasi Plant</strong></td>
+          <td valign="middle" align="right"><strong>Stock (T)</strong></td>
+        </tr>
+        </thead>
+        <tbody id="tblclinker-data">
+         <tr>
+         <td>3.</td><td>Semen Tonasa</td><td align="right">'+setFormat(stock4000,0)+'</td>
+         </tr>
+      </tbody>
+    </table>
+    -->
+<div id="container" style="width: 100%;margin: 0 auto;padding: 4px;">
+    <table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+      <thead>
+        <tr class="headtr">
+         <td valign="middle"><strong>Province</strong></td>
+          <td valign="middle"><strong>Volume</strong></td>
+          <td valign="middle"><strong>Price</strong></td>
+          <td valign="middle"><strong>Revenue</strong></td>
+        </tr>
+        </thead>
+        <tbody id="isidetail">
+       
+        </tbody>
+    </table>
+</div>
+
+      <br></div>
+      </div>
+      </div>
+                          
+                        
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+        <script>
+		function load_data(company){
+
+                    if (company == "smi" || company == "SMI") {
+                        $('#headcolc').html("SEMEN INDONESIA");
+                    } else if (company == "7000"){
+                        $('#headcolc').html("KSO");
+                    } else if (company == "3000"){
+                        $('#headcolc').html("SEMEN PADANG");
+                    } else if (company == "4000"){
+                        $('#headcolc').html("SEMEN TONASA");
+                    } else if (company == "6000"){
+                        $('#headcolc').html("TLCC");
+                    } else if (company == "5000"){
+                        $('#headcolc').html("SEMEN GRESIK");
+                    }
+                    $.ajax({
+                            url: url_src+ '/api/index.php/sales_new/get_data_rev_vol_price?datetype=yyyymmdd&company='+company,
+                            type: 'GET',
+                            success: function (data) {
+                                // console.log(data);
+                                var salesrvp = JSON.parse(data);
+                                console.log(salesrvp);
+
+                                var volume_v = Number(salesrvp['volume']);
+                                var price_v = Number(salesrvp['harga']);
+                                var revenue_v = Number(salesrvp['revenue']);
+                                var t_rev = Number(salesrvp['trev']);
+                                $('#V_D').html(setFormat(volume_v,0,",","."));
+                                $('#P_D').html(setFormat(price_v,0,",","."));
+                                $('#R_D').html(setFormat(revenue_v,0,",","."));
+                                $('#T_D').html(setFormat(t_rev,0,",","."));
+                                var PRSD = division(revenue_v,t_rev)*100;
+                                $('#PRS_D').html(setFormat(PRSD,1)+' %');
+
+                                var cprsd = setcolor(PRSD);
+                                console.log(cprsd);
+                                document.getElementById("PRS_D").style.color = cprsd;
+
+                            }
+                    });
+                    //console.log(5 + 6);
+                    $.ajax({
+                            url: url_src+ '/api/index.php/sales_new/get_data_tbl_province?datetype=yyyymmdd&company='+company,
+                            type: 'GET',
+                            success: function (data) {
+                            	// console.log(data);
+                                var sales = JSON.parse(data);
+                                console.log(sales);
+
+                                var jumlah = Object.keys(sales).length;
+								for (var i = 1; i <=jumlah; i++){
+                                    // console.log(sales[i].PROVINCE);
+                                    // console.log(sales[i].VOLUME);
+                                    // console.log(sales[i].PRICE);
+                                    // console.log(sales[i].REVENUE);
+									addrow (sales[i].PROVINCE,sales[i].VOLUME,sales[i].PRICE,sales[i].REVENUE);
+								}
+
+                            }
+                    });
+        }
+
+        function addrow (provice,volume,price,revenue){
+			$('#isidetail').append('<tr><td>'+provice+'</td><td>'+setFormat(volume,0,",",".")+'</td><td>'+setFormat(price,0,",",".")+'</td><td>'+setFormat(revenue,0,",",".")+'</td></tr>');
+		}
+
+        function division($a,$b){
+                        
+                    if($a == 0 || $a == null){
+                        return 0;
+                    }else if($b == 0 || $b == null){
+                        return 1;
+                    }
+                    else{
+                        $tmp = $a/$b;  
+                        
+                        return $tmp;
+                    }
+
+                }
+
+        function setcolor($a){
+                        
+                    if($a > 90){
+                        $color = 'green';  
+                        return $color;
+                    }else{
+                        $color = 'red';  
+                        return $color;
+                    }
+
+        }
+		
+		</script>
+        <script>
+               
+
+        </script>
+        <script>
+             
+
+        </script>
+             
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

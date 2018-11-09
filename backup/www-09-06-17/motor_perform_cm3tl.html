@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <!-- <script type="text/javascript" src="master_opc/js/opc-lib-min.js"></script> -->
+        <script src="js/highstock.js"></script>
+         <script src="js/loader.js"></script>
+        <script src="js/highcharts-more.js"></script>
+        <script src="js/exporting.js"></script>
+<script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            // OPC_config = {
+            //     token: '7e61b230-481d-4551-b24b-ba9046e3d8f2',
+            //     serverURL: 'http://10.15.3.146:58725'
+            // };
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+        </style>
+        <title>Motor Performance</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                   <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <div class=" headsix2 cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center">
+                                <img src="img/icKota4.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px;"> <p class="opco">SEMEN THANGLONG</p>
+                                <p class="planttittle">Motor Coal Mill</p>
+                            </div>
+                        </div>
+
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home" style="padding-left: 10px; padding-right: 10px; font-size: 14px; color: #afafaf;">Coal Mill 3</a></li>
+                            <li><a data-toggle="tab" href="#menu1"  style="padding-left: 10px; padding-right: 10px; font-size: 14px; color: #afafaf;">Coal Mill 4</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="col-xs-12 noPadding box_sdow2 tab-pane fade in active" style="margin-bottom: 0px">
+                                <div class="col-xs-12 noPadding box_sdow">
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab">0</span>&nbsp;kW<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;POWER</p></div> -->
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm3_amp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Coal_Mill3_Drive_Current.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;%<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE (%)</p></div> -->
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm3_pwrv">0</span>&nbsp;kW<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;POWER</p></div>
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm3_ampv">0</span>&nbsp;%<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE (%)</p></div>
+
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow">
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm3_temp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Coal_Mill3_Bearing_Temp.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;Cel<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP</p></div> -->
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm3_vib" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Coal_Mill3_Vibrasi.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;mm/s<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI</p></div> -->
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm3_tempv"></span>&nbsp;Cel<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP</p></div>
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm3_vibv"></span>&nbsp;mm/s<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI</p></div>
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;&nbsp;Speed Graph</span>
+                                    <h2 style="color: black; text-align: center;">No Graph or Data availabe</h2>
+                                </div>
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;&nbsp;AmpereGraph</span>
+                                    <div style="overflow-x: scroll;">
+                                        <div id="ampere3" style="width: 1200px; min-height: 220px"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;&nbsp;Temperature Graph</span>
+                                    <div style="overflow-x: scroll;">
+                                        <div id="temperature3" style="width:1200px; min-height: 220px"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; margin-bottom:64px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;&nbsp;Vibration Graph</span>
+                                    <div style="overflow-x: scroll;">
+                                        <div id="vibrasi3" style="width:1200px; min-height: 220px"></div>
+                                    </div>                            
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                            <div id="menu1" class="col-xs-12 noPadding box_sdow2 tab-pane fade" style="margin-bottom: 0px">
+                                <div class="col-xs-12 noPadding box_sdow">
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm4_motpower" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Coal_Mill4_Motor_Power.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0</span>&nbsp;kW<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;POWER</p></div> -->
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm4_amp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Coal_Mill4_Motor_Ampere.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;%<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE (%)</p></div> -->
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm4_pmrv">0</span>&nbsp;kW<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;POWER</p></div>
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm4_ampv"></span>&nbsp;%<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE (%)</p></div>
+
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow">
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm4_temp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Coal_Mill4_Bearing_Temp.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;Cel<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP</p></div> -->
+                                    <!-- <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm4_vib" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.Coal_Mill4_Motor_Vibration.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;mm/s<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI</p></div> -->
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm4_tempv"></span>&nbsp;Cel<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP</p></div>
+                                    <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="cm4_vibv"></span>&nbsp;mm/s<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI</p></div>
+
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;&nbsp;Motor Power Graph</span>
+                                    <div style="overflow-x: scroll;">
+                                        <div id="power4" style="width:1200px; min-height: 220px"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;&nbsp;AmpereGraph</span>
+                                    <div style="overflow-x: scroll;">
+                                        <div id="ampere4" style="width:1200px; min-height: 220px"></div>
+                                    </div>                                    
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;&nbsp;Temperature Graph</span>
+                                    <div style="overflow-x: scroll;">
+                                        <div id="temperature4" style="width:1200px; min-height: 220px"></div>
+                                    </div>                                    
+                                </div>
+
+                                <div class="col-xs-12 noPadding graph_tab" style="width:100%; margin-bottom:64px; height:240px">
+                                    &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;&nbsp;Vibration Graph</span>
+                                    <div style="overflow-x: scroll;">
+                                        <div id="vibrasi4" style="width:1200px; min-height: 220px"></div>
+                                    </div>                                    
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+
+                        <footer >
+<div class="regular" >
+
+
+                            <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="motor_perform_cm3sp.html" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+                            <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="motor_perform_cm3sg.html" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+                            <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="motor_perform_cm3st.html" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div> 
+                            <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="motor_perform_cm3tl.html" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div> 
+                         <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                Highcharts.setOptions({
+                    global: {
+                        useUTC: false
+                    }
+                });
+
+                        $.ajax({
+                            url: url_src+'/json/GetCMPlantTuban.php',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+                                console.log(data);
+
+                                //power3
+                                //pwr3 = dataJson[0].tags[0].props[0].val;
+                                //pwr3 = parseFloat(pwr3.replace(',','.')).toFixed(2);
+                                //AMPERE3
+                                amp3 = dataJson[0].tags[0].props[0].val;
+                                amp3 = parseFloat(amp3.replace(',','.')).toFixed(2);
+                                console.log(amp3);
+                                //TEMP3
+                                temp3 = dataJson[0].tags[1].props[0].val;
+                                temp3 = parseFloat(temp3.replace(',','.')).toFixed(2);
+                                //VIBRA3
+                                vib3 = dataJson[0].tags[2].props[0].val;
+                                vib3 = parseFloat(vib3.replace(',','.')).toFixed(2);
+
+
+//power3
+                                pwr4 = dataJson[0].tags[3].props[0].val;
+                                pwr4 = parseFloat(pwr4.replace(',','.')).toFixed(2);
+                                //AMPERE4
+                                amp4 = dataJson[0].tags[4].props[0].val;
+                                amp4 = parseFloat(amp4.replace(',','.')).toFixed(2);
+                                console.log(amp4);
+                                //TEMP4
+                                temp4 = dataJson[0].tags[5].props[0].val;
+                                temp4 = parseFloat(temp4.replace(',','.')).toFixed(2);
+                                //VIBRA4
+                                vib4 = dataJson[0].tags[6].props[0].val;
+                                vib4 = parseFloat(vib4.replace(',','.')).toFixed(2);
+
+                                
+                                //$("#cm3_pmrv").html(pwr3);
+                                $("#cm3_ampv").html(amp3);
+                                $("#cm3_tempv").html(temp3);
+                                $("#cm3_vibv").html(vib3);
+
+                                $("#cm4_pmrv").html(pwr4);
+                                $("#cm4_ampv").html(amp4);
+                                $("#cm4_tempv").html(temp4);
+                                $("#cm4_vibv").html(vib4);
+                                
+                               
+                            }
+                        })
+
+
+
+
+
+                function getMachine(url, id){
+                 $.ajax({
+                     url: url,
+                     type: 'GET',
+                     success: function (data) {
+                         var data1 = data.replace("<title>Json</title>", "");
+                         var data2 = data1.replace("(", "[");
+                         var data3 = data2.replace(");", "]");
+                         var dataJson = JSON.parse(data3);
+                         $('#cm'+id+'_motpower').html(setFormat(dataJson[0].tags[0].props[0].val,2));
+                         $('#cm'+id+'_amp').html(setFormat(dataJson[0].tags[1].props[0].val,2));
+                         $('#cm'+id+'_temp').html(setFormat(dataJson[0].tags[2].props[0].val,2));
+                         $('#cm'+id+'_vib').html(setFormat(dataJson[0].tags[3].props[0].val,2));
+
+                     }
+                 })                    
+                }
+//                setInterval(function(){
+//                 getMachine(url_src+'/json/GetPowerCM_sg.php?s=cm3',3);
+//                 getMachine(url_src+'/json/GetPowerCM_sg.php?s=cm4',4);
+//                }, 300);
+
+
+
+
+
+
+
+
+
+                $.ajax({
+                    url: url_src+'/json/_CMTuban34.php',
+                    type: 'GET',
+                    success: function (data) {
+                       /* var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var myLogData = dataJson['7000'].Acc_CM;
+
+                        var labelArray = [];
+                        var dataRate1 = [];
+                        var dataRate2 = [];
+                        var dataRate3 = [];
+                        var index = [];
+
+                        for (var x in myLogData) {
+                            index.push(x);
+                            labelArray.push(x);
+                            nilaiRate1 = dataJson['7000'].Acc_CM[x].CM3_MotAmp;
+                            dataRate1.push(parseInt(nilaiRate1.replace(',', '.')));
+
+                            nilaiRate2 = dataJson['7000'].Acc_CM[x].CM3_MotBearTemp;
+                            dataRate2.push(parseInt(nilaiRate2.replace(',', '.')));
+
+                            nilaiRate3 = dataJson['7000'].Acc_CM[x].CM3_MotVib;
+                            dataRate3.push(parseInt(nilaiRate3.replace(',', '.')));
+                        }
+*/
+                        $('#ampere3').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 80,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Ampere',
+                                    color: '#E2B13C',
+                                    data: [63, 19, 32, 79, 22, 58, 78, 11, 23, 55, 61, 62]//dataRate1
+                                }]
+                        });
+
+                        $('#vibrasi3').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 60,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Vibrasi',
+                                    color: '#59ABE3',
+                                    data: [14, 10, 9, 7, 12, 11, 13, 16, 23, 52, 6, 8]//dataRate3
+                                }]
+                        });
+
+                        $('#temperature3').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 80,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Temperature',
+                                    color: '#87D37C',
+                                    data: [63, 19, 32, 59, 42, 78, 78, 61, 28, 52, 63, 62]//dataRate2
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            });
+
+            $(function () {
+                Highcharts.setOptions({
+                    global: {
+                        useUTC: false
+                    }
+                });
+
+                $.ajax({
+                    url: url_src+'/json/_CMTuban34.php',
+                    type: 'GET',
+                    success: function (data) {
+  /*                      var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var myLogData = dataJson['7000'].Acc_CM;
+
+                        var labelArray = [];
+                        var dataRate1 = [];
+                        var dataRate2 = [];
+                        var dataRate3 = [];
+                        var index = [];
+
+                        for (var x in myLogData) {
+                            index.push(x);
+                            labelArray.push(x);
+                            nilaiRate1 = dataJson['7000'].Acc_CM[x].CM4_MotAmp;
+                            dataRate1.push(parseInt(nilaiRate1.replace(',', '.')));
+
+                            nilaiRate2 = dataJson['7000'].Acc_CM[x].CM4_MotBearTemp;
+                            dataRate2.push(parseInt(nilaiRate2.replace(',', '.')));
+
+                            nilaiRate3 = dataJson['7000'].Acc_CM[x].CM4_MotVib;
+                            dataRate3.push(parseInt(nilaiRate3.replace(',', '.')));
+                        }
+*/
+                        $('#ampere4').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 80,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Ampere',
+                                    color: '#E2B13C',
+                                    data: [63, 19, 32, 79, 22, 58, 78, 11, 23, 55, 61, 62]//dataRate1
+                                }]
+                        });
+
+                        $('#vibrasi4').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 15,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Vibrasi',
+                                    color: '#59ABE3',
+                                    data: [14, 10, 9, 7, 12, 11, 13, 1, 2, 5, 6, 8]//dataRate3
+                                }]
+                        });
+
+                        $('#temperature4').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 80,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Temperature',
+                                    color: '#87D37C',
+                                    data: [63, 19, 32, 79, 22, 58, 78, 11, 23, 55, 61, 62]//dataRate2
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            });
+            $(function () {
+                Highcharts.setOptions({
+                    global: {
+                        useUTC: false
+                    }
+                });
+
+                $.ajax({
+                    url: url_src+'/json/AddTuban34.php',
+                    type: 'GET',
+                    success: function (data) {
+  /*                      var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var myLogData = dataJson['7000'].Additional;
+
+                        var labelArray = [];
+                        var dataRate1 = [];
+                        var dataRate2 = [];
+                        var index = [];
+
+                        for (var x in myLogData) {
+                            index.push(x);
+                            labelArray.push(x);
+                            nilaiRate1 = dataJson['7000'].Additional[x].cm4_mp;
+                            dataRate1.push(parseInt(nilaiRate1.replace(',', '')));
+                            
+                            //console.log('1:'+dataRate1);
+                        }
+*/
+                        $('#power4').highcharts({
+                            chart: {
+                                type: 'line',
+//                                zoomType: 'xy',
+                                animation: Highcharts.svg//,
+                                        //marginRight: 10
+                            },
+                            title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                            },
+                            yAxis: [{
+                                    min: 0,
+                                    max: 100,
+                                    tickPixelInterval: 8,
+                                    title: {
+                                        text: ''
+                                    }
+                                }],
+                            tooltip: {
+                                shared: true
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                line: {
+                                    marker: {
+                                        enabled: false
+                                    }
+                                }
+                            },
+                            scrollbar: {
+                                enabled: false,
+                                liveRedraw: true
+                            },
+                            series: [{
+                                    name: 'Speed',
+                                    color: '#F62459',
+                                    data: [63, 19, 32, 79, 22, 58, 78, 11, 23, 55, 61, 62]//dataRate1
+                                }]
+                        });
+
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            });
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular2").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <meta http-equiv="refresh" content="5">  -->
+        <!-- Auto Refresh -->
+        <meta name="format-detection" content="telephone=no"> 
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="slick.css"/>
+        <!-- // Add the new slick-theme.css if you want the default styling -->
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="js/jssor.slider-22.2.6.mini.js" type="text/javascript"></script>
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <!-- <script type="text/javascript" src="js/JsNumberFormat.js"></script> -->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="js/exporting.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            //$(document).ready(function(){$("body").hide().fadeIn(1000);});
+            //$(document).ready(function () { $('body').hide().fadeIn(1500).delay(6000)});
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+                var session = getParamFull();
+                ////=========================
+                // if (sessionStorage.getItem('_com')!='ALL') {
+                //     //console.log(sessionStorage.getItem('_com'));
+                //     $.each(listTab, function(index, el){
+                //         $('#data-'+el).addClass('hidden');
+                //         $('#data2-'+el).addClass('hidden');
+                //         $('#data3-'+el).addClass('hidden');
+                //         //console.log(el);
+                //     })
+                //     if (sessionStorage.getItem('_com') == 7000) {
+                //         $('#data-sg').removeClass('hidden');
+                //         $('#data-kso').removeClass('hidden');
+                //         $('#data2-sg').removeClass('hidden');
+                //         $('#data2-kso').removeClass('hidden');
+                //         $('#data3-sg').removeClass('hidden');
+                //         $('#data3-kso').removeClass('hidden');
+                //         //console.log('id-sg');
+                //         //console.log('id-kso');
+
+                //     } else if (sessionStorage.getItem('_com') == 3000){
+                //         $('#data-sp').removeClass('hidden');
+                //         $('#data2-sp').removeClass('hidden');
+                //         $('#data3-sp').removeClass('hidden');
+                //         //console.log('id-sp');
+
+                //     } else if (sessionStorage.getItem('_com') == 4000){
+                //         $('#data-st').removeClass('hidden');
+                //         $('#data2-st').removeClass('hidden');
+                //         $('#data3-st').removeClass('hidden');
+                //         //console.log('id-st');
+                        
+                //     } else if (sessionStorage.getItem('_com') == 6000){
+                //         $('#data-tl').removeClass('hidden');
+                //         $('#data2-tl').removeClass('hidden');
+                //         $('#data3-tl').removeClass('hidden');
+                //         //console.log('id-tl');
+                        
+                //     }
+                // } else{
+                //     //console.log(sessionStorage.getItem('_com'));
+                    $.each(listTab, function(index, el){
+                        $('#data-'+el).removeClass('hidden');
+                        $('#data2-'+el).removeClass('hidden');
+                        $('#data3-'+el).removeClass('hidden');
+                        $('#data-kso').removeClass('hidden');
+                        $('#data2-kso').removeClass('hidden');
+                        $('#data3-kso').removeClass('hidden');
+                        //console.log(el);
+                    })
+                // }
+
+            	var d = new Date();
+            	var dd = d.getDate();
+                var mm = d.getMonth(); //January is 0!
+                var yyyy = d.getFullYear();
+                if(dd<10) {
+                    dd='0'+dd
+                }  
+
+                
+                load_data_sales();
+               
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                var myspan = document.getElementById('head');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('border-down-active');
+                        $('#tab-revenue').removeClass('border-down-active');
+                        $('#tab-price').removeClass('border-down-active');
+                        myspan.innerText = "Cement Production";
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('border-down-active');
+                        $('#tab-revenue').addClass('border-down-active');
+                        $('#tab-price').removeClass('border-down-active');
+                        $("#tab-revenue").fadeIn(1000);
+                        myspan.innerText = "Clinker Production";
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('border-down-active');
+                        $('#tab-revenue').removeClass('border-down-active');
+                        $('#tab-price').addClass('border-down-active');
+                        myspan.innerText = "Raw Meal Production";
+                    }
+                })
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'prod_rm_tlcc.html';
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        
+
+        <style>
+            table tr td span{
+                font-size:12px;
+            }
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active{
+                border-top: 1px solid #1481ed;
+            }
+            .inex{
+                font-size: 25px;
+                /*font-family:"Open Sans";*/
+                margin-bottom:0px;
+            }
+            .tit_head{
+                background: rgba(255,255,255,1);
+                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+
+            }
+            .tab-active{
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab{
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                /*font-family: "Open Sans";*/
+            }
+            .prosen1 {
+                /*font-family: "Open Sans";*/
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+            .mencapai {
+                color: #06bf79;
+            }
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+        .slider {
+        width: 100%;
+        /*margin: 100px auto;*/
+    }
+
+    .slick-slide {
+      margin: 0px 0px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+ .top-wrap
+{
+  width:100%;
+  height:310px;
+  padding-top:50px;
+  background: -webkit-linear-gradient(45deg, #008cc9,#009ea5);
+    background: -moz-linear-gradient(45deg, #008cc9,#009ea5);
+    background: -o-linear-gradient(45deg, #008cc9,#009ea5);
+    background: linear-gradient(45deg, #008cc9,#009ea5);
+margin-bottom:20px;
+margin-top:-20px;
+}
+ .top-wrap2
+{
+  width:100%;
+  height:310px;
+  padding-top:50px;
+  
+
+background: #FF512F; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #FF512F , #F09819); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #FF512F , #F09819); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
+margin-bottom:20px;
+margin-top:-20px;
+}
+ .top-wrap3
+{
+  width:100%;
+  height:310px;
+  padding-top:50px;
+   
+background: #e52d27; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #e52d27 , #b31217); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #e52d27 , #b31217); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
+margin-bottom:20px;
+margin-top:-20px;
+}
+.konten
+{
+  margin:0 auto;
+  width:95%;
+  height:190px;
+  border-radius:12px;
+  background-color:#fff;
+  -webkit-box-shadow: -1px 4px 24px 0px rgba(97,97,97,1);
+  -moz-box-shadow: -1px 4px 24px 0px rgba(97,97,97,1);
+  box-shadow: -1px 4px 24px 0px rgba(97,97,97,1);
+  margin-top:-110px;
+  padding-bottom:10px;
+}
+.konten2
+{
+  margin:0 auto;
+  width:95%;
+  height:190px;
+  border-radius:12px;
+  background-color:#fff;
+  -webkit-box-shadow: -1px 4px 24px 0px rgba(97,97,97,1);
+  -moz-box-shadow: -1px 4px 24px 0px rgba(97,97,97,1);
+  box-shadow: -1px 4px 24px 0px rgba(97,97,97,1);
+  margin-top:15px;
+  padding-bottom:15px;
+}
+.inex{
+                    font-size: 25px;
+    font-weight: bold;
+        padding-right: 12px;
+}
+.bagan:hover, .bagan:visited {
+    opacity: 0.6;
+    border: 3px solid red;
+}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <title>Production Report</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                            <li><a>PLANT OPERATION</a></li>
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                <div class="se-pre-con"></div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle"><span>toggle menu</span></button>
+                        <a class="logopis">SALES</a> <a class="logo" href="index.html"><img src="img/logo.png"></a></header>
+                    <div class="wrapper">
+                    <div class="sub-header ">
+                      <div class="swipe-tabs">
+                        <div class="swipe-tab">Daily</div>
+                        <div class="swipe-tab">Daily Up To</div>
+                        <div class="swipe-tab">Month Up To</div>
+                      </div>
+                    </div>
+                    <div class="sales-container">
+                      <div class="swipe-tabs-container ">
+                        <div class="swipe-tab-content">
+                            <div style="padding-bottom:30px;">
+                        <div class="top-wrap">
+                        <div align="right">
+                        <div class="col-xs-3 noPadding"></div>
+                        <div class="col-xs-3 noPadding"></div>
+                        <div class="col-xs-3 noPadding"></div>
+                        <a href="index.html"><i class="fa fa-angle-left right grp_ico" aria-hidden="true" style="display:none;margin: 7px;position: absolute;padding: 5px 11px;background-color: #2b789a;    font-size: 20px;"></i></a></div>
+                       <h3 style="text-align:center;margin-bottom:15px;padding-top:15px;color:#fff;font-size:18px">SEMEN INDONESIA GROUP</h3>
+                                            
+                                            <p style="text-align:center;margin-bottom:-2px;">Total Revenue</p>
+                                            <p style="font-size:31px;font-weight:500;text-align:center;margin-bottom:10px"><span style="color: white" id="TOTRD">0</span></p>
+                                            <p style="font-size:12px;font-weight:500;text-align:center;">In IDR mio</p>
+
+                        </div>
+                          <div class="konten box" style="display: block;">
+                          <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">Daily</span>
+                                        <span style="float:right;border: none;font-size: 10px;" class="redunder fblack" id="TAGDAILY">01 - 12 February 2017</span>
+                                        <table class="table" style="color: black;margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                                              <thead>
+                                                <tr style="font-size: 10px;color: #b9b9b9;">
+                                                 <td valign="middle"><strong></strong></td>
+                                                  <td valign="middle"><strong>Volume</strong></td>
+                                                  <td valign="middle"><strong>Price</strong></td>
+                                                  <td valign="middle"><strong>% Rev</strong></td>
+                                                  <td valign="middle" align="right"><strong>Revenue  (Mio)</strong></td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                  <td style="color: #eb1717;">Bag</td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKVD">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKPD">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKPRSD">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="ZAKRD">0</span></td>
+                                                </tr>
+                                                <tr>
+                                                 <td style="color: #eb1717;">Bulk</td>
+                                                  <td valign="middle"><span style="color: black" id="CRHVD">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CRHPD">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CRHPRSD">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="CRHRD">0</span></td>
+                                                </tr>
+                                                <tr>
+                                                  <td style="color: #eb1717;">Clinker</td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKVD">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKPD">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKPRSD">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="CLINKRD">0</span></td>
+                                                </tr>
+                                                
+                                              </tbody>
+                                            </table>
+                                           <span style="font-size: 10px;color: black;float: right;"><i><font style="color: #fff;">*</font></i></span>
+
+                                        </div>
+
+
+
+
+
+
+                            
+                            
+                            
+                            
+                          </div>
+                          <div style="margin: 12px auto;font-size: 9px;color: rgb(210, 210, 210); display: none;" align="center">
+                                    <i class="fa fa-circle" aria-hidden="true" style="color: #ff2205;"></i>&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true"></i>
+                                </div>
+
+                <div id="data-smi" class="hidden" style="display: none !important;">
+
+                <a href="sales_detail.html" rel="asset">
+                          <div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN INDONESIA</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SIRD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SIPRSD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SIVD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SIPD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div align="left" class="col-xs-12" style="font-size: 10px;color: #0092bc;margin:15px 0 10px 0;padding:0 2.7%; "> <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;&nbsp;<span class="ttl_fp"></span>Company Compare</div><div style="padding:0 2.7%;height: 300px; margin: 0 auto; width: 100%" id="compare_daily"></div>
+                <div id="data-kso" class="hidden">
+                <br>
+                <br>
+<a href="sales_detail.html#7000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">KSO</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="KSORD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="KSOPRSD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="KSOVD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="KSOPD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+
+                <div id="data-sg" class="hidden">
+<a href="sales_detail.html#5000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN GRESIK</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SGRD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SGPRSD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SGVD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SGPD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data-sp" class="hidden">
+<a href="sales_detail.html#3000" rel="asset">
+                          <div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN PADANG</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SPRD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SPPRSD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SPVD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SPPD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data-st" class="hidden">
+<a href="sales_detail.html#4000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN TONASA</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="STRD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="STPRSD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="STVD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="STPD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data-tl" class="hidden">
+<a href="sales_detail.html#6000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">THANG LONG</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="TLCCRD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="TLCCPRSD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="TLCCVD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="TLCCPD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+
+
+                          </div>
+                        </div>
+                        <div class="swipe-tab-content">
+                            
+                        <div style="padding-bottom: 30px;">
+                        <div class="top-wrap2">
+                        <div align="right">
+                        <a href="index.html"><i class="fa fa-angle-left right grp_ico" aria-hidden="true" style="display:none;margin: 7px;position: absolute;padding: 5px 11px;background-color: #fb6629;    font-size: 20px;"></i></a></div>
+                                            <h3 style="text-align:center;margin-bottom:15px;padding-top:15px;color:#fff;font-size:18px">SEMEN INDONESIA GROUP</h3>
+                                            <p style="text-align:center;margin-bottom:-2px;">Total Revenue</p>
+                                            <p style="font-size:31px;font-weight:500;text-align:center;margin-bottom:10px"><span style="color: white" id="TOTRUD">0</span></p>
+                                            <p style="font-size:12px;font-weight:500;text-align:center;">In IDR mio</p>
+
+                        </div>
+                        <a onclick="goto_opco('sm_daily', 'sm_daily_sg')" rel="asset">
+                          <div class="konten box bagan" style="display: block;">
+                          <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">Daily Up To</span>
+                                        <span style="float:right;border: none;font-size: 10px;" class="redunder fblack" id="TAGUPDAILY">01 - 12 February 2017</span>
+                                        <table class="table" style="color: black;margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                                              <thead>
+                                                <tr style="font-size: 10px;color: #b9b9b9;">
+                                                 <td valign="middle"><strong></strong></td>
+                                                  <td valign="middle"><strong>Volume</strong></td>
+                                                  <td valign="middle"><strong>Price</strong></td>
+                                                  <td valign="middle"><strong>% Rev</strong></td>
+                                                  <td valign="middle" align="right"><strong>Revenue (Mio)</strong></td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                  <td style="color: #eb1717;">Bag</td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKVUD">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKPUD">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKPRSUD">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="ZAKRUD">0</span></td>
+                                                </tr>
+                                                <tr>
+                                                 <td style="color: #eb1717;">Bulk</td>
+                                                  <td valign="middle"><span style="color: black" id="CRHVUD">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CRHPUD">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CRHPRSUD">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="CRHRUD">0</span></td>
+                                                </tr>
+                                                <tr>
+                                                  <td style="color: #eb1717;">Clinker</td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKVUD">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKPUD">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKPRSUD">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="CLINKRUD">0</span></td>
+                                                </tr>
+                                                
+                                              </tbody>
+                                            </table>
+                                            <span style="font-size: 10px;color: black;float: right;"><i><font style="color: red;">*</font>Click For Detail</i></span>
+
+                                        </div>
+
+
+
+
+
+
+                            
+                            
+                            
+                            
+                          </div>
+                          </a>
+                          <div style="margin: 12px auto;font-size: 9px;color: rgb(210, 210, 210); display: none;" align="center">
+                                    <i class="fa fa-circle" aria-hidden="true" ></i>&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #ff2205;"></i>&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true"></i>
+                                </div>
+
+                <div id="data2-smi" class="hidden" style="display: none !important;">
+                <a href="sales_detail_up_thisday.html" rel="asset">
+                          <div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN INDONESIA</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SIRUD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SIPRSUD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SIVUD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SIPUD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+
+                </div>
+<!-- Konten 2 -->
+                <div align="left" class="col-xs-12" style="font-size: 10px;color: #f38f1d;margin:15px 0 10px 0;padding:0 2.7%; "> <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;&nbsp;<span class="ttl_fp"></span>Company Compare</div><div style="padding:0 2.7%;height: 300px; margin: 0 auto; width: 100%" id="compare_up_daily"></div><br><br>
+                <div id="data2-kso" class="hidden">
+<a href="sales_detail_up_thisday.html#7000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">KSO</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="KSORUD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="KSOPRSUD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="KSOVUD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="KSOPUD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+
+<!-- Konten 2 -->
+                <div id="data2-sg" class="hidden">
+<a href="sales_detail_up_thisday.html#5000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN GRESIK</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SGRUD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SGPRSUD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SGVUD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SGPUD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data2-sp" class="hidden">
+<a href="sales_detail_up_thisday.html#3000" rel="asset">
+                          <div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN PADANG</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SPRUD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SPPRSUD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SPVUD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SPPUD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data2-st" class="hidden">
+<a href="sales_detail_up_thisday.html#4000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN TONASA</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="STRUD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="STPRSUD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="STVUD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="STPUD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data2-tl" class="hidden">
+<a href="sales_detail_up_thisday.html#6000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">THANG LONG</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="TLCCRUD" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="TLCCPRSUD"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="TLCCVUD" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="TLCCPUD" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+
+
+                          </div>
+                        </div>
+                        <div class="swipe-tab-content">
+                            <div>
+                        <div class="top-wrap3">
+                        <div align="right">
+
+                        <a href="index.html"><i class="fa fa-angle-left right grp_ico" aria-hidden="true" style="display:none;margin: 7px;position: absolute;padding: 5px 11px;background-color: #df2a25;    font-size: 20px;"></i></a></div>
+                                            <h3 style="text-align:center;margin-bottom:15px;padding-top:15px;color:#fff;font-size:18px">SEMEN INDONESIA GROUP</h3>
+                                            <p style="text-align:center;margin-bottom:-2px;">Total Revenue</p>
+                                            <p style="font-size:31px;font-weight:500;text-align:center;margin-bottom:10px"><span style="color: white" id="TOTRUM">0</span></p>
+                                            <p style="font-size:12px;font-weight:500;text-align:center;">In IDR mio</p>
+
+                        </div>
+                        <a onclick="goto_opco('smsmig2', 'sm_sp_detail_rev')" rel="asset">
+                          <div class="konten box bagan" style="display: block;">
+                          <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">Month Up To</span>
+                                        <span style="float:right;border: none;font-size: 10px;" class="redunder fblack" id="TAGUPMONTHLY">01 - 12 February 2017</span>
+                                        <table class="table" style="color: black;margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                                              <thead>
+                                                <tr style="font-size: 10px;color: #b9b9b9;">
+                                                 <td valign="middle"><strong></strong></td>
+                                                  <td valign="middle"><strong>Volume</strong></td>
+                                                  <td valign="middle"><strong>Price</strong></td>
+                                                  <td valign="middle"><strong>% Rev</strong></td>
+                                                  <td valign="middle" align="right"><strong>Revenue (Mio)</strong></td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                  <td style="color: #eb1717;">Bag</td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKVUM">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKPUM">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="ZAKPRSUM">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="ZAKRUM">0</span></td>
+                                                </tr>
+                                                <tr>
+                                                 <td style="color: #eb1717;">Bulk</td>
+                                                  <td valign="middle"><span style="color: black" id="CRHVUM">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CRHPUM">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CRHPRSUM">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="CRHRUM">0</span></td>
+                                                </tr>
+                                                <tr>
+                                                  <td style="color: #eb1717;">Clinker</td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKVUM">763</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKPUM">462</span></td>
+                                                  <td valign="middle"><span style="color: black" id="CLINKPRSUM">763</span></td>
+                                                  <td valign="middle" style="font-size: 16px;" align="right"><span style="color: black" id="CLINKRUM">0</span></td>
+                                                </tr>
+                                                
+                                              </tbody>
+                                            </table>
+                                            <span style="font-size: 10px;color: black;float: right;"><i><font style="color: red;">*</font>Click For Detail</i></span>
+
+                                        </div>
+
+
+
+
+
+
+                            
+                            
+                            
+                            
+                          </div>
+                          </a>
+                          <div style="margin: 12px auto;font-size: 9px;color: rgb(210, 210, 210); display: none;" align="center">
+                                    <i class="fa fa-circle" aria-hidden="true" ></i>&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" ></i>&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #ff2205;"></i>
+                                </div>
+
+                <div id="data3-smi" class="hidden" style="display: none !important;">
+                <a href="sales_detail_up_thismonth.html" rel="asset">
+                          <div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN INDONESIA</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SIRUM" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SIPRSUM"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SIVUM" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SIPUM" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+                <div align="left" class="col-xs-12" style="font-size: 10px;color:#e02c26;margin:15px 0 10px 0;padding:0 2.7%; "> <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;&nbsp;<span class="ttl_fp"></span>Company Compare</div><div style="padding:0 2.7%;height: 300px; margin: 0 auto; width: 100%" id="compare_up_month"></div><br><br>
+<!-- Konten 2 -->  <div id="data3-kso" class="hidden">
+<a href="sales_detail_up_thismonth.html#7000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">KSO</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="KSORUM" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="KSOPRSUM"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="KSOVUM" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="KSOPUM" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data3-sg" class="hidden">
+<a href="sales_detail_up_thismonth.html#5000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN GRESIK</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SGRUM" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SGPRSUM"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SGVUM" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SGPUM" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data3-sp" class="hidden">
+<a href="sales_detail_up_thismonth.html#3000" rel="asset">
+                          <div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN PADANG</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="SPRUM" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="SPPRSUM"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="SPVUM" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="SPPUM" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+                <div id="data3-st" class="hidden">
+<a href="sales_detail_up_thismonth.html#4000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">SEMEN TONASA</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="STRUM" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="STPRSUM"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="STVUM" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="STPUM" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+              
+                <div id="data3-tl" class="hidden">
+<a href="sales_detail_up_thismonth.html#6000" rel="asset">
+<div class="konten2 box bagan" style="display: block;height: 147px;">
+                                        <div class="col-xs-12 noPadding titl" style="border-bottom: 1px solid rgba(185, 185, 185, 0.6);">
+                                        <span style="float:left;border: none;" class="redunder fblack" id="headcolc">THANG LONG</span>
+                                        <i class="fa fa-angle-right redind" aria-hidden="true" id="boxcolc"></i></div>
+                                        <div class="col-xs-7 noPadding" align="left">
+                                            <span class="titab fblack" style="color: #adadad;padding-left:15px;">Revenue <b style="font-size: 10px;font-weight: normal;">(In IDR mio)</b></span><br>
+                                        <span class="inex fblack" id="TLCCRUM" style="padding-left: 16px;">0</span>
+                                        </div> 
+                                        <div class="col-xs-5 noPadding" align="right">
+                                            <div align="right" style="margin-bottom:5px;">
+                                        <span class="titab fblack" style="color: #adadad;padding-right: 15px;">Percentage</span><br>
+                                        <span class="inex fblack" id="TLCCPRSUM"> 0 %</span>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4 noPadding" align="left" style="padding-left: 19px;padding-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Volume</span><br>
+                                        <span style="" id="TLCCVUM" class="fblack">452.87</span>
+                                        </div>
+                                        <div class="col-xs-8 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300;color: #e54b37;" class="fblack">Price</span><br>
+                                        <span style="" id="TLCCPUM" class="fblack">952.87</span>
+                                        </div>
+                                            
+                                            <p style="height: 42px;"></p>
+                            </div>
+                            </a>
+                </div>
+<!-- Konten 2 -->
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <style type="text/css">
+                        .sub-header{position:fixed;top:60px;left:0;width: 100%;z-index:3;transform:translate3d(0px,0px,0px);-webkit-transition: all 0.3s ease;}
+                        .sub-header.scrolling{transform:translate3d(0px,-100px,0px)}
+                        .sales-container{padding:0 0 50px 0;}
+                        .slick-initialized .swipe-tab-content {
+                          position: relative;
+                        }
+                        @media screen and (min-width: 767px) {
+                          .slick-initialized .swipe-tab-content {
+                          }
+                        }
+
+                        .swipe-tabs{
+                            width: 100%;
+                            text-align: center;
+                            overflow: auto;
+                            position: absolute;
+                            transform: translate3d(0px,0px,0px);
+                            -webkit-transition: all 0.3s ease;
+                            z-index: 3;
+                        }
+                        .swipe-tabs .slick-track{
+                            white-space: nowrap;
+                            padding: 10px 0px;
+                            text-align: center;
+                            box-sizing: border-box;
+                        }
+                        .swipe-tabs .swipe-tab:first-child{
+                            margin-left:0px;
+                        }
+                        .swipe-tabs .swipe-tab {
+                          text-transform: uppercase;
+                            font-size: 12px;
+                            color: #fff;
+                            background: rgba(255,255,255, .1);
+                            border-radius: 25px;
+                            display: block;
+                            padding: 6px 10px 5px 10px;
+                            font-weight: bold;
+                            text-decoration: none !important;
+                            position: relative;
+                            z-index: 2;
+                            margin-left:10px;
+                            width:100px !important;
+                          -webkit-transition: all 0.5s;
+                          transition: all 0.5s;
+                          font-size: 12px;
+                          float: none !important;
+                          display: inline-block;
+                        }
+                        .swipe-tabs .swipe-tab.active-tab {
+                            background: #fff;
+                        }
+                        .swipe-tabs .swipe-tab:nth-child(1).active-tab {
+                          color: #0092bc;
+                        }
+                        .swipe-tabs .swipe-tab:nth-child(2).active-tab {
+                          color: #f38f1d;
+                        }
+                        .swipe-tabs .swipe-tab:nth-child(3).active-tab {
+                          color: #e02c26;
+                        }
+                    </style>
+                    <script type="text/javascript">
+                        $(function () {
+                        'use strict';
+
+                        var $swipeTabsContainer = $('.swipe-tabs'),
+                            $swipeTabs = $('.swipe-tab'),
+                            $swipeTabsContentContainer = $('.swipe-tabs-container'),
+                            currentIndex = 0,
+                            activeTabClassName = 'active-tab';
+
+                        $swipeTabsContainer.on('init', function(event, slick) {
+                            $swipeTabsContentContainer.removeClass('invisible');
+                            $swipeTabsContainer.removeClass('invisible');
+
+                            currentIndex = slick.getCurrent();
+                            $swipeTabs.removeClass(activeTabClassName);
+                            $('.swipe-tab[data-slick-index=' + currentIndex + ']').addClass(activeTabClassName);
+                        });
+
+                        $swipeTabsContainer.slick({
+                            //slidesToShow: 3.25,
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            arrows: false,
+                            infinite: false,
+                            swipeToSlide: true,
+                            touchThreshold: 10
+                        });
+
+                        $swipeTabsContentContainer.slick({
+                            asNavFor: $swipeTabsContainer,
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false,
+                            infinite: false,
+                            swipeToSlide: true,
+                        draggable: false,
+                            touchThreshold: 10
+                        });
+
+
+                        $swipeTabs.on('click', function(event) {
+                            // gets index of clicked tab
+                            currentIndex = $(this).data('slick-index');
+                            $swipeTabs.removeClass(activeTabClassName);
+                            $('.swipe-tab[data-slick-index=' + currentIndex +']').addClass(activeTabClassName);
+                            $swipeTabsContainer.slick('slickGoTo', currentIndex);
+                            $swipeTabsContentContainer.slick('slickGoTo', currentIndex);
+                        });
+
+                        //initializes slick navigation tabs swipe handler
+                        $swipeTabsContentContainer.on('swipe', function(event, slick, direction) {
+                            currentIndex = $(this).slick('slickCurrentSlide');
+                            $swipeTabs.removeClass(activeTabClassName);
+                            $('.swipe-tab[data-slick-index=' + currentIndex + ']').addClass(activeTabClassName);
+                        });
+                    });
+                    </script>
+
+
+
+                    <section class="single-item slider">
+                        
+                          <!-- ###################################### SECOND SLIDE2 ############################################ -->
+
+  <!-- ###################################### END SECOND SLIDE2 ############################################ -->
+
+    <!-- ###################################### THIRD SLIDE ############################################ -->
+                        
+    <!-- ###################################### THIRD SLIDE ############################################ -->
+    
+                    </section>
+                    </div> <!-- end wrap -->
+                    <!-- <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+ -->
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".regular").slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:false
+      });
+      $(".center").slick({
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:false
+      });
+      $(".variable").slick({
+        dots: true,
+        infinite: true,
+        variableWidth: true,
+        arrows:false,
+      });
+      $('.single-item').slick(
+        {
+            // autoplay: true,
+        // autoplaySpeed: 5000
+        arrows:false
+        });
+
+    });
+  </script>
+  <script>
+        var labels=["KSO - SG", "SG", "SP", "ST", "TLCC"];
+        function opcoCompare(chartname, labels, color, data){
+            Highcharts.chart(chartname, {
+                chart: {
+                  backgroundColor: 'rgba(0, 255, 0, 0)',
+                  type: 'column',
+                  polar: true
+                  // height: 300,
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: labels,
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    formatter: function(){
+                            var n = this.y;
+                            var s = this.series.name;
+                            return '<b>'+s+' : '+setFormat((n/1000000),0,",",".")+'</b><span style="font-size:10px; color:#a7a7a7"> (In IDR Mio)</span>';
+                            }
+                },
+                credits: {
+                            enabled: false
+                        },
+                   exporting: {
+                            enabled: false
+                        },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                 
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{ 
+                    name: 'Revenue',
+                    color: color,
+                    data: data
+                }
+                ]
+            });
+        }
+
+                function load_data_sales(){
+                    var d = new Date();
+                    var dd = d.getDate();
+                    var mm = d.getMonth(); //January is 0!
+                    var yyyy = d.getFullYear();
+                    if(dd<10) {
+                    dd='0'+dd
+                    }
+                    var tanggal = dd;
+                    var bulan = mm;
+                    var tahun = yyyy;
+                    //console.log(5 + 6);
+                    // var url_src = 'http://par4digma.semenindonesia.com';
+                    $.ajax({
+                            url: url_src+ '/api/index.php/sales_new/get_smig_thisday',
+                            type: 'GET',
+                            success: function (data) {
+                                var salesdaily = JSON.parse(data);
+                                //console.log(salesdaily);
+
+                                var nbulan = new Array();
+                					nbulan[0] = "January";
+                					nbulan[1] = "February";
+                					nbulan[2] = "March";
+                					nbulan[3] = "April";
+                					nbulan[4] = "May";
+                					nbulan[5] = "June";
+                					nbulan[6] = "July";
+                					nbulan[7] = "August";
+                					nbulan[8] = "September";
+                					nbulan[9] = "October";
+                					nbulan[10] = "November";
+                					nbulan[11] = "December";
+
+                				$('#TAGDAILY').html(tanggal+' '+nbulan[bulan]+' '+tahun);
+                				$('#TAGUPDAILY').html('01 - '+tanggal+' '+nbulan[bulan]+' '+tahun);
+                				$('#TAGUPMONTHLY').html(nbulan[bulan]+' '+tahun);
+
+
+                                var ZAKV1 = Number(salesdaily['ZAK']['volume']);
+                                var ZAKP1 = Number(salesdaily['ZAK']['harga']);
+                                var ZAKR1 = Number(salesdaily['ZAK']['revenue']);
+                                var ZAKTR1 = Number(salesdaily['ZAK']['trev']);
+                                var ZAKPRS1 = division(ZAKR1,ZAKTR1)*100;
+                                $('#ZAKVD').html(setFormat(ZAKV1,0,",","."));
+                                $('#ZAKPD').html(setFormat(ZAKP1,0,",","."));
+                                $('#ZAKRD').html(setFormat((ZAKR1/1000000),0,",","."));
+                                $('#ZAKTRD').html(setFormat(ZAKTR1,0,",","."));
+                                $('#ZAKPRSD').html(setFormat(ZAKPRS1,1));
+
+
+                                var CLINKV1 = Number(salesdaily['Clinker']['volume']);
+                                var CLINKP1 = Number(salesdaily['Clinker']['harga']);
+                                var CLINKR1 = Number(salesdaily['Clinker']['revenue']);
+                                var CLINKTR1 = Number(salesdaily['Clinker']['trev']);
+                                var CLINKPRS1 = division(CLINKR1,CLINKTR1)*100;
+                                $('#CLINKVD').html(setFormat(CLINKV1,0,",","."));
+                                $('#CLINKPD').html(setFormat(CLINKP1,0,",","."));
+                                $('#CLINKRD').html(setFormat((CLINKR1/1000000),0,",","."));
+                                $('#CLINKTRD').html(setFormat(CLINKTR1,0,",","."));
+                                $('#CLINKPRSD').html(setFormat(CLINKPRS1,1));
+
+                                var CRHV1 = Number(salesdaily['Curah']['volume']);
+                                var CRHP1 = Number(salesdaily['Curah']['harga']);
+                                var CRHR1 = Number(salesdaily['Curah']['revenue']);
+                                var CRHTR1 = Number(salesdaily['Curah']['trev']);
+                                var CRHPRS1 = division(CRHR1,CRHTR1)*100;
+                                $('#CRHVD').html(setFormat(CRHV1,0,",","."));
+                                $('#CRHPD').html(setFormat(CRHP1,0,",","."));
+                                $('#CRHRD').html(setFormat((CRHR1/1000000),0,",","."));
+                                $('#CRHTRD').html(setFormat(CRHTR1,0,",","."));
+                                $('#CRHPRSD').html(setFormat(CRHPRS1,1));
+
+                                var SPV1 = Number(salesdaily['3000']['volume']);
+                                var SPP1 = Number(salesdaily['3000']['harga']);
+                                var SPR1 = Number(salesdaily['3000']['revenue']);
+                                var SPTR1 = Number(salesdaily['3000']['trev']);
+                                var SPPRS1 = division(SPR1,SPTR1)*100;
+                                $('#SPVD').html(setFormat(SPV1,0,",","."));
+                                $('#SPPD').html(setFormat(SPP1,0,",","."));
+                                $('#SPRD').html(setFormat((SPR1/1000000),0,",","."));
+                                $('#SPTRD').html(setFormat(SPTR1,0,",","."));
+                                $('#SPPRSD').html(setFormat(SPPRS1,1)+' %');
+
+                                var STV1 = Number(salesdaily['4000']['volume']);
+                                var STP1 = Number(salesdaily['4000']['harga']);
+                                var STR1 = Number(salesdaily['4000']['revenue']);
+                                var STTR1 = Number(salesdaily['4000']['trev']);
+                                var STPRS1 = division(STR1,STTR1)*100;
+                                $('#STVD').html(setFormat(STV1,0,",","."));
+                                $('#STPD').html(setFormat(STP1,0,",","."));
+                                $('#STRD').html(setFormat((STR1/1000000),0,",","."));
+                                $('#STTRD').html(setFormat(STTR1,0,",","."));
+                                $('#STPRSD').html(setFormat(STPRS1,1)+' %');
+
+                                var KSOV1 = Number(salesdaily['7000']['volume']);
+                                var KSOP1 = Number(salesdaily['7000']['harga']);
+                                var KSOR1 = Number(salesdaily['7000']['revenue']);
+                                var KSOTR1 = Number(salesdaily['7000']['trev']);
+                                var KSOPRS1 = division(KSOR1,KSOTR1)*100;
+                                $('#KSOVD').html(setFormat(KSOV1,0,",","."));
+                                $('#KSOPD').html(setFormat(KSOP1,0,",","."));
+                                $('#KSORD').html(setFormat((KSOR1/1000000),0,",","."));
+                                $('#KSOTRD').html(setFormat(KSOTR1,0,",","."));
+                                $('#KSOPRSD').html(setFormat(KSOPRS1,1)+' %');
+
+                                var TLCCV1 = Number(salesdaily['6000']['volume']);
+                                var TLCCP1 = Number(salesdaily['6000']['harga']);
+                                var TLCCR1 = Number(salesdaily['6000']['revenue']);
+                                var TLCCTR1 = Number(salesdaily['6000']['trev']);
+                                var TLCCPRS1 = division(TLCCR1,TLCCTR1)*100;
+                                $('#TLCCVD').html(setFormat(TLCCV1,0,",","."));
+                                $('#TLCCPD').html(setFormat(TLCCP1,0,",","."));
+                                $('#TLCCRD').html(setFormat((TLCCR1/1000000),0,",","."));
+                                $('#TLCCTRD').html(setFormat(TLCCTR1,0,",","."));
+                                $('#TLCCPRSD').html(setFormat(TLCCPRS1,1)+' %');
+
+                                var SGV1 = Number(salesdaily['5000']['volume']);
+                                var SGP1 = Number(salesdaily['5000']['harga']);
+                                var SGR1 = Number(salesdaily['5000']['revenue']);
+                                var SGTR1 = Number(salesdaily['5000']['trev']);
+                                var SGPRS1 = division(SGR1,SGTR1)*100;
+                                $('#SGVD').html(setFormat(SGV1,0,",","."));
+                                $('#SGPD').html(setFormat(SGP1,0,",","."));
+                                $('#SGRD').html(setFormat((SGR1/1000000),0,",","."));
+                                $('#SGTRD').html(setFormat(SGTR1,0,",","."));
+                                $('#SGPRSD').html(setFormat(SGPRS1,1)+' %');
+
+                                var SIV1 = SPV1 + STV1 + SGV1 + KSOV1 ;
+                                var SIP1 = SPP1 + STP1 + SGP1 + KSOP1 ;
+                                var SIR1 = SPR1 + STR1 + SGR1 + KSOR1 ;
+                                var SITR1 = SPTR1 + STTR1 + SGTR1 + KSOTR1 ;
+                                $('#SIVD').html(setFormat(SIV1,0,",","."));
+                                $('#SIPD').html(setFormat(SIP1,0,",","."));
+                                $('#SIRD').html(setFormat((SIR1/1000000),0,",","."));
+                                $('#SITRD').html(setFormat(SITR1,0,",","."));
+                                var SIPRS1 = division(SIR1,SITR1)*100;
+								$('#SIPRSD').html(setFormat(SIPRS1,1)+' %');
+                                var TOTR1 = ZAKR1 + CLINKR1 + CRHR1;
+                                $('#TOTRD').html(setFormat((TOTR1/1000000),2,",","."));
+
+
+                                var czakprsd = setcolor(ZAKPRS1);
+                                var ccrhprsd = setcolor(CRHPRS1);
+                                var cclkprsd = setcolor(CLINKPRS1);
+                                var csiprsd = setcolor(SIPRS1);
+                                var cspprsd = setcolor(SPPRS1);
+                                var cstprsd = setcolor(STPRS1);
+                                var csgprsd = setcolor(SGPRS1);
+                                var ctlccprsd = setcolor(TLCCPRS1);
+                                var cksoprsd = setcolor(KSOPRS1);
+
+                                document.getElementById("ZAKPRSD").style.color = czakprsd;
+                                document.getElementById("CLINKPRSD").style.color = cclkprsd;
+                                document.getElementById("CRHPRSD").style.color = ccrhprsd;
+                                document.getElementById("SIPRSD").style.color = csiprsd;
+                                document.getElementById("SPPRSD").style.color = cspprsd;
+                                document.getElementById("STPRSD").style.color = cstprsd;
+                                document.getElementById("SGPRSD").style.color = csgprsd;
+                                document.getElementById("TLCCPRSD").style.color = ctlccprsd;
+                                document.getElementById("KSOPRSD").style.color = cksoprsd;
+
+                                var chart=[KSOR1, SGR1, SPR1, STR1, TLCCR1];
+                                opcoCompare('compare_daily', labels, '#02aada', chart);
+
+                            }
+                        }).done(function (data) {}).fail(function () {
+                });
+
+                    var now = new Date();
+                    var total_date = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+                    $.ajax({
+                            url: url_src+ '/api/index.php/sales_new/get_smig_uptothisday',
+                            type: 'GET',
+                            success: function (data) {
+                                // console.log(data);
+                                var salesupdaily = JSON.parse(data);
+                                // console.log(salesupdaily);
+
+                                var ZAKV2 = Number(salesupdaily['ZAK']['volume']);
+                                var ZAKP2 = Number(salesupdaily['ZAK']['harga']);
+                                var ZAKR2 = Number(salesupdaily['ZAK']['revenue']);
+                                var ZAKTR2 = Number(salesupdaily['ZAK']['trev']);
+                                $('#ZAKVUD').html(setFormat(ZAKV2,0,",","."));
+                                $('#ZAKPUD').html(setFormat(ZAKP2,0,",","."));
+                                $('#ZAKRUD').html(setFormat((ZAKR2/1000000),0,",","."));
+                                $('#ZAKTRUD').html(setFormat(ZAKTR2,0,",","."));
+                                var ZAKPRS2 = division(ZAKR2,ZAKTR2)*100;
+								$('#ZAKPRSUD').html(setFormat(ZAKPRS2,1));
+
+                                var CLINKV2 = Number(salesupdaily['Clinker']['volume']);
+                                var CLINKP2 = Number(salesupdaily['Clinker']['harga']);
+                                var CLINKR2 = Number(salesupdaily['Clinker']['revenue']);
+                                var CLINKTR2 = Number(salesupdaily['Clinker']['trev']);
+                                $('#CLINKVUD').html(setFormat(CLINKV2,0,",","."));
+                                $('#CLINKPUD').html(setFormat(CLINKP2,0,",","."));
+                                $('#CLINKRUD').html(setFormat((CLINKR2/1000000),0,",","."));
+                                $('#CLINKTRUD').html(setFormat(CLINKTR2,0,",","."));
+                                var CLINKPRS2 = division(CLINKR2,CLINKTR2)*100;
+								$('#CLINKPRSUD').html(setFormat(CLINKPRS2,1));
+
+                                var CRHV2 = Number(salesupdaily['Curah']['volume']);
+                                var CRHP2 = Number(salesupdaily['Curah']['harga']);
+                                var CRHR2 = Number(salesupdaily['Curah']['revenue']);
+                                var CRHTR2 = Number(salesupdaily['Curah']['trev']);
+                                $('#CRHVUD').html(setFormat(CRHV2,0,",","."));
+                                $('#CRHPUD').html(setFormat(CRHP2,0,",","."));
+                                $('#CRHRUD').html(setFormat((CRHR2/1000000),0,",","."));
+                                $('#CRHTRUD').html(setFormat(CRHTR2,0,",","."));
+                                var CRHPRS2 = division(CRHR2,CRHTR2)*100;
+								$('#CRHPRSUD').html(setFormat(CRHPRS2,1));
+
+                                var SPV2 = Number(salesupdaily['3000']['volume']);
+                                var SPP2 = Number(salesupdaily['3000']['harga']);
+                                var SPR2 = Number(salesupdaily['3000']['revenue']);
+                                var SPTR2 = Number(salesupdaily['3000']['trev']);
+                                $('#SPVUD').html(setFormat(SPV2,0,",","."));
+                                $('#SPPUD').html(setFormat(SPP2,0,",","."));
+                                $('#SPRUD').html(setFormat((SPR2/1000000),0,",","."));
+                                $('#SPTRUD').html(setFormat(SPTR2,0,",","."));
+                                var SPPRS2 = division(SPR2,SPTR2)*100;
+								$('#SPPRSUD').html(setFormat(SPPRS2,1)+' %');
+
+                                var STV2 = Number(salesupdaily['4000']['volume']);
+                                var STP2 = Number(salesupdaily['4000']['harga']);
+                                var STR2 = Number(salesupdaily['4000']['revenue']);
+                                var STTR2 = Number(salesupdaily['4000']['trev']);
+                                $('#STVUD').html(setFormat(STV2,0,",","."));
+                                $('#STPUD').html(setFormat(STP2,0,",","."));
+                                $('#STRUD').html(setFormat((STR2/1000000),0,",","."));
+                                $('#STTRUD').html(setFormat(STTR2,0,",","."));
+                                var STPRS2 = division(STR2,STTR2)*100;
+								$('#STPRSUD').html(setFormat(STPRS2,1)+' %');
+
+                                var KSOV2 = Number(salesupdaily['7000']['volume']);
+                                var KSOP2 = Number(salesupdaily['7000']['harga']);
+                                var KSOR2 = Number(salesupdaily['7000']['revenue']);
+                                var KSOTR2 = Number(salesupdaily['7000']['trev']);
+                                $('#KSOVUD').html(setFormat(KSOV2,0,",","."));
+                                $('#KSOPUD').html(setFormat(KSOP2,0,",","."));
+                                $('#KSORUD').html(setFormat((KSOR2/1000000),0,",","."));
+                                $('#KSOTRUD').html(setFormat(KSOTR2,0,",","."));
+                                var KSOPRS2 = division(KSOR2,KSOTR2)*100;
+								$('#KSOPRSUD').html(setFormat(KSOPRS2,1)+' %');
+
+                                var TLCCV2 = Number(salesupdaily['6000']['volume']);
+                                var TLCCP2 = Number(salesupdaily['6000']['harga']);
+                                var TLCCR2 = Number(salesupdaily['6000']['revenue']);
+                                var TLCCTR2 = Number(salesupdaily['6000']['trev']);
+                                $('#TLCCVUD').html(setFormat(TLCCV2,0,",","."));
+                                $('#TLCCPUD').html(setFormat(TLCCP2,0,",","."));
+                                $('#TLCCRUD').html(setFormat((TLCCR2/1000000),0,",","."));
+                                $('#TLCCTRUD').html(setFormat(TLCCTR2,0,",","."));
+                                var TLCCPRS2 = division(TLCCR2,TLCCTR2)*100;
+								$('#TLCCPRSUD').html(setFormat(TLCCPRS2,1)+' %');
+
+
+                                var SGV2 = Number(salesupdaily['5000']['volume']);
+                                var SGP2 = Number(salesupdaily['5000']['harga']);
+                                var SGR2 = Number(salesupdaily['5000']['revenue']);
+                                var SGTR2 = Number(salesupdaily['5000']['trev']);
+                                $('#SGVUD').html(setFormat(SGV2,0,",","."));
+                                $('#SGPUD').html(setFormat(SGP2,0,",","."));
+                                $('#SGRUD').html(setFormat(SGR2/1000000,0,",","."));
+                                $('#SGTRUD').html(setFormat(SGTR2,0,",","."));
+                                var SGPRS2 = division(SGR2,SGTR2)*100;
+								$('#SGPRSUD').html(setFormat(SGPRS2,1)+' %');
+
+                                var SIV2 = SPV2 + STV2 + SGV2 + KSOV2 ;
+                                var SIP2 = SPP2 + STP2 + SGP2 + KSOP2 ;
+                                var SIR2 = SPR2 + STR2 + SGR2 + KSOR2 ;
+                                var SITR2 = SPTR2 + STTR2 + SGTR2 + KSOTR2 ;
+                                $('#SIVUD').html(setFormat(SIV2,0,",","."));
+                                $('#SIPUD').html(setFormat(SIP2,0,",","."));
+                                $('#SIRUD').html(setFormat((SIR2/1000000),0,",","."));
+                                $('#SITRUD').html(setFormat(SITR2,0,",","."));
+                                var SIPRS2 = division(SIR2,SITR2)*100;
+								$('#SIPRSUD').html(setFormat(SIPRS2,1)+' %');
+                                // console.log(TLCCV2);
+                                // console.log(SIV2);
+                                var TOTR2 = ZAKR2 + CLINKR2 + CRHR2;
+                                $('#TOTRUD').html(setFormat((TOTR2/1000000),2,",","."));
+
+                                var SIPRS1 = (division(SIR2,SITR2)/100)*100;
+                                $('#SIPRSD').html(setFormat(SIPRS1,1)+' %');
+
+                                var czakprsud = setcolor(ZAKPRS2);
+                                var ccrhprsud = setcolor(CRHPRS2);
+                                var cclkprsud = setcolor(CLINKPRS2);
+                                var csiprsud = setcolor(SIPRS2);
+                                var cspprsud = setcolor(SPPRS2);
+                                var cstprsud = setcolor(STPRS2);
+                                var csgprsud = setcolor(SGPRS2);
+                                var ctlccprsud = setcolor(TLCCPRS2);
+                                var cksoprsud = setcolor(KSOPRS2);
+
+                                document.getElementById("ZAKPRSUD").style.color = czakprsud;
+                                document.getElementById("CLINKPRSUD").style.color = cclkprsud;
+                                document.getElementById("CRHPRSUD").style.color = ccrhprsud;
+                                document.getElementById("SIPRSUD").style.color = csiprsud;
+                                document.getElementById("SPPRSUD").style.color = cspprsud;
+                                document.getElementById("STPRSUD").style.color = cstprsud;
+                                document.getElementById("SGPRSUD").style.color = csgprsud;
+                                document.getElementById("TLCCPRSUD").style.color = ctlccprsud;
+                                document.getElementById("KSOPRSUD").style.color = cksoprsud;
+
+                                var chart=[KSOR2, SGR2, SPR2, STR2, TLCCR2];
+                                opcoCompare('compare_up_daily', labels, '#f38f1d', chart);
+                                
+                            }
+                        }).done(function (data) {}).fail(function () {
+                });
+
+                    //console.log(5 + 6);
+                    $.ajax({
+                            url: url_src+ '/api/index.php/sales_new/get_smig_uptothismonth',
+                            type: 'GET',
+                            success: function (data) {
+                                //console.log(data);
+                                var salesmonthly = JSON.parse(data);
+                                //console.log(salesmonthly);
+
+                                var ZAKV3 = Number(salesmonthly['ZAK']['volume']);
+                                var ZAKP3 = Number(salesmonthly['ZAK']['harga']);
+                                var ZAKR3 = Number(salesmonthly['ZAK']['revenue']);
+                                var ZAKTR3 = Number(salesmonthly['ZAK']['trev']);
+                                $('#ZAKVUM').html(setFormat(ZAKV3,0,",","."));
+                                $('#ZAKPUM').html(setFormat(ZAKP3,0,",","."));
+                                $('#ZAKRUM').html(setFormat((ZAKR3/1000000),0,",","."));
+                                $('#ZAKTRUM').html(setFormat(ZAKTR3,0,",","."));
+                                var ZAKPRS3 = division(ZAKR3,ZAKTR3)*100;
+								$('#ZAKPRSUM').html(setFormat(ZAKPRS3,1));
+
+                                var CLINKV3 = Number(salesmonthly['Clinker']['volume']);
+                                var CLINKP3 = Number(salesmonthly['Clinker']['harga']);
+                                var CLINKR3 = Number(salesmonthly['Clinker']['revenue']);
+                                var CLINKTR3 = Number(salesmonthly['Clinker']['trev']);
+                                $('#CLINKVUM').html(setFormat(CLINKV3,0,",","."));
+                                $('#CLINKPUM').html(setFormat(CLINKP3,0,",","."));
+                                $('#CLINKRUM').html(setFormat((CLINKR3/1000000),0,",","."));
+                                $('#CLINKTRUM').html(setFormat(CLINKTR3,0,",","."));
+                                var CLINKPRS3 = division(CLINKR3,CLINKTR3)*100;
+								$('#CLINKPRSUM').html(setFormat(CLINKPRS3,1));
+
+                                var CRHV3 = Number(salesmonthly['Curah']['volume']);
+                                var CRHP3 = Number(salesmonthly['Curah']['harga']);
+                                var CRHR3 = Number(salesmonthly['Curah']['revenue']);
+                                var CRHTR3 = Number(salesmonthly['Curah']['trev']);
+                                $('#CRHVUM').html(setFormat(CRHV3,0,",","."));
+                                $('#CRHPUM').html(setFormat(CRHP3,0,",","."));
+                                $('#CRHRUM').html(setFormat((CRHR3/1000000),0,",","."));
+                                $('#CRHTRUM').html(setFormat(CRHTR3,0,",","."));
+                                var CRHPRS3 = division(CRHR3,CRHTR3)*100;
+								$('#CRHPRSUM').html(setFormat(CRHPRS3,1));
+
+                                var SPV3 = Number(salesmonthly['3000']['volume']);
+                                var SPP3 = Number(salesmonthly['3000']['harga']);
+                                var SPR3 = Number(salesmonthly['3000']['revenue']);
+                                var SPTR3 = Number(salesmonthly['3000']['trev']);
+                                $('#SPVUM').html(setFormat(SPV3,0,",","."));
+                                $('#SPPUM').html(setFormat(SPP3,0,",","."));
+                                $('#SPRUM').html(setFormat((SPR3/1000000),0,",","."));
+                                $('#SPTRUM').html(setFormat(SPTR3,0,",","."));
+                                var SPPRS3 = division(SPR3,SPTR3)*100;
+								$('#SPPRSUM').html(setFormat(SPPRS3,1)+' %');
+
+                                var STV3 = Number(salesmonthly['4000']['volume']);
+                                var STP3 = Number(salesmonthly['4000']['harga']);
+                                var STR3 = Number(salesmonthly['4000']['revenue']);
+                                var STTR3 = Number(salesmonthly['4000']['trev']);
+                                $('#STVUM').html(setFormat(STV3,0,",","."));
+                                $('#STPUM').html(setFormat(STP3,0,",","."));
+                                $('#STRUM').html(setFormat((STR3/1000000),0,",","."));
+                                $('#STTRUM').html(setFormat(STTR3,0,",","."));
+                                var STPRS3 = division(STR3,STTR3)*100;
+								$('#STPRSUM').html(setFormat(STPRS3,1)+' %');
+
+                                var KSOV3 = Number(salesmonthly['7000']['volume']);
+                                var KSOP3 = Number(salesmonthly['7000']['harga']);
+                                var KSOR3 = Number(salesmonthly['7000']['revenue']);
+                                var KSOTR3 = Number(salesmonthly['7000']['trev']);
+                                $('#KSOVUM').html(setFormat(KSOV3,0,",","."));
+                                $('#KSOPUM').html(setFormat(KSOP3,0,",","."));
+                                $('#KSORUM').html(setFormat((KSOR3/1000000),0,",","."));
+                                $('#KSOTRUM').html(setFormat(KSOTR3,0,",","."));
+                                var KSOPRS3 = division(KSOR3,KSOTR3)*100;
+								$('#KSOPRSUM').html(setFormat(KSOPRS3,1)+' %');
+
+                                var TLCCV3 = Number(salesmonthly['6000']['volume']);
+                                var TLCCP3 = Number(salesmonthly['6000']['harga']);
+                                var TLCCR3 = Number(salesmonthly['6000']['revenue']);
+                                var TLCCTR3 = Number(salesmonthly['6000']['trev']);
+                                $('#TLCCVUM').html(setFormat(TLCCV3,0,",","."));
+                                $('#TLCCPUM').html(setFormat(TLCCP3,0,",","."));
+                                $('#TLCCRUM').html(setFormat((TLCCR3/1000000),0,",","."));
+                                $('#TLCCTRUM').html(setFormat(TLCCTR3,0,",","."));
+                                var TLCCPRS3 = division(TLCCR3,TLCCTR3)*100;
+								$('#TLCCPRSUM').html(setFormat(TLCCPRS3,1)+' %');
+
+                                var SGV3 = Number(salesmonthly['5000']['volume']);
+                                var SGP3 = Number(salesmonthly['5000']['harga']);
+                                var SGR3 = Number(salesmonthly['5000']['revenue']);
+                                var SGTR3 = Number(salesmonthly['5000']['trev']);
+                                $('#SGVUM').html(setFormat(SGV3,0,",","."));
+                                $('#SGPUM').html(setFormat(SGP3,0,",","."));
+                                $('#SGRUM').html(setFormat(SGR3,0,",","."));
+                                $('#SGTRUM').html(setFormat(SGTR3,0,",","."));
+                                var SGPRS3 = division(SGR3,SGTR3)*100;
+								$('#SGPRSUM').html(setFormat(SGPRS3,1)+' %');
+
+                                var SIV3 = SPV3 + STV3 + SGV3 + KSOV3 ;
+                                var SIP3 = SPP3 + STP3 + SGP3 + KSOP3 ;
+                                var SIR3 = SPR3 + STR3 + SGR3 + KSOR3 ;
+                                var SITR3 = SPTR3 + STTR3 + SGTR3 + KSOTR3 ;
+                                $('#SIVUM').html(setFormat(SIV3,0,",","."));
+                                $('#SIPUM').html(setFormat(SIP3,0,",","."));
+                                $('#SIRUM').html(setFormat((SIR3/1000000),0,",","."));
+                                $('#SITRUM').html(setFormat(SITR3,0,",","."));
+                                var SIPRS3 = division(SIR3,SITR3)*100;
+								$('#SIPRSUM').html(setFormat(SIPRS3,1)+' %');
+
+                                var TOTR3 = ZAKR3 + CLINKR3 + CRHR3;
+                                $('#TOTRUM').html(setFormat((TOTR3/1000000),2,",","."));
+
+                                var czakprsum = setcolor(ZAKPRS3);
+                                var ccrhprsum = setcolor(CRHPRS3);
+                                var cclkprsum = setcolor(CLINKPRS3);
+                                var csiprsum = setcolor(SIPRS3);
+                                var cspprsum = setcolor(SPPRS3);
+                                var cstprsum = setcolor(STPRS3);
+                                var csgprsum = setcolor(SGPRS3);
+                                var ctlccprsum = setcolor(TLCCPRS3);
+                                var cksoprsum = setcolor(KSOPRS3);
+
+                                document.getElementById("ZAKPRSUM").style.color = czakprsum;
+                                document.getElementById("CLINKPRSUM").style.color = cclkprsum;
+                                document.getElementById("CRHPRSUM").style.color = ccrhprsum;
+                                document.getElementById("SIPRSUM").style.color = csiprsum;
+                                document.getElementById("SPPRSUM").style.color = cspprsum;
+                                document.getElementById("STPRSUM").style.color = cstprsum;
+                                document.getElementById("SGPRSUM").style.color = csgprsum;
+                                document.getElementById("TLCCPRSUM").style.color = ctlccprsum;
+                                document.getElementById("KSOPRSUM").style.color = cksoprsum;
+
+                                var chart=[KSOR3, SGR3, SPR3, STR3, TLCCR3];
+                                opcoCompare('compare_up_month', labels, '#e64641', chart);
+                            }
+                        }).done(function (data) {}).fail(function () {
+                });
+                };setInterval(load_data_sales, 1000000);
+
+
+                function division($a,$b){
+                	    
+    				if($a == 0 || $a == null){
+    					return 0;
+    				}else if($b == 0 || $b == null){
+    					return 1;
+    				}
+    				else{
+    					$tmp = $a/$b;  
+    					
+    					return $tmp;
+    				}
+
+	            }
+
+	            function setcolor($a){
+                	    
+    				if($a > 90){
+    					$color = 'green';  
+    					return $color;
+    				}else{
+    					$color = 'red';  
+    					return $color;
+    				}
+
+	            }
+
+            </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

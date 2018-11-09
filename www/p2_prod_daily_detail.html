@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/production.css">
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+<script src="js/loader.js"></script>
+<script type="text/javascript" src="js/accounting.min.js"></script>
+<script src="js/highcharts_working.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+<title>SUPPLY CHAIN MONITORING</title>
+<script>
+var labelArrayDay = [];
+function daysInMonth(month,year) {
+    return new Date(year, month, 0).getDate();
+}
+function numberWithCommas(x) {
+    return parseFloat(x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+            function onLoad() {
+$('.must_show').hide();
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                var d = new Date();
+                var month = new Array();
+                month[0] = "January";
+                month[1] = "February";
+                month[2] = "March";
+                month[3] = "April";
+                month[4] = "May";
+                month[5] = "June";
+                month[6] = "July";
+                month[7] = "August";
+                month[8] = "September";
+                month[9] = "October";
+                month[10] = "November";
+                month[11] = "December";
+                var pengurang = 0;
+                var bulan = month[d.getMonth()-pengurang];
+                var bulanSekarang = (d.getMonth()+1)-pengurang;
+                var tahun = d.getFullYear();
+                var dd = d.getDate();
+                var mm = d.getMonth()+1; //January is 0!
+                var yyyy = d.getFullYear();
+                if(dd<10) {
+                    dd='0'+dd
+                } 
+                if(mm<10) {
+                    mm='0'+mm
+                }
+                var today = dd+'/'+bulan+'/'+yyyy;
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+				 $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+			window.location.href = '#';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+			window.location.href = '#';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+			window.location.href = '#';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+			window.location.href = '#';
+                    }
+                })
+				
+         var opco = getParam('opco');
+		 
+                var bln = getParam('bln');
+                var thn = getParam('thn');
+				
+         var param = '&company='+opco;
+         if (opco == 'smi'){
+          $('.kpi_tittle').html('Produksi Cement SMI');
+          $('#head').html('SEMEN INDONESIA');
+          $('#linked').attr('href','scm_prod.html');
+         }else if (opco == '7000'){
+          $('.kpi_tittle').html('Produksi Cement GRESIK');
+          $('#head').html('SEMEN GRESIK');
+          $('#linked').attr('href','scm_prod_sg.html');
+         }else if (opco == '6000'){
+          $('.kpi_tittle').html('Produksi Cement TLCC');
+          $('#head').html('THANG LONG');
+          $('#linked').attr('href','scm_prod_tl.html');
+         }else if (opco == '4000'){
+          $('.kpi_tittle').html('Produksi Cement TONASA');
+          $('#head').html('SEMEN TONASA');
+          $('#linked').attr('href','scm_prod_st.html');
+         }else if (opco == '3000'){
+          $('.kpi_tittle').html('Produksi Cement PADANG');
+          $('#head').html('SEMEN PADANG');
+          $('#linked').attr('href','scm_prod_sp.html');
+         }
+	
+	
+		var detail = window.location.hash.replace('#','').split('-');
+		var typeProduct ='1';
+		var namePlant = 'Tonasa 2/3';
+		if(detail[0]=='4302'){
+			namePlant = 'Tonasa 4';
+			$('.nm2').html('Finish Mill 4.1');
+			$('.nm1').html('Finish Mill 4.2');
+		}else if(detail[0]=='4303'){
+			namePlant = 'Tonasa 5'; 
+			$('.nm2').html('Finish Mill 5.1');
+			$('.nm1').html('Finish Mill 5.2');
+		}
+		
+		$('.tab_tittle').html('Clinker - '+namePlant);
+		if(detail[1]=='Cement'){
+			typeProduct ='2';
+			$('.tab_tittle').html('Cement - '+namePlant);
+			$('.must_show').show();
+		}else{
+			if(detail[0]=='4301'){
+				$('.must_show').show();
+				$('.nm2').html('Kiln 2');
+				$('.nm1').html('Kiln 3');
+			}else{
+				$('.nm1').html('');
+			}
+		}
+		
+		var days = daysInMonth(bln,thn);
+		for (var x = 1; x <= days; x++) {
+			if (x < 10) {
+				var tgl = '0' + x;
+			} else {
+				var tgl = x;
+			}
+			labelArrayDay.push(tgl);
+		}
+		var tmp_detail="";
+		$.ajax({
+			url: url_ol+'/api/index.php/produksi_daily_st/detail_plant?bulan='+bln+'&tahun='+thn+'&kode_produk='+typeProduct+'&plant='+detail[0],
+			type: 'GET',
+			success: function (data) {
+				tmp_detail="";
+				var dataJson = JSON.parse(data);
+
+		console.log(dataJson);
+				//RKAP
+				if(dataJson){
+					for(var i=0; i<dataJson.length; i++){
+						tmp_detail+='<tr>'
+						if(i==0){
+							tmp_detail+='<td class="bold_op">RKAP</td>'
+						}else if(i==1){
+							tmp_detail+='<td class="bold_op">PROGONOSA</td>'
+						}else if(i==2){
+							tmp_detail+='<td class="bold_op">% RKAP</td>'
+						}else if(i==3){
+							tmp_detail+='<td class="bold_op">REAL UP TO</td>'
+						}else if(i==4){
+							tmp_detail+='<td class="bold_op">SISA PROGNOSA</td>'
+						}else if(i==5){
+							tmp_detail+='<td class="bold_op">HARI OPERASI</td>'
+						}else if(i==6){
+							tmp_detail+='<td class="bold_op">SISA HARI OPERASI</td>'
+						}else if(i==7){
+							tmp_detail+='<td class="bold_op">KAPASITAS REAL</td>'
+						}else{
+							tmp_detail+='<td class="bold_op">KAPASITAS SISA HARI</td>'
+						}
+						for(var j=0; j<dataJson[i].length;j++){
+							if(i==2){
+								tmp_detail+='<td align="right">'+((numberWithCommas(dataJson[i][j]) < 100) ? '<span style="color:#e41a1c">'+numberWithCommas(dataJson[i][j])+'%</span>' : '<span style="color:#4daf4a">'+numberWithCommas(dataJson[i][j])+'%</span>')+'</td>'
+							}else{
+								tmp_detail+='<td align="right">'+numberWithCommas(dataJson[i][j])+'</td>'
+							}
+						}
+						tmp_detail+='</tr>'
+					}
+				}
+				$('#tablePlantDetail').html(tmp_detail);
+			}
+		});
+		$.ajax({
+			url: url_src+'/api/index.php/real_produksi_st/detail_plant?bulan='+bln+'&tahun='+thn+'&plant='+detail[0],
+			type: 'GET',
+			success: function (data) {
+				var dataJson = JSON.parse(data);
+				var count = Object.keys(data).length;
+				
+				
+				var labelArray = [];
+				var index = [];
+				var prognose = [];
+				var real = [];
+				var rkap = [];
+				var prognose2 = [];
+				var real2 = [];
+				var rkap2 = [];
+				
+				for (var x=0;x<dataJson[typeProduct][0].data.length;x++) {
+					prognose.push(parseFloat(dataJson[typeProduct][0].data[x].PROGONOSE_PRODUK));
+					rkap.push(parseFloat(dataJson[typeProduct][0].data[x].RKAP));
+					real.push(parseFloat(dataJson[typeProduct][0].data[x].ACTUAL_PRODUK));
+				}
+				if(dataJson[typeProduct][1]){
+				
+					$('#up_rkap1 strong').html(numberWithCommas(dataJson[typeProduct][0].RKAP));
+					$('#up_rkap2 strong').html(numberWithCommas(dataJson[typeProduct][1].RKAP));
+					var total_up_rkap =  parseInt(dataJson[typeProduct][0].RKAP)+parseInt(dataJson[typeProduct][1].RKAP);
+					$('#up_rkap3 strong').html(numberWithCommas(total_up_rkap));
+					
+					$('#up_prognosa1 strong').html(numberWithCommas(dataJson[typeProduct][0].PROGONOSE_PRODUK));
+					$('#up_prognosa2 strong').html(numberWithCommas(dataJson[typeProduct][1].PROGONOSE_PRODUK));
+					var total_up_prognosa =  parseInt(dataJson[typeProduct][0].PROGONOSE_PRODUK)+parseInt(dataJson[typeProduct][1].PROGONOSE_PRODUK);
+					$('#up_prognosa3 strong').html(numberWithCommas(total_up_prognosa));
+					$('#up_real1 strong').html(numberWithCommas(dataJson[typeProduct][0].ACTUAL_PRODUK));
+					$('#up_real2 strong').html(numberWithCommas(dataJson[typeProduct][1].ACTUAL_PRODUK));
+					var total_up_real =  parseInt(dataJson[typeProduct][0].ACTUAL_PRODUK)+parseInt(dataJson[typeProduct][1].ACTUAL_PRODUK);
+					$('#up_real3 strong').html(numberWithCommas(total_up_real));
+					
+					var up_percenRkap1 = (parseInt(dataJson[typeProduct][0].PROGONOSE_PRODUK)/parseInt(dataJson[typeProduct][0].RKAP))*100;
+					var up_percenRkap2 = (parseInt(dataJson[typeProduct][1].PROGONOSE_PRODUK)/parseInt(dataJson[typeProduct][1].RKAP))*100;
+					var total_up_percent_rkap = ((total_up_prognosa/total_up_rkap)*100).toFixed(2);
+
+					$('#up_percent_rkap1 strong').html(((up_percenRkap1 < 100) ? '<span style="color:#e41a1c">'+up_percenRkap1.toFixed(2)+'%</span>' : '<span style="color:#4daf4a">'+up_percenRkap1.toFixed(2)+'%</span>'));
+					$('#up_percent_rkap2 strong').html(((up_percenRkap2 < 100) ? '<span style="color:#e41a1c">'+up_percenRkap2.toFixed(2)+'%</span>' : '<span style="color:#4daf4a">'+up_percenRkap2.toFixed(2)+'%</span>'));
+					$('#up_percent_rkap3 strong').html(((total_up_percent_rkap < 100) ? '<span style="color:#e41a1c">'+total_up_percent_rkap+'%</span>' : '<span style="color:#4daf4a">'+total_up_percent_rkap+'%</span>'));
+
+					<!-- $('#up_hari_oprasi3 strong').html((total_up_real/total_kapasitas_real).toFixed(2)); -->
+									
+					for (var x=0;x<dataJson[typeProduct][1].data.length;x++) {
+						prognose2.push(parseFloat(dataJson[typeProduct][1].data[x].PROGONOSE_PRODUK));
+						rkap2.push(parseFloat(dataJson[typeProduct][1].data[x].RKAP));
+						real2.push(parseFloat(dataJson[typeProduct][1].data[x].ACTUAL_PRODUK));
+					}
+				}
+				$('#terak_stock').highcharts({
+					chart: {
+						type: 'column',
+						spacingBottom: 8,
+						spacingTop: 8,
+						spacingLeft: 5,
+						spacingRight: 5,
+						animation: Highcharts.svg
+					},
+					title: {
+						text: ''
+					},
+					xAxis: {
+						categories: labelArrayDay,
+						tickInterval: 1,
+						// tickmarkPlacement: 'on',
+						gridLineWidth: 1
+					},
+					yAxis: {
+						title: {
+							text: ''
+						}
+					},
+					tooltip: {
+						formatter: function(){
+								var n = this.y;
+								var s = this.series.name;
+								var t = this.point.x+1;
+								return '<b>'+t+'<br>'+s+'<br>'+setFormat(n,0)+' Ton</b>';
+								}
+					},
+					exporting: {
+						enabled: false
+					},
+					legend: {
+						enabled: false
+					},
+					credits: {
+						enabled: false
+					},
+				plotOptions: {
+							column: {
+							  grouping: false,
+							  shadow: false,
+							  borderWidth: 0
+							}
+					   },
+					series: [{
+							name: 'Prognose',
+							color: '#E9D460',
+							data: prognose,
+			  pointPadding: 0.05,
+						pointPlacement: 0
+					//stacking: 'normal'
+							},{
+			  name: 'Realisasi',
+								color: '#22A7F0',
+								data: real,
+			  pointPadding: 0.25,
+						pointPlacement: 0
+					//stacking: 'normal'
+							},{
+					type: 'spline',
+								name: 'RKAP',
+								color: '#D91E18',
+								data: rkap,
+							}]
+					});
+				$('#terak_stock2').highcharts({
+					chart: {
+						type: 'column',
+						spacingBottom: 8,
+						spacingTop: 8,
+						spacingLeft: 5,
+						spacingRight: 5,
+						animation: Highcharts.svg
+					},
+					title: {
+						text: ''
+					},
+					xAxis: {
+						categories: labelArrayDay,
+						tickInterval: 1,
+						// tickmarkPlacement: 'on',
+						gridLineWidth: 1
+					},
+					yAxis: {
+						title: {
+							text: ''
+						}
+					},
+					tooltip: {
+						formatter: function(){
+								var n = this.y;
+								var s = this.series.name;
+								var t = this.point.x+1;
+								return '<b>'+t+'<br>'+s+'<br>'+setFormat(n,0)+' Ton</b>';
+								}
+					},
+					exporting: {
+						enabled: false
+					},
+					legend: {
+						enabled: false
+					},
+					credits: {
+						enabled: false
+					},
+				plotOptions: {
+							column: {
+							  grouping: false,
+							  shadow: false,
+							  borderWidth: 0
+							}
+					   },
+					series: [{
+							name: 'Prognose',
+							color: '#E9D460',
+							data: prognose2,
+			  pointPadding: 0.05,
+						pointPlacement: 0
+					//stacking: 'normal'
+							},{
+			  name: 'Realisasi',
+								color: '#22A7F0',
+								data: real2,
+			  pointPadding: 0.25,
+						pointPlacement: 0
+					//stacking: 'normal'
+							},{
+					type: 'spline',
+								name: 'RKAP',
+								color: '#D91E18',
+								data: rkap2,
+							}]
+					});
+			}
+		})
+
+	$('a[href="#toggle-legend"]').click(function (e) {
+		 e.preventDefault();
+		 var r = $(this).attr('rel');
+		if (r == 'real' || r == 'prog' || r == 'rkap'){
+		 var chart = $('#terak_stock').highcharts();
+		 if (r == 'real'){
+		  var idx = 1;
+		 }else if (r == 'prog'){
+		  var idx = 0; 
+		 }else if (r == 'rkap'){
+		  var idx = 2; 
+		 }
+		 var series = chart.series[idx];
+		 if (series.visible){
+		  series.hide();
+		  $(this).addClass('blur');
+		 }else{
+		  series.show();
+		  $(this).removeClass('blur');
+		 }
+
+		}else if (r == 'real-akum' || r == 'prog-akum' || r == 'rkap-akum'){
+		 var chart = $('#terak_stock_akum').highcharts();
+		 if (r == 'real-akum'){
+		  var idx = 1;
+		 }else if (r == 'prog-akum'){
+		  var idx = 0; 
+		 }else if (r == 'rkap-akum'){
+		  var idx = 2; 
+		 }
+		 var series = chart.series[idx];
+		 if (series.visible){
+		  series.hide();
+		  $(this).addClass('blur');
+		 }else{
+		  series.show();
+		  $(this).removeClass('blur');
+		 }
+		}
+
+		})
+	}
+</script>
+<style>
+
+			tr td{font-size:10px;}
+			tr td strong{font-weight:normal;}
+			tr td a{font-weight:bold;font-size:10px;}
+</style>
+</head>
+<body onLoad="onLoad()" style="font-family: Open Sans;">
+<div class="app">
+<div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                     
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;SCM</a></li></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+  <div id="content" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x backtoparent" id="menu-toggle"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+    <div class="wrapper">
+     <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">
+     Detail Production
+     <a id="linked" href="" class="pull-right" style="margin-right:10px;"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a></h2>
+                        <div class="headsix add_fix cubesRun2" style="margin-bottom: 32px; min-height: 700px; display: inline-block;width:100%;"> 
+                          
+                         <div align="center">
+                          <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                </div>
+    <div align="center" style="    margin-bottom: 90px;">
+		<p class="tab_tittle">Clinker</p>
+		<br>
+		<table class="table table-striped must_show" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+			<thead>
+				<tr class="headtr">
+					<td><strong>Plant</strong></td>
+					<td align="center" valign="middle" class="nm1"><strong>Finish Mill 2</strong></td>
+					<td align="center" valign="middle" class="nm2"><strong>Finish Mill 3</strong></td>
+					<td align="center" valign="middle"><strong>Total</strong></td>
+				</tr>
+			</thead>
+			<tbody id="tablePlantDetail">
+				
+			</tbody>
+		</table>
+		<div align="left" class="col-xs-12" style="margin:10px 0 3px 0;padding:0;">
+			<i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 12px;"></i>&nbsp;&nbsp;<span class="ttl_fp"></span><span class="nm1" style="color:#333"></span> Daily Release</div>
+		<div style="overflow-x: scroll;width:100%; margin-top:10px;">
+			<div id="terak_stock" style="width: 800px; height:375px; margin:0 auto;"></div>
+		</div>
+		<div style="width:90%;text-align:center;margin:0 auto;padding:5px;font:bold 12px; color:#000000;">
+			<a href="#toggle-legend" rel="real" style="color:black"><i class="fa fa-circle" style="color:#22A7F0;margin-left:10px;"></i> Realisasi</a> 
+			<a href="#toggle-legend" rel="prog" style="color:black"><i class="fa fa-circle" style="color:#E9D460;margin-left:10px;"></i> Prognose</a> 
+			<a href="#toggle-legend" rel="rkap" style="color:black"><i class="fa fa-circle" style="color:#D91E18;margin-left:10px;"></i> RKAP</a>
+		</div>
+		<div align="left" class="col-xs-12 must_show" style="margin:10px 0 3px 0;padding:0;">
+			<i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 12px;"></i>&nbsp;&nbsp;<span class="ttl_fp"></span><span class="nm2" style="color:#333"></span> Daily Release</div>
+		<div class="must_show" style="overflow-x: scroll;width:100%; margin-top:10px;">
+			<div id="terak_stock2" style="width: 800px; height:375px; margin:0 auto;"></div>
+		</div>
+		<div class="must_show" style="width:90%;text-align:center;margin:0 auto;padding:5px;font:bold 12px; color:#000000;">
+			<a href="#toggle-legend" rel="real" style="color:black"><i class="fa fa-circle" style="color:#22A7F0;margin-left:10px;"></i> Realisasi</a> 
+			<a href="#toggle-legend" rel="prog" style="color:black"><i class="fa fa-circle" style="color:#E9D460;margin-left:10px;"></i> Prognose</a> 
+			<a href="#toggle-legend" rel="rkap" style="color:black"><i class="fa fa-circle" style="color:#D91E18;margin-left:10px;"></i> RKAP</a>
+		</div>
+		<br><br>
+	</div>   
+</div>       
+                    
+                    
+
+          </div>
+          
+          
+          
+                   
+
+       
+
+<!--          <h2 class="titularx2" style="background: #EB1717; height: 28px;"> &nbsp &nbsp Income and Expanse</h2> <br>
+-->           
+           
+
+         
+
+
+          
+              <div class="spacer"></div>
+
+
+</div>
+      
+<!--       <script type="text/javascript" src="cordova.js"></script>-->
+<script type="text/javascript" src="js/index.js"></script>
+        </body>
+</html>

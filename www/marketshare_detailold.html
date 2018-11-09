@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/accounting.min.js"></script>
+<script type="text/javascript" src="js/JsNumberFormat.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script src="js/loader.js"></script>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+   
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script type="text/javascript" charset="utf-8">
+            function exitApps(){
+                navigator.app.exitApp();
+            }
+        </script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<title>Market Share</title>
+<script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+  $(document).on('click', '.text-medium', function(e){
+  e.preventDefault();
+  var r = $(this).attr('target');
+  window.location.href = 'marketshare_provinsi.html';
+ })
+}
+
+        </script>
+<script type="text/javascript">
+function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+   }</script>
+<style type="text/css">
+<!--
+.bg-white {
+    background-color: #FFFFFF;
+}
+.style1 {
+    font-size: 12px;
+    color: #333333;
+}
+.nopadding {padding:0;}
+.subheader {text-align: center;padding:10px;color:#fff;}
+.orange {background-color: #ED670E;}
+.light-orange {background-color: #EDA70E;}
+.yellow {background-color: #EDE60E;}
+.green {background-color: #7AED0E;}
+.text-medium  {font:normal 16px arial;color:#000; font-weight: bold;}
+-->
+</style>
+</head>
+<body onLoad="onLoad()" style="font-family: Segoe UI;">
+<div class="app">
+<div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                     
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;SCM</a></li></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+  <div id="content" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+    <div class="wrapper">
+      <h2 class="titular" style="height: 37px;line-height: 39px;font-size: small;">MARKETSHARE DETAIL</h2>
+      <div style="width:100%;padding:10px; text-align: center;">
+       <img src ="img/teks semen indo.png" width="50%" height="10%"/>
+        <!-- <div style="display:inline-block;width:45%;text-align:center;"><i class="fa fa-certificate" aria-hidden="true"></i> Portofolio</div>
+        <div style="display:inline-block;width:45%;float:right;text-align:center;"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>-->
+       </div>  
+       <div style="text-align: center;">Pulau : <select name="month"><option>Pilih Pulau</option></select> </div>
+       <!-- <div style="background: #EB1717; height: 40px;line-height: 45px; font-size:16px; color: #FFFFFF; text-align: center;"><b>SUMATERA</b></div> -->
+       <div style="background-color: #EB1717; width: 100%; text-align: center;">
+
+       <ul>
+      <li><a href="#jawa">
+            <label class="stepNumber"><div style="background-color: #EB1717; width: 100%; height: 20px; text-align: center;" onclick="document.getElementById('Jawa')"><b>Jawa</b></div></label>
+        </a></li>
+        </ul>
+        </div>
+        <div style="width: 100%;">
+      <div style="display:block;width:100%; height: 80px; color:#000; text-align:center; font:normal 14px tahoma;margin-bottom: 5px;" class="headsix add_fixbg" >
+       <div class="col-xs-3 nopadding"><div class="orange subheader">PORSI(%)</div></div>
+       <div class="col-xs-3 nopadding"><div class="light-orange subheader">PORSI(ton)</div></div>
+       <div class="col-xs-3 nopadding"><div class="yellow subheader">Gwth (%)</div></div>
+       <div class="col-xs-3 nopadding"><div class="green subheader">Gwth (ton)</div></div>
+       <div class="col-xs-3 border center"><span id="osno" style="font-size:20px;color:#000;text-align: center;" ><b></b></span></div>
+       <div class="col-xs-3 border center"><span style="font-size:14px;color:#000;text-align: center;" id="vol"></span></div> 
+       <div class="col-xs-3 border center"><span id="noco" style="font-size:20px;color:#000;text-align: center;"><b></b></span></div>
+       <div class="col-xs-3 border center"><span id="" style="font-size:20px;color:#000;text-align: center;"><b></b></span></div>
+      </div>
+      </div>
+      <table class="table table-bordered" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; text-align: center;">
+       <thead style="background-color: #EB1717; color: #FFF;">
+       <tr>
+       <th style="width: 6%; text-align: center;"><b>Company</b></th>
+       <th style="width: 32%; text-align: center;"><b>MS 2015</b></th>
+       <th style="width: 32%; text-align: center;"><b>MS 2016</b></th>
+       <th style="width: 30%; text-align: center;"><b>Growth 2016</b></th>
+       </tr></thead>
+       <tbody id="isidetail">
+       </tbody>
+       </table>
+    
+
+    <div class="spacer"></div>
+    </div> 
+      </div>
+     
+  </div>
+</div>
+<!--       <script type="text/javascript" src="cordova.js"></script>-->
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="marketshare_detail_data.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

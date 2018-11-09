@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/accounting.min.js"></script>
+<script type="text/javascript" src="js/JsNumberFormat.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/stupidtable.js?dev"></script>
+<script type="text/javascript" src="js/waitMe.min.js"></script>
+<script src="js/loader.js"></script>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/highcharts_working.js"></script>
+<script type="text/javascript" src="js/exporting.js"></script>
+   <!-- <script type="text/javascript" src="js/loader.js"></script> -->
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script type="text/javascript" charset="utf-8">
+            function exitApps(){
+                navigator.app.exitApp();
+            }
+        </script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<title>Market Share</title>
+<script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sminas') {
+                        $('#data-sminas').removeClass('hidden');
+                        $('#data-smims').addClass('hidden');
+                        $('#tab-sminas').addClass('border-down-active');
+                        $('#tab-smims').removeClass('border-down-active');
+                        //loadData(url_src+'/SalesJsonAll.php?tahun='+tahun+'&bulan='+bulanSekarang, 'vol', '7000');
+                    } else if (r == 'data-smims') {
+                        $('#data-sminas').addClass('hidden');
+                        $('#data-smims').removeClass('hidden');
+                        $('#tab-sminas').removeClass('border-down-active');
+                        $('#tab-smims').addClass('border-down-active');
+                        //loadData(url_src+'/SalesJsonAll.php?tahun='+tahun+'&bulan='+bulanSekarang, 'rev', '7000');
+                        
+                    }
+                });
+ // $(document).on('click', '.text-medium', function(e){
+ //  e.preventDefault();
+ //  var r = $(this).attr('id');
+ //  window.location.href = 'marketshare_detail.html?i='+r;
+ // })
+
+// $.ajax({
+//   url: url_src+'/MarketShareRKAP.php',
+//   type: 'GET',
+//   success: function(data){
+//     var a = jQuery.parseJSON(data);
+//     var hit = Object.keys(a).length;
+//     console.log(hit);
+//   }
+// })
+
+$('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2009;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                $('.selyear').html(opt_year);
+                $('.selyear2').html((x)-1);
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= bulanSekarang){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })  
+                $('.selmonth').html(opt_month);
+  
+ $.ajax({
+  url: url_src+'/MSNasional.php?bulan=9&tahun=2016',
+  //url: 'http://localhost/www/MSNasional.json'
+  type : 'GET',
+  success: function(data){
+    var a = jQuery.parseJSON(data);
+    //var a = data;
+    var logdata = a['ms_nasional'];
+    var nama = [];
+    var qty_bulan = [];
+    var qty_blan = [];
+    var ms_bulan = [];
+    var namapt = [];
+    var ms_bulanpt = [];
+   
+          var count = Object.keys(logdata).length;
+    //       //console.log(count);
+         for(var x = 1;x<=count; x++){
+            if(x<10){
+              var y = '0'+ x;
+            }else{
+              y = x;
+            }
+        
+       }
+    
+ var datanya = [];
+ var isi1;
+ var isi2;
+ var total_qty;
+ var total_gwth;
+ var data1= [];
+ var data2= [];
+ for(var y in logdata){
+  //console.log(logdata[y].nama_perusahaan);
+namapt = (logdata[y].nama_perusahaan);
+  //qty_blan = parseFloat(logdata[y].qty_bln);
+  qty_bulan = FormatNumberBy3(parseFloat(logdata[y].qty_bln).toFixed(2).replace(".",","), ",",".");
+  gwth = FormatNumberBy3(parseFloat(logdata[y].growth_mom).toFixed(2).replace(".",","), ",",".");
+  ms_bulanpt = (logdata[y].ms_bln);
+  if (namapt == 'SEMEN GRESIK' || namapt == 'SEMEN PADANG' || namapt == 'SEMEN TONASA'){
+    total_qty = parseFloat(logdata[y].qty_bln);
+    console.log(total_qty);
+     isi1 += '<tr class="text-medium" id='+ namapt +'><td align="left">'+ namapt +' </td><td align="right">'+ qty_bulan + '</td><td align="right">'+ gwth + ' %</td></tr>';
+  }else{
+     isi2 += '<tr class="text-small"><td align="left">' + namapt + '</td><td align="right">'+ qty_bulan + '</td><td align="right">'+ gwth + ' %</td></tr>';
+    }
+    var isi3 = isi1+isi2;
+  if (namapt == 'SEMEN GRESIK' || namapt == 'SEMEN PADANG' || namapt == 'SEMEN TONASA'){ 
+    //data1 += ({name:namapt,y:parseFloat(logdata[y].ms_bln),color : '#F51111',sliced: true});             
+    data1.push({name:namapt,y:parseFloat(logdata[y].ms_bln),color : '#FF615D',sliced: true, 
+      dataLabels: {
+                    enabled: true,
+                    format: '{point.name}<br><b>{point.percentage:.1f}%</b>',
+                    color:'black'
+                  }});
+  }else{
+    //data2 += ({name:namapt,y:parseFloat(logdata[y].ms_bln)});
+   data2.push({name:namapt,y:parseFloat(logdata[y].ms_bln)});
+ }
+               }
+               datanya = data1.concat(data2);
+        $('#isidetail').html(isi3);
+	 Highcharts.setOptions({
+        colors: ['#F5AE7F', '#F5D07F', '#F5F57F', '#D4F57F', '#7FF5A5', '#7FF5ED', '#7FC0F5', '#857FF5', '#CE7FF5', '#F57FB4']
+    });          
+  
+        $('#container').highcharts({
+          
+            chart: {
+                //plotBackgroundColor: null,
+                //plotBorderWidth: null,
+                //plotShadow: false,
+                type: 'pie',
+                margin : [0, 0, 0, 0],
+                //marginTop : 10
+            },
+            credits: {
+            enabled: false
+        },
+            title: {
+                text: 'Market Shares',
+                style: {
+                            fontSize: '12px'
+                        }
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+			distance : 10
+                    },
+                    showInLegend: false
+                }
+            },
+        series: [{
+            //name: 'Marketshare',
+            data: datanya
+        }]
+        });
+    } 
+ })  
+    }
+$(function () {
+    /*Highcharts.chart('chart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Marketshare'
+        },
+         credits: {
+            enabled: false
+        },
+        xAxis: {
+            categories: [
+                'Jawa Barat',
+                'Jawa Tengah',
+                'Jawa Timur',
+                'DKI Jakarta',
+                'Bali',
+                'Banten',
+                'DI Yogyakarta',
+                'NTB',
+                'NTT',
+                'Maluku',
+                'Sumatera',
+                'Sulawesi'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: '2015',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        }, {
+            name: '2016',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        }]
+    });*/
+  })
+    var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth();
+            var tahun = d.getFullYear();[ ]
+            var year = d.getFullYear()-1;[ ]
+            // $('.now').html(tahun);
+            // $('.last').html(year);
+                    </script>
+<style type="text/css">
+<!--
+.bg-white {
+    background-color: #FFFFFF;
+}
+.style1 {
+    font-size: 12px;
+    color: #333333;
+}
+.text-medium  {font:normal 12px;color:#000; font-weight: bold; background-color: #F78FA1}
+.text-small {font-size: 10px;font-weight: normal}
+.table {
+  background-color: #EEEEEE;
+}
+ .default_tab {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+            }
+ .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+  .tab_tittle {
+                font-family: "Open Sans";
+                margin-bottom: 2px;
+                font-size: 27px;
+                margin-top: 0px;
+                font-weight: 300;
+            }
+ .center {
+                text-align: center;
+            }
+ .padding5 {
+                padding:5px;
+            }
+.border {
+                border:1px #cecece solid;
+            }
+.border-down {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+                border-bottom: 1px #fff solid;
+            }
+.border-down-active {
+                height: 41px;
+                background: rgba(245, 245, 245, 1);
+                background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+                background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0 );
+                border-bottom: 1px #e64c65 solid;
+            }
+.no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+.lyear{
+      color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+  }
+  .ryear{
+  color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+  }
+  .titl{
+background-color: #e54b37;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+      margin-bottom: 0px;
+     border-radius: 3px 3px 0px 0px;
+  }
+  .box{
+  /* background-color: #e54b37; */
+    padding: 0px;
+    margin-bottom: 3px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    /* margin: auto; */
+    min-height: 143px;
+    /* border-radius: 8px; */
+    /* margin-right: 1px; */
+    border: 1px solid rgb(197, 197, 197, 0.7);
+    -webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    border-right: 1px solid #b6b6b6;
+      }
+  .bagan:hover, .bagan:visited {
+  opacity: 0.6;
+}
+.img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            } 
+-->
+</style>
+</head>
+<body onLoad="onLoad()" style="font-family: Segoe UI;">
+<div class="app">
+<div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                    <li><a>PLANT OPERATION</a></li>
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MANTENANCE</a>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTERY</a>
+                            <li><a onclick="goto_opco('finance_si', 'finance_si')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="index_login2.html"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+  <nav id="sideMenu">
+    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="sales_dashboard.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="stok_bahan.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+  </nav>
+  <div id="content" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+    <div class="wrapper">
+      <h2 class="titular" style=" height: 48px;line-height: 50px; font-size:20px; color: #FFFFFF"><b>MARKET SHARE</b></h2>
+      <div id="tab-sminas" class="col-xs-6 center padding5 border-down border-down-active "><a href="#tab-click" rel="data-sminas" class="no-text-style"><img src="img/logo.png" width="30px" class="img_foot2"> <span class="tx_tab">&nbsp;&nbsp;SMI</span></a></div>
+      <div id="tab-smims" class="col-xs-6 center padding5 border-down "><a href="#tab-click" rel="data-smims" class="no-text-style"> <img src="img/revnue.png" width="18px"><span class="tx_tab">&nbsp;&nbsp;Competitor</span></a></div>
+      <div id="data-sminas">
+        <div class="headsix cubesRun2" style="width:100%; text-align: center;">
+       <img src ="img/teks semen indo.png" width="50%" height="15%"/>
+        <!-- <div style="display:inline-block;width:45%;text-align:center;"><i class="fa fa-certificate" aria-hidden="true"></i> Portofolio</div>
+        <div style="display:inline-block;width:45%;float:right;text-align:center;"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>-->
+  <div style="width: 100%;margin-top: 15px; text-align: center;">
+       Month : <select id="month" class="selmonth" rel="vol"></select>
+       Year : <select id="year" class="selyear" rel="vol"></select>
+       </div>
+
+       <div style="margin-top:14px"></div>
+                                    <div class="col-xs-3" align="left" style="margin-top: 11px;"><span class="lyear" id="now">2016</span></div>
+                                    <div class="col-xs-6" align="center" style="margin-bottom: 11px;"> <p style="font-size: 23px; text-align:center; color:black; margin-top: 0px; margin-bottom:0px; ">&nbsp;SMI
+                                    </p>
+                                    <!-- <span style="color:black">in IDR Bio</span> -->
+                                    </div>
+                                    <div class="col-xs-3" align="right" style="margin-top: 11px;"><span class="ryear" id="last">2015</span></div>
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                   
+                                        
+                                    
+                                    <a href="marketshare_2.html" rel="asset" class="bagan">
+                                       <div class="col-xs-6 box" style="background-color: #07bda7;">
+                                         <div class="col-xs-12 noPadding titl" style="background-color: #07a894;">
+                                        <span>October</span></div>
+                                        <div align="center" style="margin-bottom:12px;">
+                                        <!-- <div class="col-xs-6 noPadding">
+                                        <span class="titab">Variance</span>
+                                        <span class="inex label label-danger">102.9</span>
+                                        </div> -->
+                                        
+                                        <div id="" class="col-xs-12 noPadding">
+                                        <span id="msbulan" style="color:#fff; text-align: center; font-size: 26px;"></span>
+                                        </div>
+                                        <div class="col-xs-12" style="    margin-top: 8px;"></div>
+                                        <div class="col-xs-6 noPadding">
+                                        <span style="" id="qtybulan"></span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ">Volume</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding">
+                                         <span style="" id="growth"></span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ;">Growth</span>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                         </a> 
+                                         <a href="marketshare_2.html" rel="asset" class="bagan">
+                                       <div class="col-xs-6 box" style="background-color: #f19120;">
+                                         <div class="col-xs-12 noPadding titl" style="background-color: #dd851e;">
+                                        <span>October</span></div>
+                                       <div align="center" style="margin-bottom:12px;">
+                                       <!--  <div class="col-xs-6 noPadding">
+                                        <span class="titab">Variance</span>
+                                        <span class="inex label label-success">102.9</span>
+                                        </div> -->
+                                        
+                                        <div class="col-xs-12 noPadding">
+                                        <span id="msbulan1" style="color:#fff; text-align: center; font-size: 26px;"></span>
+                                        </div>
+                                        <div class="col-xs-12" style="    margin-top: 8px;"></div>
+                                        <div class="col-xs-6 noPadding">
+                                        <span style="" id="qtybulan1">0</span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ">Volume</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding">
+                                         <span style="" id="growth1">0</span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ;">Growth</span>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>
+                                         <a href="marketshare_2.html" rel="asset" class="bagan">
+                                       <div class="col-xs-6 box" style="background-color: #11a0aa;">
+                                       <div class="col-xs-12 noPadding titl" style="background-color: #11939c;">
+                                        <span>Up to October</span></div>
+                                        
+                                        <div align="center" style="margin-bottom:12px;">
+                                        <!-- <div class="col-xs-6 noPadding">
+                                        <span class="titab">Variance</span>
+                                        <span class="inex label label-success">102.9</span>
+                                        </div> -->
+                                        
+                                        <div class="col-xs-12 noPadding">
+                                        <span id="mstahun" style="color:#fff; text-align: center; font-size: 26px;"></span>
+                                        </div>
+                                        <div class="col-xs-12" style="    margin-top: 8px;"></div>
+                                        <div class="col-xs-6 noPadding">
+                                        <span style="" id="qtytahun"></span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ">Volume</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding">
+                                         <span style="" id="growthtahun"></span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ;">Growth</span>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>
+                                         <a href="marketshare_2.html" rel="asset" class="bagan">
+                                       <div class="col-xs-6 box" style="background-color: #e77217;">
+                                       <div class="col-xs-12 noPadding titl" style="background-color:#d16817">
+                                        <span>Up to October</span></div>
+                                        
+                                         <div align="center" style="margin-bottom:12px;">
+                                        <!-- <div class="col-xs-6 noPadding">
+                                        <span class="titab">Variance</span>
+                                        <span class="inex label label-danger">102.9</span>
+                                        </div> -->
+                                        
+                                        <div class="col-xs-12 noPadding">
+                                        <span id="mstahun1" style="color:#fff; text-align: center; font-size: 26px;"></span>
+                                        </div>
+                                        <div class="col-xs-12" style="    margin-top: 8px;"></div>
+                                        <div class="col-xs-6 noPadding">
+                                        <span style="" id="qtytahun1"></span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ">Volume</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding">
+                                         <span style="" id="growthtahun1"></span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ;">Growth</span>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>
+                                         </div>
+       
+
+
+      <div class="headsixbg" style="width:100%;padding:10px;">
+      
+       <table class="table table-bordered headsixbg" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 8px; text-align: center;">
+       <thead style="background-color: #EB1717; color: #FFF">
+       <tr>
+       
+       <th width="40%"><b><center>Opco</center></b></th>
+       <th width="20%"><b><center>Volume</center></b></th>
+       <th width="20%"><b><center>MS 2016</center></b></th>
+       <th width="20%"><b><center>Growth(%)</center></b></th>
+       </tr></thead>
+       <tbody>
+       <tr id="isidetail1"></tr>
+       <tr id="isidetail2"></tr>
+       <tr id="isidetail3"></tr>
+       </tbody>
+      
+       </table>
+
+      </div>
+      <div class="headsixbg" style="width:100%;padding:10px;">
+       <table class="table table-bordered headsixbg" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 8px; text-align: center;">
+       <thead style="background-color: #EB1717; color: #FFF">
+       <tr>
+       
+       <th width="40%"><b><center>Opco</center></b></th>
+       <th width="20%"><b><center>Volume</center></b></th>
+       <th width="20%"><b><center>MS 2016</center></b></th>
+       <th width="20%"><b><center>Growth(%)</center></b></th>
+       </tr></thead>
+       <tbody>
+       <tr id="isidetaila"></tr>
+       <tr id="isidetailb"></tr>
+       <tr id="isidetailc"></tr>
+       </tbody>
+       
+       </table>
+      </div>
+      <div class="headsixbg" style="width:100%;padding:10px;">
+       <table class="table table-bordered headsixbg" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 8px; text-align: center;">
+       <thead style="background-color: #EB1717; color: #FFF">
+       <tr>
+       
+       <th width="40%"><b><center>Opco</center></b></th>
+       <th width="20%"><b><center>Volume</center></b></th>
+       <th width="20%"><b><center>MS 2016</center></b></th>
+       <th width="20%"><b><center>Growth(%)</center></b></th>
+       </tr></thead>
+       <tbody>
+       <tr id="isidetail4"></tr>
+       <tr id="isidetail5"></tr>
+       <tr id="isidetail6"></tr>
+       </tbody>
+       
+       </table>
+      </div>
+      <div class="headsixbg" style="width:100%;padding:10px;">
+       <table class="table table-bordered headsixbg" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 8px; text-align: center;">
+       <thead style="background-color: #EB1717; color: #FFF">
+       <tr>
+       
+       <th width="40%"><b><center>Opco</center></b></th>
+       <th width="20%"><b><center>Volume</center></b></th>
+       <th width="20%"><b><center>MS 2016</center></b></th>
+       <th width="20%"><b><center>Growth(%)</center></b></th>
+       </tr></thead>
+       <tbody>
+       <tr id="isidetaild"></tr>
+       <tr id="isidetaile"></tr>
+       <tr id="isidetailf"></tr>
+       </tbody>
+       
+       </table>
+      </div>                                  
+      </div>
+      <footer >
+<div class="regular" >
+
+
+        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#" rel="data-tl" ><img src="img/logo.png" style="width:50%;"/></a></div>
+      <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+      <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="marketshare_opco.html" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+      <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+       <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+      </div>
+
+<!--============================================================================================================================================================================== -->
+      <div id="data-smims" class="hidden">
+      <div class="headsixbg" style="width:100%;padding:10px; text-align: center;">
+       <img src ="img/teks semen indo.png" width="50%" height="15%"/>
+        <!-- <div style="display:inline-block;width:45%;text-align:center;"><i class="fa fa-certificate" aria-hidden="true"></i> Portofolio</div>
+        <div style="display:inline-block;width:45%;float:right;text-align:center;"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>-->
+          
+       <div style="width: 100%;margin-top: 15px;display:inline-block;text-align: center;">
+       Month : <select id="month" class="selmonth" rel="vol"></select>
+       Year : <select id="year" class="selyear" rel="vol"></select>
+       </div></div>
+        <div id="container" style="width: 100%;height: 300px; margin: 0 center; display:inline-block;"></div>    
+       
+      <!-- DETAIL MARKET SHARE TABEL -->
+      <div class="headsixbg" style="width:100%;padding:10px;">
+       <table class="table table-bordered headsixbg" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 12px; text-align: center;">
+       <thead style="background-color: #EB1717; color: #FFF">
+       <tr>
+       
+       <th width="35%"><b><center>Company</center></b></th>
+       <!-- <th width="20%"><b><center>Target RKAP (%)</center></b></th> -->
+       <th width="23%"><b><center>Qty</center></b></th>
+       <th width="22%"><b><center>Gwth (%)</center></b></th>
+       </tr></thead>
+       <tbody id="isidetail">
+       </tbody>
+       
+       </table>
+      </div>
+      </div>
+      <div class="spacer"></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!--       <script type="text/javascript" src="cordova.js"></script>-->
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="marketshare_data.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

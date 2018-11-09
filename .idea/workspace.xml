@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e14e9542-2f41-4490-877e-051f5d531edb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/taskJars.bin" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/javaCompile/taskJars.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/generated/source/r/debug/org/apache/cordova/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/generated/source/r/debug/org/apache/cordova/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/debug-mergeJniLibs/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/debug-mergeJniLibs/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/intermediate-jars/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/intermediate-jars/debug/classes.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/manifests/aapt/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/manifests/aapt/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/CordovaLib/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/generated/source/r/debug/org/apache/cordova/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/generated/source/r/debug/org/apache/cordova/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/blame/res/debug/multi-v2/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/blame/res/debug/multi-v2/values.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/blame/res/debug/multi-v2/values.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/blame/res/debug/single/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/blame/res/debug/single/debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/2hfBOrC1WWzTa8HhBC097Io7jy8=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/debug-mergeJniLibs/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/debug-mergeJniLibs/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/2hfBOrC1WWzTa8HhBC097Io7jy8=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/packageDebug/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/packageDebug/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/packageDebug/debug/file-input-save-data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/packageDebug/debug/file-input-save-data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/incremental/packageDebug/debug/zip-cache/WoWCKr9toVF2qqzQPf4O+K9Px6A=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-hdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-hdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-ldpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-ldpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-mdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-mdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-xhdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-xhdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-xxhdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-xxhdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-xxxhdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-xxxhdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-hdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-hdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-ldpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-ldpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-mdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-mdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-xhdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-xhdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-xxhdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-xxhdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-xxxhdpi_screen.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-xxxhdpi_screen.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-hdpi_icon.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-hdpi_icon.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-ldpi_icon.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-ldpi_icon.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-mdpi_icon.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-mdpi_icon.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_icon.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_icon.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_icon.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_icon.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_icon.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_icon.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/values_values.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/xml_config.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/res/merged/debug/xml_config.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/com/semenindonesia/par4digma/BuildConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/com/semenindonesia/par4digma/MainActivity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/com/semenindonesia/par4digma/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/com/semenindonesia/par4digma/R$mipmap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/com/semenindonesia/par4digma/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/com/semenindonesia/par4digma/R$xml.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/com/semenindonesia/par4digma/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$4$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$5$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$6$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/splashscreen/SplashScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/whitelist/WhitelistPlugin$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/whitelist/WhitelistPlugin$CustomConfigXmlParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/1/org/apache/cordova/whitelist/WhitelistPlugin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/desugar/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/com/semenindonesia/par4digma/BuildConfig.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/com/semenindonesia/par4digma/MainActivity.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/com/semenindonesia/par4digma/R$drawable.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/com/semenindonesia/par4digma/R$mipmap.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/com/semenindonesia/par4digma/R$string.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/com/semenindonesia/par4digma/R$xml.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/com/semenindonesia/par4digma/R.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/R.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$1.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$2.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$3.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$4$1.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$4.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$5$1.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$5.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$6$1.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$6.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen$7.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/splashscreen/SplashScreen.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/whitelist/WhitelistPlugin$1.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/whitelist/WhitelistPlugin$CustomConfigXmlParser.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/0/org/apache/cordova/whitelist/WhitelistPlugin.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/4.jar" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/4.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/5.jar" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/5.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexMerger/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/dexMerger/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/externalLibsDexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/externalLibsDexMerger/debug/0/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/outputs/apk/debug/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p4-live/platforms/android/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/p4-live/platforms/android/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="2091826164">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="php" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PHP" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/application/controllers/c_admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-367" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/application/models/m_admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+              <folding>
+                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/application/config/database.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="122" column="33" lean-forward="true" selection-start-line="122" selection-start-column="33" selection-end-line="122" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>viewhris</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/p4-live" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/p4-live/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/api-bu/assets/package.json" />
+      <path value="$PROJECT_DIR$/api/assets/package.json" />
+      <path value="$PROJECT_DIR$/backup/www-23012018/api/assets/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/alphanum-sort/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/ansi-colors/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/ansi-gray/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/ansi-styles/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/ansi-wrap/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/anymatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/append-buffer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/archy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/argparse/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/arr-diff/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/arr-filter/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/arr-flatten/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/arr-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/arr-union/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-differ/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-each/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-initial/node_modules/is-number/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-initial/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-last/node_modules/is-number/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-last/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-slice/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-sort/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-sort/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-uniq/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/array-unique/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/assign-symbols/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/async-done/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/async-each/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/async-settle/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/atob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/autoprefixer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/bach/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/base/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/beeper/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/binary-extensions/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/braces/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/browserslist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/buffer-equal/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/builtin-modules/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cache-base/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/camelcase/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/caniuse-api/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/caniuse-db/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/chalk/node_modules/supports-color/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/chalk/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/chokidar/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/clap/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/class-utils/node_modules/define-property/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/class-utils/node_modules/is-accessor-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/class-utils/node_modules/is-accessor-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/class-utils/node_modules/is-data-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/class-utils/node_modules/is-data-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/class-utils/node_modules/is-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/class-utils/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/class-utils/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cliui/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/clone-buffer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cloneable-readable/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/coa/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/code-point-at/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/collection-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/collection-visit/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/color-convert/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/color-name/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/color-string/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/color-support/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/color/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/color/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/colormin/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/colors/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/commander/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/component-emitter/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/concat-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/convert-source-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/copy-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/copy-props/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/abbrev/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/android-versions/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/ansi/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/base64-js/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/big-integer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/bplist-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/cordova-common/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/cordova-registry-mapper/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/elementtree/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/lodash/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/nopt/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/os-homedir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/os-tmpdir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/osenv/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/path-is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/plist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/properties-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/q/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/sax/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/semver/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/shelljs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/underscore/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/unorm/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/xmlbuilder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/node_modules/xmldom/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-android/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/abbrev/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/ansi/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/base64-js/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/big-integer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/bplist-creator/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/bplist-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/cordova-common/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/cordova-registry-mapper/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/elementtree/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/ios-sim/node_modules/bplist-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/ios-sim/node_modules/nopt/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/ios-sim/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/lodash/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/nopt/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/os-homedir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/os-tmpdir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/osenv/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/path-is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/pegjs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/plist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/q/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/sax/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/semver/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/shelljs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/simctl/node_modules/shelljs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/simctl/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/simple-plist/node_modules/base64-js/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/simple-plist/node_modules/plist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/simple-plist/node_modules/xmlbuilder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/simple-plist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/stream-buffers/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/tail/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/underscore/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/unorm/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/uuid/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/xcode/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/xml-escape/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/xmlbuilder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/node_modules/xmldom/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-ios/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-plugin-splashscreen/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-plugin-splashscreen/tests/ios/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-plugin-splashscreen/tests/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cordova-plugin-whitelist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/css-color-names/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/cssnano/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/csso/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/d/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/dateformat/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/debug/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/decamelize/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/decode-uri-component/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/default-compare/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/default-compare/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/default-resolution/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/define-properties/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/define-property/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/defined/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/detect-file/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/duplexer2/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/duplexer2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/duplexer2/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/duplexer2/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/duplexify/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/each-props/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/electron-to-chromium/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/end-of-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/error-ex/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/es5-ext/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/es6-iterator/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/es6-symbol/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/es6-weak-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/escape-string-regexp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/esprima/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-brackets/node_modules/define-property/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-brackets/node_modules/is-accessor-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-brackets/node_modules/is-accessor-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-brackets/node_modules/is-data-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-brackets/node_modules/is-data-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-brackets/node_modules/is-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-brackets/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-brackets/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/expand-tilde/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/extend-shallow/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/extend/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/extglob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fancy-log/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fill-range/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/find-up/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/findup-sync/node_modules/is-glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/findup-sync/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fined/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/flagged-respawn/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/flatten/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/flush-write-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/for-in/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/for-own/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/foreach/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fragment-cache/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fs-mkdirp-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fs.realpath/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/abbrev/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/ajv/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/aproba/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/are-we-there-yet/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/asn1/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/assert-plus/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/asynckit/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/aws-sign2/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/aws4/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/bcrypt-pbkdf/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/block-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/boom/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/buffer-shims/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/caseless/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/co/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/code-point-at/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/combined-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/console-control-strings/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/cryptiles/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/dashdash/node_modules/assert-plus/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/dashdash/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/debug/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/deep-extend/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/delayed-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/delegates/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/detect-libc/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/ecc-jsbn/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/extend/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/extsprintf/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/forever-agent/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/form-data/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/fs.realpath/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/fstream-ignore/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/fstream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/gauge/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/getpass/node_modules/assert-plus/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/getpass/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/graceful-fs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/har-schema/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/har-validator/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/has-unicode/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/hawk/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/hoek/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/http-signature/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/ini/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/is-fullwidth-code-point/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/is-typedarray/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/isstream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/jodid25519/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/jsbn/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/json-schema/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/json-stable-stringify/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/json-stringify-safe/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/jsonify/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/jsprim/node_modules/assert-plus/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/jsprim/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/mime-db/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/mime-types/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/mkdirp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/ms/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/nw-pre-gyp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/node-pre-gyp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/nopt/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/npmlog/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/number-is-nan/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/oauth-sign/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/os-homedir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/os-tmpdir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/osenv/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/path-is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/performance-now/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/punycode/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/qs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/rc/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/rc/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/request/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/rimraf/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/semver/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/set-blocking/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/signal-exit/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/sntp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/sshpk/node_modules/assert-plus/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/sshpk/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/string-width/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/stringstream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/strip-ansi/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/strip-json-comments/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/tar-pack/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/tar/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/tough-cookie/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/tunnel-agent/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/tweetnacl/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/uid-number/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/uuid/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/verror/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/wide-align/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/fsevents/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/function-bind/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/get-caller-file/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/get-value/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/glob-parent/node_modules/is-glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/glob-parent/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/glob-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/glob-watcher/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/global-modules/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/global-prefix/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/glogg/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/graceful-fs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-cssnano/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-uglify/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-util/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-util/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-util/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-util/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-util/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-util/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp-util/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp/node_modules/gulp-cli/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/gulplog/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/has-ansi/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/has-flag/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/has-gulplog/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/has-symbols/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/has-value/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/has-values/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/has-values/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/has/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/homedir-polyfill/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/hosted-git-info/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/html-comment-regex/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/indexes-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/ini/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/interpret/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/invert-kv/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-absolute-url/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-accessor-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-arrayish/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-binary-path/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-buffer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-builtin-module/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-data-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-extendable/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-extglob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-fullwidth-code-point/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-negated-glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-number/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-number/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-odd/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-plain-obj/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-plain-object/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-relative/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-svg/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-unc-path/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-utf8/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-valid-glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/is-windows/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/isexe/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/isobject/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/js-base64/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/js-yaml/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/json-stable-stringify/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/jsonify/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/just-debounce/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/last-run/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lazy-cache/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lazystream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lcid/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lead/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/liftoff/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/load-json-file/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._basecopy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._basetostring/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._basevalues/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._getnative/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._isiterateecall/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._reescape/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._reevaluate/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._reinterpolate/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash._root/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.escape/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.isarguments/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.isarray/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.keys/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.memoize/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.restparam/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.template/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.templatesettings/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash.uniq/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/lodash/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/macaddress/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/make-error-cause/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/make-error/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/make-iterator/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/make-iterator/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/map-cache/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/map-visit/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/matchdep/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/math-expression-evaluator/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/micromatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/mixin-deep/node_modules/is-extendable/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/mixin-deep/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/mkdirp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/ms/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/multipipe/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/mute-stdout/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/nan/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/nan/tools/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/nanomatch/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/nanomatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/normalize-package-data/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/normalize-path/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/normalize-range/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/normalize-url/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/now-and-later/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/num2fraction/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/number-is-nan/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-copy/node_modules/define-property/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-copy/node_modules/is-accessor-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-copy/node_modules/is-data-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-copy/node_modules/is-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-copy/node_modules/is-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-copy/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-copy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-keys/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object-visit/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object.assign/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object.defaults/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object.map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object.pick/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/object.reduce/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/ordered-read-streams/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/os-locale/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/parse-filepath/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/parse-json/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/parse-passwd/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/pascalcase/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/path-dirname/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/path-exists/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/path-is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/path-parse/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/path-root-regex/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/path-root/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/path-type/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/pify/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/pinkie-promise/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/pinkie/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/posix-character-classes/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-calc/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-colormin/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-convert-values/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-discard-comments/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-discard-duplicates/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-discard-empty/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-discard-overridden/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-discard-unused/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-filter-plugins/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-merge-idents/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-merge-longhand/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-merge-rules/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-message-helpers/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-minify-font-values/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-minify-gradients/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-minify-params/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-minify-selectors/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-normalize-charset/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-normalize-url/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-ordered-values/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-reduce-idents/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-reduce-initial/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-reduce-transforms/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-selector-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-svgo/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-unique-selectors/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-value-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss-zindex/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/postcss/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/prepend-http/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/pretty-hrtime/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/pump/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/pumpify/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/q/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/query-string/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/read-pkg-up/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/read-pkg/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/readdirp/examples/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/readdirp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/rechoir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/reduce-css-calc/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/reduce-css-calc/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/reduce-function-call/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/reduce-function-call/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/regex-not/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/remove-bom-buffer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/remove-bom-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/remove-trailing-separator/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/repeat-element/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/repeat-string/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/replace-homedir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/require-directory/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/require-main-filename/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve-dir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve-options/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve-url/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve/test/module_dir/zmodules/bbb/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve/test/resolver/baz/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve/test/resolver/dot_main/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve/test/resolver/dot_slash_main/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/resolve/test/resolver/incorrect_main/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/sax/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/semver-greatest-satisfied-range/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/semver/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/set-blocking/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/set-getter/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/set-immediate-shim/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/set-value/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon-node/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon-util/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon-util/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon/node_modules/define-property/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon/node_modules/is-accessor-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon/node_modules/is-accessor-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon/node_modules/is-data-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon/node_modules/is-data-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon/node_modules/is-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/snapdragon/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/sort-keys/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/source-map-resolve/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/source-map-url/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/spdx-correct/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/spdx-expression-parse/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/spdx-license-ids/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/split-string/node_modules/extend-shallow/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/split-string/node_modules/is-extendable/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/split-string/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/sprintf-js/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/stack-trace/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/static-extend/node_modules/define-property/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/static-extend/node_modules/is-accessor-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/static-extend/node_modules/is-accessor-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/static-extend/node_modules/is-data-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/static-extend/node_modules/is-data-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/static-extend/node_modules/is-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/static-extend/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/static-extend/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/stream-exhaust/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/stream-shift/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/strict-uri-encode/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/string-width/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/strip-ansi/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/strip-bom/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/supports-color/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/sver-compat/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/svgo/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/through2-filter/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/time-stamp/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-absolute-glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-object-path/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-object-path/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex-range/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex/node_modules/define-property/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex/node_modules/is-accessor-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex/node_modules/is-accessor-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex/node_modules/is-data-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex/node_modules/is-data-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex/node_modules/is-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-regex/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/to-through/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/typedarray/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/uglify-js/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/uglify-js/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/unc-path-regex/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/undertaker-registry/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/undertaker/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/union-value/node_modules/set-value/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/union-value/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/uniq/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/uniqid/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/uniqs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/unique-stream/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/unset-value/node_modules/has-value/node_modules/isobject/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/unset-value/node_modules/has-value/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/unset-value/node_modules/has-values/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/unset-value/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/urix/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/use/node_modules/define-property/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/use/node_modules/is-accessor-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/use/node_modules/is-accessor-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/use/node_modules/is-data-descriptor/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/use/node_modules/is-data-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/use/node_modules/is-descriptor/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/use/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/use/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/v8flags/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/validate-npm-package-license/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/value-or-function/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/vendors/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/vinyl-fs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/vinyl-sourcemap/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/vinyl-sourcemaps-apply/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/whet.extend/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/which-module/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/which/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/wrap-ansi/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/y18n/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/yargs-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/node_modules/yargs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/abbrev/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/android-versions/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/ansi/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/base64-js/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/big-integer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/bplist-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/cordova-common/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/cordova-registry-mapper/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/elementtree/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/lodash/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/nopt/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/os-homedir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/os-tmpdir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/osenv/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/path-is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/plist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/properties-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/q/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/sax/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/semver/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/shelljs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/underscore/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/unorm/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/xmlbuilder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/android/cordova/node_modules/xmldom/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/abbrev/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/ansi/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/base64-js/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/big-integer/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/bplist-creator/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/bplist-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/cordova-common/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/cordova-registry-mapper/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/elementtree/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/ios-sim/node_modules/bplist-parser/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/ios-sim/node_modules/nopt/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/ios-sim/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/lodash/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/nopt/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/os-homedir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/os-tmpdir/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/osenv/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/path-is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/pegjs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/plist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/q/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/sax/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/semver/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/shelljs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/simctl/node_modules/shelljs/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/simctl/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/simple-plist/node_modules/base64-js/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/simple-plist/node_modules/plist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/simple-plist/node_modules/xmlbuilder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/simple-plist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/stream-buffers/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/tail/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/underscore/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/unorm/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/uuid/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/xcode/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/xml-escape/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/xmlbuilder/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/platforms/ios/cordova/node_modules/xmldom/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/plugins/cordova-plugin-splashscreen/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/plugins/cordova-plugin-splashscreen/tests/ios/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/plugins/cordova-plugin-splashscreen/tests/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/plugins/cordova-plugin-whitelist/package.json" />
+      <path value="$PROJECT_DIR$/p4-live/plugins/cordova.custom.plugins.exitapp/package.json" />
+      <path value="$PROJECT_DIR$/portal/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e14e9542-2f41-4490-877e-051f5d531edb" name="Default Changelist" comment="" />
+      <created>1541726307603</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1541726307603</updated>
+      <workItem from="1541726308920" duration="3845000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3845000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/application/controllers/model/m_stokgudang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-279" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/application/controllers/c_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-367" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/application/controllers/cashflow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1081">
+          <caret line="849" column="13" lean-forward="true" selection-start-line="849" selection-start-column="13" selection-end-line="849" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/application/controllers/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-306" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="122" column="33" lean-forward="true" selection-start-line="122" selection-start-column="33" selection-end-line="122" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/application/models/m_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

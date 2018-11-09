@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/config.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+
+        <script type="text/javascript" src="js/index.js"></script>
+	
+		<script src="js/loader.js"></script>
+		<script src="js/paradigma.js"></script>
+		
+        <script type="text/javascript" src="js/moment.min.js"></script>
+
+		<script src="js/phase2/global.js"></script>
+		<script src="js/phase2/material_balance.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+    </script>
+    <title>Finance</title>
+    <script>
+        function onLoad() {
+			sidemenu();
+				
+			// var today = dd+'/'+mm+'/'+yyyy;
+			// $('.last-update').html('Last Update : '+today);
+
+            var yearnow = tahun;
+			opcoGroup(mm, yearnow);
+			$('.selmonth').empty();
+            var opco = '4000';
+            setParam(opco, mm, tahun);
+			var opt_month;
+			$.each(month, function(key, val){
+				if (key+1 <= 12){
+					if ((key+1) < 10){
+						var v = '0'+(key+1); 
+					}else{
+						var v = key+1;  
+					}   
+					if ((key) == bulanSekarang){
+						opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+					}else{
+						opt_month += '<option value="'+v+'">'+val+'</option>';   
+					}
+				}
+			})  
+			
+			$('.selmonth').html(opt_month);
+			var yearnow = tahun;
+			$('.selmonth').change(function(){
+				bulanSekarang = $(this).val();
+				tahun = $('.selyear').val();
+				var yearnow = tahun;
+				selectedDate = yearnow+'.'+bulanSekarang;
+				selectDate = selectedDate;
+                setParam(opco,bulanSekarang, tahun);
+				opcoGroup(bulanSekarang, yearnow);
+			})
+			var opt_year;
+			for (var thn=2014;thn<=yyyy;thn++){
+				if (thn == yyyy){
+				  opt_year += '<option value="'+thn+'" selected="selected">'+thn+'</option>'; 
+				}else{
+				  opt_year += '<option value="'+thn+'">'+thn+'</option>';   
+				}
+			}
+			$('.selyear').html(opt_year);
+			$('.selyear').change(function(){
+				bulanSekarang = $('.selmonth').val();
+				tahun = $(this).val();
+				var yearnow = tahun;
+				selectedDate = yearnow+'.'+bulanSekarang;
+				selectDate = selectedDate;
+                setParam(opco,bulanSekarang, tahun);
+				opcoGroup(bulanSekarang, yearnow);
+			})
+
+
+			$(".se-pre-con").fadeOut("slow");
+        }
+		$( document ).ready(function() {
+		    $('a[href="#tab-click"]').click(function () {
+					var r = $(this).attr('rel');
+					console.log(12);
+					if (r == 'data-volume') {
+						$('#data-volume').removeClass('hidden');
+						$('#data-revenue').addClass('hidden');
+						$('#tab-volume').addClass('act_tb');
+						$('#tab-revenue').removeClass('act_tb');
+						$('#tab-price').removeClass('act_tb');
+					} else if (r == 'data-revenue') {
+						$('#data-volume').addClass('hidden');
+						$('#data-revenue').removeClass('hidden');
+						$('#tab-volume').removeClass('act_tb');
+						$('#tab-revenue').addClass('act_tb');
+						$("#tab-revenue").fadeIn(1000);
+					}
+				})
+            $('a[href="#toggle-legend"]').click(function (e) {
+             e.preventDefault();
+             var r = $(this).attr('rel');
+            if (r == 'prog1' || r == 'real1'){
+             var chart = $('#chart1').highcharts();
+             if (r == 'real1'){
+              var idx = 1;
+             }else if (r == 'prog1'){
+              var idx = 0; 
+             }
+             var series = chart.series[idx];
+             if (series.visible){
+              series.hide();
+              $(this).addClass('blur');
+             }else{
+              series.show();
+              $(this).removeClass('blur');
+             }
+
+            }else if (r == 'prog2' || r == 'real2'){
+             var chart = $('#chart2').highcharts();
+             if (r == 'real2'){
+              var idx = 1;
+             }else if (r == 'prog2'){
+              var idx = 0; 
+             }
+             var series = chart.series[idx];
+             if (series.visible){
+              series.hide();
+              $(this).addClass('blur');
+             }else{
+              series.show();
+              $(this).removeClass('blur');
+             }
+            }
+
+        })
+		});
+
+    </script>
+    <style type="text/css">
+
+        .style1 {
+            font-size: 12px;
+            color: #333333;
+        }
+
+        .inex {
+            font-size: 20px;
+            font-family: "Open Sans";
+            color: #000000;
+            margin-bottom: 0px;
+        }
+
+        .inex_down {
+            font-family: "Open Sans";
+            color: #000000;
+			margin-bottom:5px;
+        }
+        .inex_down h6{
+            font-size:10px;
+			margin:0;
+			color:#999999;
+        }
+
+        .h_costom {
+            color: #ffffff;
+        }
+
+        .h_down {
+            font-family: "Open Sans";
+
+            color: #797979;
+            font-size: 12px;
+        }
+        tr td{text-align: right;}
+        thead tr td{text-align: center;}
+        thead tr td:first-child, tbody tr td:first-child{text-align: left;}
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .detail {
+            position: absolute;
+            text-align: right;
+            color: darkgrey;
+            font-size: 15px;
+            padding-left: 330px;
+        }
+
+        a:hover, a:visited {
+            opacity: 0.5;
+            color: #CC0000;
+        }
+
+        -->
+    </style>
+</head>
+<body onload="onLoad()" style="font-family: &quot;Open Sans&quot;;">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop" class="sn-backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+                <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                             
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content" style="background:#f5f5f5;" class="sn-content">
+            <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle"><span>toggle menu</span></button>
+                <a class="logopis">CASH FLOW</a> <a class="logo" href="index.html"><img src="img/logo.png"></a></header>
+            <div class="wrapper">
+                <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">Material Balance</h2>
+                <div class="head-menu">
+                    <ul>
+                        <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')">PRODUCTION</a></li>
+                        <li><a onclick="goto_opco('p2_fin_sales_smi', 'p2_fin_sales_smi')">SALES</a></li>
+                        <li><a class="active">MATERIAL BALANCE</a></li>
+                        <li style="display:none"><a onclick="goto_opco('p2_cost_sheet', 'p2_cost_sheet')">COST SHEET</a></li>
+                        <li><a onclick="goto_opco('fin_cost_str_pc', 'fin_cost_str_pc')">COST STRUCTURE</a></li>
+                        <li><a onclick="goto_opco('finance_perform_dash', 'finance_perform_dash')">CORP. PERFORMANCE</a>
+                        </li>
+                        <li><a onclick="goto_opco('balance_semen', 'balance_semen')">BALANCE SHEET</a></li>
+                        <li><a onclick="goto_opco('fin_rec_mng', 'fin_rec_mng')">RECEVABLE MNGT</a></li>
+                    </ul>
+                </div>
+                <div class="spacer-menu"></div>
+                <div class=" headsix add_fix cubesRun2" style="margin:0;height:1040px;">
+                    <div class="col-xs-12 tab_dual">
+                        <div class="col-xs-12 bg_rds">
+                            <div id="tab-volume" class="col-xs-6 center zero_padd left_tb act_tb">
+                                <a href="#tab-click" rel="data-volume" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                    <span class="tx_tab">&nbsp;&nbsp;Clinker</span></a></div>
+                            <div id="tab-revenue" class="col-xs-6 center zero_padd left_tb">
+                                <a href="#tab-click" rel="data-revenue" class="no-text-style"><img src="img/pack.png" width="18px"> 
+                                    <span class="tx_tab">&nbsp;&nbsp;Cement</span></a></div>
+
+						</div>
+					</div>
+					<div id="data-volume" class="active">
+						<div align="center" style="margin-bottom:10px;">
+							<div class="clearfix"></div>
+						</div>
+						<center>
+							Month: 
+							<select id="month" class="selmonth" rel="vol"></select>&nbsp;
+							<select id="year" class="selyear"></select><br>
+						</center>
+	                    <div align="center" style="margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+	                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+							<span class="upercent" id="last_update">
+								<!-- <script type="text/javascript">
+									document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));
+								</script> -->
+							</span>
+							<a href="p2_mbalance_daily_st_detail.html#4301-Clinker" style="text-decoration:none !important">
+                                <h4 style="margin:10px 0 0 0;"><span class="upercent" style="color:#df0023;font-size:14px;font-weight:bold;">Stock</span><br><span class="upercent" style="font-size: 10px;margin: 2px 0 -5px 0;display: block;">(in Tonase)</span></h4>
+                                <span class="prosen" style="color: #5d5d5d;" id="stokakhir"></span><br>
+                                <i style="color:#df0023;display: block;font-weight:bold;font-size: 20px;margin-top:-20px;letter-spacing: .5">...</i>
+                            </a>
+	                    </div>
+	                    <div align="center">
+							<a href="#" rel="in">
+								<div class="col-xs-6" style="border-right:1px solid #CCCCCC;padding:0;">
+									<img src="img/ic_mbalance1.png" style="width:36px;">
+									<p class="inex" id="stok_awal"></p><!--id=totpay7000-->
+									<span class="inex_down" style="padding:0;display:block;width:100%;"><h6>Beginning Stock</h6></span></div>
+							</a>
+							<a href="#" rel="out">
+								<div class="col-xs-6" style="padding:0;">
+									<img src="img/ic_mbalance3.png" style="width:30px">
+									<p class="inex" id="gi"></p> <!--id=totrec7000-->
+									<span class="inex_down" style="padding:0;display:block;width:100%;"><h6>Stock Open Yard</h6></span>
+								</div>
+							</a>
+	                    </div>
+						<div class="col-xs-12" align="left" style="margin: 15px 0px 5px 0px;padding-left:6px;">
+							<i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 12px;color: #e54b37;"></i>
+							<span style="color: #666160; font-size: 12px"> &nbsp; Tren Stok Harian</span>
+						</div>
+						<div style="width:100%;overflow-x:scroll;">
+							<div id="chart1" class="chart" style="width:700px;height:200px;"></div>
+						</div>
+                        <div style="width:90%;text-align:center;margin:0 auto;padding:5px;font:bold 12px; color:#000000;">
+                            <a href="#toggle-legend" rel="real1" style="color:black"><i class="fa fa-circle" style="color:#22A7F0;margin-left:10px;"></i>Stok</a> 
+                            <a href="#toggle-legend" rel="prog1" style="color:black"><i class="fa fa-circle" style="color:#E9D460;margin-left:10px;"></i> Kapasitas</a> 
+                        </div>
+						<br>
+                        <div style="width:100%;overflow-x:scroll;">
+    						<table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;width:500px;">
+    							<thead>
+    								<tr class="headtr">
+    									<td><strong>Plant</strong></td>
+    									<td align="center" valign="middle"><strong>T2/3</strong></td>
+    									<td align="center" valign="middle"><strong>T4</strong></td>
+                                        <td align="center" valign="middle"><strong>T5</strong></td>
+                                        <td align="center" valign="middle"><strong>Open Yard</strong></td>
+    									<td align="center" valign="middle"><strong>Total</strong></td>
+    								</tr>
+    							</thead>
+    							<tbody id="tablePlantUp">
+    								<tr>
+    									<td class="bold_op">Stock Awal</td>
+    									<td align="center"  valign="middle" id="stokawal23"><strong>0</strong></td>
+    									<td align="center" id="stokawal4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="stokawal5" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="stokawalOY" valign="middle"><strong>0</strong></td>
+    									<td align="center" id="stokawal_total" valign="middle"><strong>0</strong></td>
+    								</tr>
+    								<tr>
+    									<td class="bold_op">Produksi</td>
+    									<td align="center"  valign="middle" id="produksi23"><strong>0</strong></td>
+    									<td align="center" id="produksi4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="produksi5" valign="middle"><strong>0</strong></td>
+    									<td align="center" id="produksiOY" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="produksi_total" valign="middle"><strong>0</strong></td>
+    								</tr>
+                                    <tr>
+                                        <td class="bold_op">Penerimaan</td>
+                                        <td align="center"  valign="middle"><strong>0</strong></td>
+                                        <td align="center" valign="middle"><strong>0</strong></td>
+                                        <td align="center" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="penerimaanOY" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="penerimaan_total" valign="middle"><strong>0</strong></td>
+                                    </tr>
+    								<tr>
+    									<td class="bold_op">Transfer dari Plant lain</td>
+    									<td align="center"  valign="middle" id="dariplantlain23"><strong>0</strong></td>
+    									<td align="center" id="dariplantlain4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="dariplantlain5" valign="middle"><strong>0</strong></td>
+    									<td align="center" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="dariplantlain_total" valign="middle"><strong>0</strong></td>
+    								</tr>
+    								<tr>
+    									<td class="bold_op">Pemakaian Finish Mill</td>
+    									<td align="center"  valign="middle" id="gifm23"><strong>0</strong></td>
+    									<td align="center" id="gifm4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="gifm5" valign="middle"><strong>0</strong></td>
+    									<td align="center" id="gifmOY" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="gifm_total" valign="middle"><strong>0</strong></td>
+    								</tr>
+                                    <tr>
+                                        <td class="bold_op">Transfer ke Plant lain</td>
+                                        <td align="center" valign="middle" id="keplantlain23"><strong>0</strong></td>
+                                        <td align="center" id="keplantlain4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="keplantlain5" valign="middle"><strong>0</strong></td>
+                                        <td align="center" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="keplantlain_total" valign="middle"><strong>0</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold_op">Transfer ke Pabrik</td>
+                                        <td align="center" valign="middle"><strong>0</strong></td>
+                                        <td align="center" valign="middle"><strong>0</strong></td>
+                                        <td align="center" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="keplantlainOY" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="kepabrik_total" valign="middle"><strong>0</strong></td>
+                                    </tr>
+    								<tr>
+    									<td class="bold_op">Transfer ke Open Yard</td>
+    									<td align="center"  valign="middle" id="openyard23"><strong>0</strong></td>
+    									<td align="center" id="openyard4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="openyard5" valign="middle"><strong>0</strong></td>
+    									<td align="center" id="openyardOY" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="openyard_total" valign="middle"><strong>0</strong></td>
+    								</tr>
+    								<tr>
+    									<td class="bold_op">Penjualan</td>
+    									<td align="center"  valign="middle" id="jual23"><strong>0</strong></td>
+    									<td align="center" id="jual4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="jual5" valign="middle"><strong>0</strong></td>
+    									<td align="center" id="jualOY" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="jual_total" valign="middle"><strong>0</strong></td>
+    								</tr>
+    								<tr>
+    									<td class="bold_op">Selisih Persediaan</td>
+    									<td align="center"  valign="middle" id="selisihstok23"><strong>0</strong></td>
+    									<td align="center" id="selisihstok4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="selisihstok5" valign="middle"><strong>0</strong></td>
+    									<td align="center" id="selisihstokOY" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="selisihstok_total" valign="middle"><strong>0</strong></td>
+    								</tr>
+    								<tr>
+    									<td class="bold_op">Stock Akhir</td>
+    									<td align="center"  valign="middle" id="stokakhir23"><strong>0</strong></td>
+    									<td align="center" id="stokakhir4" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="stokakhir5" valign="middle"><strong>0</strong></td>
+    									<td align="center" id="stokakhirOY" valign="middle"><strong>0</strong></td>
+                                        <td align="center" id="stokakhir_total" valign="middle"><strong>0</strong></td>
+    								</tr>
+    <!--								<tr>
+    									<td class="bold_op"></td>
+    									<td align="center"  valign="middle"><strong><a href="p2_mbalance_daily_detail.html#4301-Clinker" style="color:#e54b37">Detail</a></strong></td>
+    									<td align="center" valign="middle"><strong><a href="p2_mbalance_daily_detail.html#4302-Clinker" style="color:#e54b37">Detail</a></strong></td>
+    									<td align="center"valign="middle"><strong><a href="p2_mbalance_daily_detail.html#4303-Clinker" style="color:#e54b37">Detail</a></strong></td>
+    								</tr>-->
+    							</tbody>
+    						</table>
+                        </div>
+                	</div>
+					<div id="data-revenue" class="hidden">
+						<div align="center" style="margin-bottom:10px;">
+							<div class="clearfix"></div>
+						</div>
+						<center>
+							Month: 
+							<select id="month" class="selmonth" rel="vol"></select>&nbsp;
+							<select id="year" class="selyear"></select><br>
+						</center>
+	                    <div align="center" style="margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+	                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+							<span class="upercent" id="last_update_fm">
+								<!-- <script type="text/javascript">
+									document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));
+								</script> -->
+							</span>
+							<a href="p2_mbalance_daily_st_detail.html#4301-Cement" style="text-decoration:none !important">
+                                <h4 style="margin:10px 0 0 0;"><span class="upercent" style="color:#df0023;font-size:14px;font-weight:bold;">Stock</span><br><span class="upercent" style="font-size: 10px;margin: 2px 0 -5px 0;display: block;">(in Tonase)</span></h4>
+                                <span class="prosen" style="color: #5d5d5d;" id="stokfm"></span><br>
+                                <i style="color:#df0023;display: block;font-weight:bold;font-size: 20px;margin-top:-20px;letter-spacing: .5">...</i>
+                            </a>
+	                    </div>
+	                    <div align="center">
+							<a href="#" rel="in">
+                                <div class="col-xs-4" style="border-right:1px solid #CCCCCC;padding:0;">
+                                    <img src="img/ic_mbalance1.png" style="width:36px;">
+                                    <p class="inex" id="saldoawalfm"></p><!--id=totpay7000-->
+                                    <span class="inex_down" style="padding:0;display:block;width:100%;"><h6>Beginning Stock</h6></span></div>
+                            </a>
+                            <a href="#" rel="in">
+                                <div class="col-xs-4" style="border-right:1px solid #CCCCCC;padding:0;">
+                                    <img src="img/ic_mbalance2.png" style="width:30px;">
+                                    <p class="inex" id="grfm"></p><!--id=totpay7000-->
+                                    <span class="inex_down" style="padding:0;display:block;width:100%;"><h6>Good Receive</h6></span></div>
+                            </a>
+                            <a href="#" rel="out">
+                                <div class="col-xs-4" style="padding:0;">
+                                    <img src="img/ic_mbalance3.png" style="width:30px">
+                                    <p class="inex" id="gifm"></p> <!--id=totrec7000-->
+                                    <span class="inex_down" style="padding:0;display:block;width:100%;"><h6>Good Issue</h6></span>
+                                </div>
+                            </a>
+	                    </div>
+						<div class="col-xs-12" align="left" style="margin: 15px 0px 5px 0px;padding-left:6px;">
+							<i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 12px;color: #e54b37;"></i>
+							<span style="color: #666160; font-size: 12px"> &nbsp; Tren Stok Harian</span>
+						</div>
+						<div style="width:100%;overflow-x:scroll;">
+							<div id="chart2" class="chart" style="width:700px;height:200px;"></div>
+						</div>
+                        <div style="width:90%;text-align:center;margin:0 auto;padding:5px;font:bold 12px; color:#000000;">
+                            <a href="#toggle-legend" rel="real2" style="color:black"><i class="fa fa-circle" style="color:#22A7F0;margin-left:10px;"></i>Stok</a> 
+                            <a href="#toggle-legend" rel="prog2" style="color:black"><i class="fa fa-circle" style="color:#E9D460;margin-left:10px;"></i> Kapasitas</a> 
+                        </div>
+						<script src="js/highcharts.js"></script>
+						<br>
+                        <div style="width:100%;overflow-x:scroll;">
+						<table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;width:700px;">
+							<thead>
+								<tr class="headtr">
+									<td><strong>Plant</strong></td>
+									<td align="center" valign="middle"><strong>T2/3</strong></td>
+									<td align="center" valign="middle"><strong>T4</strong></td>
+                                    <td align="center" valign="middle"><strong>T5</strong></td>
+                                    <td align="center" valign="middle"><strong>UP Biringkassi</strong></td>
+                                    <td align="center" valign="middle"><strong>UP Makassar</strong></td>
+                                    <td align="center" valign="middle"><strong>UP Luar</strong></td>
+									<td align="center" valign="middle"><strong>Total</strong></td>
+								</tr>
+							</thead>
+							<tbody id="tablePlantUp">
+								<tr>
+									<td class="bold_op">Stock Awal</td>
+									<td align="center"  valign="middle" id="stokawalfm23"><strong>0</strong></td>
+									<td align="center" id="stokawalfm4" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="stokawalfm5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="stokawalfm6" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="stokawalfm7" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="stokawalfm8" valign="middle"><strong>0</strong></td>
+									<td align="center" id="stokawalfm_total" valign="middle"><strong>0</strong></td>
+								</tr>
+								<tr>
+									<td class="bold_op">Produksi FM</td>
+									<td align="center"  valign="middle" id="produksifm23"><strong>0</strong></td>
+									<td align="center" id="produksifm4" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="produksifm5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+									<td align="center" id="produksifm_total" valign="middle"><strong>0</strong></td>
+								</tr>
+                                <tr>
+                                    <td class="bold_op">Pengiriman ke Packing Plant</td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="pengirimanfm6" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="pengirimanfm_total" valign="middle"><strong>0</strong></td>
+                                </tr>
+                                <tr>
+									<td class="bold_op">Produksi Pakcer </td>
+									<td align="center"  valign="middle" id="produksipc23"><strong>0</strong></td>
+									<td align="center" id="produksipc4" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="produksipc5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="produksipc6" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="produksipc7" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="produksipc8" valign="middle"><strong>0</strong></td>
+									<td align="center"  id="produksipc_total" valign="middle"><strong>0</strong></td>
+								</tr>
+                                                                
+								<tr>
+									<td class="bold_op">GR STO Curah</td>
+									<td align="center"  valign="middle" id="grstocurah23"><strong>0</strong></td>
+									<td align="center" id="grstocurah4" valign="middle"><strong>0</strong></td>
+									<td align="center" id="grstocurah5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="grstocurah7 valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center"  id="grstocurah_total" valign="middle"><strong>0</strong></td>
+								</tr>
+								<tr>
+									<td class="bold_op">GI STO Zak</td>
+									<td align="center"  valign="middle" id="gistozak23"><strong>0</strong></td>
+									<td align="center" id="gistozak4" valign="middle"><strong>0</strong></td>
+									<td align="center" id="gistozak5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="gistozak7" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="gistozak8" valign="middle"><strong>0</strong></td>
+                                    <td align="center"  id="gistozak_total" valign="middle"><strong>0</strong></td>
+								</tr>
+								<tr>
+									<td class="bold_op">GI STO Curah</td>
+									<td align="center" valign="middle" id="gistocurah23"><strong>0</strong></td>
+									<td align="center" id="gistocurah4" valign="middle"><strong>0</strong></td>
+									<td align="center" id="gistocurah5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="gistocurah8" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="gistocurah_total" valign="middle"><strong>0</strong></td>
+								</tr>
+                                <tr>
+                                    <td class="bold_op">Semen Beli</td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="belifm7" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="belifm8" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="belifm_total" id="belifm9" valign="middle"><strong>0</strong></td>
+                                </tr>
+								<tr>
+									<td class="bold_op">Penjualan</td>
+									<td align="center"  valign="middle" id="penjualanfm23"><strong>0</strong></td>
+									<td align="center" id="penjualanfm4" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="penjualanfm5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="penjualanfm6" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="penjualanfm7" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="penjualanfm8" valign="middle"><strong>0</strong></td>
+									<td align="center" id="penjualanfm_total" id="penjualanfm9" valign="middle"><strong>0</strong></td>
+								</tr>
+								<tr>
+									<td class="bold_op">Selisih Persediaan</td>
+									<td align="center"  valign="middle" id="selisihstokfm23"><strong>0</strong></td>
+									<td align="center" id="selisihstokfm4" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="selisihstokfm5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="selisihstokfm6" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="selisihstokfm7" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="selisihstokfm8" valign="middle"><strong>0</strong></td>
+									<td align="center" id="selisihstokfm_total" id="selisihstokfm9" valign="middle"><strong>0</strong></td>
+								</tr>
+								<tr>
+									<td class="bold_op">Stock Akhir</td>
+									<td align="center"  valign="middle" id="stokakhirfm23"><strong>0</strong></td>
+									<td align="center" id="stokakhirfm4" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="stokakhirfm5" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="stokakhirfm6" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="stokakhirfm7" valign="middle"><strong>0</strong></td>
+                                    <td align="center" id="stokakhirfm8" valign="middle"><strong>0</strong></td>
+									<td align="center" id="stokakhirfm_total" id="stokakhirfm9" valign="middle"><strong>0</strong></td>
+								</tr>
+<!--								<tr>
+									<td class="bold_op"></td>
+									<td align="center"  valign="middle"><strong><a href="p2_mbalance_daily_detail.html#4301-Cement" style="color:#e54b37">Detail</a></strong></td>
+									<td align="center" valign="middle"><strong><a href="p2_mbalance_daily_detail.html#4302-Cement" style="color:#e54b37">Detail</a></strong></td>
+									<td align="center"valign="middle"><strong><a href="p2_mbalance_daily_detail.html#4303-Cement" style="color:#e54b37">Detail</a></strong></td>
+								</tr>-->
+							</tbody>
+						</table>
+                    </div>
+                	</div>
+                </div>
+                <div align="center">
+                    <div class="spacer"></div>
+                    <footer class="">
+                        <div class="regular">
+                            <div id="tab-smi" class="col-xs-4 noPadding tab_uper col-ft-4 img_foot2" align="center" style="margin-top: 7px;"><a><img src="img/smi.png" style="width:43px;"></a>
+                            </div>
+                            <div id="tab-sp" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a><img src="img/icKota2a.png" style="width: 65%;"></a>
+                            </div>
+                            <div id="tab-sg" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a><img src="img/icKota1a.png" style="width: 65%;"></a>
+                            </div>
+                            <div id="tab-st" class="col-xs-2 noPadding tab_uper " align="center" style="margin-top: 7px;"><a><img src="img/icKota3a.png" style="width: 65%;"></a>
+                            </div>
+                            <div id="tab-tl" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a><img src="img/icKota4a.png" style="width: 65%;"></a>
+                            </div>
+                            
+                        </div>
+                    </footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body></html>

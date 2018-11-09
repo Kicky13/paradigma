@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+ <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+ <script type="text/javascript" src="js/moment.min.js"></script>
+ <script type="text/javascript" src="js/paradigma.js"></script>
+ <script type="text/javascript" src="js/Session.js"></script>
+ <script type="text/javascript" src="js/loader.js"></script>
+        <script src="js/Session.js"></script>
+<link rel="stylesheet" type="text/css" href="anima.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <!-- // Add the new slick-theme.css if you want the default styling -->
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <!-- <script src="js/jssor.slider-22.2.6.mini.js" type="text/javascript"></script> -->
+        <script src="js/jquery.min.js"></script>
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script type="text/javascript">
+  $(function(){
+    setParam(sessionStorage.getItem('opco'), paradigma.date('now', 'month'), paradigma.date('now', 'year'));
+  })
+</script>
+<script type="text/javascript" charset="utf-8">
+            function exitApps(){
+                navigator.app.exitApp();
+            }
+        </script>
+<style>
+.imgcompany {
+	margin:9px;
+	margin-bottom: 2px;
+	margin-top: 14px;
+}
+.textimg {
+	font-size: 10px;
+	font-family: "Open Sans";
+	color: #504b4d;
+}
+a img:hover, a:visited {
+	background-color: rgb(236, 236, 241);
+	border-radius: 43px;
+	text-decoration: none;
+}
+blink {   
+  animation-duration: 500ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+</style>
+<title>Home</title>
+</head>
+<body>
+<div class="app">
+<div id="deviceready">
+  <div id="content" class="animated">
+   
+     <div id="content" class="animated">
+                    
+                    <div class="wrapper" style="overflow:hidden;">
+                    <a href="index.html" style="position:absolute">
+                    <div style="margin-bottom: 20px"></div>
+    <img src="img/ar_back.png" width="37px" style="padding-left:12px"></a>
+                        <img class="logo-home" src="img/title-finance1.png" style="width: 200px;margin-top: 16px; padding-bottom: 1px; border-bottom: 1px solid #eabebe; top:25px"/>
+                        <img class="bg-home" src="img/bg-port.png"/>
+
+     
+
+      <div class="link-home" style="text-align: center; margin-top: 1px; top: 118px;">
+      <div class="single-item" style="height: 366px;">
+<div>
+      <a onclick="goto_opco('finance_si', 'finance_st')" class="animated zoomIn" style="display: inline-block; text-align: center; margin-right: 32px;"><img src="img/df.png" class="imgcompany" style="width: 76px;">
+        <p class="textimg">CASH IN CASH OUT</p>
+        </a> 
+
+         <a onclick="gotoPage('7000', null, null, 'balance_semen')" class="animated zoomIn" style="display: inline-block; text-align: center; "><img src="img/f3.png" class="imgcompany" style="width: 76px;">
+        <p class="textimg">BALANCE SHEET</p>
+        </a> 
+
+        <a onclick="goto_opco('finance_perform_dash', 'finance_perform_dash')" class="animated zoomIn" style="display: inline-block; text-align: center; margin-right: 32px;"><img src="img/f2.png" class="imgcompany" style="width: 76px; "/>
+        <p class="textimg">CORP. PERFORMANCE</p></a>
+        
+       
+
+        <a onclick="goto_opco('fin_cost_str_pc', 'fin_cost_str_sg')" class="animated zoomIn" style="display: inline-block; text-align: center;  "><img src="img/f4.png" class="imgcompany" style="width: 76px;"/>
+        <p class="textimg">COST STRUCTURE</p></a>
+
+
+        <a onclick="goto_opco('kinerja_saham','kinerja_saham') " class="animated zoomIn" style="display: inline-block; text-align: center; margin-right: 32px;"><img src="img/f6.png" class="imgcompany" style="width: 76px;"/>
+        <p class="textimg">STOCK PERFORMANCE</p></a>
+        
+
+
+        <a onclick="goto_opco('fin_rec_mng', 'fin_rec_mng_sg')" class="animated zoomIn" style="display: inline-block; text-align: center; "><img src="img/f1.png" class="imgcompany" style="width: 76px; "/> <p class="textimg">RECEIVABLES MNGT</p></a>
+        </div>
+        <div>
+
+         <a onclick="goto_opco('cash_flow', 'cash_flow')" class="animated zoomIn" style="display: inline-block; text-align: center; margin-right: 32px;"><img src="img/f1.png" class="imgcompany" style="width: 76px; "/> <p class="textimg">CASH FLOW</p></a>
+
+        <a onclick="goto_opco('peer_comparison', 'peer_comparison')" class="animated zoomIn" style="display: inline-block; text-align: center; "><img src="img/f7.png" class="imgcompany" style="width: 76px; "/> <p class="textimg">PEER COMPARE</p></a>
+
+        <a href="exchange_rate.html" class="animated zoomIn" style="display: inline-block; text-align: center; "><img src="img/df.png" class="imgcompany" style="width: 76px;">
+        <p class="textimg">EXCHANGE RATE</p>
+        </a> 
+        </div>
+        </div>
+      <!--   <div style="text-align: center; font-size:21px; color:#FC0509; margin-top: 50px;"><blink><b>UNDER CONSTRUCTION !!!</b></blink></div> -->
+	<div class="spacer"></div>
+      </div>
+    </div>
+	
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".regular").slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:false
+      });
+      $(".center").slick({
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:false
+      });
+      $(".variable").slick({
+        dots: true,
+        infinite: true,
+        variableWidth: true,
+        arrows:false,
+      });
+      $('.single-item').slick(
+        {
+            arrows: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+        });
+      $('.bottom-item').slick(
+        {
+            arrows: true,
+            autoplay: true,
+            autoplaySpeed: 3000
+        });
+
+    });
+  </script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

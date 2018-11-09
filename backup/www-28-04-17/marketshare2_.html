@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/JsNumberFormat.js"></script>
+<script src="js/Session.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script src="js/loader.js"></script>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/highcharts_working.js"></script>
+<!-- <script type="text/javascript" src="js/exporting.js"></script> -->
+   <script type="text/javascript" src="js/loader.js"></script>
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script type="text/javascript" charset="utf-8">
+            function exitApps(){
+                navigator.app.exitApp();
+            }
+        </script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<title>Market Share</title>
+<script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+
+ // $(document).on('click', '.text-medium', function(e){
+ //  e.preventDefault();
+ //  var r = $(this).attr('id');
+ //  window.location.href = 'marketshare_detail.html?i='+r;
+ // })
+
+// $.ajax({
+//   url: url_src+'/MarketShareRKAP.php',
+//   type: 'GET',
+//   success: function(data){
+//     var a = jQuery.parseJSON(data);
+//     var hit = Object.keys(a).length;
+//     console.log(hit);
+//   }
+// })
+
+$('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2009;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                $('.selyear').html(opt_year);
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= bulanSekarang){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })  
+                $('.selmonth').html(opt_month);
+  
+ $.ajax({
+  url: url_src+'/MSNasional.php?bulan=9&tahun=2016',
+  //url: 'http://localhost/www/MSNasional.json'
+  type : 'GET',
+  success: function(data){
+    var a = jQuery.parseJSON(data);
+    //var a = data;
+    var logdata = a['ms_nasional'];
+    var nama = [];
+    var qty_bulan = [];
+    var qty_blan = [];
+    var ms_bulan = [];
+    var namapt = [];
+    var ms_bulanpt = [];
+   
+          var count = Object.keys(logdata).length;
+    //       //console.log(count);
+         for(var x = 1;x<=count; x++){
+            if(x<10){
+              var y = '0'+ x;
+            }else{
+              y = x;
+            }
+        
+       }
+    
+ var datanya = [];
+ var isi1;
+ var isi2;
+ var total_qty;
+ var total_gwth;
+ var data1= [];
+ var data2= [];
+ for(var y in logdata){
+  //console.log(logdata[y].nama_perusahaan);
+namapt = (logdata[y].nama_perusahaan);
+  //qty_blan = parseFloat(logdata[y].qty_bln);
+  qty_bulan = FormatNumberBy3(parseFloat(logdata[y].qty_bln).toFixed(2).replace(".",","), ",",".");
+  gwth = FormatNumberBy3(parseFloat(logdata[y].growth_mom).toFixed(2).replace(".",","), ",",".");
+  ms_bulanpt = (logdata[y].ms_bln);
+  if (namapt == 'SEMEN GRESIK' || namapt == 'SEMEN PADANG' || namapt == 'SEMEN TONASA'){
+    total_qty = parseFloat(logdata[y].qty_bln);
+    console.log(total_qty);
+     isi1 += '<tr class="text-medium" id='+ namapt +'><td align="left">'+ namapt +' </td><td align="right">'+ qty_bulan + '</td><td align="right">'+ gwth + ' %</td></tr>';
+  }else{
+     isi2 += '<tr class="text-small"><td align="left">' + namapt + '</td><td align="right">'+ qty_bulan + '</td><td align="right">'+ gwth + ' %</td></tr>';
+    }
+    var isi3 = isi1+isi2;
+  if (namapt == 'SEMEN GRESIK' || namapt == 'SEMEN PADANG' || namapt == 'SEMEN TONASA'){ 
+    //data1 += ({name:namapt,y:parseFloat(logdata[y].ms_bln),color : '#F51111',sliced: true});             
+    data1.push({name:namapt,y:parseFloat(logdata[y].ms_bln),color : '#FF615D',sliced: true, 
+      dataLabels: {
+                    enabled: true,
+                    format: '{point.name}<br><b>{point.percentage:.1f}%</b>',
+                    color:'black'
+                  }});
+  }else{
+    //data2 += ({name:namapt,y:parseFloat(logdata[y].ms_bln)});
+   data2.push({name:namapt,y:parseFloat(logdata[y].ms_bln)});
+ }
+               }
+               datanya = data1.concat(data2);
+        $('#isidetail').html(isi3);
+	 Highcharts.setOptions({
+        colors: ['#F5AE7F', '#F5D07F', '#F5F57F', '#D4F57F', '#7FF5A5', '#7FF5ED', '#7FC0F5', '#857FF5', '#CE7FF5', '#F57FB4']
+    });          
+  
+        $('#container').highcharts({
+          
+            chart: {
+                //plotBackgroundColor: null,
+                //plotBorderWidth: null,
+                //plotShadow: false,
+                type: 'pie',
+                margin : [0, 0, 0, 0],
+                //marginTop : 10
+            },
+            credits: {
+            enabled: false
+        },
+            title: {
+                text: 'Market Shares',
+                style: {
+                            fontSize: '12px'
+                        }
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+			distance : 10
+                    },
+                    showInLegend: false
+                }
+            },
+        series: [{
+            //name: 'Marketshare',
+            data: datanya
+        }]
+        });
+    } 
+ })  
+    }
+
+    var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();[ ]
+        </script>
+<style type="text/css">
+<!--
+.bg-white {
+    background-color: #FFFFFF;
+}
+.style1 {
+    font-size: 12px;
+    color: #333333;
+}
+.text-medium  {font:normal 12px;color:#000; font-weight: bold; background-color: #F78FA1}
+.text-small {font-size: 10px;font-weight: normal}
+.table {
+  background-color: #EEEEEE;
+}
+-->
+</style>
+</head>
+<body onLoad="onLoad()" style="font-family: Segoe UI;">
+<div class="app">
+<div id="deviceready">
+  <nav id="sideMenu">
+    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+  </nav>
+  <div id="content" class="animated" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+    <div class="wrapper">
+      <h2 class="titular" style="height: 37px;line-height: 39px;font-size: small;">MARKETSHARE</h2>
+      <div class="headsixbg "style="width:100%;padding:10px; text-align: center;">
+       <img src ="img/teks semen indo.png" width="50%" height="15%"/>
+        <!-- <div style="display:inline-block;width:45%;text-align:center;"><i class="fa fa-certificate" aria-hidden="true"></i> Portofolio</div>
+        <div style="display:inline-block;width:45%;float:right;text-align:center;"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>-->
+          
+       <div style="width: 100%;margin-top: 15px;display:inline-block;text-align: center;">
+       Month : <select id="month" class="selmonth" rel="vol"></select>
+       Year : <select id="year" class="selyear" rel="vol"></select>
+       </div></div>
+        <div id="container" style="width: 100%;height: 300px; margin: 0 center; display:inline-block;"></div>    
+       
+      <!-- DETAIL MARKET SHARE TABEL -->
+      <div class="headsixbg" style="width:100%;padding:10px;">
+       <table class="table table-bordered headsixbg" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 12px; text-align: center;">
+       <thead style="background-color: #EB1717; color: #FFF">
+       <tr>
+       
+       <th width="35%"><b><center>Company</center></b></th>
+       <!-- <th width="20%"><b><center>Target RKAP (%)</center></b></th> -->
+       <th width="23%"><b><center>Qty</center></b></th>
+       <th width="22%"><b><center>Gwth (%)</center></b></th>
+       </tr></thead>
+       <tbody id="isidetail">
+       </tbody>
+       
+       </table>
+      </div>
+      <div class="spacer"></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!--       <script type="text/javascript" src="cordova.js"></script>-->
+<script type="text/javascript" src="js/index.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

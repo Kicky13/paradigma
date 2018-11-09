@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <script src="js/loader.js"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps(){
+                navigator.app.exitApp();
+            }
+        </script>
+        <title>Home</title>
+    </head>
+    <body onload="onLoad()">
+        <div class="app">
+            <div id="deviceready">
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen">
+                            <span>toggle menu</span>
+                        </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a>
+                        <a class="logo" href="index.html"><img src="img/logo.png"></a>
+                    </header>
+                    <div class="wrapper">                    
+                        <div class="thumbLink2">
+                            <a href="smsmig2.html">Sales Reporting</a>
+                        </div> 
+                       
+                        <div class="thumbLink4">
+                            <a href="marketshare.html">Market Share</a>
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--       <script type="text/javascript" src="js/cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/slick.min.js"></script>
+        <script>
+            $.ajax({
+              url: url_src+'/GenerateJsonTotalHours.php',
+                type:'GET',
+                  success: function(data) {
+                    var data1 = data.replace("<title>Json</title>", "");
+                    var data2 = data1.replace("(", "[");
+                    var data3 = data2.replace(");", "]");
+                    var dataJson = JSON.parse(data3);
+
+                    $("#s1t1").html(dataJson['3351'].rundays);
+                    $("#s1t2").html(dataJson['2506'].rundays);
+                    $("#s1t3").html(dataJson['5220'].rundays);
+                    $("#s1t4").html(dataJson['14390'].rundays);
+
+                    $("#s2t1").html(dataJson['666'].rundays);
+                    $("#s2t2").html(dataJson['697'].rundays);
+                    $("#s2t3").html(dataJson['993'].rundays);
+                    $("#s2t4").html(dataJson['14638'].rundays);
+
+                    $("#s4t11").html(dataJson['1141'].rundays);
+                    $("#s4t12").html(dataJson['1225'].rundays);
+                    $("#s4t21").html(dataJson['4691'].rundays);
+                    $("#s4t22").html(dataJson['6798'].rundays);
+
+                    $("#s4t31").html(dataJson['3543'].rundays);
+                    $("#s4t32").html(dataJson['3977'].rundays);
+                    $("#s4t41").html(dataJson['15780'].rundays);
+                    $("#s4t42").html(dataJson['15788'].rundays);
+
+                  }
+                }).done(function(data){
+                }).fail(function(){
+
+                });
+
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function(e){
+                    if($(this).hasClass("is-active")){
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    }else{
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('#slides').slick({
+                    dots: true,
+                    arrows: false,
+                    autoplay:true,
+                    autoplaySpeed:8000,
+                    pauseOnHover:true
+                 });
+
+            }
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+
+</html>

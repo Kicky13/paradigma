@@ -1,0 +1,323 @@
+<head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/fixedHeader.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/responsive.bootstrap.min.css">
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/config.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="js/index.js"></script>
+    
+        <script src="js/loader.js"></script>
+        <script src="js/paradigma.js"></script>
+        
+        <script type="text/javascript" src="js/moment.min.js"></script>
+
+        <script src="js/phase2/global.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+    </script>
+    <title>Finance</title>
+    <script>
+
+        function numberFormat(x) {
+            return parseFloat(x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        function onLoad() {
+                
+            var today = dd+'/'+mm+'/'+yyyy;
+            $('.last-update').html('Last Update : '+today);
+            var yearnow = tahun;
+            
+            var due = location.hash.replace('#','').split("-");
+            var dataPiutang = JSON.parse(localStorage.getItem('dataPiutang'));
+
+            var opco = due[0];
+            if (opco == 1000) {
+                $('#tab-si').removeClass('img_foot2');
+                $('#head_log').text('');
+                $('.imgsi').css({"width":"220px"})
+            }else if (opco==7000) {
+                $('#head_log').text('SEMEN INDONESIA');
+            }else if (opco==5000) {
+                $('#head_log').text('SEMEN GRESIK');
+            }else if (opco==3000) {
+                $('#head_log').text('SEMEN PADANG');
+            }else if (opco==4000) {
+                $('#head_log').text('SEMEN TONASA');
+            }else if (opco==6000) {
+                $('#head_log').text('THANG LONG');
+            }else{
+            }
+
+            var table = $('#table_piutang').DataTable({
+                "language": {
+                  "emptyTable": "No data available"
+                },
+                aaSorting: [[2, 'dsc']],
+                "columnDefs": [
+                    { "width": "10%", "targets": 0,"orderable": false},
+                    { "width": "55%", "targets": 1,"orderable": false},
+                    { type: 'num-fmt', "width": "35%", "targets": 2,"orderable": true}
+                ],
+                "fixedColumns": false,
+                "scrollCollapse": true,
+                "searching":true,
+                "bLengthChange": false,
+                "info": false,
+                "paging":false
+            } );
+
+            table.clear();
+            $('#table_piutang tbody').html('<tr><td colspan="3"></td></tr>');
+
+            var piutangRow = dataPiutang.due["DTLDUE"+due[1]];
+            for(var i=0;i<piutangRow.length;i++){
+                table.row.add([piutangRow[i].Kode, piutangRow[i].Nama, piutangRow[i].Piutang]).draw();
+            }
+            table.columns.adjust().draw();
+
+            $("#table_piutang_filter").append('<div class="title_due" style="position:absolute;left:16px;top:5px;font-size:18px;color:#ff3742;">'+due[1]+' Days</div>');
+
+            $(".se-pre-con").fadeOut("slow");
+            $( ".head-menu" ).scrollLeft(140);
+        }
+
+    </script>
+    <style type="text/css">
+
+        .style1 {
+            font-size: 12px;
+            color: #333333;
+        }
+
+        .inex {
+            font-size: 20px;
+            font-family: "Open Sans";
+            color: #000000;
+            margin-bottom: 0px;
+        }
+
+        .inex_down {
+            font-family: "Open Sans";
+            color: #000000;
+            margin-bottom:5px;
+        }
+        .inex_down h6{
+            font-size:10px;
+            margin:0;
+            color:#999999;
+        }
+
+        .h_costom {
+            color: #ffffff;
+        }
+
+        .h_down {
+            font-family: "Open Sans";
+
+            color: #797979;
+            font-size: 12px;
+        }
+
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .detail {
+            position: absolute;
+            text-align: right;
+            color: darkgrey;
+            font-size: 15px;
+            padding-left: 330px;
+        }
+
+        .top-panel{
+            padding:0 10px;
+            width: 100%;
+        }
+        .top-panel h1, .top-panel span, .bottom-panel h1, .bottom-panel span{
+            color:#848282;
+        }
+        .top-panel h1{
+            color:#df0023;
+            font-size: 16px;
+            margin-top:3px;
+            font-weight: bold;
+        }
+        .bottom-panel{
+            margin-top: 10px;
+            padding:0 10px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        .bottom-panel > .col-xs-12{
+            overflow: hidden;
+            border:1px solid #cecece;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+        .htittle{
+            background: #e54b37;
+            margin: 0;
+            padding:8px 0;
+            -webkit-border-radius: 10px 10px 0px 0px;
+            -moz-border-radius: 10px 10px 0px 0px;
+            border-radius: 10px 10px 0px 0px;
+        }
+        .htittle div{
+            color:#fff;
+            font-size: 10px;
+        }
+        .company{
+            padding:5px 0;
+        }
+        .company div:first-child{
+            line-height: 17px;
+        }
+        .company div:last-child{
+            color:#e54b37;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .company:nth-child(2n+1){
+            background: #eaeaea;
+        }
+        div.dataTables_filter{
+            text-align: right !important;
+        }
+        #table_piutang th:first-child:after{display: none;}
+        #table_piutang td:nth-child(2){text-align: left !important;}
+        #table_piutang td:nth-child(3){text-align: center !important;}
+    </style>
+</head>
+<body onload="onLoad()" style="font-family: &quot;Open Sans&quot;;">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop" class="sn-backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav" style="opacity: 0">
+        </div>
+        <div id="content" style="background:#f5f5f5;" class="sn-content">
+            <header id="header">
+                <button class="burger-menu burger-menu-x backtoparent" id="menu-toggle"><span>toggle menu</span></button>
+                <b class="logopis">Accounts Receivable</b> 
+                <a class="logo" href="index.html"><img src="img/logo.png"></a>
+            </header>
+            <div class="wrapper">
+                <div class=" headsix add_fix cubesRun2" style="margin-bottom: 116px; min-height: 919px;">
+                    <div align="center">
+                        <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                        <p class="prodtittle" id="head_log" style="font-weight: 600;font-size: 23px;display: inline-block;float: none;margin-bottom: 0px;">Loading..</p>
+                    </div>
+                    <div align="center" style="margin-top: 5px; color:#5d5d5d;  margin-bottom:5px;">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <span class="upercent" id="last_update">
+                            <script type="text/javascript">
+                                document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));
+                            </script>
+                        </span>
+                    </div>
+                    <div class="col-xs-12 bottom-panel" style="overflow-x: scroll;">
+                        <table id="table_piutang" class="table table-striped table-bordered" style="width:100%; overflow-x: none; margin-top: 12px; font-size: 12px">
+                            <thead>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>Total Piutang</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- <footer>
+                    <div class="regular2">
+                        <div id="tab-si" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click"  rel="data-sp" align="center" style="margin-top: 7px;">
+                            <a href="treasury_ar.html#1000" rel="data-sp" >
+                                <img src="img/cement/smig.png" style="width:48%;" />
+                            </a>
+                        </div>
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click"  rel="data-sp" align="center" style="margin-top: 7px;">
+                            <a href="treasury_ar.html#3000" rel="data-sp" >
+                                <img src="img/cement/sp.png" style="width:48%;" />
+                            </a>
+                        </div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click"  rel="data-sg" align="center" style="margin-top: 7px;">
+                            <a href="treasury_ar.html#5000" rel="data-sg" >
+                                <img src="img/cement/sg.png"  style="width:48%;" />
+                            </a>
+                        </div>
+                        <div id="tab-sm" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click"  rel="data-sm" align="center" style="margin-top: 7px;">
+                            <a href="treasury_ar.html#7000" rel="data-sm" >
+                                <img src="img/cement/si.png" style="width:48%;" />
+                            </a>
+                        </div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click" rel="data-st" align="center" style="margin-top: 7px;">
+                            <a href="treasury_ar.html#4000" rel="data-st" >
+                                <img src="img/cement/st.png" style="width:48%;"/>
+                            </a>
+                        </div>
+                    </div>
+                </footer> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).on('ready', function () {
+        $(".regular2").slick({ 
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            arrows:false,
+            centerMode: false
+        }); 
+    });
+</script>
+</html>

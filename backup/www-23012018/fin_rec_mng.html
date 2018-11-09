@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/waitMe.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/accounting.min.js"></script>
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script src="js/loader.js"></script>
+    <script src="js/paradigma.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- <script src="js/cost_mv.js"></script> -->
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <!--   <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+    <script type="text/javascript" charset="utf-8">
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+        $(function () {
+            $('.regular').html(add_footer('fin_rec_mng'));
+        })
+        function onLoad() {
+            var session = getParamFull();
+            ////=========================
+            if (sessionStorage.getItem('_com') != 'ALL') {
+                $.each(listTab, function (index, el) {
+                    $('#tab-' + el + ' a').removeAttr('href');
+                    $('#tab-' + el + ' a').removeAttr('rel');
+                })
+            }
+            ////=========================
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var pengurang = 2;
+            //var bulan = month[d.getMonth()-pengurang];
+            //var bulanSekarang = (d.getMonth()+1)-pengurang;
+            var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+            var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+            var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+
+            // var labelArray = [];
+            // var prevMonth = paradigma.date('prev', 'month', 'YYYY-MM');
+            // console.log(prevMonth);
+            // console.log( moment(prevMonth).format('MM'));
+
+            // var bulanSekarang = moment(prevMonth).format('MM')-1;
+            // var bulanNow = moment().format('MM');
+            // var tahun = moment(prevMonth).format('YYYY');
+
+            var dd = d.getDate();
+            var mm = d.getMonth() + 1; //January is 0!
+            var yyyy = d.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            var today = dd + '/' + mm + '/' + yyyy;
+            $('.last-update').html('Last Update : ' + today);
+            setParam('smi', bulanSekarang, tahun);
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
+                }
+            });
+            $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                window.location.href = 'raw_material_detail.html?i=' + r;
+            })
+            $('a[href="#tab-bs"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'asset') {
+                    $('#asset').removeClass('hidden');
+                    $('#liability').addClass('hidden');
+                    $('#equity').addClass('hidden');
+
+                } else if (r == 'liability') {
+                    $('#liability').removeClass('hidden');
+                    $('#asset').addClass('hidden');
+                    $('#equity').addClass('hidden');
+
+                } else if (r === 'equity') {
+                    $('#equity').removeClass('hidden');
+                    $('#liability').addClass('hidden');
+                    $('#asset').addClass('hidden');
+                }
+            });
+
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'page1') {
+                    $('#page1').removeClass('hidden');
+                    $('#page2').addClass('hidden');
+                    $('#tab-page1').addClass('act_tb');
+                    $('#tab-page2').removeClass('act_tb');
+
+                } else if (r == 'page2') {
+                    $('#page1').addClass('hidden');
+                    $('#page2').removeClass('hidden');
+                    $('#tab-page1').removeClass('act_tb');
+                    $('#tab-page2').addClass('act_tb');
+
+                }
+            });
+
+
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'data-sp') {
+                    $('#tab-sp').removeClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                    window.location.href = 'fin_rec_mng_sp.html';
+                } else if (r == 'data-sg') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').removeClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                    window.location.href = 'fin_rec_mng_sg.html';
+                } else if (r == 'data-st') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').removeClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                    window.location.href = 'fin_rec_mng_st.html';
+                } else if (r == 'data-tl') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').removeClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                    window.location.href = 'fin_rec_mng_tl.html';
+                } else if (r == 'data-sm') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').removeClass('img_foot2');
+                    window.location.href = 'fin_rec_mng.html';
+                }
+            })
+            $(document).on('click', '.gauge', function (e) {
+                e.preventDefault();
+                var r = $(this).attr('target');
+                window.location.href = 'backlog_detail.html?i=' + r;
+            })
+
+            $('.selmonth').empty();
+            var opt_month;
+            $.each(month, function (key, val) {
+                if (key + 1 <= bulanSekarang + 1) {
+                    if ((key + 1) < 10) {
+                        var v = '0' + (key + 1);
+                    } else {
+                        var v = key + 1;
+                    }
+                    if ((key + 1) == bulanSekarang) {
+                        opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                    } else {
+                        opt_month += '<option value="' + v + '">' + val + '</option>';
+                    }
+                }
+
+            })
+            $('.selmonth').html(opt_month);
+
+            var opco = 'smi';
+            var yearnow = tahun;
+            run_waitMe('#mbilan_up', 'ios');
+            load_data_rfcm(opco, bulanSekarang, yearnow);
+            //cost_data(bulanSekarang, opco, yearnow);
+            // opcoGroup(yearnow, bulanSekarang);
+            $('.selmonth').change(function () {
+                bulanSekarang = $(this).val();
+                tahun = $('.selyear').val();
+                setParam('smi', bulanSekarang, tahun);
+                var yearnow = tahun;
+                console.log(bulanSekarang + "------")
+                // opcoGroup(yearnow, bulanSekarang);
+                //cost_data(bulanSekarang, opco, yearnow);
+                load_data_rfcm(opco, bulanSekarang, yearnow);
+
+            })
+            var opt_year;
+            for (var thn = 2016; thn <= yyyy; thn++) {
+                if (thn == yyyy) {
+                    opt_year += '<option value="' + thn + '" selected="selected">' + thn + '</option>';
+                } else {
+                    opt_year += '<option value="' + thn + '">' + thn + '</option>';
+                }
+            }
+            $('.selyear').html(opt_year);
+            $('.selyear').change(function () {
+                bulanSekarang = $('.selmonth').val();
+                tahun = $(this).val();
+                setParam('smi', bulanSekarang, tahun);
+                var yearnow = tahun;
+                // alert(yearnow);
+                // opcoGroup(yearnow, bulanSekarang);
+                load_data_rfcm(opco, bulanSekarang, yearnow);
+                //cost_data(bulanSekarang, opco, yearnow);
+            })
+
+            $(".head-menu").scrollLeft(600);
+        }
+
+    </script>
+    <script>
+
+        $(function () {
+
+        })
+    </script>
+    <style>
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .tab_syle {
+            color: #666666;
+            font-size: 12px;
+            border: none;
+            /* padding-left: 8px; */
+            margin-left: 3px;
+        }
+
+        .font-category {
+            font-size: 12px;
+        }
+
+        .overflowing {
+            /*width: 30em;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+        }
+
+        .collapse.in {
+            display: block;
+        }
+
+        tr.collapse.in {
+            display: table-row;
+        }
+
+        .num {
+            text-align: right;
+        }
+
+        .inex {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .titl {
+            background-color: #e54b37;
+            padding: 9px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+            font-size: 12px;
+            margin-bottom: 0px;
+            border-radius: 3px 3px 0px 0px;
+
+        }
+
+        .boxf {
+            /* background-color: #e54b37; */
+            padding: 0px;
+            margin-bottom: 3px;
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            /* margin: auto; */
+            min-height: 209px;
+            /* border-radius: 8px; */
+            /* margin-right: 1px; */
+            border: 1px solid rgb(197, 197, 197, 0.7);
+            /*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+            -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+            box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+            border-right: 1px solid #b6b6b6;*/
+        }
+
+        .bagan:hover, .bagan:visited {
+            opacity: 0.6;
+        }
+
+        .titab {
+            font-weight: 500;
+            color: white;
+            display: inline-block;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .lyear {
+            color: black;
+            font-size: 16px;
+            padding-left: 10px;
+            border-left: 3px solid #e54b37;
+        }
+
+        .ryear {
+            color: black;
+            font-size: 16px;
+            padding-right: 10px;
+            border-right: 3px solid #e54b37;
+        }
+
+        .jud {
+            color: #000000;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 13px;
+            display: inline-block;
+        }
+
+        /*.til{
+            padding-bottom: 1px;
+        border-bottom: 1px solid #b6b6b6;
+        background-color: ghostwhite;
+        }*/
+        .label-success {
+            background-color: #5cb85c;
+            border: 1.5px solid white;
+        }
+
+        .label-danger {
+            background-color: #d9534f;
+            border: 1.5px solid white;
+        }
+
+        .subox {
+            height: 137px;
+            border-bottom: 3px solid #e54b37;
+        }
+
+        .subox2 {
+            height: 137px;
+            border-bottom: 3px solid #626262;
+        }
+
+        .hijau {
+            color: #669966;
+        }
+
+        .merah {
+            color: #DC0033;
+        }
+
+        .float_bgg {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            padding: 4px 12px;;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #e54b37;
+            border-radius: 0px 0px 6px 6px;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+
+        .htittle {
+            margin: 0px;
+            border-radius: 6px 6px 0px 0px;
+            background-color: #e54b37;
+            height: 27px;
+            text-align: left;
+            font-size: 14px;
+            padding: 5px 0px 4px 9px;
+        }
+
+        .te {
+            background: #EB1717;
+            height: 37px;
+            line-height: 39px;
+            font-size: small;
+            background: rgba(245, 81, 81, 1);
+            background: -moz-linear-gradient(top, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 81, 81, 1)), color-stop(46%, rgba(245, 81, 81, 1)), color-stop(57%, rgba(229, 75, 55, 1)), color-stop(100%, rgba(229, 75, 55, 1)));
+            background: -webkit-linear-gradient(top, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            background: -o-linear-gradient(top, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            background: linear-gradient(to bottom, rgba(245, 81, 81, 1) 0%, rgba(245, 81, 81, 1) 46%, rgba(229, 75, 55, 1) 57%, rgba(229, 75, 55, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f55151', endColorstr='#e54b37', GradientType=0);
+        }
+
+        .min_zero {
+            min-height: 0px;
+        }
+
+        .no-text-style, .no-text-style:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .bold_op {
+            font-weight: 600;
+        }
+
+        footer .col-ft-3 {
+            width: 16.8%;
+        }
+
+        footer #tab-smi img {
+            width: 37% !important;
+        }
+    </style>
+    <script src="js/modernizr.js"></script>
+    <script>
+        //paste this code under head tag or in a seperate js file.
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");
+
+
+        });
+    </script>
+    <title>Recieveble Mng</title>
+</head>
+<body onLoad="onLoad()">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                    <li><a>PLANT OPERATION</a></li>
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <nav id="sideMenu">
+            <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="sales_dashboard.html"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                <li><a href="stok_bahan.html"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+            </ul>
+        </nav>
+        <div id="content" style="background:#f5f5f5;">
+            <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle"><span>toggle menu</span></button>
+                <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo"
+                                                                                        href="index.html"><img
+                    src="img/logo.png"></a>
+            </header>
+            <div class="wrapper">
+                <h2 class="titular te" style=" ">
+                    <a href="portal_finance.html" class="pull-left" style="margin-left:10px;"><i
+                            class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+
+                    RECEIVABLES MANAGEMENT</h2>
+                <div class="head-menu">
+                    <ul>
+                        <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')">PRODUCTION</a></li>
+                        <li><a onclick="goto_opco('p2_fin_sales_smi', 'p2_fin_sales_smi')">SALES</a></li>
+                        <li><a onclick="goto_opco('p2_mbalance_daily_st', 'p2_mbalance_daily_st')">MATERIAL BALANCE</a></li>
+                        <li style="display:none"><a onclick="goto_opco('p2_cost_sheet', 'p2_cost_sheet')">COST SHEET</a></li>
+                        <li><a onclick="goto_opco('fin_cost_str_st','fin_cost_str_st')">COST STRUCTURE</a></li>
+                        <li><a onclick="goto_opco('finance_perform_dash','finance_perform_dash')">CORP. PERFORMANCE</a>
+                        </li>
+                        <li><a onclick="goto_opco('balance_semen', 'balance_semen')">BALANCE SHEET</a></li>
+                        <li><a class="active">RECEVABLE MNGT</a></li>
+                    </ul>
+                </div>
+                <div class="spacer-menu"></div>
+
+                <!-- <div class="col-xs-12" style="background-color: white;">
+                <div class="col-xs-12 bg_rds">
+                <div id="tab-page1" class="col-xs-6 center zero_padd left_tb act_tb ">
+                    <a href="#tab-click" rel="page1" class="no-text-style"><img src="img/pack.png" width="18px">
+                        <span class="tx_tab">&nbsp;&nbsp;Cost Structure</span></a></div>
+                        <div id="tab-page2" class="col-xs-6 center zero_padd left_tb ">
+                            <a href="#tab-click" rel="page2" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                <span class="tx_tab">&nbsp;&nbsp;Plant Compare</span></a></div>
+                                </div></div> -->
+
+
+                <div class="headsix add_fix cubesRun2" style="margin-bottom: 116px; min-height: 919px; margin-top: 0px;">
+                    <img src="img/teks semen indo.png" class="imgsi"
+                         style="margin-top: 26px;padding-bottom: 7px; margin-bottom: 2px;">
+
+
+                    <div id="page1" class="active">
+                        <center>
+                            Bulan: <select id="month" class="selmonth" rel="vol"></select> <select id="year"
+                                                                                                   class="selyear"></select>
+                        </center>
+                        <center>
+
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                        </center>
+
+                        <!--<div align="center">
+                            <p style="font-size: 23px; text-align:center; color:black; margin-top: 15px; margin-bottom:0px; ">&nbsp;EBITDA
+                            </p>
+                            <span style="color:black">in IDR Bio</span>
+                        </div>-->
+                        <div style="margin-top:14px"></div>
+                        <div class="col-xs-3" align="left" style="margin-top: 11px;">
+                            <!-- <span class="lyear">2016</span> --></div>
+                        <div class="col-xs-6" align="center" style="margin-bottom: 11px;"> <!-- <p style="font-size: 23px; text-align:center; color:black; margin-top: 0px; margin-bottom:0px; ">&nbsp;CASH
+                                                </p> -->
+                            <span style="color:black">In IDR Bio</span></div>
+                        <div class="col-xs-3" align="right" style="margin-top: 11px;">
+                            <!-- <span class="ryear">2015</span> --></div>
+                        <div align="center" style="margin-bottom: 10px; margin-top:10px;">
+
+                            <a href="#" rel="asset" class="bagan">
+                                <div class="col-xs-6 boxf noPadding min_zero">
+
+                                    <div class="col-xs-12" style="padding: 2px;">
+                                        <h4 class="htittle"><span id="bulan_ini_a">-</span></h4>
+                                        <div class="float_bgg" style="border: none;">
+
+                                            <div align="center " style="margin-bottom:12px;">
+
+                                                <div class="col-xs-12 " align="center">
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">TOTAL</span><br>
+                                                    <span style="color:black;" id="total_utang">0</span><br>
+
+
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Penyisihan Piutang</span><br>
+                                                    <span style="color:black;" id="sisip_utang">0</span><br>
+
+
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Piutang Bersih</span><br>
+                                                    <span style="color:black;" id="utang_bersih">0</span><br>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- ########### Cement Up to ############-->
+
+                            <a href="#" rel="asset" class="bagan">
+                                <div class="col-xs-6 boxf noPadding min_zero">
+
+                                    <div class="col-xs-12" style="padding: 2px;">
+                                        <h4 class="htittle"
+                                            style="background-color: #e54b37; text-align: right;    padding: 5px 9px 4px 9px;"
+                                            id="bulan_lalu_a">-</h4>
+                                        <div class="float_bgg" style="border: none;">
+
+                                            <div align="center " style="margin-bottom:12px;">
+
+                                                <div class="col-xs-12 " align="center">
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="right">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">TOTAL</span><br>
+                                                    <span style="color:black;" id="total_utang_up">0</span><br>
+
+
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="right">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Penyisihan Piutang</span><br>
+                                                    <span style="color:black;" id="sisip_utang_up">0</span><br>
+
+
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="right">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Piutang Bersih</span><br>
+                                                    <span style="color:black;" id="utang_bersih_up">0</span><br>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="col-xs-12">
+                                <h3 style="border-bottom: 2px solid #e54b37;margin: 0px;"></h3></div>
+                            <!-- ####################################################################### -->
+                            <a href="#" rel="asset" class="bagan">
+                                <div class="col-xs-6 boxf noPadding min_zero">
+
+                                    <div class="col-xs-12" style="padding: 2px;">
+                                        <div class="float_bgg" style="border: none;">
+
+                                            <div align="center " style="margin-bottom:12px;">
+
+                                                <div class="col-xs-12 " align="center">
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Rasio Piutang thd Penjualan (%)</span><br>
+                                                    <span style="color:black;" id="r_utang">0</span><br>
+
+
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Penjualan sd. bulan jalan</span><br>
+                                                    <span style="color:black;" id="p_jln">0</span><br>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- #######################################################################  -->
+                            <a href="#" rel="asset" class="bagan">
+                                <div class="col-xs-6 boxf noPadding min_zero">
+
+                                    <div class="col-xs-12" style="padding: 2px;">
+                                        <div class="float_bgg" style="border: none;">
+
+                                            <div align="center " style="margin-bottom:12px;">
+
+                                                <div class="col-xs-12 " align="center">
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="right">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Rasio Piutang thd Penjualan (%)</span><br>
+                                                    <span style="color:black;" id="r_utang_up">0</span><br>
+
+
+                                                </div>
+                                                <div class="col-xs-12 noPadding" align="right">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Penjualan sd. bulan jalan</span><br>
+                                                    <span style="color:black;" id="p_jln_up">0</span><br>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <!--  <h2>Small Modal</h2>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">exe</button> -->
+
+
+                            <!-- last years -->
+
+                            <!-- ########### Cement ############-->
+
+
+                            <!-- ########### Cement Up to ############-->
+
+                            <div align="center" style="    margin-top: -11px;display: inline-block;">
+
+                                <span style="color:black"></span>
+                            </div>
+                            <!-- JUDUL -->
+                            <div class="col-xs-12" align="center" style="margin-bottom: 3px;"><span class="lyear"
+                                                                                                    style="border: none;">Umur & Prosentase Piutang</span>
+                                <br><span style="font:normal 11px tahoma;color:#000;">(In IDR Bio & %)</span></div>
+                            <a href="#" rel="asset" class="bagan">
+                                <div class="col-xs-6 boxf noPadding">
+
+                                    <div class="col-xs-12" style="padding: 2px;">
+                                        <h4 class="htittle"><span id="bulan_ini_b">-</span><i
+                                                class="fa fa-window-maximize" aria-hidden="true"
+                                                style="float:right;padding-right: 12px;"></i></h4>
+                                        <div class="float_bgg">
+
+                                            <div align="center " style="margin-bottom:12px;">
+
+                                                <div class="col-xs-12 " align="center">
+                                                </div>
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Belum jatuh tempo</span><br>
+                                                    <span class="paging" id="Blm_Jth_Tmp_Ini">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">1 - 30</span><br>
+                                                    <span class="paging" id="St_Tgplh">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">31 - 60</span><br>
+                                                    <span class="paging" id="Tgplh_Nmplh">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">61 - 120</span><br>
+                                                    <span class="paging" id="Nmplh_Strsdplh">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">121 - 360</span><br>
+                                                    <span class="paging" id="Strsdplh_ganampuluh">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">361 - 720</span><br>
+                                                    <span class="paging" id="Ganampuluh_Judaplh">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">721 - 999</span><br>
+                                                    <span class="paging" id="Judaplh_mbilan">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;"> > 999</span><br>
+                                                    <span class="paging" id="mbilan">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- ########### Cement Up to ############-->
+
+                            <a href="#" rel="asset" class="bagan">
+                                <div class="col-xs-6 boxf noPadding">
+
+                                    <div class="col-xs-12" style="padding: 2px;">
+                                        <h4 class="htittle"
+                                            style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">
+                                            <span id="bulan_lalu_b">-</span></h4>
+                                        <div class="float_bgg" style="border: 1px solid #797979;">
+
+                                            <div align="center " style="margin-bottom:12px;">
+
+                                                <div class="col-xs-12 " align="center">
+                                                </div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">Belum jatuh tempo</span><br>
+                                                    <span class="paging" id="Blm_Jth_Tmp_Ini_up">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico_gr" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">1 - 30</span><br>
+                                                    <span class="paging" id="St_Tgplh_up">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico_gr" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">31 - 60</span><br>
+                                                    <span class="paging" id="Tgplh_Nmplh_up">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico_gr" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">61 - 120</span><br>
+                                                    <span class="paging" id="Nmplh_Strsdplh_up">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico_gr" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">121 - 360</span><br>
+                                                    <span class="paging" id="Strsdplh_ganampuluh_up">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico_gr" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">361 - 720</span><br>
+                                                    <span class="paging" id="Ganampuluh_Judaplh_up">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico_gr" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;">721 - 999</span><br>
+                                                    <span class="paging" id="Judaplh_mbilan_up">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico_gr" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+                                                <div class="col-xs-9 noPadding" align="left">
+                                                    <span style="font-size: 12px; font-weight: 300; color:black;"> > 999</span><br>
+                                                    <span class="paging" id="mbilan_up">0 (0.0 %)</span>
+
+                                                </div>
+                                                <div class="col-xs-3 noPadding" align="right"><i
+                                                        class="fa fa-line-chart right grp_ico_gr" style="float: none;"
+                                                        aria-hidden="true"></i></div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- price -->
+
+                            <!-- COST -->
+
+
+                        </div> <!-- END OF DIV PAEge1 -->
+                        <div id="page2" class="hidden">
+                            <div id="container" style="width: 100%;margin: 0 auto;padding: 6px;">
+                                <table class="table table-striped"
+                                       style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                                    <thead>
+                                    <tr class="headtr">
+                                        <td><strong>Plant</strong></td>
+                                        <td valign="middle"><strong>Clinker</strong></td>
+                                        <td align="center" valign="middle"><strong>Cement</strong></td>
+                                        <td align="center" valign="middle"><strong>Sales Volume</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="issueTbody">
+                                    <tr>
+                                        <td class="bold_op">Semen Padang</td>
+                                        <td><span style="color: black;" id="clinker3000">0</span></td>
+                                        <td><span style="color: black;" id="cement3000">0</span></td>
+                                        <td><span style="color: black;" id="sales3000">0</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold_op">Semen Gresik</td>
+                                        <td><span style="color: black;" id="clinker7000">0</span></td>
+                                        <td><span style="color: black;" id="cement7000">0</span></td>
+                                        <td><span style="color: black;" id="sales7000">0</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold_op">Semen Tonasa</td>
+                                        <td><span style="color: black;" id="clinker4000">0</span></td>
+                                        <td><span style="color: black;" id="cement4000">0</span></td>
+                                        <td><span style="color: black;" id="sales4000">0</span></td>
+                                    </tr>
+                                    <!-- <tr>
+                                            <td>Thang Long</td>
+                                            <td><span id="clinker3000">0</span></td>
+                                        <td><span id="cement3000">0</span></td>
+                                        <td><span id="sales3000">0</span></td>
+                                    </tr> -->
+
+
+                                    </tbody>
+                                </table>
+                                <br>
+                            </div>
+                            <div class="col-xs-12" align="left" style="margin: 15px 0px 15px 0px;">
+                                <i class="fa fa-bar-chart" aria-hidden="true"
+                                   style="font-size: 16px;color: #e54b37;"></i>
+                                <span style="color: #666160; font-size: 16px"> &nbsp; Opco Comparation</span>
+                            </div>
+                            <div id="PlantCompare" style=" height: 300px; margin: 0 auto; width: 100% "></div>
+
+
+                        </div><!-- END OF DIV PAEge2 -->
+
+
+                        <br>
+                        <div align="left">
+                            <p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <footer>
+                    <div class="regular">
+
+
+                        <div id="tab-smi" class="col-xs-4 noPadding tab_uper col-ft-4" align="center"
+                             style="margin-top: 7px;"><a href="#tab-click" rel="data-sm"><img src="img/smi.png"
+                                                                                              style="width:43px;"/></a>
+                        </div>
+                        <div id="tab-sp" class="col-xs-2 noPadding tab_uper img_foot2" align="center"
+                             style="margin-top: 7px;"><a href="#tab-click" rel="data-sp"><img src="img/icKota2a.png"
+                                                                                              style="width:37px;"/></a>
+                        </div>
+                        <div id="tab-sg" class="col-xs-2 noPadding tab_uper img_foot2" align="center"
+                             style="margin-top: 7px;"><a href="#tab-click" rel="data-sg"><img src="img/icKota1a.png"
+                                                                                              style="width:39px;"/></a>
+                        </div>
+                        <div id="tab-st" class="col-xs-2 noPadding tab_uper img_foot2" align="center"
+                             style="margin-top: 7px;"><a href="#tab-click" rel="data-st"><img src="img/icKota3a.png"
+                                                                                              style="width:39px;"/></a>
+                        </div>
+                        <div id="tab-tl" class="col-xs-2 noPadding tab_uper img_foot2" align="center"
+                             style="margin-top: 7px;"><a href="#tab-click" rel="data-tl"><img src="img/icKota4a.png"
+                                                                                              style="width:39px;"/></a>
+                        </div>
+                        <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center"
+                             style="margin-top: 5px;"><a href="#tab-click" rel="data-kso"><img src="img/icKSO.png"
+                                                                                               style="width:78%;"/></a>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>This is a small modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function load_data_rfcm(company, bulan, tahun) {
+            $.ajax({
+                url: url_src + '/api/index.php/rfc_mng_smntr/get_datarfc?company=' + company + '&tahun=' + tahun + '&bulan=' + bulan,
+                type: 'GET',
+                success: function (data) {
+
+                    console.log(data);
+                    // console.log(JSON.parse(data));
+                    var rfcm = JSON.parse(data);
+                    console.log(rfcm['Bulan Ini']);
+                    console.log(rfcm['Bulan Ini']['Belum Jatuh Tempo']);
+
+                    console.log(bulan);
+
+                    var nbulan = new Array();
+                    nbulan[0] = "January";
+                    nbulan[1] = "February";
+                    nbulan[2] = "March";
+                    nbulan[3] = "April";
+                    nbulan[4] = "May";
+                    nbulan[5] = "June";
+                    nbulan[6] = "July";
+                    nbulan[7] = "August";
+                    nbulan[8] = "September";
+                    nbulan[9] = "October";
+                    nbulan[10] = "November";
+                    nbulan[11] = "December";
+
+                    var bul_ini = bulan - 1;
+                    if (bul_ini <= 0) {
+                        var bul_lalu = 11;
+                    } else {
+                        var bul_lalu = bulan - 2;
+                    }
+
+                    console.log(bul_ini);
+                    console.log(bul_lalu);
+
+                    $('#bulan_ini_a').html(nbulan[bul_ini]);
+                    $('#bulan_ini_b').html(nbulan[bul_ini]);
+                    $('#bulan_lalu_a').html(nbulan[bul_lalu]);
+                    $('#bulan_lalu_b').html(nbulan[bul_lalu]);
+
+                    console.log(nbulan[bulan - 2]);
+                    console.log(nbulan[bulan - 1]);
+
+                    var persenblmtempo = setFormat((rfcm['Bulan Ini']['Belum Jatuh Tempo'] / rfcm['Bulan Ini']['TOTAL']) * 100, 2);
+                    var persensttg = setFormat((rfcm['Bulan Ini']['Tempo 1 Sampai 30'] / rfcm['Bulan Ini']['TOTAL']) * 100, 1);
+                    var persentgnm = setFormat((rfcm['Bulan Ini']['Tempo 31 Sampai 60'] / rfcm['Bulan Ini']['TOTAL']) * 100, 1);
+                    var persennmdpl = setFormat((rfcm['Bulan Ini']['Tempo 61 Sampai 120'] / rfcm['Bulan Ini']['TOTAL']) * 100, 1);
+                    var persendplgnm = setFormat((rfcm['Bulan Ini']['Tempo 121 Sampai 360'] / rfcm['Bulan Ini']['TOTAL']) * 100, 1);
+                    var persengnmjud = setFormat((rfcm['Bulan Ini']['Tempo 361 Sampai 720'] / rfcm['Bulan Ini']['TOTAL']) * 100, 1);
+                    var persenjudmbi = setFormat((rfcm['Bulan Ini']['Tempo 721 Sampai 999'] / rfcm['Bulan Ini']['TOTAL']) * 100, 1);
+                    var persenmbilan = setFormat((rfcm['Bulan Ini']['Tempo Lebih 999'] / rfcm['Bulan Ini']['TOTAL']) * 100, 1);
+
+                    $('#total_utang').html(setFormat(rfcm['Bulan Ini']['TOTAL'], 2, ",", "."));
+                    $('#sisip_utang').html(setFormat(rfcm['Bulan Ini']['Penyisipan Piutang'], 2, ",", "."));
+                    $('#utang_bersih').html(setFormat(rfcm['Bulan Ini']['Piutang Bersih'], 2, ",", "."));
+                    $('#r_utang').html(setFormat(rfcm['Bulan Ini']['Rasio Piutang'], 2, ",", "."));
+                    $('#p_jln').html(setFormat(rfcm['Bulan Ini']['Penjualan Jalan'], 2, ",", "."));
+                    $('#Blm_Jth_Tmp_Ini').html(setFormat(rfcm['Bulan Ini']['Belum Jatuh Tempo'], 2, ",", ".") + ' (' + persenblmtempo + ' %)');
+                    $('#St_Tgplh').html(setFormat(rfcm['Bulan Ini']['Tempo 1 Sampai 30'], 2, ",", ".") + ' (' + persensttg + ' %)');
+                    $('#Tgplh_Nmplh').html(setFormat(rfcm['Bulan Ini']['Tempo 31 Sampai 60'], 2, ",", ".") + ' (' + persentgnm + ' %)');
+                    $('#Nmplh_Strsdplh').html(setFormat(rfcm['Bulan Ini']['Tempo 61 Sampai 120'], 2, ",", ".") + ' (' + persennmdpl + ' %)');
+                    $('#Strsdplh_ganampuluh').html(setFormat(rfcm['Bulan Ini']['Tempo 121 Sampai 360'], 2, ",", ".") + ' (' + persendplgnm + ' %)');
+                    $('#Ganampuluh_Judaplh').html(setFormat(rfcm['Bulan Ini']['Tempo 361 Sampai 720'], 2, ",", ".") + ' (' + persengnmjud + ' %)');
+                    $('#Judaplh_mbilan').html(setFormat(rfcm['Bulan Ini']['Tempo 721 Sampai 999'], 2, ",", ".") + ' (' + persenjudmbi + ' %)');
+                    $('#mbilan').html(setFormat(rfcm['Bulan Ini']['Tempo Lebih 999'], 2, ",", ".") + ' (' + persenmbilan + ' %)');
+
+                    var persenblmtempoprev = setFormat((rfcm['Up To Bulan Ini']['Belum Jatuh Tempo'] / rfcm['Up To Bulan Ini']['TOTAL']) * 100, 2);
+                    var persensttgprev = setFormat((rfcm['Up To Bulan Ini']['Tempo 1 Sampai 30'] / rfcm['Up To Bulan Ini']['TOTAL']) * 100, 1);
+                    var persentgnmprev = setFormat((rfcm['Up To Bulan Ini']['Tempo 31 Sampai 60'] / rfcm['Up To Bulan Ini']['TOTAL']) * 100, 1);
+                    var persennmdplprev = setFormat((rfcm['Up To Bulan Ini']['Tempo 61 Sampai 120'] / rfcm['Up To Bulan Ini']['TOTAL']) * 100, 1);
+                    var persendplgnmprev = setFormat((rfcm['Up To Bulan Ini']['Tempo 121 Sampai 360'] / rfcm['Up To Bulan Ini']['TOTAL']) * 100, 1);
+                    var persengnmjudprev = setFormat((rfcm['Up To Bulan Ini']['Tempo 361 Sampai 720'] / rfcm['Up To Bulan Ini']['TOTAL']) * 100, 1);
+                    var persenjudmbiprev = setFormat((rfcm['Up To Bulan Ini']['Tempo 721 Sampai 999'] / rfcm['Up To Bulan Ini']['TOTAL']) * 100, 1);
+                    var persenmbilanprev = setFormat((rfcm['Up To Bulan Ini']['Tempo Lebih 999'] / rfcm['Up To Bulan Ini']['TOTAL']) * 100, 1);
+
+                    $('#total_utang_up').html(setFormat(rfcm['Up To Bulan Ini']['TOTAL'], 2, ",", "."));
+                    $('#sisip_utang_up').html(setFormat(rfcm['Up To Bulan Ini']['Penyisipan Piutang'], 2, ",", "."));
+                    $('#utang_bersih_up').html(setFormat(rfcm['Up To Bulan Ini']['Piutang Bersih'], 2, ",", "."));
+                    $('#r_utang_up').html(setFormat(rfcm['Up To Bulan Ini']['Rasio Piutang'], 2, ",", "."));
+                    $('#p_jln_up').html(setFormat(rfcm['Up To Bulan Ini']['Penjualan Jalan'], 2, ",", "."));
+                    $('#Blm_Jth_Tmp_Ini_up').html(setFormat(rfcm['Up To Bulan Ini']['Belum Jatuh Tempo'], 2, ",", ".") + ' (' + persenblmtempoprev + ' %)');
+                    $('#St_Tgplh_up').html(setFormat(rfcm['Up To Bulan Ini']['Tempo 1 Sampai 30'], 2, ",", ".") + ' (' + persensttgprev + ' %)');
+                    $('#Tgplh_Nmplh_up').html(setFormat(rfcm['Up To Bulan Ini']['Tempo 31 Sampai 60'], 2, ",", ".") + ' (' + persentgnmprev + ' %)');
+                    $('#Nmplh_Strsdplh_up').html(setFormat(rfcm['Up To Bulan Ini']['Tempo 61 Sampai 120'], 2, ",", ".") + ' (' + persennmdplprev + ' %)');
+                    $('#Strsdplh_ganampuluh_up').html(setFormat(rfcm['Up To Bulan Ini']['Tempo 121 Sampai 360'], 2, ",", ".") + ' (' + persendplgnmprev + ' %)');
+                    $('#Ganampuluh_Judaplh_up').html(setFormat(rfcm['Up To Bulan Ini']['Tempo 361 Sampai 720'], 2, ",", ".") + ' (' + persengnmjudprev + ' %)');
+                    $('#Judaplh_mbilan_up').html(setFormat(rfcm['Up To Bulan Ini']['Tempo 721 Sampai 999'], 2, ",", ".") + ' (' + persenjudmbiprev + ' %)');
+                    $('#mbilan_up').html(setFormat(rfcm['Up To Bulan Ini']['Tempo Lebih 999'], 2, ",", ".") + ' (' + persenmbilanprev + ' %)');
+                    // var dataJson = JSON.parse(data);
+                    // $('#ebitSelectReal').html(dataJson.ebitdabulan_real+' B');
+                    // $('#ebitSelectRkap').html(dataJson.ebitdbulan_rkap+' B');
+                    // $('#ebitSelectVar').html(dataJson.ebitdbulanvarian+' B');
+                    // $('#enitSelectper').html(dataJson.ebitdbulanper);
+
+                    // $('#ebitrunvar').html(dataJson.ebitdrunvarian);
+                    // $('#ebitrunreal').html(dataJson.ebitdarun_real+ ' B');
+                    // $('#ebitrunrkap').html(dataJson.ebitdarun_rkap);
+                    // $('#ebitrunper').html(dataJson.ebitdrunper );
+
+                    // last
+
+                    // $('#ebitSelectReal_last').html(dataJson.last_ebitdabulan_real+' B');
+                    // $('#ebitSelectRkap_last').html(dataJson.last_ebitdbulan_rkap+' B');
+                    // $('#ebitSelectVar_last').html(dataJson.last_ebitdbulanvarian+' B');
+                    // $('#enitSelectper_last').html(dataJson.last_ebitdbulanper);
+
+                    // $('#ebitrunvar_last').html(dataJson.last_ebitdrunvarian);
+                    // $('#ebitrunreal_last').html(dataJson.last_ebitdarun_real+ ' B');
+                    // $('#ebitrunrkap_last').html(dataJson.last_ebitdarun_rkap);
+                    // $('#ebitrunper_last').html(dataJson.last_ebitdrunper );
+                }
+
+
+            });
+            stop_waitMe('#mbilan_up');
+        }
+    </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).on('ready', function () {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+            });
+            <!-- $(".regular").slick({ -->
+            <!-- infinite: true, -->
+            <!-- slidesToShow: 4, -->
+            <!-- slidesToScroll: 4, -->
+            <!-- arrows:true, -->
+            <!-- centerMode: true -->
+            <
+            !-- // variableWidth: true -->
+            <!-- }); -->
+        });
+    </script>
+</body>
+</html>

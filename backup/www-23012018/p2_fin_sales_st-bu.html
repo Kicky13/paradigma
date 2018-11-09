@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script src="js/config.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/stupidtable.js?dev"></script>
+
+        <script type="text/javascript" src="js/index.js"></script>
+	
+		<script src="js/loader.js"></script>
+		<script src="js/paradigma.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		
+        <script type="text/javascript" src="js/moment.min.js"></script>
+
+		<script src="js/phase2/global.js"></script>
+		<script src="js/phase2/clinker_cement_sales.js"></script>
+		
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+				sidemenu();
+				tabpage();
+				tabsub();
+				
+				var today = dd+'/'+mm+'/'+yyyy;
+				$('.last-update').html('Last Update : '+today);
+
+                var yearnow = tahun;
+				$('#tag_month_selected').html(month[selectmonth-1]);
+				selectedDate = yearnow+'.'+bulanSekarang;
+				
+				var opco = '4000';
+                setParam(opco, bulanSekarang, tahun);
+				selectDate = selectedDate;
+				opcoGroup(opco, '', '', '', selectDate);
+                $('.selmonth').empty();
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= 12){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })  
+				
+                $('.selmonth').html(opt_month);
+                var yearnow = tahun;
+                $('.selmonth').change(function(){
+                    bulanSekarang = $(this).val();
+                    tahun = $('.selyear').val();
+                    setParam(opco,bulanSekarang, tahun);
+                    var yearnow = tahun;
+					selectedDate = yearnow+'.'+bulanSekarang;
+					selectDate = selectedDate;
+					opcoGroup(opco, '', '', '', selectDate);
+                })
+                var opt_year;
+                for (var thn=2014;thn<=yyyy;thn++){
+					if (thn == yyyy){
+					  opt_year += '<option value="'+thn+'" selected="selected">'+thn+'</option>'; 
+					}else{
+					  opt_year += '<option value="'+thn+'">'+thn+'</option>';   
+					}
+                }
+                $('.selyear').html(opt_year);
+                $('.selyear').change(function(){
+					bulanSekarang = $('.selmonth').val();
+					tahun = $(this).val();
+					setParam(opco,bulanSekarang, tahun);
+					var yearnow = tahun;
+					selectedDate = yearnow+'.'+bulanSekarang;
+					selectDate = selectedDate;
+					opcoGroup(opco, '', '', '', selectDate);
+                })
+				
+				$(".se-pre-con").fadeOut("slow");
+				$("table").stupidtable();
+			}
+			function gotosub(url){
+				var to = url+'/'+selectedDate;
+				window.location.replace(url);
+			}
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 60px;
+                bottom: 0px;
+                width: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+			        font-size: 18px;
+				font-weight: bold;
+			}
+			.titl{
+				background-color: #e54b37;
+				padding: 9px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+				font-size: 12px;
+					margin-bottom: 0px;
+					 border-radius: 3px 3px 0px 0px;
+
+				}
+				.boxf{
+				/* background-color: #e54b37; */
+				padding: 0px;
+				margin-bottom: 3px;
+				display: inline-block;
+				max-width: 100%;
+				height: auto;
+				/* margin: auto; */
+				min-height: 209px;
+				/* border-radius: 8px; */
+				/* margin-right: 1px; */
+				border: 1px solid rgb(197, 197, 197, 0.7);
+				/*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+				-moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+				box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+				border-right: 1px solid #b6b6b6;*/
+						}
+			.bagan:hover, .bagan:visited {
+				opacity: 0.6;
+			}
+			.titab{
+				font-weight: 500;
+					color: white;
+					display: inline-block;
+				font-size: 12px;
+				margin-bottom: 8px;
+				}
+				.lyear{
+					color: black;
+				font-size: 16px;
+				padding-left: 10px;
+				border-left: 3px solid #e54b37;
+				}
+				.ryear{
+				color: black;
+				font-size: 16px;
+				padding-right: 10px;
+				border-right: 3px solid #e54b37;
+				}
+				.jud{
+					color: #000000;
+					font-size: 18px;
+				font-weight: 600;
+				margin-top: 13px;
+				display: inline-block;
+				}
+				/*.til{
+					padding-bottom: 1px;
+				border-bottom: 1px solid #b6b6b6;
+				background-color: ghostwhite;
+				}*/
+				.label-success {
+				background-color: #5cb85c;
+				border: 1.5px solid white;
+			}
+			.label-danger {
+				background-color: #d9534f;
+				border: 1.5px solid white;
+			}
+			.subox{
+				height: 137px;
+				border-bottom: 3px solid #e54b37;
+			}
+			.subox2{
+				height: 137px;
+				border-bottom: 3px solid #626262;
+			}
+			.hijau {color: #669966;}
+			.merah {color: #DC0033;}
+			.float_bgg {
+				display: inline-block;
+				max-width: 100%;
+				height: auto;
+				padding: 4px 12px;;
+				line-height: 1.42857143;
+				background-color: #fff;
+				border: 1px solid #e54b37;
+				border-radius: 0px 0px 6px 6px;
+				-webkit-transition: all .2s ease-in-out;
+				-o-transition: all .2s ease-in-out;
+				transition: all .2s ease-in-out;
+			}
+			.htittle{
+						margin: 0px;
+				border-radius: 6px 6px 0px 0px;
+				background-color: #e54b37;
+				height: 27px;
+				text-align: left;
+				font-size: 14px;
+				padding: 5px 0px 4px 9px;
+			}
+			.te{
+				   background: #EB1717;    height: 37px;    line-height: 39px;font-size: small;
+				background: rgba(245,81,81,1);
+			background: -moz-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+			background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,81,81,1)), color-stop(46%, rgba(245,81,81,1)), color-stop(57%, rgba(229,75,55,1)), color-stop(100%, rgba(229,75,55,1)));
+			background: -webkit-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+			background: -o-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+			background: -ms-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+			background: linear-gradient(to bottom, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f55151', endColorstr='#e54b37', GradientType=0 );
+			}
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .bold_op{
+                    font-weight: 600;
+            }table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+            th, td {
+              padding: 5px 10px;
+              border: 0px;
+            }
+            th {
+              background-color: #e3000e;
+            }
+            th[data-sort]{
+              cursor:pointer;
+            }
+            tr.awesome{
+              color: red;
+            }
+			td{
+				text-align:right;
+			}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <title>Finance Performance</title>
+    </head>
+<body onLoad="onLoad()" >
+    <div class="app">
+        <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                            <li><a>PLANT OPERATION</a></li>
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <!-- Paste this code after body tag -->
+            <div class="se-pre-con"></div>
+            <!-- Ends -->
+            <nav id="sideMenu">
+                <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="sales_dashboard.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="stok_bahan.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="#" id="logout"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+            </nav>
+            <div id="content" style="background:#f5f5f5;">
+                <header id="header">
+                    <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+                    <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+                </header>
+                <div class="wrapper">
+					<div class="head-menu">
+						<ul>
+							<li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')">PRODUCTION</a></li>
+							<li><a class="active" onclick="goto_opco('p2_fin_sales_smi', 'p2_fin_sales_smi')">SALES</a></li>
+                            <li><a onclick="goto_opco('p2_mbalance_daily_st', 'p2_mbalance_daily_st')">MATERIAL BALANCE</a></li>
+                        <li style="display:none"><a onclick="goto_opco('p2_cost_sheet', 'p2_cost_sheet')">COST SHEET</a></li>
+							<li><a onclick="goto_opco('fin_cost_str_pc', 'fin_cost_str_sg')">COST STRUCTURE</a></li>
+							<li><a onclick="goto_opco('finance_perform_dash', 'finance_perform_dash')">CORP. PERFORMANCE</a></li>
+							<li><a onclick="goto_opco('7000', null, null, 'balance_semen')">BALANCE SHEET</a></li>
+							<li><a onclick="goto_opco('fin_rec_mng', 'fin_rec_mng_sg')">RECEIVABLES MNGT</a></li>
+						</ul>
+					</div>
+					<div class="spacer-menu"></div>
+					<h2 class="titular te" style=" ">
+						<a href="p2_fin_sales_smi.html" class="pull-right" style="margin-right:10px;"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a>
+						FINANCE
+					</h2>
+					<div class="col-xs-12" style="background-color: white;">
+                        <div class="col-xs-12 bg_rds">
+							<div id="tab-page1" class="col-xs-6 center zero_padd left_tb act_tb">
+								<a href="#tab-click" rel="page1" class="no-text-style">
+									<img src="img/volum.png" width="16px">
+									<span class="tx_tab">&nbsp;&nbsp;Volume</span>
+								</a>
+							</div>
+							<div id="tab-page2" class="col-xs-6 center zero_padd left_tb ">
+								<a href="#tab-click" rel="page2" class="no-text-style">
+									<img src="img/revnue.png" width="16px">
+									<span class="tx_tab">&nbsp;&nbsp;Revenue</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="headsix add_fix cubesRun2" style="margin-bottom: 36px; min-height: 600px; margin-top: 19px;">
+						<div class="cubesRun2 headone" style="height: 69px;">
+							<div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota3.png" class="img_log"></div>
+							<div class="col-xs-8" style="padding:0px; padding-right: 31px;">
+								 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+								<p class="prodtittle" id="head" style="    font-weight: 600;    font-size: 23px;    display: inline-block; width:100%;text-align:left;">SEMEN TONASA</p>
+								<div>
+									Bulan: 
+									<select id="month" class="selmonth" rel="vol"></select> 
+									<select id="year" class="selyear"></select> 
+									<span class="upercent"></span>
+									<br>
+									<i class="fa fa-clock-o" aria-hidden="true"></i>   <span class="last-update upercent gry"></span>
+								</div>
+							</div>
+						</div>
+						<br><br><br>
+						<div id="page1" class="active">
+							<div align="center" style="margin-top:9px;">
+								<div class="col-xs-6 noPadding">
+									<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+										<span class="inex_down dual" style="padding-left: 0px;">RKAP</span><br>
+										<p class="inex" id="target_rkap_rev" style="color:#FF615D;">0</p>
+									</div>
+									<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+										<span class="inex_down dual" style="padding-left: 0px;">REAL</span><br>
+										<p class="inex" id="target_actual_vol" style="color:#4c9ed9;">0</p> 
+									</div>
+								</div>
+								<div class="col-xs-6 noPadding" style="padding-right:15px;">
+									<div align="right" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+										<span class="upercent">ACHIEVEMENT</span><br>
+										<i id="icon_achievement_all" class="fa fa-3x" aria-hidden="true" align="left"></i>&nbsp;<span class="prosen" style="color: #5d5d5d; font-size: 32px;" id="achievement_vol">0</span><span class="prosen" style="color: #5d5d5d; font-size: 32px;">%</span><br>
+										<br>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="cubesRun2 headone" style="margin-bottom: 20px; height: auto;">
+								<div class="col-xs-12" align="left" style="margin:0px 0px 15px 0px;">
+									<i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 16px;color: #e54b37;"></i>
+									<span style="color: #666160; font-size: 16px" id="areasales"> &nbsp;Clinker & Cement Volume</span>
+								</div>
+								
+								<div id="graphic_compare_opco" style=" height: 300px; margin: 0 auto; width: 100%"></div>
+								<br><br><br>
+								<div class="chartBox" style="margin-top: 0px; border:0; display:none;">
+                                    <p style="color: red; text-align:left; "> &nbsp; Detail Province : </p>
+                                    <div class="table-responsive">
+                                        <table>
+                                            <thead style="background-color: #e3000e; color: white;">
+                                                <tr>
+                                                    <th data-sort="string" align="left" style="width:25%" class="sorting-asc"><strong> Province </strong><i class="fa fa-sort" aria-hidden="true" style="color: #FFFFFF"></i>&nbsp;</th>
+                                                    <th data-sort="string" align="right" style="width:25%"><strong> Target </strong><i class="fa fa-sort" aria-hidden="true"></i> &nbsp;</th>
+                                                    <th data-sort="float" align="right" style="width:25%"><strong> Real </strong><i class="fa fa-sort" aria-hidden="true"></i> &nbsp;</th>
+                                                    <th data-sort="float" align="right" style="width:25%"><strong> Percentage </strong><i class="fa fa-sort" aria-hidden="true"></i>&nbsp; </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="isidetail" style="    color: black;"><tr><td align="left">ACEH</td><td align="right"> 138.300 </td><td align="right"> 63.193 </td><td align="right"><font color="red"><b> 45.69%</b></font></td></tr><tr><td align="left">BANTEN</td><td align="right"> 54.700 </td><td align="right"> 43.637 </td><td align="right"><font color="green"><b>79.78%</b></font></td></tr><tr><td align="left">BENGKULU</td><td align="right"> 137.100 </td><td align="right"> 97.861 </td><td align="right"><font color="green"><b>71.38%</b></font></td></tr><tr><td align="left">DKI JAKARTA</td><td align="right"> 106.400 </td><td align="right"> 55.767 </td><td align="right"><font color="red"><b> 52.41%</b></font></td></tr><tr><td align="left">JAMBI</td><td align="right"> 155.500 </td><td align="right"> 150.732 </td><td align="right"><font color="green"><b>96.93%</b></font></td></tr><tr><td align="left">JAWA BARAT</td><td align="right"> 27.700 </td><td align="right"> 7.347 </td><td align="right"><font color="red"><b> 26.53%</b></font></td></tr><tr><td align="left">JAWA TENGAH</td><td align="right"> 20.400 </td><td align="right"> 7.095 </td><td align="right"><font color="red"><b> 34.78%</b></font></td></tr><tr><td align="left">LAMPUNG</td><td align="right"> 60.400 </td><td align="right"> 50.453 </td><td align="right"><font color="green"><b>83.53%</b></font></td></tr><tr><td align="left">null</td><td align="right"> 0 </td><td align="right"> 413 </td><td align="right"><font color="red"><b> 0.00%</b></font></td></tr><tr><td align="left">RIAU DARATAN</td><td align="right"> 370.500 </td><td align="right"> 360.908 </td><td align="right"><font color="green"><b>97.41%</b></font></td></tr><tr><td align="left">RIAU KEPULAUAN</td><td align="right"> 90.900 </td><td align="right"> 62.933 </td><td align="right"><font color="green"><b>69.23%</b></font></td></tr><tr><td align="left">SUMATERA BARAT</td><td align="right"> 300.200 </td><td align="right"> 294.291 </td><td align="right"><font color="green"><b>98.03%</b></font></td></tr><tr><td align="left">SUMATERA SELATAN</td><td align="right"> 100.200 </td><td align="right"> 65.706 </td><td align="right"><font color="green"><b>65.57%</b></font></td></tr><tr><td align="left">SUMATERA UTARA</td><td align="right"> 440.900 </td><td align="right"> 194.135 </td><td align="right"><font color="red"><b> 44.03%</b></font></td></tr></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+							</div>
+						</div><!-- END OF DIV PAEge1 -->
+						<div id="page2" class="hidden">
+							<div align="center" style="margin-top:9px;">
+								<div class="col-xs-6 noPadding">
+									<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+										<span class="inex_down dual" style="padding-left: 0px;">RKAP (In IDR Bio)</span><br>
+										<p class="inex" id="target_rkap_rev" style="color:#FF615D;">0</p>
+									</div>
+									<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+										<span class="inex_down dual" style="padding-left: 0px;">REAL (In IDR Bio)</span><br>
+										<p class="inex" id="target_actual_volr" style="color:#4c9ed9;">0</p> 
+									</div>
+								</div>
+								<div class="col-xs-6 noPadding" style="padding-right:15px;">
+									<div align="right" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+										<span class="upercent">ACHIEVEMENT</span><br>
+										<i id="icon_achievement_allr" class="fa fa-3x" aria-hidden="true" align="left"></i>&nbsp;<span class="prosen" style="color: #5d5d5d; font-size: 32px;" id="achievement_volr">0</span><span class="prosen" style="color: #5d5d5d; font-size: 32px;">%</span><br>
+										<br>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="cubesRun2 headone" style="margin-bottom: 20px; height: auto;">
+								<div class="col-xs-12" align="left" style="margin:0px 0px 15px 0px;">
+									<i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 16px;color: #e54b37;"></i>
+									<span style="color: #666160; font-size: 16px" id="areasales"> &nbsp;Clinker & Cement Revenue</span>
+								</div>
+								
+								<div id="graphic_compare_opcor" style=" height: 300px; margin: 0 auto; width: 100%"></div>
+								<br><br><br>
+								<div class="chartBox" style="margin-top: 0px; border:0; display:none;">
+                                    <p style="color: red; text-align:left; "> &nbsp; Detail Province : </p>
+                                    <div class="table-responsive">
+                                        <table>
+                                            <thead style="background-color: #e3000e; color: white;">
+                                                <tr>
+                                                    <th data-sort="string" align="left" style="width:25%" class="sorting-asc"><strong> Province </strong><i class="fa fa-sort" aria-hidden="true" style="color: #FFFFFF"></i>&nbsp;</th>
+                                                    <th data-sort="string" align="right" style="width:25%"><strong> Target </strong><i class="fa fa-sort" aria-hidden="true"></i> &nbsp;</th>
+                                                    <th data-sort="float" align="right" style="width:25%"><strong> Real </strong><i class="fa fa-sort" aria-hidden="true"></i> &nbsp;</th>
+                                                    <th data-sort="float" align="right" style="width:25%"><strong> Percentage </strong><i class="fa fa-sort" aria-hidden="true"></i>&nbsp; </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="isidetail" style="    color: black;"><tr><td align="left">ACEH</td><td align="right"> 138.300 </td><td align="right"> 63.193 </td><td align="right"><font color="red"><b> 45.69%</b></font></td></tr><tr><td align="left">BANTEN</td><td align="right"> 54.700 </td><td align="right"> 43.637 </td><td align="right"><font color="green"><b>79.78%</b></font></td></tr><tr><td align="left">BENGKULU</td><td align="right"> 137.100 </td><td align="right"> 97.861 </td><td align="right"><font color="green"><b>71.38%</b></font></td></tr><tr><td align="left">DKI JAKARTA</td><td align="right"> 106.400 </td><td align="right"> 55.767 </td><td align="right"><font color="red"><b> 52.41%</b></font></td></tr><tr><td align="left">JAMBI</td><td align="right"> 155.500 </td><td align="right"> 150.732 </td><td align="right"><font color="green"><b>96.93%</b></font></td></tr><tr><td align="left">JAWA BARAT</td><td align="right"> 27.700 </td><td align="right"> 7.347 </td><td align="right"><font color="red"><b> 26.53%</b></font></td></tr><tr><td align="left">JAWA TENGAH</td><td align="right"> 20.400 </td><td align="right"> 7.095 </td><td align="right"><font color="red"><b> 34.78%</b></font></td></tr><tr><td align="left">LAMPUNG</td><td align="right"> 60.400 </td><td align="right"> 50.453 </td><td align="right"><font color="green"><b>83.53%</b></font></td></tr><tr><td align="left">null</td><td align="right"> 0 </td><td align="right"> 413 </td><td align="right"><font color="red"><b> 0.00%</b></font></td></tr><tr><td align="left">RIAU DARATAN</td><td align="right"> 370.500 </td><td align="right"> 360.908 </td><td align="right"><font color="green"><b>97.41%</b></font></td></tr><tr><td align="left">RIAU KEPULAUAN</td><td align="right"> 90.900 </td><td align="right"> 62.933 </td><td align="right"><font color="green"><b>69.23%</b></font></td></tr><tr><td align="left">SUMATERA BARAT</td><td align="right"> 300.200 </td><td align="right"> 294.291 </td><td align="right"><font color="green"><b>98.03%</b></font></td></tr><tr><td align="left">SUMATERA SELATAN</td><td align="right"> 100.200 </td><td align="right"> 65.706 </td><td align="right"><font color="green"><b>65.57%</b></font></td></tr><tr><td align="left">SUMATERA UTARA</td><td align="right"> 440.900 </td><td align="right"> 194.135 </td><td align="right"><font color="red"><b> 44.03%</b></font></td></tr></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+							</div>
+						</div><!-- END OF DIV PAEge2 -->
+						<br>
+						<div align="left">
+							<p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+						</div>		
+					</div>
+                </div>
+				<footer>
+					<div class="regular" >
+						<div class="col-xs-4 noPadding tab_uper col-ft-4 img_foot2" align="center" style="margin-top: 7px;">
+							<a onmousedown="gotosub('p2_fin_sales_smi.html')" >
+								<img src="img/smi.png" style="width : 30%;" />
+							</a>
+						</div>
+						<div class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px; width: 16.66%;">
+							<a onmousedown="gotosub('p2_fin_sales_sp.html')" >
+								<img src="img/icKota2a.png" style="width:60%;" />
+							</a>
+						</div>
+						<div class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px; width: 16.66%;">
+							<a onmousedown="gotosub('p2_fin_sales_si.html')" >
+								<img src="img/icKota1a.png"  style="width:60%;" />
+							</a>
+						</div>
+						<div class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px; width: 16.66%;">
+							<a onmousedown="gotosub('p2_fin_sales_st.html')" >
+								<img src="img/icKota3a.png" style="width:60%;"/>
+							</a>
+						</div>
+						<div class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px; width: 16.66%;">
+							<a>
+								<img src="img/icKota4a.png" style="width:60%;"/>
+							</a>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<p>This is a small modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

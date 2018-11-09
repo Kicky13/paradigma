@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script src="js/highcharts_working.js"></script>
+        <script src="js/highcharts-more.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <script type="text/javascript" src="js/Chart.min.js"></script>
+        <title>Backlog</title>
+        <script>
+            function onLoad() {
+
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-notification') {
+                        $('#data-notification').removeClass('hidden');
+                        $('#data-work-order').addClass('hidden');
+                        $('#tab-notification').addClass('border-down-active');
+                        $('#tab-work-order').removeClass('border-down-active');
+                    } else if (r == 'data-work-order') {
+                        $('#data-notification').addClass('hidden');
+                        $('#data-work-order').removeClass('hidden');
+                        $('#tab-notification').removeClass('border-down-active');
+                        $('#tab-work-order').addClass('border-down-active');
+                    }
+                })
+                $(document).on('click', '.text-medium,.linkback', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('href');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+
+        </script>
+        <style type="text/css">
+            .wrapper {
+                width:100%;
+                height: 100%;
+                overflow-y: auto;
+                float: left;
+            }
+            .bg-white {
+                background:#fff;
+            }
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .text-small {
+                font:normal 10px arial;
+                color:#000;
+            }
+            .text-medium {
+                font:normal 19px arial;
+                color:#000;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 10px
+            }
+            .center {
+                text-align: center;
+            }
+            .padding5 {
+                padding:5px;
+            }
+            .border {
+                border:1px #cecece solid;
+            }
+            .border-down {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                height: 41px;
+                background: rgba(245, 245, 245, 1);
+                background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+                background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0 );
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .osno {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .nopr {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .noco {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .dlfl {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .fmerah {
+                color: #FF615D;
+            }
+            .merah {
+                background-color : #df0023;
+            }
+            .orange {
+                background-color : #d93329;
+            }
+            .lite-orange {
+                background-color : #d3662e;
+            }
+            .kuning {
+                background-color : #cc9933;
+            }
+            .subheader {
+                text-align: center;
+                /* padding: 10px; */
+                padding-top: 2px;
+                color: #606060;
+                height: 33px;
+                font-size: 17px;
+                margin: 0px 2px 0px 2px;
+                font-family: "Open Sans";
+                font-weight: bold;
+            }
+            .txt-red {
+              color: #FF615D; 
+            }
+            .txt-black {
+              color: #000;
+            }
+            .txt-green {
+              color: #45DD90;  
+            }
+            .nomargin {
+                margin:0;
+            }
+            .nopadding {
+                padding:0;
+            }
+            .highcharts-credits {
+                display:none;
+            }
+            .img-opco {
+                width: 88px;
+                padding: 12px;
+                padding-bottom: 0px;
+            }
+            .opco-name {
+                font-size: 24px;
+                color: #333333;
+                margin-top: 4px;
+            }
+            .no-js #loader {
+                display: none;
+            }
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .default_tab {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+            }
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .tab_tittle {
+                font-family: "Open Sans";
+                margin-bottom: 2px;
+                font-size: 27px;
+                margin-top: 0px;
+                font-weight: 300;
+            }
+            .one_tit {
+                border: 1px solid #e9e9e9;
+                height: 29px;
+                display: block;
+                width: 100%;
+                color: #797979;
+                text-align: center;
+                font: normal 16px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .pattern {
+                height:103px;
+                border-right: 1px solid #b9b9b9;
+                margin-bottom:6px;
+            }
+            .det {
+                color: #555555;
+                font-size: 11px;
+                font-family: "Open Sans";
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+    </head>
+    <body onLoad="onLoad()" style="font-family: Segoe UI;">
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                   <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+  </nav>
+            <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper bg-white">
+                        <h2 class="titular" style="height: 37px;line-height: 39px;font-size: small;">Analisa Prediktif</h2>
+                        
+                        
+                           <div class="headsix cubesRun2" style="margin-bottom: 116px; min-height: 1250px; margin-top: 19px;padding-bottom: 10px;"> 
+                          <div class="col-xs-4" style="padding:0px;" align="center"> <img id="img_log" class="img_log"></div>
+                                    <div class="col-xs-8" style="padding:0px; padding-right: 31px;">
+                                         <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                        <p class="prodtittle" id="head_log" style="    font-weight: 600;    font-size: 23px;    display: inline-block;"></p>
+                                       
+                                    </div>
+                        <div class="col-xs-12" >
+                          <center>
+                         <!--  Bulan:
+                          <select>
+                          <option value="volvo">Januari</option>
+                          <option value="saab">Februari</option>
+                          <option value="opel">Maret</option>
+                          <option value="audi">April</option>
+                        </select>  -->
+                        
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                          </center>
+                         </div><br>
+                         <div class="col-xs-12" ></div>
+
+                         <div id="data-opsg">           
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px; padding-bottom: 10px;"> 
+                                    
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">FINISH MILL 7</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">0.00</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">0.00</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">0.00</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:center" class="redunder fblack" id="headcolm">FINISH MILL 8</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolm"></i> -->
+                                        </div>
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td align="left" id="kl3_ilcrate" style="color: brown;">2.00</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td align="left" id="kl3_f1speed" style="color: brown;">15.82</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td align="left" id="kl3_f1power" style="color: brown;">1.94</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 3</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">N/A</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">N/A</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">N/A</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:center" class="redunder fblack" id="headcolm">KILN 4</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolm"></i> -->
+                                        </div>
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">N/A</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">0.00</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">0.00</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">RAW MILL 3</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">N/A</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">N/A</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">N/A</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:center" class="redunder fblack" id="headcolm">RAW MILL 4</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolm"></i> -->
+                                        </div>
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">0.00</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">0.00</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">0.00</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">COAL MILL 3</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">N/A</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">N/A</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">N/A</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:center" class="redunder fblack" id="headcolm">COAL MILL 4</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolm"></i> -->
+                                        </div>
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">0.00</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">0.00</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">0.17</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                            </div>
+                            </div>
+
+
+                            <div id="data-opst" class="hidden">           
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px; padding-bottom: 10px;"> 
+                                    
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 1</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:center" class="redunder fblack" id="headcolm">KILN 2</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolm"></i> -->
+                                        </div>
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td align="left" id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td align="left" id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td align="left" id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 3</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 4</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                </div>
+
+
+                                <div id="data-opsp" class="hidden">           
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px; padding-bottom: 10px;"> 
+                                    
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 1</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:center" class="redunder fblack" id="headcolm">KILN 2</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolm"></i> -->
+                                        </div>
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td align="left" id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td align="left" id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td align="left" id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 3</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 4</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                </div>
+
+                                <div id="data-optl" class="hidden">           
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px; padding-bottom: 10px;"> 
+                                    
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 1</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:center" class="redunder fblack" id="headcolm">KILN 2</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolm"></i> -->
+                                        </div>
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td align="left" id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td align="left" id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td align="left" id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 3</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    </a>
+                                    <a href="" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;">
+                                        <div class="col-xs-12 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left" class="redunder fblack" id="headcolc">KILN 4</span>
+                                        <!-- <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i> -->
+                                        </div>
+                                        <!-- <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                        </div> -->
+                                        <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <table width="182" class="table-striped table-responsive tab_syle font-category">
+                                        <br>
+                                        <tr>
+                                            <td>Today Of Count</td>
+                                            
+                                            <td id="kl3_ilcrate" style="color: brown;">5</td>
+                                            <td><div align="left">Times</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Today Running Hour</td>
+                                            
+                                            <td id="kl3_f1speed" style="color: brown;">14.15</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Hour</td>
+                                            
+                                            <td id="kl3_f1power" style="color: brown;">49</td>
+                                            <td><div align="left">Hours</div></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                                            
+                                            <p style="height: 10px;"></p>
+                                        </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                </div>
+
+
+
+                                    </div><br>
+                                    
+                                    <div align="center" style="">
+ 
+</div>  
+                                    
+             
+                            </div>
+         
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                        </div>
+                         
+                        <div class="spacer"></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    <!-- <script type="text/javascript" src="js/cordova.js"></script> -->
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/backlog_data.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

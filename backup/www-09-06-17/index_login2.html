@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+       <!-- <link rel="stylesheet" type="text/css" href="css/animate.css">-->
+        <link rel="stylesheet" type="text/css" href="anima.css">
+
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.min.css">
+    <!--     <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+                // sessionStorage.destroy();
+            }
+        </script>
+        
+      <script src="js/loader.js"></script>
+         
+       
+        <style>
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/OpenSans_1.woff2) format('woff2');
+                unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+            }
+            /* cyrillic */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/OpenSans_2.woff2) format('woff2');
+                unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+            }
+            /* greek-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/OpenSans_3.woff2) format('woff2');
+                unicode-range: U+1F00-1FFF;
+            }
+            /* greek */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/OpenSans_4.woff2) format('woff2');
+                unicode-range: U+0370-03FF;
+            }
+            /* vietnamese */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/OpenSans_5.woff2) format('woff2');
+                unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+            }
+            /* latin-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/OpenSans_6.woff2) format('woff2');
+                unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+            }
+            /* latin */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/OpenSans_7.woff2) format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+            }
+            /* cyrillic-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 300;
+                src: local('Open Sans Light'), local('OpenSans-Light'), url(css/myFonts/Open_Sans_1.woff2) format('woff2');
+                unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+            }
+            /* cyrillic */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 300;
+                src: local('Open Sans Light'), local('OpenSans-Light'), url(css/myFonts/Open_Sans_2.woff2) format('woff2');
+                unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+            }
+            /* greek-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 300;
+                src: local('Open Sans Light'), local('OpenSans-Light'), url(css/myFonts/Open_Sans_3.woff2) format('woff2');
+                unicode-range: U+1F00-1FFF;
+            }
+            /* greek */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 300;
+                src: local('Open Sans Light'), local('OpenSans-Light'), url(css/myFonts/Open_Sans_4.woff2) format('woff2');
+                unicode-range: U+0370-03FF;
+            }
+            /* vietnamese */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 300;
+                src: local('Open Sans Light'), local('OpenSans-Light'), url(css/myFonts/Open_Sans_5.woff2) format('woff2');
+                unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+            }
+            /* latin-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 300;
+                src: local('Open Sans Light'), local('OpenSans-Light'), url(css/myFonts/Open_Sans_6.woff2) format('woff2');
+                unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+            }
+            /* latin */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 300;
+                src: local('Open Sans Light'), local('OpenSans-Light'), url(css/myFonts/Open_Sans_7.woff2) format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+            }
+            /* cyrillic-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/Open_Sans_8.woff2) format('woff2');
+                unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+            }
+            /* cyrillic */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/Open_Sans_9.woff2) format('woff2');
+                unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+            }
+            /* greek-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/Open_Sans_10.woff2) format('woff2');
+                unicode-range: U+1F00-1FFF;
+            }
+            /* greek */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/Open_Sans_11.woff2) format('woff2');
+                unicode-range: U+0370-03FF;
+            }
+            /* vietnamese */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/Open_Sans_12.woff2) format('woff2');
+                unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+            }
+            /* latin-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/Open_Sans_13.woff2) format('woff2');
+                unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+            }
+            /* latin */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(css/myFonts/Open_Sans_14.woff2) format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+            }
+            /* cyrillic-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 600;
+                src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(css/myFonts/Open_Sans_15.woff2) format('woff2');
+                unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+            }
+            /* cyrillic */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 600;
+                src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(css/myFonts/Open_Sans_16.woff2) format('woff2');
+                unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+            }
+            /* greek-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 600;
+                src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(css/myFonts/Open_Sans_17.woff2) format('woff2');
+                unicode-range: U+1F00-1FFF;
+            }
+            /* greek */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 600;
+                src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(css/myFonts/Open_Sans_18.woff2) format('woff2');
+                unicode-range: U+0370-03FF;
+            }
+            /* vietnamese */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 600;
+                src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(css/myFonts/Open_Sans_19.woff2) format('woff2');
+                unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+            }
+            /* latin-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 600;
+                src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(css/myFonts/Open_Sans_20.woff2) format('woff2');
+                unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+            }
+            /* latin */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 600;
+                src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(css/myFonts/Open_Sans_21.woff2) format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+            }
+            /* cyrillic-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Open Sans Bold'), local('OpenSans-Bold'), url(css/myFonts/Open_Sans_22.woff2) format('woff2');
+                unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+            }
+            /* cyrillic */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Open Sans Bold'), local('OpenSans-Bold'), url(css/myFonts/Open_Sans_23.woff2) format('woff2');
+                unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+            }
+            /* greek-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Open Sans Bold'), local('OpenSans-Bold'), url(css/myFonts/Open_Sans_24.woff2) format('woff2');
+                unicode-range: U+1F00-1FFF;
+            }
+            /* greek */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Open Sans Bold'), local('OpenSans-Bold'), url(css/myFonts/Open_Sans_25.woff2) format('woff2');
+                unicode-range: U+0370-03FF;
+            }
+            /* vietnamese */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Open Sans Bold'), local('OpenSans-Bold'), url(css/myFonts/Open_Sans_26.woff2) format('woff2');
+                unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+            }
+            /* latin-ext */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Open Sans Bold'), local('OpenSans-Bold'), url(css/myFonts/Open_Sans_27.woff2) format('woff2');
+                unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+            }
+            /* latin */
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Open Sans Bold'), local('OpenSans-Bold'), url(css/myFonts/Open_Sans_28.woff2) format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+            }
+
+
+            * {
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            *:before, *:after {
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            [class*="fontawesome-"]:before {
+            }
+            .textimg{
+                font-size: 11px;
+                font-family: "Open Sans";
+                /* font-weight: bold; */
+                color: #504b4d;
+            }
+            .texthead{
+                font-family: "Open Sans";
+                font-size: 9px;
+            }
+
+            a {
+                color: #df0023;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            input {
+                border: none;
+                font-family: 'Open Sans';
+                font-size: 14px;
+                line-height: 1.5em;
+                padding: 0;
+                -webkit-appearance: none;
+            }
+
+            p {
+                line-height: 1.5em;
+            }
+
+            .clearfix {
+                *zoom: 1;
+            }
+            .clearfix:before, .clearfix:after {
+                content: ' ';
+                display: table;
+            }
+            .clearfix:after {
+                clear: both;
+            }
+
+            .container {
+                left: 50%;
+                position: fixed;
+                display: block;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+
+            /* ---------- LOGIN ---------- */
+            .fa-2x {
+                font-size: 17px;
+            }
+            #login {
+                width: 258px;
+                margin-top: 157px; 
+            }
+
+            #login form span {
+                /*background-color: #363b41;
+                border-radius: 3px 0px 0px 3px;*/
+                color: inherit;
+                display: block;
+                float: left;
+                height: 42px;
+                line-height: 50px;
+                text-align: center;
+                width: 50px;
+                background-color: rgba(255, 255, 255, 0);
+                /*background-color: #fff;*/ 
+                /*border: 1px solid #E5E6E7;*/
+                border-radius: 41px 0px 0px 41px;
+            }
+
+            #login form input {
+                height: 42px;
+            }
+
+            #login form input[type="text"], input[type="password"] {
+                background-color: rgba(255, 255, 255, 0);
+                /*border-radius: 0px 41px 41px 0px;*/
+                color: #606468;
+                margin-bottom: 5px;
+                padding: 0 16px;
+                width: 205px;
+                border-bottom: 2px solid #e5e6e7;
+                /*border: 1px solid #e5e6e7;*/
+                /* border: 0.5px solid rgba(204, 204, 204, 0.64); */
+                transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+            }
+
+            #login form input[type="button"] {
+                border-radius: 41px;
+                -moz-border-radius: 41px;
+                -webkit-border-radius: 41px;
+                background-color: #df0023;
+                color: #eee;
+                font-weight: bold;
+                margin-bottom: 2em;
+                text-transform: uppercase;
+                width: 258px;
+            }
+
+            #login form input[type="button"]:hover {
+                background-color: #d44179;
+                webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+            }
+
+            #login > p {
+                text-align: center;
+            }
+
+            #login > p span {
+                padding-left: 5px;
+            }
+            .login form input:focus {
+                border-color: #1ab394 !important;
+            }
+            :focus {
+                /*outline: -webkit-focus-ring-color auto 5px;
+                border-radius:0px;
+                border-bottom: 2px solid red;*/
+                outline: none;
+                box-shadow: -1px 3px 0px -1px #df0023, 1px 4px 0px -1px #df0023;
+            }
+            .logico{
+                    padding: 14px 7px 7px 11px;
+                display: block;
+                color: rgb(154, 154, 154);
+                        }
+                        .ey{
+                            /*float: right;*/
+                position: absolute;
+                /*margin-left: 225px;
+                margin-top: -32px;
+                font-size: 15px;
+                color: #c7c7c7;*/
+                color: #c7c7c7;
+                margin-top: 12px;
+            }
+            
+        
+        </style>
+        <style>
+            div.box {
+                margin: 20px;
+                padding: 15px;
+                background-color: lightgrey;
+            }
+            #demo-password {
+                margin: 5px;
+                position: relative;
+            }
+            .invalid {
+                outline-color: red;
+                -webkit-animation: shake .6s linear;
+            }
+            /* also keyframes and -moz-keyframes */
+            @-webkit-keyframes shake {
+                0% {
+                    left:-10px;
+                }
+                16% {
+                    left:9px;
+                }
+                33% {
+                    left:-6px;
+                }
+                50% {
+                    left:5px;
+                }
+                66% {
+                    left:-2px;
+                }
+                83% {
+                    left:1px;
+                }
+                100% {
+                    left: 0px;
+                }
+            }
+        </style>
+        <title>Home</title>
+    </head>
+    <body>
+        <div class="app">
+            
+            <div id="deviceready">
+                <div id="content" class="animated">
+                    <div class="wrapper" style="overflow:hidden;">  <img class="bg-home" src="img/home.png"/>
+                    <div style="    position: absolute; top: 0px;margin: 0 auto;left: 0; right: 0; width: 100%;">
+                    <img class="img-responsive" src="img/pater.png" style="width: 100%;position: inherit;">
+                    </div>
+                        <div class="link-home" style="top:5%">
+
+                        <img class="logo-home animated fadeIn img-responsive" style="position: initial;  width: 50%; margin: auto;display: -webkit-box;" src="img/logo_hm.png"/>
+                            
+                            <div class="container">
+                                <div id="login" class="animated fadeInUp">
+                                <!-- <h3 style="padding-left: 18px;margin-bottom: 2px;color: #e11031;">
+                                            Getting Started
+                                        </h3> -->
+                                        <span style="padding-left: 30px;margin-bottom: 7px;display: inline-block;color: #919191;">
+                                       <center> You can login with your email account.</center></span>
+                                   
+                                    <form action="javascript:void(0);" method="get">
+                                        <fieldset class="clearfix">
+
+                                            <p>
+                                         <span class="fontawesome-user">
+                                         <i class="fa fa-user fa-2x logico" aria-hidden="true"></i>
+                                                </span>
+                                                <input type="text" value="Username"  id="inputUser" onBlur="if (this.value == '')
+                                                            this.value = 'Username'" onFocus="if (this.value == 'Username')
+                                                                        this.value = ''" required>
+
+                                            </p>
+                                            <p>
+                                           <span class="fontawesome-lock">
+                                           <i class="fa fa-lock fa-2x logico" aria-hidden="true""></i>
+                                                </span>
+                                                <input type="password"  value="Password" id="inputPassword" onBlur="if (this.value == '')
+                                                            this.value = 'Password'" onFocus="if (this.value == 'Password')
+                                                                        this.value = ''" required>
+                                                                        <i class="fa fa-eye ey" aria-hidden="false"></i>
+
+                                            </p> 
+                                             <div id="error_bos" align="center" style="font-size:14px; color:red; margin-bottom:5px"></div>
+                                            <p>
+                                                <input type="button" id="inputLogin" value="Sign In" >
+                                            </p>
+                                        </fieldset>
+
+                                    </form>
+                                    <p>Not a member? <a href="#">Please contact admin</a><span class="fontawesome-arrow-right"></span></p>
+                                <p align="center" style="color: #939393;">&nbsp;&nbsp;Version : V.1.0.7 &nbsp;&nbsp;<br><span id='version'></span></p>
+                                    
+                                     
+                        
+                                </div>
+                                <div align="center" class="animated fadeIn" style=" margin-top:37px;margin-bottom: 0px;"> 
+                                 <img src="img/vec_hm.png" style="width: 235px;"/>
+                            </div>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/Session.js" type="text/javascript" ></script>
+
+        <script type="text/javascript">
+            $(function () {
+               
+
+                console.log('session : '+ sessionStorage.getItem('u'));
+
+                if (sessionStorage.getItem('u')!=null) {
+                    console.log('session ON');
+                    $('#inputUser').val(sessionStorage.getItem('u'));
+                }
+                if (localStorage.user!=null) {
+                    console.log('session ON');
+                    $('#inputUser').val(localStorage.user);
+                }
+
+                $('#inputUser').removeClass("invalid");
+               
+ 
+                $('#inputPassword').removeClass("invalid");
+                $('#inputLogin').click(function () {
+                    $('#inputLogin').val('Loading...');
+                   // console.log('login' + $('#inputUser').val() + $('#inputPassword').val());
+                $.post(url_ol+"/json/ldapLoginApi2.php",
+                            {
+                                username: $('#inputUser').val(),
+                                password: $('#inputPassword').val()
+                            },
+                            function (data) {
+                                console.log(data);
+                                var dataJson = JSON.parse(data);
+                                if (dataJson.status != 'false') {
+                                    sessionStorage.setItem('u', $('#inputUser').val());
+                                    sessionStorage.setItem('userData', JSON.stringify(dataJson.data));
+                                    setUserData();
+                                    sessionStorage.setItem('p', $('#inputPassword').val());
+                                    localStorage.user = $('#inputUser').val();
+                                    window.location.href = "index.html";
+                                    //console.log(data);
+                                } else {
+                                    alert('Access Denied!!');
+
+                                    $('#inputUser').addClass("invalid")
+                                    $('#inputPassword').addClass("invalid")
+                                     $("#error_bos").text("Login Failed, please try again later");
+                                }
+
+                                $('#inputLogin').val('SIGN IN');
+                            });
+                });
+            });
+        </script>
+             <script type="text/javascript" src="cordova.js"></script>                                                                                                                                      
+         <script type="text/javascript" src="js/check.js"></script>
+       
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+     <script src="js/jquery-3.1.1.min.js"></script>
+          <script type="text/javascript">
+                                        
+<!--    $('ver').innerHTML = AppVersion.build;alert(AppVersion.build);-->
+        var backButtonPressed = false, intval = setInterval(function (){backButtonPressed = false;}, 1000);;
+        document.addEventListener("backbutton", function (e){
+            e.preventDefault();
+            if (backButtonPressed) {
+                clearInterval(intval) 
+                (navigator.app && navigator.app.exitApp()) || (device && device.exitApp())
+            }
+            else {
+                window.plugins.toast.showShortBottom('Press again to exit', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+                backButtonPressed = true;
+                // history.back(1);
+            } 
+        }, false);
+            $(function(){
+         var intervalTime = 3600000;
+            var myTimer;
+                myTimer = setInterval(function() { 
+                    console.log('interval ');
+                     // alert('log');
+                                        
+                navigator.app.exitApp();
+                 sessionStorage.destroy();
+            
+                                        },intervalTime);
+            
+              $('body').bind('touchstart',function() {
+                    console.log('touchstart');
+                    clearInterval(myTimer);
+                });
+         
+                $('body').bind('touchend', function() {
+                    console.log('touchend');
+                     myTimer = setInterval(function() { 
+                                        // alert('log');
+                     console.log('interval ');
+                                         navigator.app.exitApp();
+                                        sessionStorage.destroy();
+                                        },intervalTime);
+                });
+
+$("#inputPassword").on("keyup",function(){
+    if($(this).val())
+        $(".fa-eye").show();
+    else
+        $(".fa-eye").hide();
+    });
+$(".fa-eye").mousedown(function(){
+                $("#inputPassword").attr('type','text');
+            }).mouseup(function(){
+                $("#inputPassword").attr('type','text');
+            }).mouseout(function(){
+                $("#inputPassword").attr('type','password');
+            });
+
+            });
+
+           
+
+
+        </script>
+</html>

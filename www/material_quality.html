@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/ip_highcharts.js"></script>
+        <script src="js/ip_highcharts-3d.js"></script>
+        <script src="js/ip_highcharts-more.js"></script>
+        <script src="js/ip_exporting.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+		<script type="text/javascript" src="js/accounting.min.js"></script>
+       <!-- <script type="text/javascript" src="js/loader.js"></script>-->
+        
+        <script src="js/loader.js"></script>
+        <script src="js/paradigma.js"></script>
+       <!--  <script type="text/javascript" src="js/touch-tooltip-fix.js"></script> -->
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+		
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+			 exchange();
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = paradigma.bulanNow();
+            var tahun = d.getFullYear();
+
+                $('#data-volume').removeClass('hidden');
+                $('#data-revenew').addClass('hidden');
+                $('#tab-volume').addClass('act_tb');
+                $('#tab-revenew').removeClass('act_tb');
+
+                $('.selmonth').empty();
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= 12){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 } 
+
+                })
+                console.log(opt_month);
+                $('.selmonth').html(opt_month);
+                                
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2014;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                console.log(opt_year);
+                $('.selyear').html(opt_year);
+
+            }
+            
+        </script>
+        <script>
+            $(function() {
+                $('a[href="#tab-click"]').click(function(e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    console.log(r);
+                    if (r == 'data-ma') {
+                        $('#data-ma').removeClass('hidden');
+                        $('#data-mb').addClass('hidden');
+                        $('#data-mc').addClass('hidden');
+                        $('#data-md').addClass('hidden');
+						$('#data-me').addClass('hidden');
+						$('#data-mf').addClass('hidden');
+						$('#tab-ma').addClass('act_tb');
+                        $('#tab-mb').removeClass('act_tb');
+                        $('#tab-mc').removeClass('act_tb');
+						$('#tab-md').removeClass('act_tb');
+						$('#tab-me').removeClass('act_tb');
+						$('#tab-mf').removeClass('act_tb');
+                    } else {
+                        $('#data-ma').addClass('hidden');
+                        $('#data-mb').removeClass('hidden');
+                        $('#data-mc').addClass('hidden');                  
+                        $('#data-md').addClass('hidden');
+						$('#data-me').addClass('hidden');
+						$('#data-mf').addClass('hidden');
+						
+						$('#tab-ma').removeClass('act_tb');
+                        $('#tab-mb').addClass('act_tb');
+                        $('#tab-mc').removeClass('act_tb');
+						$('#tab-md').removeClass('act_tb');
+						$('#tab-me').removeClass('act_tb');
+						$('#tab-mf').removeClass('act_tb');
+                   
+                    } 
+                });
+            });
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active{
+                border-top: 1px solid #1481ed;
+            }
+            .inex{
+                font-size: 25px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+            }
+            .tit_head{
+                background: rgba(255,255,255,1);
+                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+
+            }
+            .tab-active{
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab{
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                font-family: "Open Sans";
+            }
+            .prosen1 {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+            .mencapai {
+                color: #06bf79;
+            }
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <title>MAINTENANCE_QUALITY</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                     
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;SCM</a></li></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" class="animated" style="background: white;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+                        <a class="logopis"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="height: 37px; line-height: 39px; font-size: small;">
+                            <a href="portal_invent.html" class="pull-left" style="margin-left:10px;">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            </a>MAINTENANCE_QUALITY</h2>
+
+                        <div class="col-xs-12"></div>
+                        <div class="col-xs-12 tab_dual">
+                        <div class="col-xs-12 bg_rds">
+
+                        <div id="tab-ma" class="col-xs-6 center zero_padd left_tb act_tb ">
+                        <a href="#tab-click" rel="data-ma" class="no-text-style"> 
+                        <span class="tx_tab">&nbsp;&nbsp;HOURLY</span></a></div>
+
+                        <div id="tab-mb" class="col-xs-6 center zero_padd right_tb">
+                        <a href="#tab-click" rel="data-mb" class="no-text-style">
+                        <span class="tx_tab">&nbsp;&nbsp;DAILY</span></a></div>
+
+                       
+			            </div></div>
+
+                        <div id="data-ma" style="height:1000px;">
+                             
+                              <div class="col-xs-12" style="text-align:center;margin-bottom:5px;"><img src="img/teks semen indo.png" class="imgsi"></div>
+                                <center>
+                                    Month:
+                                    <select id="month" class="selmonth" rel="vol">
+                                    </select>
+                                    <select id="year" class="selyear" rel="vol">
+                                    </select>
+
+                                </center>
+                                <div align="center" style="    margin-top: 13px;">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                                    
+                                </div>
+
+                                <!-- Pembatas Chart 1 -->
+
+                                <div align="center" style="    margin-top: 13px;">
+                                    <span style="color: black">DATA HOURLY</span>
+                                </div>
+								<div  class="col-xs-12" align="left" style="    margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                    <span style="color: black; "> &nbsp;  CHART </span>
+                                <div id ="hourly1"  style="width: 100%;height:300px;">
+								
+								</div>
+								</div>
+
+								<!-- Pembatas Chart 2 -->
+
+                                <div align="center" style="    margin-top: 13px;">
+                                    <span style="color: black">DATA HOURLY TREND</span>
+                                </div>
+								<div  class="col-xs-12" align="left" style="    margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                    <span style="color: black; "> &nbsp;  CHART TREN </span>
+                                <div id ="chart1"  style="width: 100%;height:200px;">
+								
+								</div>
+								</div>
+								
+                                
+                        </div>
+
+                        <div id="data-mb" class="hidden" style="height:1000px;">
+                             
+                              <div class="col-xs-12" style="text-align:center;margin-bottom:5px;"><img src="img/teks semen indo.png" class="imgsi"></div>
+                                <center>
+                                    Month:
+                                    <select id="month" class="selmonth" rel="vol">
+                                    </select>
+                                    <select id="year" class="selyear" rel="vol">
+                                    </select>
+
+                                </center>
+                                <div align="center" style="    margin-top: 13px;">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                                    
+                                </div>
+
+                                <div align="center" style="    margin-top: 13px;">
+                                    <span style="color: black">DATA DAILY</span>
+                                </div>
+						<div  class="col-xs-12" align="left" style="    margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                    <span style="color: black; "> &nbsp;  CHART </span>
+                                <div id ="daily1"  style="width: 100%;height:250px;">
+								
+								</div>
+								</div>
+								
+								<!-- Pembatas Chart 2 hourly -->
+
+                                <div align="center" style="    margin-top: 13px;">
+                                    <span style="color: black">DATA DAILY TREN</span>
+                                </div>
+								<div  class="col-xs-12" align="left" style="    margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                    <span style="color: black; "> &nbsp;  CHART TREN DAILY</span>
+                                <div id ="dailyabc"  style="width: 100%;height:300px;">
+								</div>
+								</div>
+
+                        </div>
+						
+
+                    </div>
+                    <footer >
+						<div class="regular" >
+
+
+                        </div>
+				</footer>
+
+                </div>
+            </div>
+        </div>
+        
+		<script>
+		$(function () {
+             Highcharts.chart('hourly1', {
+                    chart: {
+        type: 'boxplot'
+    },
+
+    title: {
+        text: ''
+    },
+	credits: {
+     enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+    legend: {
+        enabled: false
+    },
+
+    xAxis: {
+        categories: ['RAW MEAL', 'RAW COAL', 'KILN FEED', 'FINE COAL', 'CLINKER','CEMENT'],
+        title: {
+            text: ''
+        }
+    },
+
+    yAxis: {
+        title: {
+            text: ''
+        },
+        plotLines: [{
+            value: 932,
+            color: 'red',
+            width: 1,
+            label: {
+                text: '',
+                align: 'center',
+                style: {
+                    color: 'gray'
+                }
+            }
+        }]
+    },
+
+    series: [{
+        name: 'Observations',
+        data: [
+            [760, 801, 848, 895, 965],
+            [733, 853, 939, 980, 1080],
+            [714, 762, 817, 870, 918],
+            [724, 802, 806, 871, 950],
+            [834, 836, 864, 882, 910]
+        ],
+        tooltip: {
+            headerFormat: '<em>Experiment No {point.key}</em><br/>'
+        }
+    }, {
+        name: 'Outlier',
+        color: Highcharts.getOptions().colors[0],
+        type: 'scatter',
+        data: [ // x, y positions where 0 is the first category
+            [0, 644],
+            [4, 718],
+            [4, 951],
+            [4, 969]
+        ],
+        marker: {
+            fillColor: 'white',
+            lineWidth: 1,
+            lineColor: Highcharts.getOptions().colors[0]
+        },
+        tooltip: {
+            pointFormat: 'Observation: {point.y}'
+        }
+    }]
+
+                    });  
+             }); 
+<!---chart daily-->
+
+$(function () {
+             Highcharts.chart('daily1', {
+                    chart: {
+        type: 'boxplot'
+    },
+
+    title: {
+        text: ''
+    },
+	credits: {
+     enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+    legend: {
+        enabled: false
+    },
+
+    xAxis: {
+        categories: ['RAW MEAL', 'RAW COAL', 'KILN FEED', 'FINE COAL', 'CLINKER','CEMENT'],
+        title: {
+            text: ''
+        }
+    },
+
+    yAxis: {
+        title: {
+            text: ''
+        },
+        plotLines: [{
+            value: 932,
+            color: 'red',
+            width: 1,
+            label: {
+                text: '',
+                align: 'center',
+                style: {
+                    color: 'gray'
+                }
+            }
+        }]
+    },
+
+    series: [{
+        name: 'Observations',
+        data: [
+            [760, 801, 848, 895, 965],
+            [733, 853, 939, 980, 1080],
+            [714, 762, 817, 870, 918],
+            [724, 802, 806, 871, 950],
+            [834, 836, 864, 882, 910]
+        ],
+        tooltip: {
+            headerFormat: '<em>Experiment No {point.key}</em><br/>'
+        }
+    }, {
+        name: 'Outlier',
+        color: Highcharts.getOptions().colors[0],
+        type: 'scatter',
+        data: [ // x, y positions where 0 is the first category
+            [0, 644],
+            [4, 718],
+            [4, 951],
+            [4, 969]
+        ],
+        marker: {
+            fillColor: 'white',
+            lineWidth: 1,
+            lineColor: Highcharts.getOptions().colors[0]
+        },
+        tooltip: {
+            pointFormat: 'Observation: {point.y}'
+        }
+    }]
+
+                    });  
+             });
+	
+			</script>
+    
+	
+	<script>
+			function exchange(){
+				var labelArray = [];
+				var highchartseries = new Array();
+				
+				$.ajax({
+
+					url: url_src + '/api/index.php/c_clinker/exchange',
+					//url: 'STMRevVolPrice.json',
+					dataType: 'json',
+					type: 'GET',
+					success: function(data) {
+						console.log(data);
+						//var cashcart = JSON.parse(data);
+						var totalkurs = new Array();
+						var jumlah = Object.keys(data).length;
+						for (var i = 1; i <=jumlah; i++){
+						addrow (data[i].tanggal,data[i].company,data[i].plant,data[i].c3s);
+						//highchartseries.push (data[i].totalkurs);
+						highchartseries.push(data[i]['c3s']);
+						console.log(highchartseries);
+						
+						}
+						
+						console.log('exchange');
+						console.log(jumlah);
+						//console.log(labelArray);
+			$('#chart1').highcharts({
+                chart: {
+                    type: 'spline',
+                    spacingBottom: 8,
+                    spacingTop: 8,
+                    spacingLeft: 5,
+                    spacingRight: 5,
+                    animation: Highcharts.svg
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: labelArray,
+                    tickInterval: 1,
+                    // tickmarkPlacement: 'on',
+                    gridLineWidth: 1
+                },
+                yAxis: {
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip: {
+                    formatter: function(){
+                            var n = this.y;
+                            var s = this.series.name;
+                            var t = this.point.x+1;
+                            return '<b>'+t+'<br>'+s+'<br>'+setFormat(n,0)+' Ton</b>';
+                            }
+                },
+                exporting: {
+                    enabled: false
+                },
+                legend: {
+                    enabled: false,
+                },
+                credits: {
+                    enabled: false
+                },
+            plotOptions: {
+                        column: {
+                          grouping: false,
+                          shadow: false,
+                          borderWidth: 0
+                        }
+                   },
+                series: [{
+                        name: 'TUBAN I',
+                        color: '#E9D460',
+                        data: [11,44,22,23,12,55,64,23,78,96,12,32,76,98,34,77,74,89,13,23,53,68]
+                        },{
+                        name: 'TUBAN II',
+                        color: '#22A7F0',
+                        data: [112,443,221,232,124,556,647,238,782,961,121,322,736,948,345,767,774,819,113,223,533,648]
+                        },{
+                        name: 'TUBAN III',
+                        color: '#D91E18',
+                        data: [1,4,2,3,2,5,4,2,8,9,2,3,6,8,3,7,7,9,3,3,5,6]
+                        }]
+                });
+        }
+    })
+						}
+					
+			function addrow (tanggal,company,plant,c3s){
+			$('#isidetail').append('<tr><td>'+tanggal+'</td><td>'+company+'</td><td>'+plant+'</td><td>'+c3s+'</td></tr>');
+			}
+			</script>
+	
+	<script>
+	$(function () {
+             Highcharts.chart('chart1', {
+                    chart: {
+                    type: 'spline',
+                    spacingBottom: 8,
+                    spacingTop: 8,
+                    spacingLeft: 5,
+                    spacingRight: 5,
+                    animation: Highcharts.svg
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: 5,
+                    tickInterval: 1,
+//                    tickmarkPlacement: 'on',
+                    gridLineWidth: 1
+                },
+                yAxis: {
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip:{
+                            formatter: function(){
+                            var n = this.y;
+                            var s = this.series.name;
+                            var t = this.point.x+1;
+                            return '<b>'+t+'<br>'+s+'<br>'+setFormat(n,0)+' USD</b>';
+                            }
+                            
+                 },
+                exporting: {
+                    enabled: false
+                },
+                legend: {
+                    enabled: false,
+                    //layout: 'horizontal',
+                    align: 'center',
+                    //verticalAlign: 'bottom',
+                    //x: 0,
+                    //y: 0,
+                    //backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    //shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+		plotOptions: {
+            		column: {
+                	grouping: false,
+                	shadow: false,
+                	borderWidth: 0
+            		}
+       		 },
+                series: [{
+                        name: 'TUBAN I',
+                        color: '#E9D460',
+                        data: [11,44,22,23,12,55,64,23,78,96,12,32,76,98,34,77,74,89,13,23,53,68]
+                        },{
+                        name: 'TUBAN II',
+                        color: '#22A7F0',
+                        data: [112,443,221,232,124,556,647,238,782,961,121,322,736,948,345,767,774,819,113,223,533,648]
+                        },{
+                        name: 'TUBAN III',
+                        color: '#D91E18',
+                        data: [1,4,2,3,2,5,4,2,8,9,2,3,6,8,3,7,7,9,3,3,5,6]
+                        }]
+            });
+						}
+					);
+
+	</script>
+	
+	<script>
+	Highcharts.chart('dailyabc', {
+        title: {
+            text: ''
+        },
+        
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            borderWidth: 0,
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            x: 0,
+            y: 0,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            //shadow: true
+        },
+        credits: {
+                    enabled: false
+                },
+        series: [{
+            name: 'TUBAN I',
+            data: [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10, ],
+            color: '#D91E18',
+            type: 'spline'
+        }, {
+            name: 'TUBAN II',
+            data: [3,5,8,14,5,11,7,8,12,10,11,12,],
+            color: '#2ECC71',
+            type: 'spline'
+        }, {
+            name: 'TUBAN III',
+            data: [3,5,8,14,5,11,7,8,12,10,11,12,],
+            color: '#2ECC71',
+            type: 'spline'
+        }, {
+            name: 'TUBAN IV',
+            data: [0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 17.3, 18.0, 17.9, 18.0],
+            color: '#BDC3C7',
+            type: 'spline'
+        }]
+    });
+	</script>
+	
+	
+	
+	<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+		
+        </body>
+</html>

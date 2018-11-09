@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        <script src="js/phase2/sidenav.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/ip_highcharts.js"></script>
+        <script src="js/ip_highcharts-3d.js"></script>
+        <script src="js/ip_exporting.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+
+                $('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x = Number(tahun); x > 2016; x--) {
+                    if (x == tahun) {
+                        opt_year += '<option value="' + x + '" selected="selected">' + x + '</option>';
+                    } else {
+                        opt_year += '<option value="' + x + '">' + x + '</option>';
+                    }
+                }
+                $('.selyear').html(opt_year);
+                var opt_month;
+                $.each(month, function (key, val) {
+                    if (key + 1 <= 12) {
+                        if ((key + 1) < 10) {
+                            var v = '0' + (key + 1);
+                        } else {
+                            var v = key + 1;
+                        }
+                        if ((key + 1) == bulanSekarang) {
+                            opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                        } else {
+                            opt_month += '<option value="' + v + '">' + val + '</option>';
+                        }
+                    }
+
+                })
+                $('.selmonth').html(opt_month);
+
+                var myspan = document.getElementById('head');
+                $( ".head-menu" ).scrollLeft(140);
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+
+            .font-category {
+                font-size: 12px;
+            }
+
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .no-js #loader {
+                display: none;
+            }
+
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .nav-tabs > li.active {
+                border-top: 1px solid #1481ed;
+            }
+
+            .inex {
+                font-size: 25px;
+                font-family: "Open Sans";
+                margin-bottom: 0px;
+            }
+
+            .tit_head {
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+            }
+
+            .tab-active > a, .tab-active > a:focus, .tab-active > a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration: none;
+
+            }
+
+            .tab-active {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration: none;
+            }
+
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color: #000;
+            }
+
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                font-family: "Open Sans";
+            }
+
+            .prosen1 {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+
+            .mencapai {
+                color: #06bf79;
+            }
+
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+            .total_record{
+                color: #1E90FF;
+                text-align: center;
+                font-size: 32px;
+                font-weight: bold;
+            }
+            .high_record{
+                color: #FF4757;
+                text-align: center;
+                font-size: 32px;
+                font-weight: bold;
+            }
+            .medium_record{
+                color: #FFA502;
+                text-align: center;
+                font-size: 32px;
+                font-weight: bold;
+            }
+            .low_record{
+                color: #2ED573;
+                text-align: center;
+                font-size: 32px;
+                font-weight: bold;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <title>FMEA Report</title>
+    </head>
+    <body onLoad="onLoad()">
+        <div class="app">
+            <div id="deviceready">
+                <div id="backdrop"></div>
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                            <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                            <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a href="scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a href="#" class="active"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle">
+                            <span>toggle menu</span>
+                        </button>
+                        <b class="logopis" href="">FMEA REPORT</b>
+                        <a class="logo" href="index.html"><img src="img/logo.png"></a>
+                    </header>
+                    <div class="wrapper">
+                        <div class="head-menu">
+                            <ul>
+                                <li><a href="maint_inspection_sg.html">INSPECTION</a></li>
+                                <li><a onclick="alert('Backlog data will available soon')">BACKLOG</a></li>
+                                <li><a href="maint_performance_si.html">PERFORMANCE</a></li>
+                                <li><a href="maint_cost_sg.html">MAINT. COST</a></li>
+                                <li><a class="active">FMEA</a></li>
+                            </ul>
+                        </div>
+                        <div class="spacer-menu"></div>
+                        <div class="headsix add_fix cubesRun2">
+                             <div align="center">
+                                <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="prodtittle" style="font-weight: 600;font-size: 23px;display: inline-block;float: none;margin-bottom: 6px;">SEMEN INDONESIA</p>
+                            </div>
+                            <center>
+                                Month:
+                                <select id="month" class="selmonth" rel="vol"></select>
+                                <select id="year" class="selyear" rel="vol"></select>
+                            </center>
+                        </div>
+                        <div class="col-xs-12 noPadding box_sdow" style="margin-bottom: 5px; min-height: 220px">
+                            <div class="col-xs-12 noPadding tit_head" align="center"
+                                     style=" height: 28px; margin-bottom: 12px;border-bottom: 1px solid #6fbbfe;">
+                                    
+                                    <span style="color: #2b2b2b;font-size: 13px;">AVAILABILITY PERALATAN TOTAL (%)</span>
+                                </div>
+                            <div style="text-align: center; margin-top: 2px; font-size: 12px">Periode : <span
+                                    style="color: black;" id="last_update"></span>
+                            </div>
+
+                            <div align="center" class="headsixbg cubesRun2" style="margin-top: 6px; border-bottom: 1px;">
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">JUMLAH RECORD</div>
+                                        <div id="total_record" class="total_record">0</div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">HIGH RPN</div>
+                                        <div id="high_record" class="high_record">0</div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">MEDIUM RPN</div>
+                                        <div id="medium_record" class="medium_record">0</div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">LOW RPN</div>
+                                        <div id="low_record" class="low_record">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="whitebg">
+                            
+                            
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 355px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="center"
+                                     style=" height: 28px; margin-bottom: 12px; margin-top: 12px; border-bottom: 1px solid #6fbbfe;">
+                                    
+                                    <span style="color: #2b2b2b;font-size: 13px;">SUMMARY RECORD - STATUS EKSEKUSI</span>
+                                </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center"
+                                     style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="column" style="height: 250px; width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 350px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="center"
+                                     style=" height: 28px; margin-bottom: 12px; margin-top: 12px; border-bottom: 1px solid #6fbbfe;">
+                                
+                                    <span style="color: #2b2b2b;font-size: 13px;">SUMMARY RECORD - KATEGORI RPN</span>
+                                </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center"
+                                     style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="donut" style="height: 250px; width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+                    </div>
+                    <footer >
+                        <div class="regular" >
+                            <a href="#" onclick="alert('Available Soon')" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
+                            <a href="#" onclick="alert('Available Soon')" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
+                            <a href="ip_report_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;"><img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
+                            <a href="#" onclick="alert('Available Soon')" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
+                            <a href="#" onclick="alert('Available Soon')" class="col-xs-3 noPadding  col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+                                    $(document).on('ready', function () {
+                                        $(".regular").slick({
+                                            infinite: true,
+                                            slidesToShow: 5,
+                                            slidesToScroll: 5,
+                                            arrows: false,
+                                            centerMode: false
+                                        });
+                                    });
+                                    $('#month1').html('&nbsp;&nbsp;&nbsp;Report Bulan ' + bulan + ' ' + tahun);
+                                    $('#month2').html('&nbsp;&nbsp;&nbsp;Report Bulan ' + bulan + ' ' + tahun);
+                                    $('#month3').html('&nbsp;&nbsp;&nbsp;Report Bulan ' + bulan + ' ' + tahun);
+                                    $('#month4').html('&nbsp;&nbsp;&nbsp;Report Bulan ' + bulan + ' ' + tahun);
+
+                                    var m = moment().format('MM');
+                                    var y = moment().format('YYYY');
+
+                                    var strBulan = 's' + bulanSekarang;
+                                    $(".bulan").html(bulan + ' ' + tahun);
+                                    function n(n) {
+                                        return n > 9 ? "" + n : "0" + n;
+                                    }
+                                    reloadChart(y, m);
+
+                                    $('.selmonth').change(function () {
+                                        bulanSekarang = $(this).val();
+                                        tahun = $('.selyear').val();
+                                        var t = $(this).attr('rel');
+                                        if (t == 'vol') {
+                                            reloadChart(tahun, bulanSekarang);
+                                        } else {
+                                            reloadChart(tahun, bulanSekarang);
+                                        }
+                                    })
+                                    $('.selyear').change(function () {
+                                        tahun = $(this).val();
+                                        bulanSekarang = $('.selmonth').val();
+                                        var t = $(this).attr('rel');
+                                        if (t == 'vol') {
+                                            reloadChart(tahun, bulanSekarang);
+                                        } else {
+                                            reloadChart(tahun, bulanSekarang);
+                                        }
+                                    })
+
+                                    function reloadChart(my_tahun, my_bulan) {
+                                        var tag_target = '';
+                                        var myMonth = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+                                        var today = myMonth[parseInt(my_bulan) - 1] + ' ' + my_tahun;
+                                        $('#last_update').html(today);
+
+                                        run_waitMe('#data-volume', 'ios');
+                                        tag_target = '#data-volume';
+                                        run_waitMe('#dash', 'facebook');
+                                        run_waitMe('#dash', 'facebook');
+
+                                        $.ajax({
+                                            url: url_src + '/api/index.php/plant_tuban/get_fmea_exec',
+                                            type: 'GET',
+                                            success: function (data) {
+                                                var data1 = data.replace("<title>Json</title>", "");
+                                                var data2 = data1.replace("(", "[");
+                                                var data3 = data2.replace(");", "]");
+
+                                                var dataJson = JSON.parse(data3);
+                                                var E = parseFloat(dataJson.data.exc) !== 'undefined' ? parseFloat(dataJson.data.exc) : 0;
+                                                var N = parseFloat(dataJson.data.not) !== 'undefined' ? parseFloat(dataJson.data.not) : 0;
+
+                                                Highcharts.chart('column', {
+                                                    chart: {
+                                                        type: 'column'
+                                                    },
+                                                    title: {
+                                                        text: ''
+                                                    },
+                                                    exporting: {
+                                                        enabled: false
+                                                    },
+                                                    credits: {
+                                                        enabled: false
+                                                    },
+                                                    subtitle: {
+                                                        text: ''
+                                                    },
+                                                    xAxis: {
+                                                        categories: [
+                                                            '',
+                                                        ],
+                                                        crosshair: true
+                                                    },
+                                                    yAxis: {
+                                                        min: 0,
+                                                        title: {
+                                                            text: 'Jumlah'
+                                                        }
+                                                    },
+                                                    tooltip: {
+                                                        pointFormat: '{series.name}: <b>{point.y:.0f}</b>'
+                                                    },
+                                                    plotOptions: {
+                                                        column: {
+                                                            pointPadding: 0.2,
+                                                            borderWidth: 0
+                                                        }
+                                                    },
+                                                    series: [{
+                                                            name: 'Executed',
+                                                            color: '#1E90FF',
+                                                            data: [E]
+
+                                                        }, {
+                                                            name: 'Not Executed',
+                                                            color: '#747D8C',
+                                                            data: [N]
+
+                                                        }]
+                                                });
+
+                                            }
+                                        }).done(function (data) {
+                                        }).fail(function () {
+                                        });
+
+
+                                        $.ajax({
+                                            url: url_src + '/api/index.php/plant_tuban/get_fmea_level',
+                                            type: 'GET',
+                                            success: function (data) {
+                                                var data1 = data.replace("<title>Json</title>", "");
+                                                var data2 = data1.replace("(", "[");
+                                                var data3 = data2.replace(");", "]");
+
+                                                var dataJson = JSON.parse(data3);
+                                                var H_j = parseFloat(dataJson.data.HIGH.jml) !== 'undefined' ? parseFloat(dataJson.data.HIGH.jml) : 0;
+                                                var H_p = parseFloat(dataJson.data.HIGH.prs) !== 'undefined' ? parseFloat(dataJson.data.HIGH.prs) : 0;
+                                                var M_j = parseFloat(dataJson.data.MEDIUM.jml) !== 'undefined' ? parseFloat(dataJson.data.MEDIUM.jml) : 0;
+                                                var M_p = parseFloat(dataJson.data.MEDIUM.prs) !== 'undefined' ? parseFloat(dataJson.data.MEDIUM.prs) : 0;
+                                                var L_j = parseFloat(dataJson.data.LOW.jml) !== 'undefined' ? parseFloat(dataJson.data.LOW.jml) : 0;
+                                                var L_p = parseFloat(dataJson.data.LOW.prs) !== 'undefined' ? parseFloat(dataJson.data.LOW.prs) : 0;
+
+                                                var total = H_j + M_j + L_j;
+                                                $('#total_record').html(total);
+                                                $('#high_record').html(H_j);
+                                                $('#medium_record').html(M_j);
+                                                $('#low_record').html(L_j);
+
+                                                Highcharts.chart('donut', {
+                                                    chart: {
+                                                        plotBackgroundColor: null,
+                                                        plotBorderWidth: 0,
+                                                        plotShadow: false
+                                                    },
+                                                    colors: ['#2ED573', '#FFA502', '#FF4757'],
+                                                    exporting: {
+                                                        enabled: false
+                                                    },
+                                                    credits: {
+                                                        enabled: false
+                                                    },
+                                                    tooltip: {
+                                                        pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>'
+                                                    },
+                                                    title: {
+                                                        text: ''
+                                                    },
+                                                    plotOptions: {
+                                                        pie: {
+                                                            dataLabels: {
+                                                                enabled: true,
+                                                                distance: -50,
+                                                                style: {
+                                                                    fontWeight: 'bold',
+                                                                    color: 'white'
+                                                                }
+                                                            },
+                                                            startAngle: 0,
+                                                            endAngle: 360,
+                                                            center: ['50%', '50%']
+                                                        }
+                                                    },
+                                                    series: [{
+                                                            type: 'pie',
+                                                            name: 'Persentase',
+                                                            innerSize: '50%',
+                                                            data: [
+                                                                ['Low RPN', L_p],
+                                                                ['Med PRN', M_p],
+                                                                ['High RPN', H_p],
+                                                                {
+                                                                    name: '',
+                                                                    y: 0.2,
+                                                                    dataLabels: {
+                                                                        enabled: true
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }]
+                                                });
+                                            }
+                                        }).done(function (data) {
+                                        }).fail(function () {
+                                        });
+
+                                    }
+        </script>
+    </body>
+</html>

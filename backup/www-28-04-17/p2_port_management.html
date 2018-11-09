@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script src="js/config.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+
+        <script type="text/javascript" src="js/index.js"></script>
+	
+		<script src="js/loader.js"></script>
+		<script src="js/paradigma.js"></script>
+		
+        <script type="text/javascript" src="js/moment.min.js"></script>
+
+		<script src="js/phase2/global.js"></script>
+		<script src="js/phase2/port_management.js"></script>
+		
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+				sidemenu();
+				tabpage();
+				tabsub();
+				
+				var today = dd+'/'+mm+'/'+yyyy;
+				$('.last-update').html('Last Update : '+today);
+
+                var yearnow = tahun;
+				$('#tag_month_selected').html(month[selectmonth-1]);
+				selectedDate = yearnow+'.'+bulanSekarang;
+				
+				var opco = 'smi';
+                setParam(opco, bulanSekarang, tahun);
+				var todays = dd+'.'+mm+'.'+yyyy;
+				opcoGroup('10.04.2017', todays);
+				
+				$(".se-pre-con").fadeOut("slow");
+			}
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 60px;
+                bottom: 0px;
+                width: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+			        font-size: 18px;
+    font-weight: bold;
+}
+.titl{
+	background-color: #e54b37;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+	    margin-bottom: 0px;
+		 border-radius: 3px 3px 0px 0px;
+
+	}
+	.boxf{
+	/* background-color: #e54b37; */
+    padding: 0px;
+    margin-bottom: 3px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    /* margin: auto; */
+    min-height: 209px;
+    /* border-radius: 8px; */
+    /* margin-right: 1px; */
+    border: 1px solid rgb(197, 197, 197, 0.7);
+    /*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    border-right: 1px solid #b6b6b6;*/
+			}
+.bagan:hover, .bagan:visited {
+	opacity: 0.6;
+}
+.titab{
+    font-weight: 500;
+	    color: white;
+        display: inline-block;
+    font-size: 12px;
+    margin-bottom: 8px;
+	}
+	.lyear{
+	    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+	}
+	.ryear{
+	color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+	}
+	.jud{
+	    color: #000000;
+        font-size: 18px;
+    font-weight: 600;
+    margin-top: 13px;
+    display: inline-block;
+	}
+	/*.til{
+	    padding-bottom: 1px;
+    border-bottom: 1px solid #b6b6b6;
+	background-color: ghostwhite;
+	}*/
+	.label-success {
+    background-color: #5cb85c;
+    border: 1.5px solid white;
+}
+.label-danger {
+    background-color: #d9534f;
+	border: 1.5px solid white;
+}
+.subox{
+    height: 137px;
+    border-bottom: 3px solid #e54b37;
+}
+.subox2{
+    height: 137px;
+    border-bottom: 3px solid #626262;
+}
+.hijau {color: #669966;}
+.merah {color: #DC0033;}
+.float_bgg {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px 12px;;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #e54b37;
+    border-radius: 0px 0px 6px 6px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.htittle{
+            margin: 0px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: #e54b37;
+    height: 27px;
+    text-align: left;
+    font-size: 14px;
+    padding: 5px 0px 4px 9px;
+}
+.te{
+       background: #EB1717;    height: 37px;    line-height: 39px;font-size: small;
+    background: rgba(245,81,81,1);
+background: -moz-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,81,81,1)), color-stop(46%, rgba(245,81,81,1)), color-stop(57%, rgba(229,75,55,1)), color-stop(100%, rgba(229,75,55,1)));
+background: -webkit-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -o-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -ms-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: linear-gradient(to bottom, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f55151', endColorstr='#e54b37', GradientType=0 );
+}
+
+            
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .bold_op{
+                    font-weight: 600;
+            }
+			
+        </style>
+        <script src="js/modernizr.js"></script>
+        <title>Finance Performance</title>
+    </head>
+<body onLoad="onLoad()" >
+    <div class="app">
+        <div id="deviceready">
+            <!-- Paste this code after body tag -->
+            <div class="se-pre-con"></div>
+            <!-- Ends -->
+            <nav id="sideMenu">
+                <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+            </nav>
+            <div id="content" class="animated" style="background:#f5f5f5;">
+                <header id="header">
+                    <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                    <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+                </header>
+                <div class="wrapper">
+					<h2 class="titular te" style=" ">
+						<a href="portal_scm.html" class="pull-left" style="margin-left:10px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+						PORT MANAGEMENT
+					</h2>
+					<div class="headsix cubesRun2" style="margin-bottom:10px; min-height: 600px; margin-top: 0px;">
+						<img src="img/teks semen indo.png" class="imgsi" style="margin-top: 26px;padding-bottom: 7px; margin-bottom: 2px;">
+						<center><i class="fa fa-clock-o" aria-hidden="true"></i>   <span class="last-update upercent gry"></span></center>
+						<br>
+						<div id="page1" class="active">
+							<center id="selpel" style="margin-bottom:15px;"></center>
+							<div id="port_list">
+							</div>
+							<style>
+								.port_mngmt{margin:10px 5px;border-radius:15px;overflow:hidden;padding:0;position:relative;}
+								.port_mngmt:before{content:'';width:1px; height:100%;position:absolute;top:0;left:7.8%;background:#cfd0d1;z-index:0;}
+								.ic_ship{width:15%; display:inline-block;vertical-align:top;text-align:center;z-index:1;position:relative;}
+								.ic_ship img{width:90%;}
+								.title_ship{width:83%; display:inline-block;vertical-align:top;margin-top:4px;}
+								.title_ship h1, .title_ship h2 {margin:0;padding:5px 0 0px 0;}
+								.title_ship h1{color:#000;font-size:14px;}
+								.title_ship h2{color:#000;font-size:16px;font-weight:bold;}
+								.detail{padding:10px 0 0 15.5%;display:none;}
+								.detail li{padding:3px 3px 3px 0;font-size:14px;}
+								.tujuan{width:100%; display:inline-block;margin-top:10px;background:#EF4836;z-index:2;position:relative;}
+								.tujuan:before{content:'';width:1px; height:20px;position:absolute;top:0;left:7.8%;background:#fff;z-index:0;}
+								.tujuan p{color:#fff; font-size:12px;padding:10px 0 0 16%;position:relative;}
+								.tujuan span{position:absolute;top:12px;left:10.8%;}
+								.tujuan p:before{content:'';width:15px; height:1px;position:absolute;top:19px;left:7.8%;background:#fff;z-index:0;}
+							</style>
+						</div><!-- END OF DIV PAEge1 -->
+						<br>
+						<div align="left">
+							<p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+						</div>		
+					</div>
+                </div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<p>This is a small modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

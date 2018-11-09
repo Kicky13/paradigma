@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script type="text/javascript" src="js/accounting.min.js"></script>
+    <script type="text/javascript" src="js/waitMe.min.js"></script>
+    <script src="js/stupidtable.js?dev"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+        function onLoad() {
+            var session = getParamFull();
+            ////=========================
+            if (sessionStorage.getItem('_com') != 'ALL') {
+                $.each(listTab, function (index, el) {
+                    $('#tab-' + el + ' a').removeAttr('href');
+                    $('#tab-' + el + ' a').removeAttr('rel');
+                })
+            }
+            ////=========================
+            $("table").stupidtable();
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
+                }
+            });
+            $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                window.location.href = 'raw_material_detail.html?i=' + r;
+            })
+            $('a[href="#tab-bs"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'asset') {
+                    $('#asset').removeClass('hidden');
+                    $('#liability').addClass('hidden');
+                    $('#equity').addClass('hidden');
+
+                } else if (r == 'liability') {
+                    $('#liability').removeClass('hidden');
+                    $('#asset').addClass('hidden');
+                    $('#equity').addClass('hidden');
+
+                } else if (r === 'equity') {
+                    $('#equity').removeClass('hidden');
+                    $('#liability').addClass('hidden');
+                    $('#asset').addClass('hidden');
+                }
+            });
+
+
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'data-sp') {
+                    $('#tab-sp').removeClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    window.location.href = 'scm_hm_sp.html';
+                } else if (r == 'data-sg') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').removeClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    window.location.href = 'scm_hm_sg.html';
+                } else if (r == 'data-st') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').removeClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    window.location.href = 'scm_hm_st.html';
+                }
+                // else if (r == 'data-tl') {
+                //     $('#tab-sp').addClass('img_foot2');
+                //     $('#tab-sg').addClass('img_foot2');
+                //     $('#tab-st').addClass('img_foot2');
+                //     $('#tab-tl').removeClass('img_foot2');
+                //     window.location.href = 'scm_hm_tl.html';
+                // }
+            })
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'data-volume') {
+                    $('#data-volume').removeClass('hidden');
+                    $('#data-revenew').addClass('hidden');
+                    $('#tab-volume').addClass('act_tb');
+                    $('#tab-revenew').removeClass('act_tb');
+                    window.location.href = 'scm_hm.html';
+                } else if (r == 'data-revenew') {
+                    $('#data-volume').addClass('hidden');
+                    $('#data-revenew').removeClass('hidden');
+                    $('#tab-volume').removeClass('act_tb');
+                    $('#tab-revenew').addClass('act_tb');
+                    window.location.href = 'stok_gudang.html';
+
+                }
+            })
+            $(document).on('click', '.gauge', function (e) {
+                e.preventDefault();
+                var r = $(this).attr('target');
+                window.location.href = 'backlog_detail.html?i=' + r;
+            })
+            $(".head-menu").scrollLeft(240);
+
+        }
+        var d = new Date();
+        var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+        var bulan = month[d.getMonth()];
+        var bulanSekarang = d.getMonth() + 1;
+        var tahun = d.getFullYear();
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = dd + '/' + mm + '/' + yyyy;
+    </script>
+    <style>
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .tab_syle {
+            color: #666666;
+            font-size: 12px;
+            border: none;
+            /* padding-left: 8px; */
+            margin-left: 3px;
+        }
+
+        .font-category {
+            font-size: 12px;
+        }
+
+        .overflowing {
+            /*width: 30em;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+        }
+
+        .collapse.in {
+            display: block;
+        }
+
+        tr.collapse.in {
+            display: table-row;
+        }
+
+        .num {
+            text-align: right;
+        }
+
+        .inex {
+            font-size: 25px;
+            font-weight: bold;
+            padding-right: 12px;
+        }
+
+        .bagan:hover, .bagan:visited {
+            opacity: 0.6;
+        }
+
+        .titab {
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .ylbox {
+            background-color: #f9bf3b;
+        }
+
+        .ylhead {
+            background-color: #f39c32;
+        }
+
+        .grbox {
+            background-color: #6fc962;
+        }
+
+        .grhead {
+            background-color: #68BA5B;
+        }
+
+        .tab_tittle {
+            margin-top: 12px;
+            color: black;
+            font-size: 23px;
+            padding-left: 9px;
+            display: inline-block;
+        }
+
+        .no-text-style, .no-text-style:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .tx_tab {
+            margin-top: 5px;
+            color: #525252;
+            display: inline-block;
+            font-size: 15px;
+            font-family: "Open Sans";
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+    <script src="js/modernizr.js"></script>
+    <script>
+        //paste this code under head tag or in a seperate js file.
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");
+
+
+        });
+    </script>
+    <title>scm hm</title>
+</head>
+<body onLoad="onLoad()">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                             
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a>
+                    </li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img
+                            src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTERY</a>
+                    </li><li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li><li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="prod_rm_sg.html"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                    <li><a href="portal_sales.html"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a href="portal_scm.html"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                    <li><a href="portal_finance.html"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="portal_project.html"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                    <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+            </div>
+        </div>
+        <div id="content" style="background:#f5f5f5;">
+            <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle">
+                    <span>toggle menu</span>
+                </button>
+                <a class="logopis" href="">SCM</a>
+                <a class="logo" href="index.html"><img src="img/logo.png"></a>
+            </header>
+            <div class="wrapper">
+
+                <!-- MENU ATAS -->
+                <div class="head-menu">
+                    <ul>
+                        <li><a onclick="goto_opco('stok_bahan', 'stok_bahan_sg')">Matrial Stock</a></li>
+                        <li><a onclick="goto_opco('p2_port_management', 'p2_port_management')">Port Management</a></li>
+                        <li><a onclick="goto_opco('scm_prod', 'scm_prod_sg')">S&OP Prod.</a></li>
+                        <li><a class="active">S&OP STOCK PP & GDG</a></li>
+                        <li><a onclick="goto_opco('scm_sales_volume', 'scm_sales_vol_sg')">S&OP SALES VOLUME</a></li>
+                        <li><a onclick="goto_opco('marketshare', 'marketshare_sg')">MARKET SHARE</a></li>
+
+                        <li><a href="p2_stock_distribution.html" style="display:none">STOCK DISTRIBUTOR</a></li>
+                    </ul>
+                </div>
+               <div class="spacer-menu" style="margin-bottom:5px;"></div>
+                <!--<br>-->
+                <div class="col-xs-12 tab_dual">
+                    <div class="col-xs-12 bg_rds">
+                        <div id="tab-volume" class="col-xs-6 center zero_padd left_tb act_tb ">
+                            <a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/pack.png"
+                                                                                              width="18px">
+                                <span class="tx_tab">&nbsp;&nbsp;Stock Plant</span></a></div>
+
+                        <div id="tab-revenew" class="col-xs-6 center zero_padd left_tb ">
+                            <a href="#tab-click" rel="data-revenew" class="no-text-style"> <img src="img/gdg.png"
+                                                                                                width="18px">
+                                <span class="tx_tab">&nbsp;&nbsp;Stock Gudang</span></a></div>
+                    </div>
+                </div>
+                <div class="headsix add_fix cubesRun2" style="margin-bottom: 116px; min-height: 919px; margin-top: 19px;">
+                    <img src="img/teks semen indo.png" class="imgsi" style="margin-top: 25px;padding-bottom: 7px;">
+                    <center>
+                        <!--  Bulan:
+                         <select>
+                         <option value="volvo">Januari</option>
+                         <option value="saab">Februari</option>
+                         <option value="opel">Maret</option>
+                         <option value="audi">April</option>
+                       </select>  -->
+
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                    </center>
+
+
+                    <div align="center" style="margin-bottom: 10px; margin-top:10px;">
+                        <div class="col-xs-12" align="center" style="margin-bottom: 12px;margin-top: 6px;">
+
+                            &nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #f64747"></i>&nbsp;:&nbsp;<
+                            50%
+                            &nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #6fc962"></i>&nbsp;:&nbsp;50%
+                            - 80%
+                            &nbsp;&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #f9bf3b"></i>&nbsp;:&nbsp;90%
+                            - 100%
+                            &nbsp;&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #6fc962"></i>&nbsp;:&nbsp;>
+                            100%
+
+                        </div>
+                        <a href="scm_detail.html" rel="asset" class="bagan">
+                            <div class="col-xs-6" style="padding: 4px;">
+                                <div class="col-xs-12 box">
+                                    <div class="col-xs-12 noPadding titl">
+                                        <span style="float:left" class="redunder fblack" id="headcolc">Clinker</span>
+                                        <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i></div>
+                                    <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_clv"> 0 %</span>
+                                    </div>
+                                    <div class="col-xs-6 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">REAL</span><br>
+                                        <span style="" id="clrealv" class="fblack">0</span>
+                                    </div>
+                                    <div class="col-xs-6 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">MAX</span><br>
+                                        <span style="" id="clmaxv" class="fblack">0</span>
+                                    </div>
+
+                                    <p style="height: 42px;"></p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="scm_detail_semen.html" rel="asset" class="bagan">
+                            <div class="col-xs-6" style="padding: 4px;">
+                                <div class="col-xs-12 box">
+                                    <div class="col-xs-12 noPadding titl">
+                                        <span style="float:left" class="redunder fblack" id="headcolm">Cement</span>
+                                        <i class="fa fa-circle redind" aria-hidden="true" id="boxcolm"></i></div>
+                                    <div align="right" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Percentage</span><br>
+                                        <span class="inex fblack" id="per_cmv"> 0 %</span>
+                                    </div>
+                                    <div class="col-xs-6 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">REAL</span><br>
+                                        <span style="" id="cmrealv" class="fblack">0</span>
+                                    </div>
+                                    <div class="col-xs-6 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">MAX</span><br>
+                                        <span style="" id="cmmaxv" class="fblack">0</span>
+                                    </div>
+
+                                    <p style="height: 42px;"></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <br>
+
+                    <div align="center" style="">
+
+
+                        <br>
+
+
+                        <p class="tab_tittle">Clinker</p>
+                        <!-- <div id="container" style="width: 100%; margin: 0 auto"></div>-->
+                        <!--<table class="table table-striped" style="margin-bottom: 0px; font-size:14px;">
+                   <thead>
+                     <tr style="background-color: #e2e2e2;">
+                       <td><strong>No. </strong></td>
+                       <td valign="middle"><strong>Lokasi Plant</strong></td>
+                       <td valign="middle" align="right"><strong>Stock (T)</strong></td>
+                     </tr>
+                     </thead>
+                     <tbody id="tblclinker-data">
+                      <tr>
+                      <td>3.</td><td>Semen Tonasa</td><td align="right">'+setFormat(stock4000,0)+'</td>
+                      </tr>
+                   </tbody>
+                 </table>
+                 -->
+                        <div id="container" style="width: 100%;margin: 0 auto;padding: 4px;">
+                            <table class="table table-striped"
+                                   style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                                <thead>
+                                <tr class="headtr">
+                                    <td><strong>No. </strong></td>
+                                    <td valign="middle"><strong>Plant</strong></td>
+                                    <td valign="middle" align="right"><strong>Stock (T)</strong></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td valign="middle">Semen Gresik</td>
+                                    <td valign="middle">
+                                        <div align="right"><span style="color: black" id="rsgv">0</span></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td valign="middle">Semen Padang</td>
+                                    <td valign="middle">
+                                        <div align="right"><span style="color: black" id="rspv">0</span></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td valign="middle">Semen Tonasa</td>
+                                    <td valign="middle">
+                                        <div align="right"><span style="color: black" id="rstv">0</span></div>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                  <td>4.</td>
+                                  <td valign="middle">Thang Long</td>
+                                  <td valign="middle"><div align="right"><span style="color: black" id="rtlv">0</span></div></td>
+                                  </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <br>
+
+
+                        <p class="tab_tittle">Cement</p>
+                        <!-- <div id="container" style="width: 100%; margin: 0 auto; padding:4px;"></div>-->
+                        <div id="container" style="width: 100%; margin: 0 auto">
+                            <table class="table table-striped"
+                                   style="margin-bottom: 0px; padding-bottom: 100px; font-size:12px;">
+                                <thead>
+                                <tr class="headtr">
+                                    <th data-sort='int'><strong>No. </strong><i class="fa fa-sort"
+                                                                                aria-hidden="true"></i>&nbsp;</th>
+                                    <th valign="middle" data-sort="string"><strong>Plant</strong><i class="fa fa-sort"
+                                                                                                    aria-hidden="true"></i>&nbsp;
+                                    </th>
+                                    <th valign="middle" data-sort="float"><strong>Stock (T)</strong><i
+                                            class="fa fa-sort" aria-hidden="true"></i>&nbsp; </th>
+                                    <th valign="middle" data-sort="float"><strong>Capacity</strong><i class="fa fa-sort"
+                                                                                                      aria-hidden="true"></i>&nbsp;
+                                    </th>
+                                    <th valign="middle" data-sort="float"><strong>Stock Lvl</strong><i
+                                            class="fa fa-sort" aria-hidden="true"></i>&nbsp; </th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblcement-data">
+                                <tr>
+                                    <td colspan="5">Loading....</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+
+                    <!--<p style="text-align:center; color:black; margin-top: 85px; border-bottom: 0.8px solid #d9d9d9;">&nbsp;SALES VOLUME</p>
+
+<div align="center" style="margin-bottom: 10px; margin-top:10px;">
+                   <a href="scm_detail.html" rel="asset" class="bagan">
+                       <div class="col-xs-6 box" >
+                       <div class="col-xs-12 noPadding titl" >
+                       <span style="float:left">Clinker</span><i class="fa fa-bars" aria-hidden="true" style="float:right"></i></div>
+                       <div class="col-xs-6 noPadding" align="center">
+                       <span style="" id="">5.432.234</span><br>
+                       <span style="font-size: 12px; font-weight: 300;">TARGET</span>
+                       </div>
+
+                       <div class="col-xs-6 noPadding" align="center">
+                       <span style="" id="">3.432.234</span><br>
+                       <span style="font-size: 12px; font-weight: 300;">RKAP</span>
+                       </div>
+
+                       <div class="col-xs-6 " align="left" style="margin-top: 32px;">
+                       <span style="" id="">1.432.234</span><br>
+                       <span style="font-size: 12px; font-weight: 300;">+ / (-)</span>
+                       </div>
+                       <div class="col-xs-6 noPadding" align="right" style="margin-top: 32px;" >
+                       <span class="titab" >Prognose</span><br>
+                       <span class="inex" style="font-size:20px;">  8,5 %</span>
+
+
+
+                       </div>
+
+
+                           <p style="height: 42px;"></p>
+                       </div>
+                   </a>
+                   <a href="scm_detail.html" rel="asset" class="bagan">
+                       <div class="col-xs-6 box" >
+                       <div class="col-xs-12 noPadding titl" >
+                       <span style="float:left">Cement</span><i class="fa fa-bars" aria-hidden="true" style="float:right"></i></div>
+                       <div class="col-xs-6 noPadding" align="center">
+                       <span style="" id="">5.432.234</span><br>
+                       <span style="font-size: 12px; font-weight: 300;">TARGET</span>
+                       </div>
+
+                       <div class="col-xs-6 noPadding" align="center">
+                       <span style="" id="">3.432.234</span><br>
+                       <span style="font-size: 12px; font-weight: 300;">RKAP</span>
+                       </div>
+
+                       <div class="col-xs-6 " align="left" style="margin-top: 32px;">
+                       <span style="" id="">1.432.234</span><br>
+                       <span style="font-size: 12px; font-weight: 300;">+ / (-)</span>
+                       </div>
+                       <div class="col-xs-6 noPadding" align="right" style="margin-top: 32px;" >
+                       <span class="titab" >Prognose</span><br>
+                       <span class="inex" style="font-size:20px;">  101,5 %</span>
+
+
+
+                       </div>
+
+
+                           <p style="height: 42px;"></p>
+                       </div>
+                   </a>
+                   <p style="text-align:center; color:black; margin-top: 20px; border-bottom: 0.8px solid #d9d9d9;">&nbsp;GROWTH</p>
+<div align="center" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+
+               <span class="upercent">TOTAL GROWTH</span><br>
+
+              <span class="prosen" style="color: #5d5d5d;" id="totalSaldo">-16.5 %</span><br>
+               <br>
+               <div class="col-xs-12 noPadding" style="margin-top:12px;">
+               <div class="col-xs-5" >
+               <span class="prosen" style="color: #5d5d5d; font-size: 19px;" id="totalSaldo">-21 % / 9.7 %</span><br>
+               <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">Domestic</span>
+               </div>
+               <div class="col-xs-2" ></div>
+               <div class="col-xs-5" >
+                <span class="prosen" style="color: #5d5d5d; font-size: 19px;" id="totalSaldo">483.1 %</span><br>
+               <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">Export</span>
+               </div>
+               </div>
+
+           </div>
+                   </div><br>-->
+
+
+                </div>
+
+
+            </div>
+
+
+            <footer>
+                <div class="regular" >
+                            <a href="scm_hm.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;"><img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
+                            <a href="scm_hm_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
+                            <a href="scm_hm_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
+                            <a href="scm_hm_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
+                            <a href="scm_hm_tl.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
+                        </div>
+            </footer>
+
+        </div>
+    </div>
+</div>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    /*var stockterak;
+     var stockpp;
+     loadData(url_src+'/ci/index.php/api/stokterak', 'terak');
+     loadData(url_src+'/ci/index.php/api/stokpp', 'pp');
+     function.loadData(url, id){
+     $.ajax({
+     url: url,
+     //url: url_src+ '/api/index.php/api/stokterak',
+     type: 'GET',
+     success: function (data) {
+
+     var data = eval('(' + data + ')');
+     console.log(data);
+     var cmreal = parseFloat(data.Semen.prognose).toFixed(0);
+     //var cmprog = parseFloat(data.Semen.prognose).toFixed(0);
+     var cmmax = parseFloat(data.Semen.max_stock).toFixed(0);
+     var cmmin = parseFloat(data.Semen.min_stock).toFixed(0);
+     var clreal = parseFloat(data.Terak.prognose).toFixed(0);
+     //var clprog = parseFloat(data.Terak.prognose).toFixed(0);
+     var clmax = parseFloat(data.Terak.max_stock).toFixed(0);
+     var clmin = parseFloat(data.Terak.min_stock).toFixed(0);
+     var per_cm = (Number(cmreal) / Number(cmmax)) * 100;
+     var per_cl = (Number(clreal) / Number(clmax)) * 100;
+
+     $('#cmrealv').html(FormatNumberBy3(cmreal, ",", "."));
+     // $('#cmprogv').html(cmprog);
+     $('#cmmaxv').html(FormatNumberBy3(cmmax, ",", "."));
+     $('#cmminv').html(cmmin);
+     $('#clrealv').html(FormatNumberBy3(clreal, ",", "."));
+     //$('#clprogv').html(clprog);
+     $('#clmaxv').html(FormatNumberBy3(clmax, ",", "."));
+     $('#clminv').html(clmin);
+
+
+     //console.log(per_cm);
+
+     $('#per_cmv').html(FormatNumberBy3(per_cm.toFixed(2).replace(".", ","), ",", ".")+ ' %');
+     $('#per_clv').html(FormatNumberBy3(per_cl.toFixed(2).replace(".", ","), ",", ".")+ ' %');
+
+     if ( per_cm >= 80 && per_cm <= 100){
+     $('#headcol').addClass('ylhead');
+     $('#boxcol').addClass('ylbox');
+     }else if ( per_cm >= 50 && per_cm <= 80 ) {
+     $('#headcol').addClass('grhead');
+     $('#boxcol').addClass('grbox');
+     }
+     console.log(per_cm);
+     if ( per_cl >= 80 && per_cl <= 100){
+     $('#headcol').addClass('ylhead');
+     $('#boxcol').addClass('ylbox');
+     }else if ( per_cl >= 50 && per_cl <= 80 ) {
+     $('#headcol').addClass('grhead');
+     $('#boxcol').addClass('grbox');
+     }
+
+     //console.log(cmreal);
+
+     }
+     }).done(function (data) {
+     }).fail(function () {
+
+     });
+     }*/
+
+</script>
+<script>
+    $.ajax({
+        //url: url,
+        url: url_src + '/api/index.php/api/stokterak',
+        type: 'GET',
+        success: function (data) {
+
+            var data = eval('(' + data + ')');
+            console.log(data);
+            var cmreal = parseFloat(data.Semen.prognose).toFixed(0);
+            //var cmprog = parseFloat(data.Semen.prognose).toFixed(0);
+            var cmmax = parseFloat(data.Semen.max_stock).toFixed(0);
+            var cmmin = parseFloat(data.Semen.min_stock).toFixed(0);
+            var clreal = parseFloat(data.Terak.prognose).toFixed(0);
+            //var clprog = parseFloat(data.Terak.prognose).toFixed(0);
+            var clmax = parseFloat(data.Terak.max_stock).toFixed(0);
+            var clmin = parseFloat(data.Terak.min_stock).toFixed(0);
+            var per_cm = (Number(cmreal) / Number(cmmax)) * 100;
+            var per_cl = (Number(clreal) / Number(clmax)) * 100;
+
+            console.log(cmreal);
+            console.log(typeof(cmreal));
+
+            $('#cmrealv').html(FormatNumberBy3(cmreal, ",", "."));
+            // $('#cmprogv').html(cmprog);
+            $('#cmmaxv').html(FormatNumberBy3(cmmax, ",", "."));
+            $('#cmminv').html(cmmin);
+            $('#clrealv').html(FormatNumberBy3(clreal, ",", "."));
+            //$('#clprogv').html(clprog);
+            $('#clmaxv').html(FormatNumberBy3(clmax, ",", "."));
+            $('#clminv').html(clmin);
+
+
+            //console.log(per_cm);
+
+            $('#per_cmv').html(FormatNumberBy3(per_cm.toFixed(2).replace(".", ","), ",", ".") + ' %');
+            $('#per_clv').html(FormatNumberBy3(per_cl.toFixed(2).replace(".", ","), ",", ".") + ' %');
+
+            if (per_cm >= 80 && per_cm <= 100) {
+                $('#headcolm').addClass('ylunder');
+                $('#boxcolm').addClass('ylind');
+                $('#headcolm').removeClass('grunder');
+                $('#boxcolm').removeClass('grind');
+                $('#headcolm').removeClass('redunder');
+                $('#boxcolm').removeClass('redind');
+            } else if (per_cm >= 50 && per_cm <= 80) {
+                $('#headcolm').removeClass('ylunder');
+                $('#boxcolm').removeClass('ylind');
+                $('#headcolm').addClass('grunder');
+                $('#boxcolm').addClass('grind');
+                $('#headcolm').removeClass('redunder');
+                $('#boxcolm').removeClass('redind');
+            }
+            else if (per_cm >= 100) {
+                $('#headcolm').addClass('grunder');
+                $('#boxcolm').addClass('grind');
+                $('#headcolm').removeClass('ylunder');
+                $('#boxcolm').removeClass('ylind');
+                $('#headcolm').removeClass('redunder');
+                $('#boxcolm').removeClass('redind');
+            } else {
+                $('#headcolm').removeClass('grunder');
+                $('#boxcolm').removeClass('grind');
+                $('#headcolm').removeClass('ylunder');
+                $('#boxcolm').removeClass('ylind');
+            }
+            // console.log(per_cm);
+            if (per_cl >= 80 && per_cl <= 100) {
+                $('#headcolc').addClass('ylunder');
+                $('#boxcolc').addClass('ylind');
+                $('#headcolc').removeClass('grunder');
+                $('#boxcolc').removeClass('grind');
+                $('#headcolc').removeClass('redunder');
+                $('#boxcolc').removeClass('redind');
+            } else if (per_cl >= 50 && per_cl <= 80) {
+                $('#headcolc').removeClass('ylunder');
+                $('#boxcolc').removeClass('ylind');
+                $('#headcolc').addClass('grunder');
+                $('#boxcolc').addClass('grind');
+                $('#headcolc').removeClass('redunder');
+                $('#boxcolc').removeClass('redind');
+            }
+            else if (per_cm >= 100) {
+                $('#headcolc').addClass('grunder');
+                $('#boxcolc').addClass('grind');
+                $('#headcolc').removeClass('ylunder');
+                $('#boxcolc').removeClass('ylind');
+                $('#headcolc').removeClass('redunder');
+                $('#boxcolc').removeClass('redind');
+            }
+
+
+            //console.log(cmreal);
+        }
+    }).done(function (data) {
+    }).fail(function () {
+
+    });
+</script>
+<script>
+    $.ajax({
+        //url: url,
+        url: url_src + '/api/index.php/api/stokklinkerperopco',
+        type: 'GET',
+        success: function (data) {
+
+            var data = eval('(' + data + ')');
+            console.log(data);
+
+            var rsg = parseInt(data.s7000.realisasi);
+            var rsp = parseInt(data.s3000.realisasi);
+            var rst = parseInt(data.s4000.realisasi);
+            // var rtl = parseInt(data.s6000.realisasi);
+            //var cmprog = parseFloat(data.Semen.prognose).toFixed(0);
+            console.log(rsg);
+            console.log(typeof(rsg));
+
+
+            $('#rsgv').html(FormatNumberBy3(rsg, ",", "."));
+            $('#rspv').html(FormatNumberBy3(rsp, ",", "."));
+            $('#rstv').html(FormatNumberBy3(rst, ",", "."));
+            // $('#rtlv').html(FormatNumberBy3(rtl, ",", "."));
+            //$('#clprogv').html(clprog);
+
+            //console.log(per_cm);
+
+
+            //console.log(cmreal);
+
+        }
+    }).done(function (data) {
+    }).fail(function () {
+
+    });
+</script>
+<script>
+    $.ajax({
+        url: url_src + '/api/index.php/api/stockpp',
+        type: 'GET',
+        success: function (data) {
+            var dataJson = JSON.parse(data);
+            var data7000 = dataJson['s7000'];
+            var data3000 = dataJson['s3000'];
+            var data4000 = dataJson['s4000'];
+            // var data6000 = dataJson['s6000'];
+            var datatabel = '';
+            var stock7000 = 0;
+            var stock3000 = 0;
+            var stock4000 = 0;
+            // var stock6000 = 0;
+            var stockAll = 0;
+            var capacityAll = 0;
+            var no = 1;
+            var color = '';
+            $('#tblclinker-data').html('');
+            $('#tblcement-data').html('');
+            $.each(data7000, function (key, value) {
+                stock7000 += parseFloat(value.stock);
+                stockAll += parseFloat(value.stock);
+                capacityAll += parseInt(value.kapasitas);
+                datatabel1 = '<tr><td>1.</td><td>Semen Gresik</td><td align="right">' + setFormat(stock7000, 0) + '</td></tr>';
+                var persen = (value.stock / value.kapasitas) * 100;
+                var color;
+                if (persen <= 30) {
+                    color = 'e54b37';
+                } else if (persen >= 100) {
+                    color = 'e54b37';
+                }
+                else {
+                    color = '000';
+                }
+                ;
+                datatabel += '<tr><td>' + no + '</td><td>' + value.lokasi_plant + '</td><td align="right" data-sort-value="' + parseFloat(value.stock, 0) + '">' + setFormat(value.stock, 0) + '</td><td align="right">' + setFormat(value.kapasitas, 0) + '</td><td align="right"><div style="color:#' + color + '">' + setFormat(persen, 2) + '</td></tr>';
+                no++;
+            })
+
+            $('#tblclinker-data').append(datatabel1);
+            $.each(data3000, function (key, value) {
+                stock3000 += parseFloat(value.stock);
+                stockAll += parseFloat(value.stock);
+                capacityAll += parseInt(value.kapasitas);
+                datatabel1 = '<tr><td>2.</td><td>Semen Padang</td><td align="right">' + setFormat(stock3000, 0) + '</td></tr>';
+                var persen = (value.stock / value.kapasitas) * 100;
+                var color;
+                if (persen <= 30) {
+                    color = 'e54b37';
+                } else if (persen >= 100) {
+                    color = 'e54b37';
+                }
+                else {
+                    color = '000';
+                }
+                datatabel += '<tr><td>' + no + '</td><td>' + value.lokasi_plant + '</td><td align="right">' + setFormat(value.stock, 0) + '</td><td align="right">' + setFormat(value.kapasitas, 0) + '</td><td align="right"><div style="color:#' + color + '">' + setFormat(persen, 2) + '</div></td></tr>';
+                no++;
+            })
+            $('#tblclinker-data').append(datatabel1);
+            $.each(data4000, function (key, value) {
+                stock4000 += parseFloat(value.stock);
+                stockAll += parseFloat(value.stock);
+                capacityAll += parseInt(value.kapasitas);
+                datatabel1 = '<tr><td>3.</td><td>Semen Tonasa</td><td align="right">' + setFormat(stock4000, 0) + '</td></tr>';
+                var persen = (value.stock / value.kapasitas) * 100;
+                var color;
+                if (persen <= 30) {
+                    color = 'e54b37';
+                } else if (persen >= 100) {
+                    color = 'e54b37';
+                }
+                else {
+                    color = '000';
+                }
+                datatabel += '<tr><td>' + no + '</td><td>' + value.lokasi_plant + '</td><td align="right">' + setFormat(value.stock, 0) + '</td><td align="right">' + setFormat(value.kapasitas, 0) + '</td><td align="right"><div style="color:#' + color + '">' + setFormat(persen, 2) + '</div></td></tr>';
+                no++;
+            })
+            $('#tblclinker-data').append(datatabel1);
+            // $.each(data6000, function(key, value){
+            //                    stock6000 += parseFloat(value.stock);
+            //                    stockAll += parseFloat(value.stock);
+            //                    capacityAll += parseInt(value.kapasitas);
+            //                    datatabel1 = '<tr><td>4.</td><td>Thang Long</td><td align="right">'+setFormat(stock6000,0)+'</td></tr>';
+            //                    var persen = (value.stock / value.kapasitas) * 100;
+            //  var color;
+
+            //  if (persen <=30 ){
+            //  color = 'e54b37';
+            //  }else if (persen >= 100){
+            //  color = 'e54b37';
+            //  }
+            //  else{
+            //  color = '000';
+            //  }
+            //                    datatabel += '<tr><td>'+no+'</td><td>'+value.lokasi_plant+'</td><td align="right">'+setFormat(value.stock,0)+'</td><td align="right">'+setFormat(value.kapasitas,0)+'</td><td align="right"><div style="color:#'+color+'">'+setFormat(persen,2)+'</div></td></tr>';
+            //                    no++;
+            //                   })
+            // datatabel += '<tr><td colspan="2">Total</td><td>'+setFormat(stockAll,0)+'</td><td>'+setFormat(capacityAll,0)+'</td><td>0%</td></tr>';
+            $('#tblclinker-data').append(datatabel1);
+            $('#tblcement-data').html(datatabel);
+            //var data = eval('(' + data + ')');
+            //console.log(dataJson['s7000']);
+            //console.log(stock6000+stock7000+stock3000+stock4000);
+
+            //console.log(cmreal);
+
+        }
+    }).done(function (data) {
+    }).fail(function () {
+
+    });
+</script>
+
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).on('ready', function () {
+               $(".regular").slick({ 
+                    infinite: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    arrows:false,
+                    centerMode: false
+                }); 
+            });
+</script>
+</body>
+</html>

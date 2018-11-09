@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/tab_style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+         <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+       
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/stokgudang_detail.js"></script>
+        <script src="js/Session.js"></script>
+        <script src="js/stupidtable.js?dev"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $("table").stupidtable();
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                 $('a[href="#tab-bs"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'asset') {
+                        $('#asset').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#equity').addClass('hidden');
+                       
+                    } else if (r == 'liability') {
+                        $('#liability').removeClass('hidden');
+                        $('#asset').addClass('hidden');
+                        $('#equity').addClass('hidden');
+
+                    } else if (r === 'equity') {
+                         $('#equity').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#asset').addClass('hidden');
+                    }
+                });
+
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        // window.location.href = 'scm_hm_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        // $('#tab-tl').addClass('img_foot2');
+            window.location.href = 'scm_hm_sg.html';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        // window.location.href = 'scm_hm_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        // window.location.href = 'scm_hm_tl.html';
+                    }
+                })
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenew').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenew').removeClass('act_tb');
+                        window.location.href = 'scm_hm_tl.html';
+                    } else if (r == 'data-revenew') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenew').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenew').addClass('act_tb');
+                        window.location.href = 'stok_gudang_tl.html';
+                        
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = dd+'/'+mm+'/'+yyyy;
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+              font-size: 25px;
+    font-weight: bold;
+      padding-right: 12px;
+}
+.titl{
+background-color: #c53a27;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+      margin-bottom: 10px;
+  }
+  .box{
+  background-color: #e54b37; 
+  padding: 0px; 
+  margin-bottom:10px;
+      display: inline-block;
+    max-width: 100%;
+    height: auto;
+  margin: auto;
+  min-height: 160px;
+    border-radius: 6px;
+    /* margin-right: 1px; */
+    border: 2px solid rgb(255, 255, 255);
+    }
+.bagan:hover, .bagan:visited {
+  opacity: 0.6;
+}
+.titab{
+padding: 16px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+.ylbox{
+background-color:#cfcd1a;
+}
+.ylhead{
+background-color:#a6a415;
+}
+.grbox{
+background-color:#6fc962;
+}
+.grhead{
+background-color:#54a846;
+}
+.tab_tittle{
+    margin-top: 12px;
+    color: black;
+    font-size: 23px;
+    padding-left: 9px;
+    display: inline-block;
+    border-bottom: 1px solid #e54b37;
+  }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            
+
+            });
+        </script>
+        <title>STOK GUDANG</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                          <h2 class="titular" style="        height: 37px;    line-height: 39px;font-size: small;">
+                          <a href="stok_gudang.html" class="pull-left" style="margin-left:10px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>STOK GUDANG</h2>
+                          <div class="col-xs-12 tab_dual">
+                        <div class="col-xs-12 bg_rds">
+                          <div id="tab-volume" class="col-xs-6 center zero_padd left_tb">
+                        <a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/pack.png" width="18px"> 
+                        <span class="tx_tab">&nbsp;&nbsp;Stock Plant</span></a></div>
+
+                        <div id="tab-revenew" class="col-xs-6 center zero_padd left_tb act_tb">
+                        <a href="#tab-click" rel="data-revenew" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                        <span class="tx_tab">&nbsp;&nbsp;Stock Gudang</span></a></div>
+                        </div></div>
+                        <div class="headsix cubesRun2" style="margin-bottom: 116px; min-height: 919px; margin-top: 19px;"> 
+			
+                               <div class=" cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota4.png" class="img_log" style="width: 66px;"></div>
+                            <div class="col-xs-8" style="padding:0px; padding-right: 22px;">
+                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="prodtittle" id="head" style="    font-weight: 600;    font-size: 23px;    display: inline-block;">THANG LONG</p>
+                               
+                            </div>
+                        </div> 
+                            <center>
+                         <span class="prosen" style="color: #5d5d5d;" id="total_tl"></span>TON
+                         <br>
+                           <span class="upercent">
+                        
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">
+                                                    
+                                                <script type="text/javascript">
+                                                    document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                                </script>
+
+                                                </span>
+                          </center>
+
+                            <!--<p class="tab_tittle">THANG LONG :<span style="color: black;" id="total_tl"></span></p>-->
+                             <!-- <div id="container" style="width: 100%; margin: 0 auto"></div>-->
+                            <table class="table table-striped" style="margin-bottom: 0px; padding-bottom: 100px; font-size:14px;">
+                              <thead>
+                                <tr class="hdsilver">
+                                  <td><strong>No. </strong> <i class="fa fa-sort" aria-hidden="true"></i>&nbsp; </td>
+                                  <td valign="middle"><strong>Distributor</strong> <i class="fa fa-sort" aria-hidden="true"></i>&nbsp; </td>
+                                  <td valign="middle"><strong>Stock (T)</strong> <i class="fa fa-sort" aria-hidden="true"></i>&nbsp; </td>
+                                  <td valign="middle"><strong>Capacity</strong> <i class="fa fa-sort" aria-hidden="true"></i>&nbsp; </td>
+                                  <td valign="middle"><strong>Stock Lvl</strong> <i class="fa fa-sort" aria-hidden="true"></i>&nbsp; </td>
+                                </tr>
+                                </thead>
+                                <tbody id="tbtl">
+                               
+                              </tbody>
+                            </table>
+
+                            <br>
+          
+                        </div>
+                          
+                        
+                  <!--   <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+ -->
+                </div>
+            </div>
+        </div>             
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+  
+</html>

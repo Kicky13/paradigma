@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/stokgudang_new.js"></script>
+
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                 $('a[href="#"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'sg') {
+                       window.location.href = 'stok_gudang_sg.html';
+                       
+                    } else if (r == 'sp') {
+                       window.location.href = 'stok_gudang_sp.html';
+                       
+
+                    } else if (r === 'st') {
+                       window.location.href = 'stok_gudang_st.html';
+                        
+                    } else if (r === 'tl') {
+                       window.location.href = 'stok_gudang_tl.html';
+                        
+                    }
+
+                });
+
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        // window.location.href = 'scm_hm_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        // $('#tab-tl').addClass('img_foot2');
+            window.location.href = 'scm_hm_sg.html';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        // window.location.href = 'scm_hm_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        // window.location.href = 'scm_hm_tl.html';
+                    }
+                })
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenew').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenew').removeClass('act_tb');
+                        window.location.href = 'scm_hm.html';
+                    } else if (r == 'data-revenew') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenew').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenew').addClass('act_tb');
+                        window.location.href = 'stok_gudang.html';
+                        
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = dd+'/'+mm+'/'+yyyy;
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+              font-size: 25px;
+    font-weight: 400;
+      padding-left: 12px;
+}
+
+.bagan:hover, .bagan:visited {
+  opacity: 0.6;
+}
+.titab{
+padding: 16px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+.ylbox{
+background-color:#f9bf3b;
+}
+.ylhead{
+background-color:#f39c32;
+}
+.grbox{
+background-color:#6fc962;
+}
+.grhead{
+background-color:#54a846;
+}
+.blbox {
+    background-color: #22a7f0;
+}
+.blhead {
+    background-color: #3498db;
+}
+.tab_tittle{
+    margin-top: 12px;
+    color: black;
+    /*font-size: 23px;*/
+    padding-left: 9px;
+    display: inline-block;
+    border-bottom: 1px solid #e54b37;
+  }
+
+    .lyear{
+        color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+    }
+    .ryear{
+    color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+    }
+    .jud{
+        /*color: #fff;*/
+        /*font-size: 18px;*/
+    font-weight: 600;
+    /*margin-top: 13px;*/
+    display: inline-block;
+    }
+    .til{
+        padding-bottom: 1px;
+    border-bottom: 1px solid #b6b6b6;
+    background-color: ghostwhite;
+    }
+    .label-success {
+    background-color: #5cb85c;
+    border: 1.5px solid white;
+}
+.label-danger {
+    background-color: #d9534f;
+    border: 1.5px solid white;
+}
+.subox{
+    /*height: 137px;*/
+    border-bottom: 3px solid #e54b37;
+}
+.subox2{
+    /*height: 137px;*/
+    border-bottom: 3px solid #626262;
+}
+.bgred {
+    background-color: #f64747;
+}
+.bgyellow {
+    background-color: #E4DA3F;
+}
+.bggreen {
+    background-color: #19D23C;
+}
+.bgblue {
+    background-color: #1672F0;
+}
+.bggrey {
+    background-color: #625E5E;
+}
+
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+.tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+
+            .center {
+    text-align: center;
+}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            
+
+            });
+        </script>
+        <title>scm hm</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                          <h2 class="titular" style="        height: 37px;    line-height: 39px;font-size: small;">
+                          <a href="portal_scm.html" class="pull-left" style="margin-left:10px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+
+                          STOK GUDANG</h2>
+                          <div class="col-xs-12 tab_dual">
+                        <div class="col-xs-12 bg_rds">
+                          <div id="tab-volume" class="col-xs-6 center zero_padd left_tb">
+                        <a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/pack.png" width="18px"> 
+                        <span class="tx_tab">&nbsp;&nbsp;Stock Plant</span></a></div>
+
+                        <div id="tab-revenew" class="col-xs-6 center zero_padd left_tb act_tb">
+                        <a href="#tab-click" rel="data-revenew" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                        <span class="tx_tab">&nbsp;&nbsp;Stock Gudang</span></a></div>
+                        </div></div>
+                        <div class="headsix cubesRun2" style="margin-bottom: 34px; min-height: 591px;; margin-top: 19px;"> 
+                          <img src="img/teks semen indo.png" class="imgsi" style="margin-top: 25px;padding-bottom: 7px;margin-bottom: 1px;">
+<center style="margin-bottom: 12px;">
+                    
+                                
+                            
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                                        
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+
+                                    </span>
+                            </center>
+
+                        
+                            <div align="center" class="col-xs-12" style="margin-bottom: 16px;">
+                                <div class="col-xs-12">
+                                    <span class="prosen" style="color: #5d5d5d;" id="totalstok"></span>
+                                TON
+                                </div>
+                                <div class="col-xs-12" style="    margin-top: 8px;"></div>
+                                <div align="center" class="col-xs-6 noPadding">
+                                <span style="font-size: 12px; font-weight: 300; color: black;">STOK LEVEL</span><br>
+                                 <span style="font-size: 20px; color: black; " class="jud" id="totalstoklevel"> 0 %</span>
+                                
+
+                                
+    <!-- 
+                                 <span style="" id="">3.524</span><br>
+                                <span style="font-size: 12px; font-weight: 300; ">Real</span>  -->
+                                </div>
+                                <div align="center" class="col-xs-6 noPadding">
+                                <span style="font-size: 12px; font-weight: 300; color: black;">Dist.CENTER</span><br>
+                                 <span style="font-size: 20px; color: black;" id="totalcount" class="jud">0</span>
+                                
+                                </div>
+                            </div>
+                            
+
+                            <h1 style="text-align:center;color: black; size: 72px;" id="totalstok"></h1>
+                                          
+                            <br>
+                              
+                             <div class="col-xs-12" align="center" style="margin-bottom: 12px;margin-top: 6px;">
+                                
+                                &nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #f64747"></i>&nbsp;:&nbsp;< 30%
+                                &nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #6fc962"></i>&nbsp;:&nbsp;70% - 100%
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #f9bf3b"></i>&nbsp;:&nbsp;30% - 70%
+                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #22a7f0"></i>&nbsp;:&nbsp;> 100%
+
+                            </div>
+                                     
+                                    <a href="#" rel="sg" class="bagan">
+                                    <div class="col-xs-6" style="padding: 4px">
+                                       <div class="col-xs-12 box ">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="redunder" id="headcol_sg">SEMEN GRESIK</span><i class="fa fa-circle redind" aria-hidden="true" id="boxcol_sg"></i>
+                                        </div>
+                                        <div style="margin-bottom:12px;">
+                                            <div align="left" class="col-xs-12 noPadding">
+                                                <div align="left">
+                                                <span class="titab fblack" >Stok</span>
+                                                    <div id="total_sg">
+                                                        <span class="inex label">0</span>
+                                                    </div>
+
+                                                    
+                                                </div>
+                                       
+
+                                            </div>
+                                        
+                                            <div class="col-xs-6 noPadding">
+                                               
+                                            </div>
+                                            <div class="col-xs-12" style="    margin-top: 8px;"></div>
+                                            <div align="center" class="col-xs-6 noPadding">
+                                            <span style="font-size: 12px; font-weight: 300;" class="fblack">Stok Level</span><br>
+                                                <span  class="jud fblack" id="pers_sg">  0 %</span>
+                                                
+
+                                                
+                                            <!-- <span style="" id="">3.524</span><br>
+                                            <span style="font-size: 12px; font-weight: 300; ">Real</span> -->
+                                            </div>
+                                            <div align="center" class="col-xs-6 noPadding">
+                                            <span style="font-size: 12px; font-weight: 300; ;" class="fblack">GUDANG</span><br>
+                                            <span id="count_sg" class="fblack">0</span>
+                                            
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" rel="sp" class="bagan">
+                                    <div class="col-xs-6" style="padding: 4px">
+                                       <div class="col-xs-12 box " >
+                                         <div class="col-xs-12 noPadding titl " style="padding-top: 10px;">
+                                         <span class="redunder" id="headcol_sp">SEMEN PADANG</span><i class="fa fa-circle redind" aria-hidden="true" id="boxcol_sp"></i>
+                                        </div>
+                                       <div  style="margin-bottom:12px;">
+                                        <div class="col-xs-12 noPadding">
+                                        <div align="left">
+                                           <span class="titab fblack">Stok</span>
+                                            <div id="total_sp">
+                                                <span class="inex label fblack">0</span>
+                                            </div>
+                                         
+                                            
+
+                                           
+                                        </div>
+                                        
+                                       
+                                        </div>
+                                        
+                                        <div align="center" class="col-xs-6 noPadding">
+                                       <!--  <span style="color:#fff" class="jud" id="pers_sp">  0 %</span>
+                                        <br>
+
+                                         <span style="font-size: 12px; font-weight: 300; ;">Stok Level</span> -->
+
+                                        </div>
+                                        <div class="col-xs-12" style="margin-top: 8px;"></div>
+                                        <div align="center" class="col-xs-6 noPadding">
+                                        <span style="font-size: 12px; font-weight: 300; ;" class="fblack">Stok Level</span><br>
+                                         <span class="jud fblack" id="pers_sp">  0 %</span>
+                                        <br>
+
+                                         
+                                        <!-- <span style="" id="">3.524</span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ">Real</span> -->
+                                        </div>
+                                        <div align="center" class="col-xs-6 noPadding">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">GUDANG</span><br>
+                                         <span style="" id="count_sp" class="fblack">0</span>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" rel="st" class="bagan">
+                                    <div class="col-xs-6" style="padding: 4px">
+                                       <div class="col-xs-12 box " >
+                                         <div class="col-xs-12 noPadding titl " style="padding-top: 10px;">
+                                        <span class="redunder" id="headcol_st">SEMEN TONASA</span><i class="fa fa-circle redind" aria-hidden="true" id="boxcol_st"></i>
+                                        </div>
+                                       <div  style="margin-bottom:12px;">
+                                        <div class="col-xs-12 noPadding">
+                                            <div align="left">
+                                                 <span class="titab fblack">Stok</span>
+                                            <div id="total_st" class="fblack">
+                                            <span class="inex label fblack">0</span>
+                                                
+                                            </div>
+                                         
+
+
+                                       
+                                        </div>
+
+                                        <!-- <span class="inex label label-success">102.9</span> -->
+                                        </div>
+                                        
+                                        <div class="col-xs-6 noPadding">
+                                       <!--  <span style="color:#fff" class="jud" id="pers_st">  0 %</span>
+                                        <br>
+                                        <span style="font-size: 12px; font-weight: 300; ;">Stok Level</span> -->
+
+                                        </div>
+                                        <div class="col-xs-12" style="    margin-top: 8px;"></div>
+                                        <div align="center" class="col-xs-6 noPadding">
+                                        <span style="font-size: 12px; font-weight: 300; ;" class="fblack">Stok Level</span><br>
+                                         <span class="jud fblack" id="pers_st">  0 %</span>
+                                        
+                                        
+                                        <!-- <span style="" id="">3.524</span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ">Real</span> -->
+                                        </div>
+                                        <div align="center" class="col-xs-6 noPadding">
+                                        <span style="font-size: 12px; font-weight: 300; ;" class="fblack">GUDANG</span><br>
+                                         <span class="jud fblack" id="count_st">0</span>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" rel="tl" class="bagan">
+                                    <div class="col-xs-6" style="padding: 4px">
+                                       <div class="col-xs-12 box " >
+                                         <div class="col-xs-12 noPadding titl  " style="padding-top: 10px;">
+                                        <span class="redunder" id="headcol_tl">THANG LONG</span><i class="fa fa-circle redind" aria-hidden="true" id="boxcol_tl"></i>
+                                        </div>
+                                       <div  style="margin-bottom:12px;">
+                                        <div class="col-xs-12 noPadding">
+                                            <div align="left">
+                                            <span class="titab fblack">Stok</span>
+                                                <div id="total_tl">
+                                                <span class="inex label fblack">0</span>
+                                                </div>
+                                                 
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div  align="center" class="col-xs-6 noPadding">
+                                        <!--  <span style="color:#fff" class="jud" id="pers_tl"> 0 %</span>
+                                        <br>
+
+                                        <span style="font-size: 12px; font-weight: 300; ;">Stok Level</span>
+  -->
+                                        </div>
+                                        <div class="col-xs-12" style="margin-top: 8px;"></div>
+                                        <div align="center" class="col-xs-6 noPadding">
+                                        <span style="font-size: 12px; font-weight: 300; " class="fblack">Stok Level</span><br>
+                                         <span class="jud fblack" id="pers_tl"> 0 %</span>
+                                        
+
+                                        
+<!-- 
+                                         <span style="" id="">3.524</span><br>
+                                        <span style="font-size: 12px; font-weight: 300; ">Real</span>  -->
+                                        </div>
+                                        <div align="center" class="col-xs-6 noPadding">
+                                        <span style="font-size: 12px; font-weight: 300; " class="fblack">GUDANG</span><br>
+                                         <span style="" id="count_tl" class="fblack">0</span>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </a>
+
+                                    
+                            </div>
+                        </div>
+                  <!--   <footer>
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                    </footer> -->
+                </div>
+            </div>
+        </div>             
+    </body>
+
+</html>

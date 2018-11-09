@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/accounting.min.js"></script>
+<script type="text/javascript" src="js/JsNumberFormat.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script src="js/waitMe.min.js"></script>
+<script src="js/loader.js"></script>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/highcharts_working.js"></script>
+	<script src="js/paradigma.js"></script>
+<!-- <script type="text/javascript" src="js/exporting.js"></script> -->
+   
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script type="text/javascript" charset="utf-8">
+            function exitApps(){
+                navigator.app.exitApp();
+            }
+        </script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+
+<title>Market Share</title>
+<script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+            	var d = new Date();
+                var month = new Array();
+                month[0] = "January";
+                month[1] = "February";
+                month[2] = "March";
+                month[3] = "April";
+                month[4] = "May";
+                month[5] = "June";
+                month[6] = "July";
+                month[7] = "August";
+                month[8] = "September";
+                month[9] = "October";
+                month[10] = "November";
+                month[11] = "December";
+                var pengurang = 1;
+                var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+                var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+                var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+                var dd = d.getDate();
+                var mm = d.getMonth()+1; //January is 0!
+                var yyyy = d.getFullYear();
+                if(dd<10) {
+                    dd='0'+dd
+                } 
+                if(mm<10) {
+                    mm='0'+mm
+                } 
+                }
+
+    $(function(){
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                
+var tmp = getParam();
+        // var opco = tmp['opco'];
+		/*var d = new Date();
+      var month = new Array();
+      month[0] = "January";
+      month[1] = "February";
+      month[2] = "March";
+      month[3] = "April";
+      month[4] = "May";
+      month[5] = "June";
+      month[6] = "July";
+      month[7] = "August";
+      month[8] = "September";
+      month[9] = "October";
+      month[10] = "November";
+      month[11] = "December"; 
+		var thn = d.getFullYear();
+		
+      var pengurang = 2;
+      var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+      var bulanSekarang = paradigma.date('now', 'month');
+		var tahun = d.getFullYear();
+		//var year = d.getFullYear() - 1;	
+		//var thn = tmp['thn'];
+         //var month = tmp['month'];*/
+		 var d = new Date();
+                var month = new Array();
+                month[0] = "January";
+                month[1] = "February";
+                month[2] = "March";
+                month[3] = "April";
+                month[4] = "May";
+                month[5] = "June";
+                month[6] = "July";
+                month[7] = "August";
+                month[8] = "September";
+                month[9] = "October";
+                month[10] = "November";
+                month[11] = "December";
+                var pengurang = 2;
+                var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+                var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+                var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+                var dd = d.getDate();
+                var mm = d.getMonth(); //January is 0!
+                var yyyy = d.getFullYear();
+                if(dd<10) {
+                    dd='0'+dd
+                } 
+                if(mm<10) {
+                    mm='0'+mm
+                } 
+
+			$('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2014;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                $('.selyear').html(opt_year);
+                console.log(bulanSekarang);
+                console.log(month);
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= 12){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                }) 
+                console.log(opt_month); 
+                $('.selmonth').html(opt_month);
+            
+
+
+})
+
+    var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            // var bulan = month[d.getMonth()];
+            // var bulanSekarang = d.getMonth() + 1;
+            var pengurang = 1;
+                var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+                var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+                // var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+            var tahun = d.getFullYear();[ ]
+		//var thn = d.getFullYear()-1;[ ]
+        </script>
+<script >
+           
+        </script>
+<style type="text/css">
+<!--
+.bg-white {
+    background-color: #FFFFFF;
+}
+.style1 {
+    font-size: 12px;
+    color: #333333;
+}
+.text-medium  {font:normal 12px;color:#000; font-weight: bold; background-color: #F78FA1}
+.text-small {font-size: 10px;font-weight: normal}
+.table {
+  background-color: #EEEEEE;
+}
+ .default_tab {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+            }
+ .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+  .tab_tittle {
+                font-family: "Open Sans";
+                margin-bottom: 2px;
+                font-size: 27px;
+                margin-top: 0px;
+                font-weight: 300;
+            }
+ .center {
+                text-align: center;
+            }
+ .padding5 {
+                padding:5px;
+            }
+.border {
+                border:1px #cecece solid;
+            }
+.border-down {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+                border-bottom: 1px #fff solid;
+            }
+.border-down-active {
+                height: 41px;
+                background: rgba(245, 245, 245, 1);
+                background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+                background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0 );
+                border-bottom: 1px #e64c65 solid;
+            }
+.no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+.lyear{
+      color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+  }
+  .ryear{
+  color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+  }
+  .titl{
+background-color: #e54b37;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+      margin-bottom: 0px;
+     border-radius: 3px 3px 0px 0px;
+  }
+  .box{
+  /* background-color: #e54b37; */
+    padding: 0px;
+    margin-bottom: 3px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    /* margin: auto; */
+    min-height: 143px;
+    /* border-radius: 8px; */
+    /* margin-right: 1px; */
+    border: 1px solid rgb(197, 197, 197, 0.7);
+    -webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    border-right: 1px solid #b6b6b6;
+      }
+  .bagan:hover, .bagan:visited {
+  opacity: 0.6;
+}
+.img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            } 
+-->
+</style>
+</head>
+<body onLoad="onLoad()" style="font-family: Segoe UI;">
+<div class="app">
+<div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                    <li><a>PLANT OPERATION</a></li>
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+  <div id="content" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+    <div class="wrapper">
+      <h2 class="titular" style="height: 37px;line-height: 39px;font-size: small;">MARKETSHARE</h2>
+      <div id="data-sminas">
+        <div class="headsix add_fix cubesRun2" style="width:100%; text-align: center;">
+       <img src ="img/teks semen indo.png" width="50%" height="15%"/>
+        <!-- <div style="display:inline-block;width:45%;text-align:center;"><i class="fa fa-certificate" aria-hidden="true"></i> Portofolio</div>
+        <div style="display:inline-block;width:45%;float:right;text-align:center;"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>-->
+  <div style="width: 100%;margin-top: 15px; text-align: center;">
+       Month : <select id="month" class="selmonth" rel="vol"></select>
+       Year : <select id="year" class="selyear" rel="vol"></select>
+       </div>
+      
+      <div style="overflow-x: scroll;width:100%;"><div id="chart" style="width: 800px;height: 300px; margin-top: 20px center; display:inline-block;"></div></div>
+      <div style="overflow-x: scroll;width:100%;"><div id="chart2" style="width: 800px;height: 300px; margin-top: 20px center; display:inline-block;"></div></div>  
+       
+      <!-- DETAIL MARKET SHARE TABEL -->
+      <div class="headsix add_fixbg" style="width:100%;padding:10px;">
+       <table class="table table-bordered headsix add_fixbg" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 12px; text-align: center;">
+       <thead style="background-color: #EB1717; color: #FFF">
+       <tr>
+       
+       <th width="40%"><b><center>Provinsi</center></b></th>
+       <th width="15%"><b><center>Volume</center></b></th>
+       <th width="15%"><b><center><span id="tbhead_last"></span></center></b></th>
+       <th width="15%"><b><center><span id="tbhead_now"></span></center></b></th>
+       <th width="15%"><b><center>Growth(%)</center></b></th>
+       </tr></thead>
+       <tbody id="isidetail">
+       </tbody>
+       
+       </table>
+      </div>                                  
+      </div>
+      <!-- <footer >
+<div class="regular" >
+
+
+        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#" rel="data-tl" ><img src="img/logo.png" style="width:50%;"/></a></div>
+      <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+      <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+      <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+       <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+ -->
+      </div>
+
+
+      <div class="spacer"></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!--       <script type="text/javascript" src="cordova.js"></script>-->
+<script type="text/javascript" src="js/index.js"></script>
+
+<script type="text/javascript" src="marketshare_2_data.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

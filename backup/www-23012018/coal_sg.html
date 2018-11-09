@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script src="js/stupidtable.js?dev"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+                font-size: 16px;
+                font-weight: 500;
+                padding-right: 12px;
+            }
+
+            .bagan:hover, .bagan:visited {
+                opacity: 0.6;
+            }
+            .titab{
+                /*padding: 16px;*/
+                padding-right: 4px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+            .ylbox{
+                background-color:#f9bf3b;
+            }
+            .ylhead{
+                background-color:#f39c32;
+            }
+            .grbox{
+                background-color:#6fc962;
+            }
+            .grhead{
+                background-color:#68BA5B;
+            }
+            .tab_tittle{
+                margin-top: 12px;
+                color: black;
+                font-size: 23px;
+                padding-left: 9px;
+                display: inline-block;
+                border-bottom: 1px solid #e54b37;
+            }
+            .title_sc{
+                text-align: center;
+                color: black;
+                margin-top: 15px;
+                display: inherit;
+                border-bottom: 0.8px solid #d9d9d9;
+                margin-bottom: -6px;
+            }
+            .redunder {
+                float: left;
+                color: #474747;
+                font-weight: normal;
+                padding-bottom: 2px;
+                border-bottom: 1px solid #f64747;
+            }
+            .sub-title {
+                color:#5e5e5e;
+                font:normal 12px 'Open Sans';
+            }
+            .titl{
+                /*background-color: #e54b37;*/
+                padding: 9px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+                font-size: 12px;
+                margin-bottom: 0px;
+                border-radius: 3px 3px 0px 0px;
+            }
+            .coal_red {
+                color: #ff0000;
+            }
+            .coal_yellow {
+                color: #ffa500;
+            }
+            .coal_green {
+                color: #006621;
+            }
+            .coal_black {
+                color: #000000;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+
+
+            });
+        </script>
+        <title>COAL STOCK</title>
+    </head>
+    <body>
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                    <li><a>PLANT OPERATION</a></li>
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+                        <a class="logopis"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="height: 37px; line-height: 39px;font-size: small;">COAL STOCK</h2>
+                        <div class="headsix add_fix cubesRun2" style="height: 525px;"> 
+                            <img src="img/teks semen indo.png" class="imgsi imgsmi">
+                            <div align="center" style="margin-bottom: 10px; margin-top:10px;">
+                                <div class="col-xs-12 box" style="padding: 6px; max-height: 100px;margin-bottom: 5px">
+                                    <div class="col-xs-3" style="padding: 1px;">
+                                        <img src="img/icKota1.png">
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <div class="col-xs-12 noPadding titl" >
+                                            <span style="float: right; color: black;">Last Update on<span style="float: right; color: black; margin-left: 2px; font-weight: bold" id="last_upd_sg">0</span></span>
+                                        </div>
+                                        <div align="center" style="margin-bottom:12px;">
+                                            <div class="col-xs-12 noPadding" align="center" style="padding-left: 11px;">
+                                                <span style="font-size:30px;" id="stock_sg" class="fblack">0,00</span><span style="font-size: 16px;color: black;">&nbsp;&nbsp;Ton</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div align="center" style="margin-bottom: 10px; margin-top:10px;opacity: 0.3;">
+                                <div class="col-xs-12 box" style="padding: 6px; max-height: 100px;margin-bottom: 5px">
+                                    <div class="col-xs-3" style="padding: 1px;">
+                                        <img src="img/icKota2.png">
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <div class="col-xs-12 noPadding titl" >
+                                            <span style="float: right; color: black;">Last Update on<span style="float: right; color: black; margin-left: 2px;font-weight: bold" id="last_upd">2016-12-31</span></span>
+                                        </div>
+                                        <div align="center" style="margin-bottom:12px;">
+                                            <div class="col-xs-12 noPadding" align="center" style="padding-left: 11px;">
+                                                <span style="font-size:30px;" id="real_ebit_persen" class="fblack">101,506.4</span><span style="font-size: 16px;color: black;">&nbsp;&nbsp;Ton</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div align="center" style="margin-bottom: 10px; margin-top:10px;opacity: 0.3;">
+                                <div class="col-xs-12 box" style="padding: 6px; max-height: 100px;margin-bottom: 5px">
+                                    <div class="col-xs-3" style="padding: 1px;">
+                                        <img src="img/icKota3.png">
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <div class="col-xs-12 noPadding titl" >
+                                            <span style="float: right; color: black;">Last Update on<span style="float: right; color: black; margin-left: 2px;font-weight: bold" id="last_upd">2016-12-31</span></span>
+                                        </div>
+                                        <div align="center" style="margin-bottom:12px;">
+                                            <div class="col-xs-12 noPadding" align="center" style="padding-left: 11px;">
+                                                <span style="font-size:30px;" id="real_ebit_persen" class="fblack">93,743.5</span><span style="font-size: 16px;color: black;">&nbsp;&nbsp;Ton</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div align="center" style="margin-bottom: 10px; margin-top:10px;opacity: 0.3;">
+                                <div class="col-xs-12 box" style="padding: 6px; max-height: 100px;margin-bottom: 5px">
+                                    <div class="col-xs-3" style="padding: 1px;">
+                                        <img src="img/icKota4.png">
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <div class="col-xs-12 noPadding titl" >
+                                            <span style="float: right; color: black;">Last Update on<span style="float: right; color: black; margin-left: 2px;font-weight: bold" id="last_upd">2016-12-31</span></span>
+                                        </div>
+                                        <div align="center" style="margin-bottom:12px;">
+                                            <div class="col-xs-12 noPadding" align="center" style="padding-left: 11px;">
+                                                <span style="font-size:30px;" id="real_ebit_persen" class="fblack">18,944.4</span><span style="font-size: 16px;color: black;">&nbsp;&nbsp;Ton</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    <footer >
+<div class="regular" >
+
+
+                                            <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                                            <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                                            <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                                            <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                                         <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+-->
+                </div>
+            </div>
+        </div>
+        <script>
+            var alamat = 'http://par4digma.semenindonesia.comapi/index.php/c_coalstock/get_coalstock?company=7000';
+            $.ajax({
+                url: alamat,
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    stok_sg = Number(parseFloat(dataJson.data['7000'].stock));
+                    last_upd_sg = dataJson.data['7000'].last_upd;
+                    stock_sg = FormatNumberBy3(stok_sg.toFixed(0),".",",");
+                    
+                    max_sg = Number(parseFloat(dataJson.mm['7000'].max));
+                    min_sg = Number(parseFloat(dataJson.mm['7000'].min));
+                    rop_sg = Number(parseFloat(dataJson.mm['7000'].rop));
+                    
+//                    console.log(stok_sg+"/"+max_sg+"-"+min_sg+"-"+rop_sg);
+                    $("#stock_sg").html(stock_sg);
+                    $("#last_upd_sg").html(last_upd_sg);
+                    
+                    if(stok_sg < min_sg ){
+                        $("#stock_sg").addClass('coal_red');
+                        $("#stock_sg").removeClass('coal_green');
+                        $("#stock_sg").removeClass('coal_yellow');
+                        $("#stock_sg").removeClass('coal_black');
+//                        console.log("KURANG");
+                    }
+                    if(min_sg < stok_sg < rop_sg){
+                        $("#stock_sg").addClass('coal_green');
+                        $("#stock_sg").removeClass('coal_yellow');
+                        $("#stock_sg").removeClass('coal_green');
+                        $("#stock_sg").removeClass('coal_black');
+//                        console.log("BELI");
+                    }
+                    if(rop_sg < stok_sg < max_sg){
+                        $("#stock_sg").addClass('coal_green');
+                        $("#stock_sg").removeClass('coal_yellow');
+                        $("#stock_sg").removeClass('coal_green');
+                        $("#stock_sg").removeClass('coal_black');
+//                        console.log("AMAN");
+                    } 
+                    if(stok_sg > max_sg){
+                        $("#stock_sg").addClass('coal_black');
+                        $("#stock_sg").removeClass('coal_green');
+                        $("#stock_sg").removeClass('coal_red');
+                        $("#stock_sg").removeClass('coal_yellow');
+//                        console.log("LEBIH");
+                    }
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

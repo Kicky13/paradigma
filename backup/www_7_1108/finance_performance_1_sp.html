@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/highstock.js"></script>
+      <script src="js/waitMe.min.js"></script>
+      <script src="js/loader.js"></script>
+        <!--<script src="js/highcharts.js"></script>-->
+        <script src="js/exporting.js"></script>
+    <!-- <script src="f_performance_data.js"></script> -->
+        <script type="text/javascript" src="js/moment.min.js"></script>
+      <!--   <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                var d = new Date();
+                var month = new Array();
+                month[0] = "January";
+                month[1] = "February";
+                month[2] = "March";
+                month[3] = "April";
+                month[4] = "May";
+                month[5] = "June";
+                month[6] = "July";
+                month[7] = "August";
+                month[8] = "September";
+                month[9] = "October";
+                month[10] = "November";
+                month[11] = "December";
+                var pengurang = 1;
+                var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+                var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+                var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+                var today = moment().subtract(pengurang, 'months').format('DD/MM/YYYY');
+                $('#last-update').html('Last Update : '+today);
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'finance_performance_1_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'finance_performance_1_sg.html';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = '#';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'finance_performance_1_tl.html';
+                    }else if (r == 'data-total'){
+                        $('#data-total').removeClass('hidden');
+                        $('#data-perton').addClass('hidden');
+                        $('#data-trend').addClass('hidden');
+                        $('#tab-total').addClass('border-down-active');
+                        $('#tab-perton').removeClass('border-down-active');
+                        $('#tab-trend').removeClass('border-down-active');
+                        $('.selmonth').val(bulanSekarang);
+                        loadData('3000',bulanSekarang,'total');
+                    }else if (r == 'data-perton'){
+                        $('#data-total').addClass('hidden');
+                        $('#data-perton').removeClass('hidden');
+                        $('#data-trend').addClass('hidden');
+                        $('#tab-total').removeClass('border-down-active');
+                        $('#tab-perton').addClass('border-down-active');
+                        $('#tab-trend').removeClass('border-down-active');
+                        $('.selmonth').val(bulanSekarang);
+                        loadData('3000',bulanSekarang,'perton');
+                    }else if (r == 'data-trend'){
+                        $('#data-total').addClass('hidden');
+                        $('#data-perton').addClass('hidden');
+                        $('#data-trend').removeClass('hidden');
+                        $('#tab-total').removeClass('border-down-active');
+                        $('#tab-perton').removeClass('border-down-active');
+                        $('#tab-trend').addClass('border-down-active');
+                        var dataPenjualan = [0,0,0,0,0,0,0,0,0,0,0,0];
+                        var dataEbitda = [0,0,0,0,0,0,0,0,0,0,0,0];
+                        var dataBruto = [0,0,0,0,0,0,0,0,0,0,0,0];
+                        var dataNetto = [0,0,0,0,0,0,0,0,0,0,0,0];                 
+                        createChart('chart_penjualan', bulan, dataPenjualan);
+                        createChart('chart_ebitda', bulan, dataEbitda);
+                        createChart('chart_bruto', bulan, dataBruto);
+                        createChart('chart_netto', bulan, dataNetto);
+                        loadTrend('3000');
+                    }
+                })
+                $('.selmonth').empty();
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= bulanSekarang){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == (bulanSekarang)){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+                }) 
+                var opt_year;
+                for (var thn=2014;thn<=tahun;thn++){
+                 if (thn == tahun){
+                  opt_year += '<option value="'+thn+'" selected="selected">'+thn+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+thn+'">'+thn+'</option>';   
+                 }
+                }
+                $('.selyear').html(opt_year);
+                $('.selyear').change(function(){
+                 tahun = $(this).val();
+                 loadData('3000',bulanSekarang,'total');
+                })
+ 
+                loadData('3000',bulanSekarang,'total');
+                $('.namabulan').html(bulan);
+                $('.selmonth').html(opt_month);
+                $('.selmonth').change(function(){
+                 bulan = $("option:selected", $(this)).text(); 
+                 bulanSekarang = $(this).val();
+                 tahun = moment().format('YYYY');   
+                 var t = $(this).attr('rel');
+                 $('.namabulan').html(bulan);
+                 loadData('3000',bulanSekarang,t);
+                })
+  function loadData(company,bulan,id){
+                    run_waitMe('.wrapper','facebook');
+                    $.ajax({
+                            url: url_src+'/api/index.php/f_performance/performance?company='+company+'&bulan='+tahun+'.'+bulan,
+                            type: 'GET',
+                            success: function (data) {
+                              var dataJson = JSON.parse(data);
+                              console.log(dataJson);
+                              if (id == 'total'){
+                               //ebitda 
+                               $('#real_ebit').html(setFormat(dataJson.real_ebit / 1000000000,2));
+                               $('#real_ebit_prev').html(setFormat(dataJson.real_ebit_prev / 1000000000,2));
+                               $('#persen_ebit').html(setFormat(dataJson.persen_ebit,0)+'%');
+                               $('#variance_ebit').html(setFormat(dataJson.variance_ebit / 1000000000,2));
+                               $('#rkap_ebit').html(setFormat(dataJson.rkap_ebit / 1000000000,2));
+                               $('#yonyear_ebit').html(setFormat(dataJson.yonyear_ebit,0)+'%');
+                               $('#real_ebit_up').html(setFormat(dataJson.real_ebit_up / 1000000000,2));
+                               $('#real_ebit_prev_up').html(setFormat(dataJson.real_ebit_prev_up / 1000000000,2));
+                               $('#persen_ebit_up').html(setFormat(dataJson.persen_ebit_up,0)+'%');
+                               $('#variance_ebit_up').html(setFormat(dataJson.variance_ebit_up / 1000000000,2));
+                               $('#rkap_ebit_up').html(setFormat(dataJson.rkap_ebit_up / 1000000000,2));
+                               $('#yonyear_ebit_up').html(setFormat(dataJson.yonyear_ebit_up,0)+'%');
+                               //volume 
+                               $('#real_vol').html(setFormat(dataJson.real_vol / 1000000,2));
+                               $('#real_vol_prev').html(setFormat(dataJson.real_vol_prev / 1000000,2));
+                               $('#persen_vol').html(setFormat(dataJson.persen_vol,0)+'%');
+                               $('#variance_vol').html(setFormat(dataJson.variance_vol / 1000000,2));
+                               $('#rkap_vol').html(setFormat(dataJson.rkap_vol / 1000000,2));
+                               $('#yonyear_vol').html(setFormat(dataJson.yonyear_vol,0)+'%');
+                               $('#real_vol_up').html(setFormat(dataJson.real_vol_up / 1000000,2));
+                               $('#real_vol_prev_up').html(setFormat(dataJson.real_vol_prev_up / 1000000,2));
+                               $('#persen_vol_up').html(setFormat(dataJson.persen_vol_up,0)+'%');
+                               $('#variance_vol_up').html(setFormat(dataJson.variance_vol_up / 1000000,2));
+                               $('#rkap_vol_up').html(setFormat(dataJson.rkap_vol_up / 1000000,2));
+                               $('#yonyear_vol_up').html(setFormat(dataJson.yonyear_vol_up,0)+'%');
+                               //price 
+                               $('#real_price').html(setFormat(dataJson.real_price / 1000000,2));
+                               $('#real_price_prev').html(setFormat(dataJson.real_price_prev / 1000000,2));
+                               $('#persen_price').html(setFormat(dataJson.persen_price,0)+'%');
+                               $('#variance_price').html(setFormat(dataJson.variance_price / 1000000,2));
+                               $('#rkap_price').html(setFormat(dataJson.rkap_price / 1000000,2));
+                               $('#yonyear_price').html(setFormat(dataJson.yonyear_price,0)+'%');
+                               $('#real_price_up').html(setFormat(dataJson.real_price_up / 1000000,2));
+                               $('#real_price_prev_up').html(setFormat(dataJson.real_price_prev_up / 1000000,2));
+                               $('#persen_price_up').html(setFormat(dataJson.persen_price_up,0)+'%');
+                               $('#variance_price_up').html(setFormat(dataJson.variance_price_up / 1000000,2));
+                               $('#rkap_price_up').html(setFormat(dataJson.rkap_price_up / 1000000,2));
+                               $('#yonyear_price_up').html(setFormat(dataJson.yonyear_price_up,0)+'%');
+                               //cost 
+                               $('#real_cost').html(setFormat(dataJson.real_cost / 1000000000,2));
+                               $('#real_cost_prev').html(setFormat(dataJson.real_cost_prev / 1000000000,2));
+                               $('#persen_cost').html(setFormat(dataJson.persen_cost,0)+'%');
+                               $('#variance_cost').html(setFormat(dataJson.variance_cost / 1000000000,2));
+                               $('#rkap_cost').html(setFormat(dataJson.rkap_cost / 1000000000,2));
+                               $('#yonyear_cost').html(setFormat(dataJson.yonyear_cost,0)+'%');
+                               $('#real_cost_up').html(setFormat(dataJson.real_cost_up / 1000000000,2));
+                               $('#real_cost_prev_up').html(setFormat(dataJson.real_cost_prev_up / 1000000000,2));
+                               $('#persen_cost_up').html(setFormat(dataJson.persen_cost_up,0)+'%');
+                               $('#variance_cost_up').html(setFormat(dataJson.variance_cost_up / 1000000000,2));
+                               $('#rkap_cost_up').html(setFormat(dataJson.rkap_cost_up / 1000000000,2));
+                               $('#yonyear_cost_up').html(setFormat(dataJson.yonyear_cost_up,0)+'%');
+
+                               $('#tbl_vol_rkap').html(setFormat(dataJson.rkap_vol / 10000,2));
+                               $('#tbl_vol_real').html(setFormat(dataJson.real_vol / 10000,2));
+                               var vol_persen = (dataJson.real_vol / dataJson.rkap_vol) * 100;
+                               if (isNaN(vol_persen) || !isFinite(vol_persen)){
+                                vol_persen = 100; 
+                               }
+                               if (vol_persen <= 50){
+                                vol_persen = "<span class='merah'>"+setFormat(vol_persen,0)+"</span>";
+                               }else if (vol_persen > 50){
+                                vol_persen = "<span class='hijau'>"+setFormat(vol_persen,0)+"</span>";  
+                               }
+                               $('#tbl_vol_persen').html(vol_persen);
+
+                               $('#tbl_rev_rkap').html(setFormat(dataJson.rkap_rev / 1000000000,2));
+                               $('#tbl_rev_real').html(setFormat(dataJson.real_rev / 1000000000,2));
+                               var rev_persen = (dataJson.real_rev / dataJson.rkap_rev) * 100;
+                               if (isNaN(rev_persen) || !isFinite(rev_persen)){
+                                rev_persen = 100; 
+                               }
+                               if (rev_persen <= 50){
+                                rev_persen = "<span class='merah'>"+setFormat(rev_persen,0)+"</span>";
+                               }else if (rev_persen > 50){
+                                rev_persen = "<span class='hijau'>"+setFormat(rev_persen,0)+"</span>";  
+                               }
+                               $('#tbl_rev_persen').html(rev_persen);
+                               $('#tbl_net_rkap').html(setFormat(dataJson.rkap_net / 1000000000,2));
+                               $('#tbl_net_real').html(setFormat(dataJson.real_net / 1000000000,2));
+                               var net_persen = (dataJson.real_net / dataJson.rkap_net) * 100;
+                               if (isNaN(net_persen) || !isFinite(net_persen)){
+                                net_persen = 100; 
+                               }
+                               if (net_persen <= 50){
+                                net_persen = "<span class='merah'>"+setFormat(net_persen,0)+"</span>";
+                               }else if (rev_persen > 50){
+                                net_persen = "<span class='hijau'>"+setFormat(net_persen,0)+"</span>";  
+                               }
+                               $('#tbl_net_persen').html(net_persen);
+
+                               $('#tbl_rev_rkap_up').html(setFormat(dataJson.rkap_rev_up / 1000000000,2));
+                               $('#tbl_rev_real_up').html(setFormat(dataJson.real_rev_up / 1000000000,2));
+                               var rev_persen_up = (dataJson.real_rev_up / dataJson.rkap_rev_up) * 100;
+                               if (isNaN(rev_persen_up) || !isFinite(rev_persen_up)){
+                                rev_persen_up = 100; 
+                               }
+                               if (rev_persen_up <= 50){
+                                rev_persen_up = "<span class='merah'>"+setFormat(rev_persen_up,0)+"</span>";
+                               }else if (rev_persen_up > 50){
+                                rev_persen_up = "<span class='hijau'>"+setFormat(rev_persen_up,0)+"</span>";  
+                               }
+                               $('#tbl_rev_persen_up').html(rev_persen_up);
+                               $('#tbl_net_rkap_up').html(setFormat(dataJson.rkap_net_up / 1000000000,2));
+                               $('#tbl_net_real_up').html(setFormat(dataJson.real_net_up / 1000000000,2));
+                               var net_persen_up = (dataJson.real_net_up / dataJson.rkap_net_up) * 100;
+                               if (isNaN(net_persen_up) || !isFinite(net_persen_up)){
+                                net_persen_up = 100; 
+                               }
+                               if (net_persen_up <= 50){
+                                net_persen_up = "<span class='merah'>"+setFormat(net_persen_up,0)+"</span>";
+                               }else if (net_persen_up > 50){
+                                net_persen_up = "<span class='hijau'>"+setFormat(net_persen_up,0)+"</span>";  
+                               }
+                               $('#tbl_net_persen_up').html(net_persen_up);
+
+                               $('#tbl_ebitda_rkap').html(setFormat(dataJson.rkap_ebit / 1000000000,2));
+                               $('#tbl_ebitda_real').html(setFormat(dataJson.real_ebit / 1000000000,2));
+                               var ebitda_persen = (dataJson.real_ebit / dataJson.rkap_ebit) * 100;
+                               if (isNaN(ebitda_persen) || !isFinite(ebitda_persen)){
+                                ebitda_persen = 100; 
+                               }
+                               if (ebitda_persen <= 50){
+                                ebitda_persen = "<span class='merah'>"+setFormat(ebitda_persen,0)+"</span>";
+                               }else if (ebitda_persen > 50){
+                                ebitda_persen = "<span class='hijau'>"+setFormat(ebitda_persen,0)+"</span>";  
+                               }
+                               $('#tbl_ebitda_persen').html(ebitda_persen);
+                               $('#tbl_vol_rkap_up').html(setFormat(dataJson.rkap_vol_up / 1000000000,2));
+                               $('#tbl_vol_real_up').html(setFormat(dataJson.real_vol_up / 1000000000,2));
+                               var vol_persen_up = (dataJson.real_vol_up / dataJson.rkap_vol_up) * 100;
+                               if (isNaN(vol_persen_up) || !isFinite(vol_persen_up)){
+                                vol_persen_up = 100; 
+                               }
+                               if (vol_persen_up <= 50){
+                                vol_persen_up = "<span class='merah'>"+setFormat(vol_persen_up,0)+"</span>";
+                               }else if (ebitda_persen_up > 50){
+                                vol_persen_up = "<span class='hijau'>"+setFormat(vol_persen_up,0)+"</span>";  
+                               }
+                               $('#tbl_vol_persen_up').html(vol_persen_up);
+                               $('#tbl_ebitda_rkap_up').html(setFormat(dataJson.rkap_ebit_up / 1000000000,2));
+                               $('#tbl_ebitda_real_up').html(setFormat(dataJson.real_ebit_up / 1000000000,2));
+                               var ebitda_persen_up = (dataJson.real_ebit_up / dataJson.rkap_ebit_up) * 100;
+                               if (isNaN(ebitda_persen_up) || !isFinite(ebitda_persen_up)){
+                                ebitda_persen_up = 100; 
+                               }
+                               if (ebitda_persen_up <= 50){
+                                ebitda_persen_up = "<span class='merah'>"+setFormat(ebitda_persen_up,0)+"</span>";
+                               }else if (ebitda_persen_up > 50){
+                                ebitda_persen_up = "<span class='hijau'>"+setFormat(ebitda_persen_up,0)+"</span>";  
+                               }
+                               $('#tbl_ebitda_persen_up').html(ebitda_persen_up);
+                              }else if (id == 'perton'){
+                               //ebitda 
+                               var real_ebit_perton = division(dataJson.real_ebit,dataJson.real_vol); 
+                               var real_ebit_prev_perton = division(dataJson.real_ebit_prev,dataJson.real_vol_prev);
+                               var rkap_ebit_perton = division(dataJson.rkap_ebit,dataJson.rkap_vol); 
+                               var persen_ebit_perton = division(real_ebit_perton,rkap_ebit_perton) * 100;
+                               var variance_ebit_perton = real_ebit_perton - rkap_ebit_perton;
+                               var yonyear_ebit_perton = division(real_ebit_perton - real_ebit_prev_perton,real_ebit_prev_perton)*100;
+                               $('#real_ebit_perton').html(setFormat(real_ebit_perton / 1000,0));
+                               $('#real_ebit_prev_perton').html(setFormat(real_ebit_prev_perton / 1000,0));
+                               $('#persen_ebit_perton').html(setFormat(persen_ebit_perton,0)+'%');
+                               $('#variance_ebit_perton').html(setFormat(variance_ebit_perton / 1000,0));
+                               $('#rkap_ebit_perton').html(setFormat(rkap_ebit_perton / 1000,0));
+                               $('#yonyear_ebit_perton').html(setFormat(yonyear_ebit_perton,0)+'%');
+
+                               var real_ebit_up_perton = division(dataJson.real_ebit_up,dataJson.real_vol_up); 
+                               var real_ebit_prev_up_perton = division(dataJson.real_ebit_prev_up,dataJson.real_vol_prev_up);
+                               var rkap_ebit_up_perton = division(dataJson.rkap_ebit_up,dataJson.rkap_vol_up); 
+                               var persen_ebit_up_perton = division(real_ebit_up_perton,rkap_ebit_up_perton) * 100;
+                               var variance_ebit_up_perton = real_ebit_up_perton - rkap_ebit_up_perton;
+                               var yonyear_ebit_up_perton = division(real_ebit_up_perton - real_ebit_prev_up_perton,real_ebit_prev_up_perton)*100;
+                               $('#real_ebit_up_perton').html(setFormat(real_ebit_up_perton / 1000,0));
+                               $('#real_ebit_prev_up_perton').html(setFormat(real_ebit_prev_up_perton / 1000,0));
+                               $('#persen_ebit_up_perton').html(setFormat(persen_ebit_up_perton,0)+'%');
+                               $('#variance_ebit_up_perton').html(setFormat(variance_ebit_up_perton / 1000,0));
+                               $('#rkap_ebit_up_perton').html(setFormat(rkap_ebit_up_perton / 1000,0));
+                               $('#yonyear_ebit_up_perton').html(setFormat(yonyear_ebit_up_perton,0)+'%');
+                               //volume 
+                               $('#real_vol_perton').html(setFormat(dataJson.real_vol / 1000,0));
+                               $('#real_vol_prev_perton').html(setFormat(dataJson.real_vol_prev / 1000,0));
+                               $('#persen_vol_perton').html(setFormat(dataJson.persen_vol,0)+'%');
+                               $('#variance_vol_perton').html(setFormat(dataJson.variance_vol / 1000,0));
+                               $('#rkap_vol_perton').html(setFormat(dataJson.rkap_vol / 1000,0));
+                               $('#yonyear_vol_perton').html(setFormat(dataJson.yonyear_vol,0)+'%');
+                               $('#real_vol_up_perton').html(setFormat(dataJson.real_vol_up / 1000,0));
+                               $('#real_vol_prev_up_perton').html(setFormat(dataJson.real_vol_prev_up / 1000,0));
+                               $('#persen_vol_up_perton').html(setFormat(dataJson.persen_vol_up,0)+'%');
+                               $('#variance_vol_up_perton').html(setFormat(dataJson.variance_vol_up / 1000,0));
+                               $('#rkap_vol_up_perton').html(setFormat(dataJson.rkap_vol_up / 1000,0));
+                               $('#yonyear_vol_up_perton').html(setFormat(dataJson.yonyear_vol_up,0)+'%');
+                               //price 
+                               var real_price_perton = division(dataJson.real_price,dataJson.real_vol); 
+                               var real_price_prev_perton = division(dataJson.real_price_prev,dataJson.real_vol_prev);
+                               var rkap_price_perton = division(dataJson.rkap_price,dataJson.rkap_vol); 
+                               var persen_price_perton = division(real_price_perton,rkap_ebit_perton) * 100;
+                               var variance_price_perton = real_price_perton - rkap_price_perton;
+                               var yonyear_price_perton = division(real_price_perton - real_price_prev_perton,real_price_prev_perton)*100;
+                               $('#real_price_perton').html(setFormat(real_price_perton,0));
+                               $('#real_price_prev_perton').html(setFormat(real_price_prev_perton,0));
+                               $('#persen_price_perton').html(setFormat(persen_price_perton,0)+'%');
+                               $('#variance_price_perton').html(setFormat(variance_price_perton,0));
+                               $('#rkap_price_perton').html(setFormat(rkap_price_perton,0));
+                               $('#yonyear_price_perton').html(setFormat(yonyear_price_perton,0)+'%');
+
+                               var real_price_up_perton = division(dataJson.real_price_up,dataJson.real_vol_up); 
+                               var real_price_prev_up_perton = division(dataJson.real_price_prev_up,dataJson.real_vol_prev_up);
+                               var rkap_price_up_perton = division(dataJson.rkap_price_up,dataJson.rkap_vol_up); 
+                               var persen_price_up_perton = division(real_price_up_perton,rkap_price_up_perton) * 100;
+                               var variance_price_up_perton = real_price_up_perton - rkap_price_up_perton;
+                               var yonyear_price_up_perton = division(real_price_up_perton - real_price_prev_up_perton,real_price_prev_up_perton)*100;
+                               $('#real_price_up_perton').html(setFormat(real_price_up_perton,0));
+                               $('#real_price_prev_up_perton').html(setFormat(real_price_prev_up_perton,0));
+                               $('#persen_price_up_perton').html(setFormat(persen_price_up_perton,0)+'%');
+                               $('#variance_price_up_perton').html(setFormat(variance_price_up_perton,0));
+                               $('#rkap_price_up_perton').html(setFormat(rkap_price_up_perton,0));
+                               $('#yonyear_price_up_perton').html(setFormat(yonyear_price_up_perton,0)+'%');
+                               //cost 
+                               var real_cost_perton = division(dataJson.real_cost,dataJson.real_vol); 
+                               var real_cost_prev_perton = division(dataJson.real_cost_prev,dataJson.real_vol_prev);
+                               var rkap_cost_perton = division(dataJson.rkap_cost,dataJson.rkap_vol); 
+                               var persen_cost_perton = division(real_cost_perton,rkap_ebit_perton) * 100;
+                               var variance_cost_perton = real_cost_perton - rkap_cost_perton;
+                               var yonyear_cost_perton = division(real_cost_perton - real_cost_prev_perton,real_cost_prev_perton)*100;
+                               $('#real_cost_perton').html(setFormat(real_cost_perton / 1000000,0));
+                               $('#real_cost_prev_perton').html(setFormat(real_cost_prev_perton / 1000000,0));
+                               $('#persen_cost_perton').html(setFormat(persen_cost_perton,0)+'%');
+                               $('#variance_cost_perton').html(setFormat(variance_cost_perton / 1000000,0));
+                               $('#rkap_cost_perton').html(setFormat(rkap_cost_perton / 1000000,0));
+                               $('#yonyear_cost_perton').html(setFormat(yonyear_cost_perton,0)+'%');
+
+                               var real_cost_up_perton = division(dataJson.real_cost_up,dataJson.real_vol_up); 
+                               var real_cost_prev_up_perton = division(dataJson.real_cost_prev_up,dataJson.real_vol_prev_up);
+                               var rkap_cost_up_perton = division(dataJson.rkap_cost_up,dataJson.rkap_vol_up); 
+                               var persen_cost_up_perton = division(real_cost_up_perton,rkap_cost_up_perton) * 100;
+                               var variance_cost_up_perton = real_cost_up_perton - rkap_cost_up_perton;
+                               var yonyear_cost_up_perton = division(real_cost_up_perton - real_cost_prev_up_perton,real_cost_prev_up_perton)*100;
+                               $('#real_cost_up_perton').html(setFormat(dataJson.real_cost_up / 1000000,0));
+                               $('#real_cost_prev_up_perton').html(setFormat(dataJson.real_cost_prev_up / 1000000,0));
+                               $('#persen_cost_up_perton').html(setFormat(dataJson.persen_cost_up,0)+'%');
+                               $('#variance_cost_up_perton').html(setFormat(dataJson.variance_cost_up / 1000000,0));
+                               $('#rkap_cost_up_perton').html(setFormat(dataJson.rkap_cost_up / 1000000,0));
+                               $('#yonyear_cost_up_perton').html(setFormat(dataJson.yonyear_cost_up,0)+'%');
+
+                               $('#tbl_vol_rkap_perton').html(setFormat(dataJson.rkap_vol / 1000,0));
+                               $('#tbl_vol_real_perton').html(setFormat(dataJson.real_vol / 1000,0));
+                               var vol_persen = (dataJson.real_vol / dataJson.rkap_vol) * 100;
+                               if (isNaN(vol_persen) || !isFinite(vol_persen)){
+                                vol_persen = 100; 
+                               }
+                               if (vol_persen <= 50){
+                                vol_persen = "<span class='merah'>"+vol_persen+"</span>";
+                               }else if (vol_persen > 50){
+                                vol_persen = "<span class='hijau'>"+vol_persen+"</span>";  
+                               }
+                               $('#tbl_vol_persen_perton').html(vol_persen);
+
+                               $('#tbl_rev_rkap_perton').html(setFormat(dataJson.rkap_rev / 1000,0));
+                               $('#tbl_rev_real_perton').html(setFormat(dataJson.real_rev / 1000,0));
+                               var rev_persen = (dataJson.real_rev / dataJson.rkap_rev) * 100;
+                               if (isNaN(rev_persen) || !isFinite(rev_persen)){
+                                rev_persen = 100; 
+                               }
+                               if (rev_persen <= 50){
+                                rev_persen = "<span class='merah'>"+rev_persen+"</span>";
+                               }else if (rev_persen > 50){
+                                rev_persen = "<span class='hijau'>"+rev_persen+"</span>";  
+                               }
+                               $('#tbl_rev_persen_perton').html(rev_persen);
+                               $('#tbl_net_rkap_perton').html(setFormat(dataJson.rkap_net / 1000,0));
+                               $('#tbl_net_real_perton').html(setFormat(dataJson.real_net / 1000,0));
+                               var net_persen = (dataJson.real_net / dataJson.rkap_net) * 100;
+                               if (isNaN(net_persen) || !isFinite(net_persen)){
+                                net_persen = 100; 
+                               }
+                               if (net_persen <= 50){
+                                net_persen = "<span class='merah'>"+net_persen+"</span>";
+                               }else if (rev_persen > 50){
+                                net_persen = "<span class='hijau'>"+net_persen+"</span>";  
+                               }
+                               $('#tbl_net_persen_perton').html(net_persen);
+
+                               $('#tbl_rev_rkap_up_perton').html(setFormat(dataJson.rkap_rev_up / 1000,0));
+                               $('#tbl_rev_real_up_perton').html(setFormat(dataJson.real_rev_up / 1000,0));
+                               var rev_persen_up = (dataJson.real_rev_up / dataJson.rkap_rev_up) * 100;
+                               if (isNaN(rev_persen_up) || !isFinite(rev_persen_up)){
+                                rev_persen_up = 100; 
+                               }
+                               if (rev_persen_up <= 50){
+                                rev_persen_up = "<span class='merah'>"+rev_persen_up+"</span>";
+                               }else if (rev_persen_up > 50){
+                                rev_persen_up = "<span class='hijau'>"+rev_persen_up+"</span>";  
+                               }
+                               $('#tbl_rev_persen_up_perton').html(rev_persen_up);
+                               $('#tbl_net_rkap_up_perton').html(setFormat(dataJson.rkap_net_up / 1000,0));
+                               $('#tbl_net_real_up_perton').html(setFormat(dataJson.real_net_up / 1000,0));
+                               var net_persen_up = (dataJson.real_net_up / dataJson.rkap_net_up) * 100;
+                               if (isNaN(net_persen_up) || !isFinite(net_persen_up)){
+                                net_persen_up = 100; 
+                               }
+                               if (net_persen_up <= 50){
+                                net_persen_up = "<span class='merah'>"+net_persen_up+"</span>";
+                               }else if (net_persen_up > 50){
+                                net_persen_up = "<span class='hijau'>"+net_persen_up+"</span>";  
+                               }
+                               $('#tbl_net_persen_up_perton').html(net_persen_up);
+
+                               $('#tbl_ebitda_rkap_perton').html(setFormat(dataJson.ebitdbulan_rkap / 1000,0));
+                               $('#tbl_ebitda_real_perton').html(setFormat(dataJson.ebitdabulan_real / 1000,0));
+                               var ebitda_persen = (dataJson.ebitdbulan_real / dataJson.ebitdabulan_rkap) * 100;
+                               if (isNaN(ebitda_persen) || !isFinite(ebitda_persen)){
+                                ebitda_persen = 100; 
+                               }
+                               if (ebitda_persen <= 50){
+                                ebitda_persen = "<span class='merah'>"+ebitda_persen+"</span>";
+                               }else if (ebitda_persen > 50){
+                                ebitda_persen = "<span class='hijau'>"+ebitda_persen+"</span>";  
+                               }
+                               $('#tbl_ebitda_persen_perton').html(ebitda_persen);
+                               $('#tbl_vol_rkap_up_perton').html(setFormat(dataJson.rkap_vol_up / 1000,0));
+                               $('#tbl_vol_real_up_perton').html(setFormat(dataJson.real_vol_up / 1000,0));
+                               var vol_persen_up = (dataJson.real_vol_up / dataJson.rkap_vol_up) * 100;
+                               if (isNaN(vol_persen_up) || !isFinite(vol_persen_up)){
+                                vol_persen_up = 100; 
+                               }
+                               if (vol_persen_up <= 50){
+                                vol_persen_up = "<span class='merah'>"+vol_persen_up+"</span>";
+                               }else if (ebitda_persen_up > 50){
+                                vol_persen_up = "<span class='hijau'>"+vol_persen_up+"</span>";  
+                               }
+                               $('#tbl_vol_persen_up_perton').html(vol_persen_up);
+                               $('#tbl_ebitda_rkap_up_perton').html(setFormat(dataJson.ebitdarun_rkap / 1000,0));
+                               $('#tbl_ebitda_real_up_perton').html(setFormat(dataJson.ebitdarun_real / 1000,0));
+                               var ebitda_persen_up = (dataJson.ebitdarun_real / dataJson.ebitdarun_rkap) * 100;
+                               if (isNaN(ebitda_persen_up) || !isFinite(ebitda_up_persen)){
+                                ebitda_persen_up = 100; 
+                               }
+                               if (ebitda_persen_up <= 50){
+                                ebitda_persen_up = "<span class='merah'>"+ebitda_persen_up+"</span>";
+                               }else if (ebitda_persen_up > 50){
+                                ebitda_persen_up = "<span class='hijau'>"+ebitda_persen_up+"</span>";  
+                               }
+                               $('#tbl_ebitda_persen_up_perton').html(ebitda_persen_up);
+
+
+                              }
+                              stop_waitMe('.wrapper');                              
+                             }
+                       });
+  } 
+  function loadTrend(company){
+    run_waitMe('.wrapper','facebook');
+                    $.ajax({
+                     url: url_src+'/api/index.php/f_performance/trends?company='+company,
+                     type: 'GET',
+                     success: function (data) {
+                       var bulan = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                       var dataPenjualan = [];
+                       var totalPenjualan = 0;
+                       var dataEbitda = [];
+                       var totalEbitda = 0;
+                       var dataBruto = [];
+                       var totalBruto = 0;
+                       var dataNetto = [];
+                       var totalNetto = 0;
+                       var dataJson = JSON.parse(data);
+                       var year = moment().format('YYYY');
+                       //console.log(dataJson);
+                       //console.log(dataJson[2016.01].penjualan);
+                       for (var x=1;x<=12;x++){
+                        var b = '0'+x;
+                        dataPenjualan.push(parseFloat(dataJson[year+'.'+b.substr(-2)].penjualan));
+                        dataEbitda.push(parseFloat(dataJson[year+'.'+b.substr(-2)].ebitda));
+                        dataBruto.push(parseFloat(dataJson[year+'.'+b.substr(-2)].bruto));
+                        dataNetto.push(parseFloat(dataJson[year+'.'+b.substr(-2)].netto));
+                        totalPenjualan += parseFloat(dataJson[year+'.'+b.substr(-2)].penjualan);
+                        totalEbitda += parseFloat(dataJson[year+'.'+b.substr(-2)].ebitda);
+                        totalBruto += parseFloat(dataJson[year+'.'+b.substr(-2)].bruto);
+                        totalNetto += parseFloat(dataJson[year+'.'+b.substr(-2)].netto);
+                       }
+                       createChart('chart_penjualan', bulan, dataPenjualan, totalPenjualan);
+                       createChart('chart_ebitda', bulan, dataEbitda, totalEbitda);
+                       createChart('chart_bruto', bulan, dataBruto, totalBruto);
+                       createChart('chart_netto', bulan, dataNetto, totalNetto);
+                       stop_waitMe('.wrapper');
+                     }
+                    });   
+  }
+             function createChart(id, bulan, dataset, total){
+              var name = id.substr(6);
+              $('#total'+name).html('Total : '+setFormat(total,2));
+              $('#'+id).highcharts({
+               chart: {
+                type: 'line',
+                height: 300
+               }, 
+               title: {
+                   text:''
+               },
+               legend: {
+                enabled: false,
+                align: 'center',
+                borderWidth: 1,
+               },
+               xAxis: {
+                   categories: bulan
+               },
+               tooltip: {
+                   formatter : function(){
+                    return 'Rp. '+setFormat(this.y,2);
+                   }
+               },
+               exporting: {
+                 enabled: false  
+               },
+               credits: {
+                   enabled: false
+               },
+               series: [{
+                   name: id,
+                   data: dataset
+               }]
+              })                    
+             }
+            
+
+            }
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+              font-size: 18px;
+    font-weight: bold;
+}
+.titl{
+background-color: #e54b37;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+      margin-bottom: 0px;
+     border-radius: 3px 3px 0px 0px;
+
+  }
+  .box{
+  /* background-color: #e54b37; */
+    padding: 0px;
+    margin-bottom: 3px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    /* margin: auto; */
+    min-height: 230px;
+    /* border-radius: 8px; */
+    /* margin-right: 1px; */
+    border: 1px solid rgb(197, 197, 197, 0.7);
+    /*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    border-right: 1px solid #b6b6b6;*/
+      }
+.bagan:hover, .bagan:visited {
+  opacity: 0.6;
+}
+.titab{
+    font-weight: 500;
+      color: white;
+        display: inline-block;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .lyear{
+      color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+  }
+  .ryear{
+  color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+  }
+  .jud{
+      color: #000000;
+        font-size: 18px;
+    font-weight: 600;
+    margin-top: 13px;
+    display: inline-block;
+  }
+  /*.til{
+      padding-bottom: 1px;
+    border-bottom: 1px solid #b6b6b6;
+  background-color: ghostwhite;
+  }*/
+  .label-success {
+    background-color: #5cb85c;
+    border: 1.5px solid white;
+}
+.label-danger {
+    background-color: #d9534f;
+  border: 1.5px solid white;
+}
+.subox{
+    height: 137px;
+    border-bottom: 3px solid #e54b37;
+}
+.subox2{
+    height: 137px;
+    border-bottom: 3px solid #626262;
+}
+.hijau {color: #669966;}
+.merah {color: #DC0033;}
+.float_bgg {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px 12px;;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #e54b37;
+    border-radius: 0px 0px 6px 6px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.htittle{
+            margin: 0px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: #e54b37;
+    height: 27px;
+    text-align: left;
+    font-size: 14px;
+    padding: 5px 0px 4px 9px;
+}
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .tab_tittle {
+                font-family: "Open Sans";
+                margin-bottom: 2px;
+                font-size: 27px;
+                margin-top: 0px;
+                font-weight: 300;
+            }
+            .border-down {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                height: 41px;
+                background: rgba(245, 245, 245, 1);
+                background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+                background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0 );
+                border-bottom: 1px #e64c65 solid;
+            }
+      .grp_ico{
+    float: right;
+    font-size: 7px;
+    background-color: #e54b37;
+    padding: 7px;
+    color: white;
+    border-radius: 14px;
+    margin-top: 2px;
+}
+
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            
+
+            });
+        </script>
+        <title>Finance Performance</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                          <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">FINANCE PERFORMANCE</h2>
+        <div id="tab-total" class="col-xs-4 center padding5 border-down border-down-active "><a href="#tab-click" rel="data-total" class="no-text-style"><img src="img/fp1.png" width="15px"> <span class="tx_tab">&nbsp;&nbsp;Total</span></a></div>
+                          <div id="tab-perton" class="col-xs-4 center padding5 border-down "><a href="#tab-click" rel="data-perton" class="no-text-style"> <img src="img/fp2.png" width="19px"><span class="tx_tab">&nbsp;&nbsp;Per Ton</span></a></div>
+                          <div id="tab-trend" class="col-xs-4 center padding5 border-down "><a href="#tab-click" rel="data-trend" class="no-text-style"> <img src="img/fp3.png" width="19px"><span class="tx_tab">&nbsp;&nbsp;Trend</span></a></div>                          
+
+<div id="data-total">
+                        <div class="headsix cubesRun2" style="margin-bottom: 116px; min-height: 1219px;"> <br>
+                          <div class=" cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota3.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px; padding-right: 45px;">
+                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="" id="head" style="font-weight: 600; color: #000000; font-size: 23px;    display: inline-block;">SEMEN TONASA</p>
+                               
+                            </div>
+                        </div>                              
+                          <center>
+                                    Bulan:
+                                    <select id="month" class="selmonth" rel="total"></select><select id="year" class="selyear"></select>
+                                    
+
+                                </center>
+                          <center>
+          
+
+        <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="last-update upercent gry"></span>
+          </center>
+          
+                                     <!--<div align="center">
+                                    <p style="font-size: 23px; text-align:center; color:black; margin-top: 15px; margin-bottom:0px; ">&nbsp;EBITDA
+                                    </p>
+                                    <span style="color:black">in IDR Bio</span>
+                                    </div>-->
+                                    <div style="margin-top:14px"></div>
+                                    <div class="col-xs-3" align="left" style="margin-top: 11px;"><!-- <span class="lyear">2016</span> --></div>
+                                    <div class="col-xs-6" align="center" style="margin-bottom: 11px;"> <p style="font-size: 23px; text-align:center; color:black; margin-top: 0px; margin-bottom:0px; ">&nbsp;EBITDA
+                                    </p>
+                                    <span style="color:black">in IDR Bio</span></div>
+                                    <div class="col-xs-3" align="right" style="margin-top: 11px;"><!-- <span class="ryear">2015</span> -->
+<div align="center" style="margin-bottom: 3px; margin-top: 22px;"><i class="fa fa-bar-chart right grp_ico" aria-hidden="true"></i></div>
+</div>
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                        
+                                    
+                                    <a href="finance_performance_234.html" rel="asset" class="bagan">
+                                       <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span class="namabulan">November</span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_ebit">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_ebit">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_ebit">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_ebit">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_ebit_prev">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_ebit">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">Up to <span class="namabulan">November</span></h4>
+                                       <div class="float_bgg" style="border: 1px solid #797979;">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_ebit_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_ebit_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_ebit_up">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_ebit_up">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_ebit_prev_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_ebit_up">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+                                        
+                                        <!-- last years -->
+                                       
+                                                       <!-- ########### Cement ############-->
+                                                       
+                                        
+
+                                   
+                                         
+                                         
+                                         
+                                                  <!-- ########### Cement Up to ############-->
+                                                  
+                                                  <div align="center" style="    margin-top: -11px;display: inline-block;">
+                                   
+                                    <span style="color:black"></span>
+                                    </div>
+                                    <!-- JUDUL -->
+                                    <div class="col-xs-12" align="center" style="margin-bottom: 3px;"><span class="lyear" style="border: none;">Volume</span></div>
+                                    
+                                          <a href="#" rel="asset" class="bagan">
+                                       <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span class="namabulan">November</span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_vol">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_vol">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_vol">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_vol">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_vol_prev">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_vol">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">Up to <span class="namabulan">November</span></h4>
+                                       <div class="float_bgg" style="border: 1px solid #797979;">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_vol_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_vol_up">0</span>
+
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_vol_up">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_vol_up">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_vol_prev_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_vol_up">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+
+                                         <!-- price -->
+                                         <div class="col-xs-12" align="center" style="margin-bottom: 3px;"><span class="lyear" style="border: none;">Price</span></div>
+                                    
+                                          <a href="#" rel="asset" class="bagan">
+                                       <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span class="namabulan">November</span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_price">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_price">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_price">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_price">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_price_prev">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_price">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">Up to <span class="namabulan">November</span></h4>
+                                       <div class="float_bgg" style="border: 1px solid #797979;">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_price_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_price_up">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_price_up">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_price_up">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_price_prev_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_price_up">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+                                         <!-- COST -->
+                                         <div class="col-xs-12" align="center" style="margin-bottom: 3px;"><span class="lyear" style="border: none;">Cost</span></div>
+                                    
+                                          <a href="#" rel="asset" class="bagan">
+                                       <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span class="namabulan">November</span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_cost">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_cost">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_cost">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_cost">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_cost_prev">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_cost">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">Up to <span class="namabulan">November</span></h4>
+                                       <div class="float_bgg" style="border: 1px solid #797979;">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_cost_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_cost_up">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_cost_up">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_cost_up">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_cost_prev_up">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_cost_up">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+                                        <br>
+                                        <div align="left">
+                                        <p style="color:black;font-size: 23px; padding-left: 9px;display:none;"><span class="namabulan" style="color:black;">November</span></p>
+                                        </div>
+                                        <table class="table table-striped" style="margin-bottom: 16px; font-size:14px;display:none;">
+      <tbody>
+        <tr>
+          <td valign="middle">Item</td>
+          <td valign="middle">RKAP</td>
+          <td valign="middle">Real</td>
+          <td valign="middle">%</td>
+        </tr>
+        <tr>
+          <td valign="middle">Total Volume (B) Ton</td>
+          <td valign="middle"><div id="tbl_vol_rkap" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_vol_real" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_vol_persen" align="right">0</div></td>
+        </tr>
+        <tr style="display:none;">
+          <td valign="middle">Semen Domestik (B) Ton</td>
+          <td valign="middle"><div align="right">3.087</div></td>
+          <td valign="middle"><div align="right">7.635</div></td>
+          <td valign="middle"><div align="right"><span style="color:#DC0033"></span></div></td>
+        </tr>
+        <tr>
+          <td valign="middle">Revenue</td>
+          <td valign="middle"><div id="tbl_rev_rkap" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_rev_real" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_rev_persen" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">Net Revenue</td>
+          <td valign="middle"><div id="tbl_net_rkap" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_net_real" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_net_persen" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">EBITDA (B)</td>
+          <td valign="middle"><div id="tbl_ebitda_rkap" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_ebitda_real" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_ebitda_persen" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">EAT</td>
+          <td valign="middle"><div align="right">0</div></td>
+          <td valign="middle"><div align="right">0</div></td>
+          <td valign="middle"><div align="right">0</div></td>
+        </tr>
+      </tbody>
+    </table>
+    <div align="left">
+                                        <p style="color:black;font-size: 23px; padding-left: 9px;display:none;">Up to <span class="namabulan" style="color:black;">November</span></p>
+                                        </div>
+                                        <table class="table table-striped" style="margin-bottom: 64px; font-size:14px;display:none;">
+      <tbody>
+        <tr>
+          <td valign="middle">Item</td>
+          <td valign="middle">RKAP</td>
+          <td valign="middle">Real</td>
+          <td valign="middle">%</td>
+        </tr>
+        <tr>
+          <td valign="middle">Total Volume (B) Ton</td>
+          <td valign="middle"><div id="tbl_vol_rkap_up" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_vol_real_up" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_vol_persen_up" align="right">0</div></td>
+        </tr>
+        <tr style="display:none;">
+          <td valign="middle">Semen Domestik (B) Ton</td>
+          <td valign="middle"><div align="right">3.087</div></td>
+          <td valign="middle"><div align="right">7.635</div></td>
+          <td valign="middle"><div align="right"><span style="color:#DC0033"></span></div></td>
+        </tr>
+        <tr>
+          <td valign="middle">Revenue</td>
+          <td valign="middle"><div id="tbl_rev_rkap_up" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_rev_real_up" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_rev_persen_up" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">Net Revenue</td>
+          <td valign="middle"><div id="tbl_net_rkap_up" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_net_real_up" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_net_persen_up" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">EBITDA (B)</td>
+          <td valign="middle"><div id="tbl_ebitda_rkap_up" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_ebitda_real_up" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_ebitda_persen_up" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">EAT</td>
+          <td valign="middle"><div align="right">0</div></td>
+          <td valign="middle"><div align="right">0</div></td>
+          <td valign="middle"><div align="right">0</div></td>
+        </tr>
+      </tbody>
+    </table>
+                                    <div align="center" style="">
+    <br>
+</div>  
+                            </div>
+                        </div>
+</div>
+<div id="data-perton" class="hidden">
+                        <div class="headsix cubesRun2" style="margin-bottom: 116px; min-height: 1219px;"> <br>
+                          <div class=" cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota1.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px; padding-right: 45px;">
+                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="" id="head" style="font-weight: 600; color: #000000; font-size: 23px;    display: inline-block;">SEMEN TONASA</p>
+                               
+                            </div>
+                        </div>                              
+                          <center>
+                                    Bulan:
+                                    <select id="month" class="selmonth" rel="perton"></select><select id="year" class="selyear"></select>
+                                    
+
+                                </center>
+                          <center>
+          
+
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <span class="last-update upercent gry"></span>
+          </center>
+          
+                                     <!--<div align="center">
+                                    <p style="font-size: 23px; text-align:center; color:black; margin-top: 15px; margin-bottom:0px; ">&nbsp;EBITDA
+                                    </p>
+                                    <span style="color:black">in IDR Bio</span>
+                                    </div>-->
+                                    <div style="margin-top:14px"></div>
+                                    <div class="col-xs-3" align="left" style="margin-top: 11px;"><!-- <span class="lyear">2016</span> --></div>
+                                    <div class="col-xs-6" align="center" style="margin-bottom: 11px;"> <p style="font-size: 23px; text-align:center; color:black; margin-top: 0px; margin-bottom:0px; ">&nbsp;EBITDA
+                                    </p>
+                                    <span style="color:black">in IDR Bio</span></div>
+                                    <div class="col-xs-3" align="right" style="margin-top: 11px;"><!-- <span class="ryear">2015</span> -->
+<div align="center" style="margin-bottom: 3px; margin-top: 22px;"><i class="fa fa-bar-chart right grp_ico" aria-hidden="true"></i></div>
+</div>
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                        
+                                    
+                                    <a href="finance_performance_234.html" rel="asset" class="bagan">
+                                       <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span class="namabulan">November</span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_ebit_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_ebit_perton">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_ebit_perton">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_ebit_perton">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_ebit_prev_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_ebit_perton">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">Up to <span class="namabulan">November</span></h4>
+                                       <div class="float_bgg" style="border: 1px solid #797979;">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_ebit_up_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_ebit_up_perton">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_ebit_up_perton">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_ebit_up_perton">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_ebit_prev_up_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_ebit_up_perton">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+                                        
+                                        <!-- last years -->
+                                       
+                                                       <!-- ########### Cement ############-->
+                                                       
+                                        
+
+                                   
+                                         
+                                         
+                                         
+                                                  <!-- ########### Cement Up to ############-->
+                                                  
+                                                  <div align="center" style="    margin-top: -11px;display: inline-block;">
+                                   
+                                    <span style="color:black"></span>
+                                    </div>
+                                    <!-- JUDUL -->
+                                    <div class="col-xs-12" align="center" style="margin-bottom: 3px;"><span class="lyear" style="border: none;">Volume</span></div>
+                                    
+                                          <a href="#" rel="asset" class="bagan">
+                                       <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span class="namabulan">November</span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_vol_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_vol_perton">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_vol_perton">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_vol_perton">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_vol_prev_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_vol_perton">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">Up to <span class="namabulan">November</span></h4>
+                                       <div class="float_bgg" style="border: 1px solid #797979;">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_vol_up_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_vol_up_perton">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_vol_up_perton">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_vol_up_perton">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_vol_prev_up_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_vol_up_perton">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+
+                                         <!-- price -->
+                                         <div class="col-xs-12" align="center" style="margin-bottom: 3px;"><span class="lyear" style="border: none;">Price</span></div>
+                                    
+                                          <a href="#" rel="asset" class="bagan">
+                                       <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span class="namabulan">November</span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_price_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_price_perton">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_price_perton">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_price_perton">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_price_prev_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_price_perton">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">Up to <span class="namabulan">November</span></h4>
+                                       <div class="float_bgg" style="border: 1px solid #797979;">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_price_up_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_price_up_perton">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_price_up_perton">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_price_up_perton">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_price_prev_up_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_price_up_perton">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+                                         <!-- COST -->
+                                         <div class="col-xs-12" align="center" style="margin-bottom: 3px;"><span class="lyear" style="border: none;">Cost</span></div>
+                                    
+                                          <a href="#" rel="asset" class="bagan">
+                                       <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span class="namabulan">November</span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_cost_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_cost_perton">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_cost_perton">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_cost_perton">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_cost_prev_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_cost_perton">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 boxf noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c; text-align: right;    padding: 5px 9px 4px 9px;">Up to <span class="namabulan">November</span></h4>
+                                       <div class="float_bgg" style="border: 1px solid #797979;">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                        <span style="color:black;" id="real_cost_up_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                        <span style="color:black;" id="rkap_cost_up_perton">0</span>
+                                        </div>
+                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                        <span style="color:black; font-size: 19px" id="persen_cost_up_perton">0%</span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="    color: red;"></i>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Variance</span><br>
+                                         <span style="color:black; font-size: 24px" id="variance_cost_up_perton">0</span><br>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Real 2015</span><br>
+                                        <span style="color:black;" id="real_cost_prev_up_perton">0</span>
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">% YoY</span><br>
+                                        <span style="color:black;" id="yonyear_cost_up_perton">0%</span>
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+                                        <br>
+                                        <div align="left">
+                                        <p style="display:none;color:black;font-size: 23px; padding-left: 9px;"><span class="namabulan" style="color:black;">November</span></p>
+                                        </div>
+                                        <table class="table table-striped" style="display:none;margin-bottom: 16px; font-size:14px;">
+      <tbody>
+        <tr>
+          <td valign="middle">Item</td>
+          <td valign="middle">RKAP</td>
+          <td valign="middle">Real</td>
+          <td valign="middle">%</td>
+        </tr>
+        <tr>
+          <td valign="middle">Total Volume (B) Ton</td>
+          <td valign="middle"><div id="tbl_vol_rkap_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_vol_real_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_vol_persen_perton" align="right">0</div></td>
+        </tr>
+        <tr style="display:none;">
+          <td valign="middle">Semen Domestik (B) Ton</td>
+          <td valign="middle"><div align="right">3.087</div></td>
+          <td valign="middle"><div align="right">7.635</div></td>
+          <td valign="middle"><div align="right"><span style="color:#DC0033"></span></div></td>
+        </tr>
+        <tr>
+          <td valign="middle">Revenue</td>
+          <td valign="middle"><div id="tbl_rev_rkap_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_rev_real_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_rev_persen_perton" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">Net Revenue</td>
+          <td valign="middle"><div id="tbl_net_rkap_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_net_real_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_net_persen_perton" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">EBITDA (B)</td>
+          <td valign="middle"><div id="tbl_ebitda_rkap_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_ebitda_real_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_ebitda_persen_perton" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">EAT</td>
+          <td valign="middle"><div align="right">0</div></td>
+          <td valign="middle"><div align="right">0</div></td>
+          <td valign="middle"><div align="right">0</div></td>
+        </tr>
+      </tbody>
+    </table>
+    <div align="left">
+                                        <p style="display:none;color:black;font-size: 23px; padding-left: 9px;">Up to <span class="namabulan" style="color:black;">November</span></p>
+                                        </div>
+                                        <table class="table table-striped" style="display:none;margin-bottom: 64px; font-size:14px;">
+      <tbody>
+        <tr>
+          <td valign="middle">Item</td>
+          <td valign="middle">RKAP</td>
+          <td valign="middle">Real</td>
+          <td valign="middle">%</td>
+        </tr>
+        <tr>
+          <td valign="middle">Total Volume (B) Ton</td>
+          <td valign="middle"><div id="tbl_vol_rkap_up_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_vol_real_up_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_vol_persen_up_perton" align="right">0</div></td>
+        </tr>
+        <tr style="display:none;">
+          <td valign="middle">Semen Domestik (B) Ton</td>
+          <td valign="middle"><div align="right">3.087</div></td>
+          <td valign="middle"><div align="right">7.635</div></td>
+          <td valign="middle"><div align="right"><span style="color:#DC0033"></span></div></td>
+        </tr>
+        <tr>
+          <td valign="middle">Revenue</td>
+          <td valign="middle"><div id="tbl_rev_rkap_up_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_rev_real_up_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_rev_persen_up_perton" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">Net Revenue</td>
+          <td valign="middle"><div id="tbl_net_rkap_up_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_net_real_up_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_net_persen_up_perton" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">EBITDA (B)</td>
+          <td valign="middle"><div id="tbl_ebitda_rkap_up_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_ebitda_real_up_perton" align="right">0</div></td>
+          <td valign="middle"><div id="tbl_ebitda_persen_up_perton" align="right">0</div></td>
+        </tr>
+        <tr>
+          <td valign="middle">EAT</td>
+          <td valign="middle"><div align="right">0</div></td>
+          <td valign="middle"><div align="right">0</div></td>
+          <td valign="middle"><div align="right">0</div></td>
+        </tr>
+      </tbody>
+    </table>
+                                    <div align="center" style="">
+    <br>
+</div>  
+                            </div>
+                        </div>
+
+</div>
+<div id="data-trend" class="hidden">
+ <div class="headsix cubesRun2" style="margin-bottom: 116px; min-height: 919px;"> <br>
+                          <div class=" cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota1.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px; padding-right: 45px;">
+                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="" id="head" style="font-weight: 600; color: #000000; font-size: 23px;    display: inline-block;">SEMEN TONASA</p>
+                               
+                            </div>
+                        </div>    
+  <center>
+   <i class="fa fa-clock-o" aria-hidden="true"></i> 
+<span class="last-update upercent gry"></span>
+  </center> 
+  <div style="width:100%;text-align: center;"><h4>Trend Penjualan</h4><span id="totalpenjualan" style="color:#000;">Total : 0</span></div>
+  <!-- <div style="overflow-x: scroll;width:97%;margin:5px 5px;"><div id="chart_penjualan" style="width:1000px;"></div></div> -->
+  <div id="chart_penjualan" style="width:100%;"></div>
+  <div style="width:100%;text-align: center;margin-top:30px;"><h4>Trend Ebitda</h4><span id="totalebitda" style="color:#000;">Total : 0</span></div>
+  <!-- <div style="overflow-x: scroll;width:97%;margin:5px 5px;"><div id="chart_ebitda" style="width:1000px;"></div></div> -->
+  <div id="chart_ebitda" style="width:100%;"></div>
+  <div style="width:100%;text-align: center;margin-top:30px;"><h4>Trend Revenue</h4><span id="totalrevenue" style="color:#000;">Total : 0</span></div>
+  <!-- <div style="overflow-x: scroll;width:97%;margin:5px 5px;"><div id="chart_bruto" style="width:1000px;"></div></div> -->
+  <div id="chart_bruto" style="width:100%;"></div>
+  <div style="width:100%;text-align: center;margin-top:30px;"><h4>Trend Net Revenue</h4><span id="totalnetto" style="color:#000;">Total : 0</span></div>
+  <!-- <div style="overflow-x: scroll;width:97%;margin:5px 5px;"><div id="chart_netto" style="width:1000px;"></div></div> -->
+  <div id="chart_netto" style="width:100%;"></div>
+ </div>                         
+</div>
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

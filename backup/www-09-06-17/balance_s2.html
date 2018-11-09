@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/Session.js"></script>
+
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/highstock.js"></script>
+	
+	<script src="js/loader.js"></script>
+        <script src="js/highcharts-3d.js"></script>
+        <script src="js/exporting.js"></script>
+		<script src="js/balance_s.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+      <!--   <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+        <script type="text/javascript" charset="utf-8">
+
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                 $('a[href="#tab-bs"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'asset') {
+                        $('#asset').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#equity').addClass('hidden');
+                       
+                    } else if (r == 'liability') {
+                        $('#liability').removeClass('hidden');
+                        $('#asset').addClass('hidden');
+                        $('#equity').addClass('hidden');
+
+                    } else if (r === 'equity') {
+                         $('#equity').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#asset').addClass('hidden');
+                    }
+                });
+
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'balance_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'balance_sg.html';
+
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'balance_st.html';
+                        
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'balance_tl.html';
+                        
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+
+                $('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2009;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                $('.selyear').html(opt_year);
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= bulanSekarang){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })  
+                $('.selmonth').html(opt_month);
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = dd+'/'+mm+'/'+yyyy;
+
+
+        </script>
+        <script >
+            
+             $(function(){
+                var opco = '7000';
+                 balance_data(bulanSekarang, opco);
+
+                $('.selmonth').change(function(){
+                    bulanSekarang = $(this).val();
+                    tahun = $('.selyear').val();   
+
+                    balance_data(bulanSekarang, opco);
+
+                })
+              
+            })
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+			        font-size: 18px;
+    font-weight: bold;
+}
+.titl{
+background-color: #e54b37;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+	    margin-bottom: 0px;
+		 border-radius: 3px 3px 0px 0px;
+
+	}
+	.box{
+	/* background-color: #e54b37; */
+    padding: 0px;
+    margin-bottom: 3px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    /* margin: auto; */
+    min-height: 209px;
+    /* border-radius: 8px; */
+    /* margin-right: 1px; */
+    border: 1px solid rgb(197, 197, 197, 0.7);
+    /*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    border-right: 1px solid #b6b6b6;*/
+			}
+.bagan:hover, .bagan:visited {
+	opacity: 0.6;
+}
+.titab{
+    font-weight: 500;
+	    color: white;
+        display: inline-block;
+    font-size: 12px;
+    margin-bottom: 8px;
+	}
+	.lyear{
+	    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+	}
+	.ryear{
+	color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+	}
+	.jud{
+	    color: #000000;
+        font-size: 18px;
+    font-weight: 600;
+    margin-top: 13px;
+    display: inline-block;
+	}
+	/*.til{
+	    padding-bottom: 1px;
+    border-bottom: 1px solid #b6b6b6;
+	background-color: ghostwhite;
+	}*/
+	.label-success {
+    background-color: #5cb85c;
+    border: 1.5px solid white;
+}
+.label-danger {
+    background-color: #d9534f;
+	border: 1.5px solid white;
+}
+.subox{
+    height: 137px;
+    border-bottom: 3px solid #e54b37;
+}
+.subox2{
+    height: 137px;
+    border-bottom: 3px solid #626262;
+}
+.hijau {color: #669966;}
+.merah {color: #DC0033;}
+.float_bgg {
+    /*display: inline-block;*/
+    max-width: 100%;
+    height: auto;
+    padding: 4px 12px;;
+    line-height: 1.42857143;
+    background-color: #fff;
+    /*border: 1px solid #e54b37;*/
+    border-radius: 0px 0px 6px 6px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.htittle{
+            margin: 0px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: #e54b37;
+    height: 27px;
+    text-align: left;
+    font-size: 14px;
+    padding: 5px 0px 4px 9px;
+}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            
+
+            });
+        </script>
+        <title>Finance Performance</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                          <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">BALANCE SHEET</h2>
+                        <div class="headsix cubesRun2" style="margin-bottom: 66px; min-height: 218px;">  
+                          <img src="img/teks semen indo.png" class="imgsi" style="padding-bottom: 7px; margin-bottom: 2px;">
+                          
+                          <center>
+
+                          Bulan:    <select id="month" class="selmonth" rel="vol">
+                                    </select>
+                        </center>
+                          <center>
+          
+
+        <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">
+                                    
+                                <script type="text/javascript">
+                                    document.write("Last Update :",today);
+                                </script>
+                                </span>
+          </center>
+          
+                                    <div style="margin-top:14px"></div>
+                                    <div class="col-xs-12" align="center" style="margin-bottom: 11px;"> <!-- <p style="font-size: 23px; text-align:center; color:black; margin-top: 0px; margin-bottom:0px; ">&nbsp;Balance Sheet
+                                    </p> -->
+                                    <span style="color:black">in IDR Bio</span></div>
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                        
+                                    
+                                    <a href="cash_flow_opr.html" rel="asset" class="bagan">
+                                       <div class="col-xs-6 box noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle"><span id="tag_current_balance"></span></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-12 noPadding" align="left">
+                                         <span style="font-size: 12px; font-weight: 300; color:black;">Assets</span><br>
+                                        <span style="color:#a01d1d; font-size: 22px" id="curr_asset">0</span><br>
+                                        
+                                        
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left">
+                                         <span style="font-size: 12px; font-weight: 300; color:black;">Liabilies</span><br>
+                                        <span style="color:black;" id="curr_liab">0</span><br>
+                                        
+                                        
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left">
+                                         <span style="font-size: 12px; font-weight: 300; color:black;">Equity</span><br>
+                                        <span style="color:black;" id="curr_equ">0</span><br>
+                                        
+                                        
+                                        </div>
+                                                                              
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                         <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 box noPadding">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #e54b37; text-align: right;    padding: 5px 9px 4px 9px;"><span id="tag_last_balance">...</span></h4>
+                                       <div class="float_bgg" style="">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-12 noPadding" align="right">
+                                         <span style="font-size: 12px; font-weight: 300; color:black;">Assets</span><br>
+                                        <span style="color:#a01d1d; font-size: 22px" id="last_asset">0</span><br>
+                                        
+                                        
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="right">
+                                         <span style="font-size: 12px; font-weight: 300; color:black;">Liabilies</span><br>
+                                        <span style="color:black;" id="last_liab">0</span><br>
+                                        
+                                        
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="right">
+                                         <span style="font-size: 12px; font-weight: 300; color:black;">Equity</span><br>
+                                        <span style="color:black;" id="last_equ">0</span><br>
+                                        
+                                        
+                                        </div>
+                                        
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a> 
+                                         <a href="cash_flow_opr.html" rel="asset" class="bagan">
+                                       <div class="col-xs-12 box noPadding" style="min-height: 121px">
+                                       
+                                       <div class="col-xs-12" style="padding: 2px;">
+                                       <h4 class="htittle" style="background-color: #9c9c9c;"><span id="tag_past_balance">...</span><i class="fa fa-bars" aria-hidden="true" style="float:right;padding-right: 12px;"></i></h4>
+                                       <div class="float_bgg">
+                                        
+                                        <div align="center " style="margin-bottom:12px;">
+                                        
+                                        <div class="col-xs-12 " align="center">
+                                        </div>
+
+                                         <div class="col-xs-6 noPadding" align="left">
+                                         <span style="font-size: 12px; font-weight: 300; color:black;">Assets</span><br>
+                                        <span style="color:#a01d1d; font-size: 25px" id="past_asset">0</span><br>
+                                        
+                                        
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right">
+                                         <span style="font-size: 12px; font-weight: 300; color:black;">Liabilies</span><br>
+                                        <span style="color:black;" id="past_liab">0</span><br>
+                                        <span style="font-size: 12px; font-weight: 300; color:black;">Equity</span><br>
+                                        <span style="color:black;" id="past_equ">0</span><br>
+                                        
+                                        
+                                        </div>
+                                        
+                                                                              
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </a>  
+
+                                          <div class="col-xs-12" align="left" style="    margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-paper-plane" aria-hidden="true" style="    font-size: 16px;
+    color: #e5c12e;"></i>
+                                    <span style="color: #4d4d4d; font-size: 16px"> &nbsp; Opco Comparation</span>
+                                </div>
+
+<!-- <table id="table_opco" class="table table-striped" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 11px; text-align: center;">
+       <thead style="background-color: #f0cf46; color: #FFF">
+       <tr>
+       
+       <th width="40%"><b><center>Opco</center></b></th>
+       <th width="20%"><b><center>Asset</center></b></th>
+       <th width="20%"><b><center>Liability</center></b></th>
+       <th width="20%"><b><center>Equity</center></b></th>
+       </tr></thead>
+       <tbody>
+       <tr id="isidetaila">
+       <td align="left">SEMEN GRESIK</td><td align="right" id="7000_asset"> 0 </td><td align="right" id="7000_liab">0</td>
+       <td align="right" id="7000_equ"></td></tr>
+       <tr id="isidetailb"><td align="left">SEMEN PADANG</td><td align="right" id="3000_asset">0</td><td align="right" id="3000_liab">0</td><td align="right" id="3000_equ">0</td></tr>
+       <tr id="isidetailc"><td align="left">SEMEN TONASA</td><td align="right" id="4000_asset">0</td><td align="right" id="4000_liab">0</td><td align="right" id="4000_equ">0</td></tr>
+       <tr id="isidetailc"><td align="left">THANG LONG</td><td align="right" id="6000_asset">0</td><td align="right" id="6000_liab">0</td><td align="right" id="6000_equ">0</td></tr>
+       </tbody>
+       
+       </table> -->
+
+       <table id="table_opco" class="table table-striped" style="width: 100%; border: 10px; border-color: #000; color: #000; font-size: 11px; text-align: center;">
+       <thead style="background-color: #f0cf46; color: #FFF">
+       <tr>
+       
+       <th width="40%"><b><center>Opco</center></b></th>
+       <th width="20%"><b><center>Asset</center></b></th>
+       <th width="20%"><b><center>Liability</center></b></th>
+       <th width="20%"><b><center>Equity</center></b></th>
+       </tr></thead>
+       <tbody>
+       <tr><td align="left">SEMEN GRESIK</td><td align="right" id="7000_asset">0</td><td align="right" id="7000_liab">0</td><td align="right" id="7000_equ">0</td></tr>
+       <tr><td align="left">SEMEN PADANG</td><td align="right" id="3000_asset">0</td><td align="right" id="3000_liab">0</td><td align="right" id="3000_equ">0</td></tr>
+       <tr><td align="left">SEMEN TONASA</td><td align="right" id="4000_asset">0</td><td align="right" id="4000_liab">0</td><td align="right" id="4000_equ">0</td></tr>
+       <tr><td align="left">THANG LONG</td><td align="right" id="6000_asset">0</td><td align="right" id="6000_liab">0</td><td align="right" id="6000_equ">0</td></tr>
+       </tbody>
+       
+       </table>
+                                         
+                                         <!-- ########### Cement Up to ############-->
+                                         
+                                        
+                                        
+                                        <!-- last years -->
+                                      <!--   <div class="col-xs-12" style="padding: 0px">
+                                       <div class="col-xs-6" align="left" style="padding: 0px; margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-pie-chart" aria-hidden="true" style="    font-size: 16px;
+    color: #e54b37;"></i> -->
+                                  <!--   <span style="color: #4d4d4d; font-size: 15px" id="tag_chart_curr"> ...</span>
+                                    <div id="donut1" style="height: 300px;  margin: 0 auto; "></div></div> -->
+                                                       <!-- ########### Cement ############-->
+                                                       
+                                    <!--     <div class="col-xs-6" align="left" style="padding: 0px; margin: 15px 0px 15px 0px;     border-left: 1px solid #bdbdbd;">
+                                    &nbsp;<i class="fa fa-pie-chart" aria-hidden="true" style="font-size: 16px; color: #e54b37; padding-left: 6px"></i>
+                                    <span style="color: #4d4d4d; font-size: 15px" id="tag_chart_past"> ...</span>
+                                
+                                <div id="donut2" style="height: 300px;  margin: 0 auto"></div>
+                                </div>
+                                </div>
+
+                                   <div class="col-xs-12" align="left" style="    margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-bar-chart" aria-hidden="true" style="    font-size: 16px;
+    color: #e54b37;"></i>
+                                    <span style="color: #4d4d4d; font-size: 16px"> &nbsp; Trend Comparation</span>
+                                </div>
+
+<div id="line" style="width:100%; height: 300px; margin: 0 auto"></div>
+                                     -->     
+                                         
+                                         
+                                                  <!-- ########### Cement Up to ############-->
+                                                  
+                                                  
+                                    
+                                    <!-- JUDUL -->
+                                    
+                                         <!-- COST -->
+                                         
+                                         
+                                         
+                                            
+                                                       
+                                                       
+
+                                        
+                                        <br>
+                                        <div align="left">
+                                        <p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+                                        </div>
+                                                     
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                     <!--<p style="text-align:center; color:black; margin-top: 85px; border-bottom: 0.8px solid #d9d9d9;">&nbsp;SALES VOLUME</p>
+
+          <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                    <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left">Clinker</span><i class="fa fa-bars" aria-hidden="true" style="float:right"></i></div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                        <span style="" id="">5.432.234</span><br>
+                                        <span style="font-size: 12px; font-weight: 300;">TARGET</span>
+                                        </div>
+                                    
+                                        <div class="col-xs-6 noPadding" align="center">
+                                        <span style="" id="">3.432.234</span><br>
+                                        <span style="font-size: 12px; font-weight: 300;">RKAP</span>
+                                        </div>
+                                        
+                                        <div class="col-xs-6 " align="left" style="margin-top: 32px;">
+                                        <span style="" id="">1.432.234</span><br>
+                                        <span style="font-size: 12px; font-weight: 300;">+ / (-)</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="margin-top: 32px;" >
+                                        <span class="titab" >Prognose</span><br>
+                                        <span class="inex" style="font-size:20px;">  8,5 %</span>
+                                        
+
+                                   
+                                        </div>
+                                        
+                                            
+                                            <p style="height: 42px;"></p>
+                                        </div>
+                                    </a>
+                                    <a href="#" rel="asset" class="bagan">
+                                        <div class="col-xs-6 box" >
+                                        <div class="col-xs-12 noPadding titl" >
+                                        <span style="float:left">Cement</span><i class="fa fa-bars" aria-hidden="true" style="float:right"></i></div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                        <span style="" id="">5.432.234</span><br>
+                                        <span style="font-size: 12px; font-weight: 300;">TARGET</span>
+                                        </div>
+                                    
+                                        <div class="col-xs-6 noPadding" align="center">
+                                        <span style="" id="">3.432.234</span><br>
+                                        <span style="font-size: 12px; font-weight: 300;">RKAP</span>
+                                        </div>
+                                        
+                                        <div class="col-xs-6 " align="left" style="margin-top: 32px;">
+                                        <span style="" id="">1.432.234</span><br>
+                                        <span style="font-size: 12px; font-weight: 300;">+ / (-)</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="margin-top: 32px;" >
+                                        <span class="titab" >Prognose</span><br>
+                                        <span class="inex" style="font-size:20px;">  101,5 %</span>
+                                        
+
+                                   
+                                        </div>
+                                        
+                                            
+                                            <p style="height: 42px;"></p>
+                                        </div>
+                                    </a>
+                                    <p style="text-align:center; color:black; margin-top: 20px; border-bottom: 0.8px solid #d9d9d9;">&nbsp;GROWTH</p>
+          <div align="center" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                               
+                                <span class="upercent">TOTAL GROWTH</span><br>
+
+                               <span class="prosen" style="color: #5d5d5d;" id="totalSaldo">-16.5 %</span><br>
+                                <br>
+                                <div class="col-xs-12 noPadding" style="margin-top:12px;">
+                                <div class="col-xs-5" >
+                                <span class="prosen" style="color: #5d5d5d; font-size: 19px;" id="totalSaldo">-21 % / 9.7 %</span><br>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">Domestic</span>
+                                </div>
+                                <div class="col-xs-2" ></div>
+                                <div class="col-xs-5" >
+                                 <span class="prosen" style="color: #5d5d5d; font-size: 19px;" id="totalSaldo">483.1 %</span><br>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">Export</span>
+                                </div>
+                                </div>
+
+                            </div>
+                                    </div><br>-->
+                                    
+                                    
+                                    
+                                                                  
+                                                             
+                            </div>
+         
+          
+                        </div>
+                          
+                        
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+            <script>
+                $(function () {
+    Highcharts.chart('donut1', {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        colors: ['#E9D460', '#FDE3A7'],
+        title: {
+            text: ''
+        },
+        credits: {
+                    enabled: false
+                },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                innerSize: 40,
+                depth: 25,
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Delivered amount',
+            data: [
+                ['liability', 8],
+                ['Equity', 3],
+            ]
+        }]
+    });
+    Highcharts.chart('donut2', {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        colors: ['#EC644B', '#F1A9A0'],
+        title: {
+            text: ''
+        },
+        credits: {
+                    enabled: false
+                },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                innerSize: 40,
+                depth: 25,
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Delivered amount',
+            data: [
+                ['Liability', 8],
+                ['Equity', 3],
+            ]
+        }]
+    });
+});
+                $(function () {
+ Highcharts.chart('line', {
+        title: {
+            text: ''
+        },
+        
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ' T'
+        },
+        legend: {
+            borderWidth: 0,
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            x: 0,
+            y: 0,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            //shadow: true
+        },
+        credits: {
+                    enabled: false
+                },
+        series: [{
+            name: 'Current',
+            data: [2,4,7,15,3,10,1,9,null,12,7,6,],
+            color: '#EF4836',
+            type: 'spline'
+        }, {
+            name: 'Dec last Year',
+            data: [6,6,6,6,6,6,6,6,6,6,6,6],
+            color: '#E9D460',
+            type: 'spline'
+        }]
+    });
+
+});</script>
+
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

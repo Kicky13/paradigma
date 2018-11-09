@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/archon.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/waitMe.min.js"></script>
+    <script src="js/accounting.min.js"></script>
+    <script src="js/waitMe.min.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/1.3.0/moment-duration-format.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script src="js/loader.js"></script>
+    <!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+    <script type="text/javascript" charset="utf-8">
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+    </script>
+    <!-- <script type="text/javascript" src="js/Chart.min.js"></script> -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+    <title>Project</title>
+    <script>
+        function onLoad() {
+            var session = getParamFull();
+            ////=========================
+            if (sessionStorage.getItem('_com') != 'ALL') {
+                $.each(listTab, function (index, el) {
+                    $('#tab-' + el + ' a').removeAttr('href');
+                    $('#tab-' + el + ' a').removeAttr('rel');
+                })
+            }
+            ////=========================
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
+                }
+            });
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'Information') {
+                    $('#Information').removeClass('hidden');
+                    $('#issue').addClass('hidden');
+                    $('#tab-information').addClass('border-down-active');
+                    $('#tab-issue').removeClass('border-down-active');
+
+                } else if (r == 'issue') {
+                    $('#Information').addClass('hidden');
+                    $('#issue').removeClass('hidden');
+                    $('#tab-information').removeClass('border-down-active');
+                    $('#tab-issue').addClass('border-down-active');
+
+                }
+            });
+
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'data-sp') {
+                    $('#tab-sp').removeClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                } else if (r == 'data-sg') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').removeClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                } else if (r == 'data-st') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').removeClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                } else if (r == 'data-tl') {
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').removeClass('img_foot2');
+                }
+            })
+        }
+
+        var d = new Date();
+        var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+        var bulan = month[d.getMonth()];
+        var bulanSekarang = d.getMonth() + 1;
+        var tahun = d.getFullYear();
+    </script>
+    <style type="text/css">
+        <!--
+        .inex {
+            font-size: 32px;
+            font-family: "Open Sans";
+            color: #000000;
+            margin-bottom: 0px;
+        }
+
+        .inex_down {
+            font-family: "Open Sans";
+            color: #868686;
+        }
+
+        .h_costom {
+            color: #ffffff;
+        }
+
+        .h_down {
+            font-family: "Open Sans";
+            color: #797979;
+            font-size: 12px;
+        }
+
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .detail {
+            position: absolute;
+            text-align: right;
+            color: darkgrey;
+            font-size: 15px;
+            padding-left: 330px;
+        }
+
+        .det_tittle {
+            font-size: 22px;
+            color: #b9011e;
+            font-family: "Open Sans";
+        }
+
+        .font12 {
+            font-size: 10px;
+        }
+
+        .gap_pros {
+            border-top: 1px solid #b7b7b7;
+            border-bottom: 1px solid #b7b7b7;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            background-color: #f2f2f2;
+        }
+
+        .kpi_tittle {
+            font-size: 13px;
+            color: #000000;
+            font-family: "Open Sans";
+        }
+
+        .img_dur {
+            margin-top: 10px;
+            margin-left: 15px;
+            width: 40px;
+        }
+
+        .border-down {
+            height: 41px;
+            background: rgba(255, 255, 255, 1);
+            background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0);
+            border-bottom: 1px #fff solid;
+        }
+
+        .border-down-active {
+            height: 41px;
+            background: rgba(245, 245, 245, 1);
+            background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+            background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+            background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+            background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0);
+            border-bottom: 1px #e64c65 solid;
+        }
+
+        .no-text-style, .no-text-style:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .default_tab {
+            height: 41px;
+            background: rgba(255, 255, 255, 1);
+            background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0);
+        }
+
+        .tx_tab {
+            margin-top: 5px;
+            color: #525252;
+            display: inline-block;
+            font-size: 15px;
+            font-family: "Open Sans";
+        }
+
+        .tab_tittle {
+            font-family: "Open Sans";
+            margin-bottom: 2px;
+            font-size: 27px;
+            margin-top: 0px;
+            font-weight: 300;
+        }
+
+        .dettext {
+            color: #1964bf;
+            font-size: 19px;
+        }
+
+        .clmargin {
+            margin-top: 12px;
+        }
+
+        .up_dettext {
+            font-size: 12px;
+            font-weight: 300;
+            color: black;
+        }
+
+        .borblue {
+            border-bottom: 2px solid rgb(144, 208, 244);
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        -->
+    </style>
+</head>
+<body onLoad="onLoad()" style="font-family: Open Sans;">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                            <li><a>PLANT OPERATION</a></li>
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a>
+                    </li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img
+                            src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MANTENANCE</a>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTERY</a>
+                    <li><a onclick="goto_opco('finance_si', 'finance_si')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="index_login2.html"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <nav id="sideMenu">
+            <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="sales_dashboard.html"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                <li><a href="stok_bahan.html"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+            </ul>
+        </nav>
+        <div id="content" style="background:#f5f5f5;">
+            <header id="header">
+                <button class="burger-menu burger-menu-x backtoparent" id="menu-toggle"><span>toggle menu</span></button>
+                <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo"
+                                                                                        href="index.html"><img
+                    src="img/logo.png"></a>
+            </header>
+            <div class="wrapper">
+                 <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">PROJECT DETAIL</h2>
+
+                <!--  <a href="#tab-click" rel="Information" class="no-text-style">
+                   <div id="tab-information" class="col-xs-12 center padding5 border-down border-down-active ">
+                     <span class="tx_tab">Information</span>
+                   </div>
+                 </a> -->
+                <!--  <a href="#tab-click" rel="issue" class="no-text-style">
+                   <div id="tab-issue" class="col-xs-6 center padding5 border-down ">
+                     <span class="tx_tab">Issue</span>
+                   </div>
+                 </a> -->
+                <div id="Information">
+                    <div class="headsix cubesRun2"
+                         style="margin-bottom: 0px; min-height: 600px; display: inline-block;">
+
+                        <div class="cubesRun2 headone">
+                            <img src="img/teks semen indo.png" class="imgsi"
+                                 style="    border-bottom: 1px solid #e2e2e2; padding-bottom: 7px;">
+                            <div style="margin-top: 15px; color:#5d5d5d;  margin-bottom: 22px;">
+                                <div class="col-xs-3" align="right"><img src="img/rep.png" width="43px"></div>
+                                <div class="col-xs-9">
+
+                                    <span class="det_tittle" id="project_name"
+                                          style="font-size: 17px;"> Loading...</span><br>
+                                    <i class="fa fa-user-o" aria-hidden="true" style="padding-right: 6px;"></i><span
+                                        class="upercent">Project Information</span><br>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-12 noPadding" style="height: 0px;">&nbsp;</div>
+                        <div class="col-xs-1 noPadding">&nbsp;</div>
+                        <div class="col-xs-12 gap_pros" align="center" style="background-color:none;"
+                        "><span class="kpi_tittle">Physical Progress</span></div>
+                    <div class="col-xs-1 noPadding">&nbsp;</div>
+                    <div class="col-xs-12 noPadding" style="height: 0px;">&nbsp;</div>
+                    <div class="col-xs-2 noPadding" align="right">
+                        <img src="img/clo.png" width="58px" class="img_dur">
+
+                    </div>
+                    <div class="col-xs-4 noPadding" align="left" style="padding-left:8px;">
+                        <span class="inex" id="duration" style="color:#DC0033">0</span><sup>&nbsp;&nbsp;Months</sup><br>
+                    </div>
+                    <div class="col-xs-2 noPadding" align="right"><img src="img/cal.png" width="58px" class="img_dur">
+                    </div>
+                    <div class="col-xs-4 noPadding" align="left" style="padding-left:8px;">
+                        <span class="inex" id="schedule_in_project" style="color:#DC0033">0</span><sup>&nbsp;&nbsp;Months</sup><br>
+                    </div>
+                    <br>
+                    <div class="col-xs-12"></div>
+                    <div class="col-xs-6 noPadding" align="center"><span class="inex_down">Project Duration</span></div>
+                    <div class="col-xs-6" align="center"><span class="inex_down">Schedule In Progress</span></div>
+                    <div class="col-xs-12"
+                         style="border-top: 1px solid rgba(128, 128, 128, 0.48); margin-bottom: 12px;    margin-top: 12px;"></div>
+                    <div class="col-xs-6 noPadding" align="center">SPI<span class="inex" id="spi"
+                                                                            style="color:#5984a7; font-size: 40px;">0</span>
+                    </div>
+                    <div class="col-xs-6" align="center">CPI<span class="inex" id="cpi"
+                                                                  style="color:#5984a7; font-size: 40px;">0</span></div>
+                    <div class="col-xs-12" style=" margin-bottom: 12px;    margin-top: 12px;"></div>
+                    <div class="" style="margin-bottom: 11px;height: 227px;">
+                        <div class="col-xs-12"></div>
+                        <div class="col-xs-1 noPadding">&nbsp;</div>
+                        <div class="col-xs-10 noPadding gap_pros" align="center"
+                             style="background-color:none; margin-top: 3px;"><span
+                                class="kpi_tittle">Cost Progress</span></div>
+                        <div class="col-xs-1 noPadding">&nbsp;</div>
+                        <table class="table table-striped" style="margin-bottom: 64px; font-size:14px;">
+                            <tbody>
+                            <tr>
+                                <td>Total Budget</td>
+                                <td valign="middle">
+                                    <div align="center"><span style="color:#669966"><strong>IDR</strong></span></div>
+                                </td>
+                                <td valign="middle">
+                                    <div align="right"><span style="color:#669966" id="tot_budget">Loading...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>EAC</td>
+                                <td valign="middle">
+                                    <div align="center"><span style="color:#669966"><strong>IDR</strong></span></div>
+                                </td>
+                                <td valign="middle">
+                                    <div align="right"><span style="color:#669966" id="eac">Loading...</span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Commited</td>
+                                <td valign="middle">
+                                    <div align="center"><span style="color:#669966"><strong>IDR</strong></span></div>
+                                </td>
+                                <td valign="middle">
+                                    <div align="right"><span style="color:#669966" id="commited">Loading...</span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Remn. Budget</td>
+                                <td valign="middle">
+                                    <div align="center"><span style="color:#669966"><strong>IDR</strong></span></div>
+                                </td>
+                                <td valign="middle">
+                                    <div align="right"><span style="color:#669966" id="remn_budget">Loading...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cash Out</td>
+                                <td valign="middle">
+                                    <div align="center"><span style="color:#669966"><strong>IDR</strong></span></div>
+                                </td>
+                                <td valign="middle">
+                                    <div align="right"><span style="color:#669966" id="cashout">Loading...</span></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="hidden" id="issue">
+                <div class="headsix cubesRun2" style="min-height: 800px;height: auto; display: inline-block;">
+
+                    <div class="cubesRun2 headone">
+                        <img src="img/teks semen indo.png" class="imgsi"
+                             style="    border-bottom: 1px solid #e2e2e2; padding-bottom: 7px;">
+                        <div style="margin-top: 15px; color:#5d5d5d;  margin-bottom: 22px;">
+                            <div class="col-xs-3" align="right"><img src="img/rep.png" width="43px"></div>
+                            <div class="col-xs-9">
+
+                                <span class="det_tittle" id="project_name2"
+                                      style="font-size: 17px;"> Loading...</span><br>
+                                <i class="fa fa-user-o" aria-hidden="true" style="padding-right: 6px;"></i><span
+                                    class="upercent">Project Information</span><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 noPadding">&nbsp;</div>
+                    <div class="col-xs-1 noPadding">&nbsp;</div>
+                    <div id="container" style="width: 100%;margin: 0 auto;padding: 4px;">
+                        <div id="timeline" class="cubesRun2 col-xs-12">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--  <div class="col-xs-12 noPadding graph_tab" style="display: inline-table;">
+            <div class="col-xs-12"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="det_tittle" style="font-size:14px;">&nbsp;&nbsp;&nbsp;History of KPI</span><br>
+            </div>
+            <div id="container" style="min-width: 100%; height: 300px; margin: 0 auto"></div>
+            </div> -->
+            <div class="spacer"></div>
+        </div>
+
+        <!--       <script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script>
+            $(function () {
+                var a = moment('7/11/2010', 'M/D/YYYY');
+                var b = moment('12/12/2010', 'M/D/YYYY');
+                if (sessionStorage.getItem('name') != null) {
+                    var proj_name = sessionStorage.getItem('name');
+                    var now = moment();
+                    var project_name, tot_budget, eac, commited, remn_budget, cashout, spi, cpi, schedule_in_project, project_startv, project_finishv, project_start, project_finish, duration, diffDuration, diffDurationByNow;
+                    run_waitMe('.headsix', 'ios');
+                    $.ajax({
+                        url: url_src + '/api/index.php/Project/status?proj=' + proj_name,
+                        type: 'GET',
+                        success: function (data) {
+                            var data = JSON.parse(data);
+                            console.log(proj_name);
+                            // console.log(data[1]);
+                            // $.each(data[1], function(i, data[1]) {
+                            // console.log(i);
+                            // if (i == proj_name) {
+                            project_name = data[1].project_name;
+                            tot_budget = setFormat(data[1].project_budget);
+                            eac = setFormat(data[1].status.eac);
+                            commited = setFormat(data[1].status.commited);
+                            remn_budget = setFormat(data[1].status.remn_budget);
+                            cashout = setFormat(data[1].status.cash_out);
+                            spi = data[1].status.spi;
+                            cpi = data[1].status.cpi;
+                            schedule_in_project = data[1].status.Schedule_In_Progress;
+                            project_startv = data[1].project_start;
+                            project_finishv = data[1].project_finish;
+                            // var ps = project_startv.getMonth()+'/'+project_startv.getDate()+'/'+project_startv.getFullYear();
+                            // var pf = project_finishv.getMonth()+'/'+project_finishv.getDate()+'/'+project_finishv.getFullYear();
+                            // console.log(ps);
+                            a = moment(project_finishv, 'DD/MM/YYYY');
+                            b = moment(project_startv, 'DD/MM/YYYY');
+                            diffDuration = a.diff(b, 'month');
+                            console.log('durasi projek ', diffDuration);
+                            console.log('commited', commited);
+                            console.log('eac', eac)
+                            // diffDurationByNow = now.diff(b, 'month');
+                            // console.log('way ',diffDurationByNow);
+                            // console.log(project_startt+"-"+project_finish);
+                            // var timeDiff = Math.abs(project_finish.getTime() - project_start.getTime());
+                            // console.log(timeDiff);
+                            // var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                            // console.log('dif'+ diffDays);
+                            // console.log(project_start.duration(project_finish, 'months'));
+                            // var difference = project_finish - project_start;
+                            // // console.log('difference:', moment(difference));
+                            // console.log((moment(project_finishv).diff(moment(project_startv)), 'months', true));
+                            // var month = project_finish.diff(project_start, 'months');
+                            // duration = moment.duration(month, 'months');
+                            // // console.log(duration);
+                            // console.log('duration:',duration.format("y [years] M [months]"));
+                            //   }
+                            // })
+                            $("#project_name").html(project_name);
+                            $("#project_name2").html(project_name);
+                            $("#tot_budget").html(tot_budget);
+                            $("#eac").html(eac);
+                            $("#commited").html(commited);
+                            $("#remn_budget").html(remn_budget);
+                            $("#cashout").html(cashout);
+                            $("#spi").html(spi);
+                            $("#cpi").html(cpi);
+                            $("#schedule_in_project").html(schedule_in_project);
+                            $("#duration").html(diffDuration);
+
+
+                            $.each(data, function (index, el) {
+                                // console.log(index, el);
+                                addTimeline(index, el.issue.date, el.issue.title, '');
+                            });
+                        }
+                    }).done(function (data) {
+                        stop_waitMe('.headsix');
+                    }).fail(function () {
+                    });
+
+                    // $('#container').highcharts({
+                    //   chart: {
+                    //     backgroundColor: 'rgba(0, 255, 0, 0)',
+                    //   },
+                    //   title: {
+                    //     text: ''
+                    //   },
+                    //   xAxis: {
+                    //     categories: ['May', 'June', 'July', 'Augt', 'Sept']
+                    //   },
+                    //   plotOptions: {
+                    //     column: {
+                    //       dataLabels: {
+                    //         enabled: true,
+                    //         crop: false,
+                    //         overflow: 'none'
+                    //       }
+                    //     }
+                    //   },
+                    //   labels: {
+                    //     items: [{
+                    //       html: '',
+                    //       style: {
+                    //         left: '50px',
+                    //         top: '18px',
+                    //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                    //       }
+                    //     }]
+                    //   },
+                    //   series: [{
+                    //     type: 'column',
+                    //     name: 'Plan (%)',
+                    //     data: [5, 6, 7, 5, 8],
+                    //     color: '#FF615D'
+                    //   }, {
+                    //     type: 'column',
+                    //     name: 'Real (%)',
+                    //     data: [8, 8, 9, 9, 10]
+                    //   }, {
+                    //     type: 'spline',
+                    //     name: 'CPI',
+                    //     data: [11.1, 11.6, 11.5, 11.4, 11.1],
+                    //     color: '#FF615D'
+                    //   }, {
+                    //     name: 'SPI',
+                    //     type: 'spline',
+                    //     data: [11.2, 11.5, 11.6, 11.5, 12.1],
+                    //     tooltip: {
+                    //       valueSuffix: ' �C'
+                    //     }
+                    //   }]
+                    // });
+                } else {
+                    window.location.href = 'proj_gress.html';
+                }
+
+                function addRow(no, date, issue, status) {
+                    $('table #issueTbody').append(
+                        '<tr><td>' + no + '</td><td valign="middle">' + date + '</td><td valign="middle"><div align="left"><span style="color: black">' + issue + '</span></div></td><td valign="middle"><div align="left"><span style="color: black">' + status + '</span></div></td></tr>')
+                }
+
+                function addTimeline(no, date, issue, status) {
+
+                    date = (date) ? date : 'Undefined Date';
+
+                    if (issue == null) {
+                        $('#timeline').append(
+                            '<blockquote><p style="color: black; font-size: 18px;">This project has no issue...... </p></blockquote>'
+                        );
+                    } else {
+                        status = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make";
+                        $('#timeline').append(
+                            '<div style="margin-bottom:10px;border-right:0.5px #848383;color: #eb1717;"><div class="media-left" ><img class="media-object" src="img/ptl.png" width="44px"></div><div class="media-body timelinep"><h5 class="media-heading" style="border-bottom: 0.5px #848383;">' + date + '</h5><p style="color: black; font-size: 11px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s</p><span style="border-bottom: 1px #848383;"></span><p style="color: #848383; font-size: 11px;">' + issue + '</p></div></div>'
+                        );
+                    }
+                }
+            });
+        </script>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).on('ready', function () {
+                $('.single-item').slick();
+                $('.multiple-items').slick({
+                    infinite: true,
+                    slidesToShow: 4,
+                    slidesToScroll: 4
+                });
+                $(".regular").slick({
+                    infinite: true,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    arrows: true,
+                    centerMode: true
+                    // variableWidth: true
+                });
+            });
+        </script>
+</body>
+</html>

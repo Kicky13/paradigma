@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script src="js/config.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+
+        <script type="text/javascript" src="js/index.js"></script>
+	
+		<script src="js/loader.js"></script>
+		<script src="js/paradigma.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		
+        <script type="text/javascript" src="js/moment.min.js"></script>
+
+		<script src="js/phase2/global.js"></script>
+		<script src="js/phase2/clinker_cement_sales.js"></script>
+		
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+				sidemenu();
+				tabpage();
+				tabsub();
+				
+				var today = dd+'/'+mm+'/'+yyyy;
+				$('.last-update').html('Last Update : '+today);
+
+                var yearnow = tahun;
+				$('#tag_month_selected').html(month[selectmonth-1]);
+				selectedDate = yearnow+'.'+bulanSekarang;
+				
+				var opco = 'smi';
+                setParam(opco, bulanSekarang, tahun);
+				selectDate = selectedDate;
+				opcoGroup(opco, '', '', '', selectDate, '');
+				
+                $('.selmonth').empty();
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= 12){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })  
+				
+                $('.selmonth').html(opt_month);
+                var yearnow = tahun;
+                $('.selmonth').change(function(){
+                    bulanSekarang = $(this).val();
+                    tahun = $('.selyear').val();
+                    setParam(opco,bulanSekarang, tahun);
+                    var yearnow = tahun;
+					selectedDate = yearnow+'.'+bulanSekarang;
+					selectDate = selectedDate;
+					opcoGroup(opco, '', '', '', selectDate, '');
+                })
+                var opt_year;
+                for (var thn=2014;thn<=tahun;thn++){
+					if (thn == tahun){
+					  opt_year += '<option value="'+thn+'" selected="selected">'+thn+'</option>'; 
+					}else{
+					  opt_year += '<option value="'+thn+'">'+thn+'</option>';   
+					}
+                }
+                $('.selyear').html(opt_year);
+                $('.selyear').change(function(){
+					bulanSekarang = $('.selmonth').val();
+					tahun = $(this).val();
+					setParam(opco,bulanSekarang, tahun);
+					var yearnow = tahun;
+					selectedDate = yearnow+'.'+bulanSekarang;
+					selectDate = selectedDate;
+					opcoGroup(opco, '', '', '', selectDate, '');
+                })
+				
+				$(".se-pre-con").fadeOut("slow");
+			}
+			function gotochart(url){
+				var to = url+'/'+selectedDate;
+				window.location.replace(to);
+			}
+			function gotosub(url){
+				var to = url+'/'+selectedDate;
+				window.location.replace(url);
+			}
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 60px;
+                bottom: 0px;
+                width: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+			        font-size: 18px;
+    font-weight: bold;
+}
+.titl{
+	background-color: #e54b37;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+	    margin-bottom: 0px;
+		 border-radius: 3px 3px 0px 0px;
+
+	}
+	.boxf{
+	/* background-color: #e54b37; */
+    padding: 0px;
+    margin-bottom: 3px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    /* margin: auto; */
+    min-height: 209px;
+    /* border-radius: 8px; */
+    /* margin-right: 1px; */
+    border: 1px solid rgb(197, 197, 197, 0.7);
+    /*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    border-right: 1px solid #b6b6b6;*/
+			}
+.bagan:hover, .bagan:visited {
+	opacity: 0.6;
+}
+.titab{
+    font-weight: 500;
+	    color: white;
+        display: inline-block;
+    font-size: 12px;
+    margin-bottom: 8px;
+	}
+	.lyear{
+	    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+	}
+	.ryear{
+	color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+	}
+	.jud{
+	    color: #000000;
+        font-size: 18px;
+    font-weight: 600;
+    margin-top: 13px;
+    display: inline-block;
+	}
+	/*.til{
+	    padding-bottom: 1px;
+    border-bottom: 1px solid #b6b6b6;
+	background-color: ghostwhite;
+	}*/
+	.label-success {
+    background-color: #5cb85c;
+    border: 1.5px solid white;
+}
+.label-danger {
+    background-color: #d9534f;
+	border: 1.5px solid white;
+}
+.subox{
+    height: 137px;
+    border-bottom: 3px solid #e54b37;
+}
+.subox2{
+    height: 137px;
+    border-bottom: 3px solid #626262;
+}
+.hijau {color: #669966;}
+.merah {color: #DC0033;}
+.float_bgg {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px 12px;;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #e54b37;
+    border-radius: 0px 0px 6px 6px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.htittle{
+            margin: 0px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: #e54b37;
+    height: 27px;
+    text-align: left;
+    font-size: 14px;
+    padding: 5px 0px 4px 9px;
+}
+.te{
+       background: #EB1717;    height: 37px;    line-height: 39px;font-size: small;
+    background: rgba(245,81,81,1);
+background: -moz-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,81,81,1)), color-stop(46%, rgba(245,81,81,1)), color-stop(57%, rgba(229,75,55,1)), color-stop(100%, rgba(229,75,55,1)));
+background: -webkit-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -o-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -ms-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: linear-gradient(to bottom, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f55151', endColorstr='#e54b37', GradientType=0 );
+}
+
+            
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .bold_op{
+                    font-weight: 600;
+            }
+			
+			tbody td{
+				text-align:right;
+			}
+			tbody td:nth-child(1){
+				text-align:left;
+			}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <title>Finance Performance</title>
+    </head>
+<body onLoad="onLoad()" >
+    <div class="app">
+        <div id="deviceready">
+            <!-- Paste this code after body tag -->
+            <div class="se-pre-con"></div>
+            <!-- Ends -->
+            <nav id="sideMenu">
+                <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+            </nav>
+            <div id="content" class="animated" style="background:#f5f5f5;">
+                <header id="header">
+                    <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                    <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+                </header>
+                <div class="wrapper">
+					<h2 class="titular te" style=" ">
+						<a href="portal_finance.html" class="pull-left" style="margin-left:10px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+						SALES PERFORMANCE
+					</h2>
+					<div class="col-xs-12" style="background-color: white;">
+                        <div class="col-xs-12 bg_rds">
+							<div id="tab-page1" class="col-xs-6 center zero_padd left_tb act_tb">
+								<a href="#tab-click" rel="page1" class="no-text-style">
+									<img src="img/volum.png" width="16px">
+									<span class="tx_tab">&nbsp;&nbsp;Volume</span>
+								</a>
+							</div>
+							<div id="tab-page2" class="col-xs-6 center zero_padd left_tb ">
+								<a href="#tab-click" rel="page2" class="no-text-style">
+									<img src="img/revnue.png" width="16px">
+									<span class="tx_tab">&nbsp;&nbsp;Revenue</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="headsix cubesRun2" style="margin-bottom: 36px; min-height: 600px; margin-top: 19px;">
+						<img src="img/teks semen indo.png" class="imgsi" style="margin-top: 26px;padding-bottom: 7px; margin-bottom: 2px;">
+                        <center>
+							Bulan: 
+							<select id="month" class="selmonth" rel="vol"></select> 
+							<select id="year" class="selyear"></select> 
+							<span class="upercent"></span>
+							<br>
+							<i class="fa fa-clock-o" aria-hidden="true"></i>   <span class="last-update upercent gry"></span>
+						</center>
+						<br>
+						<div id="page1" class="active">
+							<div align="center" style="margin-top:9px;">
+								<div class="col-xs-6 noPadding">
+									<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+										<span class="inex_down dual" style="padding-left: 0px;">RKAP</span><br>
+										<p class="inex" id="target_rkap_rev" style="color:#FF615D;">0</p>
+									</div>
+									<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+										<span class="inex_down dual" style="padding-left: 0px;">REAL</span><br>
+										<p class="inex" id="target_actual_vol" style="color:#4c9ed9;">0</p> 
+									</div>
+								</div>
+								<div class="col-xs-6 noPadding" style="padding-right:15px;">
+									<div align="right" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+										<span class="upercent">ACHIEVEMENT</span><br>
+										<i id="icon_achievement_all" class="fa fa-3x" aria-hidden="true" align="left"></i>&nbsp;<span class="prosen" style="color: #5d5d5d; font-size: 32px;" id="achievement_vol">0</span><span class="prosen" style="color: #5d5d5d; font-size: 32px;">%</span><br>
+										<br>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="cubesRun2 headone" style="margin-bottom: 20px; height: auto; margin-top: 10px; padding:12px 10px;   border-top: 2px solid #d1d1d1;border-radius: 26px 26px 0px 0px;">
+								<div align="left" class="col-xs-8" style="margin-bottom: 8px;">
+									<i class="fa fa-calendar" aria-hidden="true"
+									   style="font-size: 17px;color: #e54b37;"></i>&nbsp;&nbsp;<span
+										class="ttl_fp" id="ton_tag_current_cost2"> Domestic</span>
+								</div>
+								<a onmousedown="gotochart('p2_fin_sales_smi_chart.html#Domestic/Clinker/Volume')" rel="asset" class="bagan">
+									<div class="col-xs-6 boxf noPadding" style="min-height:auto;">
+										<div class="col-xs-12" style="padding:2px;">
+											<h4 class="htittle"><span>Clinker</span>
+											<i class="fa fa-line-chart right grp_ico" aria-hidden="true" style="float:right;padding-right:10px;"></i></h4>
+											<div class="float_bgg">
+												<div align="center " style="margin-bottom:12px;">
+													<div class="col-xs-12 " align="center">
+													</div>
+													<div class="col-xs-6 noPadding" align="left">
+														<span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+														<span style="color:black;" id="tot_dom_cli">0</span>
+														
+													</div>
+													<div class="col-xs-6 noPadding" align="right">
+														
+														<span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+														<span style="color:black;" id="rkap_current_prod">0</span>
+													</div>
+													<div class="col-xs-12" style="margin-bottom: 10px;">
+													<span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+														<i id="icon_achievement_dcli" class="fa" aria-hidden="true"></i>
+														<span style="color:black; font-size: 24px" id="prcnclinker">0</span>
+														<span style="color:black; font-size: 16px">%</span><br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<a onmousedown="gotochart('p2_fin_sales_smi_chart.html#Domestic/Cement/Volume')" rel="asset" class="bagan">
+									<div class="col-xs-6 boxf noPadding" style="min-height:auto;">
+										<div class="col-xs-12" style="padding:2px;">
+											<h4 class="htittle"><span>Cement</span>
+											<i class="fa fa-line-chart right grp_ico" aria-hidden="true" style="float:right;padding-right:10px;"></i></h4>
+											<div class="float_bgg">
+												<div align="center " style="margin-bottom:12px;">
+													<div class="col-xs-12 " align="center">
+													</div>
+													<div class="col-xs-6 noPadding" align="left">
+														<span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+														<span style="color:black;" id="tot_dom_cem">0</span>
+														
+													</div>
+													<div class="col-xs-6 noPadding" align="right">
+														
+														<span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+														<span style="color:black;" id="rkap_current_prod">0</span>
+													</div>
+													<div class="col-xs-12" style="margin-bottom: 10px;">
+													<span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+														<i id="icon_achievement_dcem" class="fa" aria-hidden="true" style="color: red;"></i>
+														<span style="color:black; font-size: 24px" id="prcncement">0</span>
+														<span style="color:black; font-size: 16px">%</span><br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+									<thead>
+										<tr class="headtr">
+											<td><strong>Plant</strong></td>
+											<td valign="middle"><strong>Clinker</strong></td>
+											<td align="center" valign="middle"><strong>Cement</strong></td>
+											<td align="center" valign="middle"><strong>Total</strong></td>
+										</tr>
+									</thead>
+									<tbody id="issueTbody">
+										<tr onmousedown="gotosub('p2_fin_sales_si.html')">
+											<td class="bold_op">Semen Indonesia</td>
+											<td><span style="color: black;" id="clinkersmi">0</span></td>
+											<td><span style="color: black;" id="cementsmi">0</span></td>
+											<td><span style="color: black;" id="totalsmi">0</span></td>
+										</tr>
+										<tr onmousedown="gotosub('p2_fin_sales_sp.html')">
+											<td class="bold_op">Semen Padang</td>
+											<td><span style="color: black;" id="clinkersp">0</span></td>
+											<td><span style="color: black;" id="cementsp">0</span></td>
+											<td><span style="color: black;" id="totalsp">0</span></td>
+										</tr>
+										<tr onmousedown="gotosub('p2_fin_sales_st.html')">
+											<td class="bold_op">Semen Tonasa</td>
+											<td><span style="color: black;" id="clinkerst">0</span></td>
+											<td><span style="color: black;" id="cementst">0</span></td>
+											<td><span style="color: black;" id="totalst">0</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="cubesRun2 headone" style="margin-bottom: 20px; height: auto; margin-top: 10px; padding:12px 10px;border-top: 2px solid #d1d1d1;border-radius: 26px 26px 0px 0px;">
+								<div align="left" class="col-xs-8" style="margin-bottom: 8px;">
+									<i class="fa fa-calendar" aria-hidden="true"
+									   style="font-size: 17px;color: #e54b37;"></i>&nbsp;&nbsp;<span
+										class="ttl_fp" id="ton_tag_current_cost2"> Export & ICS</span>
+								</div>
+								<a onmousedown="gotochart('p2_fin_sales_smi_chart.html#Export/Clinker/Volume')" rel="asset" class="bagan">
+									<div class="col-xs-6 boxf noPadding" style="min-height:auto;">
+										<div class="col-xs-12" style="padding:2px;">
+											<h4 class="htittle"><span>Clinker</span>
+											<i class="fa fa-line-chart right grp_ico" aria-hidden="true" style="float:right;padding-right:10px;"></i></h4>
+											<div class="float_bgg">
+												<div align="center " style="margin-bottom:12px;">
+													<div class="col-xs-12 " align="center">
+													</div>
+													<div class="col-xs-6 noPadding" align="left">
+														<span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+														<span style="color:black;" id="tot_eks_cli">0</span>
+														
+													</div>
+													<div class="col-xs-6 noPadding" align="right">
+														
+														<span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+														<span style="color:black;" id="rkap_current_prod">0</span>
+													</div>
+													<div class="col-xs-12" style="margin-bottom: 10px;">
+													<span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+														<i id="icon_achievement_ecli" class="fa" aria-hidden="true" style="color: red;"></i>
+														<span style="color:black; font-size: 24px" id="prcnclinkereks">0</span>
+														<span style="color:black; font-size: 16px">%</span><br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<a onmousedown="gotochart('p2_fin_sales_smi_chart.html#Export/Cement/Volume')" rel="asset" class="bagan">
+									<div class="col-xs-6 boxf noPadding" style="min-height:auto;">
+										<div class="col-xs-12" style="padding:2px;">
+											<h4 class="htittle"><span>Cement</span>
+											<i class="fa fa-line-chart right grp_ico" aria-hidden="true" style="float:right;padding-right:10px;"></i></h4>
+											<div class="float_bgg">
+												<div align="center " style="margin-bottom:12px;">
+													<div class="col-xs-12 " align="center">
+													</div>
+													<div class="col-xs-6 noPadding" align="left">
+														<span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+														<span style="color:black;" id="tot_eks_cem">0</span>
+														
+													</div>
+													<div class="col-xs-6 noPadding" align="right">
+														
+														<span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+														<span style="color:black;" id="rkap_current_prod">0</span>
+													</div>
+													<div class="col-xs-12" style="margin-bottom: 10px;">
+													<span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+														<i id="icon_achievement_ecem" class="fa" aria-hidden="true" style="color: red;"></i>
+														<span style="color:black; font-size: 24px" id="prcncementeks">0</span>
+														<span style="color:black; font-size: 16px">%</span><br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+									<thead>
+										<tr class="headtr">
+											<td><strong>Plant</strong></td>
+											<td valign="middle"><strong>Clinker</strong></td>
+											<td align="center" valign="middle"><strong>Cement</strong></td>
+											<td align="center" valign="middle"><strong>Total</strong></td>
+										</tr>
+									</thead>
+									<tbody id="issueTbody">
+										<tr>
+											<td class="bold_op">Semen Indonesia</td>
+											<td><span style="color: black;" id="clinkersmieks">0</span></td>
+											<td><span style="color: black;" id="cementsmieks">0</span></td>
+											<td><span style="color: black;" id="totalsmieks">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Indonesia - ICS</td>
+											<td><span style="color: black;" id="clinkersmieksi">0</span></td>
+											<td><span style="color: black;" id="cementsmieksi">0</span></td>
+											<td><span style="color: black;" id="totalsmieksi">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Padang</td>
+											<td><span style="color: black;" id="clinkerspeks">0</span></td>
+											<td><span style="color: black;" id="cementspeks">0</span></td>
+											<td><span style="color: black;" id="totalspeks">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Padang - ICS</td>
+											<td><span style="color: black;" id="clinkerspeksi">0</span></td>
+											<td><span style="color: black;" id="cementspeksi">0</span></td>
+											<td><span style="color: black;" id="totalspeksi">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Tonasa</td>
+											<td><span style="color: black;" id="clinkersteks">0</span></td>
+											<td><span style="color: black;" id="cementsteks">0</span></td>
+											<td><span style="color: black;" id="totalsteks">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Tonasa - ICS</td>
+											<td><span style="color: black;" id="clinkersteksi">0</span></td>
+											<td><span style="color: black;" id="cementsteksi">0</span></td>
+											<td><span style="color: black;" id="totalsteksi">0</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div><!-- END OF DIV PAEge1 -->
+						<div id="page2" class="hidden">
+							<div align="center" style="margin-top:9px;">
+								<div class="col-xs-6 noPadding">
+									<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+										<span class="inex_down dual" style="padding-left: 0px;">RKAP (In IDR Bio)</span><br>
+										<p class="inex" id="target_rkap_rev" style="color:#FF615D;">0</p>
+									</div>
+									<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+										<span class="inex_down dual" style="padding-left: 0px;">REAL (In IDR Bio)</span><br>
+										<p class="inex" id="target_actual_volr" style="color:#4c9ed9;">0</p> 
+									</div>
+								</div>
+								<div class="col-xs-6 noPadding" style="padding-right:15px;">
+									<div align="right" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+										<span class="upercent">ACHIEVEMENT</span><br>
+										<i id="icon_achievement_allr" class="fa fa-3x" aria-hidden="true" align="left"></i>&nbsp;<span class="prosen" style="color: #5d5d5d; font-size: 32px;" id="achievement_volr">0</span><span class="prosen" style="color: #5d5d5d; font-size: 32px;">%</span><br>
+										<br>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="cubesRun2 headone" style="margin-bottom: 20px; height: auto; margin-top: 10px; padding:12px 10px;   border-top: 2px solid #d1d1d1;border-radius: 26px 26px 0px 0px;">
+								<div align="left" class="col-xs-8" style="margin-bottom: 8px;">
+									<i class="fa fa-calendar" aria-hidden="true"
+									   style="font-size: 17px;color: #e54b37;"></i>&nbsp;&nbsp;<span
+										class="ttl_fp" id="ton_tag_current_cost2"> Domestic</span>
+								</div>
+								<a onmousedown="gotochart('p2_fin_sales_smi_chart.html#Domestic/Clinker/Revenue')" rel="asset" class="bagan">
+									<div class="col-xs-6 boxf noPadding" style="min-height:auto;">
+										<div class="col-xs-12" style="padding:2px;">
+											<h4 class="htittle"><span>Clinker</span>
+											<i class="fa fa-line-chart right grp_ico" aria-hidden="true" style="float:right;padding-right:10px;"></i></h4>
+											<div class="float_bgg">
+												<div align="center " style="margin-bottom:12px;">
+													<div class="col-xs-12 " align="center">
+													</div>
+													<div class="col-xs-6 noPadding" align="left">
+														<span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+														<span style="color:black;" id="tot_dom_clir">0</span>
+														
+													</div>
+													<div class="col-xs-6 noPadding" align="right">
+														
+														<span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+														<span style="color:black;" id="rkap_current_prod">0</span>
+													</div>
+													<div class="col-xs-12" style="margin-bottom: 10px;">
+													<span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+														<i id="icon_achievement_dclir" class="fa" aria-hidden="true"></i>
+														<span style="color:black; font-size: 24px" id="prcnclinkerr">0</span>
+														<span style="color:black; font-size: 16px">%</span><br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<a onmousedown="gotochart('p2_fin_sales_smi_chart.html#Domestic/Cement/Revenue')" rel="asset" class="bagan">
+									<div class="col-xs-6 boxf noPadding" style="min-height:auto;">
+										<div class="col-xs-12" style="padding:2px;">
+											<h4 class="htittle"><span>Cement</span>
+											<i class="fa fa-line-chart right grp_ico" aria-hidden="true" style="float:right;padding-right:10px;"></i></h4>
+											<div class="float_bgg">
+												<div align="center " style="margin-bottom:12px;">
+													<div class="col-xs-12 " align="center">
+													</div>
+													<div class="col-xs-6 noPadding" align="left">
+														<span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+														<span style="color:black;" id="tot_dom_cemr">0</span>
+														
+													</div>
+													<div class="col-xs-6 noPadding" align="right">
+														
+														<span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+														<span style="color:black;" id="rkap_current_prod">0</span>
+													</div>
+													<div class="col-xs-12" style="margin-bottom: 10px;">
+													<span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+														<i id="icon_achievement_dcemr" class="fa" aria-hidden="true" style="color: red;"></i>
+														<span style="color:black; font-size: 24px" id="prcncementr">0</span>
+														<span style="color:black; font-size: 16px">%</span><br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+									<thead>
+										<tr class="headtr">
+											<td><strong>Plant</strong></td>
+											<td valign="middle"><strong>Clinker</strong></td>
+											<td align="center" valign="middle"><strong>Cement</strong></td>
+											<td align="center" valign="middle"><strong>Total</strong></td>
+										</tr>
+									</thead>
+									<tbody id="issueTbody">
+										<tr>
+											<td class="bold_op">Semen Indonesia</td>
+											<td><span style="color: black;" id="clinkersmir">0</span></td>
+											<td><span style="color: black;" id="cementsmir">0</span></td>
+											<td><span style="color: black;" id="totalsmir">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Padang</td>
+											<td><span style="color: black;" id="clinkerspr">0</span></td>
+											<td><span style="color: black;" id="cementspr">0</span></td>
+											<td><span style="color: black;" id="totalspr">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Tonasa</td>
+											<td><span style="color: black;" id="clinkerstr">0</span></td>
+											<td><span style="color: black;" id="cementstr">0</span></td>
+											<td><span style="color: black;" id="totalstr">0</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="cubesRun2 headone" style="margin-bottom: 20px; height: auto; margin-top: 10px; padding:12px 10px;border-top: 2px solid #d1d1d1;border-radius: 26px 26px 0px 0px;">
+								<div align="left" class="col-xs-8" style="margin-bottom: 8px;">
+									<i class="fa fa-calendar" aria-hidden="true"
+									   style="font-size: 17px;color: #e54b37;"></i>&nbsp;&nbsp;<span
+										class="ttl_fp" id="ton_tag_current_cost2"> Export & ICS</span>
+								</div>
+								<a onmousedown="gotochart('p2_fin_sales_smi_chart.html#Export/Clinker/Revenue')" rel="asset" class="bagan">
+									<div class="col-xs-6 boxf noPadding" style="min-height:auto;">
+										<div class="col-xs-12" style="padding:2px;">
+											<h4 class="htittle"><span>Clinker</span>
+											<i class="fa fa-line-chart right grp_ico" aria-hidden="true" style="float:right;padding-right:10px;"></i></h4>
+											<div class="float_bgg">
+												<div align="center " style="margin-bottom:12px;">
+													<div class="col-xs-12 " align="center">
+													</div>
+													<div class="col-xs-6 noPadding" align="left">
+														<span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+														<span style="color:black;" id="tot_eks_clir">0</span>
+														
+													</div>
+													<div class="col-xs-6 noPadding" align="right">
+														
+														<span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+														<span style="color:black;" id="rkap_current_prod">0</span>
+													</div>
+													<div class="col-xs-12" style="margin-bottom: 10px;">
+													<span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+														<i id="icon_achievement_eclir" class="fa" aria-hidden="true" style="color: red;"></i>
+														<span style="color:black; font-size: 24px" id="prcnclinkereksr">0</span>
+														<span style="color:black; font-size: 16px">%</span><br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<a onmousedown="gotochart('p2_fin_sales_smi_chart.html#Export/Cement/Revenue')" rel="asset" class="bagan">
+									<div class="col-xs-6 boxf noPadding" style="min-height:auto;">
+										<div class="col-xs-12" style="padding:2px;">
+											<h4 class="htittle"><span>Cement</span>
+											<i class="fa fa-line-chart right grp_ico" aria-hidden="true" style="float:right;padding-right:10px;"></i></h4>
+											<div class="float_bgg">
+												<div align="center " style="margin-bottom:12px;">
+													<div class="col-xs-12 " align="center">
+													</div>
+													<div class="col-xs-6 noPadding" align="left">
+														<span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+														<span style="color:black;" id="tot_eks_cemr">0</span>
+														
+													</div>
+													<div class="col-xs-6 noPadding" align="right">
+														
+														<span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+														<span style="color:black;" id="rkap_current_prod">0</span>
+													</div>
+													<div class="col-xs-12" style="margin-bottom: 10px;">
+													<span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+														<i id="icon_achievement_ecemr" class="fa" aria-hidden="true" style="color: red;"></i>
+														<span style="color:black; font-size: 24px" id="prcncementeksr">0</span>
+														<span style="color:black; font-size: 16px">%</span><br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+									<thead>
+										<tr class="headtr">
+											<td><strong>Plant</strong></td>
+											<td valign="middle"><strong>Clinker</strong></td>
+											<td align="center" valign="middle"><strong>Cement</strong></td>
+											<td align="center" valign="middle"><strong>Total</strong></td>
+										</tr>
+									</thead>
+									<tbody id="issueTbody">
+										<tr>
+											<td class="bold_op">Semen Indonesia</td>
+											<td><span style="color: black;" id="clinkersmieksr">0</span></td>
+											<td><span style="color: black;" id="cementsmieksr">0</span></td>
+											<td><span style="color: black;" id="totalsmieksr">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Indonesia - Intercompany</td>
+											<td><span style="color: black;" id="clinkersmieksir">0</span></td>
+											<td><span style="color: black;" id="cementsmieksir">0</span></td>
+											<td><span style="color: black;" id="totalsmieksir">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Padang</td>
+											<td><span style="color: black;" id="clinkerspeksr">0</span></td>
+											<td><span style="color: black;" id="cementspeksr">0</span></td>
+											<td><span style="color: black;" id="totalspeksr">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Padang - Intercompany</td>
+											<td><span style="color: black;" id="clinkerspeksir">0</span></td>
+											<td><span style="color: black;" id="cementspeksir">0</span></td>
+											<td><span style="color: black;" id="totalspeksir">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Tonasa</td>
+											<td><span style="color: black;" id="clinkersteksr">0</span></td>
+											<td><span style="color: black;" id="cementsteksr">0</span></td>
+											<td><span style="color: black;" id="totalsteksr">0</span></td>
+										</tr>
+										<tr>
+											<td class="bold_op">Semen Tonasa - Intercompany</td>
+											<td><span style="color: black;" id="clinkersteksir">0</span></td>
+											<td><span style="color: black;" id="cementsteksir">0</span></td>
+											<td><span style="color: black;" id="totalsteksir">0</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div><!-- END OF DIV PAEge2 -->
+						<br>
+						<div align="left">
+							<p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+						</div>		
+					</div>
+                </div>
+				<footer>
+					<div class="regular" >
+						<div class="col-xs-4 noPadding tab_uper col-ft-4" align="center" style="margin-top: 7px;     width:36%;">
+							<a onmousedown="gotosub('p2_fin_sales_smi.html')" >
+								<img src="img/smi.png" style="width : 30%;" />
+							</a>
+						</div>
+						<div class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px; width: 16%;">
+							<a onmousedown="gotosub('p2_fin_sales_sp.html')" >
+								<img src="img/icKota2a.png" style="width:60%;" />
+							</a>
+						</div>
+						<div class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px; width: 16%;">
+							<a onmousedown="gotosub('p2_fin_sales_si.html')" >
+								<img src="img/icKota1a.png"  style="width:60%;" />
+							</a>
+						</div>
+						<div class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px; width: 16%;">
+							<a onmousedown="gotosub('p2_fin_sales_st.html')" >
+								<img src="img/icKota3a.png" style="width:60%;"/>
+							</a>
+						</div>
+						<div class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px; width: 16%;">
+							<a>
+								<img src="img/icKota4a.png" style="width:60%;"/>
+							</a>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<p>This is a small modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

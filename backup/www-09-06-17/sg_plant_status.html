@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/loader.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-tuban1') {
+                        $('#data-tuban1').removeClass('hidden');
+                        $('#data-tuban2').addClass('hidden');
+                        $('#data-tuban3').addClass('hidden');
+                        $('#data-tuban4').addClass('hidden');
+                        $('#tab-tuban1').addClass('border-down-active');
+                        $('#tab-tuban2').removeClass('border-down-active');
+                        $('#tab-tuban3').removeClass('border-down-active');
+                        $('#tab-tuban4').removeClass('border-down-active');
+                    } else if (r == 'data-tuban2') {
+                        $('#data-tuban1').addClass('hidden');
+                        $('#data-tuban2').removeClass('hidden');
+                        $('#data-tuban3').addClass('hidden');
+                        $('#data-tuban4').addClass('hidden');
+                        $('#tab-tuban1').removeClass('border-down-active');
+                        $('#tab-tuban2').addClass('border-down-active');
+                        $('#tab-tuban3').removeClass('border-down-active');
+                        $('#tab-tuban4').removeClass('border-down-active');
+                    } else if (r == 'data-tuban3') {
+                        $('#data-tuban1').addClass('hidden');
+                        $('#data-tuban2').addClass('hidden');
+                        $('#data-tuban3').removeClass('hidden');
+                        $('#data-tuban4').addClass('hidden');
+                        $('#tab-tuban1').removeClass('border-down-active');
+                        $('#tab-tuban2').removeClass('border-down-active');
+                        $('#tab-tuban3').addClass('border-down-active');
+                        $('#tab-tuban4').removeClass('border-down-active');
+                    } else if (r == 'data-tuban4') {
+                        $('#data-tuban1').addClass('hidden');
+                        $('#data-tuban2').addClass('hidden');
+                        $('#data-tuban3').addClass('hidden');
+                        $('#data-tuban4').removeClass('hidden');
+                        $('#tab-tuban1').removeClass('border-down-active');
+                        $('#tab-tuban2').removeClass('border-down-active');
+                        $('#tab-tuban3').removeClass('border-down-active');
+                        $('#tab-tuban4').addClass('border-down-active');
+                    }
+                })
+            }
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+                font-size: 25px;
+                font-weight: bold;
+                padding-right: 12px;
+            }
+            .titl{
+                padding: 9px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+                font-size: 12px;
+                margin-bottom: 2px;
+            }
+            .box{ 
+                padding: 0px; 
+                margin-bottom:2px;
+                display: inline-block;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
+                min-height: 100px;
+                border-radius: 6px;
+                /* margin-right: 1px; */
+                border: 2px solid rgb(255, 255, 255);
+            }
+            .bagan:hover, .bagan:visited {
+                opacity: 0.6;
+            }
+            .titab{
+                padding: 16px;
+                font-size: 14px;
+                font-weight: 500;
+            }
+            .ylbox{
+                background-color:#cfcd1a;
+            }
+            .ylhead{
+                background-color:#a6a415;
+            }
+            .grbox{
+                background-color:#6fc962;
+            }
+            .grhead{
+                background-color:#54a846;
+            }
+            .tab_tittle{
+                margin-top: 12px;
+                color: black;
+                font-size: 23px;
+                padding-left: 9px;
+                display: inline-block;
+            }
+            .border-down {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                height: 41px;
+                background: rgba(245, 245, 245, 1);
+                background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+                background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0 );
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .padding5 {
+                padding:5px;
+            }
+            .center {
+                text-align: center;
+            }
+            .text_val {
+                font-size: x-large;
+            }
+            .stateONbox{
+                background-color: #6fc962;
+            }
+            .stateONHead{
+                background-color: #54a846;
+            }
+            .stateOFFbox{
+                background-color: #e54b37;
+            }
+            .stateOFFHead{
+                background-color: #c53a27;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            });
+        </script>
+        <title>Plant Equip</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="portal_prod1.html">PRODUCTION</a></li>
+                        <li><a href="portal_sales.html">SALES</a></li>
+                        <li><a href="portal_finance.html">FINANCE</a></li>
+                        <li><a href="portal_invent.html">INVENTORY</a></li>
+                        <li><a href="portal_maintenance.html">MAINTENANCE</a></li>
+                        <li><a href="portal_project.html">PROJECT</a>
+                        <li><a href="index_login2.html">LOGOUT</a></li>
+                    </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <div style="overflow-x: scroll; width: 100%; display: flex;">
+                            <div id="tab-tuban1" align="center" class="col-xs-4 center border-down border-down-active" style="padding: 5px;"><a href="#tab-click" rel="data-tuban1" class="no-text-style" style="width: inherit;">
+                                    <span style="width: 70px" class="tx_tab">&nbsp;&nbsp;<b>Tuban</b> I</span></a></div>
+                            <div id="tab-tuban2" align="center"  class="col-xs-4 center border-down " style="padding: 5px;"><a href="#tab-click" rel="data-tuban2" class="no-text-style" style="width: inherit;">
+                                    <span style="width: 70px" class="tx_tab">&nbsp;&nbsp;<b>Tuban</b> II</span></a></div>
+                            <div id="tab-tuban3" align="center"  class="col-xs-4 center border-down " style="padding: 5px;"><a href="#tab-click" rel="data-tuban3" class="no-text-style" style="width: inherit;">
+                                    <span style="width: 80px" class="tx_tab">&nbsp;&nbsp;<b>Tuban</b> III</span></a></div>
+                            <div id="tab-tuban4" align="center"  class="col-xs-4 center border-down " style="padding: 5px;"><a href="#tab-click" rel="data-tuban4" class="no-text-style" style="width: inherit;">
+                                    <span style="width: 80px" class="tx_tab">&nbsp;&nbsp;<b>Tuban</b> IV</span></a></div>
+                        </div>
+                        <div id="data-tuban1">
+                            <div class="headsix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
+                                <!--<img src="img/teks semen indo.png" class="imgsi" style="padding-bottom: 7px;">-->
+                                <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+
+                                    <div class="col-xs-12 box" id="oorm1tb1">
+                                        <div class="col-xs-12 noPadding titl" id="orm1tb1">
+                                            <span style="float:left">Raw Mill - 341RM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="rm1tb1">0</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="rm1_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="rm1_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oocm1tb1">
+                                        <div class="col-xs-12 noPadding titl" id="ocm1tb1">
+                                            <span style="float:left">Coal Mill - 471RM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="cm1tb1"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="cm1_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="cm1_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="ookl1tb1">
+                                        <div class="col-xs-12 noPadding titl" id="okl1tb1">
+                                            <span style="float:left">Kiln - 441KL1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="kl1tb1"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="kl1_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="kl1_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oofm1tb1">
+                                        <div class="col-xs-12 noPadding titl" id="ofm1tb1">
+                                            <span style="float:left">Finish Mill - 541MM1M01 </span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="fm1tb1"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm1_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm1_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oofm2tb1">
+                                        <div class="col-xs-12 noPadding titl" id="ofm2tb1">
+                                            <span style="float:left">Finish Mill - 542MM1M01 </span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="fm2tb1"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm2_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm2_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <!--                                    <div class="col-xs-12 box" id="boxcol">/////// PNTID : 8691, PNTTEXT : 540MD1M01
+                                                                            <div class="col-xs-12 noPadding titl" id="ofm9tb1">
+                                                                                <span style="float:left">Finish Mill - Finish Mill</span></div>
+                                                                            <div align="right" style="margin-bottom:12px;">
+                                                                                <span class="titab">Feed Rate (T/H)</span><br>
+                                                                                <span class="inex" id="per_clv"> 0 %</span>
+                                                                            </div>
+                                                                            <div class="col-xs-6 noPadding" align="center">
+                                                                                <span class="text_val" id="clrealv">0</span><br>
+                                                                                <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                                                            </div>
+                                                                            <div class="col-xs-6 noPadding" align="center">
+                                                                                <span class="text_val" id="clmaxv">0</span><br>
+                                                                                <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                                                            </div>
+                                                                        </div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="data-tuban2" class="hidden">
+                            <div class="headsix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
+                                <!--<img src="img/teks semen indo.png" class="imgsi" style="padding-bottom: 7px;">-->
+                                <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+
+                                    <div class="col-xs-12 box" id="oorm1tb2">
+                                        <div class="col-xs-12 noPadding titl" id="orm1tb2">
+                                            <span style="float:left">Raw Mill - 342RM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="rm1tb2"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="rm2_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="rm2_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oocm1tb2">
+                                        <div class="col-xs-12 noPadding titl" id="ocm1tb2">
+                                            <span style="float:left">Coal Mill - 472RM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="cm1tb2"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="cm2_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="cm2_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="ookl1tb2">
+                                        <div class="col-xs-12 noPadding titl" id="okl1tb2">
+                                            <span style="float:left">Kiln - 442KL1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="kl1tb2"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="kl2_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="kl2_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oofm1tb2">
+                                        <div class="col-xs-12 noPadding titl" id="ofm1tb2">
+                                            <span style="float:left">Finish Mill - 543MM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="fm1tb2"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm3_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm3_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oofm2tb2">
+                                        <div class="col-xs-12 noPadding titl" id="ofm2tb2">
+                                            <span style="float:left">Finish Mill - 544MM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="fm2tb2"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm4_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm4_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="data-tuban3" class="hidden">
+                            <div class="headsix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
+                                <!--<img src="img/teks semen indo.png" class="imgsi" style="padding-bottom: 7px;">-->
+                                <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+
+                                    <div class="col-xs-12 box" id="oorm1tb3">
+                                        <div class="col-xs-12 noPadding titl" id="orm1tb3">
+                                            <span style="float:left">Raw Mill - 343RM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="rm1tb3"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="rm3_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="rm3_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oocm1tb3">
+                                        <div class="col-xs-12 noPadding titl" id="ocm1tb3">
+                                            <span style="float:left">Coal Mill - 473RM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="cm1tb3"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="cm3_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="cm3_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="ookl1tb3">
+                                        <div class="col-xs-12 noPadding titl" id="okl1tb3">
+                                            <span style="float:left">Kiln - 443KL1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="kl1tb3"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="kl3_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="kl3_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oofm1tb3">
+                                        <div class="col-xs-12 noPadding titl" id="ofm1tb3">
+                                            <span style="float:left">Finish Mill - 545MM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="fm1tb3"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm5_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm5_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oofm2tb3">
+                                        <div class="col-xs-12 noPadding titl" id="ofm2tb3">
+                                            <span style="float:left">Finish Mill - 546MM1M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="fm2tb3"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm6_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm6_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="data-tuban4" class="hidden">
+                            <div class="headsix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
+                                <!--<img src="img/teks semen indo.png" class="imgsi" style="padding-bottom: 7px;">-->
+                                <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+
+                                    <div class="col-xs-12 box" id="oorm1tb4">
+                                        <div class="col-xs-12 noPadding titl" id="orm1tb4">
+                                            <span style="float:left">Raw Mill - 344RM01M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="rm1tb4"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="rm4_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="rm4_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oocm1tb4">
+                                        <div class="col-xs-12 noPadding titl" id="ocm1tb4">
+                                            <span style="float:left">Coal Mill - 474RM01M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="cm1tb4"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="cm4_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="cm4_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="ookl1tb4">
+                                        <div class="col-xs-12 noPadding titl" id="okl1tb4">
+                                            <span style="float:left">Kiln - 444KL01MD01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="kl1tb4"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="kl4_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="kl4_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oofm1tb4">
+                                        <div class="col-xs-12 noPadding titl" id="ofm1tb4">
+                                            <span style="float:left">Finish Mill - 547RM01M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="fm1tb4"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm7_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm7_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 box" id="oofm2tb4">
+                                        <div class="col-xs-12 noPadding titl" id="ofm2tb4">
+                                            <span style="float:left">Finish Mill - 548RM01M01</span><span style="float:right">Feed Rate (T/H)</span></div>
+                                        <div align="right" style="margin-bottom:12px;">
+                                            <!--<span class="titab">Feed Rate (T/H)</span><br>-->
+                                            <span class="inex" id="fm2tb4"> 0 %</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm8_prod">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Production This Month</span>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="center">
+                                            <span class="text_val" id="fm8_jop">0</span><br>
+                                            <span style="font-size: 12px; font-weight: 300;">Ops. Hours This Month</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="sp_plant_status.html" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="st_plant_status.html" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="tlcc_plant_status.html" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            function dataOnOff() {
+                $.ajax({
+                    url: url_src+'/json/GenerateJsonPlant34.php',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+                        var dataJson = JSON.parse(data3);
+
+                        // KILN 3
+                        OnOffKL1 = dataJson[0].tags[10].props[0].val;
+                        ValKL1 = dataJson[0].tags[2].props[0].val;
+                        ValKL1 = parseFloat(ValKL1.replace(',', '.')).toFixed(2);
+                        //KILN 4
+                        OnOffKL2 = dataJson[0].tags[11].props[0].val;
+                        ValKL2 = dataJson[0].tags[3].props[0].val;
+                        ValKL2 = parseFloat(ValKL2.replace(',', '.')).toFixed(2);
+                        //Raw Mill 3
+                        OnOffRM1 = dataJson[0].tags[8].props[0].val;
+                        ValRM1 = dataJson[0].tags[0].props[0].val;
+                        ValRM1 = parseFloat(ValRM1.replace(',', '.')).toFixed(2);
+                        //Raw Mill 4
+                        OnOffRM2 = dataJson[0].tags[9].props[0].val;
+                        ValRM2 = dataJson[0].tags[1].props[0].val;
+                        ValRM2 = parseFloat(ValRM2.replace(',', '.')).toFixed(2);
+                        //Coal Mill 3
+                        OnOffCM1 = dataJson[0].tags[12].props[0].val;
+                        ValCM1 = dataJson[0].tags[17].props[0].val;
+                        ValCM1 = parseFloat(ValCM1.replace(',', '.')).toFixed(2);
+                        //Coal Mill 4
+                        OnOffCM2 = dataJson[0].tags[13].props[0].val;
+                        ValCM2 = dataJson[0].tags[18].props[0].val;
+                        ValCM2 = parseFloat(ValCM2.replace(',', '.')).toFixed(2);
+                        //Finish Mill 5
+                        OnOffFM1 = dataJson[0].tags[14].props[0].val;
+                        OnOffHRC1 = dataJson[0].tags[20].props[0].val;
+                        ValFM1 = dataJson[0].tags[4].props[0].val;
+                        ValFM1 = parseFloat(ValFM1.replace(',', '.')).toFixed(2);
+                        //Finish Mill 6
+                        OnOffFM2 = dataJson[0].tags[16].props[0].val;
+                        OnOffHRC2 = dataJson[0].tags[21].props[0].val;
+                        ValFM2 = dataJson[0].tags[6].props[0].val;
+                        ValFM2 = parseFloat(ValFM2.replace(',', '.')).toFixed(2);
+                        //Finish Mill 7
+                        OnOffFM3 = dataJson[0].tags[15].props[0].val;
+                        ValFM3 = dataJson[0].tags[5].props[0].val;
+                        ValFM3 = parseFloat(ValFM3.replace(',', '.')).toFixed(2);
+                        //Finish Mill 8
+                        OnOffFM4 = dataJson[0].tags[19].props[0].val;
+                        ValFM4 = dataJson[0].tags[7].props[0].val;
+                        ValFM4 = parseFloat(ValFM4.replace(',', '.')).toFixed(2);
+
+
+                        if (OnOffKL1 == 'Run' || OnOffKL1 == 'True') {
+                            $("#okl1tb3").addClass('stateONbox');
+                            $("#ookl1tb3").addClass('stateONHead');
+                        } else {
+                            $("#okl1tb3").addClass('stateOFFbox');
+                            $("#ookl1tb3").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffKL2 == 'Run' || OnOffKL2 == 'True') {
+                            $("#okl1tb4").addClass('stateONbox');
+                            $("#ookl1tb4").addClass('stateONHead');
+                        } else {
+                            $("#okl1tb4").addClass('stateOFFbox');
+                            $("#ookl1tb4").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffRM1 == 'Run' || OnOffRM1 == 'True') {
+                            $("#orm1tb3").addClass('stateONbox');
+                            $("#oorm1tb3").addClass('stateONHead');
+                        } else {
+                            $("#orm1tb3").addClass('stateOFFbox');
+                            $("#oorm1tb3").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffRM2 == 'Run' || OnOffRM2 == 'True') {
+                            $("#orm1tb4").addClass('stateONbox');
+                            $("#oorm1tb4").addClass('stateONHead');
+                        } else {
+                            $("#orm1tb4").addClass('stateOFFbox');
+                            $("#oorm1tb4").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffCM1 == 'Run' || OnOffCM1 == 'True') {
+                            $("#ocm1tb3").addClass('stateONbox');
+                            $("#oocm1tb3").addClass('stateONHead');
+                        } else {
+                            $("#ocm1tb3").addClass('stateOFFbox');
+                            $("#oocm1tb3").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffCM2 == 'Run' || OnOffCM2 == 'True') {
+                            $("#ocm1tb4").addClass('stateONbox');
+                            $("#oocm1tb4").addClass('stateONHead');
+                        } else {
+                            $("#ocm1tb4").addClass('stateOFFbox');
+                            $("#oocm1tb4").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffFM1 == 'Run' || OnOffFM1 == 'True') {
+                            $("#ofm1tb3").addClass('stateONbox');
+                            $("#oofm1tb3").addClass('stateONHead');
+                        } else {
+                            $("#ofm1tb3").addClass('stateOFFbox');
+                            $("#oofm1tb3").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffFM2 == 'Run' || OnOffFM2 == 'True') {
+                            $("#ofm2tb3").addClass('stateONbox');
+                            $("#oofm2tb3").addClass('stateONHead');
+                        } else {
+                            $("#ofm2tb3").addClass('stateOFFbox');
+                            $("#oofm2tb3").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffFM3 == 'Run' || OnOffFM3 == 'True') {
+                            $("#ofm1tb4").addClass('stateONbox');
+                            $("#oofm1tb4").addClass('stateONHead');
+                        } else {
+                            $("#ofm1tb4").addClass('stateOFFbox');
+                            $("#oofm1tb4").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffFM4 == 'Run' || OnOffFM4 == 'True') {
+                            $("#ofm2tb4").addClass('stateONbox');
+                            $("#oofm2tb4").addClass('stateONHead');
+                        } else {
+                            $("#ofm2tb4").addClass('stateOFFbox');
+                            $("#oofm2tb4").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffHRC1 == 'Run' || OnOffHRC1 == 'True') {
+                            $("#ohrc1tb3").addClass('stateONbox');
+                            $("#oohrc1tb3").addClass('stateONHead');
+                        } else {
+                            $("#ohrc1tb3").addClass('stateOFFbox');
+                            $("#oohrc1tb3").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffHRC2 == 'Run' || OnOffHRC2 == 'True') {
+                            $("#ohrc2tb3").addClass('stateONbox');
+                            $("#oohrc2tb3").addClass('stateONHead');
+                        } else {
+                            $("#ohrc2tb3").addClass('stateOFFbox');
+                            $("#oohrc2tb3").addClass('stateOFFHead');
+                        }
+
+                        $("#kl1tb3").html(ValKL1);
+                        $("#kl1tb4").html(ValKL2);
+
+                        $("#rm1tb3").html(ValRM1);
+                        $("#rm1tb4").html(ValRM2);
+
+                        $("#cm1tb3").html(ValCM1);
+                        $("#cm1tb4").html(ValCM2);
+
+                        $("#fm1tb3").html(ValFM1);
+                        $("#fm2tb3").html(ValFM2);
+                        $("#fm1tb4").html(ValFM3);
+                        $("#fm2tb4").html(ValFM4);
+                    }
+                }).done(function (data) {}).fail(function () {
+
+                });
+                $.ajax({
+                    url: url_src+'/json/GenerateJsonPlant12.php',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+                        var dataJson = JSON.parse(data3);
+
+                        // KILN 1
+                        OnOffKL1 = dataJson[0].tags[9].props[0].val;
+                        ValKL1 = dataJson[0].tags[5].props[0].val;
+                        //KILN 2
+                        OnOffKL2 = dataJson[0].tags[23].props[0].val;
+                        myValKLa = dataJson[0].tags[16].props[0].val;
+                        myValKLb = dataJson[0].tags[20].props[0].val;
+
+                        ValKL2 = parseFloat(myValKLa) + parseFloat(myValKLb);
+                        //Raw Mill 1
+                        OnOffRM1 = dataJson[0].tags[3].props[0].val;
+                        ValRM1 = dataJson[0].tags[1].props[0].val;
+                        //Raw Mill 2
+                        OnOffRM2 = dataJson[0].tags[15].props[0].val;
+                        ValRM2 = dataJson[0].tags[19].props[0].val;
+                        //Coal Mill 1
+                        OnOffCM1 = dataJson[0].tags[4].props[0].val;
+                        //Coal Mill 2
+                        OnOffCM2 = dataJson[0].tags[17].props[0].val;
+                        //Finish Mill 1
+                        OnOffFM1 = dataJson[0].tags[6].props[0].val;
+                        OnOffHRC1 = dataJson[0].tags[8].props[0].val;
+                        ValFM1 = dataJson[0].tags[11].props[0].val;
+                        //Finish Mill 2
+                        OnOffFM2 = dataJson[0].tags[10].props[0].val;
+                        OnOffHRC2 = dataJson[0].tags[0].props[0].val;
+                        ValFM2 = dataJson[0].tags[7].props[0].val;
+                        //Finish Mill 3
+                        OnOffFM3 = dataJson[0].tags[22].props[0].val;
+                        OnOffHRC3 = dataJson[0].tags[12].props[0].val;
+                        ValFM3 = dataJson[0].tags[21].props[0].val;
+                        //Finish Mill 4
+                        OnOffFM4 = dataJson[0].tags[18].props[0].val;
+                        OnOffHRC4 = dataJson[0].tags[13].props[0].val;
+                        ValFM4 = dataJson[0].tags[14].props[0].val;
+                        //Finish Mill 9
+                        ValFM9 = dataJson[0].tags[2].props[0].val;
+
+                        if (OnOffKL1 == 'Run' || OnOffKL1 == 'True') {
+                            $("#okl1tb1").addClass('stateONbox');
+                            $("#ookl1tb1").addClass('stateONHead');
+                        } else {
+                            $("#okl1tb1").addClass('stateOFFbox');
+                            $("#ookl1tb1").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffKL2 == 'Run' || OnOffKL2 == 'True') {
+                            $("#okl1tb2").addClass('stateONbox');
+                            $("#ookl1tb2").addClass('stateONHead');
+                        } else {
+                            $("#okl1tb2").addClass('stateOFFbox');
+                            $("#ookl1tb2").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffRM1 == 'Run' || OnOffRM1 == 'True') {
+                            $("#orm1tb1").addClass('stateONbox');
+                            $("#oorm1tb1").addClass('stateONHead');
+                        } else {
+                            $("#orm1tb1").addClass('stateOFFbox');
+                            $("#oorm1tb1").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffRM2 == 'Run' || OnOffRM2 == 'True') {
+                            $("#orm1tb2").addClass('stateONbox');
+                            $("#oorm1tb2").addClass('stateONHead');
+                        } else {
+                            $("#orm1tb2").addClass('stateOFFbox');
+                            $("#oorm1tb2").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffCM1 == 'Run' || OnOffCM1 == 'True') {
+                            $("#ocm1tb1").addClass('stateONbox');
+                            $("#oocm1tb1").addClass('stateONHead');
+                        } else {
+                            $("#ocm1tb1").addClass('stateOFFbox');
+                            $("#oocm1tb1").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffCM2 == 'Run' || OnOffCM2 == 'True') {
+                            $("#ocm1tb2").addClass('stateONbox');
+                            $("#oocm1tb2").addClass('stateONHead');
+                        } else {
+                            $("#ocm1tb2").addClass('stateOFFbox');
+                            $("#oocm1tb2").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffFM1 == 'Run' || OnOffFM1 == 'True') {
+                            $("#ofm1tb1").addClass('stateONbox');
+                            $("#oofm1tb1").addClass('stateONHead');
+                        } else {
+                            $("#ofm1tb1").addClass('stateOFFbox');
+                            $("#oofm1tb1").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffFM2 == 'Run' || OnOffFM2 == 'True') {
+                            $("#ofm2tb1").addClass('stateONbox');
+                            $("#oofm2tb1").addClass('stateONHead');
+                        } else {
+                            $("#ofm2tb1").addClass('stateOFFbox');
+                            $("#oofm2tb1").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffFM3 == 'Run' || OnOffFM3 == 'True') {
+                            $("#ofm1tb2").addClass('stateONbox');
+                            $("#oofm1tb2").addClass('stateONHead');
+                        } else {
+                            $("#ofm1tb2").addClass('stateOFFbox');
+                            $("#oofm1tb2").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffFM4 == 'Run' || OnOffFM4 == 'True') {
+                            $("#ofm2tb2").addClass('stateONbox');
+                            $("#oofm2tb2").addClass('stateONHead');
+                        } else {
+                            $("#ofm2tb2").addClass('stateOFFbox');
+                            $("#oofm2tb2").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffHRC1 == 'Run' || OnOffHRC1 == 'True') {
+                            $("#ohrc1tb1").addClass('stateONbox');
+                            $("#oohrc1tb1").addClass('stateONHead');
+                        } else {
+                            $("#ohrc1tb1").addClass('stateOFFbox');
+                            $("#oohrc1tb1").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffHRC2 == 'Run' || OnOffHRC2 == 'True') {
+                            $("#ohrc2tb1").addClass('stateONbox');
+                            $("#oohrc2tb1").addClass('stateONHead');
+                        } else {
+                            $("#ohrc2tb1").addClass('stateOFFbox');
+                            $("#oohrc2tb1").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffHRC3 == 'Run' || OnOffHRC3 == 'True') {
+                            $("#ohrc1tb2").addClass('stateONbox');
+                            $("#oohrc1tb2").addClass('stateONHead');
+                        } else {
+                            $("#ohrc1tb2").addClass('stateOFFbox');
+                            $("#oohrc1tb2").addClass('stateOFFHead');
+                        }
+
+                        if (OnOffHRC4 == 'Run' || OnOffHRC4 == 'True') {
+                            $("#ohrc2tb2").addClass('stateONbox');
+                            $("#oohrc2tb2").addClass('stateONHead');
+                        } else {
+                            $("#ohrc2tb2").addClass('stateOFFbox');
+                            $("#oohrc2tb2").addClass('stateOFFHead');
+                        }
+
+                        $("#kl1tb1").html(ValKL1);
+                        $("#kl1tb2").html(ValKL2);
+                        $("#rm1tb1").html(ValRM1);
+                        $("#rm1tb2").html(ValRM2);
+                        $("#fm1tb1").html(ValFM1);
+                        $("#fm2tb1").html(ValFM2);
+                        $("#fm1tb2").html(ValFM3);
+                        $("#fm2tb2").html(ValFM4);
+                        $("#fm9tb1").html(ValFM9);
+                    }
+                }).done(function (data) {}).fail(function () {
+
+                });
+
+                $.ajax({
+                    url: url_src+'/api/index.php/plant_tuban/get_prodjop',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+                        var dataJson = JSON.parse(data3);
+
+                        //Raw Mill
+                        tuban_rm1_prod = parseFloat(dataJson.rm1_prod);
+                        tuban_rm1_jop = parseFloat(dataJson.rm1_jop);
+                        tuban_rm2_prod = parseFloat(dataJson.rm2_prod);
+                        tuban_rm2_jop = parseFloat(dataJson.rm2_jop);
+                        tuban_rm3_prod = parseFloat(dataJson.rm3_prod);
+                        tuban_rm3_jop = parseFloat(dataJson.rm3_jop);
+                        tuban_rm4_prod = parseFloat(dataJson.rm4_prod);
+                        tuban_rm4_jop = parseFloat(dataJson.rm4_jop);
+                        tuban_kl1_prod = parseFloat(dataJson.kl1_prod);
+                        tuban_kl1_jop = parseFloat(dataJson.kl1_jop);
+                        tuban_kl2_prod = parseFloat(dataJson.kl2_prod);
+                        tuban_kl2_jop = parseFloat(dataJson.kl2_jop);
+                        tuban_kl3_prod = parseFloat(dataJson.kl3_prod);
+                        tuban_kl3_jop = parseFloat(dataJson.kl3_jop);
+                        tuban_kl4_prod = parseFloat(dataJson.kl4_prod);
+                        tuban_kl4_jop = parseFloat(dataJson.kl4_jop);
+                        tuban_fm1_prod = parseFloat(dataJson.fm1_prod);
+                        tuban_fm1_jop = parseFloat(dataJson.fm1_jop);
+                        tuban_fm2_prod = parseFloat(dataJson.fm2_prod);
+                        tuban_fm2_jop = parseFloat(dataJson.fm2_jop);
+                        tuban_fm3_prod = parseFloat(dataJson.fm3_prod);
+                        tuban_fm3_jop = parseFloat(dataJson.fm3_jop);
+                        tuban_fm4_prod = parseFloat(dataJson.fm4_prod);
+                        tuban_fm4_jop = parseFloat(dataJson.fm4_jop);
+                        tuban_fm5_prod = parseFloat(dataJson.fm5_prod);
+                        tuban_fm5_jop = parseFloat(dataJson.fm5_jop);
+                        tuban_fm6_prod = parseFloat(dataJson.fm6_prod);
+                        tuban_fm6_jop = parseFloat(dataJson.fm6_jop);
+                        tuban_fm7_prod = parseFloat(dataJson.fm7_prod);
+                        tuban_fm7_jop = parseFloat(dataJson.fm7_jop);
+                        tuban_fm8_prod = parseFloat(dataJson.fm8_prod);
+                        tuban_fm8_jop = parseFloat(dataJson.fm8_jop);
+                        tuban_fm9_prod = parseFloat(dataJson.fm9_prod);
+                        tuban_fm9_jop = parseFloat(dataJson.fm9_jop);
+                        tuban_fma_prod = parseFloat(dataJson.fma_prod);
+                        tuban_fma_jop = parseFloat(dataJson.fma_jop);
+                        tuban_fmb_prod = parseFloat(dataJson.fmb_prod);
+                        tuban_fmb_jop = parseFloat(dataJson.fmb_jop);
+                        tuban_fmc_prod = parseFloat(dataJson.fmc_prod);
+                        tuban_fmc_jop = parseFloat(dataJson.fmc_jop);
+                        
+                        console.log(tuban_fmc_jop);
+                        $("#rm1_prod").html(FormatNumberBy3(tuban_rm1_prod, ",", "."));
+                        $("#rm1_jop").html(FormatNumberBy3(tuban_rm1_jop, ",", "."));
+                        $("#rm2_prod").html(FormatNumberBy3(tuban_rm2_prod, ",", "."));
+                        $("#rm2_jop").html(FormatNumberBy3(tuban_rm2_jop, ",", "."));
+                        $("#rm3_prod").html(FormatNumberBy3(tuban_rm3_prod, ",", "."));
+                        $("#rm3_jop").html(FormatNumberBy3(tuban_rm3_jop, ",", "."));
+                        $("#rm4_prod").html(FormatNumberBy3(tuban_rm4_prod, ",", "."));
+                        $("#rm4_jop").html(FormatNumberBy3(tuban_rm4_jop, ",", "."));
+                        $("#kl1_prod").html(FormatNumberBy3(tuban_kl1_prod, ",", "."));
+                        $("#kl1_jop").html(FormatNumberBy3(tuban_kl1_jop, ",", "."));
+                        $("#kl2_prod").html(FormatNumberBy3(tuban_kl2_prod, ",", "."));
+                        $("#kl2_jop").html(FormatNumberBy3(tuban_kl2_jop, ",", "."));
+                        $("#kl3_prod").html(FormatNumberBy3(tuban_kl3_prod, ",", "."));
+                        $("#kl3_jop").html(FormatNumberBy3(tuban_kl3_jop, ",", "."));
+                        $("#kl4_prod").html(FormatNumberBy3(tuban_kl4_prod, ",", "."));
+                        $("#kl4_jop").html(FormatNumberBy3(tuban_kl4_jop, ",", "."));
+                        $("#fm1_prod").html(FormatNumberBy3(tuban_fm1_prod, ",", "."));
+                        $("#fm1_jop").html(FormatNumberBy3(tuban_fm1_jop, ",", "."));
+                        $("#fm2_prod").html(FormatNumberBy3(tuban_fm2_prod, ",", "."));
+                        $("#fm2_jop").html(FormatNumberBy3(tuban_fm2_jop, ",", "."));
+                        $("#fm3_prod").html(FormatNumberBy3(tuban_fm3_prod, ",", "."));
+                        $("#fm3_jop").html(FormatNumberBy3(tuban_fm3_jop, ",", "."));
+                        $("#fm4_prod").html(FormatNumberBy3(tuban_fm4_prod, ",", "."));
+                        $("#fm4_jop").html(FormatNumberBy3(tuban_fm4_jop, ",", "."));
+                        $("#fm5_prod").html(FormatNumberBy3(tuban_fm5_prod, ",", "."));
+                        $("#fm5_jop").html(FormatNumberBy3(tuban_fm5_jop, ",", "."));
+                        $("#fm6_prod").html(FormatNumberBy3(tuban_fm6_prod, ",", "."));
+                        $("#fm6_jop").html(FormatNumberBy3(tuban_fm6_jop, ",", "."));
+                        $("#fm7_prod").html(FormatNumberBy3(tuban_fm7_prod, ",", "."));
+                        $("#fm7_jop").html(FormatNumberBy3(tuban_fm7_jop, ",", "."));
+                        $("#fm8_prod").html(FormatNumberBy3(tuban_fm8_prod, ",", "."));
+                        $("#fm8_jop").html(FormatNumberBy3(tuban_fm8_jop, ",", "."));
+                        $("#fm9_prod").html(FormatNumberBy3(tuban_fm9_prod, ",", "."));
+                        $("#fm9_jop").html(FormatNumberBy3(tuban_fm9_jop, ",", "."));
+                        $("#fma_prod").html(FormatNumberBy3(tuban_fma_prod, ",", "."));
+                        $("#fma_jop").html(FormatNumberBy3(tuban_fma_jop, ",", "."));
+                        $("#fmb_prod").html(FormatNumberBy3(tuban_fmb_prod, ",", "."));
+                        $("#fmb_jop").html(FormatNumberBy3(tuban_fmb_jop, ",", "."));
+                        $("#fmc_prod").html(FormatNumberBy3(tuban_fmc_prod, ",", "."));
+                        $("#fmc_jop").html(FormatNumberBy3(tuban_fmc_jop, ",", "."));
+                    }
+                }).done(function (data) {}).fail(function () {
+                });
+            }
+            ;
+            setInterval(dataOnOff, 1000);
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            <!-- $(".regular").slick({ -->
+        <!-- infinite: true, -->
+        <!-- slidesToShow: 4, -->
+        <!-- slidesToScroll: 4, -->
+        <!-- arrows:true, -->
+         <!-- centerMode: true -->
+        <!-- // variableWidth: true -->
+      <!-- }); -->
+            });
+        </script>
+        </body>
+</html>

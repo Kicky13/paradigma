@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script src="js/loader.js"></script>
+        <!-- <script type="text/javascript" src="js/index.js"></script> -->
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script src="js/highcharts_working.js"></script>
+        <script src="js/exporting.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/stupidtable.js?dev"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script>
+            $(function () {
+                $("table").stupidtable();
+            });
+        </script>
+
+        <style type="text/css">
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th, td {
+                padding: 5px 10px;
+                border: 1px solid #999;
+            }
+            th {
+                background-color: #e3000e;
+            }
+            th[data-sort]{
+                cursor:pointer;
+            }
+            tr.awesome{
+                color: red;
+            }
+        </style>
+
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <title>Sales & Marketing</title>
+        <script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+
+
+                $('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2009;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                $('.selyear').html(opt_year);
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= bulanSekarang){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })  
+                $('.selmonth').html(opt_month);
+
+            }
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style type="text/css">
+            .highcharts-container{width:100% !important; height:100% !important;}
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th, td {
+                padding: 5px 10px;
+                border: 1px solid #999;
+            }
+            th {
+                background-color: #e3000e;
+            }
+            th[data-sort]{
+                cursor:pointer;
+            }
+            tr.awesome{
+                color: red;
+            }
+            .inex{
+                font-size: 25px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+            }
+            .inex_down{
+                font-family:"Open Sans";
+                float: left;
+                padding-left: 37px;
+                color: #3c3c3c;
+            }
+
+            .wrapper {
+                width:100%;
+                height: 100%;
+                overflow-y: auto;
+                float: left;
+            }
+            .bg-white {
+                background:#fff;
+            }
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .text-small {
+                font:normal 10px arial;
+                color:#000;
+            }
+            .text-medium {
+                font:normal 19px arial;
+                color:#000;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 10px
+            }
+            .center {
+                text-align: center;
+            }
+            .padding5 {
+                padding:5px;
+            }
+            .border {
+                border:1px #cecece solid;
+            }
+            .border-down {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                height: 41px;
+                background: rgba(245, 245, 245, 1);
+                background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+                background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0 );
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .osno {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .nopr {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .noco {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .dlfl {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .fmerah {
+                color: #FF615D;
+            }
+            .merah {
+                background-color : #df0023;
+            }
+            .orange {
+                background-color : #d93329;
+            }
+            .lite-orange {
+                background-color : #d3662e;
+            }
+            .kuning {
+                background-color : #cc9933;
+            }
+            .subheader {
+                text-align: center;
+                /* padding: 10px; */
+                padding-top: 2px;
+                color: #606060;
+                height: 33px;
+                font-size: 17px;
+                margin: 0px 2px 0px 2px;
+                font-family: "Open Sans";
+                font-weight: bold;
+            }
+            .txt-black {
+                color:#000;
+            }
+            .nomargin {
+                margin:0;
+            }
+            .nopadding {
+                padding:0;
+            }
+            .highcharts-credits {
+                display:none;
+            }
+            .img-opco {
+                width: 88px;
+                padding: 12px;
+                padding-bottom: 0px;
+            }
+            .opco-name {
+                font-size: 24px;
+                color: #333333;
+                margin-top: 4px;
+            }
+            .no-js #loader {
+                display: none;
+            }
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .default_tab {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+            }
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .tab_tittle {
+                font-family: "Open Sans";
+                margin-bottom: 2px;
+                font-size: 27px;
+                margin-top: 0px;
+                font-weight: 300;
+            }
+            .one_tit {
+                border: 1px solid #e9e9e9;
+                height: 29px;
+                display: block;
+                width: 100%;
+                color: #797979;
+                text-align: center;
+                font: normal 16px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .pattern {
+                height:103px;
+                border-right: 1px solid #b9b9b9;
+                margin-bottom:6px;
+            }
+            .det {
+                color: #555555;
+                font-size: 11px;
+                font-family: "Open Sans";
+            }
+            <!--
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .colorsp {
+                color:#333333
+            }
+
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .tabl{
+                border:none !important;
+                border-collapse: collapse !important;
+                border-spacing: 0;
+            }
+            .typ{
+                color: #5d5d5d;
+                font-size: 14px;
+            }
+            .bor_bottom{
+                border-bottom: 1px solid #8f8f8f;
+                padding-bottom: 9px;
+            }
+            .bor_top{
+                border: 1px solid #d0d0d0;
+                /*border-radius: 43px;*/
+            }
+            -->
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <!-- <script src="js/dailysmig.js"></script> -->
+    </head>
+    <body onLoad="onLoad()">
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                    <li><a>PLANT OPERATION</a></li>
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+                        <a class="logopis"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">SALES DAILY REPORT</h2>
+                        <div id="tab-volume" class="col-xs-6 center padding5 border-down border-down-active "><a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/volum.png" width="23px"> <span class="tx_tab">&nbsp;&nbsp;Volume</span></a></div>
+                        <div id="tab-revenew" class="col-xs-6 center padding5 border-down "><a href="#tab-click" rel="data-revenew" class="no-text-style"> <img src="img/revnue.png" width="23px"><span class="tx_tab">&nbsp;&nbsp;Revenue</span></a></div>
+                        <div id="data-volume">
+                            <div class="headsix add_fix2 cubesRun2" style="margin-top: 41px; min-height:800px;">
+                                <img src="img/teks semen indo.png" class="imgsi">
+                                <center>
+                                    Month:
+                                    <select id="month" class="selmonth" rel="vol">
+                                    </select>
+                                    <select id="year" class="selyear" rel="vol">
+                                    </select>
+
+                                </center>
+                                <div align="center" style="    margin-top: 13px;">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent last-update">last update :</span>
+                                </div>
+                                <div align="center" style="margin-top:9px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" style="border-right:1px solid #CCCCCC;">
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down">TARGET </span><br>
+
+                                            <p class="inex" id="target_rkap_vol" style="color:#FF615D;"></p><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding">
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down">ACTUAL </span><br>
+
+                                            <p class="inex" id="target_actual_vol" style="color:#4c9ed9;"></p> <!--id=totrec7000-->
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 noPadding" style="padding-right:15px;" >
+                                        <div align="right" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                                            <span class="upercent">ACHIEVEMENT</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #5d5d5d; font-size: 32px;" id="achievement_vol"></span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;font-size: 13px;margin-top: 18px;margin-bottom: 9px;color: #868686;"> &nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                    <span style="color: black; float:right; "> &nbsp; Daily Report </span>
+                                </div>
+                                <p></p>
+                                <br>
+                                <div style="overflow-x: scroll;width:100%;"><div id="chartku_vol" style="width: 800px;"></div></div>
+                                <br>
+                                <div align="center" style="margin-top:2px;">
+                                    <div class="col-xs-12 noPadding">
+                                        <div class="col-xs-3 noPadding"></div>
+                                        <div class="col-xs-3 noPadding" style="color: #ff615d;font-weight: bold;">Target (T)</div>
+                                        <div class="col-xs-1 noPadding">&nbsp;</div>
+                                        <div class="col-xs-3 noPadding" style="color: #4c9ed9;font-weight: bold;">Actual (T)</div>
+                                        <div class="col-xs-2 noPadding">(%)</div>
+                                    </div>
+                                    <div class="col-xs-12 noPadding bor_top">
+
+                                        <div class="col-xs-3 noPadding ">
+                                            <!-- <img src="img/bl.png" width="24px" style="margin: 10px 7px 10px 0px;"> --><h5>Bulk</h5>
+                                        </div>
+                                        <div class="col-xs-3 noPadding"><h5 id="bulkrkap_vol"></h5></div>
+                                        <div class="col-xs-1 noPadding"></div>
+                                        <div class="col-xs-3 noPadding"><h5 id="bulkreal_vol"></h5></div>
+                                        <div class="col-xs-2 noPadding"><h5 id="bulkreal_persen_vol"></h5></div>
+                                    </div>
+
+                                    <div class="col-xs-12 noPadding bor_top">
+                                        <div class="col-xs-3 noPadding">
+                                            <!--  <img src="img/sack.png" width="22px" style="margin: 10px 7px 6px 0px;"> --><h5>Bag</h5>
+                                        </div>
+                                        <div class="col-xs-3 noPadding"><h5 id="bagrkap_vol"></h5></div>
+                                        <div class="col-xs-1 noPadding"></div>
+                                        <div class="col-xs-3 noPadding"><h5 id="bagreal_vol"></h5></div>
+                                        <div class="col-xs-2 noPadding"><h5 id="bagreal_persen_vol"></h5></div>
+                                    </div>
+
+                                    <div class="col-xs-12 noPadding bor_top" style="background: whitesmoke;">
+
+                                        <div class="col-xs-3 noPadding">
+                                            <h5>Total</h5>
+                                        </div>
+                                        <div class="col-xs-3 noPadding"><h5 id="totalrkap_vol"></h5></div>
+                                        <div class="col-xs-1 noPadding"></div>
+                                        <div class="col-xs-3 noPadding"><h5 id="totalreal_vol"></h5></div>
+                                        <div class="col-xs-2 noPadding"><h5 id="totalreal_persen_vol"></h5></div>
+                                    </div>
+                                    <div class="col-xs-12 noPadding" style="    margin-top: 29px;">
+                                        <!--<img src="img/2.png" width="16px">
+                                        <p class="inex" id="" style="color:#4c9ed9;">5.434,42 T</p> 
+                                        <span class="inex_down">PROGNOSE</span>-->
+                                    </div>
+                                </div>
+
+                                <div class="chartBox" style="margin-top:0px;margin-bottom: 110px;">
+                                    <p style="color: red; text-align:left; "> &nbsp; Detail Daily : </p>
+                                    <div class="table-responsive" >
+                                        <table>
+                                            <thead style="background-color: #e3000e; color: white;">
+                                                <tr >
+                                                    <th data-sort="float" align="center"><strong>Date</strong><i class="fa fa-sort" aria-hidden="true"></i></th>
+                                                    <th align="center"><div align="center"><strong> Bulk </strong></div></th>
+                                                    <th align="center"><div align="center"><strong> Bag </strong></div></th>
+                                                    <th data-sort="float" align="center"><div align="center"><strong> Total </strong><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="isidetail_vol"> 
+                                                <!-- <tr><td align="center" id="tgl"></td><td align="right" id="realc"></td><td align="right" id="realz"></td><td align="right" id="total" style="text-decoration-color: red"></td></tr> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div id="data-revenew" class="hidden">
+                            <div class="headsix add_fix2 cubesRun2" style="margin-top: 41px; min-height:800px;">
+                                <img src="img/teks semen indo.png" class="imgsi">
+                                <center>
+                                    Month:
+                                    <select id="month" class="selmonth" rel="rev">
+                                    </select>
+                                    <select id="year" class="selyear" rel="rev">
+                                    </select>
+
+                                </center>
+                                <div align="center" style="    margin-top: 13px;">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent last-update">last update :</span>
+                                </div>
+                                <div align="center" style="margin-top:9px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" style="border-right:1px solid #CCCCCC;">
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down">TARGET (B)</span><br>
+
+                                            <p class="inex" id="target_rkap_rev" style="color:#FF615D;"></p><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding">
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down">ACTUAL (B)</span><br>
+
+                                            <p class="inex" id="target_actual_rev" style="color:#4c9ed9;"></p> <!--id=totrec7000-->
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 noPadding" style="padding-right:15px;" >
+                                        <div align="right" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                                            <span class="upercent">ACHIEVEMENT</span><br>
+                                            <i id="icon_achievement_rev" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #5d5d5d;" id="achievement_rev"></span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="float: left;font-size: 13px;margin-top: 18px;margin-bottom: 9px;color: #868686;"> &nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                    <span style="color: black; float:right; "> &nbsp; Daily Report </span>
+                                </div>
+                                <p></p>
+                                <br>
+                                <div style="overflow-x: scroll;width:100%;"><div id="chartku_rev" style="width: 800px;"></div></div>
+                                <br>
+                                <div align="center" style="margin-top:2px;">
+                                    <div class="col-xs-12 noPadding">
+                                        <div class="col-xs-3 noPadding"></div>
+                                        <div class="col-xs-3 noPadding" style="color: #ff615d;font-weight: bold;">Target (B)</div>
+                                        <div class="col-xs-1 noPadding">&nbsp;</div>
+                                        <div class="col-xs-3 noPadding" style="color: #4c9ed9;font-weight: bold;">Actual (B)</div>
+                                        <div class="col-xs-2 noPadding">(%)</div>
+                                    </div>
+                                    <div class="col-xs-12 noPadding bor_top">
+
+                                        <div class="col-xs-3 noPadding ">
+                                            <!-- <img src="img/bl.png" width="24px" style="margin: 10px 7px 10px 0px;"> --><h5>Bulk</h5>
+                                        </div>
+                                        <div class="col-xs-3 noPadding"><h5 id="bulkrkap_rev"></h5></div>
+                                        <div class="col-xs-1 noPadding"></div>
+                                        <div class="col-xs-3 noPadding"><h5 id="bulkreal_rev"></h5></div>
+                                        <div class="col-xs-2 noPadding"><h5 id="bulkreal_persen_rev"></h5></div>
+                                    </div>
+
+                                    <div class="col-xs-12 noPadding bor_top">
+                                        <div class="col-xs-3 noPadding">
+                                            <!--  <img src="img/sack.png" width="22px" style="margin: 10px 7px 6px 0px;"> --><h5>Bag</h5>
+                                        </div>
+                                        <div class="col-xs-3 noPadding"><h5 id="bagrkap_rev"></h5></div>
+                                        <div class="col-xs-1 noPadding"></div>
+                                        <div class="col-xs-3 noPadding"><h5 id="bagreal_rev"></h5></div>
+                                        <div class="col-xs-2 noPadding"><h5 id="bagreal_persen_rev"></h5></div>
+                                    </div>
+
+                                    <div class="col-xs-12 noPadding bor_top" style="background: whitesmoke;">
+
+                                        <div class="col-xs-3 noPadding">
+                                            <h5>Total</h5>
+                                        </div>
+                                        <div class="col-xs-3 noPadding"><h5 id="totalrkap_rev"></h5></div>
+                                        <div class="col-xs-1 noPadding"></div>
+                                        <div class="col-xs-3 noPadding"><h5 id="totalreal_rev"></h5></div>
+                                        <div class="col-xs-2 noPadding"><h5 id="totalreal_persen_rev"></h5></div>
+                                    </div>
+                                    <div class="col-xs-12 noPadding" style="    margin-top: 29px;">
+                                        <!--<img src="img/2.png" width="16px">
+                                        <p class="inex" id="" style="color:#4c9ed9;">5.434,42 T</p> 
+                                        <span class="inex_down">PROGNOSE</span>-->
+                                    </div>
+                                </div>
+
+                                <div class="chartBox" style="margin-top:0px;margin-bottom: 110px;">
+                                    <p style="color: red; text-align:left; "> &nbsp; Detail Daily : </p>
+                                    <div class="table-responsive" >
+                                        <table>
+                                            <thead style="background-color: #e3000e; color: white;">
+                                                <tr >
+                                                    <th data-sort="float" align="center"><strong>Date</strong><i class="fa fa-sort" aria-hidden="true"></i></th>
+                                                    <th align="center"><div align="center"><strong> Bulk (B)</strong></div></th>
+                                                    <th align="center"><div align="center"><strong> Bag (B)</strong></div></th>
+                                                    <th data-sort="float" align="center"><div align="center"><strong> Total (B)</strong><i class="fa fa-sort" aria-hidden="true"></i></div></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="isidetail_rev"> 
+                                                <!-- <tr><td align="center" id="tgl"></td><td align="right" id="realc"></td><td align="right" id="realz"></td><td align="right" id="total" style="text-decoration-color: red"></td></tr> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                                                        <footer >
+<div class="regular" >
+
+
+                                    <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+                                    <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+                                    <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div> 
+                                    <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div> 
+                                 <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenew').addClass('hidden');
+                        $('#tab-volume').addClass('border-down-active');
+                        $('#tab-revenew').removeClass('border-down-active');
+                        loadData(url_src+'/SDRKAP_RealDaily.php?company=7000&tahun='+tahun+'&bulan='+bulanSekarang, 'vol', '7000');
+                    } else if (r == 'data-revenew') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenew').removeClass('hidden');
+                        $('#tab-volume').removeClass('border-down-active');
+                        $('#tab-revenew').addClass('border-down-active');
+                        loadData(url_src+'/SDRKAP_RevDaily.php?company=7000&tahun='+tahun+'&bulan='+bulanSekarang, 'rev', '7000');
+                    }
+                });
+
+                loadData(url_src+'/SDRKAP_RealDaily.php?company=7000&tahun='+tahun+'&bulan='+bulanSekarang, 'vol', '7000');
+                $('.selmonth').change(function(){
+                 bulanSekarang = $(this).val();
+                 tahun = $('.selyear').val();   
+                 var t = $(this).attr('rel');
+                 if (t == 'vol'){
+                  var src_t = 'Real';
+                 }else{
+                  var src_t = 'Rev';
+                 }
+                 loadData(url_src+'/SDRKAP_'+src_t+'Daily.php?company=7000&tahun='+tahun+'&bulan='+bulanSekarang, t, '7000');
+                })
+                $('.selyear').change(function(){
+                 tahun = $(this).val();
+                 bulanSekarang = $('.selmonth').val(); 
+                 var t = $(this).attr('rel');
+                 if (t == 'vol'){
+                  var src_t = 'Real';
+                 }else{
+                  var src_t = 'Rev';
+                 }
+                 loadData(url_src+'/SDRKAP_'+src_t+'Daily.php?company=7000&tahun='+tahun+'&bulan='+bulanSekarang, t, '7000');
+                })
+                function loadData(datasrc, target, company){
+                 if (target == 'vol'){
+                  run_waitMe('data-volume','facebook');  
+                 }else{
+                  run_waitMe('data-revenew','facebook');  
+                 }
+                $('#isidetail_'+target).html('');    
+                $.ajax({
+                    url: datasrc,
+                    //url: url_src+'/SDRKAP_RealDaily.php?company=7000&tahun='+tahun+'&bulan='+bulanSekarang,
+                    //url: url_src+'/SDRKAP_RealDaily.php',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var bulanNow = moment().format('MM');
+                        //var days = moment(tahun+bulanSekarang).daysInMonth();
+                        var days = moment(tahun.toString()+'-'+bulanSekarang, "YYYY-MM").daysInMonth() // 29
+                        var dataBag_rkap = [];
+                        var dataBag_real = [];
+                        var dataBulk_rkap = [];
+                        var dataBulk_real = [];
+                        var dataBulkBag_rkap = [];
+                        var target_rkap_src = dataJson['rkap'];
+                        var myLogData = dataJson[company].curah;
+                        // console.log(Object.keys(dataJson[company].curah).length);
+                        // console.log(Object.keys(dataJson[company].zak).length);
+                        var labelArray = [];
+                        var index = [];
+                        var datacurah = [];
+                        var datazak = [];
+                        var datacurahrkap = [];
+                        var datazakrkap = [];
+                        var datacurahzakrkap = [];
+                        var totalbulk_rkap = 0;
+                        var totalbulk_real = 0;
+                        var totalbag_rkap = 0;
+                        var totalbag_real = 0;
+                        if (bulanSekarang == bulanNow){
+                         days = moment().format('DD');   
+                        }
+                        for (var x=1;x<=days;x++){
+                         if (x < 10){
+                          var tgl = '0'+x; 
+                         }else{
+                          var tgl = x;   
+                         }   
+                         labelArray.push(tgl);
+                         if (dataJson[company]['zak'][tahun.toString()+bulanSekarang.toString()+tgl] == undefined){
+                          dataBag_rkap.push(0);
+                          dataBag_real.push(0);
+                         }else{
+                          dataBag_rkap.push(Number(dataJson[company]['zak'][tahun.toString()+bulanSekarang.toString()+tgl].rkap));
+                          dataBag_real.push(Number(dataJson[company]['zak'][tahun.toString()+bulanSekarang.toString()+tgl].real));
+                         }
+                         if (dataJson[company]['curah'][tahun.toString()+bulanSekarang.toString()+tgl] == undefined){
+                          dataBulk_rkap.push(0);
+                          dataBulk_real.push(0);
+                         }else{
+                          dataBulk_rkap.push(Number(dataJson[company]['curah'][tahun.toString()+bulanSekarang.toString()+tgl].rkap));
+                          dataBulk_real.push(Number(dataJson[company]['curah'][tahun.toString()+bulanSekarang.toString()+tgl].real));
+                         }
+                         totalbulk_rkap += dataBulk_rkap[x-1];
+                         totalbulk_real += dataBulk_real[x-1];
+                         totalbag_rkap += dataBag_rkap[x-1];
+                         totalbag_real += dataBag_real[x-1];
+                         dataBulkBag_rkap.push(dataBulk_rkap[x-1]+dataBag_rkap[x-1]);
+                         if (target == 'vol'){
+                          var res1 = parseInt(dataBulk_real[x-1]);
+                          var res2 = parseInt(dataBag_real[x-1]);
+                          var res3 = parseInt(dataBulk_rkap[x-1]);
+                          var res4 = parseInt(dataBag_rkap[x-1]);
+                         }else{
+                          var res1 = parseInt(dataBulk_real[x-1]);
+                          var res2 = parseInt(dataBag_real[x-1]);
+                          var res3 = parseInt(dataBulk_rkap[x-1]);
+                          var res4 = parseInt(dataBag_rkap[x-1]);
+                         }
+                         res = res1 + res2;
+                         rez = res3 + res4;
+                         var formated = moment(tahun.toString()+bulanSekarang.toString()+tgl);
+                         if (target == 'vol'){
+                          var isi2 = '<tr ><td align="center">' + formated.format('DD-MM-YYYY') + '</td><td align="right"> ' + FormatNumberBy3(res1, ",", ".") + ' </td><td align="right"> ' + FormatNumberBy3(res2, ",", ".") + ' </td><td align="right"><font color="red"> ' + FormatNumberBy3(res, ",", ".") + '</font></td></tr>';
+                         }else{
+                          var isi2 = '<tr ><td align="center">' + formated.format('DD-MM-YYYY') + '</td><td align="right"> ' + (res1 / 1000000000).toFixed(0) + ' </td><td align="right"> ' + (res2 / 1000000000).toFixed(0) + ' </td><td align="right"><font color="red"> ' + (res / 1000000000).toFixed(0) + '</font></td></tr>';
+                         }
+                         $('#isidetail_'+target).append(isi2);
+
+                        }                     
+                        for (var x in myLogData) {
+                            //index.push(x);
+                            //var label_tgl = x.substring(6);
+                            //labelArray.push(label_tgl);
+                            //nilaiRate1 = dataJson[company].curah[x].tanggal;
+                            //nilaiRate2 = dataJson[company].curah[x].real;
+                            //nilaicrkap = dataJson[company].curah[x].rkap;
+                            //nilaiRate4 = dataJson[company].zak[x].real;
+                            //nilaizrkap = dataJson[company].zak[x].rkap;
+                            //totalbulk_rkap += Number(nilaicrkap);
+                            //totalbulk_real += Number(nilaiRate2);
+                            //totalbag_rkap += Number(nilaizrkap);
+                            //totalbag_real += Number(nilaiRate4);
+                            //datacurah.push(Number(nilaiRate2));
+                            //datazak.push(Number(nilaiRate4));
+                            //datacurahrkap.push(Number(nilaicrkap));
+                            //datazakrkap.push(Number(nilaizrkap));
+                            //datacurahzakrkap.push(Number(nilaicrkap)+Number(nilaizrkap));
+                            //if (target == 'vol'){
+                            // var res1 = parseInt(nilaiRate2.replace(',', '.'));
+                            // var res2 = parseInt(nilaiRate4.replace(',', '.'));
+                            // var res3 = parseInt(nilaicrkap.replace(',', '.'));
+                            // var res4 = parseInt(nilaizrkap.replace(',', '.'));
+                            //}else{
+                            // var res1 = parseInt(nilaiRate2);
+                            // var res2 = parseInt(nilaiRate4);
+                            // var res3 = parseInt(nilaicrkap);
+                            // var res4 = parseInt(nilaizrkap);
+                            //}
+                            //res = res1 + res2;
+                            //rez = res3 + res4;
+                            //var formated = moment(nilaiRate1);
+                            //if (target == 'vol'){
+                            // var isi2 = '<tr ><td align="center">' + formated.format('DD-MM-YYYY') + '</td><td align="right"> ' + FormatNumberBy3(res1, ",", ".") + ' </td><td align="right"> ' + FormatNumberBy3(res2, ",", ".") + ' </td><td align="right"><font color="red"> ' + FormatNumberBy3(res, ",", ".") + '</font></td></tr>';
+                            //}else{
+                            // var isi2 = '<tr ><td align="center">' + formated.format('DD-MM-YYYY') + '</td><td align="right"> ' + (res1 / 1000000000).toFixed(0) + ' </td><td align="right"> ' + (res2 / 1000000000).toFixed(0) + ' </td><td align="right"><font color="red"> ' + (res / 1000000000).toFixed(0) + '</font></td></tr>';
+                            //}
+                            //$('#isidetail_'+target).append(isi2);
+                        }
+                        var last_update = moment(index[index.length-1]);
+                        $('.last-update').html('Last update : '+last_update.format('DD MMM YYYY'));
+                        if (target == 'vol'){
+                         $('#bulkrkap_'+target).html(FormatNumberBy3(totalbulk_rkap.toFixed(0), ",", "."));
+                         $('#bulkreal_'+target).html(FormatNumberBy3(totalbulk_real.toFixed(0), ",", "."));
+                         $('#bulkreal_persen_'+target).html(((totalbulk_real / totalbulk_rkap) * 100).toFixed(1));
+                         $('#bagrkap_'+target).html(FormatNumberBy3(totalbag_rkap.toFixed(0), ",", "."));
+                         $('#bagreal_'+target).html(FormatNumberBy3(totalbag_real.toFixed(0), ",", "."));
+                         $('#bagreal_persen_'+target).html(((totalbag_real / totalbag_rkap) * 100).toFixed(1));
+                         $('#totalrkap_'+target).html(FormatNumberBy3((totalbulk_rkap + totalbag_rkap).toFixed(0), ",", "."));
+                         $('#totalreal_'+target).html(FormatNumberBy3((totalbulk_real + totalbag_real).toFixed(0), ",", "."));
+                         $('#totalreal_persen_'+target).html((Number($('#bulkreal_persen_'+target).text()) + Number($('#bagreal_persen_'+target).text())).toFixed(1));
+                         $('#target_rkap_'+target).html(FormatNumberBy3((totalbulk_rkap + totalbag_rkap).toFixed(0), ",", "."));
+                         $('#target_actual_'+target).html(FormatNumberBy3((totalbulk_real + totalbag_real).toFixed(0), ",", "."));
+                         var target_rkap = parseFloat(target_rkap_src.replace(',', '.'));
+                         console.log(target_rkap);
+                         $('#target_rkap_'+target).html(FormatNumberBy3(target_rkap.toFixed(0), ",", "."));//FormatNumberBy3(target_rkap, ",", ".")
+                         var nggonku = totalbulk_real + totalbag_real;
+                         //var target_rkap = Number($('#target_rkap').text());
+                         var target_real = Number($('#target_actual_'+target).text());
+                         $('#achievement_'+target).html(FormatNumberBy3(((nggonku / target_rkap) * 100).toFixed(1), ".", ",") + '%');
+                        }else{
+                         $('#bulkrkap_'+target).html((totalbulk_rkap / 1000000000).toFixed(0));
+                         $('#bulkreal_'+target).html((totalbulk_real / 1000000000).toFixed(0));
+                         $('#bulkreal_persen_'+target).html(((totalbulk_real / totalbulk_rkap) * 100).toFixed(1));
+                         $('#bagrkap_'+target).html((totalbag_rkap / 1000000000).toFixed(0));
+                         $('#bagreal_'+target).html((totalbag_real / 1000000000).toFixed(0));
+                         $('#bagreal_persen_'+target).html(((totalbag_real / totalbag_rkap) * 100).toFixed(1));
+                         $('#totalrkap_'+target).html(((totalbulk_rkap + totalbag_rkap) / 1000000000).toFixed(0));
+                         $('#totalreal_'+target).html(((totalbulk_real + totalbag_real) / 1000000000).toFixed(0));
+                         $('#totalreal_persen_'+target).html((Number($('#bulkreal_persen_'+target).text()) + Number($('#bagreal_persen_'+target).text())).toFixed(1));
+                         $('#target_rkap_'+target).html(FormatNumberBy3((totalbulk_rkap + totalbag_rkap).toFixed(0), ",", "."));
+                         $('#target_actual_'+target).html(FormatNumberBy3(((totalbulk_real + totalbag_real) / 1000000000).toFixed(0),",","."));
+                         var target_rkap = parseFloat(target_rkap_src);
+                         console.log(target_rkap);
+                         $('#target_rkap_'+target).html(FormatNumberBy3((target_rkap / 1000000000).toFixed(0),",","."));//FormatNumberBy3(target_rkap, ",", ".")
+                         var nggonku = totalbulk_real + totalbag_real;
+                         //var target_rkap = Number($('#target_rkap').text());
+                         var target_real = Number($('#target_actual_'+target).text());
+                         $('#achievement_'+target).html(FormatNumberBy3(((nggonku / target_rkap) * 100).toFixed(1), ".", ",") + '%');
+                        }
+                        $('#icon_achievement_'+target).removeClass('fa-sort-asc');
+                        $('#icon_achievement_'+target).removeClass('fa-sort-desc');
+                        if (((nggonku / target_rkap) * 100) > 50){
+                         $('#icon_achievement_'+target).addClass('fa-sort-asc');
+                         $('#icon_achievement_'+target).attr('style','color: #7be668');
+                        }else{
+                         $('#icon_achievement_'+target).addClass('fa-sort-desc');
+                         $('#icon_achievement_'+target).attr('style','color: #EB1717');
+                        }
+                        createChart('chartku_'+target, labelArray, dataBulk_real, dataBag_real, dataBulk_rkap, dataBag_rkap, dataBulkBag_rkap);
+                        if (target == 'vol'){
+                         stop_waitMe('data-volume');
+                        }else{
+                         stop_waitMe('data-revenew');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+                }
+                function createChart(id, date, datacurah, datazak, datacurahrkap, datazakrkap, datacurahzakrkap) {
+                    $('#' + id).highcharts({
+                        chart: {
+                            backgroundColor: 'rgba(0, 255, 0, 0)',
+                            polar: true,
+                            //marginLeft: 5,
+                            //marginLeft: 5
+                        },
+                        title: {
+                            text: ''
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        xAxis: {
+                            categories: date
+                        },
+                        plotOptions: {
+                            series: {
+                                states: {
+                                    hover: {
+                                        enabled: false
+                                    }
+                                }
+                            }
+                        },
+                        legend: {
+                            width: 500,
+                            align: 'left',
+                            x: -10
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        yAxis: {
+                            title: '',
+                            //top: 10,
+                            //min: 0,
+                            //offset: -30,
+                            tickWidth: 1
+                        },
+                        series: [{
+                                type: 'column',
+                                name: 'Bulk',
+                                color: '#4DAF4A',
+                                data: datacurah,
+                                stacking: 'normal'
+                            },
+                            {
+                                type: 'column',
+                                name: 'Bag',
+                                color: '#4c9ed9',
+                                data: datazak,
+                                stacking: 'normal'
+                            }, {
+                                type: 'spline',
+                                name: 'Target Bulk',
+                                color: '#336699',
+                                data: datacurahrkap
+                            }, {
+                                type: 'spline',
+                                name: 'Target Bag',
+                                color: '#FDAE61',
+                                data: datazakrkap
+                            },{
+                                type: 'spline',
+                                name: 'Target Total',
+                                color: '#E41A1C',
+                                data: datacurahzakrkap
+                            }]
+
+
+                    });
+                }
+ function run_waitMe(which, effect){
+  $('#'+which).waitMe({
+   //none, rotateplane, stretch, orbit, roundBounce, win8, 
+   //win8_linear, ios, facebook, rotation, timer, pulse, 
+   //progressBar, bouncePulse or img
+   effect: effect,
+   //place text under the effect (string).
+   text: '',
+   //background for container (string).
+   bg: 'rgba(255,255,255,0.7)',
+   //color for background animation and text (string).
+   color: '#000',
+   //change width for elem animation (string).
+   sizeW: '',
+   //change height for elem animation (string).
+   sizeH: '',
+   // url to image
+   source: '',
+   // callback
+   onClose: function(){}
+  });
+ } 
+ window.stop_waitMe = function(which){
+  $('#'+which).waitMe('hide');
+  // console.log(which);
+ }  
+
+
+            });
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

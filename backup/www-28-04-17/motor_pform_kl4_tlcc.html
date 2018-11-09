@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">        
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+       <!--  <script type="text/javascript" src="master_opc/js/opc-lib-min.js"></script> -->
+        <script src="js/highstock.js"></script>
+        <script src="js/highcharts-more.js"></script>
+        <script src="js/exporting.js"></script>
+         <script src="js/loader.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            // OPC_config = {
+            //     token: '7e61b230-481d-4551-b24b-ba9046e3d8f2',
+            //     serverURL: 'http://10.15.3.146:58725'
+            // };
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+                function getMachine(url, id){
+                 $.ajax({
+                     url: url,
+                     type: 'GET',
+                     success: function (data) {
+                         var data1 = data.replace("<title>Json</title>", "");
+                         var data2 = data1.replace("(", "[");
+                         var data3 = data2.replace(");", "]");
+                         var dataJson = JSON.parse(data3);
+                         $('#kl'+id+'_speed').html(setFormat(dataJson[0].tags[0].props[0].val,2));
+                         $('#kl'+id+'_amp').html(setFormat(dataJson[0].tags[1].props[0].val,2));
+                         $('#kl'+id+'_temp').html(setFormat(dataJson[0].tags[2].props[0].val,2));
+
+                     }
+                 })                    
+                }
+                setInterval(function(){
+                 getMachine(url_src+'/json/GetIdFan_sg.php?s=kl4',4);
+                }, 300);                
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+        </style>
+        <title>Motor Performance</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                  <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <div class=" headsix2 cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center">
+                                <img src="img/icKota3.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px;"> <p class="opco">SEMEN THANGLONG</p>
+                                <p class="planttittle">Data Motor Kiln 4</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 noPadding box_sdow">
+                            <!-- <div class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;" id="kl4_speed" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Speed.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'>0</span>&nbsp;%<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;SPEED</p></div> -->
+                            <!-- <div class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;" id="kl4_amp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Motor_Ampere1.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;%<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE</p></div> -->
+                            <!-- <div class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;" id="kl4_temp" opc-tag-txt='{"tag":"Tuban 3\/4 Accessories.KL4_Bearing_Temp.Value","config":{"formats":{"bad_q":"?????","bool_f":"False","bool_t":"True","float":"0.00","int":"0","string":"{0}"},"offset":0}}'></span>&nbsp;Cel<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP</p></div> -->
+                            <!-- <div class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;">0</span>&nbsp;mm/s<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;VIBRASI</p></div> -->
+                            <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="kl4_speedv">0</span>&nbsp;%<p class="colorsp t1 subtitle_upd"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;SPEED</p></div>
+                            <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="kl4_ampv"></span>&nbsp;%<p class="colorsp t1 subtitle_upd"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AMPERE</p></div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow">
+                            <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="kl4_tempv"></span>&nbsp;Cel<p class="colorsp t1 subtitle_upd"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;TEMP</p></div>
+                            <div class="col-xs-6 noPadding tab_uper" align="center" style="margin-top: 7px;"><span class="heading four_tab" id="kl4_torsiv">0</span>&nbsp;mm/s<p class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;TORQUE</p></div>
+                            </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px;height:260px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;Speed Graph</span>
+                            <div style="overflow-x: scroll; ">
+                                <div id="speed4" style="width: 1200px; height: 240px"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:260px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;AmpereGraph</span>
+                            <div style="overflow-x: scroll; ">
+                                <div id="KL4_MotorAmp" style="width: 1200px; height: 240px"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; padding-bottom: 10px; height:260px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-fire" aria-hidden="true"></i>&nbsp;Temperature Graph</span>
+                            <div style="overflow-x: scroll; ">
+                                <div id="KL4_BearAmp" style="width:1200px; height:240px"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; margin-bottom:64px; height:260px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd four_tittle"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Torque Graph</span>
+                            <!--<div id="vibrasi" style="width:100%; min-height: 180px"></div>-->
+                            <div style="overflow-x: scroll; ">
+                                <div id="torque4" style="width: 1200px; height: 240px"></div>
+                            </div>
+                        </div>
+<!--                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsAmpIdF1" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsAmpIdF2" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsDampIdF1" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsDampIdF2" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsExTemp11" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsExTemp12" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsExTemp21" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsExTemp22" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsSpeedIdF1" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsSpeedIdF2" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsVib1IdF1" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsVib1IdF2" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%;  height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsVib2IdF1" style="width:100%; height:180px"></div>
+                        </div>
+                        <div class="col-xs-12 noPadding graph_tab" style="width:100%; margin-bottom:64px; height:200px">
+                            &nbsp;<span class="colorsp t1 subtitle_upd"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Vibration Graph</span>
+                            <div id="KL4_OpsVib2IdF2" style="width:100%; height:180px"></div>
+                        </div>-->
+                        <div class="spacer"></div>
+                        <footer >
+<div class="regular" >
+
+
+                            <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+                            <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+                            <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div> 
+                            <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div> 
+                         <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $.ajax({
+                            url: url_src+'/json/GetKILNPlantTuban.php',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+                                console.log(data3);
+
+              
+                                //spped
+                                spd3 = dataJson[0].tags[0].props[0].val;
+                                spd3 = parseFloat(spd3.replace(',','.')).toFixed(2);
+                                console.log(spd3);
+                                //ampere
+                                amp3 = dataJson[0].tags[1].props[0].val;
+                                amp3 = parseFloat(amp3.replace(',','.')).toFixed(2);
+                                //temp
+                                temp3 = dataJson[0].tags[2].props[0].val;
+                                temp3 = parseFloat(temp3.replace(',','.')).toFixed(2);
+                                //TORSI3
+                                tor3 = dataJson[0].tags[3].props[0].val;
+                                tor3 = parseFloat(tor3.replace(',','.')).toFixed(2);
+
+
+                                //spped4
+                                spd4 = dataJson[0].tags[4].props[0].val;
+                                spd4 = parseFloat(spd4.replace(',','.')).toFixed(2);
+                                console.log(spd4);
+                                //ampere4
+                                amp4 = dataJson[0].tags[5].props[0].val;
+                                amp4 = parseFloat(amp4.replace(',','.')).toFixed(2);
+                                //temp4
+                                temp4 = dataJson[0].tags[6].props[0].val;
+                                temp4 = parseFloat(temp4.replace(',','.')).toFixed(2);
+                                //TORSI44
+                                tor4 = dataJson[0].tags[7].props[0].val;
+                                tor4 = parseFloat(tor4.replace(',','.')).toFixed(2);
+
+                                
+                                //$("#cm3_pmrv").html(pwr3);
+                                $("#kl3_speedv").html(spd3);
+                                $("#kl3_ampv").html(amp3);
+                                $("#kl3_tempv").html(temp3);
+                                $("#kl3_torsiv").html(tor3);
+
+
+                                $("#kl4_speedv").html(spd4);
+                                $("#kl4_ampv").html(amp4);
+                                $("#kl4_tempv").html(temp4);
+                                $("#kl4_torsiv").html(tor4);
+                                
+                               
+                            }
+                        })
+
+        </script>
+        <script src="all_kiln4.js"></script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

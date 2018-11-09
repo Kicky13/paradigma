@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script src="js/loader.js"></script>
+        <script src="js/paradigma.js"></script>
+        <!-- <script type="text/javascript" src="js/index.js"></script> -->
+        <!-- <script src="js/jquery.min.js"></script> -->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script src="js/highcharts_working.js"></script>
+        <script src="js/exporting.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/stupidtable.js?dev"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/loader.js"></script>
+          <script>
+            $(function(){
+                $("table").stupidtable();
+            });
+          </script>
+        
+          <style type="text/css">
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+            th, td {
+              padding: 5px 10px;
+              border: 0px;
+            }
+            th {
+              background-color: #e3000e;
+            }
+            th[data-sort]{
+              cursor:pointer;
+            }
+            tr.awesome{
+              color: red;
+            }
+		.img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+          </style>
+        
+        
+<!--        <script type="text/javascript" src="js/sorttable.js"></script>-->
+        
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <title>Sales & Marketing</title>
+        <script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                run_waitMe('#volume', 'facebook');
+
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+				$('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenew').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenew').removeClass('act_tb');
+                        window.location.href = 'sm_sp_detail.html';
+                    } else if (r == 'data-revenew') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenew').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenew').addClass('act_tb');
+                        window.location.href = 'sm_sp_detail_rev.html';
+                        
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+    </head>
+    <body onLoad="onLoad()">
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                            <li><a>PLANT OPERATION</a></li>
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="sales_dashboard.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="stok_bahan.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="#" id="logout"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x backtoparent"> <span>toggle menu</span> </button>
+                        <a class="logopis"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                     <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">
+     
+     MONTHLY SALES
+     <!-- <a href="smsmig2.html" class="pull-right" style="margin-right:10px;"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a> --></h2>
+                            <div class="col-xs-12 tab_dual">
+                        <div class="col-xs-12 bg_rds">
+                        
+
+                        <div id="tab-revenew" class="col-xs-6 center zero_padd left_tb ">
+                        <a href="#tab-click" rel="data-revenew" class="no-text-style"> <img src="img/revnue.png" width="18px">
+                        <span class="tx_tab">&nbsp;&nbsp;Revenue</span></a></div>
+
+                        <div id="tab-volume" class="col-xs-6 center zero_padd left_tb act_tb ">
+                        <a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/volum.png" width="18px"> 
+                        <span class="tx_tab">&nbsp;&nbsp;Volume</span></a></div>
+                        
+                        </div>
+						</div>
+							<div class=" headsix add_fix cubesRun2" style="    min-height: 800px;">
+                                <div class=" cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota2.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px; padding-right: 3px;">
+                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="prodtittle" id="head" style="    font-weight: 600;    font-size: 26px;    display: inline-block;">SEMEN PADANG</p>
+                               
+                            </div>
+                        </div>
+
+                                 <center>
+                                    Tahun:
+                                    <select class="selyear" rel="vol">
+                                        <option value="2014">2014</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2016" >2016</option>
+                                        <option value="2017" selected="selected">2017</option>
+                                    </select>
+                                </center>
+                                <br>
+                                
+
+                                <div align="center" style="margin-top:9px;">
+
+                                    <div class="col-xs-6 noPadding" align="left" style="padding-left: 15px;" >
+                                        <div class="col-xs-12 noPadding">
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down " style="padding-left: 0px;">TARGET </span><br>
+
+                                            <p class="inex" id="rkapv_tot1" style="color:#FF615D;">0 K</p><!--id=totpay3000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down" style="padding-left: 0px;">ACTUAL </span><br>
+
+                                            <p class="inex" id="realv_tot1" style="color:#4c9ed9;">0 K</p> <!--id=totrec3000-->
+                                        </div>
+										<div align="center" style="    margin-top: 13px;">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="inex_down dual" style="padding-left: 0px;" id="last_update">
+                                        <script type="text/javascript">
+                                            document.write("UP TO :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                                    
+                                </div>
+                                    </div>
+                                    <div class="col-xs-6 noPadding" style="padding-right:15px;" >
+                                        <div align="right" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                                            <span class="upercent">ACHIEVEMENT</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #5d5d5d; font-size: 32px;" id="percentv3000"></span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                               <div  class="col-xs-12" align="left" style="    padding-left: 15px; padding-top: 5px;">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                    <span style="color: #5d5d5d;font-size: 12px;">&nbsp;&nbsp;&nbsp;Monthly Release</span>
+                                    <div id="volume" style="width:100%; height:250px;"></div>
+                                </div>
+                                <div align="center" style="color:#e3000e; font-size:10px;"  >
+                                    
+                                    <!-- <div class="col-xs-6">
+                                        <div class="col-xs-12" style="float:center" align="center"> <img src="img/2.png" width="16px"><br>
+                                            <span class="valuedetil"> 1.933.43 T</span> <br>
+                                            <i><b>PROGNOSE BULAN</b></i> </div>
+                                    </div>
+                                </div> -->
+                                <br>
+                                <div align="center" style=" width: 100%; color:#e3000e; font-size:10px;"> </div>
+                                <div class="chartBox" style="margin-top: 0px;">
+                                    <p style="color: red; text-align:left; "> &nbsp; Detail Province : </p>
+                                    <div class="table-responsive" >
+                                        <table style="margin-bottom: 53px;">
+                                            <thead style="background-color: #e3000e; color: white;">
+                                                <tr >
+                                                    <th data-sort="string" align="left" style="width:25%"><strong> Province </strong><i class="fa fa-sort" aria-hidden="true" style="color: #FFFFFF"></i>&nbsp;</th>
+                                                    <th data-sort="string" align="right" style="width:25%"><strong> Target </strong><i class="fa fa-sort" aria-hidden="true"></i> &nbsp;</th>
+                                                    <th data-sort="float" align="right" style="width:25%"><strong> Real </strong><i class="fa fa-sort" aria-hidden="true"></i> &nbsp;</th>
+                                                    <th data-sort="float" align="right" style="width:25%"><strong> Percentage </strong><i class="fa fa-sort" aria-hidden="true"></i>&nbsp; </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="isidetail" style="    color: black;">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                                <footer >
+<div class="regular" >
+
+
+                                    <div id="tab-smi" class="col-xs-4 noPadding tab_uper col-ft-4 img_foot2" align="center" style="margin-top: 7px;"><a href="smsmig2.html" ><img src="img/smi.png" style="width : 38%;" /></a></div>
+                                    <div id="tab-sg" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="sm_sg_detail.html"><img src="img/icKota1a.png"  style="width:70%;" /></a></div> 
+				    <div id="tab-sp" class="col-xs-2 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="sm_sp_detail.html" ><img src="img/icKota2a.png" style="width:68%;" /></a></div>
+                                    <div id="tab-st" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="sm_st_detail.html"><img src="img/icKota3a.png" style="width:70%;"/></a></div> 
+                                    <div id="tab-tl" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="sm_tl_detail.html" ><img src="img/icKota4a.png" style="width:70%;"/></a></div> 
+                                 <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                                </div>
+                        </div>
+                </div>
+                <!--       <script type="text/javascript" src="cordova.js"></script>-->
+                <!-- <script type="text/javascript" src="js/index.js"></script>-->
+                <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            <!-- $(".regular").slick({ -->
+        <!-- infinite: true, -->
+        <!-- slidesToShow: 4, -->
+        <!-- slidesToScroll: 4, -->
+        <!-- arrows:true, -->
+         <!-- centerMode: true -->
+        <!-- // variableWidth: true -->
+      <!-- }); -->
+            });
+        </script>
+        </body>
+                </html>
+
+                                <script>
+           $(function() {
+  var opco = '3000';
+
+  load(opco, tahun);
+  $('.selyear').change(function() {
+    tahun = $(this).val();
+    var t = $(this).attr('rel');
+
+    load(opco, tahun);
+
+
+  })
+
+  function load(opco,tahun) {
+    var param = '?tahun='+tahun;
+    var yearNow = new Date().getFullYear();
+    var month_now = 12;
+     $('#isidetail').empty();
+    $.ajax({
+
+      url: url_src + '/api/index.php/sales_monthly/sales_3000'+param,
+      //url: 'STMRevVolPrice.json',
+      type: 'GET',
+      success: function(data) {
+        //console.log('test');
+
+        var data2 = data.replace("(", "[");
+        var data = data2.replace(");", "]");
+        var a = jQuery.parseJSON(data);
+        var last_update = a['last_update'];
+        a = a['data'];
+        $('#last_update').html("UP TO : "+ last_update);
+        //var a = data;
+        var rkapv = [];
+        var realv = [];
+        var lastv = [];
+
+        var rkapv_tot = 0;
+        var realv_tot = 0;
+        var lastv_tot = 0;
+        var percentv = 0;
+
+        var percentv3000 = 0;
+
+        var rkapv_tot1 = 0;
+        var realv_tot1 = 0;
+
+
+        var rkapv3000 = 0;
+        var realv3000 = 0;
+
+
+        //var data = eval('('+data+')');
+        // console.log(a);
+        var s = '';
+        if (yearNow==tahun) {
+            month_now = bulanSekarang;
+        }else{
+            month_now = 12;
+        }
+        for (var b = 1; b <= month_now; b++) {
+          if (b < 10) {
+            var s = '0' + b;
+          } else {
+            var s = b;
+          }
+
+          $.each(a, function(key, val) {
+            $.each(val, function(key2, val2) {
+              $.each(val2, function(key3, val3) {
+                if (key == '3000') {
+                  if (key2 == s) {
+                    if (key3 == 'rkap_volume') {
+                      // console.log(key2);
+                      //  console.log(key3+' '+val3);
+                      rkapv.push(Number(val3));
+                      rkapv3000 = Number(val3);
+                      $('#rkapv3000').html(rkapv3000.toFixed(2) + ' K');
+                    } else if (key3 == 'real_volume') {
+                      // console.log(key2);
+                      //  console.log(key3+' '+val3);
+                      realv.push(Number(val3));
+                      realv3000 = Number(val3);
+                      $('#realv3000').html(realv3000.toFixed(2) + ' K');
+                    } else if (key3 == 'last_volume') {
+                      // console.log(key2);
+                      //  console.log(key3+' '+val3);
+                      lastv = Number(val3);
+                      $('#lastv').html(lastv.toFixed(2) + ' K');
+                    }
+                  }
+                }
+              })
+            })
+          })
+          rkapv_tot += Number(rkapv3000);
+          // console.log(rkapv_tot);
+          $('#rkapv_tot').html(FormatNumberBy3((rkapv_tot / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+
+          realv_tot += Number(realv3000);
+          $('#realv_tot').html(FormatNumberBy3((realv_tot / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+
+          lastv_tot += Number(lastv);
+          $('#lastv_tot').html((lastv_tot / 1000).toFixed(2) + ' K');
+
+          percentv = (Number(realv_tot) / Number(rkapv_tot)) * 100;
+          $('#percentv').html(FormatNumberBy3(percentv.toFixed(2).replace(".", ","), ",", ".") + '<font size="5"> %</font>');
+
+          rkapv_tot1 += Number(rkapv3000);
+          // console.log(rkapv_tot1);
+          $('#rkapv_tot1').html(FormatNumberBy3((rkapv_tot1 ).toFixed(2).replace(".", ","), ",", ".") );
+          realv_tot1 += Number(realv3000);
+          $('#realv_tot1').html(FormatNumberBy3((realv_tot1 ).toFixed(2).replace(".", ","), ",", ".") );
+          //console.log(realv_tot1);
+
+
+          percentv3000 = (Number(realv_tot) / Number(rkapv_tot)) * 100;
+          $('#percentv3000').html((percentv3000.toFixed(2).replace(".", ",")) + '<font size="1"> %</font>');
+          stop_waitMe('#volume');
+        }
+        $('#volume').highcharts({
+          title: {
+            text: ''
+          },
+
+          credits: {
+            enabled: false
+          },
+
+          chart: {
+            backgroundColor: 'rgba(0, 255, 0, 0)',
+            polar: true
+          },
+          exporting: {
+            enabled: false
+          },
+          tooltip: {
+            formatter: function() {
+              var n = this.y;
+              var s = this.series.name;
+              return '<b>' + s + ':<br>' + setFormat(n, 2) + ' Ton</b>';
+            }
+          },
+          xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          },
+          yAxis: {
+            title: {
+              text: ''
+            }
+          },
+
+          plotOptions: {
+            series: {
+              states: {
+                hover: {
+                  enabled: false
+                }
+              }
+            }
+          },
+
+          series: [{
+            type: 'column',
+            name: 'Real',
+            color: '#45DD90',
+            data: realv,
+          }, {
+            type: 'line',
+            name: 'RKAP',
+            color: '#FF615D',
+            data: rkapv,
+          }]
+
+
+        });
+
+        function setformat(nilai) {
+          var tmp = accounting.formatMoney(nilai, "", 2, ".", ",");
+          return tmp;
+        }
+      }
+    })
+    $.ajax({
+      url: url_src + '/json/ScoDataDetail.php'+param,
+      data: {
+        COM: opco
+      },
+      dataType: 'json',
+      type: 'GET',
+      success: function(data) {
+		console.log(JSON.stringify(data));
+        var isidetail = new Array();
+
+        for (var i = 0; i < data.length; i++) {
+
+          if (data[i].TARGET_RKAP == 0 && data[i].REALTO == 0) {
+            var persen = 0.0;
+          } else {
+            var persen = parseFloat((data[i].REALTO) / (data[i].TARGET_RKAP)) * 100;
+          }
+
+
+          var targets = parseInt(data[i].TARGET_RKAP);
+          var reals = parseInt(data[i].REALTO);
+
+          var targetfix = FormatNumberBy3(targets, ",", ".");
+          var realfix = FormatNumberBy3(reals, ",", ".");
+          var arrayTemp = {};
+
+          arrayTemp.nama = data[i].NM_PROV_1;
+          arrayTemp.target = targetfix;
+          arrayTemp.real = realfix;
+          arrayTemp.persen = persen.toFixed(2);
+          isidetail.push(arrayTemp);
+
+
+         
+        };
+
+        addRow(isidetail);
+      }
+    }).done(function(data) {}).fail(function() {
+
+    });
+
+    function addRow(isidetail){
+
+        var data = isidetail;
+        paradigma.array_sort(isidetail, 'asc', 'persen');
+        var isi2 = '';
+
+        $.each(data, function(index, el){
+
+            if (el.persen < 60) {
+                var isi2 = '<tr ><td align="left">' + el.nama + '</td><td align="right"> ' + el.target + ' </td><td align="right"> ' + el.real + ' </td><td align="right"><font color="red"><b> ' + el.persen + '%</b></font></td></tr>';
+              } else if (el.persen > 300) {
+                var isi2 = '<tr><td align="left">' + el.nama + '</td><td align="right"> ' + el.target + ' </td><td align="right"> ' + el.real + ' </td><td align="right"><font color="red"><b> 0.00%</b></font></td></tr>';
+              } else {
+                var isi2 = '<tr><td align="left">' + el.nama + '</td><td align="right"> ' + el.target + ' </td><td align="right"> ' + el.real + ' </td><td align="right"><font color="green"><b>' + el.persen + '%</b></font></td></tr>';
+              }
+
+          $('#isidetail').append(isi2);
+
+        });
+
+
+    }
+  }
+
+
+})
+
+                                </script>
+                            

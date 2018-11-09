@@ -1,0 +1,4190 @@
+[
+  {
+    "file": "00.html",
+    "hash": "70496012851153f1d5560c1d368c8b64"
+  },
+  {
+    "file": "ajax-loader.gif",
+    "hash": "c5cd7f5300576ab4c88202b42f6ded62"
+  },
+  {
+    "file": "all_kiln3.js",
+    "hash": "cef91c904e289f6984714633cd4afe99"
+  },
+  {
+    "file": "all_kiln4.js",
+    "hash": "dbd4e6df33d31474d3a75033164e1e81"
+  },
+  {
+    "file": "analisa_pediktif.html",
+    "hash": "a76d93a6152e22c2bbfaac5390263ddc"
+  },
+  {
+    "file": "analisis_prediktif.html",
+    "hash": "864957b9c3222cd2e823133d5f3a3aef"
+  },
+  {
+    "file": "analys_3.html",
+    "hash": "1ad7a6d851eb05072b264c0607038cd5"
+  },
+  {
+    "file": "analys_4.html",
+    "hash": "c9f9a641b13b67f058f7c45d2cdb1139"
+  },
+  {
+    "file": "anima.css",
+    "hash": "a154b03fac2d7d6a83938f1c5afeee0f"
+  },
+  {
+    "file": "backlog_detail_lama.html",
+    "hash": "fbe184d80e56f3268163786743ceea2d"
+  },
+  {
+    "file": "backlog_detail.html",
+    "hash": "38c48384945181e86c038484d251746e"
+  },
+  {
+    "file": "backlog_gauge.html",
+    "hash": "021b9bc0f09b172c72aa2562ee6b3163"
+  },
+  {
+    "file": "backlog_speedo.html",
+    "hash": "a621f682d535cb76701c77bda85ca396"
+  },
+  {
+    "file": "backlog.html",
+    "hash": "127a57e624375fb78ec76b0a852f6781"
+  },
+  {
+    "file": "bahan_2600.html",
+    "hash": "bdb58de613f73e6f91be1e1e1a4f6af1"
+  },
+  {
+    "file": "bahan_2700.html",
+    "hash": "d33b60715ca30c3a477e2771a7b97c3b"
+  },
+  {
+    "file": "bahan_afr_st.html",
+    "hash": "d3cb5b8772656952ac2079f66a501f1c"
+  },
+  {
+    "file": "bahan_afr.html",
+    "hash": "d6a41e651e1148811460652964d54be4"
+  },
+  {
+    "file": "bahan_ash.html",
+    "hash": "674daf9e761406fbc5a29b500a02a76c"
+  },
+  {
+    "file": "bahan_bbara_sp.html",
+    "hash": "ec46a5a8d8d059706f43a90e83fcf4eb"
+  },
+  {
+    "file": "bahan_bbara_st.html",
+    "hash": "ec46a5a8d8d059706f43a90e83fcf4eb"
+  },
+  {
+    "file": "bahan_bbara.html",
+    "hash": "8298156fcf842b8ba4f4ff20fb98d61d"
+  },
+  {
+    "file": "bahan_bco.html",
+    "hash": "439d1662ed1aab6cdd029e83ad2e16a1"
+  },
+  {
+    "file": "bahan_clay.html",
+    "hash": "2e11b0e1485568e54bb50cf2d5c17052"
+  },
+  {
+    "file": "bahan_copper_sp.html",
+    "hash": "295c40a7339dee0e7650466fa42a39d8"
+  },
+  {
+    "file": "bahan_copper_st.html",
+    "hash": "5ca0ec457c311308a5db3744ad67d0b1"
+  },
+  {
+    "file": "bahan_copper.html",
+    "hash": "81cc387b6f1c19d8945b50fdebd194f9"
+  },
+  {
+    "file": "bahan_gpg_st.html",
+    "hash": "9b8fbbd30e7841c6c364397f25fbb00a"
+  },
+  {
+    "file": "bahan_gpg.html",
+    "hash": "14423d9ddb2bc0bb1a00a36ce36f59bd"
+  },
+  {
+    "file": "bahan_gtj_sp.html",
+    "hash": "825a3bd90f27abd93dc66bd2df3f16b0"
+  },
+  {
+    "file": "bahan_gtj_st.html",
+    "hash": "825a3bd90f27abd93dc66bd2df3f16b0"
+  },
+  {
+    "file": "bahan_gtj.html",
+    "hash": "0df3aecaa40b4461508a5438173d31b9"
+  },
+  {
+    "file": "bahan_gyp.html",
+    "hash": "a8ec2063de6effa771c683491976f4b0"
+  },
+  {
+    "file": "bahan_ido_sp.html",
+    "hash": "5d7f0ba7376f5f0ce7b159bd61e01c6b"
+  },
+  {
+    "file": "bahan_ido_st.html",
+    "hash": "e48490640dfc8def13ffa1e7549643c8"
+  },
+  {
+    "file": "bahan_ido.html",
+    "hash": "d0cb1d5784875f795e3f80cb02530ad4"
+  },
+  {
+    "file": "bahan_kapur_st.html",
+    "hash": "698b1c4a62f5148866d70d1733bbab82"
+  },
+  {
+    "file": "bahan_kapur.html",
+    "hash": "698b1c4a62f5148866d70d1733bbab82"
+  },
+  {
+    "file": "bahan_klin_sp.html",
+    "hash": "cd192a53cdd6c3d2f994fdcd1b38ccd2"
+  },
+  {
+    "file": "bahan_klin_st.html",
+    "hash": "698b1c4a62f5148866d70d1733bbab82"
+  },
+  {
+    "file": "bahan_klin.html",
+    "hash": "698b1c4a62f5148866d70d1733bbab82"
+  },
+  {
+    "file": "bahan_poz.html",
+    "hash": "26d439763b9a864a165573c2c5b3708f"
+  },
+  {
+    "file": "bahan_silika_sp.html",
+    "hash": "33d81898c85851c0eef3d089b94f5619"
+  },
+  {
+    "file": "bahan_silika_st.html",
+    "hash": "d31d139bd5ccd0b809ad4b9a77c969bc"
+  },
+  {
+    "file": "bahan_silika.html",
+    "hash": "d1ee092d67f8c736d963450585ab6503"
+  },
+  {
+    "file": "bahan_solar.html",
+    "hash": "873d6089ac7b1d735a6e2320cd789e86"
+  },
+  {
+    "file": "bahan_tras_st.html",
+    "hash": "dcf9d13ffa46fb3391c36df47b748851"
+  },
+  {
+    "file": "bahan_tras.html",
+    "hash": "d8fe6495d3242389489df1e7fd20cf45"
+  },
+  {
+    "file": "bahan_trass_st.html",
+    "hash": "5a8eb87d6ffe3fdd44f08548d5afb72c"
+  },
+  {
+    "file": "balance_s_dt_bak.html",
+    "hash": "def73765007e80bc35be71a9c43715ee"
+  },
+  {
+    "file": "balance_s_dt.html",
+    "hash": "d09e219470935a1359330d6b82ef0d93"
+  },
+  {
+    "file": "balance_s_dtmv.html",
+    "hash": "963bc17f1802477f43f9a493da7d2976"
+  },
+  {
+    "file": "balance_s.html",
+    "hash": "a1e3c363115242ff4babd94330909dff"
+  },
+  {
+    "file": "balance_s2.html",
+    "hash": "53a01e64e54630e172730f1e47026be3"
+  },
+  {
+    "file": "balance_semen.html",
+    "hash": "b1bc74a52fee1f6f9986fbef17071fea"
+  },
+  {
+    "file": "balance_semenb.html",
+    "hash": "831c9b4641601bcbd352d2c986f07bea"
+  },
+  {
+    "file": "balance_semenmv.html",
+    "hash": "20c51852edbc9efe51490536c61fcf6c"
+  },
+  {
+    "file": "balance_sg.html",
+    "hash": "c93f9014b8b60fa7da8cb54ce11352db"
+  },
+  {
+    "file": "balance_sheet.html",
+    "hash": "2f171955bf89c84c3461587e2f17debd"
+  },
+  {
+    "file": "balance_sheet.js",
+    "hash": "fde3b60a73b796eb6acc8d8b32486111"
+  },
+  {
+    "file": "balance_sheet2.html",
+    "hash": "98be064c5353089414ac72cd2dac1e19"
+  },
+  {
+    "file": "balance_sp.html",
+    "hash": "fc6c23e7d6a72cd717ec82a39036037d"
+  },
+  {
+    "file": "balance_st.html",
+    "hash": "174d4faaee24d1a2f6b315ad15641397"
+  },
+  {
+    "file": "balance_tl.html",
+    "hash": "fe6cbbb9da4c71075c0db7eed990f6e8"
+  },
+  {
+    "file": "capex_dash.html",
+    "hash": "de3531fab6e8dfca444a9d0fef60d236"
+  },
+  {
+    "file": "capex_eval.html",
+    "hash": "8ae02a440ac0085fa46cc1e9d46139cd"
+  },
+  {
+    "file": "capex_sample.html",
+    "hash": "a4cab4a22d4705efe2713866b0e9d6c1"
+  },
+  {
+    "file": "cash_detail.html",
+    "hash": "d9fabe99ce6b096aa5430f9ea5f97caf"
+  },
+  {
+    "file": "cash_flow_cash.html",
+    "hash": "785722221b6d48e5a06a294f98c39e86"
+  },
+  {
+    "file": "cash_flow_fin.html",
+    "hash": "0f9b18ecc344449448f2f815607b05ab"
+  },
+  {
+    "file": "cash_flow_inf.html",
+    "hash": "943e0b27eccf7504fae900e28726933a"
+  },
+  {
+    "file": "cash_flow_opr.html",
+    "hash": "8bb85c16a3e5278665eb09e682630a04"
+  },
+  {
+    "file": "cash_flow_re1.html",
+    "hash": "a6f7e693bd4bad3e783eac3efeb4e24a"
+  },
+  {
+    "file": "cash_flow.html",
+    "hash": "37e45e74787f4f273f59a84418ab06f7"
+  },
+  {
+    "file": "chart_balance_sheet.html",
+    "hash": "8655bdf2029d7356b0e8e6dcb1c130c3"
+  },
+  {
+    "file": "coal_sg.html",
+    "hash": "c1012d332bfa2cf2aecbc94cdef389e4"
+  },
+  {
+    "file": "competitor_facility.html",
+    "hash": "0d5ab4489deb53ef07ffa42b6471b180"
+  },
+  {
+    "file": "competitor.html",
+    "hash": "cbea7b81c03c8e2f160f1339a0b6ab29"
+  },
+  {
+    "file": "cordova.js",
+    "hash": "cb0e42e1c12d62c8908ef56f4f129771"
+  },
+  {
+    "file": "cost_of_project.html",
+    "hash": "79dde48f17de2c540d0f65be62adacc1"
+  },
+  {
+    "file": "css/--style.css",
+    "hash": "f613997982ac5164e51fb421439ea534"
+  },
+  {
+    "file": "css/._.DS_Store",
+    "hash": "241ea797774c86197000ffd2fe2ed491"
+  },
+  {
+    "file": "css/._animate.css",
+    "hash": "0ce2037b1aa42598aa4a598a77998d62"
+  },
+  {
+    "file": "css/._slick.css",
+    "hash": "32d1f86869d9c68d3557713715043bc3"
+  },
+  {
+    "file": "css/animate.css",
+    "hash": "0413ae3075d89298c654a7f5e4974313"
+  },
+  {
+    "file": "css/archon.css",
+    "hash": "790694c55a694f41a1dd41f6d9359101"
+  },
+  {
+    "file": "css/bootstrap-datetimepicker.css",
+    "hash": "87c93bbed5d1f0515741763d8aa2c85e"
+  },
+  {
+    "file": "css/bootstrap-editable.css",
+    "hash": "05154572e57ff85968a21c01ba6d563a"
+  },
+  {
+    "file": "css/bootstrap-markdown.min.css",
+    "hash": "fe0046a6ed95fa1d5e1327f95cbbd23f"
+  },
+  {
+    "file": "css/bootstrap-progressbar.css",
+    "hash": "e2a39eb225f0cc647fc8920fbe9c7468"
+  },
+  {
+    "file": "css/bootstrap.css",
+    "hash": "2a31dca112f26923b51676cb764c58d5"
+  },
+  {
+    "file": "css/bootstrap.min.css",
+    "hash": "ec3bb52a00e176a7181d454dffaea219"
+  },
+  {
+    "file": "css/font-awesome.css",
+    "hash": "b652e3b759188ceaf79182f2fe72ea64"
+  },
+  {
+    "file": "css/font-awesome.min.css",
+    "hash": "4083f5d376eb849a458cc790b53ba080"
+  },
+  {
+    "file": "css/hover-min.css",
+    "hash": "9cce2a70379bf0ca01108705d9b41fa6"
+  },
+  {
+    "file": "css/hover.css",
+    "hash": "e88fc4a01ae56b25f591dd59ce740a41"
+  },
+  {
+    "file": "css/hover.css.map",
+    "hash": "edf25c384a467724836cb8cd3ff4f82d"
+  },
+  {
+    "file": "css/index.css",
+    "hash": "de00ca31e718f926ae6ae841e18364ea"
+  },
+  {
+    "file": "css/jplayer.css",
+    "hash": "4f871ccfdd18b40b5208334f329bb5e1"
+  },
+  {
+    "file": "css/jquery-ui-1.8.20.custom.css",
+    "hash": "a0ef1119ee23ca520b48be319c9ab6b6"
+  },
+  {
+    "file": "css/jquery.mobile-1.4.5.min.css",
+    "hash": "57c599f161319291020c72073a2e192f"
+  },
+  {
+    "file": "css/jslider.css",
+    "hash": "9681b3b67eec35719b2c8967e7f15cbd"
+  },
+  {
+    "file": "css/material.indigo-pink.min.css",
+    "hash": "0dda0d5f290f66fa4979c3d0eb01e6c4"
+  },
+  {
+    "file": "css/myFonts.css",
+    "hash": "69688f13cf9b483a4224d66e410a403c"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_1.woff2",
+    "hash": "f354cfbc532dd24ca051fcf389185667"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_10.woff2",
+    "hash": "f736e54388bfaad417df1b30814b6aae"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_11.woff2",
+    "hash": "c09ea514a21d4a93bc0c4a96ed503a59"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_12.woff2",
+    "hash": "5c02962e1f9a25f98cc3cab0dc1ee177"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_13.woff2",
+    "hash": "921dd520c3fba714997c8b941d51dbc5"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_14.woff2",
+    "hash": "e64cab167bbdc04807429d10873901a0"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_15.woff2",
+    "hash": "aff3c03f02a0241e48428d4667537ee5"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_16.woff2",
+    "hash": "8f9f0586975cc324d50ef38724af51b8"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_17.woff2",
+    "hash": "939e98a08836a97a66270b57e27bd8fc"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_18.woff2",
+    "hash": "685bd861e8c8faa3050f8e4dc080d329"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_19.woff2",
+    "hash": "ebdeb66f176f48e99a3a02a7790f6cdf"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_2.woff2",
+    "hash": "3270585326b9dc5f360595e1a4653336"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_20.woff2",
+    "hash": "f1517b1978d9eade19e14b6af80399d9"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_21.woff2",
+    "hash": "fa907b3395c41e35cdb25dca66a58ca9"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_22.woff2",
+    "hash": "6e9986b2d3b220cfd9c074cbbc0f4456"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_23.woff2",
+    "hash": "2713d6aa913cecce9149a4c1580a42ff"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_24.woff2",
+    "hash": "dcd8a14a917b580b60b6a116b96b104b"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_25.woff2",
+    "hash": "d1d4a00df14754cc12069d652acb0a76"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_26.woff2",
+    "hash": "ccdac80865a40bc2b1512f025963ac4c"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_27.woff2",
+    "hash": "9f520b62c939c8fdc27310af6c28d71b"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_28.woff2",
+    "hash": "73437ad44345f889f45e27c428d618d8"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_3.woff2",
+    "hash": "eb2b2eb6887598824bdef84d1baddc33"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_4.woff2",
+    "hash": "5fab53d753cb997a8f577b51dd042b4c"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_5.woff2",
+    "hash": "b507b443d29d182b7d0c2f3f055f54ef"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_6.woff2",
+    "hash": "b98a80a0d370949faa44378c06779d1f"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_7.woff2",
+    "hash": "bc5457c1089cc65463eb981d4cdb7045"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_8.woff2",
+    "hash": "4b60e71334d025be8bd843acc59753e1"
+  },
+  {
+    "file": "css/myFonts/Open_Sans_9.woff2",
+    "hash": "85759f54539623a05bf2e5a3f6799daf"
+  },
+  {
+    "file": "css/myFonts/OpenSans_1.woff2",
+    "hash": "4b60e71334d025be8bd843acc59753e1"
+  },
+  {
+    "file": "css/myFonts/OpenSans_2.woff2",
+    "hash": "85759f54539623a05bf2e5a3f6799daf"
+  },
+  {
+    "file": "css/myFonts/OpenSans_3.woff2",
+    "hash": "f736e54388bfaad417df1b30814b6aae"
+  },
+  {
+    "file": "css/myFonts/OpenSans_4.woff2",
+    "hash": "c09ea514a21d4a93bc0c4a96ed503a59"
+  },
+  {
+    "file": "css/myFonts/OpenSans_5.woff2",
+    "hash": "5c02962e1f9a25f98cc3cab0dc1ee177"
+  },
+  {
+    "file": "css/myFonts/OpenSans_6.woff2",
+    "hash": "921dd520c3fba714997c8b941d51dbc5"
+  },
+  {
+    "file": "css/myFonts/OpenSans_7.woff2",
+    "hash": "e64cab167bbdc04807429d10873901a0"
+  },
+  {
+    "file": "css/myFonts/Orbitron.woff2",
+    "hash": "b789ab5e0e06d80ea765b90b8ebdf465"
+  },
+  {
+    "file": "css/myFonts/panton-regular-webfont.woff",
+    "hash": "28815e1c032c874fcee03682cd2ef433"
+  },
+  {
+    "file": "css/myFonts/panton-regular-webfont.woff2",
+    "hash": "2d80781ded8d9af3d8f8fbee552b0ed5"
+  },
+  {
+    "file": "css/production.css",
+    "hash": "1933e4001092a0fa24d922d580583a83"
+  },
+  {
+    "file": "css/sidenav.css",
+    "hash": "5e77cd04e31b26f2275e6e303c16a562"
+  },
+  {
+    "file": "css/slick.css",
+    "hash": "88b2daf9da57af3ab03fea77577a2fe5"
+  },
+  {
+    "file": "css/style.css",
+    "hash": "992f2619967180d5bbdec569a79f363b"
+  },
+  {
+    "file": "css/tab_style.css",
+    "hash": "6e8f20d43e352728ea6d6a4c17aee017"
+  },
+  {
+    "file": "css/versi.css",
+    "hash": "5f1d2033958fa5edf0263108345f8dab"
+  },
+  {
+    "file": "css/video-js.css",
+    "hash": "9d843e058eb000d20b3037209e89226f"
+  },
+  {
+    "file": "css/waitMe.min.css",
+    "hash": "67dd5ff795289c996c499be6ca91491a"
+  },
+  {
+    "file": "dash_pl_before.html",
+    "hash": "5397fd17dd408dd8a0de52c524570ea9"
+  },
+  {
+    "file": "dash_pl_detail.html",
+    "hash": "9db74c4a70c496eafc8f210fd2638cfb"
+  },
+  {
+    "file": "dash_pl_ori.html",
+    "hash": "16ec9a7562524d65b8be604ca451343b"
+  },
+  {
+    "file": "dash_pl.html",
+    "hash": "c1db6e5a4a89400bb4ab59fe305fbc28"
+  },
+  {
+    "file": "exchange_rate.html",
+    "hash": "6a78d1e8339ed73f0ff6a76c29a9ff99"
+  },
+  {
+    "file": "exp.png",
+    "hash": "9f71b3b5606ab55c8dcb23901c209401"
+  },
+  {
+    "file": "fan_kiln_sg.html",
+    "hash": "2c124a6a3e2e15a4a2717149444160e0"
+  },
+  {
+    "file": "fin_cost_cogs_ton.html",
+    "hash": "3ab30b58bfa9179cad0bb6df7921c011"
+  },
+  {
+    "file": "fin_cost_cogs.html",
+    "hash": "3dbb300e38f0f987aa20a023af03b988"
+  },
+  {
+    "file": "fin_cost_dt1_ton.html",
+    "hash": "b605cd9a6616f157d549af6524de5323"
+  },
+  {
+    "file": "fin_cost_dt1.html",
+    "hash": "924073d1437df00c9c67e3009e0db408"
+  },
+  {
+    "file": "fin_cost_gnrl_ton.html",
+    "hash": "0267d576b83d8ca7dd83d20b28025e8e"
+  },
+  {
+    "file": "fin_cost_gnrl.html",
+    "hash": "54c21fe21c93824229697c9ca20f2caf"
+  },
+  {
+    "file": "fin_cost_sales_ton.html",
+    "hash": "7aa2d740b592660f027321d0fd88ba75"
+  },
+  {
+    "file": "fin_cost_sales.html",
+    "hash": "1585de2f0c6e6ac305bd03a81fd179c8"
+  },
+  {
+    "file": "fin_cost_str_ori.html",
+    "hash": "c57f32639421b35ecbd2a5592e5a41c2"
+  },
+  {
+    "file": "fin_cost_str_pc.html",
+    "hash": "bf81314b9d448e5d8a791e5dc98688cf"
+  },
+  {
+    "file": "fin_cost_str_sg_ori.html",
+    "hash": "77c245d722c5a6efebdca10b31109ab6"
+  },
+  {
+    "file": "fin_cost_str_sg.html",
+    "hash": "184b7acc3d1ce786acb5ecb1df4ebe42"
+  },
+  {
+    "file": "fin_cost_str_sp_old.html",
+    "hash": "a9ee0d7a60410981a002522740a5ee69"
+  },
+  {
+    "file": "fin_cost_str_sp_ori.html",
+    "hash": "845093e521de9734d4aaf214278730d7"
+  },
+  {
+    "file": "fin_cost_str_sp.html",
+    "hash": "20c58056dbbf52e517e49ea8d07bfee7"
+  },
+  {
+    "file": "fin_cost_str_st_ori.html",
+    "hash": "5278b1c30645e4057470dca85ef98890"
+  },
+  {
+    "file": "fin_cost_str_st.html",
+    "hash": "f9aff6f40c4e66a6a53bd9182a5c9d94"
+  },
+  {
+    "file": "fin_cost_str_tl.html",
+    "hash": "1dfee4384cf0113fe4d461b4fff9262c"
+  },
+  {
+    "file": "fin_cost_str.html",
+    "hash": "a7985561134c4da1360756b832a4c9bd"
+  },
+  {
+    "file": "fin_cost_structure_detail.html",
+    "hash": "2a6efd86dd5754aa11f474e9459a89c4"
+  },
+  {
+    "file": "fin_cost_structure.html",
+    "hash": "f31798a0f08cb84d0357246c1a4cfa5b"
+  },
+  {
+    "file": "fin_rec_mng_sg.html",
+    "hash": "f45bde1639827f74cf1d03216019c81f"
+  },
+  {
+    "file": "fin_rec_mng_sp.html",
+    "hash": "c345985f41238a7a859981eb59d35b31"
+  },
+  {
+    "file": "fin_rec_mng_st.html",
+    "hash": "4d86313ee2aded0ad5eeffc122360999"
+  },
+  {
+    "file": "fin_rec_mng_tl.html",
+    "hash": "053912d38ad27d3b02fcc6663a8b1e8b"
+  },
+  {
+    "file": "fin_rec_mng.html",
+    "hash": "44d63e1abb4f93530eba87158ace24cc"
+  },
+  {
+    "file": "finance_dashboard_sg.html",
+    "hash": "731432a69c0177845fe8b89679ffbb1d"
+  },
+  {
+    "file": "finance_dashboard_sp.html",
+    "hash": "e02c324422c9f0c65630b9e8fc15f08d"
+  },
+  {
+    "file": "finance_dashboard_st.html",
+    "hash": "b6b663a8b6ee38d2db317ac037548db8"
+  },
+  {
+    "file": "finance_dashboard_tl.html",
+    "hash": "08b05ad1c68acba92d6c2724ac6b1b57"
+  },
+  {
+    "file": "finance_dashboard.html",
+    "hash": "381410cd4431a02cd69846b162523441"
+  },
+  {
+    "file": "finance_data.js",
+    "hash": "7b90781fe148c6f8cbae685a92524a35"
+  },
+  {
+    "file": "finance_in_detail.html",
+    "hash": "d85df846134765ba05d74313c3130425"
+  },
+  {
+    "file": "finance_out_detail.html",
+    "hash": "dde3bc8c916b81763f3ff30efc98316c"
+  },
+  {
+    "file": "finance_perform_dash.html",
+    "hash": "51e1e0080bc2445d8a3ee07db5b4f44c"
+  },
+  {
+    "file": "finance_performance_1_lama.html",
+    "hash": "c2b0422e7230bb9ee80ada99f7e922d8"
+  },
+  {
+    "file": "finance_performance_1_sg_.html",
+    "hash": "0e326eb48e7e9538d743b5c921faa636"
+  },
+  {
+    "file": "finance_performance_1_sg.html",
+    "hash": "5b8a0d2215cd24483136e550a6274012"
+  },
+  {
+    "file": "finance_performance_1_sp.html",
+    "hash": "ed6c33f36ac2668028937f2307fb29f0"
+  },
+  {
+    "file": "finance_performance_1_st.html",
+    "hash": "9815e83018504b7a912eae229c17fa39"
+  },
+  {
+    "file": "finance_performance_1_tl.html",
+    "hash": "a36b973d816fda8365337cfcdd24b81e"
+  },
+  {
+    "file": "finance_performance_1.html",
+    "hash": "86ceb2ed44b41238a79a16927dcfea31"
+  },
+  {
+    "file": "finance_performance_123.html",
+    "hash": "0984ed0adb8d94c7403cf86832088b37"
+  },
+  {
+    "file": "finance_performance_2-build.html",
+    "hash": "a46da55299b82bde52c38c6940cb3962"
+  },
+  {
+    "file": "finance_performance_23.html",
+    "hash": "4ad689c3951bcfedcde3bf3980f96dbc"
+  },
+  {
+    "file": "finance_performance_234_.html",
+    "hash": "918cd96304a48c812a50a69ce6b195fd"
+  },
+  {
+    "file": "finance_performance_234_old.html",
+    "hash": "12d93338c643aa053f627db8a315defc"
+  },
+  {
+    "file": "finance_performance_234.html",
+    "hash": "a0f2b9b7276ad0a3a37ac5c394abf19c"
+  },
+  {
+    "file": "finance_performance_234b.html",
+    "hash": "6e50455f271f2839d59b452dad85df54"
+  },
+  {
+    "file": "finance_performance_234xx.html",
+    "hash": "3e0de295a6df7d87686763886bc6579d"
+  },
+  {
+    "file": "finance_performance_4.html",
+    "hash": "9ddd89b53c205858890eb544e56f60e3"
+  },
+  {
+    "file": "finance_performance_5.html",
+    "hash": "d111241888edde27ca4fb1b331ee35b6"
+  },
+  {
+    "file": "finance_performance_5.js",
+    "hash": "60ababd3cde862be063f18ff5d1a4718"
+  },
+  {
+    "file": "finance_performance_6_.html",
+    "hash": "7657e24d8186d7e8fd1750db9c104fef"
+  },
+  {
+    "file": "finance_performance_6.html",
+    "hash": "7c4d329f3aa1ae43549ee1da26923553"
+  },
+  {
+    "file": "finance_performance_6.js",
+    "hash": "b45d09760bf6ea92b1b0303fb1888d4c"
+  },
+  {
+    "file": "finance_performance_ori.html",
+    "hash": "3e22197b2a38655c55c143ddfa0f9919"
+  },
+  {
+    "file": "finance_performance_sg.html",
+    "hash": "113685b5554c86e95393a87fcdc66ea9"
+  },
+  {
+    "file": "finance_performance_sp.html",
+    "hash": "ce562de2c7ca31fc2dfa68b731382396"
+  },
+  {
+    "file": "finance_performance_st.html",
+    "hash": "6cc235d79f8892f5f882e7dfde71445b"
+  },
+  {
+    "file": "finance_performance_tl.html",
+    "hash": "c4090c83e1b28322d928ce09cfaaef5f"
+  },
+  {
+    "file": "finance_performance_trends.html",
+    "hash": "17c26a57cfa516469b1f2f76647cd38b"
+  },
+  {
+    "file": "finance_performance_trial.html",
+    "hash": "268923e7a5cda3eccdc88934d1038358"
+  },
+  {
+    "file": "finance_performance.html",
+    "hash": "30e736324519d941297c640924fdfa1a"
+  },
+  {
+    "file": "finance_si.html",
+    "hash": "ac8267c71536c540b593459bda97d521"
+  },
+  {
+    "file": "finance_sp.html",
+    "hash": "1bc1ed91356bbd0adeaa0a8d1f61c21e"
+  },
+  {
+    "file": "finance_st.html",
+    "hash": "d495718eb351bb60685af062be41d006"
+  },
+  {
+    "file": "finance_tl.html",
+    "hash": "23d82052c90f56aa2ec43aad60b17b88"
+  },
+  {
+    "file": "finance.html",
+    "hash": "93a4a1e12333e53bfb1268a88a9d0625"
+  },
+  {
+    "file": "finance3.html",
+    "hash": "a6575db0cc07ea5e25a1b5593441f199"
+  },
+  {
+    "file": "fontA/css/font-awesome.css",
+    "hash": "c495654869785bc3df60216616814ad1"
+  },
+  {
+    "file": "fontA/css/font-awesome.min.css",
+    "hash": "269550530cc127b6aa5a35925a7de6ce"
+  },
+  {
+    "file": "fontA/fonts/fontawesome-webfont.eot",
+    "hash": "674f50d287a8c48dc19ba404d20fe713"
+  },
+  {
+    "file": "fontA/fonts/fontawesome-webfont.svg",
+    "hash": "912ec66d7572ff821749319396470bde"
+  },
+  {
+    "file": "fontA/fonts/fontawesome-webfont.ttf",
+    "hash": "b06871f281fee6b241d60582ae9369b9"
+  },
+  {
+    "file": "fontA/fonts/fontawesome-webfont.woff",
+    "hash": "fee66e712a8a08eef5805a46892932ad"
+  },
+  {
+    "file": "fontA/fonts/fontawesome-webfont.woff2",
+    "hash": "af7ae505a9eed503f8b8e6982036873e"
+  },
+  {
+    "file": "fontA/fonts/FontAwesome.otf",
+    "hash": "0d2717cd5d853e5c765ca032dfd41a4d"
+  },
+  {
+    "file": "fontA/less/animated.less",
+    "hash": "08baef05e05301cabc91599a54921081"
+  },
+  {
+    "file": "fontA/less/bordered-pulled.less",
+    "hash": "898f90e40876883214bbd121b0c20e9f"
+  },
+  {
+    "file": "fontA/less/core.less",
+    "hash": "fb4efe4ae63737706875bbbfc7b7e9af"
+  },
+  {
+    "file": "fontA/less/fixed-width.less",
+    "hash": "5e07ec001f8d21bd279c12ee542813f7"
+  },
+  {
+    "file": "fontA/less/font-awesome.less",
+    "hash": "15cb7faa02437c2f9719351c157fe7e7"
+  },
+  {
+    "file": "fontA/less/icons.less",
+    "hash": "bf95b901c36b646ff457379bdcda94b7"
+  },
+  {
+    "file": "fontA/less/larger.less",
+    "hash": "8cb65280c0f889daf72626c21a7c8628"
+  },
+  {
+    "file": "fontA/less/list.less",
+    "hash": "975571323cf880a4a30601998236b027"
+  },
+  {
+    "file": "fontA/less/mixins.less",
+    "hash": "fbb1f2f1ab96ba020c7f14208aac72b8"
+  },
+  {
+    "file": "fontA/less/path.less",
+    "hash": "a8c41460c42a4fe9e98550f00c8b3f19"
+  },
+  {
+    "file": "fontA/less/rotated-flipped.less",
+    "hash": "a8476cdc50c264abd11ff59d6a9dd025"
+  },
+  {
+    "file": "fontA/less/screen-reader.less",
+    "hash": "0f881617264587bef0df6ce92253ecea"
+  },
+  {
+    "file": "fontA/less/stacked.less",
+    "hash": "518e2b2d263982d2caa1e6514b4b4eac"
+  },
+  {
+    "file": "fontA/less/variables.less",
+    "hash": "be3f6eed38aa909483e1bd9ee0876e80"
+  },
+  {
+    "file": "fontA/scss/_animated.scss",
+    "hash": "39ff4f359a7b81d6585075715f41e5dc"
+  },
+  {
+    "file": "fontA/scss/_bordered-pulled.scss",
+    "hash": "4cad0df17bf40327feae33fa9a6c6ba2"
+  },
+  {
+    "file": "fontA/scss/_core.scss",
+    "hash": "ef059a98cf9de6ca5b77ee6850771cf0"
+  },
+  {
+    "file": "fontA/scss/_fixed-width.scss",
+    "hash": "9277ab6964a434d499873687b00be906"
+  },
+  {
+    "file": "fontA/scss/_icons.scss",
+    "hash": "de9fa842ad0b619a95ac4f42ac6ba930"
+  },
+  {
+    "file": "fontA/scss/_larger.scss",
+    "hash": "e95931566f6fc6ad5685c4fa9802e206"
+  },
+  {
+    "file": "fontA/scss/_list.scss",
+    "hash": "7107e80b053928271d5fcf422dc29490"
+  },
+  {
+    "file": "fontA/scss/_mixins.scss",
+    "hash": "aa2b8f32b403733713d8885f14ab86cc"
+  },
+  {
+    "file": "fontA/scss/_path.scss",
+    "hash": "ab5a9e8388563e097b5ce835601f01d2"
+  },
+  {
+    "file": "fontA/scss/_rotated-flipped.scss",
+    "hash": "9f5d4bc6fadea89328d2aac26574a9d8"
+  },
+  {
+    "file": "fontA/scss/_screen-reader.scss",
+    "hash": "8907bd7dbf4799e8120bda5568d76fea"
+  },
+  {
+    "file": "fontA/scss/_stacked.scss",
+    "hash": "5594237226aedfbca2fa1c7f4604c214"
+  },
+  {
+    "file": "fontA/scss/_variables.scss",
+    "hash": "dc5261f37a8a01feeb52a746d16c0459"
+  },
+  {
+    "file": "fontA/scss/font-awesome.scss",
+    "hash": "8c015559216d1654630a839b61c6b83d"
+  },
+  {
+    "file": "footerdis.html",
+    "hash": "453d11af091eeb67f3f8fc626fd3c816"
+  },
+  {
+    "file": "fp_ebi.html",
+    "hash": "bf0953db3a34e7adcc52efb8d954bcf4"
+  },
+  {
+    "file": "graph_cost.html",
+    "hash": "1a26b650ac78c1033f1aa88903c19a44"
+  },
+  {
+    "file": "graph_price.html",
+    "hash": "10b83e069584ca0922a5924cabb2a72c"
+  },
+  {
+    "file": "graph_vol.html",
+    "hash": "65ce0991eccf1d579d7230b46011d404"
+  },
+  {
+    "file": "gresik_detil_data.js",
+    "hash": "1218120f9e611e4c4aa3b8deb8c0b70f"
+  },
+  {
+    "file": "h1_detail.html",
+    "hash": "6c4bb7cb30a76b8a9346db1cae1fb20d"
+  },
+  {
+    "file": "h2_detail.html",
+    "hash": "9fc8275b776b0d512c70d28932c2647f"
+  },
+  {
+    "file": "h3_detail.html",
+    "hash": "0f800f1f027e07b53211447a8a1d2706"
+  },
+  {
+    "file": "header_bs.png",
+    "hash": "6b0966cb96ac1263eef8e41acd1034ba"
+  },
+  {
+    "file": "img/._.DS_Store",
+    "hash": "241ea797774c86197000ffd2fe2ed491"
+  },
+  {
+    "file": "img/._bgHome.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._bgLink1.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._bgLink2.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._bgLink3.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._bgLink4.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._bgLink5.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._bgMenu.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._bgSlideHome.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._bgSlideHome2.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._btnEm.jpg",
+    "hash": "31868c07ff50f4d0763e4d584cfbedd8"
+  },
+  {
+    "file": "img/._btnEm1.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._btnPo.jpg",
+    "hash": "31868c07ff50f4d0763e4d584cfbedd8"
+  },
+  {
+    "file": "img/._btnPo1.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._dd.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._ic1.png",
+    "hash": "cf80102a79f485a2ba60048af9ff8ca3"
+  },
+  {
+    "file": "img/._ic2.png",
+    "hash": "3ab10502a167f0657db8834bd2b6720c"
+  },
+  {
+    "file": "img/._ic3.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icKota1.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icKota2.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icKota3.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icKota4.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icStatus.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icStatusHome.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icStatusOff.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icStatusOn.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._icWatch.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._linkhome1.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._linkhome2.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._linkhome3.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._linkhome4.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._linkhome5.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._logo.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._logoAll.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._logoPis.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/._thumb1.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._thumb2.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._thumb3.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/._thumb4.jpg",
+    "hash": "35ab7300e7db72c24abdf12d111ef0b8"
+  },
+  {
+    "file": "img/2.png",
+    "hash": "5d64dc1eab3c876a45d3f1dc96f366ba"
+  },
+  {
+    "file": "img/ar_back.png",
+    "hash": "d44660d8c6b2a29708b86cbf6beef613"
+  },
+  {
+    "file": "img/arrow_port.png",
+    "hash": "323c56176cf2cc401404a8345f9de07d"
+  },
+  {
+    "file": "img/ave.png",
+    "hash": "a7f529d692548f589c01dce7f2d6635b"
+  },
+  {
+    "file": "img/back.png",
+    "hash": "3e0ef2e4d974e372754f0412d97cd8f1"
+  },
+  {
+    "file": "img/backlog-ico.png",
+    "hash": "9ade5083541c18d94a9f17c2444def83"
+  },
+  {
+    "file": "img/banner-logo-bawah (1).jpg",
+    "hash": "2ee1afee6c9ff9ecf3272421fbed26f2"
+  },
+  {
+    "file": "img/banner-logo-bawah (1).png",
+    "hash": "a72961a1678d332def35bc4b537b6354"
+  },
+  {
+    "file": "img/BG_OPCO.png",
+    "hash": "044ce71c7dac19aa1abeb0fbcea0caf4"
+  },
+  {
+    "file": "img/bg-green.jpg",
+    "hash": "15d89cf3baf058660ff5b3fb1ab16094"
+  },
+  {
+    "file": "img/bg-port.png",
+    "hash": "d2aafd05382353cd97c6452a858844d1"
+  },
+  {
+    "file": "img/bgHome.jpg",
+    "hash": "8948ee254d1253aedaa606fa21d210f6"
+  },
+  {
+    "file": "img/bgLink1.png",
+    "hash": "aa71fa495fc9b7399d432b36a60411e9"
+  },
+  {
+    "file": "img/bgLink2.png",
+    "hash": "7ca419895da08aa8bf970e3e58d3eea1"
+  },
+  {
+    "file": "img/bgLink3.png",
+    "hash": "af72e8c85ef1f7dd60d39b0877c4f3ed"
+  },
+  {
+    "file": "img/bgLink4.png",
+    "hash": "7818a78d855796690b8b6f5fcd139f79"
+  },
+  {
+    "file": "img/bgLink5.png",
+    "hash": "9bd0609a17308c0c27aa90cf0e61ffaf"
+  },
+  {
+    "file": "img/bgMenu.jpg",
+    "hash": "59d8de300181aa4298c548b26f69263c"
+  },
+  {
+    "file": "img/bgMenu22.jpg",
+    "hash": "8f39df289ac6548f9bf98d022e1f73c3"
+  },
+  {
+    "file": "img/bgSlideHome.jpg",
+    "hash": "48ba7a8e93a8130af1697f6c432f4cfd"
+  },
+  {
+    "file": "img/bgSlideHome2.jpg",
+    "hash": "f98b20cae18a20c25cb13dc521e2a3ee"
+  },
+  {
+    "file": "img/bl.png",
+    "hash": "69f27ec00133aba206a11b5d812f579c"
+  },
+  {
+    "file": "img/blog.png",
+    "hash": "2e7a0216b1975fca30d0316e6f18e892"
+  },
+  {
+    "file": "img/btnEm.jpg",
+    "hash": "369e298636a8468fe587fca7ccc8609b"
+  },
+  {
+    "file": "img/btnEm1.jpg",
+    "hash": "197eda17c591a279583b5a0d9388e104"
+  },
+  {
+    "file": "img/btnPo.jpg",
+    "hash": "625d965ad70d679894c5c1a8e239b161"
+  },
+  {
+    "file": "img/btnPo1.jpg",
+    "hash": "ed9f94a45c2be3c607be59c53c3c7783"
+  },
+  {
+    "file": "img/button.png",
+    "hash": "5601da650cc0288c13c73c6730247b72"
+  },
+  {
+    "file": "img/cal.png",
+    "hash": "fb29fc37d849388e4d2b3c30096f9560"
+  },
+  {
+    "file": "img/capex-group.png",
+    "hash": "d397ce63b4eda49688e9af40dbca2d9f"
+  },
+  {
+    "file": "img/Carry-over.png",
+    "hash": "4e8c338f57cb35fc9c94f70988cc0221"
+  },
+  {
+    "file": "img/cashico.png",
+    "hash": "816c0ce1115599dafd12660c174deeab"
+  },
+  {
+    "file": "img/clo.png",
+    "hash": "139051cfdb2e4c9d1bd46892b6096758"
+  },
+  {
+    "file": "img/com.png",
+    "hash": "a8b4220439746e67190e9a38b1c8a46f"
+  },
+  {
+    "file": "img/credit.png",
+    "hash": "0dba1b30696c2d801821f384e5bf0f51"
+  },
+  {
+    "file": "img/daily.png",
+    "hash": "98b1ac78c7f23adf946bc03a42abde69"
+  },
+  {
+    "file": "img/dd.png",
+    "hash": "4d95eb3beb53791dc0f1861ad715af6a"
+  },
+  {
+    "file": "img/det_si.png",
+    "hash": "09a411b7737da5659be6d20fd316f5d9"
+  },
+  {
+    "file": "img/df.png",
+    "hash": "8e9149ba18ffc58e24f14ee140fb52b6"
+  },
+  {
+    "file": "img/exc.png",
+    "hash": "5ace5ed39a7998519b791f748df09a8e"
+  },
+  {
+    "file": "img/exit-button.png",
+    "hash": "c6c8697c780a4c4730b01f8d16f0eb46"
+  },
+  {
+    "file": "img/exp.png",
+    "hash": "f3eb4d393d1b737b195ccc8079085474"
+  },
+  {
+    "file": "img/export.svg",
+    "hash": "3cfa088a9e58cc045886faa4fe01f71f"
+  },
+  {
+    "file": "img/f1.png",
+    "hash": "92cf5a18a3a32854d28a5db0ff2df275"
+  },
+  {
+    "file": "img/f2.png",
+    "hash": "8a746ed2ec5e95df0195ebd073cc1da1"
+  },
+  {
+    "file": "img/f3.png",
+    "hash": "0e2947a742304ce54a8c3e3f58ab51d0"
+  },
+  {
+    "file": "img/f4.png",
+    "hash": "fd58cf38aa5ad53862799933902b7833"
+  },
+  {
+    "file": "img/f5.png",
+    "hash": "10ff198ba98a7c496e00402a03403e95"
+  },
+  {
+    "file": "img/f6.png",
+    "hash": "dd52b410f1f5d6d199d299cd66233366"
+  },
+  {
+    "file": "img/f7.png",
+    "hash": "4fabb3f1ff27a5915d1cc03a294c93fb"
+  },
+  {
+    "file": "img/fin_sales_ico.png",
+    "hash": "a030a90ae5e42c69bdccde8a89d3f42c"
+  },
+  {
+    "file": "img/finn.png",
+    "hash": "a721a8347318ca62ff9c1022ad2ea95e"
+  },
+  {
+    "file": "img/fp1.png",
+    "hash": "62739d1c0c1cd6b09ab42d8ddadf92de"
+  },
+  {
+    "file": "img/fp2.png",
+    "hash": "042d8b4c9a110ea335645d46539f8e76"
+  },
+  {
+    "file": "img/fp3.png",
+    "hash": "22eba3c13e2e15c4e80f901e9a9f91ad"
+  },
+  {
+    "file": "img/frm.png",
+    "hash": "ebaab4244c866b06e9c5284df206a666"
+  },
+  {
+    "file": "img/full-pattern.png",
+    "hash": "8b567bf841a48299c68bfa324b882dcf"
+  },
+  {
+    "file": "img/gdg.png",
+    "hash": "391dac28758bf620f5dd9d4c77b60213"
+  },
+  {
+    "file": "img/gdg.svg",
+    "hash": "e595282636f399bd52f79eb889d61a65"
+  },
+  {
+    "file": "img/gr1.png",
+    "hash": "30850f17785f845c98657cbbc013c538"
+  },
+  {
+    "file": "img/gr2.png",
+    "hash": "0e226e027a3c25656a157b0d10f944b2"
+  },
+  {
+    "file": "img/h1.png",
+    "hash": "d9fb19dc1237881395e01759eee31d4f"
+  },
+  {
+    "file": "img/h2.png",
+    "hash": "2ac35e8d160131531cb4eaccdcd48938"
+  },
+  {
+    "file": "img/h3.png",
+    "hash": "02acdce21f4304af852b844e921136a3"
+  },
+  {
+    "file": "img/h4.png",
+    "hash": "49c032a374cbb3869c6c2d77af40d982"
+  },
+  {
+    "file": "img/h5.png",
+    "hash": "47cf27edac3134eb132fc85a1277936e"
+  },
+  {
+    "file": "img/h6.png",
+    "hash": "515528742769d8bdff26131d20448f85"
+  },
+  {
+    "file": "img/half-pattern.png",
+    "hash": "bbd4a0d7bcd5c50cafbabb49a3860501"
+  },
+  {
+    "file": "img/header_bs.png",
+    "hash": "ee18b7ea3c2fa4db1c9fe5f56fa3254d"
+  },
+  {
+    "file": "img/header_fl.png",
+    "hash": "8835a3f8031adc066c6ea794839aedd7"
+  },
+  {
+    "file": "img/helmet.png",
+    "hash": "67b300756d617562306fd94dd1d14811"
+  },
+  {
+    "file": "img/home.png",
+    "hash": "dbc402532af4d3a5586acb02d7d7083c"
+  },
+  {
+    "file": "img/ic_bs/a1.png",
+    "hash": "2b90dbf8c765c3980ecd64ab3944734f"
+  },
+  {
+    "file": "img/ic_bs/blue_gr.png",
+    "hash": "84c60bd71a6c45da7eb7e7051849155d"
+  },
+  {
+    "file": "img/ic_bs/e1.png",
+    "hash": "4310550990761d48f82b817016ec9345"
+  },
+  {
+    "file": "img/ic_bs/g1.png",
+    "hash": "959519342366d687bf27e42e6339b80c"
+  },
+  {
+    "file": "img/ic_bs/l1.png",
+    "hash": "aa587129331b460dfd412939d10f219c"
+  },
+  {
+    "file": "img/ic_bs/r1.png",
+    "hash": "46b57dd47db7f4d957ae57b1702b92c6"
+  },
+  {
+    "file": "img/ic_finance/._expense.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/ic_finance/._income.png",
+    "hash": "508f19a299c2859f634b1832783b3345"
+  },
+  {
+    "file": "img/ic_finance/balance.png",
+    "hash": "56e43a9afd3bfdf4881148bfe5d83bf5"
+  },
+  {
+    "file": "img/ic_finance/date.png",
+    "hash": "5d64dc1eab3c876a45d3f1dc96f366ba"
+  },
+  {
+    "file": "img/ic_finance/expense.png",
+    "hash": "6be0ce940e724c053ddfb407723a6a02"
+  },
+  {
+    "file": "img/ic_finance/income.png",
+    "hash": "07ee9ee928af33bb37dfa52ec4cb9b34"
+  },
+  {
+    "file": "img/ic_finance/saldo.png",
+    "hash": "97154b2ebf8b94892485cf6c177de2a3"
+  },
+  {
+    "file": "img/ic_finance/target.png",
+    "hash": "93f559bdb8fef2c0a2e463e4ba43a595"
+  },
+  {
+    "file": "img/IC_OPCO.png",
+    "hash": "f158957089866abd69f40754073226fd"
+  },
+  {
+    "file": "img/ic_port_management.png",
+    "hash": "25280f40a9b950776e84f13f2945c608"
+  },
+  {
+    "file": "img/ic-user.png",
+    "hash": "3c26fdac2d3f87f26ba758ec0cddd112"
+  },
+  {
+    "file": "img/ic1.png",
+    "hash": "2eccc2e525e0e60a27ab3ea91e5b551f"
+  },
+  {
+    "file": "img/ic2.png",
+    "hash": "bfc831ce96c3364fbd1891e32e2a84e2"
+  },
+  {
+    "file": "img/ic3.png",
+    "hash": "d35d3de7724cae62b187d33d0c4f09f8"
+  },
+  {
+    "file": "img/icKota1.png",
+    "hash": "98d7a903fdf649147b332a23a2d771b1"
+  },
+  {
+    "file": "img/icKota1a.png",
+    "hash": "6e705a3f6d3d2e8420fcc779e5408acb"
+  },
+  {
+    "file": "img/icKota2.png",
+    "hash": "b001df37f6941e40022034f2212604d0"
+  },
+  {
+    "file": "img/icKota2a.png",
+    "hash": "a9feb8ac29f904d2316413764f5b14bf"
+  },
+  {
+    "file": "img/icKota3.png",
+    "hash": "fe95a5fc05a749f25867d6282fe59e42"
+  },
+  {
+    "file": "img/icKota3a.png",
+    "hash": "1635487c8c4f3f41677d14b42aa9b0d1"
+  },
+  {
+    "file": "img/icKota4.png",
+    "hash": "49806c7e7504e9bc3648732fe6e7f1a6"
+  },
+  {
+    "file": "img/icKota4a.png",
+    "hash": "3c73161a5b07fd6419d277913fd2fbdf"
+  },
+  {
+    "file": "img/icKSO.png",
+    "hash": "11cca6be8c1eaf9c2e2d3ef0407d5177"
+  },
+  {
+    "file": "img/ico_red.png",
+    "hash": "b036cae67abb4c5b8ca73131fd4d1a0d"
+  },
+  {
+    "file": "img/IcoCapexGroup.png",
+    "hash": "fadd074ada218aa46d8f90ac974ffd02"
+  },
+  {
+    "file": "img/IcoCarryOver.png",
+    "hash": "7cc5f1077a1cd3549882bb830f563299"
+  },
+  {
+    "file": "img/IcoCflowMng.png",
+    "hash": "e4d6507c993dae0f154cf7a0c459d6e8"
+  },
+  {
+    "file": "img/IcoCustVend.png",
+    "hash": "c92fab4c38a4831dd9f6d65d568ec9cf"
+  },
+  {
+    "file": "img/IcoHebat.png",
+    "hash": "8e25b687f53cc6356e61f08b68b4a2b3"
+  },
+  {
+    "file": "img/IcoMngLoan.png",
+    "hash": "7d002120c770d73f08c3b700b3000e97"
+  },
+  {
+    "file": "img/IcoMrktInt.png",
+    "hash": "699569e9361859e95aef92c84aa8ecc9"
+  },
+  {
+    "file": "img/IcoMtQuality.png",
+    "hash": "e4764a41d2fb8be9733a07752b243ac8"
+  },
+  {
+    "file": "img/icon_ip.png",
+    "hash": "e1315ed7038304b375a9d22aec646662"
+  },
+  {
+    "file": "img/IcoNonStrategic.png",
+    "hash": "9fd37bb682cb4b5d0ff22fef6f61a866"
+  },
+  {
+    "file": "img/IcoRamah.png",
+    "hash": "0ba0c10d2112f2f47af214a3523d236c"
+  },
+  {
+    "file": "img/IcoRM.png",
+    "hash": "f9d6af23c69c71e970c8151d7fa42257"
+  },
+  {
+    "file": "img/icov.png",
+    "hash": "9b9a365a0d1a4842043037d151dab72c"
+  },
+  {
+    "file": "img/icStatus.png",
+    "hash": "2ab771a135485f69ab0a3952def49ab8"
+  },
+  {
+    "file": "img/icStatusHome.png",
+    "hash": "0899452e57b3a3dbc724324589ab60b8"
+  },
+  {
+    "file": "img/icStatusOff.png",
+    "hash": "2370b8907602ba2eaa75651f5b494c53"
+  },
+  {
+    "file": "img/icStatusOn.png",
+    "hash": "61ab8098f2c159c6c05b01acdade2526"
+  },
+  {
+    "file": "img/icWatch.png",
+    "hash": "a8c58288cf5801aef7bf814b85f41f20"
+  },
+  {
+    "file": "img/img_avatar2.png",
+    "hash": "ea94efb3ff1b3ef1a02d03dc6377cea8"
+  },
+  {
+    "file": "img/img_ship_pm.png",
+    "hash": "dab5a896098d602afe19b481e23f71b8"
+  },
+  {
+    "file": "img/imp.png",
+    "hash": "c0282506864f44195d136b3d3d8c3b5e"
+  },
+  {
+    "file": "img/import.svg",
+    "hash": "faa8b941091b4f24adb8763e6e8fcac1"
+  },
+  {
+    "file": "img/inout_detail.html",
+    "hash": "27934f824bd1f8eadaae7a64c6d5fe08"
+  },
+  {
+    "file": "img/insp.png",
+    "hash": "242476c09309c36946295ed8ce4790ae"
+  },
+  {
+    "file": "img/inven.png",
+    "hash": "eab235e0d0d6c9f6ed3f6870765c8d9e"
+  },
+  {
+    "file": "img/inventory.jpg",
+    "hash": "7d7d57f04a757dda2d04c95771ac9fe7"
+  },
+  {
+    "file": "img/j1.png",
+    "hash": "29dfaf8652e5740b7e69a90fe06d6a9c"
+  },
+  {
+    "file": "img/j2.png",
+    "hash": "c7368ec939a7a15a73fe63f99c05961f"
+  },
+  {
+    "file": "img/j3.png",
+    "hash": "48a5aeb14d7d1d51f2e4e26159471fed"
+  },
+  {
+    "file": "img/k3.png",
+    "hash": "9acd056938d643bbf84fbe0a8f26c9aa"
+  },
+  {
+    "file": "img/linkhome1.png",
+    "hash": "7a0654125296edff716df2d878c1ad9d"
+  },
+  {
+    "file": "img/linkhome2_b.png",
+    "hash": "403d40f721380d99e6a586adede20922"
+  },
+  {
+    "file": "img/linkhome2.png",
+    "hash": "787d285257a0aab05a2fa10e8ff444e7"
+  },
+  {
+    "file": "img/linkhome3.png",
+    "hash": "6df71c3063ba90d092c65764b0e80e4f"
+  },
+  {
+    "file": "img/linkhome4.png",
+    "hash": "318ee53564409cb0f0857060e81b5834"
+  },
+  {
+    "file": "img/linkhome5.png",
+    "hash": "2d724fec54682a0fe6fc34fe91bfc419"
+  },
+  {
+    "file": "img/linkhome6.png",
+    "hash": "e7f0d3c53eab8c4b32901a2e07d0dcb4"
+  },
+  {
+    "file": "img/linkhome6.xcf",
+    "hash": "effada24edf1941418e6d57f20262591"
+  },
+  {
+    "file": "img/linkhome7.png",
+    "hash": "403d40f721380d99e6a586adede20922"
+  },
+  {
+    "file": "img/logico.png",
+    "hash": "c1516be1e2578d101976451009f86c33"
+  },
+  {
+    "file": "img/logo_hm.png",
+    "hash": "d70e9332c03bccd2d837d3bcb9abc84a"
+  },
+  {
+    "file": "img/logo.png",
+    "hash": "11bdd47bfdde79375106eaaff4f791df"
+  },
+  {
+    "file": "img/logoAll.png",
+    "hash": "2d09b29a4f4b953d42682d1dace0a67e"
+  },
+  {
+    "file": "img/logoPis.png",
+    "hash": "dbbb027fc8cfafc6c065cd9f815e84c3"
+  },
+  {
+    "file": "img/main-cost-ico.png",
+    "hash": "801e95a9ad037e3ae55a12a5a19f93a9"
+  },
+  {
+    "file": "img/main.png",
+    "hash": "f224b445a6cf2f9129f4c59e547dd4be"
+  },
+  {
+    "file": "img/mainte-port.png",
+    "hash": "60dfa2ba18d71fa814b4ecf64ff2f1f4"
+  },
+  {
+    "file": "img/mar-int.png",
+    "hash": "857d17c1b325b28016e2d1ddbed193d0"
+  },
+  {
+    "file": "img/market-share.png",
+    "hash": "424a93842fa1e44db05a58cf49294fd6"
+  },
+  {
+    "file": "img/max.png",
+    "hash": "630099cd13d53aff8b8e99fc70176f0c"
+  },
+  {
+    "file": "img/min.png",
+    "hash": "922d13ebeb83b328d29bb3e685d593c9"
+  },
+  {
+    "file": "img/mm_tittle.png",
+    "hash": "0cec85a0e36543196e9eda6a145b98b5"
+  },
+  {
+    "file": "img/month.png",
+    "hash": "4c0f8f04bb0898ed3fac7ffcc40aecc1"
+  },
+  {
+    "file": "img/ms.png",
+    "hash": "090e34b020452db2211b63a699225deb"
+  },
+  {
+    "file": "img/mt.png",
+    "hash": "e53c619b3491870ae25949c26fa73bde"
+  },
+  {
+    "file": "img/non-strategic.png",
+    "hash": "5b345560da94aafd582e908116bd94b2"
+  },
+  {
+    "file": "img/not.png",
+    "hash": "1f1c78e9ccaa1be23919ccfc766b0af7"
+  },
+  {
+    "file": "img/off.png",
+    "hash": "de7da264badb9b8579dd1bedd8871aab"
+  },
+  {
+    "file": "img/on.png",
+    "hash": "b9e7b10e90d4280b6b3260f156babed0"
+  },
+  {
+    "file": "img/p2_prodfi.png",
+    "hash": "c4ac0c0e41e56f71726d36e050b76712"
+  },
+  {
+    "file": "img/p2.png",
+    "hash": "4a0ee93ffd07dad028533286369802fc"
+  },
+  {
+    "file": "img/p3.png",
+    "hash": "bd90fd748466f363ed5c587c8b0dbc9b"
+  },
+  {
+    "file": "img/p4.png",
+    "hash": "e2032b45d25803231dca6a73b37e6f47"
+  },
+  {
+    "file": "img/p5.png",
+    "hash": "bb8fcf849afa16b5589ea917a3f2a487"
+  },
+  {
+    "file": "img/p6.png",
+    "hash": "72d230876c1154a9ef901dd02d12f676"
+  },
+  {
+    "file": "img/p7.png",
+    "hash": "b9c7bd7d47cf6db518f2819bc3061d68"
+  },
+  {
+    "file": "img/p9.png",
+    "hash": "473c3570dcff3ed647eb65d93c19d6ac"
+  },
+  {
+    "file": "img/pack.png",
+    "hash": "b2d63bf362fb276bcd37da95372cff87"
+  },
+  {
+    "file": "img/pack.svg",
+    "hash": "52b1623f52976b5053fef2479e1fddb3"
+  },
+  {
+    "file": "img/paradig.png",
+    "hash": "6fd9022363ced9b514a11b128ca08f17"
+  },
+  {
+    "file": "img/pater.png",
+    "hash": "77acb0ce63adc301ec705a12dc25403e"
+  },
+  {
+    "file": "img/pattern.png",
+    "hash": "dd3c57adb63b23072f6bb834e12376d2"
+  },
+  {
+    "file": "img/pattern50.png",
+    "hash": "dd3c57adb63b23072f6bb834e12376d2"
+  },
+  {
+    "file": "img/pd.png",
+    "hash": "626ee5d8f70b2d267c8524a9679ebf6e"
+  },
+  {
+    "file": "img/plant_ico.png",
+    "hash": "434513a7a8837ef699e9971944c54278"
+  },
+  {
+    "file": "img/pow.png",
+    "hash": "3c5222956253e8d63da7422f54ba3709"
+  },
+  {
+    "file": "img/pr1.png",
+    "hash": "c95db2c61198e9d7668144d7c35b6e34"
+  },
+  {
+    "file": "img/pri2.png",
+    "hash": "bfbf6a4f39c9702ce827c70ab0c9a608"
+  },
+  {
+    "file": "img/procurement-inventory.png",
+    "hash": "656b06690e5e88e5466676e9c774b4aa"
+  },
+  {
+    "file": "img/prod-tittle.png",
+    "hash": "baa1a60e7a6161e46047d03b90708b2a"
+  },
+  {
+    "file": "img/prod-tittle1.png",
+    "hash": "4807951d1309beb103eff9bb60d06eb8"
+  },
+  {
+    "file": "img/prod-tittle2.png",
+    "hash": "7a719ae7cf67459522a0f87261a38f12"
+  },
+  {
+    "file": "img/prod.png",
+    "hash": "ae4951bf9bfb51e1e386a487cde06e77"
+  },
+  {
+    "file": "img/proj_tittle.png",
+    "hash": "916bbd7799b41544938b29a5067e1544"
+  },
+  {
+    "file": "img/psilo.png",
+    "hash": "b594ebf5b6a5cbacd61c6346a612a030"
+  },
+  {
+    "file": "img/ptl.png",
+    "hash": "b2ed301b09cff078309a37cd00bad09a"
+  },
+  {
+    "file": "img/qual.png",
+    "hash": "d04a4f53252ffa40121620714600f2e6"
+  },
+  {
+    "file": "img/r1.png",
+    "hash": "8c2017f3bc993f5ed0cc50b12351c563"
+  },
+  {
+    "file": "img/r2.png",
+    "hash": "fc8a63b5caadd954245a27fbc599b1c5"
+  },
+  {
+    "file": "img/r3.png",
+    "hash": "28369826f559587edc83ed37ab4f7698"
+  },
+  {
+    "file": "img/rep.png",
+    "hash": "fe0a3762b9da8bf1061857a0da6ce5c4"
+  },
+  {
+    "file": "img/revnue.png",
+    "hash": "87f58b29e1443eefbd8a79873f96e4d8"
+  },
+  {
+    "file": "img/s1.png",
+    "hash": "673eed61bc25d922765e0dbf7d912717"
+  },
+  {
+    "file": "img/sack.png",
+    "hash": "69594c7b482cf693e411031ed5ff0467"
+  },
+  {
+    "file": "img/sales_ico.png",
+    "hash": "76a37e9e22ce56837c5457cd3b6dbda8"
+  },
+  {
+    "file": "img/sales-tittle.png",
+    "hash": "c8834c294ee1758868555489ffbb0c54"
+  },
+  {
+    "file": "img/sales-tittlenw.png",
+    "hash": "a0aa6c876746e1ffa3fa305aa559131e"
+  },
+  {
+    "file": "img/sales.png",
+    "hash": "7ca7f209aa314e894d4b86eb42898b2f"
+  },
+  {
+    "file": "img/sc_f.png",
+    "hash": "47e1e63e453bbb4a13acff2b0c145cff"
+  },
+  {
+    "file": "img/scm_tt.png",
+    "hash": "e66c8a4665771a8f3c2428ccdcc1b676"
+  },
+  {
+    "file": "img/set.png",
+    "hash": "5f27764f1e9f19db913c5164136975c5"
+  },
+  {
+    "file": "img/sidebr-red/fin.png",
+    "hash": "f215e6bff048318970450bde073c1e89"
+  },
+  {
+    "file": "img/sidebr-red/hm.png",
+    "hash": "219b442defe2b005b71ed337e343600b"
+  },
+  {
+    "file": "img/sidebr-red/out.png",
+    "hash": "be3771c386a283951cf49f4fb1690c4f"
+  },
+  {
+    "file": "img/sidebr-red/pj.png",
+    "hash": "8cd7202e14d597de75bee3759ed2119a"
+  },
+  {
+    "file": "img/sidebr-red/pro.png",
+    "hash": "41d4c331d2c30c0b1994c787f6c6e52a"
+  },
+  {
+    "file": "img/sidebr-red/sale.png",
+    "hash": "ccd4123cbee9cda2d9e60bacd56d2739"
+  },
+  {
+    "file": "img/sidebr-red/sc.png",
+    "hash": "e73a26c1fd287fc1b0c507e82f5b439e"
+  },
+  {
+    "file": "img/sidebr/about.png",
+    "hash": "c2d27828566b28b341a7360e4e194e4f"
+  },
+  {
+    "file": "img/sidebr/fin.png",
+    "hash": "fcbb1739a154684830ea9af950f59760"
+  },
+  {
+    "file": "img/sidebr/hm.png",
+    "hash": "08e02bccb4ea8b3c6eab831f713a5580"
+  },
+  {
+    "file": "img/sidebr/out.png",
+    "hash": "832c48df9e2daf93c3e10219bf14f9ff"
+  },
+  {
+    "file": "img/sidebr/pj.png",
+    "hash": "6a56df21d7c4f83ddce7f3e12cac32f0"
+  },
+  {
+    "file": "img/sidebr/pro.png",
+    "hash": "3244b7c220e674a4cc6153699d9234aa"
+  },
+  {
+    "file": "img/sidebr/sale.png",
+    "hash": "7cc77c4eacd70bad78f658373cf82003"
+  },
+  {
+    "file": "img/sidebr/sc.png",
+    "hash": "a30bcb18f90456bd9a4da630c57adb01"
+  },
+  {
+    "file": "img/sil_ic.png",
+    "hash": "fdc9f62a53a5bb8713fcad27555fb796"
+  },
+  {
+    "file": "img/silo.png",
+    "hash": "d72fd567f3851fd4336b80374ccfe81e"
+  },
+  {
+    "file": "img/sma.png",
+    "hash": "5df603dca55fae06c8ca4e801af5ceef"
+  },
+  {
+    "file": "img/smi.png",
+    "hash": "95cce6f899daed54b0aa4586d1c76875"
+  },
+  {
+    "file": "img/sreport.png",
+    "hash": "b6efdc1ca4d86b4eca97a83e5c3c7fd9"
+  },
+  {
+    "file": "img/ss1.png",
+    "hash": "77d0e89045a87488819c0c72f4474a25"
+  },
+  {
+    "file": "img/stpp.png",
+    "hash": "4e0cf6e3752d6f9fe38b53186172364f"
+  },
+  {
+    "file": "img/t1.png",
+    "hash": "733a84ba5ca4c7c09898011518c2abf8"
+  },
+  {
+    "file": "img/t2.png",
+    "hash": "5ecdcbd1f87ca0b4dc4a7988bb5ba78e"
+  },
+  {
+    "file": "img/teks semen indo.png",
+    "hash": "6c0a4c6e340fb4738dc488813689ddf9"
+  },
+  {
+    "file": "img/thumb1.jpg",
+    "hash": "a61212d9b6ad72e21f737b8d02a516a3"
+  },
+  {
+    "file": "img/thumb2.jpg",
+    "hash": "dc6cc7b2cc3d2578da60192400077adb"
+  },
+  {
+    "file": "img/thumb3.jpg",
+    "hash": "6db8ef3cb64bb5c941592e90f5826af3"
+  },
+  {
+    "file": "img/thumb4.jpg",
+    "hash": "a3a096f85759fa8fd2b8b4435e848acf"
+  },
+  {
+    "file": "img/time.png",
+    "hash": "bb66242035f69eb9648db6f1435c4f05"
+  },
+  {
+    "file": "img/tit-capex.png",
+    "hash": "e82f013f0393097dc709a1ac57220b30"
+  },
+  {
+    "file": "img/tit-qual.png",
+    "hash": "dc058c6f91e5c2f8946b33c78dfb94f4"
+  },
+  {
+    "file": "img/tit-tre.png",
+    "hash": "71d2fc78edae02062ee863bcf360ac5f"
+  },
+  {
+    "file": "img/title-finance.png",
+    "hash": "d3206075ca9d892a33ebd17124e43270"
+  },
+  {
+    "file": "img/title-finance1.png",
+    "hash": "3ff6a3e082c92f8bea6bcfce50bd21b9"
+  },
+  {
+    "file": "img/title-mainte.png",
+    "hash": "cb281eaa48acf4ddbeb80399ea39a8e3"
+  },
+  {
+    "file": "img/title-mainte1.png",
+    "hash": "dd59fa4e0429cde078a472c9095aa85c"
+  },
+  {
+    "file": "img/title-mainte2.png",
+    "hash": "5cbd731182199496a0f9a9aadc98d7c0"
+  },
+  {
+    "file": "img/title-port.png",
+    "hash": "ca98325e9496bc21d518f2852566d2d8"
+  },
+  {
+    "file": "img/track.png",
+    "hash": "8fb0e1494f8b1155a99ba33f2d36a972"
+  },
+  {
+    "file": "img/trea.png",
+    "hash": "2545e77e714612bfe9759e3f86c06335"
+  },
+  {
+    "file": "img/tres.png",
+    "hash": "49c9baf83d2400fc06a1aa3ef46186aa"
+  },
+  {
+    "file": "img/tx_smi.png",
+    "hash": "00287dc66013bbfd3dfa68416dddf12e"
+  },
+  {
+    "file": "img/under_main.png",
+    "hash": "69519d0891b7ebfeda5807f1ec86e074"
+  },
+  {
+    "file": "img/vec_hm.png",
+    "hash": "bf21163a4090c50291212b0e868b9032"
+  },
+  {
+    "file": "img/volum.png",
+    "hash": "82403305eddd075559dcbf1a8d7d120c"
+  },
+  {
+    "file": "img/wrk_fl.png",
+    "hash": "037236e88b34a6c4054a93f03fa519a3"
+  },
+  {
+    "file": "imp.png",
+    "hash": "1981f314f3d0561f729342f550aa4484"
+  },
+  {
+    "file": "inc_detail.html",
+    "hash": "7208337579a1a98def7590fb105e3cfd"
+  },
+  {
+    "file": "inc_stmt.html",
+    "hash": "9ae169945884e3354ecfa950e379c6dd"
+  },
+  {
+    "file": "index_asli.html",
+    "hash": "d3867bc4537877e5b2b28493a851e578"
+  },
+  {
+    "file": "index_bak.html",
+    "hash": "1ae7b77e7bbad2c87a3e06f092b12dde"
+  },
+  {
+    "file": "index_login2.html",
+    "hash": "f8f6b42894b9178ea5c70d26665cfc85"
+  },
+  {
+    "file": "index.html",
+    "hash": "8c3ca50e2e62ce1bf64225813f6abe71"
+  },
+  {
+    "file": "inout_detail.html",
+    "hash": "460c4019ed1ae931929cfbc6be472eec"
+  },
+  {
+    "file": "inout_detail.js",
+    "hash": "a1b51f00aa0e6c95bfcdab5ce1fc448b"
+  },
+  {
+    "file": "inventory_aging.html",
+    "hash": "95f128828500ff7e9f154b17b3d14e60"
+  },
+  {
+    "file": "inventory_leadtime_b.html",
+    "hash": "3f4c48d85a77a505ffdca41594cde2d1"
+  },
+  {
+    "file": "inventory_leadtime.html",
+    "hash": "d75183cc71b16baa6a92d11fba50c960"
+  },
+  {
+    "file": "inventory_tracking.html",
+    "hash": "88e81088885c9b89179dedff93c2a0de"
+  },
+  {
+    "file": "ip_report_sg.html",
+    "hash": "f140511607e112cd1d41e48e5d365109"
+  },
+  {
+    "file": "js/_test_trend.js",
+    "hash": "31d893bfbf3c8082c0b5f82c29d138c2"
+  },
+  {
+    "file": "js/_test.js",
+    "hash": "7021b120b6044b665551398d52d4dbe3"
+  },
+  {
+    "file": "js/._.DS_Store",
+    "hash": "241ea797774c86197000ffd2fe2ed491"
+  },
+  {
+    "file": "js/._Chart.min.js",
+    "hash": "6b6054d1189d2b506ec126bf671c2668"
+  },
+  {
+    "file": "js/._cordova.js",
+    "hash": "a867166119aca0bf2ba7477a59db0a92"
+  },
+  {
+    "file": "js/._jquery-1.11.3.min.js",
+    "hash": "34e1829d4ff2f5f8f0ee481c806cacda"
+  },
+  {
+    "file": "js/._jquery-3.1.0.slim.min.js",
+    "hash": "5143b4a94c1d77be3d723b5873e2597f"
+  },
+  {
+    "file": "js/._slick.min.js",
+    "hash": "67c6ec5736cac10d132f315b1af6daf6"
+  },
+  {
+    "file": "js/accounting.min.js",
+    "hash": "b34ee54abcdda3f94566ea5e7312fdbc"
+  },
+  {
+    "file": "js/backlog_data_detail_lama.js",
+    "hash": "ea475d21956cbfce027b040c4c5f866e"
+  },
+  {
+    "file": "js/backlog_data_detail.js",
+    "hash": "5ba0bfd284f52c0f0414fab13ab540b5"
+  },
+  {
+    "file": "js/backlog_data_lama.js",
+    "hash": "4a717a8d5d8e3a3e36ad2cbea12c35d4"
+  },
+  {
+    "file": "js/backlog_data_speedo.js",
+    "hash": "42d71800ba1be50b271de0a80084bcbe"
+  },
+  {
+    "file": "js/backlog_data.js",
+    "hash": "0736452e59ce207ee43714e1a5e1c69a"
+  },
+  {
+    "file": "js/balance_s.bak.js",
+    "hash": "46a220e19d2b78cfa585b0834a6ab9b5"
+  },
+  {
+    "file": "js/balance_s.js",
+    "hash": "baf24c47eaa5ba86941501cdcfa92ffb"
+  },
+  {
+    "file": "js/balance_smv.bak.js",
+    "hash": "18135e9ba9cf8250a5435813cc203b20"
+  },
+  {
+    "file": "js/bootstrap.js",
+    "hash": "fb81549ee2896513a1ed5714b1b1a0f0"
+  },
+  {
+    "file": "js/bootstrap.min.js",
+    "hash": "5869c96cc8f19086aee625d670d741f9"
+  },
+  {
+    "file": "js/cash_data.js",
+    "hash": "298658fa4ce82e376078153cddca83dd"
+  },
+  {
+    "file": "js/CashInOut_sg.js",
+    "hash": "09e0d2f268a6c38d2e0f31b9c593871b"
+  },
+  {
+    "file": "js/CashInOut_si.js",
+    "hash": "74c9d6802fd2980d26a372a620b0ac2e"
+  },
+  {
+    "file": "js/CashInOut_sp.js",
+    "hash": "e68fbc17c08939abfad63e10ef7a13cd"
+  },
+  {
+    "file": "js/CashInOut_st.js",
+    "hash": "31ff7259d74bde6e5c062c0319da0268"
+  },
+  {
+    "file": "js/CashInOut_tl.js",
+    "hash": "8efbaa351e12d4babff6b85a5e5c63a3"
+  },
+  {
+    "file": "js/Chart.min.js",
+    "hash": "c508c360e58f462fb5d902734c383934"
+  },
+  {
+    "file": "js/check.js",
+    "hash": "6dbd541db0d5c0fcbe02fbb46a13fd62"
+  },
+  {
+    "file": "js/config.js",
+    "hash": "d1c5563c60b71daa71034b37df68a93b"
+  },
+  {
+    "file": "js/cordova.js",
+    "hash": "cb0e42e1c12d62c8908ef56f4f129771"
+  },
+  {
+    "file": "js/cost_mv.js",
+    "hash": "4ed1671939fea6693ca0f47dbe6a252a"
+  },
+  {
+    "file": "js/cost-mod.js",
+    "hash": "56c233eb0769d5aab828d510ba878f44"
+  },
+  {
+    "file": "js/cost.js",
+    "hash": "1c39b208b4aba79c20e286802eff9860"
+  },
+  {
+    "file": "js/custom.js",
+    "hash": "18060faea585b672fb3cad8d298eb7ad"
+  },
+  {
+    "file": "js/dailysmig.js",
+    "hash": "e0815a1a6829c9fcdb8fb75458c10091"
+  },
+  {
+    "file": "js/exchange_rate_detail.js",
+    "hash": "1c99f0961ca9cbc9baf4917323593123"
+  },
+  {
+    "file": "js/exporting.js",
+    "hash": "3fb8076e1e5a1764670a59d6a9564a88"
+  },
+  {
+    "file": "js/feeding_rate.js",
+    "hash": "a15f201a901521585d7f84d5772d6c22"
+  },
+  {
+    "file": "js/fin_dash.js",
+    "hash": "85785e089c597cf7a56e62eb1c7975ad"
+  },
+  {
+    "file": "js/finance_day_detail.js",
+    "hash": "f0c9f48feb96a29ddd8bad706213d9e1"
+  },
+  {
+    "file": "js/fusioncharts.charts.js",
+    "hash": "f6293185148f6412fe3b37f5cd954434"
+  },
+  {
+    "file": "js/fusioncharts.js",
+    "hash": "f3d6191e61e6c5ac3eee9dedf3f9d408"
+  },
+  {
+    "file": "js/fusioncharts.widgets.js",
+    "hash": "3f8e1f5f94d42615cf5165ed0b5dae5b"
+  },
+  {
+    "file": "js/fusionTheme.js",
+    "hash": "aafcbf475f963d1517f91b3c9114fd12"
+  },
+  {
+    "file": "js/highchart_ori.js",
+    "hash": "e07b80d900992bbb06da1ef82258b6b4"
+  },
+  {
+    "file": "js/highcharts_working.js",
+    "hash": "e7570225f89cce1d869c34a2883740c0"
+  },
+  {
+    "file": "js/highcharts-3d.js",
+    "hash": "8f338b60df09c26f61902115532b5c54"
+  },
+  {
+    "file": "js/highcharts-more.js",
+    "hash": "b2a56a7b2ab71dfe3cfeec608929badd"
+  },
+  {
+    "file": "js/highcharts.js",
+    "hash": "e07b80d900992bbb06da1ef82258b6b4"
+  },
+  {
+    "file": "js/highstock.js",
+    "hash": "0ad4e3af624d2e8ff6774a214a2685ca"
+  },
+  {
+    "file": "js/index.js",
+    "hash": "4a2b6c2567b8a6b4fe08777a86f42f61"
+  },
+  {
+    "file": "js/ip_exporting.js",
+    "hash": "a94828e850a8edbf3fc143be003e7b0f"
+  },
+  {
+    "file": "js/ip_highcharts-3d.js",
+    "hash": "175fc1a8669e99cca703449242629fd8"
+  },
+  {
+    "file": "js/ip_highcharts-more.js",
+    "hash": "a60b562c90ce9b750a52996c749e7dc0"
+  },
+  {
+    "file": "js/ip_highcharts.js",
+    "hash": "766ffe08e0337a21f44d58a9f89af556"
+  },
+  {
+    "file": "js/jquery-1.11.3.min.js",
+    "hash": "895323ed2f7258af4fae2c738c8aea49"
+  },
+  {
+    "file": "js/jquery-3.1.0.slim.min.js",
+    "hash": "d686d334c873495693faa62c04355019"
+  },
+  {
+    "file": "js/jquery-3.1.1.min.js",
+    "hash": "e071abda8fe61194711cfc2ab99fe104"
+  },
+  {
+    "file": "js/jquery-latest.js",
+    "hash": "65b352e1ba79f0e2a3b1e014bc2571af"
+  },
+  {
+    "file": "js/jquery.min.js",
+    "hash": "6cf224890de12ca0ba56d23d052f5f52"
+  },
+  {
+    "file": "js/jquery.mobile-1.4.5.min.js",
+    "hash": "024df0c7394cec1e3cd34aebe882e524"
+  },
+  {
+    "file": "js/jquery.tablesorter.js",
+    "hash": "75b5a4236bf48eea27d78c3fcb659f02"
+  },
+  {
+    "file": "js/JsNumberFormat.js",
+    "hash": "d7fb3c06a6063e28944d1805c6200746"
+  },
+  {
+    "file": "js/lembar_saham.js",
+    "hash": "72fc8297699b5f113f9b8c6a1bc8c8d4"
+  },
+  {
+    "file": "js/loader.js",
+    "hash": "8118576924b41dcb6801b19e480f73f9"
+  },
+  {
+    "file": "js/marketshare_detail.js",
+    "hash": "c4fb6fdc43d9f373d43bc57325658b3d"
+  },
+  {
+    "file": "js/mm_sg.js",
+    "hash": "6ea189c2ce545e406a1e5a94c0aea948"
+  },
+  {
+    "file": "js/mm_sp.js",
+    "hash": "6ea189c2ce545e406a1e5a94c0aea948"
+  },
+  {
+    "file": "js/mm_st.js",
+    "hash": "6ea189c2ce545e406a1e5a94c0aea948"
+  },
+  {
+    "file": "js/mm_tlcc.js",
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "file": "js/modernizr.js",
+    "hash": "b0ad13f9cc7602592d19cf680609b499"
+  },
+  {
+    "file": "js/moment.min.js",
+    "hash": "1e73f0ba34db3adac980c19f6ff64853"
+  },
+  {
+    "file": "js/motor_data_speedo.js",
+    "hash": "916394140017c9d23b8c8dde491b1f05"
+  },
+  {
+    "file": "js/motor_perform_data.js",
+    "hash": "76536795b847fd681fca0c0ad9c3a063"
+  },
+  {
+    "file": "js/mysortable.js",
+    "hash": "c1ef1c8938dea669ec828b0e0b1c655e"
+  },
+  {
+    "file": "js/myWorkingjQuery.js",
+    "hash": "0b6ecf17e30037994d3ffee51b525914"
+  },
+  {
+    "file": "js/NumberFormat.js",
+    "hash": "ebedd888815737f935b8701a9652ff8c"
+  },
+  {
+    "file": "js/paradigma.js",
+    "hash": "c3d81053fb9ae7fe5725bdc11fdac37f"
+  },
+  {
+    "file": "js/perform_data.js",
+    "hash": "90ae842ccbc87fcc45c471c332bd7ad8"
+  },
+  {
+    "file": "js/performance_data.js",
+    "hash": "21c9a20fac2e87b05ba3bbb45d55203e"
+  },
+  {
+    "file": "js/phase2/cement_clinker_prod_view.js",
+    "hash": "d8c38cf384faa6eb4a7a51c5fc982ce0"
+  },
+  {
+    "file": "js/phase2/clinker_cement_prod.js",
+    "hash": "362b93d4b35d12f3bba1506dd4f00d82"
+  },
+  {
+    "file": "js/phase2/clinker_cement_sales.js",
+    "hash": "3a3d6c49361310ebb1367bf7c210495e"
+  },
+  {
+    "file": "js/phase2/global.js",
+    "hash": "460623be667af6004c11fa354a4a5df1"
+  },
+  {
+    "file": "js/phase2/port_management.js",
+    "hash": "fa812aa3aef5a6699ceb9f5531356327"
+  },
+  {
+    "file": "js/phase2/sidenav.js",
+    "hash": "dc75848bc61a985271a7754b1e5e0a96"
+  },
+  {
+    "file": "js/phase2/sidenav.min.js",
+    "hash": "6daac26db271b75763afef8956de4b47"
+  },
+  {
+    "file": "js/phase2/sidenav.styl",
+    "hash": "9508fcf8a13b97b9deb669a855288db0"
+  },
+  {
+    "file": "js/project_dashboard.js",
+    "hash": "d96ad4170c73e20fc1ad42b9c301b406"
+  },
+  {
+    "file": "js/project_kpi.js",
+    "hash": "19c13a796030176d3fbe8fd5ddcebb5b"
+  },
+  {
+    "file": "js/project_pic.js",
+    "hash": "db65b64e88bdd2b2dfde6a2c2371fb04"
+  },
+  {
+    "file": "js/project.js",
+    "hash": "41d7f54147001cbf1c4e6a0a52428153"
+  },
+  {
+    "file": "js/projectb_st.js",
+    "hash": "e53de18c8a1e25699da04d5a40e4eb9e"
+  },
+  {
+    "file": "js/projectb.js",
+    "hash": "0d5324a8591b1e4024cfdcd2c9a40808"
+  },
+  {
+    "file": "js/raw_data_bar.js",
+    "hash": "e943cb885da608b25a109d9cad14eeb9"
+  },
+  {
+    "file": "js/raw_material_data.js",
+    "hash": "b0d6d722a2f3f97f549dda53c4e6fc4e"
+  },
+  {
+    "file": "js/raw_material_detail_data.js",
+    "hash": "0ad442ceebcbd49f3b2f2fca029e32cb"
+  },
+  {
+    "file": "js/scm_data_semen.js",
+    "hash": "af7f79b1e49de5d273583d486f5008fd"
+  },
+  {
+    "file": "js/scm_data.js",
+    "hash": "b46347893a9c707c81a6cf586268ad37"
+  },
+  {
+    "file": "js/scm_full_opco_pr.js",
+    "hash": "2f85b374510a8ffdf31ecdd8df3d0bae"
+  },
+  {
+    "file": "js/scm_full_opco_sv.js",
+    "hash": "079d2eb92a526c87314fae761ad78ec6"
+  },
+  {
+    "file": "js/scm_full_opco.js",
+    "hash": "42bd62062368e829d01292812610d0d6"
+  },
+  {
+    "file": "js/Session.js",
+    "hash": "bf33facedd75adf130c68545deb4d99b"
+  },
+  {
+    "file": "js/slick.min.js",
+    "hash": "3021e55101c9addc1dbc2ab41d96aa35"
+  },
+  {
+    "file": "js/sm_daily.js",
+    "hash": "1cec16e8593c7899a157a4008079c823"
+  },
+  {
+    "file": "js/smsmig_data.js",
+    "hash": "4061e4f3307b78e962c8cde8e83df2ba"
+  },
+  {
+    "file": "js/solid-gauge.js",
+    "hash": "a76668c9bed7ec5bdb2304b028b4ae41"
+  },
+  {
+    "file": "js/sorttable.js",
+    "hash": "3809d26cbae145842e56f374192e56d9"
+  },
+  {
+    "file": "js/stock-exporting.js",
+    "hash": "3fb8076e1e5a1764670a59d6a9564a88"
+  },
+  {
+    "file": "js/stok_bahan_bkp.js",
+    "hash": "5405e8b595b1e9d6c48a79cb84e36f37"
+  },
+  {
+    "file": "js/stok_bahan_sp_bkp.js",
+    "hash": "12ddf03d4e15e980e0e8c7189f622630"
+  },
+  {
+    "file": "js/stok_bahan_sp.js",
+    "hash": "0ad93d5be693ad11e45f7be66b3a438f"
+  },
+  {
+    "file": "js/stok_bahan_st_bkp.js",
+    "hash": "425dc287407bba6842fc5318ce7da72b"
+  },
+  {
+    "file": "js/stok_bahan_st.js",
+    "hash": "bf288060915c1985c0211a4faba74d7d"
+  },
+  {
+    "file": "js/stok_bahan.js",
+    "hash": "c250fbeb15c8e87ddcd0565b2aa803d5"
+  },
+  {
+    "file": "js/stokgudang_detail.js",
+    "hash": "1dbcfd05bea458753826159136a9ff17"
+  },
+  {
+    "file": "js/stokgudang_new.js",
+    "hash": "5c521be7655889cdce64316e412e8c1f"
+  },
+  {
+    "file": "js/stokgudang.js",
+    "hash": "237645c3a3643d47c57267222306cabe"
+  },
+  {
+    "file": "js/stupidtable.js",
+    "hash": "40f42f7666e60a04b400f2ff9faeb1b6"
+  },
+  {
+    "file": "js/tes_chart.js",
+    "hash": "1ecbd5d669d9f63746407db80482f72c"
+  },
+  {
+    "file": "js/tes_rate.js",
+    "hash": "75e44e3cdef0f6c1c9e5f19006a93f81"
+  },
+  {
+    "file": "js/touch-tooltip-fix.js",
+    "hash": "c6ace921e94abe0081899c846b48342c"
+  },
+  {
+    "file": "js/waitMe.min.js",
+    "hash": "916dee27314a0bcff48fc1a47a16d080"
+  },
+  {
+    "file": "kinerja_saham.html",
+    "hash": "74f9f1d77dd4d7453e58aaffb3ab22d3"
+  },
+  {
+    "file": "line_tes.html",
+    "hash": "af232c09df78cb3782080bc5d3dcac1c"
+  },
+  {
+    "file": "loader/images/loader-128x/Preloader_1.gif",
+    "hash": "b33b44c1dde38d2cfaddd4b0d53e66ed"
+  },
+  {
+    "file": "loader/images/loader-128x/Preloader_2.gif",
+    "hash": "9006428879580db63f9f1e52ce2318bf"
+  },
+  {
+    "file": "loader/images/loader-128x/Preloader_2a.gif",
+    "hash": "a8c98ef9a57c815f287ac8b56d0d65b9"
+  },
+  {
+    "file": "loader/images/loader-128x/Preloader_3.gif",
+    "hash": "b3419887896f982b4f2a1dcd83ef81bf"
+  },
+  {
+    "file": "loader/images/loader-128x/Preloader_4.gif",
+    "hash": "ff59fac54cc0d54022ed864da7d66e12"
+  },
+  {
+    "file": "loader/images/loader-128x/Preloader_5.gif",
+    "hash": "8dda6a9a16b06a7d76129dfb421b5de6"
+  },
+  {
+    "file": "loader/images/loader-128x/Preloader_6.gif",
+    "hash": "74e5502a9191276b9e64b14a984b3836"
+  },
+  {
+    "file": "loader/images/loader-128x/Preloader_7.gif",
+    "hash": "8f765de390556dd659dfc77ec1ad9cc6"
+  },
+  {
+    "file": "loader/images/loader-32x/loader1.gif",
+    "hash": "af9aaaf93ac64bad47d28e7bf0b76664"
+  },
+  {
+    "file": "loader/images/loader-32x/loader2.gif",
+    "hash": "667696a0c46251697b2096e3588e4d08"
+  },
+  {
+    "file": "loader/images/loader-32x/loader3.gif",
+    "hash": "729a32d73078660ba138e44458cdb26d"
+  },
+  {
+    "file": "loader/images/loader-32x/loader4.gif",
+    "hash": "ea8d83b0f7a38f5dda6b45939b19bdc4"
+  },
+  {
+    "file": "loader/images/loader-32x/loader5.gif",
+    "hash": "163144a9445d5d210362696cb2f4de06"
+  },
+  {
+    "file": "loader/images/loader-32x/loader6.gif",
+    "hash": "aa11f4b3cb6ff03f86d067208ae53e26"
+  },
+  {
+    "file": "loader/images/loader-32x/loader7.gif",
+    "hash": "a8cd41c866aea8e6d93dae45057f523b"
+  },
+  {
+    "file": "loader/images/loader-64x/Preloader_1.gif",
+    "hash": "9509900be0e8761566da6cd3c256230e"
+  },
+  {
+    "file": "loader/images/loader-64x/Preloader_2.gif",
+    "hash": "f676556f3b8ad8ae44c52fe5c46de57d"
+  },
+  {
+    "file": "loader/images/loader-64x/Preloader_3.gif",
+    "hash": "23060ec23044bcbdbc40a2c6ec428096"
+  },
+  {
+    "file": "loader/images/loader-64x/Preloader_4.gif",
+    "hash": "2c315137de4991c798ef0051fc6ff7ee"
+  },
+  {
+    "file": "loader/images/loader-64x/Preloader_5.gif",
+    "hash": "6d90f293df81f3ef33a1bd97e1b51440"
+  },
+  {
+    "file": "loader/images/loader-64x/Preloader_6.gif",
+    "hash": "5fa831f96c2c0575ad37d912e23ae8ed"
+  },
+  {
+    "file": "loader/images/loader-64x/Preloader_7.gif",
+    "hash": "2297bb1a3b1311ac6564fd870fed399c"
+  },
+  {
+    "file": "loader/index.html",
+    "hash": "685a7cd376637436047dbec333c3b7e2"
+  },
+  {
+    "file": "loader/loading.gif",
+    "hash": "8f765de390556dd659dfc77ec1ad9cc6"
+  },
+  {
+    "file": "loader/readme.txt",
+    "hash": "faa79855697d64d2b94705f5289f1872"
+  },
+  {
+    "file": "main_under.html",
+    "hash": "42af15f8ec8f52ddae4610bdbc30f73a"
+  },
+  {
+    "file": "mainte_cash_home.html",
+    "hash": "54030daccc32315911dfd5f4424b00b3"
+  },
+  {
+    "file": "maintenance_cost_detail.html",
+    "hash": "d6a12ae775eade64eab0322bd446115e"
+  },
+  {
+    "file": "maintenance_cost_sg.html",
+    "hash": "bcf142358066eba00b8e13159f4f6aa8"
+  },
+  {
+    "file": "maintenance_cost_sp.html",
+    "hash": "06590f11ae9c5cbe2fac55816690f9e3"
+  },
+  {
+    "file": "maintenance_cost_st.html",
+    "hash": "29c62367eeb7698e538fa4578f890120"
+  },
+  {
+    "file": "maintenance_cost_tlcc.html",
+    "hash": "b308af8b78df45f2889efdede677cf27"
+  },
+  {
+    "file": "maintenance_cost.html",
+    "hash": "56ac45fcdf3b39bba4ef8a910cb491f5"
+  },
+  {
+    "file": "maintenance_cost1.html",
+    "hash": "294ca72f3e032c83bfdf5b0bd9d5938d"
+  },
+  {
+    "file": "maintenance_quality.html",
+    "hash": "829e0befc7888f5205e621e690210751"
+  },
+  {
+    "file": "market_inteligence_backup.html",
+    "hash": "f75c6d3a0053f2713367f989f44bd00a"
+  },
+  {
+    "file": "market_inteligence.html",
+    "hash": "d50cd8445e5b1e9ca0ebf1d225754604"
+  },
+  {
+    "file": "market_intellegence.html",
+    "hash": "8591a7c341a3965d8b63443322c1a69a"
+  },
+  {
+    "file": "market_rkap_sg.html",
+    "hash": "78761d0444f460c3ffa87593addb8ea0"
+  },
+  {
+    "file": "market_rkap_sp.html",
+    "hash": "0476c91f8e6b2e44650ad8e3e71f41ea"
+  },
+  {
+    "file": "market_rkap_st.html",
+    "hash": "66d29cd1cdaaa046b85717d75be8bf14"
+  },
+  {
+    "file": "market_rkap.html",
+    "hash": "ecff750ecc2a299500d49f37cd7d9aef"
+  },
+  {
+    "file": "marketshare_.html",
+    "hash": "f6ffab01964e2e9c0f91f237d2ea542e"
+  },
+  {
+    "file": "marketshare_2_data.js",
+    "hash": "1c99f0961ca9cbc9baf4917323593123"
+  },
+  {
+    "file": "marketshare_2--.html",
+    "hash": "a8e719c17d5403b75ef6c3048d7e97db"
+  },
+  {
+    "file": "marketshare_2.html",
+    "hash": "c9253f04430a976b04ceb168fada4eac"
+  },
+  {
+    "file": "marketshare_3.html",
+    "hash": "0907a1dcf64e95e2ca8afbc3586a7c33"
+  },
+  {
+    "file": "marketshare_data.js",
+    "hash": "a53a478f07ab0f24bd783ad9c8c7bac8"
+  },
+  {
+    "file": "marketshare_detail_.html",
+    "hash": "8d84d37ab9987fc228b6f3949956ac15"
+  },
+  {
+    "file": "marketshare_detail_data.js",
+    "hash": "d9fa86f579ecc5cc96d757df564c281d"
+  },
+  {
+    "file": "marketshare_detail.html",
+    "hash": "a5f28c58afa310e40eb9a9a9488971d1"
+  },
+  {
+    "file": "marketshare_detail2.html",
+    "hash": "601e86ee45ea0a2f1acd3ddc2fac7bd6"
+  },
+  {
+    "file": "marketshare_detailold.html",
+    "hash": "4284fc586c0f7bbe86c2848e5d8bda03"
+  },
+  {
+    "file": "marketshare_lama.html",
+    "hash": "af71e942d15ab93e711eaf22c08c9e7b"
+  },
+  {
+    "file": "marketshare_old.html",
+    "hash": "9c17ba3c0e82a05ab19562dd45cb973f"
+  },
+  {
+    "file": "marketshare_opco.html",
+    "hash": "4c3cb1fb987aa54a0fbebe51f20c1838"
+  },
+  {
+    "file": "marketshare_provinsi.html",
+    "hash": "35c7605f07b75f1a0dec2cd486b47edc"
+  },
+  {
+    "file": "marketshare_sg._html",
+    "hash": "5dfb0f19de16e19c739dfd0d865f59a8"
+  },
+  {
+    "file": "marketshare_sg.html",
+    "hash": "65b5fc8136fd85977059e0053884f656"
+  },
+  {
+    "file": "marketshare_sg2.html",
+    "hash": "9fcd0540ba7f1910c91456ef004d4176"
+  },
+  {
+    "file": "marketshare_sp_.html",
+    "hash": "3a582a9af71cee1f5e38055f1dac5fca"
+  },
+  {
+    "file": "marketshare_sp.html",
+    "hash": "74605be9cb80d803415219e557139aac"
+  },
+  {
+    "file": "marketshare_sp2.html",
+    "hash": "fc7a2fc89ae150a1c3703bc9c6bca0fa"
+  },
+  {
+    "file": "marketshare_st_.html",
+    "hash": "94e87d47399b71a6b9099e22e32b4c60"
+  },
+  {
+    "file": "marketshare_st.html",
+    "hash": "a86ad8e3274afd85125c3a33e01c7097"
+  },
+  {
+    "file": "marketshare_st2.html",
+    "hash": "5728773bdb7f9da82feb0fec306ba822"
+  },
+  {
+    "file": "marketshare.html",
+    "hash": "24c7f2233072d83850ee3e9845a031e9"
+  },
+  {
+    "file": "marketshare2_.html",
+    "hash": "01a48a63732a16412e3a8fa1f5337727"
+  },
+  {
+    "file": "marketshare2_lama.html",
+    "hash": "d6cdd69eec8392844a7d608f42938f54"
+  },
+  {
+    "file": "marketshare2.html",
+    "hash": "6e042d664c285e0c5362bf0a679ec038"
+  },
+  {
+    "file": "marketsharex2.html",
+    "hash": "016b990628c1bbb3908f3415d741dcb5"
+  },
+  {
+    "file": "marketsharexx.html",
+    "hash": "2d3f1685a5a89e3d5cfcd888811dc421"
+  },
+  {
+    "file": "material_quality.html",
+    "hash": "2f09e93ef429ce8f7b54b0b7f3a3aa71"
+  },
+  {
+    "file": "mm_home.html",
+    "hash": "2c22cc663ce8a242349fb9e05cb26ad9"
+  },
+  {
+    "file": "modernizr.js",
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "file": "monitor_sg.html",
+    "hash": "5665a83dd686f5c5414a89503ff929a7"
+  },
+  {
+    "file": "monitor_sp.html",
+    "hash": "cf3e8253c09f5c51b1f576daca15bf3a"
+  },
+  {
+    "file": "monitor_st.html",
+    "hash": "1c6d36e85b28a4ad83e2e52d84a28995"
+  },
+  {
+    "file": "monitor_tlcc.html",
+    "hash": "7ec2fe8615edceb18d13056abaab22ca"
+  },
+  {
+    "file": "motor_perform_cm3sg.html",
+    "hash": "9bfc363761e4b17c93616c5782a09f46"
+  },
+  {
+    "file": "motor_perform_cm3sp.html",
+    "hash": "b574375fb5ecc9f3b4069cd841470a06"
+  },
+  {
+    "file": "motor_perform_cm3st.html",
+    "hash": "0b5cf05c5c41f1365df2a1e4f0d9122b"
+  },
+  {
+    "file": "motor_perform_cm3tl.html",
+    "hash": "8fa53e4fe49de889334e955c5cbb0f46"
+  },
+  {
+    "file": "motor_perform_fm7sg.html",
+    "hash": "1a0a9a6342d14bbf9e2de7346b2e0e0c"
+  },
+  {
+    "file": "motor_perform_fm7sp.html",
+    "hash": "1b232ce1d7fe94980bb7a2152afea8d1"
+  },
+  {
+    "file": "motor_perform_fm7st.html",
+    "hash": "78c948c9fb522580f70c2ff4f5471d1c"
+  },
+  {
+    "file": "motor_perform_fm7tl.html",
+    "hash": "1c92a6cf33f79f1c5642ca96bd965a74"
+  },
+  {
+    "file": "motor_perform_kl3sg.html",
+    "hash": "04f311ef3c46b800632f48fb00d2ab05"
+  },
+  {
+    "file": "motor_perform_kl3sp.html",
+    "hash": "5371eb8948b725f4d68f95e0e6417b4a"
+  },
+  {
+    "file": "motor_perform_kl3st.html",
+    "hash": "3e444f55b9d937eb306440b7365298a6"
+  },
+  {
+    "file": "motor_perform_kl3tl.html",
+    "hash": "be2a899e9ed05d080deb53516517af0d"
+  },
+  {
+    "file": "motor_perform_rm3sg.html",
+    "hash": "36b11f6f6b929c88b5c970f74a4a2acf"
+  },
+  {
+    "file": "motor_perform_rm3sp.html",
+    "hash": "94b3c07df720c1c5584e676f17ea975d"
+  },
+  {
+    "file": "motor_perform_rm3st.html",
+    "hash": "e7f0d8f48fbe493f76abe94b4143d5ee"
+  },
+  {
+    "file": "motor_perform_rm3tlcc.html",
+    "hash": "7a0a0a5372977d938e2c9dc75144ef2b"
+  },
+  {
+    "file": "motor_perform.html",
+    "hash": "5aec62c9d766a5b636cde20687e71731"
+  },
+  {
+    "file": "motor_pform_kl3_sg.html",
+    "hash": "bdcbae08f2102fe740e49a1a21dcf3ae"
+  },
+  {
+    "file": "motor_pform_kl3_sp.html",
+    "hash": "e06ac8c611f811a8a22f0c4d9cfcdfe7"
+  },
+  {
+    "file": "motor_pform_kl3_st.html",
+    "hash": "d355e7e5bf0465ca398b57523c28e8e6"
+  },
+  {
+    "file": "motor_pform_kl3_tlcc.html",
+    "hash": "2769e169d14d141218e059d55948cf4f"
+  },
+  {
+    "file": "motor_pform_kl4_sg.html",
+    "hash": "02d8519d23ed86f7ed5797d94346e9d6"
+  },
+  {
+    "file": "motor_pform_kl4_sp.html",
+    "hash": "8b022eaf6938995bd2b9d792a5c3c28b"
+  },
+  {
+    "file": "motor_pform_kl4_st.html",
+    "hash": "1ea4a69f04c87d9a7e31109859f426ed"
+  },
+  {
+    "file": "motor_pform_kl4_tlcc.html",
+    "hash": "6a368d245b34e01550ea579de2f60f26"
+  },
+  {
+    "file": "mt_cost_act_dt_bln.html",
+    "hash": "cc8558e82ce4ce315dcd26f814cbbd95"
+  },
+  {
+    "file": "mt_cost_act_dt_upbln.html",
+    "hash": "d1076f99b29d7d99499028df255ba355"
+  },
+  {
+    "file": "mt_cost_bckp.html",
+    "hash": "5bf88e655c0c90eb9405ec3e96622146"
+  },
+  {
+    "file": "mt_cost_dept_dt_bln.html",
+    "hash": "4fa80b4e71ed27e46ede4557df1fcd60"
+  },
+  {
+    "file": "mt_cost_dept_dt_upbln.html",
+    "hash": "27dc6af7ad62e1fdd8c1f7c0b28e1107"
+  },
+  {
+    "file": "mt_cost_price_dt_bln.html",
+    "hash": "b5ff88de8b33be85455dfdd94b55b154"
+  },
+  {
+    "file": "mt_cost_price_dt_upbln.html",
+    "hash": "1b8b637bdff558f11299321e53d19d7f"
+  },
+  {
+    "file": "mt_cost_puplan_dt_bln.html",
+    "hash": "08e1167abde5a1d2f4536bb3e757f3ef"
+  },
+  {
+    "file": "mt_cost_puplan_dt_upbln.html",
+    "hash": "34857ac8a0d88634ef8c29a41bd73dbd"
+  },
+  {
+    "file": "mt_cost.html",
+    "hash": "2e07105a995967494fce556e2ab935b5"
+  },
+  {
+    "file": "notfound.html",
+    "hash": "f67503c149b5a8f3485b3cecccb35ccb"
+  },
+  {
+    "file": "overview_sg_detail.html",
+    "hash": "37a0f5db6d147094f61c4b6fd0b347a1"
+  },
+  {
+    "file": "overview_sp_detail.html",
+    "hash": "813fa5ce99093d822ef4e0e69ce45cda"
+  },
+  {
+    "file": "overview_st_detail.html",
+    "hash": "e98e4ff3c3bbe11edfdacf4c034ef472"
+  },
+  {
+    "file": "overview_tlcc_detail.html",
+    "hash": "a18396a171c161de606b83007dc1e2b3"
+  },
+  {
+    "file": "p2_cli_cem_prod_pc.html",
+    "hash": "d94f89a2389b9168616853eaa2f04279"
+  },
+  {
+    "file": "p2_cli_cem_prod_sg.html",
+    "hash": "50acf8e4be2d1549f7e25ea25d231d82"
+  },
+  {
+    "file": "p2_cli_cem_prod_sp.html",
+    "hash": "10923a2fe822af16e4b2ad63e9ff15b5"
+  },
+  {
+    "file": "p2_cli_cem_prod_st.html",
+    "hash": "8e8a78d5e9333afa6f0e7a65891f4e83"
+  },
+  {
+    "file": "p2_cli_cem_prod_tl.html",
+    "hash": "0c598e304cb4e759c4e705e438aa69e8"
+  },
+  {
+    "file": "p2_fin_sales_si.html",
+    "hash": "923b4fb4beb12b672e968e35ad0eef52"
+  },
+  {
+    "file": "p2_fin_sales_smi_chart.html",
+    "hash": "b93f6ff937b8f6c564a823f862d757ed"
+  },
+  {
+    "file": "p2_fin_sales_smi.html",
+    "hash": "8bebc6f8d3ec82b120d176941ec898e9"
+  },
+  {
+    "file": "p2_fin_sales_sp.html",
+    "hash": "2af1db374a30f3c8ec285ad42059fb44"
+  },
+  {
+    "file": "p2_fin_sales_st.html",
+    "hash": "323990d9cd2d166de2a62188a86c0751"
+  },
+  {
+    "file": "p2_fin_sg_pc_chart.html",
+    "hash": "d638e602e54bf13dea78d242116531bb"
+  },
+  {
+    "file": "p2_fin_sg_pc_chart2.html",
+    "hash": "3d0d88babf91740dad24b96538acca1c"
+  },
+  {
+    "file": "p2_fin_smi_pc_chart.html",
+    "hash": "e8057803584f44c79b2d996fd95291e1"
+  },
+  {
+    "file": "p2_fin_smi_pc_chart2.html",
+    "hash": "00ca741153db442096cb5335e0b826be"
+  },
+  {
+    "file": "p2_fin_sp_pc_chart.html",
+    "hash": "8af0f88e5a47b88aa0924ce6e9260306"
+  },
+  {
+    "file": "p2_fin_sp_pc_chart2.html",
+    "hash": "ee1d2e3ee66e176d504f6428b0ee8415"
+  },
+  {
+    "file": "p2_fin_st_pc_chart.html",
+    "hash": "f38f1127896af09668cd0161fdad3427"
+  },
+  {
+    "file": "p2_fin_st_pc_chart2.html",
+    "hash": "15ad59c243eb5e7e278432cb4789f58c"
+  },
+  {
+    "file": "p2_fin_tlcc_pc_chart.html",
+    "hash": "3301e5c3c043e7195861304375897125"
+  },
+  {
+    "file": "p2_port_management.html",
+    "hash": "c0e2c276efc209654803442069bbc7d4"
+  },
+  {
+    "file": "padang_detil_data.js",
+    "hash": "3895a8bc756d14d537f1333521d89179"
+  },
+  {
+    "file": "peer_comparison.html",
+    "hash": "e3b27a5ecf753898ff53e39262b6d86b"
+  },
+  {
+    "file": "pi_sg_detail.html",
+    "hash": "103d5e3057c02a0e06658eef17386174"
+  },
+  {
+    "file": "pi_si_detail.html",
+    "hash": "ae912ed2dbf4d1a949b81a14f26e888a"
+  },
+  {
+    "file": "pi_sp_detail.html",
+    "hash": "885a000056f6658dc09b2a04c5641235"
+  },
+  {
+    "file": "pi_st_detail.html",
+    "hash": "6b59bfeba0b3bd9db6c7cfa2e1b83217"
+  },
+  {
+    "file": "pi_tll_detail.html",
+    "hash": "e7a75272de60c85254ab94434d8509d4"
+  },
+  {
+    "file": "port_motor.html",
+    "hash": "c6c93610a55a458a6231a0b71d8389e6"
+  },
+  {
+    "file": "portal_capex.html",
+    "hash": "c33603c53b1c8997f0a55e7ec947f34a"
+  },
+  {
+    "file": "portal_finance.html",
+    "hash": "a56d55032728c9b0e8b293c9405cd1cf"
+  },
+  {
+    "file": "portal_invent.html",
+    "hash": "6a7e2c6fd67b2c5b53eb51d889454b85"
+  },
+  {
+    "file": "portal_maintenance.html",
+    "hash": "e9c7feaa9992e6b223f7a26688789e99"
+  },
+  {
+    "file": "portal_prod1.html",
+    "hash": "0c50d7b4a281e4337b062fd559ca5c8c"
+  },
+  {
+    "file": "portal_proddr.html",
+    "hash": "28f5a8bc35996d3e648236a930c2a4fb"
+  },
+  {
+    "file": "portal_production.html",
+    "hash": "98e0500555354b77e43733ad8e24a843"
+  },
+  {
+    "file": "portal_project.html",
+    "hash": "88c80ef7adbca52c07be79e74727cf54"
+  },
+  {
+    "file": "portal_quality.html",
+    "hash": "3778df6f0812be42c11264210c598389"
+  },
+  {
+    "file": "portal_sales.html",
+    "hash": "3f804be2f1c18a32f8c6d6fb360769b0"
+  },
+  {
+    "file": "portal_scm.html",
+    "hash": "a01723fa7042cefcb0f5a599e6a2a806"
+  },
+  {
+    "file": "portal_tresuri.html",
+    "hash": "fced3ec089e8cc3d9a7ba14248f62bb4"
+  },
+  {
+    "file": "power_plant_sg.html",
+    "hash": "abab8cb27269f8ada1a96cb5000c7384"
+  },
+  {
+    "file": "power_plant_sp.html",
+    "hash": "9e20bc41f79d15304263c1c1bb9a4527"
+  },
+  {
+    "file": "power_plant_st.html",
+    "hash": "80df60d55db7099bacea283b9f68da4e"
+  },
+  {
+    "file": "power_plant_tl.html",
+    "hash": "fafe4060817b42e7aa143df6a59c70eb"
+  },
+  {
+    "file": "ppj_proj_gress.html",
+    "hash": "a0c46e594036fb7ce93e1bff3e751f60"
+  },
+  {
+    "file": "ppj_project_detail.html",
+    "hash": "bba3644bb23c6b94ccbe296328186cd7"
+  },
+  {
+    "file": "ppj_pusb.html",
+    "hash": "39f1e1cea7fd86865963cac749ebc578"
+  },
+  {
+    "file": "procinvent.html",
+    "hash": "7bd9aa71cc5169f04eecbc93677d8a29"
+  },
+  {
+    "file": "prod_rm_sg_slide.html",
+    "hash": "92dc016d344b04acaed2bc31c42d29cb"
+  },
+  {
+    "file": "prod_rm_sg.html",
+    "hash": "39acbfc7c168fc8491ed8582dfc57ce8"
+  },
+  {
+    "file": "prod_rm_sp.html",
+    "hash": "07e1e6c4e37c0b747119553249d0ada4"
+  },
+  {
+    "file": "prod_rm_st.html",
+    "hash": "a44d5b2f4afdfc0cf503a33476b9df46"
+  },
+  {
+    "file": "prod_rm_tlcc.html",
+    "hash": "00a8ba4dc86c47ef0ef602107eaebd50"
+  },
+  {
+    "file": "production_operation_sg.html",
+    "hash": "9f6e9a08d87d65d2c4a21451f422a433"
+  },
+  {
+    "file": "production_operation_sp.html",
+    "hash": "434ba4c903dceb3ff2ab97773bb79458"
+  },
+  {
+    "file": "production_operation_st.html",
+    "hash": "c965de584b656f1289e3629388ed2099"
+  },
+  {
+    "file": "production_operation_tl.html",
+    "hash": "8b0505cddb5e1fecdc3629c4a674b82f"
+  },
+  {
+    "file": "proj_gress_st.html",
+    "hash": "f4f719b75e1d827dd532f31297c66662"
+  },
+  {
+    "file": "proj_gressb.html",
+    "hash": "68f34909be8e028971d3597d8d6fc0fd"
+  },
+  {
+    "file": "project_pic_sp.html",
+    "hash": "7f44f2167ef11e845e8fdabcd57e809a"
+  },
+  {
+    "file": "pusb_detail.html",
+    "hash": "dd7959a074517aa86e5dc2414945a1d4"
+  },
+  {
+    "file": "pusb_detail1.html",
+    "hash": "dd7959a074517aa86e5dc2414945a1d4"
+  },
+  {
+    "file": "pusb.js",
+    "hash": "93beac49266c00b8a84cc2de967e91c5"
+  },
+  {
+    "file": "pusb2.js",
+    "hash": "e5ca66808b955767c9a865d7a565cc33"
+  },
+  {
+    "file": "pusb3.js",
+    "hash": "2ca9c6dbe3af4f17e3362d5335b46964"
+  },
+  {
+    "file": "pusb4.js",
+    "hash": "d257d621717838bb7ef0cc890ad1a2ff"
+  },
+  {
+    "file": "quality.html",
+    "hash": "6ebcdc3730c3e8c9d0390150406b28ae"
+  },
+  {
+    "file": "raw_material_detail_sg.html",
+    "hash": "cbd0259f82756f1785e58f2bd06aac08"
+  },
+  {
+    "file": "raw_material_detail_sp.html",
+    "hash": "070ed2b41bafc56e5453270fdcd39d2d"
+  },
+  {
+    "file": "raw_material_detail_st.html",
+    "hash": "fc78e47b9dc8284e1083f15b00e355ca"
+  },
+  {
+    "file": "raw_material_detail_tlcc.html",
+    "hash": "f02da7a99aab7524cc7f63c43398b66b"
+  },
+  {
+    "file": "raw_material_detail.html",
+    "hash": "14fbe439d675a5a9a599a6bd11afa074"
+  },
+  {
+    "file": "raw_material.html",
+    "hash": "55c64631739acb9553a2eae659133699"
+  },
+  {
+    "file": "role.html",
+    "hash": "4d5bd5b83a9696c5bd4c846e2c81a400"
+  },
+  {
+    "file": "sales_dashboard_b.html",
+    "hash": "eb4971231c2b831a0cd818a357606b77"
+  },
+  {
+    "file": "sales_dashboard_bckup.html",
+    "hash": "85774960ae653c1acf53dec34b69be1d"
+  },
+  {
+    "file": "sales_dashboard.html",
+    "hash": "31da5f31d56b530d5fdc084e9b194d22"
+  },
+  {
+    "file": "sales_detail_old.html",
+    "hash": "60906e830527d6dfb623ba707463fd93"
+  },
+  {
+    "file": "sales_detail_up_thisday.html",
+    "hash": "96fe638d9f040a7fe68501a509ded244"
+  },
+  {
+    "file": "sales_detail_up_thismonth.html",
+    "hash": "f1296b07b768c905eb979cba26cfcc33"
+  },
+  {
+    "file": "sales_detail.html",
+    "hash": "5173f16e8145dd1baf6d523ad9213ebd"
+  },
+  {
+    "file": "sales_hm.html",
+    "hash": "c229c6b8300bfa7a8cb545ec20e03463"
+  },
+  {
+    "file": "sales_home.html",
+    "hash": "cd6a198989f804a943ad3c665e3350e0"
+  },
+  {
+    "file": "sales_ico.png",
+    "hash": "ef33e4349cf1440c89350ed15dd20187"
+  },
+  {
+    "file": "scm_cement_p.html",
+    "hash": "277a29d5ce9dca3e7eeaa4acdc5f24b7"
+  },
+  {
+    "file": "scm_clinker_p.html",
+    "hash": "251cb16f42a574d39af55d3dbc372f09"
+  },
+  {
+    "file": "scm_data_semen_sg.js",
+    "hash": "d5133e109c2bac7b8e0d004dc3e735fe"
+  },
+  {
+    "file": "scm_data_semen_sp.js",
+    "hash": "ad1c8edd253e34d9eac653e416013829"
+  },
+  {
+    "file": "scm_data_semen_st.js",
+    "hash": "751c3e1ea2249bf491a030b5c140b9cd"
+  },
+  {
+    "file": "scm_data_semen_tl.js",
+    "hash": "78ecb19c5011873da6dcf81e3aecb8ab"
+  },
+  {
+    "file": "scm_data_semen_tlcc.js",
+    "hash": "3064b751b2ee39926d576b8ad25c2fa3"
+  },
+  {
+    "file": "scm_data_semen.js",
+    "hash": "eabd06fa541ab6981019687384ce4659"
+  },
+  {
+    "file": "scm_data_sg.js",
+    "hash": "da6f977d69c684c037701ccaca77ba9f"
+  },
+  {
+    "file": "scm_data_sp.js",
+    "hash": "d7c273321d3a345ee8a08279902a3113"
+  },
+  {
+    "file": "scm_data_st.js",
+    "hash": "078afa4c624872cad9df2404e33fed7e"
+  },
+  {
+    "file": "scm_data_tl.js",
+    "hash": "be94c385b9f034c19705fc8c360ed6d5"
+  },
+  {
+    "file": "scm_data_tlcc.js",
+    "hash": "a2d33c60575ea1d744026ecfec668b14"
+  },
+  {
+    "file": "scm_data.js",
+    "hash": "f37e1f73512394ef11f5a2e589565b3a"
+  },
+  {
+    "file": "scm_detail_semen_sg.html",
+    "hash": "9aa020941447cdadba78686e992ef8fa"
+  },
+  {
+    "file": "scm_detail_semen_sp.html",
+    "hash": "bb4eefa03943463a4570ccce424d579f"
+  },
+  {
+    "file": "scm_detail_semen_st.html",
+    "hash": "5686d512f7477e7fad556f29e29b36bf"
+  },
+  {
+    "file": "scm_detail_semen_tl.html",
+    "hash": "5e849c10f009785079f810d211f3f132"
+  },
+  {
+    "file": "scm_detail_semen.html",
+    "hash": "89d7d86d1fd391e19576f40dff76a93f"
+  },
+  {
+    "file": "scm_detail_sg.html",
+    "hash": "bebe08c92ede50d7e64ebdf43bc1007b"
+  },
+  {
+    "file": "scm_detail_sp.html",
+    "hash": "876ca2c05173f3eeac813c32261e9fdb"
+  },
+  {
+    "file": "scm_detail_st.html",
+    "hash": "53e8fbbc3fa67eba05b52b6f88139a35"
+  },
+  {
+    "file": "scm_detail_tl.html",
+    "hash": "aca860b24e5da2c2fa10dfb7b93341fa"
+  },
+  {
+    "file": "scm_detail.html",
+    "hash": "f64162e636261fc6f68382513af217fd"
+  },
+  {
+    "file": "scm_domestik_sv_smi.html",
+    "hash": "ccbf895efe370fca0c2890bb5a60d5d2"
+  },
+  {
+    "file": "scm_domestik_sv.html",
+    "hash": "d8d61998dc0326884dd00d697b9838ac"
+  },
+  {
+    "file": "scm_export_sv.html",
+    "hash": "52d2a7a43f1c2f3c12d6eee81bf28a9b"
+  },
+  {
+    "file": "scm_full_sg__.html",
+    "hash": "621389d0d3448b3f8d4cff7d8eeaf582"
+  },
+  {
+    "file": "scm_full_sg_.html",
+    "hash": "e0ee70e51af8d3dcd089acc5f0fe2d76"
+  },
+  {
+    "file": "scm_full_sg.html",
+    "hash": "ef14aa40333a2e4f6bb160486ffb6d5a"
+  },
+  {
+    "file": "scm_full_sp_.html",
+    "hash": "2c797994179f7d84ccd27fa480609ce8"
+  },
+  {
+    "file": "scm_full_sp.html",
+    "hash": "025bdbe1b210a699b3b88294305b2eca"
+  },
+  {
+    "file": "scm_full_st_.html",
+    "hash": "a5452228d787178747b6f7b09d9f7142"
+  },
+  {
+    "file": "scm_full_st.html",
+    "hash": "4f0e8834e9fa1d0a675363474511b443"
+  },
+  {
+    "file": "scm_full_tl_.html",
+    "hash": "8a0e39d8b44ef83d7a0401bc04a2174a"
+  },
+  {
+    "file": "scm_full_tl.html",
+    "hash": "0fe5b92b66c9fa9b1af1bc7f32575592"
+  },
+  {
+    "file": "scm_full.html",
+    "hash": "c8d4e693563611d7ec7630722c9d5640"
+  },
+  {
+    "file": "scm_fulla.html",
+    "hash": "f37a3d8dac2138c021fa32533ce14382"
+  },
+  {
+    "file": "scm_hm_sg.html",
+    "hash": "adb5337b976bbd7bdb78bb3dc95dcd14"
+  },
+  {
+    "file": "scm_hm_sp.html",
+    "hash": "33b277755b283952979fa263a429502a"
+  },
+  {
+    "file": "scm_hm_st.html",
+    "hash": "6e931efdd95fa14fcfa62ade7cf51bc7"
+  },
+  {
+    "file": "scm_hm_tl.html",
+    "hash": "025dc55ca2d1f528fc6c93308879669e"
+  },
+  {
+    "file": "scm_hm.html",
+    "hash": "c88225dbde83763c6f0b15db694e2b4c"
+  },
+  {
+    "file": "scm_hm2.html",
+    "hash": "3bce1d7374a4b8b816781e0d9f9e3ed8"
+  },
+  {
+    "file": "scm_prod_sg.html",
+    "hash": "3dd8191227be874e4e9c4a333eae2309"
+  },
+  {
+    "file": "scm_prod_sp.html",
+    "hash": "24291260e486c3782da1ed52204b8eb9"
+  },
+  {
+    "file": "scm_prod_st.html",
+    "hash": "c48babc9bb45e294bb589a41e0a8b879"
+  },
+  {
+    "file": "scm_prod_tl.html",
+    "hash": "807388e3f6e92591c2379ae963b24fd1"
+  },
+  {
+    "file": "scm_prod.html",
+    "hash": "b77c07a92785054e35068a59ef8ae2fb"
+  },
+  {
+    "file": "scm_sales_vol_sg.html",
+    "hash": "0f651e7f6ea8b629a743772443f4ef82"
+  },
+  {
+    "file": "scm_sales_vol_sp.html",
+    "hash": "fbbfd31a4de7054008efa355de3759d1"
+  },
+  {
+    "file": "scm_sales_vol_st.html",
+    "hash": "8a4f977261c021aad7b9e707fbdc53f2"
+  },
+  {
+    "file": "scm_sales_vol_tl.html",
+    "hash": "043e35b669572c26f163b3db0f3212e7"
+  },
+  {
+    "file": "scm_sales_volume.html",
+    "hash": "0b3db3b19c4a8217459a248ba22a30b8"
+  },
+  {
+    "file": "sg_emisi_status.html",
+    "hash": "d37b3d7de15fa029729be6a14336de85"
+  },
+  {
+    "file": "sg_plant_status.html",
+    "hash": "e6bb12fd10835b208aa787a0be3218de"
+  },
+  {
+    "file": "si_ramah_dash.html",
+    "hash": "0aad2eac195cd11b9e63dca208d8e848"
+  },
+  {
+    "file": "sidenav-bg.jpg",
+    "hash": "44b7990a53f51318f7fd66ce51974c16"
+  },
+  {
+    "file": "silo_scrol.html",
+    "hash": "cde6b6c35ce09513669e90fcb9e6c817"
+  },
+  {
+    "file": "silo_sg.html",
+    "hash": "9b95df95a692e8cbd3b24a7141bcadd0"
+  },
+  {
+    "file": "silo_sp.html",
+    "hash": "04838ed9d5f7b857dc02617681090604"
+  },
+  {
+    "file": "silo_st.html",
+    "hash": "244aea92720ae205856f3d38bd5b8c27"
+  },
+  {
+    "file": "silo_tl.html",
+    "hash": "e6f4f87dfb0645a29c16bb9181483250"
+  },
+  {
+    "file": "slick-theme.css",
+    "hash": "e0d0007dd430ea2583db35a68194b76d"
+  },
+  {
+    "file": "slick.css",
+    "hash": "13b1b6672b8cfb0d9ae7f899f1c42875"
+  },
+  {
+    "file": "slick.js",
+    "hash": "99cf8430b8d81c268269760118ec31a4"
+  },
+  {
+    "file": "slick.min.js",
+    "hash": "b53bdfc29e18f4d493d775a8023fbdc8"
+  },
+  {
+    "file": "sm_daily_beforelatest.html",
+    "hash": "8f8b37d6c38b3c21f854451c3ff0dd28"
+  },
+  {
+    "file": "sm_daily_data.js",
+    "hash": "2427ee36b69399fd6ee8e16fbe63021d"
+  },
+  {
+    "file": "sm_daily_lama.html",
+    "hash": "408cf18b6b560a7c8b98c6097555a519"
+  },
+  {
+    "file": "sm_daily_last.html",
+    "hash": "76f91cf603f0104595be579f15111ab5"
+  },
+  {
+    "file": "sm_daily_old1.html",
+    "hash": "a42cdd3c0c75d1924aeef7dd497c53eb"
+  },
+  {
+    "file": "sm_daily_ori.html",
+    "hash": "4189c989385483080b3aa85940086d10"
+  },
+  {
+    "file": "sm_daily_rev.html",
+    "hash": "1794c184986de60a226ddb9a52cd5e66"
+  },
+  {
+    "file": "sm_daily_run.html",
+    "hash": "2e70178ce624826ada14323b5be8b950"
+  },
+  {
+    "file": "sm_daily_sg.html",
+    "hash": "930ddfc81cd1cf26c3a75edf5b5384d2"
+  },
+  {
+    "file": "sm_daily_sp.html",
+    "hash": "d69561c52fe0cab1ce85eef0de9ec3aa"
+  },
+  {
+    "file": "sm_daily_st.html",
+    "hash": "5d9020e6516785ac232f957399f16cff"
+  },
+  {
+    "file": "sm_daily_tlc.html",
+    "hash": "fdd1ed136b7896a9bc5d4bcae1f7af6d"
+  },
+  {
+    "file": "sm_daily_update.html",
+    "hash": "3dc4e28ba04cda7eebb2a2f9b2521c45"
+  },
+  {
+    "file": "sm_daily-2.html",
+    "hash": "1ca0feba422acfd0105b0e0ecd6811d9"
+  },
+  {
+    "file": "sm_daily.html",
+    "hash": "8d034374b32aad79899db29cd5a5153f"
+  },
+  {
+    "file": "sm_daily.ori.html",
+    "hash": "8a00c3b45ad1a3aba351b64c09b57c2b"
+  },
+  {
+    "file": "sm_daily2.html",
+    "hash": "8a00c3b45ad1a3aba351b64c09b57c2b"
+  },
+  {
+    "file": "sm_dailyall.html",
+    "hash": "0502aa8280d005b7ea2a1785af15ef75"
+  },
+  {
+    "file": "sm_dailyold.html",
+    "hash": "47117b451b1008bb90d71619975aba4e"
+  },
+  {
+    "file": "sm_menu.html",
+    "hash": "e8ba61858dc1127c7d7f82ae54dcdd7e"
+  },
+  {
+    "file": "sm_sg_detail_.html",
+    "hash": "23f962b3e0f78f0a527ae764f75ffaeb"
+  },
+  {
+    "file": "sm_sg_detail_old.html",
+    "hash": "80c01662012c1eb49045a47aada04cc7"
+  },
+  {
+    "file": "sm_sg_detail_price_old.html",
+    "hash": "56bcec56a10190b39d52897e3466db6f"
+  },
+  {
+    "file": "sm_sg_detail_price.html",
+    "hash": "128b0698c35167dbc68d9e3c46afaded"
+  },
+  {
+    "file": "sm_sg_detail_rev_old.html",
+    "hash": "773a85ce28dd42246021ca686ae815d8"
+  },
+  {
+    "file": "sm_sg_detail_rev.html",
+    "hash": "2558fddab6ade8fb7aeb6ecb1103c1c1"
+  },
+  {
+    "file": "sm_sg_detail.html",
+    "hash": "9ed9fa6293c4f776a0a8491f0fc71d92"
+  },
+  {
+    "file": "sm_sp_detail_.html",
+    "hash": "eb580d8299bdbae3be534b41bb581dfb"
+  },
+  {
+    "file": "sm_sp_detail_old.html",
+    "hash": "89bb7fa7e6886adefca90f80b8467977"
+  },
+  {
+    "file": "sm_sp_detail_price_old.html",
+    "hash": "004aa2583685310d2b43f29ef505df56"
+  },
+  {
+    "file": "sm_sp_detail_price.html",
+    "hash": "e40cc05e5ce6dba463c806d81672644a"
+  },
+  {
+    "file": "sm_sp_detail_rev_old.html",
+    "hash": "6cc55ed8e26873909752532d9534f16d"
+  },
+  {
+    "file": "sm_sp_detail_rev.html",
+    "hash": "afcfb469413ace4e6f171de0c002c1e3"
+  },
+  {
+    "file": "sm_sp_detail.html",
+    "hash": "47ff018de76b04cc14c980f801dabb4a"
+  },
+  {
+    "file": "sm_sp_detailv.html",
+    "hash": "f3c4d2446d6354e7cd7c885865951f46"
+  },
+  {
+    "file": "sm_st_detail_.html",
+    "hash": "5a0db782ee080f48b9281dacf2095320"
+  },
+  {
+    "file": "sm_st_detail_old.html",
+    "hash": "f8f02a02e4fea28238a2ee9b5f7611ce"
+  },
+  {
+    "file": "sm_st_detail_price.html",
+    "hash": "70ddd19011fa16daccb0f0bd60532a7b"
+  },
+  {
+    "file": "sm_st_detail_rev.html",
+    "hash": "00666fc9c5a487d74f8622effb7a739a"
+  },
+  {
+    "file": "sm_st_detail.html",
+    "hash": "f8bda6432557de75507dd97b2779330f"
+  },
+  {
+    "file": "sm_tl_detail_price.html",
+    "hash": "59be4a230f614a1663120aaecfa2c012"
+  },
+  {
+    "file": "sm_tl_detail_rev.html",
+    "hash": "28204e40af7fc3cff91fa29ccc2e5dcf"
+  },
+  {
+    "file": "sm_tl_detail.html",
+    "hash": "a9441483ee7ff94eb064e9f2af31a857"
+  },
+  {
+    "file": "smsmig.html",
+    "hash": "dac49c6683059f421a5ab3815380bc4c"
+  },
+  {
+    "file": "smsmig2__.html",
+    "hash": "e76991a39ac4f4a13062be6bbecf527d"
+  },
+  {
+    "file": "smsmig2_.html",
+    "hash": "87b1410e1fa5137b5e42e7c8fd4c9e16"
+  },
+  {
+    "file": "smsmig2_lama.html",
+    "hash": "f682614c060132d84e275677f416483d"
+  },
+  {
+    "file": "smsmig2_old.html",
+    "hash": "167ad5520530bbb55ee8c2a4972cffac"
+  },
+  {
+    "file": "smsmig2.html",
+    "hash": "4f666530ede681f718a56915bc440b7e"
+  },
+  {
+    "file": "smsmig22.html",
+    "hash": "ae42270bdbf344dc3f3c02e6cdb9cbb0"
+  },
+  {
+    "file": "smsmig2old.html",
+    "hash": "a2335d2b087ca8f50dc31acadee8bbd1"
+  },
+  {
+    "file": "smsmig3.html",
+    "hash": "39e2f7f7ab7a5a90c7f4297f1efb59d2"
+  },
+  {
+    "file": "sp_emisi_status.html",
+    "hash": "81a199fb9f7b717142ace0d68661b02d"
+  },
+  {
+    "file": "sp_plant_status.html",
+    "hash": "f2e2d41348f22dcfa9cbc05d7805bd7f"
+  },
+  {
+    "file": "st_emisi_status.html",
+    "hash": "702116240f4208b16a6fdd1f20b14e6f"
+  },
+  {
+    "file": "st_plant_status.html",
+    "hash": "635c702b887c30556ac91d958b4d1505"
+  },
+  {
+    "file": "stok_bahan_sp.html",
+    "hash": "3e072e677a92c3edbbb8b9f53a0e4783"
+  },
+  {
+    "file": "stok_bahan_st.html",
+    "hash": "0f1568f9f00896004305623ed3be31f2"
+  },
+  {
+    "file": "stok_bahan_tl.html",
+    "hash": "25000c947cd40ef23408a3cf4a6cabf8"
+  },
+  {
+    "file": "stok_bahan.html",
+    "hash": "37f9286172d641b79ebcbadf84435160"
+  },
+  {
+    "file": "stok_gudang_old.html",
+    "hash": "3105dc2482c0820b230e012ac10e5d6a"
+  },
+  {
+    "file": "stok_gudang_sg.html",
+    "hash": "484e5079109e3d8952225ddd83cab4ed"
+  },
+  {
+    "file": "stok_gudang_sp.html",
+    "hash": "e92b2d0ca05acf02e2874eaaf448272f"
+  },
+  {
+    "file": "stok_gudang_st.html",
+    "hash": "5bf29dd47f756614aad091e385bd7f88"
+  },
+  {
+    "file": "stok_gudang_tl.html",
+    "hash": "abfe3bd2ed902cf401e7aef2938d53b7"
+  },
+  {
+    "file": "stok_gudang.html",
+    "hash": "b66b15b64a5322c8e845eae09adfbcf3"
+  },
+  {
+    "file": "stok_gudang2.html",
+    "hash": "11131c257ac382d03814bd787b770382"
+  },
+  {
+    "file": "title-port.png",
+    "hash": "47d40119ca7b97b247cf24a0199c754c"
+  },
+  {
+    "file": "tlcc_emisi_status.html",
+    "hash": "939b49d467155f90d4c802b13121eb0b"
+  },
+  {
+    "file": "tlcc_plant_status.html",
+    "hash": "0cc2c1fe4c88650705f5f3e59355818a"
+  },
+  {
+    "file": "tonasa_detil_data.js",
+    "hash": "2a4b29fa46dfd64c4de81fdef20db21b"
+  },
+  {
+    "file": "treasury_cash_flow.html",
+    "hash": "610919d26a3f52ed8b942b9b84881443"
+  },
+  {
+    "file": "versi_reza.html",
+    "hash": "9ebbcaf3dcd032e44689970eb659ad05"
+  },
+  {
+    "file": "versi.html",
+    "hash": "60a1c7e13ec85ec1ec66cc28d72e95e7"
+  },
+  {
+    "file": "w1_detail.html",
+    "hash": "db8eb05811900bda57f43de899d4b202"
+  },
+  {
+    "file": "workorder_old.html",
+    "hash": "8d95fcaf11cc73fecd2a3261d72089de"
+  },
+  {
+    "file": "workorder.html",
+    "hash": "854519ee74cf7740a6d3454e1042e4f5"
+  }
+]

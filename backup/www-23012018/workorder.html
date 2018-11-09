@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <!-- <script src="js/highcharts_working.js"></script>
+        <script src="js/highcharts-more.js"></script> -->
+        <script src="js/ip_highcharts.js"></script>
+        <script src="js/ip_highcharts-3d.js"></script>
+        <script src="js/ip_highcharts-more.js"></script>
+        <script src="js/ip_exporting.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <script type="text/javascript" src="js/Chart.min.js"></script>
+        <title>Backlog</title>
+        <script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                var labelArrays = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+                var d = moment().format('DD');
+                var m = moment().format('MM');
+                var y = moment().format('YYYY');
+                var today = d + ' ' + labelArrays[parseInt(m) - 1] + ' ' + y;
+                $('#last_updated').html(today);
+                //console.log(today);
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-notification') {
+                        $('#data-notification').removeClass('hidden');
+                        $('#data-work-order').addClass('hidden');
+                        $('#tab-notification').addClass('border-down-active');
+                        $('#tab-work-order').removeClass('border-down-active');
+                    } else if (r == 'data-work-order') {
+                        $('#data-notification').addClass('hidden');
+                        $('#data-work-order').removeClass('hidden');
+                        $('#tab-notification').removeClass('border-down-active');
+                        $('#tab-work-order').addClass('border-down-active');
+                    }
+                })
+                $(document).on('click', '.text-medium,.linkback', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('href');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+
+        </script>
+        <style type="text/css">
+            .wrapper {
+                width:100%;
+                height: 100%;
+                overflow-y: auto;
+                float: left;
+            }
+            .bg-white {
+                background:#fff;
+            }
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .text-small {
+                font:normal 10px arial;
+                color:#000;
+            }
+            .text-medium {
+                font:normal 19px arial;
+                color:#000;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 10px
+            }
+            .center {
+                text-align: center;
+            }
+            .padding5 {
+                padding:5px;
+            }
+            .border {
+                border:1px #cecece solid;
+            }
+            .border-down {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                height: 41px;
+                background: rgba(245, 245, 245, 1);
+                background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+                background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0 );
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .osno {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .nopr {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .noco {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .dlfl {
+                width: 24%;
+                margin: 0;
+                display:inline-block;
+                text-align: center;
+            }
+            .fmerah {
+                color: #FF615D;
+            }
+            .merah {
+                background-color : #df0023;
+            }
+            .orange {
+                background-color : #d93329;
+            }
+            .lite-orange {
+                background-color : #d3662e;
+            }
+            .kuning {
+                background-color : #cc9933;
+            }
+            .subheader {
+                text-align: center;
+                /* padding: 10px; */
+                padding-top: 2px;
+                color: #606060;
+                height: 33px;
+                font-size: 17px;
+                margin: 0px 2px 0px 2px;
+                font-family: "Open Sans";
+                font-weight: bold;
+            }
+            .txt-red {
+              color: #FF615D; 
+            }
+            .txt-black {
+              color: #000;
+            }
+            .txt-green {
+              color: #45DD90;  
+            }
+            .nomargin {
+                margin:0;
+            }
+            .nopadding {
+                padding:0;
+            }
+            .highcharts-credits {
+                display:none;
+            }
+            .img-opco {
+                width: 88px;
+                padding: 12px;
+                padding-bottom: 0px;
+            }
+            .opco-name {
+                font-size: 24px;
+                color: #333333;
+                margin-top: 4px;
+            }
+            .no-js #loader {
+                display: none;
+            }
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .default_tab {
+                height: 41px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(245, 245, 245, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+            }
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .tab_tittle {
+                font-family: "Open Sans";
+                margin-bottom: 2px;
+                font-size: 27px;
+                margin-top: 0px;
+                font-weight: 300;
+            }
+            .one_tit {
+                border: 1px solid #e9e9e9;
+                height: 29px;
+                display: block;
+                width: 100%;
+                color: #797979;
+                text-align: center;
+                font: normal 16px;
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .pattern {
+                height:103px;
+                border-right: 1px solid #b9b9b9;
+                margin-bottom:6px;
+            }
+            .det {
+                color: #555555;
+                font-size: 11px;
+                font-family: "Open Sans";
+            }
+            .table{table-layout:fixed;}
+            .td{width:1px;white-space:nowrap;}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+    </head>
+    <body onLoad="onLoad()" style="font-family: Segoe UI;">
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                    <li><a>PLANT OPERATION</a></li>
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+                        <a class="logopis"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper bg-white">
+                        <h2 class="titular" style="height: 37px;line-height: 39px;font-size: small;">WORKORDER</h2>
+                     
+
+                        <div id="data-notification" class="headsix add_fix" style="height: 125px;">
+                            <div style="width: 100%; padding:10px;">
+                                <!--Batas Coba -->
+                                <div align="center" style="color:#656565; margin-top: 1px; margin-bottom: 22px;"> <img src ="img/teks semen indo.png" width="200px" height="50%" style="margin-bottom: 11px;"/>
+                                    <div class="col-xs-6 noPadding" align="left">
+                                        <h4 class="tab_tittle">Workorder</h4>
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update ",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                                  </div>
+
+                           <div class="col-xs-6 noPadding" style="float: right;text-align: right;"><span class="upercent" style="    font-size: 13px;">TOTAL BACKLOG</span><br>
+                                        <i id="backlog_arrow" class="fa fa-sort-asc fa-2x" aria-hidden="true" align="left" ></i>&nbsp;&nbsp;
+                                        <!-- <span class="prosen" id="total_backlog" style="color: #5d5d5d;"></span></div> -->
+                                        <span class="prosen" id="" style="color: #5d5d5d;">10 %</span></div>
+                                </div>
+                            </div>
+                            </div>
+                         <!--Chart 1-->
+
+                         <div style="overflow-x: scroll;width:100%;">
+                          <div class="whitebg" align="center">
+                            <center>
+                                <!-- Month:
+                                <select id="month" class="selmonth" rel="vol"></select>
+                                <select id="year" class="selyear" rel="vol"></select> -->
+                            </center>
+                            <div style="text-align: center; margin-top: 5px; background-color: #ff0000; font-size: 12px">
+                            <span style="color: white;">
+                            <strong>Monthly Report</strong>
+                            </span>
+                            </div>
+                            <div style="text-align: center; margin-top: 2px; font-size: 12px"><span style="color: black;" id="">Up to This Month</span></div>
+                            <div style="overflow-x: scroll; margin-top: 10px;">
+                                <div id="dash" style="height: auto; width: 800px;"></div>
+                            </div>
+                        	</div>
+                        </div> 
+
+                        <!--Chart 1-->
+
+                         <div style="overflow-x: scroll;width:100%;">
+                          <div class="whitebg" align="center">
+                            <center>
+                                <!-- Month:
+                                <select id="month" class="selmonth" rel="vol"></select>
+                                <select id="year" class="selyear" rel="vol"></select> -->
+                            </center>
+                            <div style="text-align: center; margin-top: 5px; background-color: #ff0000; font-size: 12px">
+                            <span style="color: white;">
+                            <strong>Monthly Report</strong>
+                            </span>
+                            </div>
+                            <div style="text-align: center; margin-top: 2px; font-size: 12px"><span style="color: black;" id="">This Month</span></div>
+                            <div style="overflow-x: scroll; margin-top: 10px;">
+                                <div id="dash1" style="height: auto; width: auto;"></div>
+                            </div>
+                        	</div>
+                        </div> 
+
+                        <!-- <div style="overflow-x: scroll;width:100%;"><div id="chartku_vol" style="width: 800px;"></div></div> -->
+
+                        <!--Chart 2-->
+
+                        <!--  <div class="whitebg" align="center">
+                            <center>
+                                Month:
+                                <select id="month" class="selmonth" rel="vol"></select>
+                                <select id="year" class="selyear" rel="vol"></select>
+                            </center>
+                            <div style="text-align: center; margin-top: 5px; background-color: #ff0000; font-size: 12px">
+                            <span style="color: white;">
+                            <strong>Monthly Report</strong>
+                            </span>
+                            </div>
+                            <div style="text-align: center; margin-top: 2px; font-size: 12px"><span style="color: black;" id="">This Month</span></div>
+                            <div style="overflow-x: scroll; margin-top: 10px;">
+                                <div id="piechart" style="height: 280px; width: 318px;"></div>
+                            </div>
+                        </div>  -->
+
+                        <!--Tabel-->
+
+                        <div id="" style="overflow-x: scroll;width: 100%;margin: 0 auto;padding: 6px;">
+                        <table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                            <thead>
+                                <col width="80">
+                                <col width="100">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <col width="80">
+                                <tr class="headtr">
+                                    <td><strong>Plant</strong></td>
+                                    <td valign="middle"><strong>Status</strong></td>
+                                    <td align="center" valign="middle"><strong>Jan</strong></td>
+                                    <td align="center" valign="middle"><strong>Feb</strong></td>
+                                    <td align="center" valign="middle"><strong>Mar</strong></td>
+                                    <td align="center" valign="middle"><strong>Apr</strong></td>
+                                    <td align="center" valign="middle"><strong>Mei</strong></td>
+                                    <td align="center" valign="middle"><strong>Jun</strong></td>
+                                    <td align="center" valign="middle"><strong>Jul</strong></td>
+                                    <td align="center" valign="middle"><strong>Ags</strong></td>
+                                    <td align="center" valign="middle"><strong>Sep</strong></td>
+                                    <td align="center" valign="middle"><strong>Okt</strong></td>
+                                    <td align="center" valign="middle"><strong>Nov</strong></td>
+                                    <td align="center" valign="middle"><strong>Des</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody id="issueTbody">
+                                <tr>
+                                    <td rowspan="3"; class="bold_op">Prod. 23</td>
+                                    <td><span style="color: black;" >Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                   
+                                </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Not Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Backlog</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                   
+                                    </tr>
+                                <tr>
+                                    <td rowspan="3"; class="bold_op">Prod. 4</td>
+                                    <td><span style="color: black;" >Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>
+                                </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Not Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Backlog</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                <tr>
+                                    <td rowspan="3"; class="bold_op">Prod. 5</td>
+                                    <td><span style="color: black;" >Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>
+                                </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Not Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Backlog</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                <tr>
+                                    <td rowspan="3"; class="bold_op">Tambang</td>
+                                    <td><span style="color: black;" >Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>
+                                </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Not Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Backlog</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                <tr>
+                                    <td rowspan="3"; class="bold_op">TP</td>
+                                    <td><span style="color: black;" >Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>
+                                </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Not Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Backlog</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                <tr>
+                                    <td rowspan="3"; class="bold_op">PTSP</td>
+                                    <td><span style="color: black;" >Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>
+                                </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Not Realease</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                    <tr>
+                                    <td><span style="color: black;" >Backlog</span></td>
+                                    <td align="right"><span style="color: black;" id="">0001</span></td>
+                                    <td align="right"><span style="color: black;" id="">0002</span></td>
+                                    <td align="right"><span style="color: black;" id="">0003</span></td>
+                                    <td align="right"><span style="color: black;" id="">0004</span></td> 
+                                    <td align="right"><span style="color: black;" id="">0005</span></td>
+                                    <td align="right"><span style="color: black;" id="">0006</span></td>
+                                    <td align="right"><span style="color: black;" id="">0007</span></td>
+                                    <td align="right"><span style="color: black;" id="">0008</span></td>
+                                    <td align="right"><span style="color: black;" id="">0009</span></td>
+                                    <td align="right"><span style="color: black;" id="">0010</span></td>
+                                    <td align="right"><span style="color: black;" id="">0011</span></td>
+                                    <td align="right"><span style="color: black;" id="">0012</span></td>                                    
+                                    </tr>
+                                                        <!-- <tr>
+                                                                <td>Thang Long</td>
+                                                                <td><span id="clinker3000">0</span></td>
+                                                            <td><span id="cement3000">0</span></td>
+                                                            <td><span id="sales3000">0</span></td>
+                                                        </tr> -->
+                                                        
+                                                        
+                                </tbody>
+                            </table>
+                        <br>
+                    </div> 
+                    
+                </div>
+            </div>
+        </div>
+    <!-- <script type="text/javascript" src="js/cordova.js"></script> -->
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/backlog_data.js"></script>
+     <script>
+            // $(function () {
+            //  Highcharts.chart('piechart', {
+            //         chart: {
+            //             backgroundColor: 'rgba(0, 255, 0, 0)',
+            //             type: 'pie',
+            //             margin : [0, 0, 0, 0],
+            //             options3d: {
+            //                 enabled: true,
+            //                 alpha: 45
+            //                 }
+            //         },
+            //             colors: ['#bf00ff', '#ff9d00', '#8cff00','#ffcc00', '#00fff6', '#656565'],
+            //             title: {
+            //                 text: ''
+            //             },
+            //             credits: {
+            //                 enabled: false
+            //             },
+            //             exporting: {
+            //             enabled: false
+            //             },
+            //             plotOptions: {
+            //                 pie: {
+            //                     allowPointSelect: true,
+            //                     cursor: 'pointer',
+            //                     dataLabels: {
+            //                         enabled: false
+            //                     },
+            //                 innerSize: 10,
+            //                 depth: 25,
+            //                 showInLegend: true
+            //                 }
+            //             },
+            //             series: [{
+            //                 name: 'Amount',
+            //                 data: [
+            //                     ['Krng dr 1 Thn', 5],
+            //                     ['Krng dr 2 Thn', 20],
+            //                     ['Krng dr 5 Thn', 25],
+            //                     ['Krng dr 10 Thn', 220],
+            //                     ['Lbh dr 10 Thn', 500],
+            //                     ['Unknown', 50]
+            //                     ]
+            //             }]
+            //         });
+            //  }); 
+
+            $(function () {
+             Highcharts.chart('dash', {
+                    chart: {
+        				zoomType: 'xy'
+    				},
+    				title: {
+    				    text: 'BACKLOG PLANNING'
+    				},
+    				credits: {
+                        enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+    				subtitle: {
+    				    text: ''
+    				},
+    				xAxis: [{
+    				    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    				    crosshair: true
+    				}],
+    				yAxis: [{ // Primary yAxis
+    				    labels: {
+    				        format: '{value}',
+    				        style: {
+    				            color: Highcharts.getOptions().colors[1]
+    				        }
+    				    },
+    				    title: {
+    				        text: '',
+    				        style: {
+    				            color: Highcharts.getOptions().colors[1]
+    				        }
+    				    }
+    				}, { // Secondary yAxis
+    				    title: {
+    				        text: '',
+    				        style: {
+    				            color: Highcharts.getOptions().colors[0]
+    				        }
+    				    },
+    				    labels: {
+    				        format: '{value} %',
+    				        style: {
+    				            color: Highcharts.getOptions().colors[0]
+    				        }
+    				    },
+    				    opposite: true
+    				}],
+    				tooltip: {
+    				    shared: true
+    				},
+    				// legend: {
+    				//     layout: 'vertical',
+    				//     align: 'left',
+    				//     x: 120,
+    				//     verticalAlign: 'top',
+    				//     y: 100,
+    				//     floating: true,
+    				//     backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    				// },
+    				series: [{
+    				    name: 'Type 1',
+    				    type: 'column',
+    				    yAxis: 1,
+    				    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+    				    tooltip: {
+    					    valueSuffix: ''
+    				    }
+				
+    				},{
+    				    name: 'Type 2',
+    				    type: 'column',
+    				    yAxis: 1,
+    				    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+    				    tooltip: {
+    					    valueSuffix: ''
+    				    }
+				
+    				},{
+    				    name: 'Type 3',
+    				    type: 'column',
+    				    yAxis: 1,
+    				    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+    				    tooltip: {
+    					    valueSuffix: ''
+    				    }
+				
+    				},{
+    				    name: 'Type 4',
+    				    type: 'column',
+    				    yAxis: 1,
+    				    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+    				    tooltip: {
+    					    valueSuffix: ''
+    				    }
+				
+    				}, {
+    				    name: 'Target',
+    				    type: 'spline',
+    				    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+    				    tooltip: {
+    				        valueSuffix: ''
+    				    }
+    				}]
+                    });  
+             }); 
+
+
+            $(function () {
+             Highcharts.chart('dash1', {
+                    chart: {
+        				zoomType: 'xy'
+    				},
+    				title: {
+    				    text: 'BACKLOG PLANNING'
+    				},
+    				credits: {
+                        enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+    				subtitle: {
+    				    text: ''
+    				},
+    				xAxis: [{
+    				    categories: ['S.D'],
+    				    crosshair: true
+    				}],
+    				yAxis: [{ // Primary yAxis
+    				    labels: {
+    				        format: '{value}',
+    				        style: {
+    				            color: Highcharts.getOptions().colors[1]
+    				        }
+    				    },
+    				    title: {
+    				        text: '',
+    				        style: {
+    				            color: Highcharts.getOptions().colors[1]
+    				        }
+    				    }
+    				}, { // Secondary yAxis
+    				    title: {
+    				        text: '',
+    				        style: {
+    				            color: Highcharts.getOptions().colors[0]
+    				        }
+    				    },
+    				    labels: {
+    				        format: '{value} %',
+    				        style: {
+    				            color: Highcharts.getOptions().colors[0]
+    				        }
+    				    },
+    				    opposite: true
+    				}],
+    				tooltip: {
+    				    shared: true
+    				},
+    				// legend: {
+    				//     layout: 'vertical',
+    				//     align: 'left',
+    				//     x: 120,
+    				//     verticalAlign: 'top',
+    				//     y: 100,
+    				//     floating: true,
+    				//     backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    				// },
+    				series: [{
+    				    name: 'Type 1',
+    				    type: 'column',
+    				    yAxis: 1,
+    				    data: [54.4],
+    				    tooltip: {
+    					    valueSuffix: ''
+    				    }
+				
+    				},{
+    				    name: 'Type 2',
+    				    type: 'column',
+    				    yAxis: 1,
+    				    data: [216.4],
+    				    tooltip: {
+    					    valueSuffix: ''
+    				    }
+				
+    				},{
+    				    name: 'Type 3',
+    				    type: 'column',
+    				    yAxis: 1,
+    				    data: [106.4],
+    				    tooltip: {
+    					    valueSuffix: ''
+    				    }
+				
+    				},{
+    				    name: 'Type 4',
+    				    type: 'column',
+    				    yAxis: 1,
+    				    data: [49.9],
+    				    tooltip: {
+    					    valueSuffix: ''
+    				    }
+				
+    				}, {
+    				    name: 'Target',
+    				    type: 'spline',
+    				    data: [7.0],
+    				    tooltip: {
+    				        valueSuffix: ''
+    				    }
+    				}]
+                    });  
+             });
+    
+
+            </script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

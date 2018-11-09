@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script src="js/stupidtable.js?dev"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script src="js/highstock.js"></script>
+        <script src="js/exporting.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $("table").stupidtable();
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                 $('a[href="#tab-bs"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'asset') {
+                        $('#asset').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#equity').addClass('hidden');
+                       
+                    } else if (r == 'liability') {
+                        $('#liability').removeClass('hidden');
+                        $('#asset').addClass('hidden');
+                        $('#equity').addClass('hidden');
+
+                    } else if (r === 'equity') {
+                         $('#equity').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#asset').addClass('hidden');
+                    }
+                });
+
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'capex_dash.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+						window.location.href = 'capex_dash.html';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'capex_dash.html';
+                    } 
+                    // else if (r == 'data-tl') {
+                    //     $('#tab-sp').addClass('img_foot2');
+                    //     $('#tab-sg').addClass('img_foot2');
+                    //     $('#tab-st').addClass('img_foot2');
+                    //     $('#tab-tl').removeClass('img_foot2');
+                    //     window.location.href = 'scm_hm_tl.html';
+                    // }
+                })
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-newcash') {
+                        $('#data-newcash').removeClass('hidden');
+                        $('#data-coi').addClass('hidden');
+                        $('#data-coc').addClass('hidden');
+                        $('#tab-newcash').addClass('act_tb');
+                        $('#tab-coi').removeClass('act_tb');
+                        $('#tab-coc').removeClass('act_tb');
+                    } else if (r == 'data-coi') {
+                        $('#data-newcash').addClass('hidden');
+                        $('#data-coi').removeClass('hidden');
+                        $('#data-coc').addClass('hidden');
+                        $('#tab-newcash').removeClass('act_tb');
+                        $('#tab-coi').addClass('act_tb');
+                        $('#tab-coc').removeClass('act_tb');
+                        
+                    } else{
+                        $('#data-newcash').addClass('hidden');
+                        $('#data-coi').addClass('hidden');
+                        $('#data-coc').removeClass('hidden');
+                        $('#tab-newcash').removeClass('act_tb');
+                        $('#tab-coi').removeClass('act_tb');
+                        $('#tab-coc').addClass('act_tb');
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = dd+'/'+mm+'/'+yyyy;
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+			        font-size: 25px;
+    font-weight: bold;
+	    padding-right: 12px;
+}
+
+.bagan:hover, .bagan:visited {
+	opacity: 0.6;
+}
+.titab{
+padding: 16px;
+    font-size: 14px;
+    font-weight: 500;
+	}
+.ylbox{
+background-color:#f9bf3b;
+}
+.ylhead{
+background-color:#f39c32;
+}
+.grbox{
+background-color:#6fc962;
+}
+.grhead{
+background-color:#68BA5B;
+}
+.tab_tittle{
+    margin-top: 12px;
+    color: black;
+    font-size: 23px;
+    padding-left: 9px;
+    display: inline-block;
+	}
+
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+.tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                /*font-family: "Open Sans";*/
+            }
+
+            .center {
+    text-align: center;
+}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            
+
+            });
+        </script>
+        <title>Capex Dashboard</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                             
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <!-- <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="sales_dashboard.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="stok_bahan.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="#" id="logout"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav> -->
+                <div id="content" class="animated" >
+                    <!-- <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+                        <a class="logopis"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header> -->
+                    <div class="wrapper" style="margin-top: 6px;">
+                         <!-- <h2 class="titular" style="height: 37px;line-height: 39px;font-size: small;">
+                         <a href="portal_scm.html" class="pull-left" style="margin-left:10px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+
+                         STOCK PACKING PLANT</h2> -->
+                        <div class="col-xs-12 tab_dual">
+                        <div class="col-xs-12 bg_rds">
+                        <div id="tab-newcash" class="col-xs-4 center zero_padd left_tb act_tb ">
+                        <a href="#tab-click" rel="data-newcash" class="no-text-style"><!-- <img src="img/pack.png" width="18px">  -->
+                        <span class="tx_tab">&nbsp;&nbsp;New Cash</span></a></div>
+
+                        <div id="tab-coi" class="col-xs-4 center zero_padd left_tb ">
+                        <a href="#tab-click" rel="data-coi" class="no-text-style"> <!-- <img src="img/gdg.png" width="18px"> -->
+                        <span class="tx_tab">&nbsp;&nbsp;CO Invest</span></a></div>
+
+                        <div id="tab-coc" class="col-xs-4 center zero_padd left_tb ">
+                        <a href="#tab-click" rel="data-coc" class="no-text-style"> <!-- <img src="img/gdg.png" width="18px"> -->
+                        <span class="tx_tab">&nbsp;&nbsp;CO Cash</span></a></div>
+                        </div></div>
+            <!-- TAB 1 -->
+                        <div id="data-newcash" class="active " style="margin-bottom: 10px;margin-top: 25px;">
+                            <div class="headsix add_fix cubesRun2" style="margin-bottom: 116px; min-height: 1850px; margin-top: 19px;"> 
+                        <div align="center"><span class="title_dsh"><i>CAPEX DASHBOARD</i></span></div>
+                        
+                          <img src="img/teks semen indo.png" class="imgsi ttl_capx" >
+                          <center>
+                         <div class="col-xs-12" align="center">
+                                    
+                                    <select id="" class="selyear" rel="vol">
+                                    <option value="">2017</option>
+                                    </select>
+
+                         </div>
+                        
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                          </center>
+          
+                                      
+                                    <div align="center" style="margin-top:10px;"> 
+                                    <div class="col-xs-12" style="    margin: 15px 0px 15px 0px;" align="left">
+                                    <i class="fa fa-bar-chart" aria-hidden="true" style="    font-size: 12px;  color: #e54b37;"></i>
+                                    <span style="color: #4d4d4d; font-size: 12px"> &nbsp; Rencana Realisasi Cash Out CAPEX</span>
+                                </div>
+                                <div id="trialchart" style="width:100%; height: 250px; margin: 0 auto; display: inline-block;"></div>
+
+                                <a href="capex_sample.html"><div class="col-xs-6" style="padding: 0px 9px;"><h5 class="rd_btn_cp"><i>CAPEX KO GRAPH</i></h5></div></a>
+                                <div class="col-xs-6" style="padding: 0px 9px;"><h5 class="bl_btn_cp"><i>CAPEX PIE GRAPH</i></h5></div>
+
+                                <div align="center" style="display: inline-block;">
+                                    <h4 style="font-weight: 700;">TOTAL CAPEX</h4>
+                                </div>
+                                <div class="col-xs-12" style="display: inline-block;"></div>
+                                 <!-- Start Tanggal -->
+                                 <div class="col-xs-6" align="left" style="border-bottom: 1px solid #cdcdcd;padding-bottom: 2px;"><span class="mnth">Januari 2017</span></div>
+                                 <div class="col-xs-6" align="right" style="border-bottom: 1px solid #cdcdcd;padding-bottom: 2px;"><span class="mnth">Januari - Dec 2017</span></div>
+                                 <!-- end of tanggal -->
+
+                                <div class="col-xs-6 brd_gy"><!-- start of dual total -->
+                                <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;">Target </span><br>
+
+                                            <p class="inex" id="target_rkap_vol" style="color:#FF615D;font-size: 16px;">2.345.211</p><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;">Real </span><br>
+
+                                            <p class="inex" id="target_real_vol" style="color:#4c9ed9;font-size: 16px;">3.131.124</p> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 22px;">
+                                            <span class="upercent">Percent%</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #5d5d5d; font-size: 16px;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                </div><!-- end of dual total -->
+                                <div class="col-xs-6 brd_gy"><!-- start of dual total -->
+                                <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;">Target </span><br>
+
+                                            <p class="inex" id="target_rkap_vol" style="color:#FF615D;font-size: 16px;">2.345.211</p><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;">Real </span><br>
+
+                                            <p class="inex" id="target_real_vol" style="color:#4c9ed9;font-size: 16px;">3.131.124</p> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 22px;">
+                                            <span class="upercent">Percent%</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #5d5d5d; font-size: 16px;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                </div><!-- end of dual total -->
+                               
+
+
+
+
+
+
+                                    <div class="col-xs-12 noPadding" align="center" style="margin-bottom: 12px;margin-top: 8px;">
+                                 <!-- Start Tanggal -->
+                                 <div class="col-xs-6" align="left" style="border-bottom: 1px solid #cdcdcd;padding-bottom: 2px;"><span class="mnth">Januari 2017</span></div>
+                                 <div class="col-xs-6" align="right" style="border-bottom: 1px solid #cdcdcd;padding-bottom: 2px;"><span class="mnth">Januari - Dec 2017</span></div>
+                                 <!-- end of tanggal -->
+                                  </div>
+                     <!-- #############start of MAIN BOX -->
+                                    <a href="scm_detail.html" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;"><!-- start of box shadow -->
+                                        <div class="col-xs-12 box" >
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Mandatory</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-6 brd_rgh">
+                                        
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div> 
+                                        <!-- end of mandatory -->
+                                        <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Kelangsungan Operasi</span>
+                                        </div>
+                                        <div class="col-xs-6 brd_rgh">
+                                        
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div> 
+                                        <!-- end of mandatory -->
+                                        <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Penj. Kegiatan Operasi</span>
+                                        </div>
+                                        <div class="col-xs-6 brd_rgh">
+                                        
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div> 
+                                        <!-- end of mandatory -->
+
+
+                                       
+                                        </div> <!-- end of box 1 shadow -->
+                                        </div> <!-- end of box 2 shadow -->
+                                    </a>
+                      <!-- #############END of MAIN BOX -->
+                            <div class="col-xs-12 noPadding" align="center" style="margin-bottom: 12px;margin-top: 8px;">
+                                 <!-- Start Tanggal -->
+                                 <div class="col-xs-6" align="left" style="border-bottom: 1px solid #cdcdcd;padding-bottom: 2px;"><span class="mnth">Januari 2017</span></div>
+                                 <div class="col-xs-6" align="right" style="border-bottom: 1px solid #cdcdcd;padding-bottom: 2px;"><span class="mnth">Januari - Dec 2017</span></div>
+                                 <!-- end of tanggal -->
+                                  </div>
+                     <!-- ############# start of MAIN BOX -->
+                                    <a href="scm_detail.html" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;"><!-- start of box shadow -->
+                                        <div class="col-xs-12 box" >
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">A. Strategis (Non Pabrik)</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-6 brd_rgh">
+                                        
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div> 
+                                        <!-- end of mandatory -->
+                                        <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Peningkatan Operasi</span>
+                                        </div>
+                                        <div class="col-xs-6 brd_rgh">
+                                        
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div> 
+                                        <!-- end of mandatory -->
+                                        
+
+
+                                       
+                                        </div> <!-- end of box 1 shadow -->
+                                        </div> <!-- end of box 2 shadow -->
+                                    </a>
+                     <!-- #############END of MAIN BOX -->
+
+                     <!-- ############# start of MAIN BOX -->
+                                    <a href="scm_detail.html" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;"><!-- start of box shadow -->
+                                        <div class="col-xs-12 box" >
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">B. Pabrik Baru (Rembang + Indarung)</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-6 brd_rgh">
+                                        
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div> 
+                                        <!-- end of mandatory -->
+                                        
+                                        
+
+
+                                       
+                                        </div> <!-- end of box 1 shadow -->
+                                        </div> <!-- end of box 2 shadow -->
+                                    </a>
+                     <!-- #############END of MAIN BOX -->
+
+                     <!-- ############# start of MAIN BOX -->
+                                    <a href="scm_detail.html" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;"><!-- start of box shadow -->
+                                        <div class="col-xs-12 box" >
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">C. JVC Pabrik Baru Semen Aceh</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-6 brd_rgh">
+                                        
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div> 
+                                        <!-- end of mandatory -->
+                                        
+                                        
+
+
+                                       
+                                        </div> <!-- end of box 1 shadow -->
+                                        </div> <!-- end of box 2 shadow -->
+                                    </a>
+                     <!-- #############END of MAIN BOX -->
+
+                     <!-- ############# start of MAIN BOX -->
+                                    <a href="scm_detail.html" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;"><!-- start of box shadow -->
+                                        <div class="col-xs-12 box" >
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">D. JVC Pabrik BAru Semen Kupang</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-6 brd_rgh">
+                                        
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                             <!-- st content -->
+                                        <div class="col-xs-6 noPadding" align="left">
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">Real</span><br>
+                                                                            <span style="color:black;" id="tot_pcost_nw">12.321</span>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-xs-6 noPadding" align="right">
+                                                                            
+                                                                            <span style="font-size: 12px; font-weight: 300; color:black;">RKAP</span><br>
+                                                                            <span style="color:black;" id="rkap_current_prod">13.123</span>
+                                                                        </div>
+                                                                        <div class="col-xs-12" style="margin-bottom: 10px;">
+                                                                        <span style="font-size: 12px; font-weight: 300; color:black;">Percent</span><br>
+                                                                            <i class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i>
+                                                                            <span style="color:black; font-size: 29px;font-weight: 600;" id="perc1a">78.4</span>
+                                                                            <span style="color:black; font-size: 16px">%</span><br>
+                                                                            
+                                                                        </div>
+                                        <!-- end content -->
+                                        </div> 
+                                        <!-- end of mandatory -->
+                                        
+                                        
+
+
+                                       
+                                        </div> <!-- end of box 1 shadow -->
+                                        </div> <!-- end of box 2 shadow -->
+                                    </a>
+                     <!-- #############END of MAIN BOX -->
+                                    
+                                    </div>
+                            </div>
+         
+          
+                        </div>
+                        
+            <!-- END TAB 1 -->
+            <!-- TAB 2 -->
+                        <div id="data-coi" class="hidden " style="margin-bottom: 10px;margin-top: 25px;">
+                        <div class="headsix add_fix cubesRun2" style="margin-bottom: 116px; min-height: 904px; margin-top: 19px;"> 
+                        <div align="center"><span class="title_dsh"><i>CAPEX DASHBOARD</i></span></div>
+                        
+                          <img src="img/teks semen indo.png" class="imgsi ttl_capx" >
+                          <center>
+                         <div class="col-xs-12" align="center" style="margin-bottom: 7px;">
+                                    
+                                    <select id="" class="selyear" rel="vol">
+                                    <option value="">2017</option>
+                                    </select>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+
+                         </div>
+                        
+                        
+                          </center>
+                          <div align="center" >
+                          <span class="mnth">Januari 2017</span>
+                                    <h5 style="font-weight: 700;margin-top: 2px;">TOTAL CAPEX CARRY OVER INVESTASI</h5>
+                                </div>
+
+                        <div align="center">
+                         <span class="upercent">Perubahan</span><br>
+                            <span class="prosen" style="color: #5da7d1;" id="tota">76.9 %</span></div>
+                            <div align="center" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                                                             
+                                <div class="col-xs-12 noPadding" style="margin-top:0px;">
+                                <div class="col-xs-6" >
+                                <span class="upercent">Cash Out RKAP</span><br>
+                                <span class="prosen" style="color: #F39C12; font-size: 16px;" id="dl">9.272.234</span>
+                                
+                                 
+                                </div>
+                                <!-- <div class="col-xs-2" ></div> -->
+                                <div class="col-xs-6" >
+                                <span class="upercent">Cash Out Change</span><br>
+                                 <span class="prosen" style="color: #2ECC71; font-size: 16px;" id="ec">1.183.231</span>
+                                 
+                                       
+                                    
+                                </div> 
+                                </div>
+
+                            </div> <!-- END OF TOP CONTENT -->
+                            <div class="col-xs-12" style="margin-top: 12px;"></div>
+                            <!-- ############# start of MAIN BOX -->
+                                    <a href="scm_detail.html" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;"><!-- start of box shadow -->
+                                        <div class="col-xs-12 box" >
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Mandatory</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Kelangsungan Operasi</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Penj. Keg. Operasi</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Peningkatan Operasi</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Strategis</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                        
+                                        
+
+
+                                       
+                                        </div> <!-- end of box 1 shadow -->
+                                        </div> <!-- end of box 2 shadow -->
+                                    </a>
+                     <!-- #############END of MAIN BOX -->
+
+
+
+
+                            </div> <!-- END OF headsix add_fix -->
+                        </div>
+            <!-- END TAB 2 -->
+            <!-- TAB 3 -->
+                        <div id="data-coc" class="hidden " style="margin-bottom: 10px;margin-top: 25px;">
+                            <div class="headsix add_fix cubesRun2" style="margin-bottom: 116px; min-height: 904px; margin-top: 19px;"> 
+                        <div align="center"><span class="title_dsh"><i>CAPEX DASHBOARD</i></span></div>
+                        
+                          <img src="img/teks semen indo.png" class="imgsi ttl_capx" >
+                          <center>
+                         <div class="col-xs-12" align="center" style="margin-bottom: 7px;">
+                                    
+                                    <select id="" class="selyear" rel="vol">
+                                    <option value="">2017</option>
+                                    </select>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+
+                         </div>
+                        
+                        
+                          </center>
+                          <div align="center" >
+                          <span class="mnth">Januari 2017</span>
+                                    <h5 style="font-weight: 700;margin-top: 2px;">TOTAL CAPEX CARRY OVER CASH</h5>
+                                </div>
+
+                        <div align="center">
+                         <span class="upercent">Perubahan</span><br>
+                            <span class="prosen" style="color: #5da7d1;" id="tota">87.2 %</span></div>
+                            <div align="center" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                                                             
+                                <div class="col-xs-12 noPadding" style="margin-top:0px;">
+                                <div class="col-xs-6" >
+                                <span class="upercent">Cash Out RKAP</span><br>
+                                <span class="prosen" style="color: #F39C12; font-size: 16px;" id="dl">8.272.234</span>
+                                
+                                 
+                                </div>
+                                <!-- <div class="col-xs-2" ></div> -->
+                                <div class="col-xs-6" >
+                                <span class="upercent">Cash Out Change</span><br>
+                                 <span class="prosen" style="color: #2ECC71; font-size: 16px;" id="ec">3.183.231</span>
+                                 
+                                       
+                                    
+                                </div> 
+                                </div>
+
+                            </div> <!-- END OF TOP CONTENT -->
+                            <div class="col-xs-12" style="margin-top: 12px;"></div>
+                            <!-- ############# start of MAIN BOX -->
+                                    <a href="scm_detail.html" rel="asset" class="bagan">
+                                    <div class="col-xs-12" style="padding: 4px;"><!-- start of box shadow -->
+                                        <div class="col-xs-12 box" >
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Mandatory</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Kelangsungan Operasi</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Penj. Keg. Operasi</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Peningkatan Operasi</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                         <!-- START MANDATORY -->
+                                        <div class="col-xs-12 noPadding titl brd_gy" align="center">
+                                        <span class="fblack" id="" style="font-weight: 700;">Strategis</span>
+                                        </div>
+                                       
+                                        <div class="col-xs-12 "> <!-- st content -->
+                                         <div align="center" style="margin-top:4px;">
+
+                                    <div class="col-xs-6 noPadding" >
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out RKAP </span><br>
+
+                                            <span class="inex" id="target_rkap_vol" style="color:#3a5f7f;font-size: 20px;">2.345.211</span><!--id=totpay7000-->
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="left" >
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;font-size: 12px;">Cash Out Perubahan </span><br>
+
+                                            <span class="inex" id="target_real_vol" style="color:#3a5f7f;font-size: 20px;">3.131.124</span> <!--id=totrec7000-->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-xs-6 noPadding"  >
+                                        <div align="right" style="color:#5d5d5d;  margin-bottom: 10px;">
+                                            <span class="upercent">Perubahan</span><br>
+                                            <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;<span class="prosen" style="color: #f02f17; font-size: 27px;    font-weight: 700;" id="achievement_vol">78.4 %</span><br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </div><!-- end content -->
+                                        
+                                        <!-- end of mandatory -->
+                                        
+                                        
+
+
+                                       
+                                        </div> <!-- end of box 1 shadow -->
+                                        </div> <!-- end of box 2 shadow -->
+                                    </a>
+                     <!-- #############END of MAIN BOX -->
+
+
+
+
+                            </div> <!-- END OF headsix add_fix -->
+                        </div>
+            <!-- END TAB 3-->
+            </div>
+
+
+                        
+                        
+                          
+                        
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+         <script>
+                $(function () {
+    Highcharts.chart('trialchart', {
+        title: {
+            text: ''
+        },
+        
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            borderWidth: 0,
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            x: 0,
+            y: 0,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            //shadow: true
+        },
+        credits: {
+                    enabled: false
+                },
+        series: [{
+            name: 'Rencana',
+            data: [2,4,7,15,3,10,1,9,11,12,7,6,],
+            color: '#2ECC71',
+            type: 'spline'
+        }, {
+            name: 'Realisasi',
+            data: [0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 17.3, 18.0, 17.9, 18.0],
+            color: '#19B5FE',
+            type: 'spline'
+        }]
+    });
+
+   
+
+});
+            </script>
+                <script>
+                $.ajax({
+            //url: url,
+			url: url_src+'/api/index.php/api/stokterak',
+            type: 'GET',
+            success: function (data) {
+
+                var data = eval('(' + data + ')');
+				console.log(data);
+				var cmreal = parseFloat(data.Semen.prognose).toFixed(0);
+				//var cmprog = parseFloat(data.Semen.prognose).toFixed(0);
+				var cmmax = parseFloat(data.Semen.max_stock).toFixed(0);
+				var cmmin = parseFloat(data.Semen.min_stock).toFixed(0);
+				var clreal = parseFloat(data.Terak.prognose).toFixed(0);
+				//var clprog = parseFloat(data.Terak.prognose).toFixed(0);
+				var clmax = parseFloat(data.Terak.max_stock).toFixed(0);
+				var clmin = parseFloat(data.Terak.min_stock).toFixed(0);
+				var per_cm = (Number(cmreal) / Number(cmmax)) * 100;
+				var per_cl = (Number(clreal) / Number(clmax)) * 100;
+
+                console.log(cmreal);
+                console.log(typeof(cmreal));
+				
+				$('#cmrealv').html(FormatNumberBy3(cmreal, ",", "."));
+               // $('#cmprogv').html(cmprog);	
+				$('#cmmaxv').html(FormatNumberBy3(cmmax, ",", "."));
+                $('#cmminv').html(cmmin);
+				$('#clrealv').html(FormatNumberBy3(clreal, ",", "."));
+                //$('#clprogv').html(clprog);
+				$('#clmaxv').html(FormatNumberBy3(clmax, ",", "."));
+                $('#clminv').html(clmin);
+					
+				
+				//console.log(per_cm);
+                        
+				$('#per_cmv').html(FormatNumberBy3(per_cm.toFixed(2).replace(".", ","), ",", ".")+ ' %');
+				$('#per_clv').html(FormatNumberBy3(per_cl.toFixed(2).replace(".", ","), ",", ".")+ ' %');
+				
+				if ( per_cm >= 80 && per_cm <= 100){
+                             $('#headcolm').addClass('ylunder');
+                             $('#boxcolm').addClass('ylind'); 
+                             $('#headcolm').removeClass('grunder');
+                             $('#boxcolm').removeClass('grind');
+                             $('#headcolm').removeClass('redunder');
+                             $('#boxcolm').removeClass('redind');
+                       }else if ( per_cm >= 50 && per_cm <= 80 ) {
+                             $('#headcolm').removeClass('ylunder');
+                             $('#boxcolm').removeClass('ylind');
+                             $('#headcolm').addClass('grunder');
+                             $('#boxcolm').addClass('grind');
+                             $('#headcolm').removeClass('redunder');
+                             $('#boxcolm').removeClass('redind');
+                       }
+                       else if ( per_cm >= 100 ) {
+                             $('#headcolm').addClass('grunder');
+                             $('#boxcolm').addClass('grind');
+                             $('#headcolm').removeClass('ylunder');
+                             $('#boxcolm').removeClass('ylind');
+                             $('#headcolm').removeClass('redunder');
+                             $('#boxcolm').removeClass('redind');
+                       }else{
+                             $('#headcolm').removeClass('grunder');
+                             $('#boxcolm').removeClass('grind');
+                             $('#headcolm').removeClass('ylunder');
+                             $('#boxcolm').removeClass('ylind');
+                       }
+                   // console.log(per_cm);
+                    if ( per_cl >= 80 && per_cl <= 100){
+                             $('#headcolc').addClass('ylunder');
+                             $('#boxcolc').addClass('ylind'); 
+                             $('#headcolc').removeClass('grunder');
+                             $('#boxcolc').removeClass('grind'); 
+                             $('#headcolc').removeClass('redunder');
+                             $('#boxcolc').removeClass('redind');
+                       }else if ( per_cl >= 50 && per_cl <= 80 ) {
+                             $('#headcolc').removeClass('ylunder');
+                             $('#boxcolc').removeClass('ylind');
+                             $('#headcolc').addClass('grunder');
+                             $('#boxcolc').addClass('grind');
+                             $('#headcolc').removeClass('redunder');
+                             $('#boxcolc').removeClass('redind');
+                       }
+                        else if ( per_cm >= 100 ) {
+                             $('#headcolc').addClass('grunder');
+                             $('#boxcolc').addClass('grind');
+                             $('#headcolc').removeClass('ylunder');
+                             $('#boxcolc').removeClass('ylind');
+                             $('#headcolc').removeClass('redunder');
+                             $('#boxcolc').removeClass('redind');
+                       }
+
+
+               
+				//console.log(cmreal);
+            }
+        }).done(function (data) {
+        }).fail(function () {
+
+        });
+                </script>
+                <script>
+                $.ajax({
+            //url: url,
+            url: url_src+'/api/index.php/api/stokklinkerperopco',
+            type: 'GET',
+            success: function (data) {
+
+                var data = eval('(' + data + ')');
+                console.log(data);
+
+                var rsg = parseInt(data.s7000.realisasi);
+                var rsp = parseInt(data.s3000.realisasi);
+                var rst = parseInt(data.s4000.realisasi);
+                // var rtl = parseInt(data.s6000.realisasi);
+                //var cmprog = parseFloat(data.Semen.prognose).toFixed(0);
+                console.log(rsg);
+                console.log(typeof(rsg));
+                
+                
+                
+                $('#rsgv').html(FormatNumberBy3(rsg, ",", "."));
+                $('#rspv').html(FormatNumberBy3(rsp, ",", "."));
+                $('#rstv').html(FormatNumberBy3(rst, ",", "."));
+                // $('#rtlv').html(FormatNumberBy3(rtl, ",", "."));
+                //$('#clprogv').html(clprog);
+              
+                //console.log(per_cm);
+                        
+                
+                             
+                //console.log(cmreal);
+
+            }
+        }).done(function (data) {
+        }).fail(function () {
+
+        });
+                </script>
+                <script>
+                $.ajax({
+			url: url_src+'/api/index.php/api/stockpp',
+            type: 'GET',
+            success: function (data) {
+			var dataJson=JSON.parse(data);
+                        var data7000 = dataJson['s7000'];
+						var data3000 = dataJson['s3000'];
+						var data4000 = dataJson['s4000'];
+						// var data6000 = dataJson['s6000'];
+                        var datatabel = '';
+                        var stock7000 = 0;
+						var stock3000 = 0;
+						var stock4000 = 0;
+						// var stock6000 = 0;
+                        var stockAll = 0;
+                        var capacityAll = 0;
+                        var no = 1;
+						var color = '';
+                        $('#tblclinker-data').html('');
+                        $('#tblcement-data').html('');
+	                $.each(data7000, function(key, value){
+                         stock7000 += parseFloat(value.stock); 
+                         stockAll += parseFloat(value.stock);
+                         capacityAll += parseInt(value.kapasitas);
+                         datatabel1 = '<tr><td>1.</td><td>Semen Gresik</td><td align="right">'+setFormat(stock7000,0)+'</td></tr>';
+                         var persen = (value.stock / value.kapasitas) * 100;
+						 var color;
+						 if (persen <=30 ){
+						 color = 'e54b37';
+						 }else if (persen >= 100){
+						 color = 'e54b37';
+						 }
+						 else{
+						 color = '000';
+						 };
+                         datatabel += '<tr><td>'+no+'</td><td>'+value.lokasi_plant+'</td><td align="right" data-sort-value="'+parseFloat(value.stock,0)+'">'+setFormat(value.stock,0)+'</td><td align="right">'+setFormat(value.kapasitas,0)+'</td><td align="right"><div style="color:#'+color+'">'+setFormat(persen,2)+'</td></tr>';
+                         no++;
+                        })
+
+						$('#tblclinker-data').append(datatabel1);
+						$.each(data3000, function(key, value){
+                         stock3000 += parseFloat(value.stock);
+                         stockAll += parseFloat(value.stock); 
+                         capacityAll += parseInt(value.kapasitas);
+                         datatabel1 = '<tr><td>2.</td><td>Semen Padang</td><td align="right">'+setFormat(stock3000,0)+'</td></tr>';
+                         var persen = (value.stock / value.kapasitas) * 100;
+						 var color;
+						 if (persen <=30 ){
+						 color = 'e54b37';
+						 }else if (persen >= 100){
+						 color = 'e54b37';
+						 }
+						 else{
+						 color = '000';
+						 }
+                         datatabel += '<tr><td>'+no+'</td><td>'+value.lokasi_plant+'</td><td align="right">'+setFormat(value.stock,0)+'</td><td align="right">'+setFormat(value.kapasitas,0)+'</td><td align="right"><div style="color:#'+color+'">'+setFormat(persen,2)+'</div></td></tr>';
+                         no++;
+                        })
+						$('#tblclinker-data').append(datatabel1);
+						$.each(data4000, function(key, value){
+                         stock4000 += parseFloat(value.stock);
+                         stockAll += parseFloat(value.stock); 
+                         capacityAll += parseInt(value.kapasitas);
+                         datatabel1 = '<tr><td>3.</td><td>Semen Tonasa</td><td align="right">'+setFormat(stock4000,0)+'</td></tr>';
+                         var persen = (value.stock / value.kapasitas) * 100;
+						 var color;
+						 if (persen <=30 ){
+						 color = 'e54b37';
+						 }else if (persen >= 100){
+						 color = 'e54b37';
+						 }
+						 else{
+						 color = '000';
+						 }
+                         datatabel += '<tr><td>'+no+'</td><td>'+value.lokasi_plant+'</td><td align="right">'+setFormat(value.stock,0)+'</td><td align="right">'+setFormat(value.kapasitas,0)+'</td><td align="right"><div style="color:#'+color+'">'+setFormat(persen,2)+'</div></td></tr>';
+                         no++;
+                        })
+						$('#tblclinker-data').append(datatabel1);
+						// $.each(data6000, function(key, value){
+      //                    stock6000 += parseFloat(value.stock); 
+      //                    stockAll += parseFloat(value.stock);
+      //                    capacityAll += parseInt(value.kapasitas);
+      //                    datatabel1 = '<tr><td>4.</td><td>Thang Long</td><td align="right">'+setFormat(stock6000,0)+'</td></tr>';
+      //                    var persen = (value.stock / value.kapasitas) * 100;
+						//  var color;
+                         
+						//  if (persen <=30 ){
+						//  color = 'e54b37';
+						//  }else if (persen >= 100){
+						//  color = 'e54b37';
+						//  }
+						//  else{
+						//  color = '000';
+						//  }
+      //                    datatabel += '<tr><td>'+no+'</td><td>'+value.lokasi_plant+'</td><td align="right">'+setFormat(value.stock,0)+'</td><td align="right">'+setFormat(value.kapasitas,0)+'</td><td align="right"><div style="color:#'+color+'">'+setFormat(persen,2)+'</div></td></tr>';
+      //                    no++;
+      //                   })						 
+                       // datatabel += '<tr><td colspan="2">Total</td><td>'+setFormat(stockAll,0)+'</td><td>'+setFormat(capacityAll,0)+'</td><td>0%</td></tr>';    
+                       $('#tblclinker-data').append(datatabel1);
+                        $('#tblcement-data').html(datatabel);
+                //var data = eval('(' + data + ')');
+				//console.log(dataJson['s7000']);
+				//console.log(stock6000+stock7000+stock3000+stock4000);
+				
+				//console.log(cmreal);
+
+            }
+        }).done(function (data) {
+        }).fail(function () {
+
+        });
+                </script>
+             
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 5
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/highstock.js"></script>
+        <!--<script src="js/highcharts.js"></script>-->
+        <script src="js/exporting.js"></script>
+         <script src="js/loader.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'prod_rm_tlcc.html';
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <title>Raw Mill Production</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="portal_prod1.html">PRODUCTION</a></li>
+                    <li><a href="portal_sales.html">SALES</a></li>
+                    <li><a href="portal_finance.html">FINANCE</a></li>
+                    <li><a href="portal_project.html">PROJECT</a>
+                    </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <div class="headsix cubesRun2" style="margin-bottom: 9px;"> 
+                            <img src="img/header_fl.png" class="imgsi" style="border-bottom: 1px solid #e2e2e2; padding-bottom: 7px;">
+                            <img src="img/teks semen indo.png" class="imgsi" style="border-bottom: 1px solid #e2e2e2; padding-bottom: 7px;">
+                        </div>
+                      
+                                  <div >
+                                            <!-- <a href="#"><i class="fa fa-ellipsis-v detail" aria-hidden="true"></i></a>
+                                        </div> -->
+                              
+                                        <div class="col-xs-12 noPadding box_sdow" style="height: 420px; margin-bottom: 15px;">
+                                            <div class="col-xs-12 noPadding tab_uper" align="left" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;">
+                                            <i class="fa fa-bar-chart" aria-hidden="true"></i> Montly Report</span></div>
+                                            <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                                <div style="overflow-x: scroll;"><div id="prodk1" style="min-height: 380px;width:100%;"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                  <div >
+                                            <!-- <a href="#"><i class="fa fa-ellipsis-v detail" aria-hidden="true"></i></a>
+                                        </div> -->
+                                           
+                                        <div class="col-xs-12 noPadding box_sdow" style="height: 420px; margin-bottom: 15px;">
+                                            <div class="col-xs-12 noPadding tab_uper" align="left" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;">
+                                            <i class="fa fa-bar-chart" aria-hidden="true"></i> Montly Report</span></div>
+                                            <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                                <div style="overflow-x: scroll;"><div id="ratek1" style="min-height: 380px;width:100%;"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                  <div >
+                                            <!-- <a href="#"><i class="fa fa-ellipsis-v detail" aria-hidden="true"></i></a>
+                                        </div> -->
+                                          
+                                        <div class="col-xs-12 noPadding box_sdow" style="height: 420px; margin-bottom: 15px;">
+                                            <div class="col-xs-12 noPadding tab_uper" align="left" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;"><i class="fa fa-bar-chart" aria-hidden="true"></i> Montly Report</span></div>
+                                            <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                                <div style="overflow-x: scroll;"><div id="prodrm" style="min-height: 380px;width:100%;"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                  <div >
+                                            <!-- <a href="#"><i class="fa fa-ellipsis-v detail" aria-hidden="true"></i></a>
+                                        </div> -->
+                                           
+                                        <div class="col-xs-12 noPadding box_sdow" style="height: 420px; margin-bottom: 15px;">
+                                            <div class="col-xs-12 noPadding tab_uper" align="left" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;"><i class="fa fa-bar-chart" aria-hidden="true"></i> Montly Report</span></div>
+                                            <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                                <div style="overflow-x: scroll;"><div id="raterm" style="min-height: 380px;width:100%;"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                        
+                       
+                     
+                      <!--   <div class=" headsix cubesRun2" style="margin-bottom: 8px;     height: 577px;"> <img src="img/teks semen indo.png" class="imgsi">
+                         
+
+                          
+
+                            <!--          <h2 class="titularx2" style="background: #EB1717; height: 28px;"> &nbsp &nbsp Income and Expanse</h2> <br>
+                            -->           
+                         <!--    <div class="col-xs-12" align="right">
+                                <a href="#"><i class="fa fa-ellipsis-v detail" aria-hidden="true"></i></a>
+                            </div>
+                                <div class="col-xs-6 noPadding headdown cubesTit"> 
+                                    <a href="#maintenance_cost" rel="gresik">
+                                        <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> SG</b> 
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                    </a> 
+                                </div>
+                                <div class="col-xs-6 noPadding headdown cubesTit"> 
+                                    <a href="#maintenance_cost" rel="padang">
+                                        <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> SP</b> 
+                                        </div>
+                                        <div class="col-xs-12 noPadding" align="center" style="color:#33CC33;" > 
+                                        </div>
+                                    </a> 
+                                </div>
+                                <div class="col-xs-6 noPadding headdown cubesRun" style="min-height: 76px;"> 
+                                    <a href="#maintenance_cost" rel="gresik">
+                                        <div class="col-xs-12 noPadding" align="center" style="color:#e3000e"> 
+                                            <span class="colorsp" style="font-size: 10px; text-align:center">Total Cost</span>
+                                            <h4 id="total_cost_sg" class="heading">139.013M</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 noPadding headdown cubesRun" style="min-height: 76px;"> 
+                                    <a href="#maintenance_cost" rel="padang">
+                                        <div class="col-xs-12 noPadding" align="center" style="color:#e3000e"> 
+                                            <span class="colorsp" style="font-size: 10px; text-align:center">
+                                                Total Cost
+                                            </span>
+                                              <h4 id="total_cost_padang" class="heading">268.929M</h4>
+                                        </div>
+                                    </a>
+                                </div>
+             
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 420px; margin-bottom: 15px;">
+                                <div class="col-xs-12 noPadding tab_uper" align="left" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;">Montly Report</span></div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                    <div style="overflow-x: scroll;"><div id="raterm" style="min-height: 380px;width:100%;"></div></div>
+                                </div>
+                            </div>
+
+                        </div> --> 
+
+                      <!--   <div id="home" class="col-xs-12 noPadding box_sdow2" style="margin-bottom: 0px;">
+                            <div class="headsix cubesRun2" style="margin-bottom: 8px;     height: 577px;"> 
+                            <!-- <img src="img/teks semen indo.png" class="imgsi"> -->
+                         <!--         <div class="col-xs-12" align="right"><a href="#"><i class="fa fa-ellipsis-v detail" aria-hidden="true"></i></a></div>
+                            <div align="center"> 
+                                <div class="col-xs-6" style="border-right:1px solid #CCCCCC;">
+                                    <img src="img/ic_finance/income.png"  style="width:40px;"> 
+                                    <p class="inex" id="">6.739,8 B</p><!--id=totpay7000-->
+                               <!--      <span class="inex_down">INCOME</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <img src="img/ic_finance/expense.png"  style="width:40px"> 
+                                    <p class="inex" id="">4.231,2 B</p> <!--id=totrec7000-->
+                                  <!--   <a href="inout_detail.html"></a>
+                                    <span class="inex_down">EXPENSE</span>
+                                </div>
+                            </div>  
+                            </div>  -->
+                                     
+
+                            <!-- <div id="last_updated" class="col-xs-12 box_sdow4txt"></div> -->
+                          <!--   <div class="col-xs-12 noPadding box_sdow" style="height: 420px; margin-bottom: 15px;">
+                                <div class="col-xs-12 noPadding tab_uper" align="left" style="margin-top: 7px;"><span class="heading" style="font-size: 20px; color:#717171; font-weight:bold;">Montly Report</span></div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                    <div style="overflow-x: scroll;"><div id="raterm" style="min-height: 380px;width:600px;"></div></div>
+                                </div>
+                            </div>
+                           
+                            <div class="spacer"></div> -->
+                        <!-- </div> -->
+                           
+                    </div>
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            var myMonth = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+            var d = moment().format('DD');
+            var m = moment().format('MM');
+            var y = moment().format('YYYY');
+            var today = d + ' ' + myMonth[parseInt(m) - 1] + ' ' + y;
+            $('#last_updated').html(today);
+            var strBulan = 's'+bulanSekarang;
+            $(".bulan").html(bulan + ' ' + tahun);
+            function n(n) {
+                return n > 9 ? "" + n : "0" + n;
+            }
+            $.ajax({
+                url: url_src+'/GenerateJsonProduksi.php',
+                type: 'GET',
+                success: function (data) {
+                    var data1 = data.replace("<title>Json</title>", "");
+                    var data2 = data1.replace("(", "[");
+                    var data3 = data2.replace(");", "]");
+
+                    var dataJson = JSON.parse(data3);
+
+                    var obj = dataJson['666'].produksi;
+                    var count = Object.keys(obj).length;
+
+                    var labelArray = [];
+                    var dataRate1 = [];
+                    var dataProd1 = [];
+                    var dataRate2 = [];
+                    var dataProd2 = [];
+                    var dataRate3 = [];
+                    var dataProd3 = [];
+                    var dataRate4 = [];
+                    var dataProd4 = [];
+
+                    var dataRate1kl = [];
+                    var dataProd1kl = [];
+                    var dataRate2kl = [];
+                    var dataProd2kl = [];
+                    var dataRate3kl = [];
+                    var dataProd3kl = [];
+                    var dataRate4kl = [];
+                    var dataProd4kl = [];
+
+                    var dataRate1fm = [];
+                    var dataProd1fm = [];
+                    var dataRate2fm = [];
+                    var dataProd2fm = [];
+                    var dataRate3fm = [];
+                    var dataProd3fm = [];
+                    var dataRate4fm = [];
+                    var dataProd4fm = [];
+                    var dataRate5fm = [];
+                    var dataProd5fm = [];
+                    var dataRate6fm = [];
+                    var dataProd6fm = [];
+                    var dataRate7fm = [];
+                    var dataProd7fm = [];
+                    var dataRate8fm = [];
+                    var dataProd8fm = [];
+
+                    for (i = 1; i <= count; i++) {
+                        //Raw Mill
+                        labelArray.push(i);
+                        nilaiRate1 = dataJson['666'].produksi[n(i)].rate ? (dataJson['666'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1 = dataJson['666'].produksi[n(i)].prod ? (dataJson['666'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1.push(parseInt(nilaiRate1.replace(',', '.')));
+                        dataProd1.push(parseInt(nilaiProd1.replace(',', '.')));
+
+                        nilaiRate2 = dataJson['697'].produksi[n(i)].rate ? (dataJson['697'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd2 = dataJson['697'].produksi[n(i)].prod ? (dataJson['697'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate2.push(parseInt(nilaiRate2.replace(',', '.')));
+                        dataProd2.push(parseInt(nilaiProd2.replace(',', '.')));
+
+                        nilaiRate3 = dataJson['993'].produksi[n(i)].rate ? (dataJson['993'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd3 = dataJson['993'].produksi[n(i)].prod ? (dataJson['993'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate3.push(parseInt(nilaiRate3.replace(',', '.')));
+                        dataProd3.push(parseInt(nilaiProd3.replace(',', '.')));
+
+                        nilaiRate4 = dataJson['14638'].produksi[n(i)].rate ? (dataJson['14638'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd4 = dataJson['14638'].produksi[n(i)].prod ? (dataJson['14638'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate4.push(parseInt(nilaiRate4.replace(',', '.')));
+                        dataProd4.push(parseInt(nilaiProd4.replace(',', '.')));
+
+                        //Kiln
+                        nilaiRate1kl = dataJson['3351'].produksi[n(i)].rate ? (dataJson['3351'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1kl = dataJson['3351'].produksi[n(i)].prod ? (dataJson['3351'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1kl.push(parseInt(nilaiRate1kl.replace(',', '.')));
+                        dataProd1kl.push(parseInt(nilaiProd1kl.replace(',', '.')));
+
+                        nilaiRate2kl = dataJson['2506'].produksi[n(i)].rate ? (dataJson['2506'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd2kl = dataJson['2506'].produksi[n(i)].prod ? (dataJson['2506'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate2kl.push(parseInt(nilaiRate2kl.replace(',', '.')));
+                        dataProd2kl.push(parseInt(nilaiProd2kl.replace(',', '.')));
+
+                        nilaiRate3kl = dataJson['5220'].produksi[n(i)].rate ? (dataJson['5220'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd3kl = dataJson['5220'].produksi[n(i)].prod ? (dataJson['5220'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate3kl.push(parseInt(nilaiRate3kl.replace(',', '.')));
+                        dataProd3kl.push(parseInt(nilaiProd3kl.replace(',', '.')));
+
+                        nilaiRate4kl = dataJson['14390'].produksi[n(i)].rate ? (dataJson['14390'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd4kl = dataJson['14390'].produksi[n(i)].prod ? (dataJson['14390'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate4kl.push(parseInt(nilaiRate4kl.replace(',', '.')));
+                        dataProd4kl.push(parseInt(nilaiProd4kl.replace(',', '.')));
+
+                        //Finish Mill
+                        nilaiRate1fm = dataJson['1141'].produksi[n(i)].rate ? (dataJson['1141'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1fm = dataJson['1141'].produksi[n(i)].prod ? (dataJson['1141'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1fm.push(parseInt(nilaiRate1fm.replace(',', '.')));
+                        dataProd1fm.push(parseInt(nilaiProd1fm.replace(',', '.')));
+
+                        nilaiRate2fm = dataJson['1225'].produksi[n(i)].rate ? (dataJson['1225'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd2fm = dataJson['1225'].produksi[n(i)].prod ? (dataJson['1225'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate2fm.push(parseInt(nilaiRate2fm.replace(',', '.')));
+                        dataProd2fm.push(parseInt(nilaiProd2fm.replace(',', '.')));
+
+                        nilaiRate3fm = dataJson['4691'].produksi[n(i)].rate ? (dataJson['4691'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd3fm = dataJson['4691'].produksi[n(i)].prod ? (dataJson['4691'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate3fm.push(parseInt(nilaiRate3fm.replace(',', '.')));
+                        dataProd3fm.push(parseInt(nilaiProd3fm.replace(',', '.')));
+
+                        nilaiRate4fm = dataJson['6798'].produksi[n(i)].rate ? (dataJson['6798'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd4fm = dataJson['6798'].produksi[n(i)].prod ? (dataJson['6798'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate4fm.push(parseInt(nilaiRate4fm.replace(',', '.')));
+                        dataProd4fm.push(parseInt(nilaiProd4fm.replace(',', '.')));
+
+                        nilaiRate5fm = dataJson['3543'].produksi[n(i)].rate ? (dataJson['3543'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd5fm = dataJson['3543'].produksi[n(i)].prod ? (dataJson['3543'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate5fm.push(parseInt(nilaiRate5fm.replace(',', '.')));
+                        dataProd5fm.push(parseInt(nilaiProd5fm.replace(',', '.')));
+
+                        nilaiRate6fm = dataJson['3977'].produksi[n(i)].rate ? (dataJson['3977'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd6fm = dataJson['3977'].produksi[n(i)].prod ? (dataJson['3977'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate6fm.push(parseInt(nilaiRate6fm.replace(',', '.')));
+                        dataProd6fm.push(parseInt(nilaiProd6fm.replace(',', '.')));
+
+                        nilaiRate7fm = dataJson['15780'].produksi[n(i)].rate ? (dataJson['15780'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd7fm = dataJson['15780'].produksi[n(i)].prod ? (dataJson['15780'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate7fm.push(parseInt(nilaiRate7fm.replace(',', '.')));
+                        dataProd7fm.push(parseInt(nilaiProd7fm.replace(',', '.')));
+
+                        nilaiRate8fm = dataJson['15788'].produksi[n(i)].rate ? (dataJson['15788'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd8fm = dataJson['15788'].produksi[n(i)].prod ? (dataJson['15788'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate8fm.push(parseInt(nilaiRate8fm.replace(',', '.')));
+                        dataProd8fm.push(parseInt(nilaiProd8fm.replace(',', '.')));
+                    }
+                    $('#raterm').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                            // min: 0,
+                            // max: labelArray.length - 1
+                            //         //gridLineWidth: 1//,
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Tuban 1',
+                                color: '#2C82C9',
+                                data: dataRate1
+                            }, {
+                                name: 'Tuban 2',
+                                color: '#E22211',
+                                data: dataRate2
+                            }, {
+                                name: 'Tuban 3',
+                                color: '#6C8784',
+                                data: dataRate3
+                            }, {
+                                name: 'Tuban 4',
+                                color: '#3F3F3F',
+                                data: dataRate4
+                            }]
+                    });
+                    $('#prodrm').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                            // min: 0,
+                            // max: labelArray.length - 1
+                            //         //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Tuban 1',
+                                color: '#2C82C9',
+                                data: dataProd1
+                            }, {
+                                name: 'Tuban 2',
+                                color: '#E22211',
+                                data: dataProd2
+                            }, {
+                                name: 'Tuban 3',
+                                color: '#6C8784',
+                                data: dataProd3
+                            }, {
+                                name: 'Tuban 4',
+                                color: '#3F3F3F',
+                                data: dataProd4
+                            }]
+                    });
+
+                    $('#ratekl').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                             // min: 0,
+                             // max: labelArray.length - 1
+                                    //gridLineWidth: 1//,
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Tuban 1',
+                                color: '#2C82C9',
+                                data: dataRate1kl
+                            }, {
+                                name: 'Tuban 2',
+                                color: '#E22211',
+                                data: dataRate2kl
+                            }, {
+                                name: 'Tuban 3',
+                                color: '#6C8784',
+                                data: dataRate3kl
+                            }, {
+                                name: 'Tuban 4',
+                                color: '#3F3F3F',
+                                data: dataRate4kl
+                            }]
+                    });
+
+                    $('#prodkl').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                            // min: 0,
+                            // max: labelArray.length - 1
+                            //         //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Tuban 1',
+                                color: '#2C82C9',
+                                data: dataProd1kl
+                            }, {
+                                name: 'Tuban 2',
+                                color: '#E22211',
+                                data: dataProd2kl
+                            }, {
+                                name: 'Tuban 3',
+                                color: '#6C8784',
+                                data: dataProd3kl
+                            }, {
+                                name: 'Tuban 4',
+                                color: '#3F3F3F',
+                                data: dataProd4kl
+                            }]
+                    });
+
+                    $('#ratefm').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                            // min: 0,
+                            // max: labelArray.length - 1
+                            //         //gridLineWidth: 1//,
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'FM 1',
+                                color: '#2C82C9',
+                                data: dataRate1fm
+                            }, {
+                                name: 'FM 2',
+                                color: '#E22211',
+                                data: dataRate2fm
+                            }, {
+                                name: 'FM 3',
+                                color: '#6C8784',
+                                data: dataRate3fm
+                            }, {
+                                name: 'FM 4',
+                                color: '#3F3F3F',
+                                data: dataRate4fm
+                            }, {
+                                name: 'FM 5',
+                                color: '#2C82C9',
+                                data: dataRate5fm
+                            }, {
+                                name: 'FM 6',
+                                color: '#E22211',
+                                data: dataRate6fm
+                            }, {
+                                name: 'FM 7',
+                                color: '#6C8784',
+                                data: dataRate7fm
+                            }, {
+                                name: 'FM 8',
+                                color: '#3F3F3F',
+                                data: dataRate8fm
+                            }]
+                    });
+                    $('#prodfm').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                            // min: 0,
+                            // max: labelArray.length - 1
+                            //         //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'FM 1',
+                                color: '#2C82C9',
+                                data: dataProd1fm
+                            }, {
+                                name: 'FM 2',
+                                color: '#E22211',
+                                data: dataProd2fm
+                            }, {
+                                name: 'FM 3',
+                                color: '#6C8784',
+                                data: dataProd3fm
+                            }, {
+                                name: 'FM 4',
+                                color: '#3F3F3F',
+                                data: dataProd4fm
+                            }, {
+                                name: 'FM 5',
+                                color: '#2C82C9',
+                                data: dataProd5fm
+                            }, {
+                                name: 'FM 6',
+                                color: '#E22211',
+                                data: dataProd6fm
+                            }, {
+                                name: 'FM 7',
+                                color: '#6C8784',
+                                data: dataProd7fm
+                            }, {
+                                name: 'FM 8',
+                                color: '#3F3F3F',
+                                data: dataProd8fm
+                            }]
+                    });
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            // $.ajax({
+            //     url: url_src+'/GenerateJsonTotalTahun.php',
+            //     type: 'GET',
+            //     success: function (data) {
+            //         $("#realuptorm").html(FormatNumberBy3(data.rawmill, ",", "."));
+
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+            // var alamat = url_src+'/GenerateJsonTotalTahun.php?bulan=' + bulanSekarang + '&tahun=' + tahun;
+            // $.ajax({
+            //     url: alamat,
+            //     type: 'GET',
+            //     success: function (data) {
+            //         $("#realmonthrm").html(FormatNumberBy3(data.rawmill, ",", "."));
+
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+
+            // $.ajax({
+            //     url: url_src+'/GenerateJsonTotalTahun.php',
+            //     type: 'GET',
+            //     success: function (data) {
+            //         $("#realuptokl").html(FormatNumberBy3(data.kiln, ",", "."));
+
+
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+
+            // function real(data_clin) {
+            //     var alamat = url_src+'/GenerateJsonTotalTahun.php?bulan=' + bulanSekarang + '&tahun=' + tahun;
+            //     $.ajax({
+            //         url: alamat,
+            //         type: 'GET',
+            //         success: function (data) {
+
+            //             $("#realmonthkl").html(FormatNumberBy3(data.kiln, ",", "."));
+            //             var data_real = data.kiln;
+
+            //             var prosenprod = (data_real / data_clin) * 100;
+            //             $("#percentmonthkl").html(prosenprod.toFixed(2));
+            //         }
+            //     }).done(function (data) {
+            //     }).fail(function () {
+
+            //     });
+            // }
+
+            // function mine(year_clin) {
+            //     var alamat = url_src+'/GenerateJsonTotalTahun.php';
+            //     $.ajax({
+            //         url: alamat,
+            //         type: 'GET',
+            //         success: function (data) {
+            //             var year_real = data.kiln;
+
+            //             var prosenyear = (year_real / year_clin) * 100;
+            //             $("#percentuptokl").html(prosenyear.toFixed(2));
+            //         }
+            //     }).done(function (data) {
+            //     }).fail(function () {
+
+            //     });
+            // }
+
+            // $.ajax({
+            //     url: url_src+'/GenerateRKAPSG.php?company=4',
+            //     type: 'GET',
+            //     success: function (data) {
+            //         var data = eval('(' + data + ')');
+            //         var data_clin = data[strBulan].clinker;
+            //         $("#rkapmonthkl").html(FormatNumberBy3(data[strBulan].clinker, ",", "."));
+            //         real(data_clin);
+
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+
+            // $.ajax({
+            //     url: url_src+'/GenerateRKAPTahun.php?company=4',
+            //     type: 'GET',
+            //     success: function (data) {
+            //         var data = eval('(' + data + ')');
+            //         var year_clin = data['s7000'].clinker;
+            //         $("#rkapuptokl").html(FormatNumberBy3(data.s7000.clinker, ",", "."));
+            //         mine(year_clin);
+
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+
+            // $.ajax({
+            //     url: url_src+'/GenerateJsonTotalTahun.php',
+            //     type: 'GET',
+            //     success: function (data) {
+            //         $("#realuptofm").html(FormatNumberBy3(data.finishmill, ",", "."));
+
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+            // var alamat = url_src+'/GenerateJsonTotalTahun.php?bulan=' + bulanSekarang + '&tahun=' + tahun;
+            // $.ajax({
+            //     url: alamat,
+            //     type: 'GET',
+            //     success: function (data) {
+            //         $("#realmonthfm").html(FormatNumberBy3(data.finishmill, ",", "."));
+
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+            // function real_fm(data_cement) {
+            //     var alamat = url_src+'/GenerateJsonTotalTahun.php?bulan=' + bulanSekarang + '&tahun=' + tahun;
+            //     $.ajax({
+            //         url: alamat,
+            //         type: 'GET',
+            //         success: function (data) {
+            //             var data_real = data.finishmill;
+
+            //             var prosenprod = (data_real / data_cement) * 100;
+            //             $("#percentmonthfm").html(prosenprod.toFixed(2));
+            //         }
+            //     }).done(function (data) {
+            //     }).fail(function () {
+
+            //     });
+            // }
+
+            // function mine_fm(year_cement) {
+            //     var alamat = url_src+'/GenerateJsonTotalTahun.php';
+            //     $.ajax({
+            //         url: alamat,
+            //         type: 'GET',
+            //         success: function (data) {
+            //             var year_real = data.finishmill;
+
+            //             var prosenyear = (year_real / year_cement) * 100;
+            //             $("#percentuptofm").html(prosenyear.toFixed(2));
+            //         }
+            //     }).done(function (data) {
+            //     }).fail(function () {
+
+            //     });
+            // }
+
+            // $.ajax({
+            //     url: url_src+'/GenerateRKAPSG.php?company=4',
+            //     type: 'GET',
+            //     success: function (data) {
+            //         var data = eval('(' + data + ')');
+            //         var data_cement = data[strBulan].cement;
+            //         $("#rkapmonthfm").html(FormatNumberBy3(data[strBulan].cement, ",", "."));
+            //         real_fm(data_cement);
+
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+
+            // $.ajax({
+            //     url: url_src+'/GenerateRKAPTahun.php?company=4',
+            //     type: 'GET',
+            //     success: function (data) {
+            //         var data = eval('(' + data + ')');
+            //         var year_cement = data['s7000'].cement;
+            //         $("#rkapuptofm").html(FormatNumberBy3(data.s7000.cement, ",", "."));
+            //         mine_fm(year_cement);
+            //     }
+            // }).done(function (data) {
+            // }).fail(function () {
+
+            // });
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

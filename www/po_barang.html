@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/ip_highcharts.js"></script>
+        <script src="js/ip_highcharts-3d.js"></script>
+        <script src="js/ip_exporting.js"></script>
+        <script src="js/loader.js"></script>
+    <!-- <script src="js/loader.js"></script> -->
+       <script src="js/paradigma.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+       <!--  <script type="text/javascript" src="js/touch-tooltip-fix.js"></script> -->
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = paradigma.bulanNow();
+            var tahun = d.getFullYear();
+
+            $('.selmonth').empty();
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= 12){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })
+                console.log(opt_month);
+                $('.selmonth').html(opt_month);
+                                
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2014;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                console.log(opt_year);
+                $('.selyear').html(opt_year);
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                       
+
+                        setParam('3000', bulanSekarang, tahun);
+                        window.location.href = 'inventory_sg.html';
+                        
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('7000', bulanSekarang, tahun);
+                        window.location.href = 'inventory_sg.html';
+
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('4000', bulanSekarang, tahun);
+                        window.location.href = 'inventory_sg.html';
+                        
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('6000', bulanSekarang, tahun);
+                        window.location.href = 'inventory_sg.html';
+
+                    } else if (r == 'data-sm') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').removeClass('img_foot2');
+                        window.location.href = 'inventory_sg.html';
+                        
+                    }
+                })
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-performance') {
+                        $('#data-performance').removeClass('hidden');
+                        $('#data-leadtime').addClass('hidden');
+                        
+                        $('#tab-performance').addClass('act_tb');
+                        $('#tab-leadtime').removeClass('act_tb');
+                        
+                    } else if (r == 'data-leadtime') {
+                        $('#data-leadtime').removeClass('hidden');
+                        $('#data-performance').addClass('hidden');
+                        $('#tab-leadtime').addClass('act_tb');
+                        $('#tab-performance').removeClass('act_tb');
+                        
+                    }
+                })
+            }
+        </script>
+        <script >
+            
+             $(function(){
+                var tmp = getParam();
+                var opco = (getParam('opco')!='null')?getParam('opco'):7000;
+                bulanSekarang = (getParam('bln')!='null')?getParam('bln'):(bulanSekarang);
+                tahun = (getParam('thn')!='null')?getParam('thn'):tahun;
+                console.log(tahun);
+
+                if (opco == 7000) {
+                    $('.img_log').attr('src', 'img/cement/sg.png');
+                    $('#head_log').text('SEMEN GRESIK');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').removeClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }else if (opco==3000) {
+                    $('.img_log').attr('src', 'img/cement/sp.png');
+                    $('#head_log').text('SEMEN PADANG');
+
+                    $('#tab-sp').removeClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }if (opco==4000) {
+                    $('.img_log').attr('src', 'img/cement/st.png');
+                    $('#head_log').text('SEMEN TONASA');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').removeClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }if (opco==6000) {
+                    $('.img_log').attr('src', 'img/cement/tl.png');
+                    $('#head_log').text('THANG LONG');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').removeClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }
+
+
+
+                $('.selmonth').change(function(){
+                    bulanSekarang = $(this).val();
+                    tahun = $('.selyear').val();   
+
+                });
+                 $('.selyear').change(function() {
+                    tahun = $(this).val();
+                    bulanSekarang = $('.selmonth').val();
+                    var t = $(this).attr('rel');
+                    
+                })
+              
+            })
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active{
+                border-top: 1px solid #1481ed;
+            }
+            .inex{
+                font-size: 25px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+            }
+            .tit_head{
+                background: rgba(255,255,255,1);
+                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+
+            }
+            .tab-active{
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab{
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                font-family: "Open Sans";
+            }
+            .prosen1 {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+            .mencapai {
+                color: #06bf79;
+            }
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <title>Inventory Tracking</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                     <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                      </div>
+                      <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                            <li><a href="production_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                            <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a href="#" class="active"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                      </div>
+                      <div class="footer">
+                        <div>
+                            <ul>
+                              <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                              <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                      </div>
+                </div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x backtoparent" id="menu-toggle"><span>toggle menu</span></button>
+                        <b class="logopis">HIGHLIGHT PROCUREMENT</b>
+                        <a class="logo" href="index.html"><img src="img/logo.png"></a>
+                    </header>
+                    <div class="wrapper">
+                        <div class="headsix add_fix cubesRun2" style="margin-bottom: 110px; min-height: 800px;"> 
+                                <div class=" cubesRun2 headone">
+                                    <div align="center">
+                                        <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                        <p class="planttittle" id="head_log" style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">Loading...</p>
+                                        <center>
+                                            Month:<select id="month" class="selmonth" rel="vol"></select><select id="year" class="selyear"></select>
+                                        </center>
+                                    </div>
+                                </div>
+                                <center>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                                </center>                     
+                 
+                        
+                        <div class="col-xs-12 tab_dual" style="margin-top: 20px; margin-bottom: 12px">
+                            <div class="col-xs-12 bg_rds">
+                                <div id="tab-performance" class="col-xs-6 center zero_padd left_tb act_tb">
+                                    <a href="#tab-click" rel="data-performance" class="no-text-style">
+                                        <span class="tx_tab">Performance</span></a></div>
+
+                                <div id="tab-leadtime" class="col-xs-6 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-leadtime" class="no-text-style">
+                                        <span class="tx_tab">Leadtime Services</span></a></div>
+
+                                
+                            </div>
+                        </div>
+                        <div id="data-performance" align="center">
+                            
+                                <div class="col-xs-12" style="margin-bottom: 20px">
+                                    <div id="graph_performance" style="width:100%; min-height: 220px"></div> 
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-4">
+                                        <div class="col-xs-12" style="text-align: left;margin-bottom: 0px;">
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;PR </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;PR Rel </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;RFQ </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;PO </san><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;GR </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;GR Blck Stck </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;PO Exp </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="col-xs-12"  style="text-align: left;margin-bottom: 0px;">
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;460 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;244 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;270 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;267 </san><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;23 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;1 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;123 </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="col-xs-12"  style="text-align: left;margin-bottom: 0px;">
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;1.000.000.000 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;245.000.000 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;270.000.000 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;267.000.000 </san><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;23.000.000 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;1000.000 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;123.000.000 </span>
+                                        </div>
+                                    </div>
+                                </div> 
+                        </div>
+                        <div id="data-leadtime" class="hidden" align="center">
+                            
+                            <div class="col-xs-12">
+                                <div id="graph_leadtime" style="width:100%; min-height: 220px"></div> 
+                            </div>
+                            <div class="col-xs-12">
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-12" style="text-align: left; margin-bottom: 0px;">
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;PR to PR Rel </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;PR Rel to BL</span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;BL to RFQ </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;Penawaran </san><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;Rekap Harga </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;Rekap to PO </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;PR Rel to PO </span><br>
+                                            <span style="color: #adadad;font-size: 12px;">&nbsp;BL to PO </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-12"  style="text-align: left;margin-bottom: 0px;">
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;24.60 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;34.27 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;0.06 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;4.77 </san><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;18.28 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;3.73 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;29.63 </span><br>
+                                            <span style="color: #FF615D;font-size: 12px;">&nbsp;17.30 </span>
+                                        </div>
+                                    </div>
+                                </div>  
+                        </div>
+                       
+
+                        <!-- <div id="tren">
+                            <div class="col-xs-12 noPadding" style="margin-bottom: 5px;margin-top: 20px">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp; Trend PO Reminder</span>
+                                </div>
+                                <div class="col-xs-12 noPadding tab_uper" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                    <div style="overflow-x: scroll; width: 100%;">
+                                        <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Tren Investasi 2015 vs 2016
+                                        </span>
+                                        <div id="tren_investasi" style="width:350px; min-height: 220px"></div>    
+                                    </div>
+                                    <div style="overflow-x: scroll; width: 100%;">
+                                        <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Tren Realisasi Pencapaian PO 2015 vs 2016
+                                        </span>
+                                        <div id="tren_pencapaian" style="width:350px; min-height: 220px"></div>
+                                    </div>
+                                    <div style="overflow-x: scroll; width: 100%;">
+                                        <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Lead Time Pengadaan 2015 vs 2016
+                                        </span>
+                                        <div id="lead_pengadaan" style="width:350px; min-height: 220px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    <footer >
+                        <div class="regular" >
+                            <a href="inventory_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;">
+                                <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
+                            <a href="inventory_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
+                            <a href="inventory_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                <img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
+                            <a href="inventory_tl.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                <img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
+                            
+                        </div>
+                    </footer>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                Highcharts.chart('graph_performance', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Grafik Performance'
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Jumlah'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:8px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'PR',
+                        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+                    }, {
+                        name: 'PR Rel',
+                        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+                    }, {
+                        name: 'RFQ',
+                        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+                    }, {
+                        name: 'PO',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }, {
+                        name: 'GR',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }, {
+                        name: 'GR Blck Stck',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }, {
+                        name: 'PO Exp',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }]
+                });
+            });
+
+            $(function () {
+                Highcharts.chart('graph_leadtime', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Grafik Performance'
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Jumlah'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:8px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'PR to PR Rel',
+                        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+                    }, {
+                        name: 'PR Rel to Bl',
+                        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+                    }, {
+                        name: 'BL to RFQ',
+                        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+                    }, {
+                        name: 'Penawaran',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }, {
+                        name: 'Rekap Harga',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }, {
+                        name: 'Rekap to PO',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }, {
+                        name: 'PR Rel to PO',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }, {
+                        name: 'BL to PO',
+                        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+                    }]
+                });
+            });
+
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            <!-- $(".regular").slick({ -->
+        <!-- infinite: true, -->
+        <!-- slidesToShow: 4, -->
+        <!-- slidesToScroll: 4, -->
+        <!-- arrows:true, -->
+         <!-- centerMode: true -->
+        <!-- // variableWidth: true -->
+      <!-- }); -->
+            });
+        </script>
+        </body>
+</html>

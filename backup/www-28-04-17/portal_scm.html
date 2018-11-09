@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="anima.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+       <!--  <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+        <script type="text/javascript" charset="utf-8">
+            function exitApps(){
+                navigator.app.exitApp();
+            }
+        </script>
+    <style>
+    .imgcompany {
+  margin:9px;
+  margin-bottom: 2px;
+    margin-top: 22px;
+}
+.textimg {
+  font-size: 10px;
+  color: #504b4d;
+}
+a img:hover {
+        background-color: rgb(236, 236, 241);
+    border-radius: 43px;
+    text-decoration: none;
+    }
+
+    blink {   
+  animation-duration: 500ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+        </style>
+        
+        <title>Home</title>
+    </head>
+    <body>
+
+        <div class="app">
+            <div id="deviceready">
+                <div id="content" class="animated">
+                <div class="wrapper" style="overflow:hidden;">
+                  <!-- <div style="margin-bottom: 20px"></div> -->
+                    <a href="index.html" style="position:absolute">
+                    <div style="margin-bottom: 20px"></div><img src="img/ar_back.png" width="37px" style="padding-left:12px"></a>
+                    
+                        <img class="logo-home" src="img/scm_tt.png" style="width: 214px;margin-top: 56px;"/>
+                        <img class="bg-home" src="img/bg-port.png"/>
+                        
+                         
+            
+          <div class="link-home" style="text-align: center; margin-top: 0px;"> 
+
+          <a onclick="goto_opco('stok_bahan', 'stok_bahan_sg')" class="animated zoomIn" style="display: inline-block; text-align: center; margin-right: 32px;"><img src="img/mt.png" class="imgcompany" style="width: 78px; "><br> <p class="textimg">MATERIAL STOCK</p>
+                            
+          </a> 
+          <a onclick="goto_opco('p2_port_management', 'p2_port_management')" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/ic_port_management.png" class="imgcompany" style="width: 78px; "><br> <p class="textimg">PORT MANAGEMENT</p>
+                            
+          </a> 
+          <a onclick="goto_opco('scm_prod', 'scm_prod_sg')" class="animated zoomIn" style="display: inline-block; text-align: center; margin-right: 32px; "><img src="img/stpp.png" class="imgcompany" style="width: 78px; "><br> <p class="textimg">S&OP PRODUCTION</p>
+                            
+          </a>
+            
+          <a onclick="goto_opco('scm_hm', 'scm_hm_sg')" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/ss1.png" class="imgcompany" style="width: 78px; "><br> <p class="textimg">S&OP STOCK PP & GDG</p>
+                            
+          </a> 
+           
+          <a onclick="goto_opco('scm_sales_volume', 'scm_sales_vol_sg')" class="animated zoomIn" style="display: inline-block; text-align: center;  margin-right: 32px;"><img src="img/h3.png" class="imgcompany" style="width: 78px; "><br> <p class="textimg">S&OP SALES VOLUME</p>
+                            
+          </a> 
+          <a onclick="goto_opco('marketshare', 'marketshare_sg')" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/ms.png" class="imgcompany" style="width: 78px; "><br> <p class="textimg">MARKET SHARE</p>
+                            
+          </a>
+		 
+		  <a href = "market_inteligence.html" class="animated zoomIn" style="display:none; text-align: center; "><img src="img/IcoMrktInt.png" class="imgcompany" style="width: 78px; "><br> <p class="textimg">MARKET INTELEGENCE</p>
+                            
+          </a>
+	
+          
+          
+         
+          
+
+
+          
+          <div align="center" > 
+          
+          </div>
+                        
+               <!--  <div style="text-align: center; font-size:21px; color:#FC0509; margin-top: 50px;"><blink><b>UNDER CONSTRUCTION !!!</b></blink></div> -->
+
+                        <div class="spacer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

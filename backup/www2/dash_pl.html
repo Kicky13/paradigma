@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/production.css">
+<link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+<!-- <script src="js/jquery.min.js"></script> -->
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/JsNumberFormat.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<!-- <script src="js/highstock.js"></script> -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!--<script src="js/highcharts.js"></script>-->
+<script src="js/exporting.js"></script>
+     <script src="js/loader.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/waitMe.min.js"></script>
+<script type="text/javascript" src="js/accounting.min.js"></script>
+<script type="text/javascript" src="js/loader.js"></script>
+<script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                create_accordion_table('clinker','Clinker Production (Ton)','Mei (M)');
+                create_accordion_table('cement','Cement Production (Ton)','Mei (M)');
+                create_accordion_table('sales','Sales Volume - Total (Ton)','Mei (M)');
+                create_accordion_table('gross','Gross Revenue','Mei (M)');
+                create_accordion_table('freight','Freight Cost','Mei (M)');
+                create_accordion_table('net','Net Revenue','Mei (M)');
+                create_accordion_table('cost','Cost of Revenue','Mei (M)');
+                create_accordion_table('gross_profit','Gross Profit','Mei (M)');
+                create_accordion_table('op_expense','Operating Expense','Mei (M)');
+                create_accordion_table('top_expense','Total Operating Expenses','Mei (M)');
+                create_accordion_table('op_profit','Operating Profit','Mei (M)');
+                create_accordion_table('op_margin','Operating Margin','Mei (M)');
+                create_accordion_table('ebitda','EBITDA','Mei (M)');
+                create_accordion_table('ebitda_margin','EBITDA margin','Mei (M)');
+                create_accordion_table('interest','Interest Expenses','Mei (M)');
+                create_accordion_table('foreign','Foreign Gain (Loss)','Mei (M)');
+                create_accordion_table('other','Other Income - Net','Mei (M)');
+                create_accordion_table('profit_wtax','Profit before Income Tax','Mei (M)');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'prod_rm_tlcc.html';
+                    }
+                })
+            run_waitMe('tableAccordion_body', 'facebook');
+            $.ajax({
+             url: url_src+'/BPCPLRSingle.php',
+             cache: false,
+             success: function(msg){
+              var hari = moment().format('DD');
+              var last_update = moment(tahun.toString()+bulanSekarang.toString()+hari);
+              $('.last-update').html('Last update : '+last_update.format('DD MMM YYYY'));
+
+              var data1 = msg.replace("<title>Json</title>", "");
+              var data2 = data1.replace("(", "[");
+              var data3 = data2.replace(");", "]");
+              var dataJson = JSON.parse(data3);
+              var total_ebitda = ((Number(dataJson['7000']['upto'].e) / 1000000000).toFixed(2));
+              $('#total_ebitda').html(accounting.formatMoney(total_ebitda, "", 2, ".", ",")+' B');
+              $('#sales_rkap').html('0.00');
+              var sales_act_current = ((Number(dataJson['7000']['current'].penjualan) / 1000000).toFixed(2));
+              $('#sales_act_current').html(accounting.formatMoney(sales_act_current, "", 2, ".", ","));
+              $('#sales_act_prev').html('0.00');
+              $('#sales_upto_rkap').html('0.00');
+              var sales_upto_act_current = ((Number(dataJson['7000']['upto'].penjualan) / 1000000).toFixed(2));
+              $('#sales_upto_act_current').html(accounting.formatMoney(sales_upto_act_current, "", 2, ".", ","));
+              $('#sales_upto_act_prev').html('0.00');
+
+              $('#gross_rkap').html('0.00');
+              var gross_act_current = ((Number(dataJson['7000']['current'].hpb) / 1000000).toFixed(2));
+              $('#gross_act_current').html(accounting.formatMoney(gross_act_current, "", 2, ".", ","));
+              var gross_act_prev = ((Number(dataJson['7000']['current_rp1'].hpb) / 1000000).toFixed(2));
+              $('#gross_act_prev').html(accounting.formatMoney(gross_act_prev, "", 2, ".", ","));
+              $('#gross_upto_rkap').html('0.00');
+              var gross_upto_act_current = ((Number(dataJson['7000']['upto'].hpb) / 1000000).toFixed(2));
+              $('#gross_upto_act_current').html(accounting.formatMoney(gross_upto_act_current, "", 2, ".", ","));
+              var gross_upto_act_prev = ((Number(dataJson['7000']['upto_rp1'].hpb) / 1000000).toFixed(2));
+              $('#gross_upto_act_prev').html(accounting.formatMoney(gross_upto_act_prev, "", 2, ".", ","));
+
+              $('#freight_rkap').html('0.00');
+              $('#freight_act_current').html(dataJson['7000']['current'].oa);
+              $('#freight_act_prev').html(dataJson['7000']['current_rp1'].oa);
+              $('#freight_upto_rkap').html('0.00');
+              $('#freight_upto_act_current').html(dataJson['7000']['upto'].oa);
+              $('#freight_upto_act_prev').html(dataJson['7000']['upto_rp1'].oa);
+
+              $('#net_rkap').html('0.00');
+              $('#net_act_current').html(dataJson['7000']['current'].oa);
+              $('#net_act_prev').html(dataJson['7000']['current_rp1'].oa);
+              $('#net_upto_rkap').html('0.00');
+              $('#net_upto_act_current').html(dataJson['7000']['upto'].oa);
+              $('#net_upto_act_prev').html(dataJson['7000']['upto_rp1'].oa);
+              stop_waitMe('tableAccordion_body');
+             }
+            })
+            function create_accordion_table(id,titel,month_titel){
+             var tr = "<tr class='panel-heading sdw' data-toggle='collapse' data-parent='#tableAccordion' href='#"+id+"'><td>"+titel+"</td><td align='middle'><span class='red_ind'>0.00</span></td><td align='middle'><span class='green_ind'>0.00</span></td><td><div align='center'><a href='project_detail.html'><i class='fa fa-bar-chart' aria-hidden='true' style='color: #909090;'></i></a></div></td></tr>"; 
+             var tr_content = "<tr id='"+id+"' class='collapse fade' style='margin: 5px;'><td colspan='4' class='col-xs-12'><div class='col-xs-6 noPadding headdown cubesTit'><a href='#maintenance_cost' rel='gresik'><div class='col-xs-12 noPadding' align='center' style='font-size:15px;color:#333333' ><b> "+month_titel+"</b></div></a></div><div class='col-xs-6 noPadding headdown cubesTit'><a href='#maintenance_cost' rel='padang'><div class='col-xs-12 noPadding' align='center' style='font-size:15px;color:#333333' ><b> Up to "+month_titel+"</b></div></a></div><div class='col-xs-6 noPadding headdown cubesTit'><div class='col-xs-12 noPadding' style='font-size:11px;color:#333333'><table border='0' style='width:100%;'><tr><td width='50%'>(1) RKAP</td><td width='50%' align='right'><span id='"+id+"_rkap' style='color:#000;'></span></td></tr><tr><td width='50%'>(2) ACT 2016</td><td width='50%' align='right'><span id='"+id+"_act_current' style='color:#000;'></span></td></tr><tr><td width='50%'>(3) ACT 2015</td><td width='50%' align='right'><span id='"+id+"_act_prev' style='color:#000;'></span></td></tr></table></div></div><div class='col-xs-6 noPadding headdown cubesTit'><div class='col-xs-12 noPadding' style='font-size:11px;color:#333333' ><table border='0' style='width:100%;'><tr><td width='50%'>(4) RKAP</td><td width='50%' align='right'><span id='"+id+"_upto_rkap' style='color:#000;'></span></td></tr><tr><td width='50%'>(5) ACT 2016</td><td width='50%' align='right'><span id='"+id+"_upto_act_current' style='color:#000;'></span></td></tr><tr><td width='50%'>(6) ACT 2015</td><td width='50%' align='right'><span id='"+id+"_upto_act_prev' style='color:#000;'></span></td></tr></table></div></div><div class='col-xs-12 noPadding headdown cubesTit'><div style='font-size:15px;color:#333333;text-align: center;'><b>Monthly Report</b></div><div style='overflow-x: scroll;width:315px;display:none;'><div id='"+id+"_chart'></div></div></div></td></tr>";
+             $("#tableAccordion_body").append(tr+tr_content);
+            }       
+            function createChart(id){
+             $('#'+id).highcharts({
+               chart: {
+                marginLeft: 6,
+                marginRight: 6
+               },
+               title: {
+                   text: '',
+               },
+               subtitle: {
+                   text: '',
+               },
+               xAxis: {
+                   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+               },
+               yAxis: {
+                   title: {
+                       text: 'Nilai (Ton)'
+                   },
+                   top: -10,
+                   offset: -35,
+                   plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                   }]
+               },
+               tooltip: {
+                   valueSuffix: ''
+               },
+               exporting: {
+                enabled: false
+               },
+               legend: {
+                   align: 'left', 
+                   layout: 'horizontal',
+                   enabled: false
+               },
+               series: [{
+                   name: 'RKAP',
+                   data: [17.2, 18.8, 18.7, 18.3, 17.0, 18.0, 18.8, 19.1, 18.1, 18.1, 18.6, 18.5],
+                   color : '#FF615D'
+               },{
+                   name: 'REAL 2015',
+                   data: [4.9, 5.2, 6.7, 7.5, 10.9, 10.2, 16.0, 15.6, 15.2, 15.3, 15.6, 15.8]
+               },{
+                   name: 'REAL 2016',
+                   data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 16.2, 16.3, 16.6, 16.8],
+                   color : '#33CC33'
+               }]
+             });
+
+            }
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+<style>
+.img_foot2 {
+	filter: gray; /* IE6-9 */
+	filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+	-webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+}
+.tab_syle {
+	color: #666666;
+	font-size: 12px;
+	border: none;
+	/* padding-left: 8px; */
+                margin-left: 3px;
+}
+.font-category {
+	font-size: 12px;
+}
+.overflowing {
+	/*width: 30em;*/
+                overflow-x: auto;
+	white-space: nowrap;
+}
+.no-js #loader {
+	display: none;
+}
+.js #loader {
+	display: block;
+	position: absolute;
+	left: 100px;
+	top: 0;
+}
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+}
+.head_tb {
+	font-weight: bold;
+	background-color: #f5f5f5;
+	border-bottom: 1.5px solid #bfbfbf;
+	border-top: 1px solid #cdcdcd;
+}
+.sdw {
+	background: rgba(255, 255, 255, 1);
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+	background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+}
+.red_ind {
+	color:#DC0033;
+	font-weight:bold;
+}
+.green_ind {
+	color:#669966;
+	font-weight:bold;
+}
+</style>
+<script src="js/modernizr.js"></script>
+<script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+<title>Raw Mill Production</title>
+</head>
+<body onLoad="onLoad()" >
+<div class="app">
+  <div id="deviceready">
+    <!-- Paste this code after body tag -->
+    <div class="se-pre-con"></div>
+    <!-- Ends -->
+    <nav id="sideMenu">
+                    <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="portal_prod1.html">PRODUCTION</a></li>
+                    <li><a href="portal_sales.html">SALES</a></li>
+                    <li><a href="portal_finance.html">FINANCE</a></li>
+                    <li><a href="portal_project.html">PROJECT</a>
+                    </ul>
+    </nav>
+    <div id="content" class="animated" style="background:#f5f5f5;">
+      <header id="header">
+        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+      </header>
+      <div class="wrapper">
+        <div class="headsix cubesRun2" style="margin-bottom: 9px;"> <img src="img/header_fl.png" class="imgsi" style="border-bottom: 1px solid #e2e2e2;">
+          <div align="center" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;"> <span class="upercent">TOTAL EBITDA</span><br>
+            <i class="fa fa-sort-asc fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>IDR <span class="prosen" style="color: #5d5d5d;" id="total_ebitda">0</span><br>
+            <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="upercent last-update">last update :</span><br>
+          </div>
+        </div>
+        <div class="headsix cubesRun2" style="margin-bottom: 9px;">
+        <table  id="tableAccordion" class="table">
+          <thead>
+            <tr class="head_tb">
+              <td width="50%">Item</td>
+              <td width="15%" align="center">RKAP (%)</td>
+              <td width="20%"><div align="center">PREVIOUS (%)</div></td>
+              <td width="15%"><div align="right"></div></td>
+            </tr>
+          </thead>
+          <tbody id="tableAccordion_body">
+         
+          </tbody>
+        </table>
+        </div>
+        <div class="spacer"></div>
+    </div>
+    <footer >
+<div class="regular" >
+
+
+      <div id="tab-sp" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+      <div id="tab-sg" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+      <div id="tab-st" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+      <div id="tab-tl" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+     <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+  </div>
+</div>
+</div>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

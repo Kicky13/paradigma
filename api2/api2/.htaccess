@@ -1,0 +1,22 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/(assets)/(.*)\.(jpg|png|gif|bmp|jpeg|js|css|ico|svg|less|json|otf|eot|ttf|woff|woff2|JPG|BMP|GIF|PNG|JPEG|zip|htm|svg|xls|xlsx|mp3|mp4|avi|mpeg|mpg)$ [OR]
+RewriteCond %{REQUEST_URI} \.(php|html|phtml|asp|jsp|java)
+
+
+
+
+ErrorDocument 400 /
+ErrorDocument 401 /
+ErrorDocument 403 /
+ErrorDocument 404 /
+
+RewriteBase /
+
+RewriteRule ^(.*)/(plugins|templates|frameworks|css|js|files|images|fonts|img|icon|uploads)/(.*)?$ /assets/$1/$2/$3 [NC,L]
+RewriteRule ^(plugins|templates|frameworks|css|js|files|images|fonts|img|icon|uploads)/(.*)?$ /assets/$1/$2 [NC,L]
+#RewriteRule !^(.*)/(plugins|templates|frameworks|css|js|files|images|fonts|img|icon|uploads)/(.*)$ /index.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]

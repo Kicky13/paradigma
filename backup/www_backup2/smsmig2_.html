@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <!--<script type="text/javascript" src="js/Chart.min.js"></script>-->
+        <title>Sales & Marketing</title>
+        <script>
+            function onLoad() {
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('border-down-active');
+                        $('#tab-revenue').removeClass('border-down-active');
+                        $('#tab-price').removeClass('border-down-active');
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('border-down-active');
+                        $('#tab-revenue').addClass('border-down-active');
+                        $('#tab-price').removeClass('border-down-active');
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('border-down-active');
+                        $('#tab-revenue').removeClass('border-down-active');
+                        $('#tab-price').addClass('border-down-active');
+                    }
+                })
+            }
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+
+        <script>
+            $(function () {
+                $.ajax({
+                    url: url_src+ '/Android/STMRevVolPrice.php',
+                    //url: 'STMRevVolPrice.json',
+                    type: 'GET',
+                    success: function (data) {
+                        //console.log('test');
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data = data2.replace(");", "]");
+                        var a = jQuery.parseJSON(data);
+                        //var a = data;
+                        var rkapv = [];
+                        var rkapr = [];
+                        var rkaph = [];
+                        var realv = [];
+                        var realr = [];
+                        var realh = [];
+                        var lastv = [];
+                        var lastr = [];
+                        var lasth = [];
+                        var rkapv_tot = 0;
+                        var rkapr_tot = 0;
+                        var rkaph_tot = 0;
+                        var realv_tot = 0;
+                        var realr_tot = 0;
+                        var realh_tot = 0;
+                        var lastv_tot = 0;
+                        var lastr_tot = 0;
+                        var lasth_tot = 0;
+                        var percentv = 0;
+                        var percentr = 0;
+                        var percenth = 0;
+
+                        var percentv7000 = 0;
+                        var percentr7000 = 0;
+                        var percenth7000 = 0;
+
+                        // var rkapv_tot1 = 0;
+                        // var rkapr_tot1 = 0;
+                        // var rkaph_tot1 = 0;
+                        // var realv_tot1 = 0;
+                        // var realr_tot1 = 0;
+                        // var realh_tot1 = 0;
+
+                        var rkapv7000 = 0;
+                        var rkapr7000 = 0;
+                        var rkaph7000 = 0;
+                        var realv7000 = 0;
+                        var realr7000 = 0;
+                        var realh7000 = 0;
+
+                        //var data = eval('('+data+')');
+                        // console.log(a);
+                        var s = '';
+
+                        for (var b = 1; b < 13; b++) {
+                            if (b < 10) {
+                                var s = '0' + b;
+                            } else {
+                                var s = b;
+                            }
+
+                            $.each(a, function (key, val) {
+                                $.each(val, function (key2, val2) {
+                                    $.each(val2, function (key3, val3) {
+                                        if (key == '7000') {
+                                            if (key2 == s) {
+                                                if (key3 == 'rkap_volume') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    rkapv.push(Number(val3));
+                                                    rkapv7000 = Number(val3);
+                                                    $('#rkapv7000').html(rkapv7000.toFixed(2) + ' K');
+                                                } else if (key3 == 'rkap_revenue') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    rkapr.push(Number(val3));
+                                                    rkapr7000 = Number(val3);
+                                                    $('#rkapr7000').html(rkapr7000.toFixed(2) + ' K');
+                                                } else if (key3 == 'rkap_harga') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    rkaph.push(Number(val3));
+                                                    rkaph7000 = Number(val3);
+                                                    $('#rkaph7000').html(rkaph7000.toFixed(2) + ' K');
+                                                } else if (key3 == 'real_volume') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    realv.push(Number(val3));
+                                                    realv7000 = Number(val3);
+                                                    $('#realv7000').html(realv7000.toFixed(2) + ' K');
+                                                } else if (key3 == 'real_revenue') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    realr.push(Number(val3));
+                                                    realr7000 = Number(val3);
+                                                    $('#realr7000').html(realr7000.toFixed(2) + ' K');
+                                                } else if (key3 == 'real_harga') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    realh.push(Number(val3));
+                                                    realh7000 = Number(val3);
+                                                    $('#realh7000').html(realh7000.toFixed(2) + ' K');
+                                                } else if (key3 == 'last_volume') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    lastv = Number(val3);
+                                                    $('#lastv').html(lastv.toFixed(2) + ' K');
+                                                } else if (key3 == 'last_revenue') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    lastr = Number(val3);
+                                                    $('#lastr').html(lastr.toFixed(2) + ' K');
+                                                } else if (key3 == 'last_harga') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    lasth = Number(val3);
+                                                    $('#lasth').html(lasth.toFixed(2) + ' K');
+                                                }
+                                            }
+                                        }
+                                    })
+                                })
+                            })
+                            rkapv_tot += Number(rkapv7000);
+                            // console.log(rkapv_tot);
+                            $('#rkapv_tot').html(FormatNumberBy3((rkapv_tot / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            rkapr_tot += Number(rkapr7000);
+                            $('#rkapr_tot').html(FormatNumberBy3((rkapr_tot / 1000000000).toFixed(2).replace(".", ","), ",", ".") + ' B');
+                            rkaph_tot += Number(rkaph7000);
+                            $('#rkaph_tot').html(FormatNumberBy3((rkaph_tot / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            realv_tot += Number(realv7000);
+                            $('#realv_tot').html(FormatNumberBy3((realv_tot / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            realr_tot += Number(realr7000);
+                            $('#realr_tot').html(FormatNumberBy3((realr_tot / 1000000000).toFixed(2).replace(".", ","), ",", ".") + ' B');
+                            realh_tot += Number(realh7000);
+                            $('#realh_tot').html(FormatNumberBy3((realh_tot / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            lastv_tot += Number(lastv);
+                            $('#lastv_tot').html((lastv_tot / 1000).toFixed(2) + ' K');
+                            lastr_tot += Number(lastr);
+                            $('#lastr_tot').html((lastr_tot / 1000).toFixed(2) + ' K');
+                            lasth_tot += Number(lasth);
+                            $('#lasth_tot').html((lasth_tot / 1000).toFixed(2) + ' K');
+                            percentv = (Number(realv_tot) / Number(rkapv_tot)) * 100;
+                            $('#percentv').html(FormatNumberBy3(percentv.toFixed(2).replace(".", ","), ",", ".") + '<font size="5"> %</font>');
+                            // console.log(percentv.toFixed(2));
+                            percentr = (Number(realr_tot) / Number(rkapr_tot)) * 100;
+                            $('#percentr').html(FormatNumberBy3(percentr.toFixed(2).replace(".", ","), ",", ".") + '<font size="5"> %</font>');
+                            // console.log(percentr.toFixed(2));
+                            percenth = (Number(realh_tot) / Number(rkaph_tot)) * 100;
+                            $('#percenth').html(FormatNumberBy3(percenth.toFixed(2).replace(".", ","), ",", ".") + '<font size="5"> %</font>');
+                            // console.log(percenth.toFixed(2));
+
+                            // rkapv_tot1 += Number(rkapv7000);
+                            // // console.log(rkapv_tot1);
+                            // $('#rkapv_tot1').html(FormatNumberBy3((rkapv_tot1 / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            // rkapr_tot1 += Number(rkapr7000);
+                            // $('#rkapr_tot1').html(FormatNumberBy3((rkapr_tot1 / 1000000000).toFixed(2).replace(".", ","), ",", ".") + ' B');
+                            // rkaph_tot1 += Number(rkaph7000);
+                            // $('#rkaph_tot1').html(FormatNumberBy3((rkaph_tot1 / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            // realv_tot1 += Number(realv7000);
+                            // $('#realv_tot1').html(FormatNumberBy3((realv_tot1 / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            // //console.log(realv_tot1);
+                            // realr_tot1 += Number(realr7000);
+                            // $('#realr_tot1').html(FormatNumberBy3((realr_tot1 / 1000000000).toFixed(2).replace(".", ","), ",", ".") + ' B');
+                            // realh_tot1 += Number(realh7000);
+                            // $('#realh_tot1').html(FormatNumberBy3((realh_tot1 / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+
+                            percentv7000 = (Number(realv_tot) / Number(rkapv_tot)) * 100;
+                            $('#percentv7000').html((percentv7000.toFixed(2).replace(".", ",")) + '<font size="1"> %</font>');
+                            // console.log(percentv7000.toFixed(2));
+                            percentr7000 = (Number(realr_tot) / Number(rkapr_tot)) * 100;
+                            $('#percentr7000').html((percentr7000.toFixed(2).replace(".", ",")) + '<font size="1"> %</font>');
+                            // console.log(percentr7000.toFixed(2));
+                            percenth7000 = (Number(realh_tot) / Number(rkaph_tot)) * 100;
+                            $('#percenth7000').html((percenth7000.toFixed(2).replace(".", ",")) + '<font size="1"> %</font>');
+                            // console.log(percenth7000.toFixed(2));
+                        }
+               
+                   
+//===========================================================PADANG 3000==========================================================================
+            
+                $.ajax({
+                    url: url_src+ '/Android/STMRevVolPrice3000.php',
+                    //url: 'STMRevVolPrice.json',
+                    type: 'GET',
+                    success: function (data) {
+                        //console.log('test');
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data = data2.replace(");", "]");
+                        var a = jQuery.parseJSON(data);
+                        //var a = data;
+                        var rkapv3000 = [];
+                        var rkapr3000 = [];
+                        var rkaph3000 = [];
+                        var realv3000 = [];
+                        var realr3000 = [];
+                        var realh3000 = [];
+                        var lastv3000 = [];
+                        var lastr3000 = [];
+                        var lasth3000 = [];
+                        var rkapv_tot3000 = 0;
+                        var rkapr_tot3000 = 0;
+                        var rkaph_tot3000 = 0;
+                        var realv_tot3000 = 0;
+                        var realr_tot3000 = 0;
+                        var realh_tot3000 = 0;
+                        var lastv_tot3000 = 0;
+                        var lastr_tot3000 = 0;
+                        var lasth_tot3000 = 0;
+                        var percentvpad = 0;
+                        var percentrpad = 0;
+                        var percenthpad = 0;
+
+                        var percentv3000 = 0;
+                        var percentr3000 = 0;
+                        var percenth3000 = 0;
+
+                        var rkapv_tot13000 = 0;
+                        var rkapr_tot13000 = 0;
+                        var rkaph_tot13000 = 0;
+                        var realv_tot13000 = 0;
+                        var realr_tot13000 = 0;
+                        var realh_tot13000 = 0;
+
+                        
+                        var rkapvtotal1 = [];
+                        var rkaprtotal1 = [];
+                        var rkaphtotal1 = [];
+                        var realvtotal1 = [];
+                        var realrtotal1 = [];
+                        var realhtotal1 = [];
+
+                        //var data = eval('('+data+')');
+                        // console.log(a);
+                        var s = '';
+
+                        for (var b = 1; b < 13; b++) {
+                            if (b < 10) {
+                                var s = '0' + b;
+                            } else {
+                                var s = b;
+                            }
+
+                            $.each(a, function (key, val) {
+                                $.each(val, function (key2, val2) {
+                                    $.each(val2, function (key3, val3) {
+                                        if (key == '3000') {
+                                            if (key2 == s) {
+                                                if (key3 == 'rkap_volume') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    rkapv3000.push(Number(val3));
+                                                    rkapv3000pad = Number(val3);
+                                                    $('#rkapv3000pad').html(rkapv3000pad.toFixed(2) + ' K');
+                                                } else if (key3 == 'rkap_revenue') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    rkapr3000.push(Number(val3));
+                                                    rkapr3000pad = Number(val3);
+                                                    $('#rkapr3000pad').html(rkapr3000pad.toFixed(2) + ' K');
+                                                } else if (key3 == 'rkap_harga') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    rkaph3000.push(Number(val3));
+                                                    rkaph3000pad = Number(val3);
+                                                    $('#rkaph3000pad').html(rkaph3000pad.toFixed(2) + ' K');
+                                                } else if (key3 == 'real_volume') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    realv3000.push(Number(val3));
+                                                    realv3000pad = Number(val3);
+                                                    $('#realv3000pad').html(realv3000pad.toFixed(2) + ' K');
+                                                } else if (key3 == 'real_revenue') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    realr3000.push(Number(val3));
+                                                    realr3000pad = Number(val3);
+                                                    $('#realr3000pad').html(realr3000pad.toFixed(2) + ' K');
+                                                } else if (key3 == 'real_harga') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    realh3000.push(Number(val3));
+                                                    realh3000pad = Number(val3);
+                                                    $('#realh3000pad').html(realh3000pad.toFixed(2) + ' K');
+                                                } else if (key3 == 'last_volume') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    lastv3000 = Number(val3);
+                                                    $('#lastv3000').html(lastv3000.toFixed(2) + ' K');
+                                                } else if (key3 == 'last_revenue') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    lastr3000 = Number(val3);
+                                                    $('#lastr3000').html(lastr3000.toFixed(2) + ' K');
+                                                } else if (key3 == 'last_harga') {
+                                                    // console.log(key2);
+                                                    //  console.log(key3+' '+val3);
+                                                    lasth3000 = Number(val3);
+                                                    $('#lasth3000').html(lasth3000.toFixed(2) + ' K');
+                                                }
+                                            }
+                                        }
+                                    })
+                                })
+                            })
+                            rkapv_tot3000 += Number(rkapv3000pad);
+                            // console.log(rkapv_tot);
+                            $('#rkapv_tot3000').html(FormatNumberBy3((rkapv_tot3000 / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            rkapr_tot3000 += Number(rkapr3000pad);
+                            $('#rkapr_tot3000').html(FormatNumberBy3((rkapr_tot3000 / 1000000000).toFixed(2).replace(".", ","), ",", ".") + ' B');
+                            rkaph_tot3000 += Number(rkaph3000pad);
+                            $('#rkaph_tot3000').html(FormatNumberBy3((rkaph_tot3000 / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            realv_tot3000 += Number(realv3000pad);
+                            $('#realv_tot3000').html(FormatNumberBy3((realv_tot3000 / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            realr_tot3000 += Number(realr3000pad);
+                            $('#realr_tot3000').html(FormatNumberBy3((realr_tot3000 / 1000000000).toFixed(2).replace(".", ","), ",", ".") + ' B');
+                            realh_tot3000 += Number(realh3000pad);
+                            $('#realh_tot3000').html(FormatNumberBy3((realh_tot3000 / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                            lastv_tot3000 += Number(lastv3000);
+                            $('#lastv_tot3000').html((lastv_tot3000 / 1000).toFixed(2) + ' K');
+                            lastr_tot3000 += Number(lastr3000);
+                            $('#lastr_tot3000').html((lastr_tot3000 / 1000).toFixed(2) + ' K');
+                            lasth_tot3000 += Number(lasth3000);
+                            $('#lasth_tot3000').html((lasth_tot3000 / 1000).toFixed(2) + ' K');
+                            percentv3000 = (Number(realv_tot3000) / Number(rkapv_tot3000)) * 100;
+                            $('#percentv3000').html(FormatNumberBy3(percentv3000.toFixed(2).replace(".", ","), ",", ".") + '<font size="1"> %</font>');
+                            // console.log(percentv.toFixed(2));
+                            percentr3000 = (Number(realr_tot3000) / Number(rkapr_tot3000)) * 100;
+                            $('#percentr3000').html(FormatNumberBy3(percentr3000.toFixed(2).replace(".", ","), ",", ".") + '<font size="1"> %</font>');
+                            // console.log(percentr.toFixed(2));
+                            percenth3000 = (Number(realh_tot3000) / Number(rkaph_tot3000)) * 100;
+                            $('#percenth3000').html(FormatNumberBy3(percenth3000.toFixed(2).replace(".", ","), ",", ".") + '<font size="1"> %</font>');
+                    
+                        
+                        var rkapvtotal = Number(rkapv_tot)+Number(rkapv_tot3000);
+                         $('#rkapvtotal').html(FormatNumberBy3((rkapvtotal/ 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                        var rkaprtotal = Number(rkapr_tot)+Number(rkapr_tot3000);
+                        $('#rkaprtotal').html(FormatNumberBy3((rkaprtotal / 1000000000).toFixed(2).replace(".", ","), ",", ".") + ' B');
+                        var rkaphtotal = Number(rkaph_tot)+Number(rkaph_tot3000);
+                        $('#rkaphtotal').html(FormatNumberBy3((rkaphtotal/ 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                        var realvtotal = Number(realv_tot)+Number(realv_tot3000);
+                        $('#realvtotal').html(FormatNumberBy3((realvtotal / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+                        var realrtotal = Number(realr_tot)+Number(realr_tot3000);
+                        $('#realrtotal').html(FormatNumberBy3((realrtotal / 1000000000).toFixed(2).replace(".", ","), ",", ".") + ' B');
+                        var realhtotal = Number(realh_tot)+Number(realh_tot3000);
+                        $('#realhtotal').html(FormatNumberBy3((realhtotal / 1000).toFixed(2).replace(".", ","), ",", ".") + ' K');
+
+                        var percentvtotal = (Number(realvtotal) / Number(rkapvtotal)) * 100;
+                            $('#percentvtotal').html((percentvtotal.toFixed(2).replace(".", ",")) + '<font size="5"> %</font>');
+                            // console.log(percentv7000.toFixed(2));
+                        var percentrtotal = (Number(realrtotal) / Number(rkaprtotal)) * 100;
+                            $('#percentrtotal').html((percentrtotal.toFixed(2).replace(".", ",")) + '<font size="5"> %</font>');
+                            // console.log(percentr7000.toFixed(2));
+                        var percenthtotal = (Number(realhtotal) / Number(rkaphtotal)) * 100;
+                            $('#percenthtotal').html((percenthtotal.toFixed(2).replace(".", ",")) + '<font size="5"> %</font>');
+                            // console.log(percenth7000.toFixed(2));
+
+                        rkapvtotal1.push(rkapvtotal);
+                        rkaprtotal1.push(rkaprtotal);
+                        rkaphtotal1.push(rkaphtotal);
+                        realvtotal1.push(realvtotal);
+                        realrtotal1.push(realrtotal);
+                        realhtotal1.push(realhtotal);
+                            }
+                        //console.log(rkaprtotal1);
+                        $('#volume').highcharts({
+                            title: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            chart: {
+                                backgroundColor: 'rgba(0, 255, 0, 0)',
+                                polar: true
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                            },
+                            yAxis: {
+                                title: ''
+                            },
+                            plotOptions: {
+                                series: {
+                                    states: {
+                                        hover: {
+                                            enabled: false
+                                        }
+                                    }
+                                }
+                            },
+                            series: [{
+                                    type: 'column',
+                                    name: 'Real',
+                                    color: '#45DD90',
+                                    data: realvtotal1,
+                                }, {
+                                    type: 'line',
+                                    name: 'RKAP',
+                                    color: '#FF615D',
+                                    data: rkapvtotal1,
+                                }]
+
+
+                        });
+                        $('#revenue').highcharts({
+                            title: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            chart: {
+                                backgroundColor: 'rgba(0, 255, 0, 0)',
+                                polar: true
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                            },
+                            yAxis: {
+                                title: ''
+                            },
+                            plotOptions: {
+                                series: {
+                                    states: {
+                                        hover: {
+                                            enabled: false
+                                        }
+                                    }
+                                }
+                            },
+                            series: [{
+                                    type: 'column',
+                                    name: 'Real',
+                                    color: '#45DD90',
+                                    data: realrtotal1,
+                                }, {
+                                    type: 'line',
+                                    name: 'RKAP',
+                                    color: '#FF615D',
+                                    data: rkaprtotal1,
+                                }]
+
+
+                        });
+                        $('#price').highcharts({
+                            title: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            chart: {
+                                backgroundColor: 'rgba(0, 255, 0, 0)',
+                                polar: true
+                            },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                            },
+                            yAxis: {
+                                title: ''
+                            },
+                            plotOptions: {
+                                series: {
+                                    states: {
+                                        hover: {
+                                            enabled: false
+                                        }
+                                    }
+                                }
+                            },
+                            series: [{
+                                    type: 'column',
+                                    name: 'Real',
+                                    color: '#45DD90',
+                                    data: realhtotal1,
+                                }, {
+                                    type: 'line',
+                                    name: 'RKAP',
+                                    color: '#FF615D',
+                                    data: rkaphtotal1,
+                                }]
+
+
+                        });
+
+                    }
+                })
+ }
+                })
+
+
+            })
+        </script>
+        <style type="text/css">
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .colorsp {
+                color:#333333
+            }   
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .wrapper {
+                width:100%;
+                height: 100%;
+                overflow-y: auto;
+                float: left;
+            }
+            .bg-white {
+                background:#fff;
+            }
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .text-small {
+                font:normal 10px arial;
+                color:#000;
+            }
+            .text-medium {
+                font:normal 19px arial;
+                color:#000;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 10px
+            }
+            .center {
+                text-align: center;
+            }
+            .padding5 {
+                padding:5px;
+            }
+            .border {
+                border:1px #cecece solid;
+            }
+            .border-down {
+                height: 41px;
+                background: rgba(255,255,255,1);
+                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(245,245,245,1)));
+                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                height: 41px;
+
+                background: rgba(245,245,245,1);
+                background: -moz-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,245,245,1)), color-stop(100%, rgba(255,255,255,1)));
+                background: -webkit-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 100%);
+                background: -o-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 100%);
+                background: -ms-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 100%);
+                background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ffffff', GradientType=0 );
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .fmerah {
+                color: #FF615D;
+            }
+            .merah {
+                background-color : #df0023;
+            }
+            .orange {
+                background-color : #d93329;
+            }
+            .lite-orange {
+                background-color : #d3662e;
+            }
+            .kuning {
+                background-color : #cc9933;
+            }
+            .subheader {
+                text-align: center;
+                padding:10px;
+                color:#fff;
+            }
+            .txt-black {
+                color:#000;
+            }
+            .nomargin {
+                margin:0;
+            }
+            .nopadding {
+                padding:0;
+            }
+            .default_tab {
+                height: 41px;
+                background: rgba(255,255,255,1);
+                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(245,245,245,1)));
+                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
+            }
+
+            .tx_tab{
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .upe{margin-bottom: 0px; margin-top:40px;}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+    </head>
+    <body onLoad="onLoad()" style="font-family: Segoe UI;">
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">MONTHLY SALES REPORT</h2>
+                        <div id="tab-volume" class="col-xs-6 center padding5 border-down border-down-active" style="width: 33%;"><a href="#tab-click" rel="data-volume" class="no-text-style">
+                                <img src="img/volum.png" width="16px"> <span class="tx_tab">&nbsp;&nbsp;Volume</span></a></div>
+                        <div id="tab-revenue" class="col-xs-6 center padding5 border-down " style="width: 33%;"><a href="#tab-click" rel="data-revenue" class="no-text-style">
+                                <img src="img/revnue.png" width="16px"><span class="tx_tab">&nbsp;&nbsp;Revenue</span></a></div>
+                        <div id="tab-price" class="col-xs-6 center padding5 border-down " style="width: 33%;"><a href="#tab-click" rel="data-price" class="no-text-style">
+                                <img src="img/pri2.png" width="16px"><span class="tx_tab">&nbsp;&nbsp;Price</span></i></a></div>
+                        <div id="data-volume">
+                            <div class=" headsixbg cubesRun2 upe"> <img src="img/teks semen indo.png" class="imgsi">
+                                <center>
+                                    Tahun:
+                                    <select>
+                                        <option value="volvo">2014</option>
+                                        <option value="saab">2015</option>
+                                        <option value="opel" selected="selected">2016</option>
+                                        <option value="audi">2017</option>
+                                    </select>
+                                </center>
+
+                                <div align="center" style="margin-top: 5px;">
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 22px; width:100%">
+                                        <div class="col-xs-5">
+                                            <div class="col-xs-12 noPadding" style="color: #eb1717;text-align: left;"><i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;RKAP : <br><span class="upervalue" id="rkapvtotal"></span></div>
+                                            <div class="col-xs-12 noPadding"  style="color: #eb1717;text-align: left;"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Real : <br><span class="upervalue" id="realvtotal"></span></div>
+                                        </div>
+                                        <div class="col-xs-7 noPadding" align="right" style="padding-right:15px;"><span class="upercent">TOTAL VALUE</span><br>
+                                            <i class="fa fa-sort-asc fa-3x" aria-hidden="true" align="left" style="color: crimson;" ></i><span class="prosen" id="percentvtotal" style="color: #5d5d5d;"></span></div>
+                                    </div>
+                                </div>          
+
+                                <br>
+                                <i class="fa fa-bar-chart" aria-hidden="true"></i><span style="color: #5d5d5d;font-size: 12px;">&nbsp;&nbsp;&nbsp;Monthly Report</span><br>
+                                <div id="volume" style="width:100%; height:250px"></div>
+                                <!--<script src="js/smsmig_data.js"></script>-->
+                                <script src="js/highcharts.js"></script>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_sg_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> SG</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_sp_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> SP</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33;" > </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_st_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> ST </b></div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="#">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" > <b>TLCC</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"><a href="sm_sg_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                        <h4 id="percentv7000" style="font-weight: bold;"></h4>
+                                    </div>
+                                    <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id="rkapv_tot"> </div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id="realv_tot"></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <a href="sm_sp_detail.html">
+                                <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                    <h4 id="percentv3000" style="font-weight: bold;"></h4>
+                                </div>
+                                <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333"  id="rkapv_tot3000" ></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id="realv_tot3000"></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <!-- <a href="sm_st_detail.html"> -->
+                                <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                    <h4 id="" style="font-weight: bold;"></h4>
+                                </div>
+                                <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333" id=""></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id=""></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <a href="#">
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                        <h4 style="font-weight: bold;     margin-bottom: 13px;"><font size="1"></font></h4>
+                                    </div>
+                                    <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333" id=""></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id=""></div>
+                            </div>
+                            <div align="center">
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="col-xs-12 noPadding">
+                                <div class="layoutBox" align="center" style="margin-top: 1px;">
+                                    <!--<div class="col-xs-12" style="    margin-top: 12px;    margin-bottom: 12px;"><img src="img/2.png" width="16px">&nbsp;&nbsp;&nbsp;<span style="font-size:12px; color:#333333; margin-bottom: 23px;">PROGNOSE BULAN : <br><b style="    font-size: 28px;color: #b71e1e;">1.893.344 T</b></span></div>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================REVENUE=============================== -->
+                        <div id="data-revenue" class="hidden">
+                            <div class=" headsixbg cubesRun2 upe"> <img src="img/teks semen indo.png" class="imgsi">
+                                <center>
+                                    Tahun:
+                                    <select>
+                                        <option value="volvo">2014</option>
+                                        <option value="saab">2015</option>
+                                        <option value="opel" selected="selected">2016</option>
+                                        <option value="audi">2017</option>
+                                    </select>
+                                </center>
+                                <div align="center" style="margin-top: 5px;">
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 22px; width:100%;">
+                                        <div class="col-xs-5">
+                                            <div class="col-xs-12 noPadding" style="color: #eb1717;text-align: left;"><i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;RKAP : <br><span class="upervalue" id="rkaprtotal"></span></div>
+                                            <div class="col-xs-12 noPadding"  style="color: #eb1717;text-align: left;"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Real : <br><span class="upervalue" id="realrtotal"></span></div>
+                                        </div>
+                                        <div class="col-xs-7 noPadding" align="right" style="padding-right:15px;"><span class="upercent">TOTAL VALUE</span><br>
+                                            <i class="fa fa-sort-asc fa-3x" aria-hidden="true" align="left" style="color: crimson;" ></i><span class="prosen" id="percentrtotal" style="color: #5d5d5d;"></span></div>
+                                    </div>
+                                </div>          
+
+
+                                <br>
+                                <i class="fa fa-bar-chart" aria-hidden="true"></i><span style="color: #5d5d5d;font-size: 12px;">&nbsp;&nbsp;&nbsp;Monthly Report</span><br>
+                                <div id="revenue" style="width:100%; height:250px"></div>
+
+                                <!--<script src="js/highcharts.js"></script>-->
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_sg_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> SG</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_sp_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> SP</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33;" > </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_st_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> ST </b></div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="#">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" > <b>TLCC</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <a href="sm_sg_detail_rev.html">
+                                <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                    <h4 id="percentr7000" style="font-weight: bold;"></h4>
+                                </div>
+                                <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:12px;  color:#333333" id="rkapr_tot"></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:12px;  color:#333333" id="realr_tot"></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <a href="sm_sp_detail_rev.html"> 
+                                <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                    <h4 id="percentr3000" style="font-weight: bold;"></h4>
+                                </div>
+                                <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333"  id="rkapr_tot3000" ></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id="realr_tot3000"></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <!-- <a href="sm_st_detail.html"> -->
+                                <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                </div>
+                                <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333" id=""></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id=""></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <a href="#">
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                        <h4 style="font-weight: bold;     margin-bottom: 13px;"><font size="1"> </font></h4>
+                                    </div>
+                                    <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333" id=""></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id=""></div>
+                            </div>
+                            <div align="center">
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                            </div>
+                            <!--   <div class="col-xs-12 noPadding">
+                                <div class="layoutBox" align="center" style="margin-top: 1px;">
+                                  <div class="col-xs-12" style="    margin-top: 12px;    margin-bottom: 12px;"><img src="img/2.png" width="16px">&nbsp;&nbsp;&nbsp;<span style="font-size:12px; color:#333333; margin-bottom: 23px;">PROGNOSE BULAN : <br><b style="    font-size: 28px;color: #b71e1e;">1.893.344 T</b></span></div>
+                                </div>
+                              </div> -->
+                        </div>
+                        <!-- ==============================PRICE=================================== -->
+                        <div id="data-price" class="hidden">
+                            <div class=" headsixbg cubesRun2 upe"> <img src="img/teks semen indo.png" class="imgsi">
+                                <center>
+                                    Tahun:
+                                    <select>
+                                        <option value="volvo">2014</option>
+                                        <option value="saab">2015</option>
+                                        <option value="opel" selected="selected">2016</option>
+                                        <option value="audi">2017</option>
+                                    </select>
+                                </center>
+                                <div align="center" style="margin-top: 5px;">
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 22px; width:100%">
+                                        <div class="col-xs-5">
+                                            <div class="col-xs-12 noPadding" style="color: #eb1717;text-align: left;"><i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;RKAP : <br><span class="upervalue" id="rkaphtotal"> </span></div>
+                                            <div class="col-xs-12 noPadding"  style="color: #eb1717;text-align: left;"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Real : <br><span class="upervalue" id="realhtotal"></span></div>
+                                        </div>
+                                        <div class="col-xs-7 noPadding" align="right" style="padding-right:15px;"><span class="upercent">TOTAL VALUE</span><br>
+                                            <i class="fa fa-sort-asc fa-3x" aria-hidden="true" align="left" style="color: crimson;" ></i><span class="prosen" id="percenthtotal" style="color: #5d5d5d;"></span></div>
+                                    </div>
+                                </div>          
+
+
+                                <br>
+                                <i class="fa fa-bar-chart" aria-hidden="true"></i><span style="color: #5d5d5d;font-size: 12px;">&nbsp;&nbsp;&nbsp;Monthly Report</span><br>
+                                <div id="price" style="width:100%; height:250px"></div>
+
+                                <!--<script src="js/highcharts.js"></script>-->
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_sg_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> SG</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_sp_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> SP</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33;" > </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="sm_st_detail.html">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" ><b> ST </b></div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesTit"> <a href="#">
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:15px;  color:#333333" > <b>TLCC</b> </div>
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#33CC33"> </div>
+                                </a> </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <a href="sm_sg_detail_price.html">
+                                <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                    <h4 id="percenth7000" style="font-weight: bold;"></h4>
+                                </div>
+                                <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id="rkaph_tot"></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id="realh_tot"></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <a href="sm_sp_detail_price.html">
+                                <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                    <h4 id="percenth3000" style="font-weight: bold;"></h4>
+                                </div>
+                                <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333"  id="rkaph_tot3000" ></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id="realh_tot3000"></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <!-- <a href="sm_st_detail.html"> -->
+                                <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                </div>
+                                <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333" id=""></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id=""></div>
+                            </div>
+                            <div class="col-xs-3 noPadding headdown cubesRun" style="min-height: 136px;"> <a href="#">
+                                    <div class="col-xs-12 noPadding" align="center" style="color:#e3000e">
+                                        <h4 style="font-weight: bold;     margin-bottom: 13px;"><font size="1"></font></h4>
+                                    </div>
+                                    <span style="font-size: 10px;" class="colorsp">RKAP :</span><br>
+                                    <div class="col-xs-12 noPadding" align="center" style="font-size:13px; color:#333333" id=""></div>
+                                </a><span class="colorsp">Real :</span><br>
+                                <div class="col-xs-12 noPadding" align="center" style="font-size:13px;  color:#333333" id=""></div>
+                            </div>
+                            <div align="center">
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="col-xs-3 butto"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                            </div>
+                        </div>
+                        <div class="spacer"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--       <script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

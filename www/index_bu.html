@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="anima.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <!-- // Add the new slick-theme.css if you want the default styling -->
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <!-- <script src="js/jssor.slider-22.2.6.mini.js" type="text/javascript"></script> -->
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script src="js/loader.js"></script>        <!-- <link rel="stylesheet" type="text/css" href="css/animate.css"> -->
+    <!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+    <!-- <script type="text/javascript" charset="utf-8" src="js/phase2/index.js"></script> -->
+    <style>
+        .textimg {
+            font-size: 9px;
+            /*font-family: "Open Sans";*/
+            /* font-weight: bold; */
+            color: #504b4d;
+        }
+
+        .texthead {
+            /*font-family: "Open Sans";*/
+            font-size: 9px;
+        }
+
+        .imgco:hover {
+            background-color: rgb(236, 236, 241);
+            border-radius: 43px;
+        }
+
+        a img:hover {
+            background-color: rgb(236, 236, 241);
+            border-radius: 43px;
+        }
+
+        .img-style {
+
+        }
+
+        .logoutbro {
+            padding: 6px 12px 6px 12px;
+            font-size: 10px;
+            border: 1px solid gray;
+            color: black;
+            border-radius: 24px;
+            margin-top: 18px;
+            display: inline-block;
+        }
+
+        .hide {
+            opacity: .3;
+        }
+    </style>
+    <title>Home</title>
+</head>
+<body>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+                     <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                      </div>
+                      <div>
+                        <ul>
+                            <li><a class="active"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                            <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                            <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                      </div>
+                      <div class="footer">
+                        <div>
+                            <ul>
+                              <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                              <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                      </div>
+                </div>
+        <div id="content" class="animated">
+            <div class="wrapper" style="overflow:hidden;"><img class="logo-home" src="img/logo.png"
+                                                               style="width: 120px;    z-index: 1;"/>
+                <div class="fade">
+                    <div><img class="bg-home" src="img/home.png"/></div>
+                    <div><img class="bg-home" src="img/bg-port.png"/></div>
+                </div>
+                <div class="link-home" align="center" style="top:110px;">
+                    <div align="center" style="    margin-bottom: 11px;"><img src="img/par4digma.png"
+                                                                              style="width: 185px;"/>
+                        <p class="texthead" style="color:black;">PERFORMANCE REPORTING & ANALYTICAL FOR DIGITAL
+                            MANUFACTURING</p>
+                    </div>
+                    <div class="single-item" style="height: 215px;">
+                        <div>
+
+                            <a id="PRODUCTION" href="prod_report_sg.html" class="animated zoomIn"
+                               style="display: inline-block; text-align: center;"><img src="img/home/home_prod.png"
+                                                                                       style="width: 72px; margin:6px; margin-bottom: 2px;"
+                                                                                       class="imgco"/>
+                                <p class="textimg">PRODUCTION</p>
+                            </a>
+                            <a id="SALES" href="sales_dashboard.html" class="animated zoomIn"
+                               style="display: inline-block; text-align: center;"><img src="img/home/home_sales.png"
+                                                                                       style="width: 72px; margin:6px; margin-bottom: 2px; margin-top: 18px;"/>
+                                <p class="textimg">SALES</p>
+                            </a>
+
+                            <a id="SCM" href="scm_ms_sg.html" class="animated zoomIn"
+                               style="display: inline-block; text-align: center;"><img src="img/home/home_scm.png"
+                                                                                       style="width: 72px; margin:6px;     margin-bottom: 2px; margin-top: 18px; "/>
+                                <p class="textimg">SCM</p>
+                            </a>
+
+                            <a id="TRESURI" href="treasury_cp.html#5000" class="animated zoomIn"
+                               style="display: inline-block; text-align: center;"><img src=" img/home/home_tresury.png"
+                                                                                       style="width: 72px; margin:6px; margin-bottom: 2px;"/>
+                                <p class="textimg">TREASURY</p>
+                            </a>
+                            <a id="FINANCE" href="finance_prod_si.html" class="animated zoomIn"
+                               style="display: inline-block; text-align: center;"><img src="img/home/home_finance.png"
+                                                                                       style="width: 72px; margin:6px;     margin-bottom: 2px;"/>
+                                <p class="textimg">FINANCE</p>
+                            </a>
+
+                            <a id="INVENTORY" href="inventory_sg.html" class="animated zoomIn"
+                               style="display: inline-block; text-align: center; "><img src="img/home/home_inventory.png"
+                                                                                        style="width: 72px; margin:6px; margin-bottom: 2px; margin-top: 18px; "/>
+                                <p class="textimg">INVENTORY</p>
+                            </a>
+
+                        </div>
+                        <div>
+
+                            <a id="MAINTENANCE" href="maint_inspection_sg.html" class="animated zoomIn"
+                               style="display: inline-block; text-align: center;"><img src="img/home/home_maintenance.png"
+                                                                                       style="width: 72px; margin:6px; margin-bottom: 2px;margin-top: 18px;"/>
+                                <p class="textimg">MAINTENANCE</p>
+                            </a>
+
+                            <a id="PROJECT" href="project_coe_proj.html" class="animated zoomIn"
+                               style="display: inline-block; text-align: center;"><img src="img/home/home_project.png"
+                                                                                       style="width: 72px; margin:6px;     margin-bottom: 2px; margin-top: 18px; "/>
+                                <p class="textimg">PROJECT</p>
+                            </a>
+
+                            <a id="TRESURI" href="quality_siramah.html" class="animated zoomIn"
+                               style="display: inline-block; text-align: center;"><img src=" img/home/home_quality.png"
+                                                                                       style="width: 72px; margin:6px; margin-bottom: 2px;"/>
+                                <p class="textimg">QUALITY MANAGEMENT</p>
+                            </a>
+							<!-- <a id="CAPEX" href="capex_eval.html" class="animated zoomIn" style="display: inline-block; text-align: center;" tabindex="0"> -->
+								<!-- <img src=" img/tres.png" style="width: 72px; margin:6px; margin-bottom: 2px;"> -->
+								<!-- <p class="textimg">CAPEX</p> -->
+                            <!-- </a> -->
+                        </div>
+                    </div>
+
+
+                    <div align="center"><a href="#" id="logout-home" class="animated zoomIn"><span class="logoutbro">LOGOUT</span>
+                    </a>
+                    <div id="download_progress" style="margin-top:50px;font-size:11px;opacity:.5;"></div>
+                    </div>
+                    <style type="text/css">.slick-dotted.slick-slider{margin-bottom:20px;}</style>
+                </div>
+                <img class="logo-all" src="img/home/logo_all.png"/>
+                <div class="spacer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+  if (sessionStorage.getItem('userData')==null) {
+      window.location.href = 'login.html';
+  }
+  $('#logout-home').click(function(){
+      localStorage.removeItem('userData');
+      sessionStorage.removeItem('userData');
+      window.location.href = 'login.html';
+  })
+</script>>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/home.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

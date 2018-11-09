@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/archon.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+     <script src="js/loader.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+<script src="js/highcharts_working.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script src="js/solid-gauge.js"></script>
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script type="text/javascript" charset="utf-8">
+ function exitApps(){
+  navigator.app.exitApp();
+ }
+</script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<title>Backlog</title>
+<script>
+function onLoad(){
+ var total_bymonth = [];
+ var total_bymonth2 = [];
+ var total_per_cp = [];
+ $(".burger-menu").click(function (e){
+  if ($(this).hasClass("is-active")) {
+   $(this).removeClass("is-active");
+   $("#content").removeClass("slideMenu");
+   $("#content").addClass("closeMenu");
+  }else{
+   $(this).addClass("is-active");
+   $("#content").removeClass("closeMenu");
+   $("#content").addClass("slideMenu");
+  }
+ });
+ var opco = getQueryVariable("i");
+ console.log(opco);
+ $('#opco_label').html(opco.toUpperCase());
+ var labelArrays = ['JANUARI','FEBRUARI','MARET','APRIL','MEI','JUNI','JULI','AGUSTUS','SEPTEMBER','OKTOBER','NOVEMBER','DESEMBER'];
+ var d = moment().format('DD');
+ var m = moment().format('MM');
+ var y = moment().format('YYYY');
+ var today = d+' '+labelArrays[parseInt(m)-1]+' '+y;
+ $('#last_updated').html(today);
+ //console.log(today);
+ $('a[href="#tab-click"]').click(function(e){
+  e.preventDefault();
+  var r = $(this).attr('rel');
+  if (r == 'data-notification'){
+   $('#data-notification').removeClass('hidden');
+   $('#data-work-order').addClass('hidden'); 
+   $('#tab-notification').addClass('border-down-active');
+   $('#tab-work-order').removeClass('border-down-active'); 
+  }else if (r == 'data-work-order'){
+   $('#data-notification').addClass('hidden'); 
+   $('#data-work-order').removeClass('hidden');
+   $('#tab-notification').removeClass('border-down-active');
+   $('#tab-work-order').addClass('border-down-active'); 
+  }
+ })
+ function getQueryVariable(variable){
+  var query = window.location.search.substring(1)
+  var vars = query.split("=");
+  return vars[1];
+ }
+} 
+</script>
+<style type="text/css">
+.bg-white {background:#fff;}
+.style1 {
+    font-size: 12px;
+    color: #333333;
+}
+.text-small {font:normal 10px arial;color:#000;}
+.center {text-align: center;}
+.padding5 {padding:5px;}
+.border {border:1px #cecece solid;}
+.border-down {
+  border-bottom: 1px #fff solid;
+}
+.border-down-active {
+  border-bottom: 1px #e64c65 solid;
+}
+.no-text-style, .no-text-style:hover {text-decoration: none;color:#000;}
+.osno {width: 24%;margin: 0;display:inline-block;text-align: center;}
+.nopr {width: 24%;margin: 0;display:inline-block;text-align: center;}
+.noco {width: 24%;margin: 0;display:inline-block;text-align: center;}
+.dlfl {width: 24%;margin: 0;display:inline-block;text-align: center;}
+.fmerah {color: #eb1717;}
+.merah {background-color : #df0023;}
+.orange {background-color : #d93329;}
+.lite-orange {background-color : #d3662e;}
+.kuning {background-color : #cc9933;}
+.subheader {text-align: center;padding:10px;color:#fff;}
+.txt-black {color:#000;}
+.nomargin {margin:0;}
+.nopadding {padding:0;}
+.highcharts-credits {
+  display:none;  
+}
+.img-opco{
+    width: 88px;
+    padding: 12px;
+    padding-bottom: 0px;
+	}
+.opco-name{
+font-size: 24px;
+    color: #333333;
+    margin-top: 4px;
+
+}
+</style>
+</head>
+<body onLoad="onLoad()" >
+<div class="app">
+<div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                             
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li></li>
+                    <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;SCM</a></li></li>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li></li>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li></li>
+                    <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  <nav id="sideMenu">
+                    <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="portal_prod1.html">PRODUCTION</a></li>
+                    <li><a href="portal_sales.html">SALES</a></li>
+                    <li><a href="portal_finance.html">FINANCE</a></li>
+                    <li><a href="portal_project.html">PROJECT</a>
+                    </ul>
+  </nav>
+  <div id="content" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+    </header>
+     <div class="wrapper bg-white">
+      <h2 class="titular" style=" height: 48px;font-size:20px; color: :#FFFFFF"><b>BACKLOG</b></h2>
+      <div id="tab-notification" class="col-xs-6 center padding5 border-down border-down-active"><a href="#tab-click" rel="data-notification" class="no-text-style"><i class="fa fa-bell-o fa-lg"></i> Notification</a></div><div id="tab-work-order" class="col-xs-6 center padding5 border-down"><a href="#tab-click" rel="data-work-order" class="no-text-style"><i class="fa fa-list-ol fa-lg"></i> Work Order</a></div>
+      <table><td><img id="logo_cp" src ="img/icKota1.png" class="img-opco"/></td>
+      <td><img src ="img/teks semen indo.png" width="150px" height="10%"/><br><h4 class="opco-name"><b>SEMEN <span id="opco_label" class="txt-black"></span></b></h4></td></table>
+      <div id="data-notification">
+      <div style="width:100%;padding:10px;">
+       <div style="display:inline-block;width:45%;"><h4 style="margin-bottom:2px;font-size:20px">Notification</h4><span style="font-size:10px;color:#000;">Last Updated </span><span id="last_updated" class="text-small"></span></div>
+       <div style="display:inline-block;width:45%;float:right;text-align:right;"><span style="font-size:12px;color:#000;">TOTAL BACKLOG</span><h4 id="total_backlog" style="font-size:28px;margin-top:2px; font-weight:bold;"></h4></div>
+      </div>
+      <div style="width:45%;margin-left: 10px"><span style="font-size:10px;color:#000;">Monthly Report</span></div>
+      <div id="backlog-chart" class="headsix add_fixbg" style="width: 100%;height: 200px; margin: 0;"></div>
+      <div style="width:100%;">
+       <div style="display:block;width:100%;color:#000;text-align:center;font:normal 16px tahoma;margin-bottom: 5px;">OPCO DETAIL</div>
+       <div class="col-xs-3 nopadding"><div class="merah subheader">OSNO</div></div> 
+       <div class="col-xs-3 nopadding"><div class="orange subheader">NOPR</div></div> 
+       <div class="col-xs-3 nopadding"><div class="lite-orange subheader">NOCO</div></div> 
+       <div class="col-xs-3 nopadding"><div class="kuning subheader">DLFL</div></div>
+       <div class="col-xs-3 border center"><span class="text-small">OS</span><br><span id="osno" style="font-size:20px;color:#000;text-align: center;"></span><br><i class="fa fa-ellipsis-h fmerah"></i></div>
+       <div class="col-xs-3 border center"><span class="text-small">PROCESS</span><br><span id="nopr" style="font-size:20px;color:#000;text-align: center;"></span><br><i class="fa fa-ellipsis-h fmerah"></i></div> 
+       <div class="col-xs-3 border center"><span class="text-small">COMPLETE</span><br><span id="noco" style="font-size:20px;color:#000;text-align: center;"></span><br><i class="fa fa-ellipsis-h fmerah"></i></div>
+       <div class="col-xs-3 border center"><span class="text-small">DELETE</span><br><span id="dlfl" style="font-size:20px;color:#000;text-align: center;"></span><br><i class="fa fa-ellipsis-h fmerah"></i></div>
+      </div> 
+      </div>
+      <div id="data-work-order" class="hidden">
+       <!-- Data Work Order Tab Place -->
+      </div>
+      <div class="spacer"></div>
+     </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/backlog_data_detail.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            <!-- $(".regular").slick({ -->
+        <!-- infinite: true, -->
+        <!-- slidesToShow: 4, -->
+        <!-- slidesToScroll: 4, -->
+        <!-- arrows:true, -->
+         <!-- centerMode: true -->
+        <!-- // variableWidth: true -->
+      <!-- }); -->
+            });
+        </script>
+        </body>
+</html>

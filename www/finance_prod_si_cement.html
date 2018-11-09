@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script src="js/config.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+
+        <script type="text/javascript" src="js/index.js"></script>
+	
+		<script src="js/loader.js"></script>
+		<script src="js/paradigma.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		
+        <script type="text/javascript" src="js/moment.min.js"></script>
+
+		<script src="js/phase2/global.js"></script>
+		<script src="js/phase2/clinker_cement_prod.js"></script>
+		
+        <script type="text/javascript" charset="utf-8">
+			var selectDate = selectedDate.replace("#", "")
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+				sidemenu();
+				tabpage();
+				tabsub();
+				
+				var today = dd+'/'+mm+'/'+yyyy;
+				$('.last-update').html('Last Update : '+today);
+
+				var opco = 'smi';
+				var prod = 'cement';
+                setParam(opco, bulanSekarang, tahun);
+                var yearnow = tahun;
+				
+				var labels = ['SP','ST','SG','TLCC'];
+                opcoGroup(opco, prod, labels, selectDate);
+                opcoGroupPerform(opco, prod, labels, selectyear); 
+				
+				$('#tag_month_selected').html(month[selectmonth-1]);
+			}
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 60px;
+                bottom: 0px;
+                width: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+			        font-size: 18px;
+    font-weight: bold;
+}
+.titl{
+	background-color: #e54b37;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+	    margin-bottom: 0px;
+		 border-radius: 3px 3px 0px 0px;
+
+	}
+	.boxf{
+	/* background-color: #e54b37; */
+    padding: 0px;
+    margin-bottom: 3px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    /* margin: auto; */
+    min-height: 209px;
+    /* border-radius: 8px; */
+    /* margin-right: 1px; */
+    border: 1px solid rgb(197, 197, 197, 0.7);
+    /*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    border-right: 1px solid #b6b6b6;*/
+			}
+.bagan:hover, .bagan:visited {
+	opacity: 0.6;
+}
+.titab{
+    font-weight: 500;
+	    color: white;
+        display: inline-block;
+    font-size: 12px;
+    margin-bottom: 8px;
+	}
+	.lyear{
+	    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+	}
+	.ryear{
+	color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+	}
+	.jud{
+	    color: #000000;
+        font-size: 18px;
+    font-weight: 600;
+    margin-top: 13px;
+    display: inline-block;
+	}
+	/*.til{
+	    padding-bottom: 1px;
+    border-bottom: 1px solid #b6b6b6;
+	background-color: ghostwhite;
+	}*/
+	.label-success {
+    background-color: #5cb85c;
+    border: 1.5px solid white;
+}
+.label-danger {
+    background-color: #d9534f;
+	border: 1.5px solid white;
+}
+.subox{
+    height: 137px;
+    border-bottom: 3px solid #e54b37;
+}
+.subox2{
+    height: 137px;
+    border-bottom: 3px solid #626262;
+}
+.hijau {color: #669966;}
+.merah {color: #DC0033;}
+.float_bgg {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px 12px;;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #e54b37;
+    border-radius: 0px 0px 6px 6px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.htittle{
+            margin: 0px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: #e54b37;
+    height: 27px;
+    text-align: left;
+    font-size: 14px;
+    padding: 5px 0px 4px 9px;
+}
+.te{
+       background: #EB1717;    height: 37px;    line-height: 39px;font-size: small;
+    background: rgba(245,81,81,1);
+background: -moz-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,81,81,1)), color-stop(46%, rgba(245,81,81,1)), color-stop(57%, rgba(229,75,55,1)), color-stop(100%, rgba(229,75,55,1)));
+background: -webkit-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -o-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: -ms-linear-gradient(top, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+background: linear-gradient(to bottom, rgba(245,81,81,1) 0%, rgba(245,81,81,1) 46%, rgba(229,75,55,1) 57%, rgba(229,75,55,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f55151', endColorstr='#e54b37', GradientType=0 );
+}
+
+            
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .bold_op{
+                    font-weight: 600;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <title>Finance Performance</title>
+    </head>
+<body onLoad="onLoad()" >
+    <div class="app">
+        <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+       <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                    <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a href="#" class="active"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <div id="content" style="background:#f5f5f5;">
+                <header id="header">
+                <a href="finance_prod_si.html" class="burger-menu burger-menu-x backtoparent" id="menu-toggle">
+                    <span>toggle menu</span>
+                </a>
+                <b class="logopis">CEMENT PRODUCTION</b>
+                    <a class="logo" href="index.html"><img src="img/logo.png"></a>
+                </header>
+                <div class="wrapper">
+					<div class=" headsix2 cubesRun2 headone whitebg" style="min-height:80px">
+                        <div align="center">
+                            <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                            <p class="planttittle" style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN INDONESIA</p>
+                            <center>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="last-update upercent gry"></span>
+                            </center>
+                        </div>
+                    </div>
+					<div class="headsix add_fix cubesRun2" style="margin-bottom: 36px; min-height: 600px;margin-top:  7px;">
+						
+						<div class="col-xs-12" align="left" style="    margin: 15px 0px 10px 0px; border-bottom: 1px solid #f9cfd9; padding-bottom: 4px;">
+							<i class="fa fa-calendar" aria-hidden="true" style="font-size: 19px;color: #847f7f;"></i>&nbsp;&nbsp;<span style="color: #4d4d4d; font-size: 19px" id="tag_month_selected"></span>
+                        </div>
+						<div id="page1" class="active">
+							<div class="col-xs-12" align="left" style="margin: 15px 0px 15px 0px;">
+								<i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 16px;color: #e54b37;"></i>
+								<span style="color: #666160; font-size: 16px"> &nbsp; Opco SMI Compare</span>
+							</div>
+							 <div id="graphic_compare" style=" height: 300px; margin: 0 auto; width: 100% "></div>
+							 <!-- END OF CHART HOLDING -->
+							<br><br>
+						</div><!-- END OF DIV PAEge2 -->
+						<div id="page2" class="hidden">
+							<div class="col-xs-12" align="left" style="margin: 15px 0px 15px 0px;">
+								<i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 16px;color: #e54b37;"></i>
+								<span style="color: #666160; font-size: 16px"> &nbsp; Opco SMI Performance</span>
+							</div>
+							 <div style="overflow-x: scroll; width:100%; height: 300px;">
+								<div id="graphic_perform" style=" height: 300px; margin: 0 auto; width:1000px"></div>
+							 </div>
+							 <!-- END OF CHART HOLDING -->
+							<br><br>
+						</div><!-- END OF DIV PAEge2 -->
+						<br>
+						<div align="left">
+							<p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+						</div>		
+					</div>
+                </div>
+				<footer>
+                        <div class="regular">
+                            <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click img_foot2"  rel="data-sp" align="center" style="margin-top: 7px;">
+                                <a href="#tab-page" rel="data-sp" ><img src="img/cement/sp.png" style="width:48%;"/></a>
+                            </div>
+                            <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click img_foot2"  rel="data-sg" align="center" style="margin-top: 7px;">
+                                <a href="#tab-page" rel="data-sg" ><img src="img/cement/sg.png" style="width:48%;"/></a>
+                            </div>
+                            <div id="tab-smi" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click"  rel="data-smi" align="center" style="margin-top: 7px;">
+                                <a href="#tab-page" rel="data-smi" ><img src="img/cement/si.png" style="width:48%;"/></a>
+                            </div>
+                            <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click img_foot2"  rel="data-st" align="center" style="margin-top: 7px;">
+                                <a href="#tab-page" rel="data-st" ><img src="img/cement/st.png" style="width:48%;"/></a>
+                            </div>
+                            <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click img_foot2"  rel="data-tl" align="center" style="margin-top: 7px;">
+                                <a href="#tab-page" rel="data-tl" ><img src="img/cement/tl.png" style="width:48%;"/></a>
+                            </div>
+                        </div>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).on('ready', function () {
+                $('.single-item').slick();
+                $('.multiple-items').slick({
+                    infinite: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 5
+                });
+                $(".regular").slick({ 
+                    infinite: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    arrows:false,
+                    centerMode: false
+                }); 
+            });
+        </script>
+</body>
+</html>
+

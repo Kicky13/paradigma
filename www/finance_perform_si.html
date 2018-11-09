@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/accounting.min.js"></script>
+    <script type="text/javascript" src="js/waitMe.min.js"></script>
+    <script type="text/javascript" src="js/fin_dash.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script src="js/stupidtable.js?dev"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script src="js/paradigma.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+
+        function onLoad() {
+            var session = getParamFull();
+            ////=========================
+            if (sessionStorage.getItem('_com') != 'ALL') {
+                $.each(listTab, function (index, el) {
+                    $('#tab-' + el + ' a').removeAttr('href');
+                    $('#tab-' + el + ' a').removeAttr('rel');
+                })
+            }
+            ////=========================
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var pengurang = 2;
+            //var bulan = month[d.getMonth()-pengurang];
+            //var bulanSekarang = (d.getMonth()+1)-pengurang;
+            var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+            var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+            var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+            var dd = d.getDate();
+            var mm = d.getMonth() + 1; //January is 0!
+            var yyyy = d.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+
+            var opco = (getParam('opco')==null)?getParam('opco'):'smi';
+
+            var tag_year = tahun - 1;
+            var tag_lyear = tag_year - 1;
+            $('#year_selected').html(tag_year);
+            $('#year_prev').html(tag_lyear);
+            $('#bulan_ini').html(month[bulanSekarang - 1]);
+            $('#bulan_tahun').html(month[bulanSekarang - 1] + ' ' + tahun);
+            $('#up_bulan_ini').html("Up To " + month[bulanSekarang - 1]);
+            $('#up_bulan_tahun').html("Kinerja Up To " + month[bulanSekarang - 1] + ' ' + tahun);
+            // bulanSekarang = bulanSekarang-1;
+            
+            fin_data(bulanSekarang, opco, tahun);
+
+            $('.selmonth').change(function () {
+                bulanSekarang = $(this).val();
+                tahun = $('.selyear').val();
+                tahun = tahun;
+                console.log(bulanSekarang + "------")
+                setParam(opco, bulanSekarang, tahun);
+
+                fin_data(bulanSekarang, opco, tahun);
+
+            })
+            $('.selyear').change(function () {
+                tahun = $(this).val();
+                tahun = tahun;
+                bulanSekarang = $('.selmonth').val();
+                var t = $(this).attr('rel');
+                $('#tab-volume').addClass('act_tb');
+                $('#tab-revenew').removeClass('act_tb');
+                var tag_year = tahun;
+                var tag_lyear = tahun - 1;
+                $('#year_selected').html(tag_year);
+                $('#year_prev').html(tag_lyear);
+
+                setParam(opco, bulanSekarang, tahun);
+
+                fin_data(bulanSekarang, opco, tahun);
+            })
+
+
+            var today = dd + '/' + mm + '/' + yyyy;
+            $('.last-update').html('Last Update : ' + today);
+
+
+            $("table").stupidtable();
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
+                }
+            });
+
+            $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                window.location.href = 'raw_material_detail.html?i=' + r;
+            })
+
+            $('.tab-click').click(function (e) {
+                e.preventDefault();
+                $('.slick-track > div').addClass('img_foot2');
+                $(this).removeClass('img_foot2');
+                location.reload();
+                var r = $(this).attr('rel');
+                if (r == 'data-sp') {
+                    $('#tab-sp').removeClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-si').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+
+                    setParam('3000', bulanSekarang, tahun)
+                    window.location.href = "finance_perform_sp.html";
+                } else if (r == 'data-sg') {
+                    $('#tab-kso').removeClass('img_foot2');
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+
+                    setParam('5000', bulanSekarang, tahun)
+                    window.location.href = "finance_perform_si.html";
+                } else if (r == 'data-st') {
+                    $('#tab-kso').addClass('img_foot2');
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').removeClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+
+                    setParam('4000', bulanSekarang, tahun)
+                    window.location.href = "finance_perform_si.html";
+                } else if (r == 'data-tl') {
+                    $('#tab-kso').addClass('img_foot2');
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').removeClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+
+                    setParam('6000', bulanSekarang, tahun)
+                    window.location.href = "finance_perform_si.html";
+                } else if (r == 'data-smi') {
+                    $('#tab-kso').addClass('img_foot2');
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').removeClass('img_foot2');
+
+                    setParam('2000', bulanSekarang, tahun)
+                    window.location.href = "finance_perform_si.html";
+                } else if (r == 'data-kso') {
+                    $('#tab-kso').removeClass('img_foot2');
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+
+                    setParam('2000', bulanSekarang, tahun)
+                    window.location.href = "finance_perform_si.html";
+                }
+            })
+
+            $(document).on('click', '.gauge', function (e) {
+                e.preventDefault();
+                var r = $(this).attr('target');
+                window.location.href = 'backlog_detail.html?i=' + r;
+            })
+
+            $('.selmonth').empty();
+            $('.selyear').empty();
+            var opt_year;
+            var x;
+            for (x = Number(yyyy); x > 2015; x--) {
+                if (x == yyyy) {
+                    // opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>';
+                    opt_year += '<option value="' + x + '">' + x + '</option>';
+                } else {
+                    // opt_year += '<option value="'+x+'">'+x+'</option>';
+                    opt_year += '<option value="' + x + '" selected="selected">' + x + '</option>';
+                }
+            }
+
+            $('.selyear').html(opt_year);
+            var opt_month;
+            $.each(month, function (key, val) {
+                if (key + 1 <= 12) {
+                    if ((key + 1) < 10) {
+                        var v = '0' + (key + 1);
+                    } else {
+                        var v = key + 1;
+                    }
+                    if ((key + 1) == bulanSekarang) {
+                        opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                    } else {
+                        opt_month += '<option value="' + v + '">' + val + '</option>';
+                    }
+                }
+
+            })
+            $('.selmonth').html(opt_month);
+            $( ".head-menu" ).scrollLeft(400);
+        }
+    </script>
+    <style>
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .tab_syle {
+            color: #666666;
+            font-size: 12px;
+            border: none;
+            /* padding-left: 8px; */
+            margin-left: 3px;
+        }
+
+        .font-category {
+            font-size: 12px;
+        }
+
+        .overflowing {
+            /*width: 30em;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+        }
+
+        .collapse.in {
+            display: block;
+        }
+
+        tr.collapse.in {
+            display: table-row;
+        }
+
+        .num {
+            text-align: right;
+        }
+
+        .inex {
+            font-size: 25px;
+            font-weight: bold;
+            padding-right: 12px;
+        }
+
+        .bagan:hover, .bagan:visited {
+            opacity: 0.6;
+        }
+
+        .titab {
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .ylbox {
+            background-color: #f9bf3b;
+        }
+
+        .ylhead {
+            background-color: #f39c32;
+        }
+
+        .grbox {
+            background-color: #6fc962;
+        }
+
+        .grhead {
+            background-color: #68BA5B;
+        }
+
+        .tab_tittle {
+            margin-top: 12px;
+            color: black;
+            font-size: 23px;
+            padding-left: 9px;
+            display: inline-block;
+        }
+
+        .no-text-style, .no-text-style:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .tx_tab {
+            margin-top: 5px;
+            color: #525252;
+            display: inline-block;
+            font-size: 15px;
+            font-family: "Open Sans";
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+    <script src="js/modernizr.js"></script>
+    <script>
+        //paste this code under head tag or in a seperate js file.
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");
+
+
+        });
+    </script>
+    <title>Finance Performance</title>
+</head>
+<body onLoad="onLoad()">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                    <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a href="#" class="active"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content" style="background:#f5f5f5;">
+             <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle">
+                    <span>toggle menu</span>
+                </button>
+                <b class="logopis">CORP. PERFORMANCE</b>
+                    <a class="logo" href="index.html"><img src="img/logo.png"></a>
+            </header>
+            <div class="wrapper">
+                <div class="head-menu">
+                    <ul>
+                        <li><a href="finance_prod_si.html">PRODUCTION</a></li>
+                        <li><a href="fianance_sales_si.html">SALES</a></li>
+                        <li><a href="finance_mbalance_st.html">MATERIAL BALANCE</a></li>
+                        <li style="display:none"><a onclick="goto_opco('p2_cost_sheet', 'p2_cost_sheet')">COST SHEET</a></li>
+                        <li><a href="finance_cost_sg.html">COST STRUCTURE</a></li>
+                        <li><a class="active">CORP. PERFORMANCE</a>
+                        </li>
+                        <li><a onclick="goto_opco('balance_semen', 'balance_semen')">BALANCE SHEET</a></li>
+                        <li><a href="finance_receive_si.html">RECEVABLE MNGT</a></li>
+                    </ul>
+                </div>
+                <div class="spacer-menu"></div>
+
+                <!-- <div class="col-xs-12 tab_dual">
+              <div class="col-xs-12 bg_rds">
+                <div id="tab-volume" class="col-xs-6 center zero_padd left_tb act_tb ">
+              <a href="#tab-click" rel="data-volume" class="no-text-style">
+              <span class="tx_tab" id="year_selected">...</span></a></div>
+
+              <div id="tab-revenew" class="col-xs-6 center zero_padd left_tb ">
+              <a href="#tab-click" rel="data-revenew" class="no-text-style">
+              <span class="tx_tab" id="year_prev">...</span></a></div>
+              </div></div> -->
+                <div class="headsix add_fix cubesRun2"
+                     style="margin-bottom: 34px;height: 587px;margin-top: 5px;    border-radius: 0px 0px 26px 26px;    border-bottom: 2px solid #f55151;">
+                    <div class=" cubesRun2 headone" style="height:auto;">
+                        <div class="col-xs-4" style="padding:0px;" align="center"><img id="img_log" class="img_log">
+                        </div>
+                        <div class="col-xs-8" style="padding:0px; padding-right: 31px;">
+                            <img src="img/teks semen indo.png" class="imgsi"
+                                 style="padding-top: 12px;width: 131px; margin: 0;">
+                            <p class="prodtittle" id="head_log"
+                               style="    font-weight: 600;    font-size: 23px;    display: inline-block;"></p>
+
+                        </div>
+                    </div>
+                    <center>
+                        <center>
+                            Bulan: <select id="month" class="selmonth" rel="vol"></select>
+                            <select id="year" class="selyear"></select>
+                        </center>
+                        <center>
+
+                            <i class="fa fa-clock-o" aria-hidden="true"></i> <span
+                                class="last-update upercent gry"></span>
+                        </center>
+
+                    </center>
+
+
+                    <div align="center" style="margin-bottom: 10px; margin-top:10px;">
+
+                        <div align="left" class="col-xs-12" style="margin-bottom: 8px;">
+                            <i class="fa fa-calendar" aria-hidden="true" style="    font-size: 17px;
+    color: #e54b37;"></i>&nbsp;&nbsp;<span class="ttl_fp" id="tagMonth">...</span></div>
+                        <a href="finance_performance_234.html" rel="asset" class="bagan">
+                            <div class="col-xs-12" style="padding: 4px;">
+                                <div class="col-xs-12 box">
+                                    <div class="col-xs-12 noPadding titl">
+                                        <span class="redunder fblack head_fpr" id="headcolc">EBITDA</span>
+                                        <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i></div>
+                                    <div align="center" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Variance&nbsp;<i class="fa fa-sort-desc"
+                                                                                    aria-hidden="true"
+                                                                                    style="color: red;"></i></span><br>
+                                        <span class="inex fblack" style="padding-right: 1px;    font-size: 31px;"
+                                              id="vari_now">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Volume</span>&nbsp;<i
+                                            class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i><br>
+                                        <span style="font-size: 20px;" id="vari_vol_now" class="fblack">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Price</span>&nbsp;<i
+                                            class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i><br>
+                                        <span style="font-size: 20px;" id="vari_price_now" class="fblack">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Cost</span>&nbsp;<i
+                                            class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i><br>
+                                        <span style="font-size: 20px;" id="vari_cost_now" class="fblack">0</span>
+                                    </div>
+
+                                    <p style="height: 42px;"></p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <br>
+
+                    <div align="center" style="">
+
+
+                        <br>
+                        <span class="market_ttl" id="thismolast" style="margin-top: 16px;">...</span>
+
+
+                        <div id="container" style="width: 100%;margin: 0 auto;padding: 4px;">
+                            <table class="table table-striped"
+                                   style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                                <thead>
+                                <tr class="headtr">
+                                    <td valign="middle">Item</td>
+                                    <td valign="middle">RKAP</td>
+                                    <td valign="middle">Real</td>
+                                    <td valign="middle">%</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td valign="middle">Total Volume (in IDR Bio)</td>
+                                    <td valign="middle">
+                                        <div id="rkap_vol_now" align="right">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div id="real_vol_now" align="right">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div id="prs_vol_now" align="right">0</div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="middle">Revenue</td>
+                                    <td valign="middle">
+                                        <div id="rkap_rev_now" align="right">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div id="real_rev_now" align="right">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div id="prs_rev_now" align="right">0</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle">Net Revenue</td>
+                                    <td valign="middle">
+                                        <div id="rkap_net_now" align="right">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div id="real_net_now" align="right">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div id="prs_net_now" align="right">0</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle">EBITDA (B)</td>
+                                    <td valign="middle">
+                                        <div id="rkap_ebit_now" align="right">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div id="real_ebit_now" align="right">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div id="prs_ebit_now" align="right">0</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle">EAT</td>
+                                    <td valign="middle">
+                                        <div align="right" id="rkap_eat_now">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div align="right" id="real_eat_now">0</div>
+                                    </td>
+                                    <td valign="middle">
+                                        <div align="right" id="prs_eat_now">0</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!-- <img src="img/frm.png" class="img-responsive imgttl"> -->
+                        </div>
+
+                        <br>
+
+                    </div>
+                </div>
+                <!-- END OF HEADRUN -->
+                <div class="headsix add_fix cubesRun2"
+                     style="margin-bottom: 116px; height: 484px; margin-top: 19px;">
+                    <div align="center" style="margin-bottom: 10px; margin-top:10px;">
+
+                        <div align="left" class="col-xs-8" style="margin-bottom: 8px;">
+                            <i class="fa fa-calendar" aria-hidden="true" style="font-size: 17px;color: #e54b37;"></i>&nbsp;&nbsp;<span
+                                class="ttl_fp" id="tagupMonth">UP TO DESEMBER</span>
+                        </div>
+                        <div align="right" class="col-xs-4"><a href="finance_performance_trends.html"><span
+                                style="    color: #6a6a6a;">Trends&nbsp;&nbsp;</span><i
+                                class="fa fa-line-chart right grp_ico" aria-hidden="true"></i> </a></div>
+                        <a href="finance_performance_234.html" rel="asset" class="bagan">
+                            <div class="col-xs-12" style="padding: 4px;">
+                                <div class="col-xs-12 box">
+                                    <div class="col-xs-12 noPadding titl">
+                                        <span class="redunder fblack head_fpr" id="headcolc">EBITDA</span>
+                                        <i class="fa fa-circle redind" aria-hidden="true" id="boxcolc"></i></div>
+                                    <div align="center" style="margin-bottom:12px;">
+                                        <span class="titab fblack">Variance&nbsp;<i class="fa fa-sort-desc"
+                                                                                    aria-hidden="true"
+                                                                                    style="color: red;"></i></span><br>
+                                        <span class="inex fblack" style="padding-right: 1px;font-size: 31px;"
+                                              id="vari_up">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Volume</span>&nbsp;<i
+                                            class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i><br>
+                                        <span style="" id="vari_vol_up" class="fblack">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Price</span>&nbsp;<i
+                                            class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i><br>
+                                        <span style="" id="vari_price_up" class="fblack">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" align="center">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Cost</span>&nbsp;<i
+                                            class="fa fa-sort-desc" aria-hidden="true" style="color: red;"></i><br>
+                                        <span style="" id="vari_cost_up" class="fblack">0</span>
+                                    </div>
+
+                                    <p style="height: 42px;"></p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <br>
+                    <span class="market_ttl" id="thismolastup" style="margin-top: 16px;">Kinerja Up Desember 2016</span>
+
+
+                    <div id="container" style="width: 100%;margin: 0 auto;padding: 4px;">
+                        <table class="table table-striped"
+                               style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                            <thead>
+                            <tr class="headtr">
+                                <td valign="middle">Item</td>
+                                <td valign="middle">RKAP</td>
+                                <td valign="middle">Real</td>
+                                <td valign="middle">%</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td valign="middle">Total Volume (B) Ton</td>
+                                <td valign="middle">
+                                    <div id="rkap_vol_up" align="right">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div id="real_vol_up" align="right">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div id="prs_vol_up" align="right">0</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="middle">Revenue</td>
+                                <td valign="middle">
+                                    <div id="rkap_rev_up" align="right">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div id="real_rev_up" align="right">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div id="prs_rev_up" align="right">0</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="middle">Net Revenue</td>
+                                <td valign="middle">
+                                    <div id="rkap_net_up" align="right">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div id="real_net_up" align="right">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div id="prs_net_up" align="right">0</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="middle">EBITDA (B)</td>
+                                <td valign="middle">
+                                    <div id="rkap_ebit_up" align="right">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div id="real_ebit_up" align="right">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div id="prs_ebit_up" align="right">0</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="middle">EAT</td>
+                                <td valign="middle">
+                                    <div align="right" id="rkap_eat_up">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div align="right" id="real_eat_up">0</div>
+                                </td>
+                                <td valign="middle">
+                                    <div align="right" id="prs_eat_up">0</div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <footer>
+                <div class="regular">
+                    <div id="tab-sp" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click img_foot2"  rel="data-sp" align="center" style="margin-top: 7px;">
+                        <a href="#tab-click" rel="data-sp" ><img src="img/cement/sp.png" style="width:48%;"/></a>
+                    </div>
+                    <div id="tab-sg" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click img_foot2"  rel="data-sg" align="center" style="margin-top: 7px;">
+                        <a href="#tab-click" rel="data-sg" ><img src="img/cement/sg.png" style="width:48%;"/></a>
+                    </div>
+                    <div id="tab-si" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click"  rel="data-smi" align="center" style="margin-top: 7px;">
+                        <a href="#tab-click" rel="data-si" ><img src="img/cement/si.png" style="width:48%;"/></a>
+                    </div>
+                    <div id="tab-st" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click img_foot2"  rel="data-st" align="center" style="margin-top: 7px;">
+                        <a href="#tab-click" rel="data-st" ><img src="img/cement/st.png" style="width:48%;"/></a>
+                    </div>
+                    <div id="tab-tl" class="col-xs-3 noPadding tab_uper col-ft-3 tab-click img_foot2"  rel="data-tl" align="center" style="margin-top: 7px;">
+                        <a href="#tab-click" rel="data-tl" ><img src="img/cement/tl.png" style="width:48%;"/></a>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).on('ready', function () {
+                $('.single-item').slick();
+                $('.multiple-items').slick({
+                    infinite: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 5
+                });
+                $(".regular").slick({ 
+                    infinite: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    arrows:false,
+                    centerMode: false
+                }); 
+            });
+</script>
+</body>
+</html>

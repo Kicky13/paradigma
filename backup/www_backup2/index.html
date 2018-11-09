@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="anima.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script src="js/loader.js"></script>        <!-- <link rel="stylesheet" type="text/css" href="css/animate.css"> -->
+        <!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <style>
+            .textimg{
+                font-size: 9px;
+                font-family: "Open Sans";
+                /* font-weight: bold; */
+                color: #504b4d;
+            }
+            .texthead{
+                font-family: "Open Sans";
+                font-size: 9px;
+            }
+            .imgco:hover {
+                background-color: rgb(236, 236, 241);
+                border-radius: 43px;
+            }
+            a img:hover {
+                background-color: rgb(236, 236, 241);
+                border-radius: 43px;
+            }
+            .img-style{
+
+            }
+            .logoutbro {
+                padding: 6px 12px 6px 12px;
+                font-size: 10px;
+                border: 1px solid gray;
+                color: black;
+                border-radius: 24px;
+                margin-top: 18px;
+                display: inline-block;
+            }
+            .hide {
+                opacity: .3; 
+            }
+        </style>
+        <title>Home</title>
+    </head>
+    <body>
+        <div class="app">
+            <div id="deviceready">
+                <div id="content" class="animated">
+                    <div class="wrapper" style="overflow:hidden;"> <img class="logo-home" src="img/logo.png" style="width: 120px;"/> 
+                        <img class="bg-home" src="img/home.png"/>
+                        <div class="link-home" align="center" style="top:110px;">
+                            <div align="center" style="    margin-bottom: 11px;"> <img src="img/paradig.png" style="width: 185px;"/>
+                                <p class="texthead" style="color:black;">PERFORMANCE REPORTING & ANALYTICAL FOR DIGITAL MANUFACTURING</p>
+                            </div>
+
+                            <a id="PRODUCTION" href="portal_prod1.html" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/h1.png" style="width: 72px; margin:6px; margin-bottom: 2px;" class="imgco"/><br>
+                                <p class="textimg">PRODUCTION</p>
+                            </a> 
+                            <a id="SALES" href="sales_dashboard.html" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/sales_ico.png" style="width: 72px; margin:6px; margin-bottom: 2px; margin-top: 18px;"/>
+                                <p class="textimg">SALES</p>
+                            </a>
+
+						 <a id="SCM" href="portal_scm.html" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/sc_f.png" style="width: 72px; margin:6px;     margin-bottom: 2px; margin-top: 18px; "/>
+						     <p class="textimg">SCM</p>
+                            </a> 
+
+                            <a id="FINANCE" href="portal_finance.html" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/f5.png" style="width: 72px; margin:6px;     margin-bottom: 2px;"/>
+                                <p class="textimg">FINANCE</p>
+                            </a>
+
+                            <a id="PROJECT" href="portal_project.html" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/h4.png" style="width: 72px; margin:6px;     margin-bottom: 2px; margin-top: 18px; "/>
+                                <p class="textimg">PROJECT</p>
+                            </a>  
+                            
+                            <a id="INVENTORY" href="portal_invent.html" class="animated zoomIn" style="display: inline-block; text-align: center; "><img src="img/h6.png" style="width: 72px; margin:6px; margin-bottom: 2px; margin-top: 18px; "/>
+                                <p class="textimg">INVENTORY</p>
+                            </a>
+
+                            <a id="MAINTENANCE" href="portal_maintenance.html" class="animated zoomIn" style="display: inline-block; text-align: center;"><img src="img/set.png" style="width: 72px; margin:6px; margin-bottom: 2px;"/>
+                                <p class="textimg">MAINTENANCE</p>
+                            </a> 
+
+                            
+                            
+
+                            <div align="center"> <a href="index_login2.html" class="animated zoomIn"> <span class="logoutbro">LOGOUT</span> </a> </div>
+
+                            </div>
+                        <img class="logo-all" src="img/logoAll.png"/>
+                        <div class="spacer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+     <script src="js/jquery-3.1.1.min.js"></script>
+          <script type="text/javascript">
+         
+             var backButtonPressed = false, intval = setInterval(function (){backButtonPressed = false;}, 1000);;
+        document.addEventListener("backbutton", function (e){
+            e.preventDefault();
+            if (backButtonPressed) {
+                clearInterval(intval) 
+                (navigator.app && navigator.app.exitApp()) || (device && device.exitApp())
+            }
+            else {
+                window.plugins.toast.showShortBottom('Press again to exit', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+                backButtonPressed = true;
+                // history.back(1);
+            } 
+        }, false);
+         
+            $(function(){
+		 var intervalTime = 3600000;
+            var myTimer;
+                myTimer = setInterval(function() { 
+                    console.log('interval ');
+                     // alert('log');
+                                        window.location.href = 'index_login2.html';
+                                        },intervalTime);
+            
+              $('body').bind('touchstart',function() {
+                    console.log('touchstart');
+                    clearInterval(myTimer);
+                });
+
+                $('body').bind('touchend', function() {
+                    console.log('touchend');
+                     myTimer = setInterval(function() { 
+                                        // alert('log');
+                     console.log('interval ');
+                                        window.location.href = 'index_login2.html';
+                                        },intervalTime);
+                });
+            });
+
+            $(function(){
+                var role = getSession();
+                // console.log(role);
+                var list = ['PRODUCTION', 'SALES', 'SCM', 'FINANCE', 'PROJECT', 'INVENTORY', 'MAINTENANCE'];
+                // console.log(list);
+                $.each(list, function(index, el){
+                     // console.log(index +'-'+el);
+                    if (role[el]=="0") {
+                       
+                        $('#'+el).removeAttr('href');
+                        $('#'+el+' img').addClass('hide');
+                    }
+                });
+                // $('#PRODUCTION').removeAttr('href');
+                // $('#PRODUCTION img').addClass('hide');
+            })
+           
+
+
+        </script>
+</html>

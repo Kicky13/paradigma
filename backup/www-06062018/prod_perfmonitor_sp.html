@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" /> -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="css/archon.css"> -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+        <script src="js/loader.js"></script>
+        <script type="text/javascript" src="js/myWorkingjQuery.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <!-- <script src="js/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+        <!-- <script src="js/highcharts_working.js"></script> -->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script src="js/highcharts.js"></script>
+        <script src="js/waitMe.min.js"></script>
+        <!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <!--<script type="text/javascript" src="js/Chart.min.js"></script>-->
+        <title>Performance Monitor</title>
+        <script>
+            function onLoad() {
+                var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'kiln') {
+                        $('#kiln').removeClass('hidden');
+                        $('#cm').addClass('hidden');
+                        $('#rm').addClass('hidden');
+                        $('#fm').addClass('hidden');
+                        $('#cm').addClass('act_tb');
+                        $('#tab-kiln').addClass('act_tb');
+                        $('#tab-cm').removeClass('act_tb');
+                        $('#tab-rm').removeClass('act_tb');
+                        $('#tab-fm').removeClass('act_tb');
+                    } else if (r == 'cm') {
+                        $('#kiln').addClass('hidden');
+                        $('#cm').removeClass('hidden');
+                        $('#rm').addClass('hidden');
+                        $('#fm').addClass('hidden');
+                        $('#cm').addClass('act_tb');
+                        $('#tab-kiln').removeClass('act_tb');
+                        $('#tab-cm').addClass('act_tb');
+                        $('#tab-rm').removeClass('act_tb');
+                        $('#tab-fm').removeClass('act_tb');
+                    } else if (r == 'rm') {
+                        $('#kiln').addClass('hidden');
+                        $('#cm').addClass('hidden');
+                        $('#rm').removeClass('hidden');
+                        $('#fm').addClass('hidden');
+                        $('#cm').addClass('act_tb');
+                        $('#tab-kiln').removeClass('act_tb');
+                        $('#tab-cm').removeClass('act_tb');
+                        $('#tab-rm').addClass('act_tb');
+                        $('#tab-fm').removeClass('act_tb');
+                    } else if (r == 'fm') {
+                        $('#kiln').addClass('hidden');
+                        $('#cm').addClass('hidden');
+                        $('#rm').addClass('hidden');
+                        $('#fm').removeClass('hidden');
+                        $('#cm').addClass('act_tb');
+                        $('#tab-kiln').removeClass('act_tb');
+                        $('#tab-cm').removeClass('act_tb');
+                        $('#tab-rm').removeClass('act_tb');
+                        $('#tab-fm').addClass('act_tb');
+                    }
+                })
+               var updatedkiln3 = [];
+               var updatedkiln4 = [];
+               var updatedcm3 = [];
+               var updatedcm4 = [];
+               var updatedrm3 = [];
+               var updatedrm4 = [];
+               var updatedfm5 = [];
+               var updatedfm6 = [];
+               var updatedfm7 = [];
+               var updatedfm8 = [];
+
+               loadData('kiln_spline3', 'Rate KILN 3', url_src + '/json/FeedKL34.php');
+               loadData('kiln_spline4', 'Rate KILN 4', url_src + '/json/FeedKL34.php');
+               loadData('cm_spline3', 'Rate CM 3', url_src + '/json/FeedCM34.php');
+               loadData('cm_spline4', 'Rate CM 4', url_src + '/json/FeedCM34.php');
+               loadData('rm_spline3', 'Rate RM 3', url_src + '/json/FeedRM34.php');
+               loadData('rm_spline4', 'Rate RM 4', url_src + '/json/FeedRM34.php');
+               loadData('fm_spline5', 'Rate FM 5', url_src + '/json/FeedFM34.php');
+               loadData('fm_spline6', 'Rate FM 6', url_src + '/json/FeedFM34.php');
+               loadData('fm_spline7', 'Rate FM 7', url_src + '/json/FeedFM34.php');
+               loadData('fm_spline8', 'Rate FM 8', url_src + '/json/FeedFM34.php');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    activate(r);
+                    console.log(r);
+                })
+                function activate(w) {
+                    $('#data-kiln').addClass('hidden');
+                    $('#data-cm').addClass('hidden');
+                    $('#data-rm').addClass('hidden');
+                    $('#data-fm').addClass('hidden');
+                    $('#tab-kiln').removeClass('border-down-active');
+                    $('#tab-cm').removeClass('border-down-active');
+                    $('#tab-rm').removeClass('border-down-active');
+                    $('#tab-fm').removeClass('border-down-active');
+                    $('#data-' + w).removeClass('hidden');
+                    $('#tab-' + w).removeClass('border-down-active');
+                }
+               function loadData(id, caption, dataUrl) {
+                   // $.ajax({
+                   //     url: dataUrl,
+                   //     type: 'GET',
+                   //     success: function (data) {
+                   //         var data1 = data.replace("<title>Json</title>", "");
+                   //         var data2 = data1.replace("(", "[");
+                   //         var data3 = data2.replace(");", "]");
+                   //         var dataJson = JSON.parse(data3);
+                   //         //var dataJson = data;
+                   //         if (id == 'kiln_spline3' || id == 'kiln_spline4') {
+                   //             var myLogData = dataJson['7000'].Feed_Kiln;
+                   //         } else if (id == 'cm_spline3' || id == 'cm_spline4') {
+                   //             var myLogData = dataJson['7000'].Feed_CM;
+                   //         } else if (id == 'rm_spline3' || id == 'rm_spline4') {
+                   //             var myLogData = dataJson['7000'].Feed_RM;
+                   //         } else if (id == 'fm_spline5' || id == 'fm_spline6' || id == 'fm_spline7' || id == 'fm_spline8') {
+                   //             var myLogData = dataJson['7000'].Feed_FM;
+                   //         }
+                   //         var labelArray = [];
+                   //         var dataRate = [];
+                   //         var index = [];
+                   //         for (var x in myLogData) {
+                   //             index.push(x);
+                   //             labelArray.push(x);
+                   //             if (id == 'kiln_spline3') {
+                   //                 nilaiRate = dataJson['7000'].Feed_Kiln[x].kl3;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'kiln_spline4') {
+                   //                 nilaiRate = dataJson['7000'].Feed_Kiln[x].kl4;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'cm_spline3') {
+                   //                 nilaiRate = dataJson['7000'].Feed_CM[x].cm3;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'cm_spline4') {
+                   //                 nilaiRate = dataJson['7000'].Feed_CM[x].cm4;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'rm_spline3') {
+                   //                 nilaiRate = dataJson['7000'].Feed_RM[x].rm3;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'rm_spline4') {
+                   //                 nilaiRate = dataJson['7000'].Feed_RM[x].rm4;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'fm_spline5') {
+                   //                 nilaiRate = dataJson['7000'].Feed_FM[x].fm5;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'fm_spline6') {
+                   //                 nilaiRate = dataJson['7000'].Feed_FM[x].fm6;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'fm_spline7') {
+                   //                 nilaiRate = dataJson['7000'].Feed_FM[x].fm7;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             } else if (id == 'fm_spline8') {
+                   //                 nilaiRate = dataJson['7000'].Feed_FM[x].fm8;
+                   //                 dataRate.push(parseFloat(nilaiRate.replace(',', '.')));
+                   //             }
+                   //         }
+                   //         var labelArray_length = labelArray.length;
+                   //         var labelArray_baru = 0;
+                   //         if (id == 'kiln_spline3') {
+                   //             updatedkiln3.push(labelArray_length);
+                   //             if (updatedkiln3.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedkiln3.length == 2) {
+                   //                 console.log(Number(updatedkiln3[0]) + ' ' + Number(updatedkiln3[1]))
+                   //                 if (Number(updatedkiln3[0]) < Number(updatedkiln3[1])) {
+                   //                     var labelArray_baru = Number(updatedkiln3[1]) - Number(updatedkiln3[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedkiln3.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'kiln_spline4') {
+                   //             updatedkiln4.push(labelArray_length);
+                   //             if (updatedkiln4.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedkiln4.length == 2) {
+                   //                 if (Number(updatedkiln4[0]) < Number(updatedkiln4[1])) {
+                   //                     var labelArray_baru = Number(updatedkiln4[1]) - Number(updatedkiln4[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedkiln4.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'cm_spline3') {
+                   //             updatedcm3.push(labelArray_length);
+                   //             if (updatedcm3.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedcm3.length == 2) {
+                   //                 if (Number(updatedcm3[0]) < Number(updatedcm3[1])) {
+                   //                     var labelArray_baru = Number(updatedcm3[1]) - Number(updatedcm3[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedcm3.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'cm_spline4') {
+                   //             updatedcm4.push(labelArray_length);
+                   //             if (updatedcm4.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedcm4.length == 2) {
+                   //                 if (Number(updatedcm4[0]) < Number(updatedcm4[1])) {
+                   //                     var labelArray_baru = Number(updatedcm4[1]) - Number(updatedcm4[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedcm4.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'rm_spline3') {
+                   //             updatedrm3.push(labelArray_length);
+                   //             if (updatedrm3.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedrm3.length == 2) {
+                   //                 if (Number(updatedrm3[0]) < Number(updatedrm3[1])) {
+                   //                     var labelArray_baru = Number(updatedrm3[1]) - Number(updatedrm3[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedrm3.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'rm_spline4') {
+                   //             updatedrm4.push(labelArray_length);
+                   //             if (updatedrm4.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedrm4.length == 2) {
+                   //                 if (Number(updatedrm4[0]) < Number(updatedrm4[1])) {
+                   //                     var labelArray_baru = Number(updatedrm4[1]) - Number(updatedrm4[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedrm4.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'fm_spline5') {
+                   //             updatedfm5.push(labelArray_length);
+                   //             if (updatedfm5.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedfm5.length == 2) {
+                   //                 if (Number(updatedfm5[0]) < Number(updatedfm5[1])) {
+                   //                     var labelArray_baru = Number(updatedfm5[1]) - Number(updatedfm5[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedfm5.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'fm_spline6') {
+                   //             updatedfm6.push(labelArray_length);
+                   //             if (updatedfm6.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedfm6.length == 2) {
+                   //                 if (Number(updatedfm6[0]) < Number(updatedfm6[1])) {
+                   //                     var labelArray_baru = Number(updatedfm6[1]) - Number(updatedfm6[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedfm6.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'fm_spline7') {
+                   //             updatedfm7.push(labelArray_length);
+                   //             if (updatedfm7.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedfm7.length == 2) {
+                   //                 if (Number(updatedfm7[0]) < Number(updatedfm7[1])) {
+                   //                     var labelArray_baru = Number(updatedfm7[1]) - Number(updatedfm7[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedfm7.splice(0, 1);
+                   //             }
+                   //         } else if (id == 'fm_spline8') {
+                   //             updatedfm8.push(labelArray_length);
+                   //             if (updatedfm8.length == 1) {
+                   //                 newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate);
+                   //             } else if (updatedfm8.length == 2) {
+                   //                 if (Number(updatedfm8[0]) < Number(updatedfm8[1])) {
+                   //                     var labelArray_baru = Number(updatedfm8[1]) - Number(updatedfm8[0]);
+                   //                     updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate);
+                   //                 }
+                   //                 updatedfm8.splice(0, 1);
+                   //             }
+
+                   //         }
+                   //     }
+                   // });
+               }
+               function newSpline(id, caption, dataUrl, labelArray, labelArray_length, dataRate) {
+                   $('#' + id).highcharts({
+                       chart: {
+                           //zoomType: 'x',
+                           height: 290,
+                           animation: Highcharts.svg, // don't animate in old IE
+                           marginLeft: 12,
+                           marginRight: 12,
+                           events: {
+                               load: function () {
+                                   setInterval(function () {
+                                       loadData(id, caption, dataUrl);
+                                   }, 60000);
+                               }
+                           }
+                       },
+                       title: {
+                           text: caption,
+                           align: 'right',
+                           x: -210
+                       },
+                       xAxis: {
+                           id: id,
+                           categories: labelArray,
+                           min: labelArray_length - 6,
+                           max: labelArray_length - 1
+                       },
+                       yAxis: {
+                           min: 0,
+                           max: 900,
+                           offset: -10,
+                           opposite: true,
+                           lineWidth: 1,
+                           plotLines: [{
+                                   value: 0,
+                                   width: 1,
+                                   color: '#808080'
+                               }]
+                       },
+                       tooltip: {
+                           shared: true,
+                           formatter: function () {
+                               return '<b>' + this.series.name + '</b><br/>' + this.x + ' : ' + this.y;
+                           }
+                       },
+                       legend: {
+                           align: 'right',
+                           x: -50
+                       },
+                       series: [{
+                               id: id,
+                               name: caption,
+                               data: dataRate
+                           }]
+                   })
+               }
+               function updateSpline(id, labelArray, labelArray_length, labelArray_baru, dataRate) {
+                   var chart = $('#' + id).highcharts();
+                   var mini = Number(labelArray_length) - 6;
+                   var maxi = Number(labelArray_length) - 1;
+                   chart.series[0].update({
+                       data: dataRate
+                   });
+                   chart.xAxis[0].update({
+                       categories: labelArray
+                   });
+                   chart.xAxis[0].update({
+                       min: mini,
+                       max: maxi
+                   });
+               }
+			   $( ".head-menu" ).scrollLeft(350);
+            }
+        </script>
+        <style type="text/css">
+            <!--
+            /*.wrapper {width: auto;}*/
+            .bg-white {background:#fff;}
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .tab-tittle{
+                font-family:"Open Sans";
+                font-size:10px;
+            }
+            .text-small {font:normal 10px arial;color:#000;}
+            .text-medium {font:normal 11px arial;color:#000;}
+            .center {text-align: center;}
+            .padding5 {padding:5px;}
+            .border-down {
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {text-decoration: none;color:#000;}
+            .highcharts-credits {
+                display:none;  
+            }
+            .sticky_bottom {
+                position: absolute;
+                bottom:10px;
+                width: 100%;
+            }
+            .lower_logo {
+                margin:10px;
+            }
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .act{
+                border-top: 1px solid #e5e5e5;
+            }
+
+            -->
+        </style>  
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+    </head>
+    <body onLoad="onLoad()" style="font-family: Segoe UI;">
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+        <div id="sidenav">
+             <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+              </div>
+              <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="#" class="active"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                    <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a href="finance_prod_sg.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+              </div>
+              <div class="footer">
+                <div>
+                    <ul>
+                      <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                      <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+              </div>
+        </div>
+        <div id="content" style="background:#f5f5f5;">
+            <!--title bar-->
+              <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle">
+                  <span>toggle menu</span>
+                </button>
+                <b class="logopis">PERFORM MONITOR</b>
+                <!-- <a class="logo" href="index.html">
+                <img src="img/logo.png"></a> -->
+              </header>
+          <!--end title bar-->
+          <div class="wrapper bg-white">
+    						<div class="head-menu">
+    							<!--start menu production -->
+                  <ul>
+                                <li><a href="prod_report_sp.html">PROD. REPORT</a></li>
+                                <li><a href="prod_overview_sp.html">PLANT OVERVIEW</a></li>
+                                <li><a href="prod_offstate_overview.html">OFF-STATE OVERVIEW</a></li>
+                                <li><a class="active">PERFORM MONITOR</a></li>
+                                <li class="haschild"><a>MOTOR PERFORM</a>
+                                    <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                        <a href="prod_motorperf_kiln_sp.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                        </a> 
+                                        <a href="prod_motorperf_cm_sp.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                        </a>
+                                        <a href="prod_motorperf_rm_sp.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                        </a>                                
+                                        <a href="prod_motorperf_fm_sp.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Finish Mill
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="haschild"><a>ANALITYCAL KILN</a>
+                                    <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                        <a href="prod_analytic_kiln3.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                        </a>
+                                        <a href="prod_analytic_kiln4.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                        </a>
+                                    </div>
+                                </li>
+                                <li><a href="prod_emision_sp.html">EMISION</a></li>
+                                <li class="haschild"><a>ID FAN KILN</a>
+                                    <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a href="prod_idfan_kiln3_sg.html">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a href="prod_idfan_kiln4_sg.html">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                    </div>
+                                </li>
+                                <li><a href="prod_silo_sp.html">SILO LEVEL</a></li>
+                                <li><a href="prod_powerplant_st.html">POWER PLANT</a></li>
+                                 
+                            </ul>
+                  <!--  end menu production -->
+    						</div>
+                      <!--start header -->
+                        <div class="spacer-menu"></div>
+                        <div class="headsix2 cubesRun2 headone whitebg" style="margin-bottom: 12px">
+                            <div align="center">
+                                <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="planttittle" style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN PADANG</p>
+                                
+                            </div>
+                        </div>
+                        <!--end header -->
+
+                        <!--start tab menu-->
+                        <div class="col-xs-12 tab_dual">
+                            <div class="col-xs-12 bg_rds">
+                                <div id="tab-kiln" align="center" class="col-xs-3 center zero_padd left_tb act_tb" >
+                                    <a href="#tab-click" rel="kiln" class="no-text-style">
+                                        <span class="tx_tab">KILN</span>
+                                    </a>
+                                </div>
+                                <div id="tab-cm" align="center"  class="col-xs-3 center zero_padd left_tb" >
+                                    <a href="#tab-click" rel="cm" class="no-text-style">
+                                        <span class="tx_tab">CM</span>
+                                    </a>
+                                </div>
+                                <div id="tab-rm" align="center"  class="col-xs-3 center zero_padd left_tb" >
+                                    <a href="#tab-click" rel="rm" class="no-text-style">
+                                        <span class="tx_tab">RM</span>
+                                    </a>
+                                </div>
+                                <div id="tab-fm" align="center"  class="col-xs-3 center zero_padd left_tb" >
+                                    <a href="#tab-click" rel="fm" class="no-text-style">
+                                        <span class="tx_tab">FM</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end tab menu -->
+
+                        <!-- start kiln -->
+                        <div id="data-kiln" class="act" style="padding:0 5px 0 3px;">
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl"><i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Feeding Rate Kiln 3</span>
+                            <div id="kiln_spline3" style="width:1200px; min-height: 220px"></div>    
+                            </div>
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl"><i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Feeding Rate Kiln 4</span>
+                            <div id="kiln_spline4" style="width:1200px; min-height: 220px"></div>
+                            </div>
+                        </div>
+                        <!-- end kiln -->
+
+                        <!-- start cm -->
+                        <div id="data-cm" class="act hidden" style="padding:0 5px 0 3px;">
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Coal Rate 3</span>
+                            <div id="cm_spline3" style="width:1200px; min-height: 220px"></div></div>
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Coal Rate 4</span>
+                            <div id="cm_spline4" style="width:1200px; min-height: 220px"></div></div>
+                        </div>
+                        <!-- end cm -->
+
+                        <!-- start rm -->
+                        <div id="data-rm" class="act hidden" style="padding:0 5px 0 3px;">
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Raw Rate 3</span>
+                            <div id="rm_spline3" style="width:1200px; min-height: 220px"></div></div>
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Raw Rate 4</span>
+                            <div id="rm_spline4" style="width:1200px; min-height: 220px"></div></div>
+                        </div>
+                        <!-- end rm -->
+
+                        <!-- start fm -->
+                        <div id="data-fm" class="act hidden" style="padding:0 5px 0 3px;">
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Finish Rate 5</span>
+                            <div id="fm_spline5" style="width:1200px; min-height: 220px"></div></div>
+
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Finish Rate 6</span><div id="fm_spline6" style="width:1200px; min-height: 220px"></div></div>
+
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Finish Rate 7</span>
+                            <div id="fm_spline7" style="width:1200px; min-height: 220px"></div></div>
+
+                            <div style="overflow-x: scroll; width: 100%;">
+                            <span class="colorsp t1 subtitle_upd four_tittle tx_kl">
+                            <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px;color: #DF0023;"></i>&nbsp;&nbsp;Finish Rate 8</span>
+                            <div id="fm_spline8" style="width:1200px; min-height: 220px"></div></div>
+                        </div>
+                        <!-- end fm -->
+                        
+                        <div class="production-value" >
+                            <div class="chartBox"> <!--style="margin-top: 5px; margin-bottom: 44px;" -->
+                            </div>
+                            <!-- start bottom navbar menu -->
+                            <footer>
+                                <div class="regular" >
+                                    <a href="prod_perfmonitor_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;">
+                                            <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
+                                    <a href="prod_perfmonitor_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                        <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
+                                    <a href="prod_perfmonitor_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                        <img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
+                                    <a href="prod_perfmonitor_tl.html" class="col-xs-3 noPadding col-ft-3 img_foot2" style="margin-top: 7px;">
+                                        <img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
+                                </div>
+                            </footer>
+                            <!-- end bottom navbar menu -->
+                            <div class="spacer"></div>  
+                        </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $.ajax({
+                url: url_src + '/json/FeedKL34.php',
+                type: 'GET',
+                success: function (data) {
+                    // var data1 = data.replace("<title>Json</title>", "");
+                    // var data2 = data1.replace("(", "[");
+                    // var data3 = data2.replace(");", "]");
+
+                    // var dataJson = JSON.parse(data3);
+                    // var myLogData = dataJson['7000'].Feed_Kiln;
+
+                    // var labelArray = [];
+                    // var dataRate1 = [];
+                    // var dataRate2 = [];
+                    // var index = [];
+
+                    // for (var x in myLogData) {
+                    //     index.push(x);
+                    //     labelArray.push(x);
+                    //     nilaiRate1 = dataJson['7000'].Feed_Kiln[x].kl3;
+                    //     dataRate1.push(parseFloat(nilaiRate1.replace(',', '')));
+
+                    //     //console.log('1:'+dataRate1);
+                    //     nilaiRate2 = dataJson['7000'].Feed_Kiln[x].kl4;
+                    //     dataRate2.push(parseFloat(nilaiRate2.replace(',', '')));
+                    //     //console.log('2:'+dataRate2);
+                    // }
+
+                    $('#kiln_spline3').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 1000,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'KL 3',
+                                color: '#F62459',
+                                data: [700, 69, 950, 145, 820, 215, 252, 650, 233, 183, 13, 960]
+                                // dataRate1
+                            }]
+                    });
+
+                    $('#kiln_spline4').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 1000,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'KL 4',
+                                color: '#F62459',
+                                data: [700, 69, 950, 145, 820, 215, 252, 650, 233, 183, 13, 960]
+                                // dataRate2
+                            }]
+                    });
+
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            
+            $.ajax({
+                url: url_src + '/json/FeedCM34.php',
+                type: 'GET',
+                success: function (data) {
+                    // var data1 = data.replace("<title>Json</title>", "");
+                    // var data2 = data1.replace("(", "[");
+                    // var data3 = data2.replace(");", "]");
+
+                    // var dataJson = JSON.parse(data3);
+                    // var myLogData = dataJson['7000'].Feed_CM;
+
+                    // var labelArray = [];
+                    // var dataRate1 = [];
+                    // var dataRate2 = [];
+                    // var index = [];
+
+                    // for (var x in myLogData) {
+                    //     index.push(x);
+                    //     labelArray.push(x);
+                    //     nilaiRate1 = dataJson['7000'].Feed_CM[x].cm3;
+                    //     dataRate1.push(parseFloat(nilaiRate1.replace(',', '')));
+
+                    //     //console.log('1:'+dataRate1);
+                    //     nilaiRate2 = dataJson['7000'].Feed_CM[x].cm4;
+                    //     dataRate2.push(parseFloat(nilaiRate2.replace(',', '')));
+                    //     //console.log('2:'+dataRate2);
+                    // }
+
+                    $('#cm_spline3').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 100,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'CM 3',
+                                color: '#F62459',
+                                data: [60, 69, 95, 45, 82, 25, 25, 65, 23, 83, 13, 96]
+                                // dataRate1
+                            }]
+                    });
+
+                    $('#cm_spline4').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 100,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'CM 4',
+                                color: '#F62459',
+                                data: [60, 69, 95, 45, 82, 25, 25, 65, 23, 83, 13, 96]
+                                // dataRate2
+                            }]
+                    });
+
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            
+            $.ajax({
+                url: url_src + '/json/FeedRM34.php',
+                type: 'GET',
+                success: function (data) {
+                    // var data1 = data.replace("<title>Json</title>", "");
+                    // var data2 = data1.replace("(", "[");
+                    // var data3 = data2.replace(");", "]");
+
+                    // var dataJson = JSON.parse(data3);
+                    // var myLogData = dataJson['7000'].Feed_RM;
+
+                    // var labelArray = [];
+                    // var dataRate1 = [];
+                    // var dataRate2 = [];
+                    // var index = [];
+
+                    // for (var x in myLogData) {
+                    //     index.push(x);
+                    //     labelArray.push(x);
+                    //     nilaiRate1 = dataJson['7000'].Feed_RM[x].rm3;
+                    //     dataRate1.push(parseFloat(nilaiRate1.replace(',', '')));
+
+                    //     //console.log('1:'+dataRate1);
+                    //     nilaiRate2 = dataJson['7000'].Feed_RM[x].rm4;
+                    //     dataRate2.push(parseFloat(nilaiRate2.replace(',', '')));
+                    //     //console.log('2:'+dataRate2);
+                    // }
+
+                    $('#rm_spline3').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 800,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'RM 3',
+                                color: '#F62459',
+                                data: [700, 69, 650, 145, 70, 215, 252, 650, 233, 183, 13, 560]
+                                // dataRate1
+                            }]
+                    });
+
+                    $('#rm_spline4').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 800,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'RM 4',
+                                color: '#F62459',
+                                data: [700, 69, 650, 145, 70, 215, 252, 650, 233, 183, 13, 560]
+                                // dataRate2
+                            }]
+                    });
+
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            
+            $.ajax({
+                url: url_src + '/json/FeedFM34.php',
+                type: 'GET',
+                success: function (data) {
+                    var data1 = data.replace("<title>Json</title>", "");
+                    var data2 = data1.replace("(", "[");
+                    var data3 = data2.replace(");", "]");
+
+                    // var dataJson = JSON.parse(data3);
+                    // var myLogData = dataJson['7000'].Feed_FM;
+
+                    // var labelArray = [];
+                    // var dataRate1 = [];
+                    // var dataRate2 = [];
+                    // var dataRate3 = [];
+                    // var dataRate4 = [];
+                    // var index = [];
+
+                    // for (var x in myLogData) {
+                    //     index.push(x);
+                    //     labelArray.push(x);
+                    //     nilaiRate1 = dataJson['7000'].Feed_FM[x].fm5;
+                    //     dataRate1.push(parseFloat(nilaiRate1.replace(',', '')));
+
+                    //     nilaiRate2 = dataJson['7000'].Feed_FM[x].fm6;
+                    //     dataRate2.push(parseFloat(nilaiRate2.replace(',', '')));
+                        
+                    //     nilaiRate3 = dataJson['7000'].Feed_FM[x].fm7;
+                    //     dataRate3.push(parseFloat(nilaiRate3.replace(',', '')));
+
+                    //     nilaiRate4 = dataJson['7000'].Feed_FM[x].fm8;
+                    //     dataRate4.push(parseFloat(nilaiRate4.replace(',', '')));
+                    // }
+
+                    $('#fm_spline5').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 600,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        scrollbar: {
+                            enabled: false,
+                            liveRedraw: true
+                        },
+                        series: [{
+                                name: 'FM 5',
+                                color: '#F62459',
+                                data: [100, 69, 550, 145, 420, 215, 252, 150, 233, 183, 13, 460]
+                                // dataRate1
+                            }]
+                    });
+
+                    $('#fm_spline6').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 600,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'FM 6',
+                                color: '#F62459',
+                                data: [100, 69, 550, 145, 420, 215, 252, 150, 233, 183, 13, 460]
+                                // dataRate2
+                            }]
+                    });
+                    
+                    $('#fm_spline7').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 600,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'FM 7',
+                                color: '#F62459',
+                                data: [100, 69, 550, 145, 420, 215, 252, 150, 233, 183, 13, 460]
+                                // dataRate3
+                            }]
+                    });
+
+                    $('#fm_spline8').highcharts({
+                        chart: {
+                            type: 'line',
+//                                zoomType: 'xy',
+                            animation: Highcharts.svg//,
+                                    //marginRight: 10
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            // labelArray,
+                            gridLineWidth: 1
+//                                min: labelArray.length - 5,
+//                                max: labelArray.length - 1
+                        },
+                        yAxis: [{
+                                min: 0,
+                                max: 600,
+                                tickPixelInterval: 8,
+                                title: {
+                                    text: ''
+                                }
+                            }],
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            line: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'FM 8',
+                                color: '#F62459',
+                                data: [100, 69, 550, 145, 420, 215, 252, 150, 233, 183, 13, 460]
+                                // dataRate4
+                            }]
+                    });
+
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+        </script>
+        <!--       <script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+           $(".regular").slick({ 
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows:false,
+                centerMode: false
+            }); 
+        </script>
+        </body>
+</html>

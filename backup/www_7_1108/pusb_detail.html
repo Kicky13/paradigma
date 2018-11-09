@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" /> -->
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script type="text/javascript" src="js/JsNumberFormat.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="css/archon.css"> -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/production.css">
+<link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script src="js/waitMe.min.js"></script>
+<script src="js/Session.js"></script>
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script src="js/highcharts_working.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script src="js/loader.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<!--<script src="js/project_dashboard.js"></script>-->
+<script src="js/solid-gauge.js"></script>
+<script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<title>PUSB</title>
+<script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+				 $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                    }
+                })
+            }
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+			
+			
+			
+		function getQuery(name){
+			if(name=(new RegExp('[?&amp;]'+encodeURIComponent(name)+'=([^&amp;]*)')).exec(location.search))
+			return decodeURIComponent(name[1]);
+		}
+  
+		var id_proj = getQuery("id_proj");
+			$.ajax({
+						type:"POST",
+						//var id_proj = getUrlVars()["id_proj"],
+						url:url_src+"/api/index.php/pusb/detail_project/"+id_proj,
+						success:function(data){
+						$("#reg_expans").html(data);
+						}
+
+				});	
+			
+			
+			$.ajax({
+						type:"POST",
+						//var id_proj = getUrlVars()["id_proj"],
+						url:url_src+"/api/index.php/pusb/baseline/"+id_proj,
+						success:function(data){
+						$("#timeline").html(data);
+						}
+
+				});	
+			
+			
+		
+        </script>
+</head>
+<body onLoad="onLoad()" style="font-family: Open Sans;">
+<div class="app">
+<div id="deviceready">
+  <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+  </nav>
+  <div id="content" class="animated" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+    <div class="wrapper">
+          <h2 class="titular" style="    background: #EB1717;    height: 37px;    line-height: 39px;font-size: small;font-weight:bold">PROJECT PROFIL</h2>
+      <div class="headsix cubesRun2" style="margin-bottom: 50px;    "> 
+      <img src="img/teks semen indo.png" class="imgsi" style="border-bottom: 1px solid #e2e2e2; padding-bottom: 7px;">
+	 <!-- <center><font size='3'>Dhasboard PUSB Projects</font></center> -->
+	 
+      <div align="center">
+     
+      <div class="col-xs-1 noPadding">&nbsp;</div>
+      <div class="col-xs-10 noPadding gap_pros" align="center"><span class="kpi_tittle">Dhasboard PUSB Projects</span></div>
+      <div class="col-xs-1 noPadding"></div>
+      </div>
+      
+	  <div id="reg_expans" ></div> 
+	  <div id="timeline" ></div> 
+	   
+     
+		
+		<div style='clear:both'></div>	
+			
+     </div>
+
+	 
+	 	  
+     <!-- <div id="container" style="min-width: 100px; max-width: 800px; min-height: 400px; margin: 0 auto"></div> 
+	 -->
+       
+</div>
+   
+<script type="text/javascript" src="js/index.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

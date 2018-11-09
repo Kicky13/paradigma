@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <!--<link rel="stylesheet" type="text/css" href="css/animate.css">-->
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="anima.css">
+         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="slick.css"/>
+        <!-- // Add the new slick-theme.css if you want the default styling -->
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <!-- <script src="js/jssor.slider-22.2.6.mini.js" type="text/javascript"></script> -->
+        <script src="js/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+         <script src="js/loader.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <style>
+            .imgcompany {
+                margin:9px;
+                margin-bottom: 2px;
+                margin-top: 14px;
+            }
+            .textimg {
+                font-size: 10px;
+                color: #504b4d;
+            }
+            .textdr {
+                font-size: 12px;
+                font-family: "Open Sans";
+                color: #504b4d;
+                margin-top: 12px;
+                margin-bottom: 19px;
+                margin-left: 16px;
+            }
+            a img:hover, a:visited {
+                background-color: rgb(236, 236, 241);
+                border-radius: 43px;
+                text-decoration: none;
+            }
+            .drp {
+                position: relative;
+                display: inline-block;
+            }
+            .drp-content {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                width: 106px;
+                z-index: 1;
+                border-radius: 9px;
+            }
+            .drp:hover .drp-content {
+                display: block;
+            }
+            .dropbtn {
+                /*    background-color: #4CAF50;*/
+                /*    color: white;*/
+                padding: 1px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+            .dropbtn:hover, .dropbtn:focus {
+                /*    background-color: #;*/
+            }
+            .dropdownwin {
+                /*    position: relative;*/
+                display: inline-block;
+                display: inline-block;
+                margin-right: 32px;
+                text-align: center;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                width: 106px;
+                z-index: 1;
+                border-radius: 9px;
+            }
+            .dropdown-content a {
+                color: black;
+                padding: 5px 10px;
+                text-decoration: none;
+                display: block;
+            }
+            .dropdownwin a:hover {background-color: #f1f1f1}
+            .show {display:block;}
+            .dropbtn2 {
+                /*    background-color: #4CAF50;*/
+                /*    color: white;*/
+                padding: 1px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+            .dropbtn2:hover, .dropbtn:focus {
+                /*    background-color: #;*/
+            }
+            .dropdownwin2 {
+                /*    position: relative;*/
+                display: inline-block;
+                text-align: center; 
+            }
+            .dropdown-content2 {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                width: 120px;
+				border-radius: 9px;
+                z-index: 99; !important
+                
+            }
+            .dropdown-content2 a {
+                color: black;
+                padding: 5px 10px;
+                text-decoration: none;
+                display: block;
+            }
+            .dropdownwin2 a:hover {background-color: #f1f1f1}
+            .show2 {display:block;}  
+            .dropbtn3 {
+                /*    background-color: #4CAF50;*/
+                /*    color: white;*/
+                padding: 1px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+            .dropbtn3:hover, .dropbtn:focus {
+                /*    background-color: #;*/
+            }
+            .dropdownwin3 {
+                /*    position: relative;*/
+                display: inline-block;
+            }
+            .dropdown-content3 {
+                display: none;
+                position: absolute;
+                background-color: #ffffff;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                width: 130px;
+                z-index: 1;
+                border-radius: 9px;
+            }
+            .dropdown-content3 a {
+                color: black;
+                padding: 5px 10px;
+                text-decoration: none;
+                display: block;
+            }
+            .dropdownwin3 a:hover {background-color: #f1f1f1}
+            .show3 {display:block;} 
+        </style>
+        <title>Portal Production</title>
+    </head>
+    <body>
+        
+      
+                        
+                        
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                             
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li></li>
+                    <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;SCM</a></li></li>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li></li>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li></li>
+                    <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                <div id="content" class="animated">
+                    
+                    <div class="wrapper" style="overflow:hidden;">
+                    <a href="index.html" style="position:absolute">
+                    <div style="margin-bottom: 20px"></div>
+                        <img src="img/ar_back.png" width="37px" style="padding-left:12px"></a>
+                        <img class="logo-home" src="img/prod-tittle2.png" style="width: 241px; padding-bottom: 1px; border-bottom: 1px solid #eabebe; top: 8%;"/>
+                        <img class="bg-home" src="img/bg-port.png"/>
+                        
+                        
+                      
+                        <div class="link-home  " style="text-align: center; top:19%">
+                        
+                        <div class="single-item" style="height: 366px;">
+                            
+                        <div style="height: 522px;">
+                            <a onclick="goto_opco('prod_rm_sg')" class="" style="display: inline-block; text-align: center; margin-right: 32px;" ><img src="img/p2.png" class="imgcompany" style="width: 78px;"/>
+                                <p class="textimg">PROD. REPORT</p></a>
+                            
+                            <a onclick="goto_opco('overview_sg_detail')" class="" style="display: inline-block; text-align: center; "><img src="img/pr1.png" class="imgcompany" style="width: 78px;">
+                                <p class="textimg">PLANT OVERVIEW</p></a> 
+                            
+                            <a onclick="goto_opco('monitor_sg')" class="" style="display: inline-block; text-align: center; margin-right: 32px;"><img src="img/p3.png" class="imgcompany" style="width: 78px;">
+                                <p class="textimg">PERFORM MONITOR</p>
+                            </a>
+                            
+                      
+                            <div class="dropdownwin2 " style="display: inline-block;" >
+                                <img src="img/p6.png" onClick="myFunction2()"  class="dropbtn2 imgcompany" style="width: 78px;"/> <p class="textimg">MOTOR PERFORM</p>
+                                <div id="myDropdown2" class="dropdown-content2" align="left">
+                                <a onclick="goto_opco('motor_perform_rm3sg')"><i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill</a>
+                                   <a onclick="goto_opco('motor_perform_cm3sg')"><i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill</a>
+
+                                    
+                                    <a onclick="goto_opco('motor_perform_kl3sg')"><i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln</a>                                    
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Finish Mill</a>
+                                </div>
+                            </div>
+
+                         
+
+                           
+                            <div class="dropdownwin " >
+                                <img src="img/p4.png" onClick="myFunction()"  class="dropbtn imgcompany" style="width: 78px;"/> <p class="textimg">ANALYTICAL KILN</p>
+                                <div id="myDropdown" class="dropdown-content" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')"><i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3</a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')"><i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4</a>
+                                </div>
+                            </div> 
+
+                            <a onclick="goto_opco('sg_emisi_status')" class="" style="display: inline-block; text-align: center; "><img src="img/p7.png" class="imgcompany" style="width: 78px;">
+                                <p class="textimg">EMISION</p></a>
+
+
+                           
+                            </div>
+
+                            <div>
+
+                             <div class="dropdownwin3 " style="display: inline-block;margin-right: 32px;" >
+                                <img src="img/p5.png" onClick="myFunction3()"  class="dropbtn3 imgcompany" style="width: 78px;"/> <p class="textimg">ID FAN KILN</p>
+                                <div id="myDropdown3" class="dropdown-content3" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')"><i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Motor Kiln 3</a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')"><i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Motor Kiln 4</a>
+                                </div>
+                            </div>
+                            
+                            <a onclick="goto_opco('silo_sg')" style="display: inline-block; text-align: center; " class=""><img src="img/sil_ic.png" class="imgcompany" style="width: 78px;"/>
+                                <p class="textimg">SILO LEVEL</p></a>
+                            
+
+                            <a onclick="goto_opco('power_plant_st')" class="" style="display: inline-block; text-align: center; margin-right: 32px;"><img src="img/pow.png" class="imgcompany" style="width: 78px;">
+                                <p class="textimg">POWER PLANT</p></a>
+
+                            <a onclick="goto_opco('production_operation_sg')" class="" style="display: inline-block; text-align: center; "><img src="img/time.png" class="imgcompany" style="width: 78px;">
+                                <p class="textimg">PLANT OPERATION</p></a> 
+
+                            </div>
+                            </div>
+
+                          
+                                         
+                            <div class="spacer ">
+
+                           
+                        </div>
+                        <!-- </div>  -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".regular").slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:false
+      });
+      $(".center").slick({
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:false
+      });
+      $(".variable").slick({
+        dots: true,
+        infinite: true,
+        variableWidth: true,
+        arrows:false,
+      });
+      $('.single-item').slick(
+        {
+            arrows: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+        });
+      $('.bottom-item').slick(
+        {
+            arrows: true,
+            autoplay: true,
+            autoplaySpeed: 3000
+        });
+
+    });
+  </script>
+                            <script>
+                                function myFunction() {
+                                    document.getElementById("myDropdown").classList.toggle("show");
+                                }
+
+                                window.onclick = function (event) {
+                                    if (!event.target.matches('.dropbtn')) {
+
+                                        var dropdowns = document.getElementsByClassName("dropdown-content");
+                                        var i;
+                                        for (i = 0; i < dropdowns.length; i++) {
+                                            var openDropdown = dropdowns[i];
+                                            if (openDropdown.classList.contains('show')) {
+                                                openDropdown.classList.remove('show');
+                                            }
+                                        }
+                                    }
+                                }
+                                function myFunction2() {
+                                    document.getElementById("myDropdown2").classList.toggle("show2");
+                                }
+                                window.onclick = function (event) {
+                                    if (!event.target.matches('.dropbtn2')) {
+
+                                        var dropdowns2 = document.getElementsByClassName("dropdown-content2");
+                                        var i;
+                                        for (i = 0; i < dropdowns2.length; i++) {
+                                            var openDropdown2 = dropdowns2[i];
+                                            if (openDropdown2.classList.contains('show2')) {
+                                                openDropdown2.classList.remove('show2');
+                                            }
+                                        }
+                                    }
+                                }
+                                function myFunction3() {
+                                    document.getElementById("myDropdown3").classList.toggle("show3");
+                                }
+                                window.onclick = function (event) {
+                                    if (!event.target.matches('.dropbtn3')) {
+
+                                        var dropdowns3 = document.getElementsByClassName("dropdown-content3");
+                                        var i;
+                                        for (i = 0; i < dropdowns3.length; i++) {
+                                            var openDropdown3 = dropdowns3[i];
+                                            if (openDropdown3.classList.contains('show3')) {
+                                                openDropdown3.classList.remove('show3');
+                                            }
+                                        }
+                                    }
+                                }
+                            </script>  
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

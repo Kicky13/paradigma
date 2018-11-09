@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script src="js/stupidtable.js?dev"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/paradigma.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                var d = new Date();
+                var month = new Array();
+                month[0] = "January";
+                month[1] = "February";
+                month[2] = "March";
+                month[3] = "April";
+                month[4] = "May";
+                month[5] = "June";
+                month[6] = "July";
+                month[7] = "August";
+                month[8] = "September";
+                month[9] = "October";
+                month[10] = "November";
+                month[11] = "December";
+                var pengurang = 0;
+                var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+                var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+                var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+                var dd = d.getDate();
+                var mm = d.getMonth()+1; //January is 0!
+                var yyyy = d.getFullYear();
+                if(dd<10) {
+                    dd='0'+dd
+                } 
+                if(mm<10) {
+                    mm='0'+mm
+                } 
+                var today = dd+'/'+bulan+'/'+yyyy;
+                setParam('smi',bulanSekarang, tahun);
+                $("#last-update").html("Last Update : "+today);                
+                $("table").stupidtable();
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                 $('a[href="#tab-bs"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'asset') {
+                        $('#asset').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#equity').addClass('hidden');
+                       
+                    } else if (r == 'liability') {
+                        $('#liability').removeClass('hidden');
+                        $('#asset').addClass('hidden');
+                        $('#equity').addClass('hidden');
+
+                    } else if (r === 'equity') {
+                         $('#equity').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#asset').addClass('hidden');
+                    }
+                });
+
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'scm_sales_vol_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'scm_sales_vol_sg.html';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'scm_sales_vol_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'scm_sales_vol_tl.html';
+                    }
+                })
+                
+                $('a[href="#detail"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    gotoPage('smi', bulanSekarang, tahun, r);
+                })
+
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+
+                $('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2014;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                $('.selyear').html(opt_year);
+                var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= 12){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })  
+                $('.selmonth').html(opt_month);
+    scm_full(tahun, bulanSekarang);
+
+    $('.selmonth').change(function() {
+        bulanSekarang = $(this).val();
+        tahun = $('.selyear').val();
+
+        scm_full(tahun, bulanSekarang);
+
+    })
+    $('.selyear').change(function() {
+        tahun = $(this).val();
+        bulanSekarang = $('.selmonth').val();
+
+        scm_full(tahun, bulanSekarang);
+    })
+
+    function scm_full(tahun, bulan) {
+        var param = '?tahun=' + tahun + '&bulan=' + bulan;
+
+        
+
+       
+        run_waitMe('.wrapper', 'ios');
+
+        $('#dreal').html(0);
+        $('#drkap').html(0);
+        $('#dmin').html(0);
+        $('#perd').html('0 <span style="font-size: 12px;">%</span>');
+
+        $('#erls').html(0);
+        $('#erlt').html(0);
+        $('#erks').html(0);
+        $('#pere').html('0 <span style="font-size: 12px;">%</span>');
+
+        $('#dl').html('0 % / 0 %');
+        $('#ec').html(0 + ' %');
+        $('#tota').html(0 + ' %');
+        $.ajax({
+
+            //url: url,
+            url: url_src + '/api/index.php/volproduksi_smi' + param,
+            type: 'GET',
+            success: function(data) {
+                var per_ex = '';
+                console.log(data);
+
+                // var data = eval('(' + data + ')');
+                var data = paradigma.json_parse(data, '.wrapper');
+                console.log(data);
+
+                if (data) {
+                    var dreal = parseInt(data.smi.dom.real_sdk);
+                    var drkap = parseInt(data.smi.dom.rkap_sdk);
+                    var dmin = (data.smi.dom.selisih);
+
+                    var ereals = parseInt(data.ekspor.real_sm);
+                    var erealt = parseInt(data.ekspor.real_tr);
+                    var erkaps = parseFloat(data.ekspor.rkap_eks);
+
+                    var gd_up = parseFloat(data.growth.dom_real).toFixed(1);
+                    var gd_dw = parseFloat(data.growth.dom_prog).toFixed(1);
+                    var ge = parseFloat(data.growth.ekspor_real).toFixed(1);
+                    var tot = parseFloat(data.growth.total).toFixed(1);
+
+                    var per_dm = ((dreal) / (drkap)) * 100;
+                    if (ereals == 0) {
+                        per_ex = 0;
+                    } else if (erkaps == 0) {
+                        per_ex = 0;
+                    } else {
+                        per_ex = ((ereals) / (erkaps)) * 100;
+                    }
+
+                    if (tot == "NaN" || tot == 0) {
+                        tot = gd_up;
+                    } else {
+
+                    }
+
+                    $('#dreal').html(FormatNumberBy3(dreal, ",", "."));
+                    $('#drkap').html(FormatNumberBy3(drkap, ",", "."));
+                    $('#dmin').html(setFormat(dmin.toFixed(0), 0));
+                    $('#perd').html(FormatNumberBy3(per_dm.toFixed(1).replace(".", ","), ",", ".") + ' <span style="font-size: 12px;">%</span>');
+
+                    $('#erls').html(FormatNumberBy3(ereals, ",", "."));
+                    $('#erlt').html(FormatNumberBy3(erealt, ",", "."));
+                    $('#erks').html(FormatNumberBy3(erkaps, ",", "."));
+                    $('#pere').html(FormatNumberBy3(per_ex.toFixed(1).replace(".", ","), ",", ".") + ' <span style="font-size: 12px;">%</span>');
+
+                    $('#dl').html(gd_up + ' % / ' + gd_dw + ' %');
+                    $('#ec').html(ge + ' %');
+                    $('#tota').html(tot + ' %');
+
+
+                    // console.log(per_cm);
+                    if (per_dm >= 90 && per_dm <= 100) {
+                        $('#headcold').addClass('ylunder');
+                        $('#boxcold').addClass('ylind');
+                    } else if (per_dm >= 100) {
+                        $('#headcold').addClass('grunder');
+                        $('#boxcold').addClass('grind');
+                    } else {
+
+                    }
+
+                    if (per_ex >= 90 && per_ex <= 100) {
+                        $('#headcole').addClass('ylunder');
+                        $('#boxcole').addClass('ylind');
+                    } else if (per_ex >= 100) {
+                        $('#headcole').addClass('grunder');
+                        $('#boxcole').addClass('grind');
+                    } else {
+
+                    }
+                }
+
+               
+
+
+                stop_waitMe('.wrapper');
+            }
+
+        }).done(function(data) {
+
+        }).fail(function() {
+
+        });
+
+
+    }
+
+            }
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+                    font-size: 16px;
+    font-weight: 500;
+        padding-right: 12px;
+}
+
+.bagan:hover, .bagan:visited {
+    opacity: 0.6;
+}
+.titab{
+/*padding: 16px;*/
+padding-right: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    }
+.ylbox{
+background-color:#f9bf3b;
+}
+.ylhead{
+background-color:#f39c32;
+}
+.grbox{
+background-color:#6fc962;
+}
+.grhead{
+background-color:#68BA5B;
+}
+.tab_tittle{
+    margin-top: 12px;
+    color: black;
+    font-size: 23px;
+    padding-left: 9px;
+    display: inline-block;
+    border-bottom: 1px solid #e54b37;
+    }
+.title_sc{
+        text-align: center;
+    color: black;
+    margin-top: 15px;
+    display: inherit;
+    border-bottom: 0.8px solid #d9d9d9;
+    margin-bottom: -6px;
+}
+
+
+
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            
+
+            });
+        </script>
+        <title>SUPPLY CHAIN MANAGEMENT</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                          <h2 align="center" class="titular" style="        height: 37px;    line-height: 39px;font-size: small;text-align: center; padding-left: 11px;">
+                          <a href="portal_scm.html" class="pull-left" style="margin-left:10px;"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+
+                          SCM SALES VOLUME </h2>
+                        <div class="headsix cubesRun2" style="margin-bottom: 116px; min-height: 507px;"> 
+                          <img src="img/teks semen indo.png" class="imgsi imgsmi">
+                          <center>
+
+                          Bulan:    <select id="month" class="selmonth" rel="vol">
+                                    </select>
+                            Tahun :  <select id="year" class="selyear" rel="vol">
+                                    </select>
+                        </select><br> 
+<i class="fa fa-clock-o gry" aria-hidden="true"></i>  <span class="upercent gry" id="last-update">
+                                                </span><br>
+                         
+                        
+				<span class="upercent upscm">GROWTH Real / Prognose</span><br>
+<span class="prosen" style="color: #5da7d1;" id="tota">0 %</span><br>
+                           
+                        
+                        
+
+                                                <div align="center" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                               
+
+                               
+                                
+                                <div class="col-xs-12 noPadding" style="margin-top:0px;">
+                                <div class="col-xs-6" >
+								<span class="upercent">Domestic</span><br>
+                                <span class="prosen" style="color: #F39C12; font-size: 16px;" id="dl">0 % / 0 %</span>
+                                
+                                 
+                                </div>
+                                <!-- <div class="col-xs-2" ></div> -->
+                                <div class="col-xs-6" >
+                                <span class="upercent">Export</span><br>
+                                 <span class="prosen" style="color: #2ECC71; font-size: 16px;" id="ec">0 %</span>
+                                 
+                                       
+                                    
+                                </div> 
+                                </div>
+
+                            </div>      
+                          </center>
+          
+                                       
+
+           
+<!-- ####################### STOKKKKK PLANT ####################### -->
+                                    
+                                    <p class="title_sc">&nbsp;SALES VOLUME </p>
+                                    <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                    <a href="#detail" rel="scm_domestik_sv_smi" class="bagan">
+
+                                    <div class="col-xs-6" style="    padding: 6px;">
+                                        
+                                        <div class="col-xs-12 box" id="">
+                                        <div class="col-xs-12 noPadding titl" id="">
+                                        <span class="redunder" id="headcold">Domestic</span><i class="fa fa-circle redind" aria-hidden="true" id="boxcold"></i></div>
+                                        <div style="padding: 11px"> 
+                                        <div class="col-xs-6 noPadding" align="left" style="">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Real sdk</span><br>
+                                        <span class="fblack" id="dreal">0</span>
+                                        </div>
+
+                                        <div class="col-xs-6 noPadding" align="right" style="margin-bottom: 3px;">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">RKAP sdk</span><br>
+                                        <span style="margin-bottom: 6px;" id="drkap" class="fblack">0</span>
+                                        </div>
+
+                                        
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span class="titab fblack">Percent</span><br>
+                                        <span class="inex fblack" id="perd" style="font-size: 17px;"> 0 %</span>
+                                        </div>
+
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">+/(-)</span><br>
+                                        <span style="" id="dmin" class="fblack">0</span>
+                                        
+                                        </div>
+                                        </div>
+                                            
+                                       </div>
+                                       </div>
+                                    </a>
+                                    <a href="#" rel="scm_export_sv" class="bagan">
+
+                                        <div class="col-xs-6" style="    padding: 6px;">
+                                        
+                                        <div class="col-xs-12 box" id="">
+                                        <div class="col-xs-12 noPadding titl" id="">
+                                        <span class="redunder" id="headcole">Export</span><i class="fa fa-circle redind" aria-hidden="true" id="boxcole"></i></div>
+                                        <div style="padding: 11px"> 
+                                        <div class="col-xs-6 noPadding" align="left" style="">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Real Sm s/d</span><br>
+                                        <span class="fblack" id="erls">0</span>
+                                        </div>
+
+                                        <div class="col-xs-6 noPadding" align="right" style="margin-bottom: 3px;">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Real Tr s/d</span><br>
+                                        <span style="margin-bottom: 6px;" id="erlt" class="fblack">0</span>
+                                        </div>
+
+                                        
+                                        <div class="col-xs-6 noPadding" align="left">
+                                        <span class="titab fblack">RKAP Sm</span><br>
+                                        <span class="inex fblack" id="erks" style="font-size: 17px;"> 0 %</span>
+                                        </div>
+
+                                        <div class="col-xs-6 noPadding" align="right">
+                                        <span style="font-size: 12px; font-weight: 300;" class="fblack">Percent</span><br>
+                                        <span style="" id="pere" class="fblack">0</span>
+                                        
+                                        </div>
+                                        </div>
+                                            
+                                       </div>
+                                       </div>
+
+                                    </a>
+
+                                <div class="col-xs-12" align="center" style="margin-bottom: 12px;margin-top: 6px;">
+                                
+                                &nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #f64747"></i>&nbsp;:&nbsp;Volume < 90%
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #f9bf3b"></i>&nbsp;:&nbsp;Volume 90% - 100%
+                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #6fc962"></i>&nbsp;:&nbsp;Volume > 100%
+
+                            </div>
+
+                                    </div>
+
+                                    <br>
+                                    
+
+      
+      
+      
+    <br>
+
+
+                                                                  
+                                                             
+                            </div>
+         
+          
+                        </div>
+                          
+                        
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+   
+    
+    <!-- Modal -->
+    
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

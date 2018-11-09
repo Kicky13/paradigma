@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/tab_style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/stok_bahan.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script src="js/stupidtable.js?dev"></script>
+        <script src="js/paradigma.js"></script>
+		
+
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+		
+        <script src="js/phase2/sidenav.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+			
+				var session = getParamFull();
+				console.log(session);
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+
+                    $.each(listTab, function(index, el){
+                        console.log('under loop ' ,session['_com']);
+                        // $('#tab-'+el+' a').removeAttr('href');
+                        // $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                var myspan = document.getElementById('head');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "Cement Production";
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        $("#tab-revenue").fadeIn(1000);
+                        myspan.innerText = "Clinker Production";
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                        myspan.innerText = "Raw Meal Production";
+                    }
+                })
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'prod_rm_tlcc.html';
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+        </script>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            });
+        </script>
+        <title>STOK GUDANG</title>
+    </head>
+    <body onLoad="onLoad()" >
+		<div id="backdrop"></div>
+		<!-- Paste this code after body tag -->
+		<div class="se-pre-con"></div>
+		<!-- Ends -->
+		<div id="sidenav">
+			<div class="header">
+				<div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+			</div>
+			<div>
+				<ul>
+					<li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+					<li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+					<li><a href="sales_dashboard.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+					<li><a href="stok_bahan.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+					<li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+					<li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+					<li><a href="#" id="logout"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+               </ul>
+			</div>
+		</div>
+		<div id="content" style="background:#f5f5f5;">
+			<header id="header">
+				<button class="burger-menu burger-menu-x" id="menu-toggle">
+					<span>toggle menu</span>
+				</button>
+				<a class="logopis" href="">PRODUCTION</a>
+				<a class="logo" href="index.html"><img src="img/logo.png"></a>
+			</header>
+			<div class="wrapper">
+				<div class="head-menu">
+					<ul>
+						<li><a href="" class="active">PROD. REPORT</a></li>
+						<li><a href="">PLANT OVERVIEW</a></li>
+						<li><a href="">PERFORM MONITOR</a></li>
+						<li><a href="">MOTOR PERFORM</a></li>
+						<li class="haschild">
+									<a>ANALITYCAL KILN</a>
+									<div id="myDropdown" class="dropdown-content dd-new" align="left">
+										<a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+										</a>
+										<a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+										</a>
+									</div>
+								</li>
+						<li><a href="sg_emisi_status.html">EMISION</a></li>
+						<li class="haschild">
+									<a>ID FAN KILN</a>
+									<div id="myDropdown" class="dropdown-content dd-new" align="left">
+										<a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+										</a>
+										<a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+										</a>
+									</div>
+								</li>
+						<li><a href="silo_sg.html">SILO LEVEL</a></li>
+						<li><a href="power_plant_sg.html">POWER PLANT</a></li>
+						<li><a>PLANT OPERATION</a></li>
+					</ul>
+					<!-- <ul> -->
+						<!-- <li><a href="" class="active">MATERIAL STOCK</a></li> -->
+						<!-- <li><a href="">PORT MANAGEMENT</a></li> -->
+						<!-- <li><a href="">S&OP PRODUCTION</a></li> -->
+						<!-- <li><a href="">S&OP STOCK PP & GDG</a></li> -->
+						<!-- <li><a href="">S&OP SALES VOLUME</a></li> -->
+						<!-- <li><a href="">MARKET SHARE</a></li> -->
+					<!-- </ul> -->
+				</div>
+				<div class="headsix add_fix cubesRun2" style="margin-bottom: 116px; min-height: 1167px;"> 
+                    			
+                      			<div class=" cubesRun2 headone" style="height: 69px;">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota1.png" class="img_log"></div>
+                            <div class="col-xs-8" style="padding:0px; padding-right: 31px;">
+                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="prodtittle" id="head" style="    font-weight: 600;    font-size: 23px;    display: inline-block;">SEMEN GRESIK</p>
+                            </div>
+                        </div>
+                            
+                            <div style="width: 100%;margin-top: 0px; text-align: center;">
+                            Month : <select id="month" class="selmonth" rel="vol"></select>
+                            Year : <select id="year" class="selyear" rel="vol"></select>
+                            </div>
+                            <center>
+                                                
+                             <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">
+                              Last Update : <span id="tanggal" style="color: #666;margin-top: 4px;display: inline-block;"></span>
+                             </span>
+                             </center>          
+                            <br>
+                            <div class="col-xs-12" align="center" style="margin-bottom: 12px;margin-top: 6px;">
+                                <i class="fa fa-circle" aria-hidden="true" style="color: #636363"></i>&nbsp;:&nbsp;Over Max
+                                &nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #f64747"></i>&nbsp;:&nbsp;Under Min
+                                &nbsp;&nbsp;<i class="fa fa-circle" aria-hidden="true" style="color: #6fc962"></i>&nbsp;:&nbsp;Stok Save
+                                &nbsp;&nbsp;&nbsp;<!---<i class="fa fa-circle" aria-hidden="true" style="color: #f9bf3b"></i>&nbsp;:&nbsp;Replenish Point-->
+
+                            </div>
+
+                              <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1700','7403')">
+                                    <div class="col-xs-12 box" id="ar_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">A.F.R</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true"  id="ar_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                		<thead>
+                                		  <tr>
+                                		    <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>		
+                                		    <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>		
+                                		    <!--<th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th>-->
+                                		    <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>		
+                                		  </tr>		
+                                		  </thead>		
+                                		  <tbody >		
+                                		  		
+                                		  		<tr  rel="asset" class="f19">
+                                		  			<td valign="middle" align="center" id="ar_stok">0</td>
+                                		  			<td valign="middle" align="center" id="ar_min">0</td>
+                                		  			<!--<td valign="middle" align="center" id="ar_rp">0</td>-->
+                                		  			<td valign="middle" align="center" id="ar_max">-</td>
+                                		  		</tr>		
+                                		  </tbody>		
+                                		  </table>
+                                		  </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1000','7403')">
+                                    <div class="col-xs-12 box " id="bt_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Trass</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true"  id="bt_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th>       
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="bt_stok">0</td>
+                                    <td valign="middle" align="center" id="bt_min">0</td>
+                                    <td valign="middle" align="center" id="bt_rp">0</td>
+                                    <td valign="middle" align="center" id="bt_max">-</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1600','7403')"> <!--//1600-->
+                                    <div class="col-xs-12 box " id="bb_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Coal</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true"  id="bb_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                           <!-- <th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th>  -->     
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="bb_stok">0</td>
+                                    <td valign="middle" align="center" id="bb_min">0</td>
+                                    <!--<td valign="middle" align="center" id="bb_rp">0</td>-->
+                                    <td valign="middle" align="center" id="bb_max">-</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1100','7403')">
+                                    <div class="col-xs-12 box " id="cp_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Copper Slag</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true"  id="cp_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                           <!-- <th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th>   -->    
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="cp_stok">0</td>
+                                    <td valign="middle" align="center" id="cp_min">0</td>
+                                    <!--<td valign="middle" align="center" id="cp_rp">0</td>-->
+                                    <td valign="middle" align="center" id="cp_max">-</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+								<div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '2700','7403')">
+                                    <div class="col-xs-12 box " id="gn_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Gypsum Natural</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true" id="gn_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                           <!-- <th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th>      --> 
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="gn_stok">0</td>
+                                    <td valign="middle" align="center" id="gn_min">0</td>
+                                    <!--<td valign="middle" align="center" id="gn_rp">0</td>-->
+                                    <td valign="middle" align="center" id="gn_max">0</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+								
+								
+                                <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1300','7403')">
+                                    <div class="col-xs-12 box " id="gtj_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Gypsum OPC</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true" id="gtj_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                          <!--  <th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th> -->      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="gtj_stok">0</td>
+                                    <td valign="middle" align="center" id="gtj_min">0</td>
+                                    <!--<td valign="middle" align="center" id="gtj_rp">0</td>-->
+                                    <td valign="middle" align="center" id="gtj_max">-</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1400','7403')">
+                                    <div class="col-xs-12 box " id="gpg_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Gypsum PPC</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true"  id="gpg_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                            <!--<th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th> -->      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="gpg_stok">0</td>
+                                    <td valign="middle" align="center" id="gpg_min">0</td>
+                                    <!--<td valign="middle" align="center" id="gpg_rp">0</td>-->
+                                    <td valign="middle" align="center" id="gpg_max">-</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 
+
+                                <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1500','7403')">
+                                    <div class="col-xs-12 box " id="id_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">I.D.O</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true"  id="id_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                            <!--<th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th>-->       
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="id_stok">0</td>
+                                    <td valign="middle" align="center" id="id_min">0</td>
+                                    <!--<td valign="middle" align="center" id="id_rp">0</td>-->
+                                    <td valign="middle" align="center" id="id_max">-</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1200','7403')">
+                                    <div class="col-xs-12 box " id="sl_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Silica Sand</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true" id="sl_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                           <!-- <th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th> -->      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="sl_stok">0</td>
+                                    <td valign="middle" align="center" id="sl_min">0</td>
+                                    <!--<td valign="middle" align="center" id="sl_rp">0</td>-->
+                                    <td valign="middle" align="center" id="sl_max">-</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 bagan" style="padding: 4px" onclick="nextPage('7000', bulanSekarang, tahun, '1000','7403')">
+                                    <div class="col-xs-12 box " id="bt_sd">
+                                        <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                            <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Trass</span>
+                                            <i class="fa fa-chevron-right right grp_ico" aria-hidden="true"  id="bt_bt"></i>
+                                        </div>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        <table class="table" style="margin-bottom: 0px; padding-bottom: 100px;">
+                                        <thead>
+                                          <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Stock</strong> </th>      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Min</strong> </th>     
+                                            <!--<th valign="middle" data-sort="float" class="ctr_th"><strong>Replenish Point</strong> </th> -->      
+                                            <th valign="middle" data-sort="float" class="ctr_th"><strong>Max</strong> </th>     
+                                          </tr>     
+                                          </thead>      
+                                          <tbody >      
+                                                
+                                                <tr  rel="asset" class="f19">
+                                                    <td valign="middle" align="center" id="bt_stok">0</td>
+                                    <td valign="middle" align="center" id="bt_min">0</td>
+                                    <!--<td valign="middle" align="center" id="bt_rp">0</td>-->
+                                    <td valign="middle" align="center" id="bt_max">-</td>
+                                                </tr>       
+                                          </tbody>      
+                                          </table>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <br>
+                        </div> 
+			</div>
+		</div>    
+	</body>
+</html>

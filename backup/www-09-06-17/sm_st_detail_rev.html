@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+         <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script src="js/paradigma.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+        <script src="js/stupidtable.js?dev"></script>
+        <script type="text/javascript" src="js/highcharts_working.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+
+        <!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
+          <script>
+            $(function(){
+
+
+              
+            });
+          </script>
+        
+          <style type="text/css">
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+            th, td {
+              padding: 5px 10px;
+              border: 1px solid #999;
+            }
+            th {
+              background-color: #e3000e;
+            }
+            th[data-sort]{
+              cursor:pointer;
+            }
+            tr.awesome{
+              color: red;
+            }
+  .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .center {
+    text-align: center;
+}
+
+          </style>
+<!--        <script type="text/javascript" src="js/sorttable.js"></script>-->
+        
+        
+        <title>Sales & Marketing</title>
+        <script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+              run_waitMe('#revenue', 'facebook');
+
+            var opco = 4000;
+
+
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenew').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenew').removeClass('act_tb');
+                        window.location.href = 'sm_st_detail.html';
+                    } else if (r == 'data-revenew') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenew').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenew').addClass('act_tb');
+                        
+                    }
+                })
+
+
+                loadData(tahun, opco);        
+
+                if (opco == 7000) {
+                    $('.img_log').attr('src', 'img/icKota1.png');
+                    $('#head').text('SEMEN GRESIK');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').removeClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }else if (opco==3000) {
+                    $('.img_log').attr('src', 'img/icKota2.png');
+                    $('#head').text('SEMEN PADANG');
+
+                    $('#tab-sp').removeClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }if (opco==4000) {
+                    $('.img_log').attr('src', 'img/icKota3.png');
+                    $('#head').text('SEMEN TONASA');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').removeClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }if (opco==6000) {
+                    $('.img_log').attr('src', 'img/icKota4.png');
+                    $('#head').text('THANG LONG');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').removeClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }  
+                
+
+                $('.selyear').change(function() {
+                    tahun = $(this).val();
+                    // bulanSekarang = $('.selmonth').val();
+                    var t = $(this).attr('rel');
+                    loadData(tahun, opco);
+                })      
+
+            }
+
+        </script>
+    </head>
+    <body onLoad="onLoad()">
+      <div class="app">
+        <div id="deviceready">
+            <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                  <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                    <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                    <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a></li>
+                    <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a></li>
+                  </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                          <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                          <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+                    </header>
+
+                   <div class="wrapper">
+                      <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">
+                          MONTHLY SALES
+                      <a href="smsmig2.html" class="pull-right" style="margin-right:10px;"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a>
+                      </h2>
+
+                      <div class="col-xs-12 tab_dual">
+                          <div class="col-xs-12 bg_rds">
+                              
+
+                              <div id="tab-revenew" class="col-xs-6 center zero_padd left_tb act_tb ">
+                              <a href="#tab-click" rel="data-revenew" class="no-text-style"> <img src="img/revnue.png" width="18px">
+                              <span class="tx_tab">&nbsp;&nbsp;Revenue</span></a></div>
+
+                              <div id="tab-volume" class="col-xs-6 center zero_padd left_tb ">
+                              <a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/volum.png" width="18px"> 
+                              <span class="tx_tab">&nbsp;&nbsp;Volume</span></a></div>
+                          </div>
+                      </div>
+                         
+                      <div class=" headsix cubesRun2" style="    min-height: 600px;">
+                          <div class=" cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img  class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px; padding-right: 10px;">
+                                <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="prodtittle" id="head" style="    font-weight: 600;   display: inline-block;"></p>
+                               
+                            </div>
+                          </div>
+                              
+                          <center>
+                              Tahun:
+                              <select class="selyear" rel="vol">
+                                  <option value="2014">2014</option>
+                                  <option value="2015">2015</option>
+                                  <option value="2016" >2016</option>
+                                  <option value="2017" selected="selected">2017</option>
+                              </select>
+                          </center>
+                          
+                          
+
+                         
+                          <div  class="col-xs-12" align="left" style="padding-left: 15px; padding-top: 5px;">
+                              <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                              <span style="color: #5d5d5d;font-size: 12px;">&nbsp;&nbsp;&nbsp;Monthly Report</span>
+                              <div id="revenue" style="width:100%; height:240px;"></div>
+                          </div>
+
+                          <div align="center" style="margin-top:9px;">
+                              <div class="col-xs-6 noPadding" align="left" style="padding-left: 15px;" >
+                                  <div class="col-xs-12 noPadding">
+                                      <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                      <span class="inex_down " style="padding-left: 0px;">RKAP </span><br>
+
+                                      <span class="upervalue" id="rkapr_tot1">0</span><!--id=totpay7000-->
+                                  </div>
+                                  <div class="col-xs-12 noPadding" >
+                                      <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                      <span class="inex_down" style="padding-left: 0px;">REAL </span><br>
+
+                                      <i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Real : <br><span class="upervalue" id="realr_tot1">0</span> <!--id=totrec7000-->
+                                  </div>
+								  <div align="center" style="    margin-top: 13px;">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="inex_down dual" style="padding-left: 0px;" id="last_update">
+                                        <script type="text/javascript">
+                                            document.write("UP TO :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                                    
+                                </div>
+                              </div>
+                              <div class="col-xs-6 noPadding" style="padding-right:15px;" >
+                                  <div align="right" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                                      <span class="upercent">ACHIEVEMENT</span><br>
+                                      <i id="icon_achievement_vol" class="fa fa-3x" aria-hidden="true" align="left" style="color: #7be668;" ></i>&nbsp;
+                                      <span class="prosen" id="percentr" style="color: #5d5d5d;">0%</span>
+                                      <br>
+                                  </div>
+                              </div>
+                          </div>
+                         
+                              
+                        
+
+                          <div class="spacer"></div>
+                          
+                      </div>
+                   </div> <!-- tutup wraper -->
+                   <footer >
+<div class="regular" >
+
+
+                              <div id="tab-smi" class="col-xs-4 noPadding tab_uper col-ft-4 img_foot2" align="center" style="margin-top: 7px;"><a href="smsmig2.html" ><img src="img/smi.png" style="width : 38%;" /></a></div>
+                              <div id="tab-sg" class="col-xs-2 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#"><img src="img/icKota1a.png"  style="width:70%;" /></a></div> 
+                              <div id="tab-sp" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="sm_sp_detail_rev.html" ><img src="img/icKota2a.png" style="width:68%;" /></a></div>
+                              <div id="tab-st" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="sm_st_detail_rev.html"><img src="img/icKota3a.png" style="width:70%;"/></a></div> 
+                              <div id="tab-tl" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="sm_tl_detail_rev.html" ><img src="img/icKota4a.png" style="width:70%;"/></a></div> 
+                           <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>      
+
+        </div>
+        
+      </div>
+
+    <script>
+              function loadData(tahun, opco) {
+
+                 $.ajax({
+                      url: url_src+'/api/index.php/sales_monthly/sales_'+opco+'?tahun='+tahun,
+                      //url: url_src+'/STMRevVolPrice.php',
+                      //url: 'STMRevVolPrice.json',
+                      type: 'GET',
+                      success: function(data){
+                        //console.log('test');
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data = data2.replace(");", "]");
+                       var a = jQuery.parseJSON(data);
+        var last_update = a['last_update'];
+        a = a['data'];
+        $('#last_update').html("UP TO : "+ last_update);
+                         //var a = data;
+                         var rkapr = [];
+                         var realr = [];
+                         var lastr = [];
+
+                         var rkapr_tot = 0;
+                         var realr_tot = 0;
+                         var lastr_tot = 0;
+                         var percentr = 0;
+
+                         var percentr_val= 0;
+
+                         var rkapr_tot1 = 0;
+                         var realr_tot1 = 0;
+                        
+
+                         var rkapr_val =0;
+                         var realr_val =0;
+                        
+
+                         //var data = eval('('+data+')');
+                      // console.log(a);
+                        var s = '';
+                         
+                       for (var b=1;b<13;b++){
+                        if (b < 10){
+                         var s = '0'+b;
+                        }else{
+                         var s = b; 
+                        }
+
+                       $.each(a, function(key, val){
+                        $.each(val, function(key2, val2){
+                          $.each(val2, function(key3, val3){
+                        if(key == opco){
+                          if(key2 == s){
+                          if (key3 == 'rkap_revenue'){
+                            // console.log(key2);
+                            //  console.log(key3+' '+val3);
+                             rkapr.push(Number(val3));
+                             rkapr_val = rkapr_val + Number(val3);
+                             $('#rkapr').html(rkapr_val.toFixed(2)+' K');
+                          }
+                          else if(key3 == 'real_revenue'){
+                            // console.log(key2);
+                            //  console.log(key3+' '+val3);
+                             realr.push(Number(val3));
+                             realr_val = realr_val + Number(val3);
+                             $('#realr').html(realr_val.toFixed(2)+' K');
+                          }
+                          else if(key3 == 'last_revenue'){
+                            // console.log(key2);
+                            //  console.log(key3+' '+val3);
+                             lastr = Number(val3);
+                             $('#lastr').html(lastr.toFixed(2)+' K');
+                          }
+                        }
+                    }
+                      })
+                      })
+                      })
+                       // rkapr_tot += Number(rkapr_val);
+                       // // console.log(rkapv_tot);
+                       // $('#rkapr_tot').html(FormatNumberBy3((rkapr_tot/1000000000).toFixed(2).replace(".",","), ",",".")+' B');
+
+                       // realr_tot += Number(realr_val);
+                       // $('#realr_tot').html(FormatNumberBy3((realr_tot/1000000000).toFixed(2).replace(".",","), ",",".")+' B');
+
+                       // lastr_tot += Number(lastr);
+                       // $('#lastr_tot').html((lastr_tot/1000000000).toFixed(2)+' B');
+
+                       // percentr = (Number(realr_tot)/Number(rkapr_tot))*100;
+                       // $('#percentr').html(FormatNumberBy3(percentr.toFixed(2).replace(".",","), ",",".")+'<font size="5"> %</font>');
+
+                       // rkapr_tot1 += Number(rkapr_val);
+                       // // console.log(rkapv_tot1);
+                       // $('#rkapr_tot1').html(FormatNumberBy3((rkapr_tot1/1000000000).toFixed(2).replace(".",","), ",",".")+' B');
+                       // realr_tot1 += Number(realr_val);
+                       // $('#realr_tot1').html(FormatNumberBy3((realr_tot1/1000000000).toFixed(2).replace(".",","), ",",".")+' B');
+                       // //console.log(realr_tot1);
+                     
+
+                       // percentr_val = (Number(realr_tot)/Number(rkapr_tot))*100;
+                       // $('#percentr').html((percentr_val.toFixed(2).replace(".",","))+'<font size="3"> %</font>');
+                      
+                    }
+                    rkapr_tot += Number(rkapr_val);
+                       // console.log(rkapv_tot);
+                       $('#rkapr_tot').html(FormatNumberBy3((rkapr_tot/1000000000).toFixed(2).replace(".",","), ",",".")+' B');
+
+                       realr_tot += Number(realr_val);
+                       $('#realr_tot').html(FormatNumberBy3((realr_tot/1000000000).toFixed(2).replace(".",","), ",",".")+' B');
+
+                       lastr_tot += Number(lastr);
+                       $('#lastr_tot').html((lastr_tot/1000000000).toFixed(2)+' B');
+
+                       percentr = (Number(realr_tot)/Number(rkapr_tot))*100;
+                       $('#percentr').html(FormatNumberBy3(percentr.toFixed(2).replace(".",","), ",",".")+'<font size="5"> %</font>');
+
+                       rkapr_tot1 += Number(rkapr_val);
+                       // console.log(rkapv_tot1);
+                       $('#rkapr_tot1').html(FormatNumberBy3((rkapr_tot1/1000000000).toFixed(2).replace(".",","), ",",".")+' B');
+                       realr_tot1 += Number(realr_val);
+                       $('#realr_tot1').html(FormatNumberBy3((realr_tot1/1000000000).toFixed(2).replace(".",","), ",",".")+' B');
+                       //console.log(realr_tot1);
+                     
+
+                       percentr_val = (Number(realr_tot)/Number(rkapr_tot))*100;
+                       $('#percentr').html((percentr_val.toFixed(2).replace(".",","))+'<font size="3"> %</font>');
+                       stop_waitMe('#revenue');
+                    $('#revenue').highcharts({
+                            title: {
+                                text: ''            
+                            },
+
+                            credits: {
+                                enabled :false
+                            },
+
+                            chart: {
+                                backgroundColor:'rgba(0, 255, 0, 0)',
+                                polar: true
+                            },
+                             tooltip:{
+                    formatter: function(){
+                    var n = this.y/1000000000;
+                    var s = this.series.name;
+                    return '<b>'+s+':<br>'+setformat(n)+' B</b>';
+                    }
+                    },
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                            },
+
+                            plotOptions: {
+                                series: {
+                                    states: {
+                                        hover: {
+                                            enabled: false
+                                        }
+                                    }
+                                }
+                            },        
+
+                            series: [{
+                                type: 'column',
+                                name: 'Real',
+                                color: '#45DD90',
+                                data: realr,
+                            },{
+                                type: 'line',
+                                name: 'RKAP',
+                                color: '#FF615D',
+                                data: rkapr,
+                            }]        
+
+
+                        });
+                    function setformat(nilai){
+                                        var tmp = accounting.formatMoney(nilai,"",2,".",",");
+                                        return tmp;
+                                        }
+                    }
+                    })
+              }
+              </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            <!-- $(".regular").slick({ -->
+        <!-- infinite: true, -->
+        <!-- slidesToShow: 4, -->
+        <!-- slidesToScroll: 4, -->
+        <!-- arrows:true, -->
+         <!-- centerMode: true -->
+        <!-- // variableWidth: true -->
+      <!-- }); -->
+            });
+        </script>
+        </body>
+  </html>

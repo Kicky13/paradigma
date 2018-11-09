@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'"/>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/versi.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <style type="text/css">
+            .ttll{
+                    font-size: 29px;
+    color: #7c7c7c;
+            }
+            .smsn{
+                   color: #d93535;
+    margin-top: 23px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+            }
+            .smsn2{
+                    color: #202020;
+    font-size: 8px;
+            }
+        </style>
+        <title>App Update</title>
+    </head>
+    <body bgcolor="white;" style="background-image: url(./img/bg-green.jpg);">
+        <div class="app" onclick="javascript:window.location.replace('index_login2.html')">
+        <div class="col-xs-3">&nbsp;</div>
+        <div class="col-xs-6 bagan" align="center" style="padding: 4px">
+
+                                    <div class="col-xs-12 box" id="ar_sd" style="border-radius: 25px;    background-size: 149%;">
+                                     <img src="img/icov.png" width="94px" style="margin-top: 23px;"><br>
+                                     <span style="color: black;">Version</span>
+                                     <span class="ttll"><b><span  style="color: black;"> <br> </span>V.<span id='version'  style="color: black;"></span></b></span>
+                                     <br>
+                                     <span class="smsn">PAR4DIGMA</span><br>
+                                        <span class="smsn2">PT. Semen Indonesia (Persero) Tbk</span>
+                                        <div style="margin-bottom:0px;">
+                                        <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                        
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+            <div class="col-xs-3">&nbsp;</div>
+
+            
+            <div id="updateurl"></div>
+            <h1><a href="javascript:void(0)" id='check'></a></h1>
+            
+             <div align="center" class="animated fadeIn" style="margin-top: 110%;margin-bottom: 0px;"> 
+                                <p class="texthead ">PERFORMANCE REPORTING & ANALYTICAL FOR DIGITAL MANUFACTURING</p>
+                            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/check.js"></script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 5
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

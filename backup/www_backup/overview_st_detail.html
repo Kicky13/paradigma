@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/loader.js"></script>
+
+        <style>
+            table, th, td {
+                /*                border: 1px solid black;
+                */            }
+            .opco{
+                float:left; 
+                font-size:14px; 
+                color:#333333; 
+                margin-top: 10px; 
+                margin-bottom:1px;
+                font-family:"Open Sans";
+
+            }
+            .planttittle{
+                text-align:center; 
+                color:black; 
+                font-size:25px; 
+                font-size:bold; 
+                float:left;
+                font-family:"Open Sans";
+            }
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .box_sdow2{
+                width: 100%;
+                background-color: #FFFFFF;
+                margin-bottom: 13px;
+                /* color: #CCCCCC; */
+                font-size: 9px;
+            }
+            .bg-white {background:#fff;}
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .tab-tittle{
+                font-family:"Open Sans";
+                font-size:10px;
+            }
+            .text-small {font:normal 10px arial;color:#000;}
+            .text-medium {font:normal 11px arial;color:#000;}
+            .center {text-align: center;}
+            .padding5 {padding:5px;}
+            .border-down {
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {text-decoration: none;color:#000;}
+            .highcharts-credits {
+                display:none;  
+            }
+            .sticky_bottom {
+                position: absolute;
+                bottom:10px;
+                width: 100%;
+            }
+            .lower_logo {
+                margin:10px;
+            }
+
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .jud {			    
+                color: #434343;
+                font-size: 16px;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 2px solid #e64c65;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab{
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .nyala-ON{
+                background-color: #6fc962;
+                text-align: center;
+            }
+            .nyala-OFF{
+                background-color: #e54b37;
+                text-align: center;
+            }
+            /*            .nyala-EXP{
+                            background-color: #000000;
+                            text-align: center;
+                        }*/
+
+            .nyala-EXP {
+                font-size: 16px;
+                color: white;
+                padding: 6px 8px 6px 8px;
+                border-radius: 22px;
+                background: rgba(226,226,226,1);
+                background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(226,226,226,1)), color-stop(50%, rgba(219,219,219,1)), color-stop(51%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
+                background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+                background: -o-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+                background: -ms-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+                background: linear-gradient(to bottom, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0 );
+            }
+        </style>
+
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+
+            function onLoad() {
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                    }
+                })
+            }
+        </script>
+        <title>Plant Overview</title>
+    </head>
+    <body onLoad="onLoad()">
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                        <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                        <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                        <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                        <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                        <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                        <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                        <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="height: 37px; line-height: 39px; font-size: small;">
+                            <a href="portal_prod1.html" class="pull-left" style="margin-left:10px;">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            </a>STATUS</h2>
+                        <div class=" headsix2 cubesRun2 headone whitebg">
+                            <div class="col-xs-4" style="padding:0px;" align="center">
+                                <img src="img/icKota3.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px"> <p class="opco">SEMEN TONASA</p>
+                                <p class="planttittle">Plant Overview</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" style="background-color: white;">
+                            <div class="col-xs-12 bg_rds">
+
+                                <div id="tab-volume" align="center" class="col-xs-6 center zero_padd left_tb act_tb" ><a href="#tab-click" rel="data-volume" class="no-text-style">
+
+                                        <span class="tx_tab">&nbsp;&nbsp;Plant Equip</span></a></div>
+
+                                <!--                        <div id="tab-revenue" align="center"  class="col-xs-4 center padding5 border-down " ><a href="#tab-click" rel="data-revenue" class="no-text-style">
+                                                                <span class="tx_tab">&nbsp;&nbsp;Emission</span></a></div>-->
+                                <div id="tab-price" align="center"  class="col-xs-6 center zero_padd right_tb " ><a href="#tab-click" rel="data-price" class="no-text-style">
+                                        <span class="tx_tab">&nbsp;&nbsp;Stock Silo</span></a></div>
+                            </div></div>
+
+
+                        <div id="data-volume">
+
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <div class="table-responsive" >
+                                        <table class="table whitebg" style="font-size: 13px;">
+                                            <tr class="hidden">
+                                                <td  height="0%"><div align="right">&nbsp;</div></td>
+                                                <td  height="0%">&nbsp;</td>
+                                                <td  height="0%">&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" width="27px"><span class="jud">&nbsp;&nbsp;TONASA 2</span></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td>ON/OFF</td>
+                                                <td>FEED (T/H)</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Raw Mill</div></td>
+                                                <td align="left"><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="orm1tns2"></i></td>
+                                                <td><div align="right" id="rm1tns2"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Kiln</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="okl1tns2"></i></td>
+                                                <td><div align="right" id="kl1tns2"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Coal Mill</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ocm1tns2"></i></td>
+                                                <td><div align="right" id="cm1tns2"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Finish Mill</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ofm1tns2"></i></td>
+                                                <td><div align="right" id="fm1tns2"></div></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" width="27px"><span class="jud">&nbsp;&nbsp;TONASA 3</span></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td>ON/OFF</td>
+                                                <!--<td  height="0%">&nbsp;</td>-->
+                                                <td>FEED (T/H)</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Raw Mill</div></td>
+                                                <td align="left"><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="orm1tns3"></i></td>
+                                                <td><div align="right" id="rm1tns3"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Kiln</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="okl1tns3"></i></td>
+                                                <td><div align="right" id="kl1tns3"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Coal Mill</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ocm1tns3"></i></td>
+                                                <td><div align="right" id="cm1tns3"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Finish Mill</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ofm1tns3"></i></td>
+                                                <td><div align="right" id="fm1tns3"></div></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" width="27px"><span class="jud">&nbsp;&nbsp;TONASA 4</span></td>
+                                                <td id="runtime_opc" style="color: black;"></td>
+                                                <td id="keterangan" style="color: black;"></td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td>ON/OFF</td>
+                                                <td>FEED (T/H)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Raw Mill 4.1</div></td>
+                                                <td align="left"><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="orm1tns4"></i></td>
+                                                <td><div align="right" id="rm1tns4"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Raw Mill 4.2</div></td>
+                                                <td align="left"><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="orm2tns4"></i></td>
+                                                <td><div align="right" id="rm2tns4"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Kiln</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="okl1tns4"></i></td>
+                                                <td><div align="right" id="kl1tns4"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Coal Mill 4.1</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ocm1tns4"></i></td>
+                                                <td align="right"><span style="color: black;" id="cm1tns4"></span><span style="color: black;">&nbsp;%</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Coal Mill 4.2</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ocm2tns4"></i></td>
+                                                <td align="right"><span style="color: black;" id="cm2tns4"></span><span style="color: black;">&nbsp;%</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Finish Mill 4.1</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ofm1tns4"></i></td>
+                                                <td style="padding-bottom: 1px;padding-top: 21px; text-align: right;"><div  id="fm1tns4"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Finish Mill 4.2</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ofm2tns4"></i></td>
+                                                <td style="padding-bottom: 1px;padding-top: 21px; text-align: right;"><div id="fm2tns4"></div></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" width="27px"><span class="jud">&nbsp;&nbsp;TONASA 5</span></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td>ON/OFF</td>
+                                                <td>FEED (T/H)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Raw Mill 5</div></td>
+                                                <td align="left"><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="orm1tns5"></i></td>
+                                                <td><div align="right" id="rm1tns5"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Kiln</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i  class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="okl1tns5"></i></td>
+                                                <td><div align="right" id="kl1tns5"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Coal Mill</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ocm1tns5"></i></td>
+                                                <td><div align="right" id="cm1tns5"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Finish Mill 5.1</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ofm1tns5"></i></td>
+                                                <td><div align="right" id="fm1tns5"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Finish Mill 5.2</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="ofm2tns5"></i></td>
+                                                <td><div align="right" id="fm2tns5"></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="data-revenue" class="hidden">                           
+
+                            <div id="menu1" class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <div class="table-responsive" >
+                                        <table class="table table-striped" style="font-size: 13px;">
+                                            <tr class="hidden">
+                                                <td  height="0%"><div align="right">&nbsp;</div></td>
+                                                <td  height="0%">&nbsp;</td>
+                                                <!--<td>&nbsp;</td>-->
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp;TONASA 2</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td style="text-align: right;">RATE (mg/Nm)<sup>3</sup></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Kiln</div></td>
+                                                <td align="left"><div align="right">2W1W01X3</div></td>
+                                                <td><div align="right" id="epkl1tns2"></div></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp;TONASA 3</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td style="text-align: right;">RATE (mg/Nm)<sup>3</sup></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Kiln</div></td>
+                                                <td align="left"><div align="right">3W2W01X3</div></td>
+                                                <td><div align="right" id="epkl1tns3"></div></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp;TONASA 4</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td style="text-align: right;">RATE (mg/Nm)<sup>3</sup></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Kiln</div></td>
+                                                <td align="left"><div align="right">4J1P11X1_1</div></td>
+                                                <td><div align="right" id="epkl1tns4"></div></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp;TONASA 5</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td style="text-align: right;">RATE (mg/Nm)<sup>3</sup></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left">Kiln</div></td>
+                                                <td align="left"><div align="right">5J1P01N3A02</div></td>
+                                                <td><div align="right" id="epkl1tns5"></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="data-price" class="hidden">
+
+                            <div id="menu2" class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <div class="table-responsive" >
+                                        <table class="table table-striped" style="font-size: 13px;">
+                                            <tr class="hidden">
+                                                <td  height="0%"><div align="right">&nbsp;</div></td>
+                                                <td  height="0%">&nbsp;</td>
+                                                <!--<td>&nbsp;</td>-->
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td  height="0%"><img src="img/plant_ico.png" width="27px" /><span class="jud">&nbsp;&nbsp;TONASA 2</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td  height="0%">EQUIPMENT</td>
+                                                <td style="text-align: right;">Ton</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 1</div></td>
+                                                <td><div align="right" id="silo1"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 2</div></td>
+                                                <td><div align="right" id="silo2"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 3</div></td>
+                                                <td><div align="right" id="silo3"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 4</div></td>
+                                                <td><div align="right" id="silo4"></div></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td  height="0%"><img src="img/plant_ico.png" width="27px" /><span class="jud">&nbsp;&nbsp;TONASA 3</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td  height="0%">EQUIPMENT</td>
+                                                <td style="text-align: right;">Ton</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 5</div></td>
+                                                <td><div align="right" id="silo5"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 6</div></td>
+                                                <td><div align="right" id="silo6"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 7</div></td>
+                                                <td><div align="right" id="silo7"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 8</div></td>
+                                                <td><div align="right" id="silo8"></div></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td  height="0%"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp;TONASA 4</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td  height="0%">EQUIPMENT</td>
+                                                <td style="text-align: right;">&nbsp;In %</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 4.1</div></td>
+                                                <td align="right"><span style="color: black;" id="silo_41"></span><span style="color: black;">&nbsp;%</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 4.2</div></td>
+                                                <td align="right"><span style="color: black;" id="silo_42"></span><span style="color: black;">&nbsp;%</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 4.3</div></td>
+                                                <td align="right"><span style="color: black;" id="silo_43"></span><span style="color: black;">&nbsp;%</span></td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td  height="0%"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp;TONASA 5</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td  height="0%">EQUIPMENT</td>
+                                                <td style="text-align: right;">Ton</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 5.1</div></td>                                                
+                                                <td><div align="right" id="silo_51"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 5.2</div></td>                                                
+                                                <td><div align="right" id="silo_52"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 5.3</div></td>                                                
+                                                <td><div align="right" id="silo_53"></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="production-value" >
+                            <div class="chartBox" style="margin-top: 5px; margin-bottom: 44px;">
+                            </div>
+                            <footer>
+                                <div id="tab-sp" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="overview_sp_detail.html" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+                                <div id="tab-sg" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="overview_sg_detail.html" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+                                <div id="tab-st" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div> 
+                                <div id="tab-tl" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="overview_tlcc_detail.html" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div> 
+                            </footer>
+                            <div class="spacer"></div>  
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function dataUpdate() {
+                        $.ajax({
+                            url: url_src + '/api/index.php/plant_tonasa/get_statefeed',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+
+                                //TONASA 2/3
+                                ocm1tns2 = dataJson[0].tags[0].props[0].val;
+                                ocm1tns3 = dataJson[0].tags[1].props[0].val;
+                                ofm1tns2 = dataJson[0].tags[2].props[0].val;
+                                ofm1tns3 = dataJson[0].tags[3].props[0].val;
+                                okl1tns2 = dataJson[0].tags[4].props[0].val;
+                                okl1tns3 = dataJson[0].tags[5].props[0].val;
+                                orm1tns2 = dataJson[0].tags[6].props[0].val;
+                                orm1tns3 = dataJson[0].tags[7].props[0].val;
+
+                                fm1tns2 = parseFloat(dataJson[0].tags[8].props[0].val).toFixed(2);
+                                fm1tns3 = parseFloat(dataJson[0].tags[9].props[0].val).toFixed(2);
+                                kl1tns2 = parseFloat(dataJson[0].tags[10].props[0].val).toFixed(2);
+                                kl1tns3 = parseFloat(dataJson[0].tags[11].props[0].val).toFixed(2);
+                                rm1tns2 = parseFloat(dataJson[0].tags[12].props[0].val).toFixed(2);
+                                rm1tns3 = parseFloat(dataJson[0].tags[13].props[0].val).toFixed(2);
+                                cmtns2 = parseFloat(dataJson[0].tags[14].props[0].val).toFixed(2);
+                                cmtns3 = parseFloat(dataJson[0].tags[17].props[0].val).toFixed(2);
+
+                                ep_kltns2 = parseFloat(dataJson[0].tags[15].props[0].val).toFixed(2);
+                                ep_kltns3 = parseFloat(dataJson[0].tags[16].props[0].val).toFixed(2);
+
+                                //Raw Mill
+                                if (orm1tns2 == 'True') {
+                                    $("#orm1tns2").addClass('nyala-ON');
+                                    $("#orm1tns2").removeClass('nyala-OFF');
+                                } else {
+                                    $("#orm1tns2").addClass('nyala-OFF');
+                                    $("#orm1tns2").removeClass('nyala-ON');
+                                }
+                                if (orm1tns3 == 'True') {
+                                    $("#orm1tns3").addClass('nyala-ON');
+                                    $("#orm1tns3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#orm1tns3").addClass('nyala-OFF');
+                                    $("#orm1tns3").removeClass('nyala-ON');
+                                }
+                                //Coal Mill
+                                if (ocm1tns2 == 'True') {
+                                    $("#ocm1tns2").addClass('nyala-ON');
+                                    $("#ocm1tns2").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ocm1tns2").addClass('nyala-OFF');
+                                    $("#ocm1tns2").removeClass('nyala-ON');
+                                }
+                                if (ocm1tns3 == 'True') {
+                                    $("#ocm1tns3").addClass('nyala-ON');
+                                    $("#ocm1tns3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ocm1tns3").addClass('nyala-OFF');
+                                    $("#ocm1tns3").removeClass('nyala-ON');
+                                }
+                                //Kiln
+                                if (okl1tns2 == 'True') {
+                                    $("#okl1tns2").addClass('nyala-ON');
+                                    $("#okl1tns2").removeClass('nyala-OFF');
+                                } else {
+                                    $("#okl1tns2").addClass('nyala-OFF');
+                                    $("#okl1tns2").removeClass('nyala-ON');
+                                }
+                                if (okl1tns3 == 'True') {
+                                    $("#okl1tns3").addClass('nyala-ON');
+                                    $("#okl1tns3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#okl1tns3").addClass('nyala-OFF');
+                                    $("#okl1tns3").removeClass('nyala-ON');
+                                }
+                                //Finish Mill
+                                if (ofm1tns2 == 'True') {
+                                    $("#ofm1tns2").addClass('nyala-ON');
+                                    $("#ofm1tns2").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ofm1tns2").addClass('nyala-OFF');
+                                    $("#ofm1tns2").removeClass('nyala-ON');
+                                }
+                                if (ofm1tns3 == 'True') {
+                                    $("#ofm1tns3").addClass('nyala-ON');
+                                    $("#ofm1tns3").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ofm1tns3").addClass('nyala-OFF');
+                                    $("#ofm1tns3").removeClass('nyala-ON');
+                                }
+                                //Nilai Raw Mill
+                                $("#rm1tns2").html(rm1tns2);
+                                $("#rm1tns3").html(rm1tns3);
+                                //Nilai Coal Mill
+                                $("#cm1tns2").html(cmtns2);
+                                $("#cm1tns3").html(cmtns3);
+                                //Nilai Kiln
+                                $("#kl1tns2").html(kl1tns2);
+                                $("#kl1tns3").html(kl1tns3);
+                                //Nilai Finish Mill
+                                $("#fm1tns2").html(fm1tns2);
+                                $("#fm1tns3").html(fm1tns3);
+                                //Nilai Emisi
+                                $("#epkl1tns2").html(ep_kltns2);
+                                $("#epkl1tns3").html(ep_kltns3);
+
+                                //TONASA 4
+                                ocm1tns4 = dataJson[0].tags[25].props[0].val;
+                                ocm2tns4 = dataJson[0].tags[26].props[0].val;
+                                orm1tns4 = dataJson[0].tags[30].props[0].val;
+                                orm2tns4 = dataJson[0].tags[31].props[0].val;
+                                ofm1tns4 = dataJson[0].tags[27].props[0].val;
+                                ofm2tns4 = dataJson[0].tags[28].props[0].val;
+                                okl1tns4 = dataJson[0].tags[29].props[0].val;
+
+                                fm1tns4 = parseFloat(dataJson[0].tags[20].props[0].val).toFixed(2);
+                                fm2tns4 = parseFloat(dataJson[0].tags[21].props[0].val).toFixed(2);
+                                rm1tns4 = parseFloat(dataJson[0].tags[23].props[0].val).toFixed(2);
+                                rm2tns4 = parseFloat(dataJson[0].tags[24].props[0].val).toFixed(2);
+                                cm1tns4 = parseFloat(dataJson[0].tags[18].props[0].val).toFixed(2);
+                                cm2tns4 = parseFloat(dataJson[0].tags[19].props[0].val).toFixed(2);
+                                kl1tns4 = parseFloat(dataJson[0].tags[22].props[0].val).toFixed(2);
+
+                                if (orm1tns4 == 'True') {
+                                    $("#orm1tns4").addClass('nyala-ON');
+                                    $("#orm1tns4").removeClass('nyala-OFF');
+                                    $("#orm1tns4").removeClass('nyala-EXP');
+                                } else {
+                                    $("#orm1tns4").addClass('nyala-OFF');
+                                    $("#orm1tns4").removeClass('nyala-ON');
+                                    $("#orm1tns4").removeClass('nyala-EXP');
+                                }
+                                if (orm2tns4 == 'True') {
+                                    $("#orm2tns4").addClass('nyala-ON');
+                                    $("#orm2tns4").removeClass('nyala-OFF');
+                                    $("#orm2tns4").removeClass('nyala-EXP');
+                                } else {
+                                    $("#orm2tns4").addClass('nyala-OFF');
+                                    $("#orm2tns4").removeClass('nyala-ON');
+                                    $("#orm2tns4").removeClass('nyala-EXP');
+                                }
+                                if (ocm1tns4 == 'True') {
+                                    $("#ocm1tns4").addClass('nyala-ON');
+                                    $("#ocm1tns4").removeClass('nyala-OFF');
+                                    $("#ocm1tns4").removeClass('nyala-EXP');
+                                } else {
+                                    $("#ocm1tns4").addClass('nyala-OFF');
+                                    $("#ocm1tns4").removeClass('nyala-ON');
+                                    $("#ocm1tns4").removeClass('nyala-EXP');
+                                }
+                                if (ocm2tns4 == 'True') {
+                                    $("#ocm2tns4").addClass('nyala-ON');
+                                    $("#ocm2tns4").removeClass('nyala-OFF');
+                                    $("#ocm2tns4").removeClass('nyala-EXP');
+                                } else {
+                                    $("#ocm2tns4").addClass('nyala-OFF');
+                                    $("#ocm2tns4").removeClass('nyala-ON');
+                                    $("#ocm2tns4").removeClass('nyala-EXP');
+                                }
+                                if (okl1tns4 == 'True') {
+                                    $("#okl1tns4").addClass('nyala-ON');
+                                    $("#okl1tns4").removeClass('nyala-OFF');
+                                    $("#okl1tns4").removeClass('nyala-EXP');
+                                } else {
+                                    $("#okl1tns4").addClass('nyala-OFF');
+                                    $("#okl1tns4").removeClass('nyala-ON');
+                                    $("#okl1tns4").removeClass('nyala-EXP');
+                                }
+                                if (ofm1tns4 == 'True') {
+                                    $("#ofm1tns4").addClass('nyala-ON');
+                                    $("#ofm1tns4").removeClass('nyala-OFF');
+                                    $("#ofm1tns4").removeClass('nyala-EXP');
+                                } else {
+                                    $("#ofm1tns4").addClass('nyala-OFF');
+                                    $("#ofm1tns4").removeClass('nyala-ON');
+                                    $("#ofm1tns4").removeClass('nyala-EXP');
+                                }
+                                if (ofm2tns4 == 'True') {
+                                    $("#ofm2tns4").addClass('nyala-ON');
+                                    $("#ofm2tns4").removeClass('nyala-OFF');
+                                    $("#ofm2tns4").removeClass('nyala-EXP');
+                                } else {
+                                    $("#ofm2tns4").addClass('nyala-OFF');
+                                    $("#ofm2tns4").removeClass('nyala-ON');
+                                    $("#ofm2tns4").removeClass('nyala-EXP');
+                                }
+
+                                var today = new Date().toUTCString().substring(6, 22);
+                                //Undefined
+                                if (ocm1tns4 === undefined || ocm1tns4 === null) {
+                                    $("runtime_opc").html("OPC Server Disconnect");
+                                    $("keterangan").html(today);
+                                    $("#ocm1tns4").addClass('nyala-EXP');
+                                    $("#ocm1tns4").removeClass('nyala-ON');
+                                    $("#ocm1tns4").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ocm1tns4").removeClass('nyala-EXP');
+                                    $("runtime_opc").html('');
+                                    $("keterangan").html('');
+                                }
+                                if (ocm2tns4 === undefined || ocm2tns4 === null) {
+                                    $("#ocm2tns4").addClass('nyala-EXP');
+                                    $("#ocm2tns4").removeClass('nyala-ON');
+                                    $("#ocm2tns4").removeClass('nyala-OFF')
+                                } else {
+                                    $("#ocm2tns4").removeClass('nyala-EXP');
+                                }
+                                if (orm1tns4 === undefined || orm1tns4 === null) {
+                                    $("#orm1tns4").addClass('nyala-EXP');
+                                    $("#orm1tns4").removeClass('nyala-ON');
+                                    $("#orm1tns4").removeClass('nyala-OFF')
+                                } else {
+                                    $("#orm1tns4").removeClass('nyala-EXP');
+                                }
+                                if (orm2tns4 === undefined || orm2tns4 === null) {
+                                    $("#orm2tns4").addClass('nyala-EXP');
+                                    $("#orm2tns4").removeClass('nyala-ON');
+                                    $("#orm2tns4").removeClass('nyala-OFF')
+                                } else {
+                                    $("#orm2tns4").removeClass('nyala-EXP');
+                                }
+                                if (ofm1tns4 === undefined || ofm1tns4 === null) {
+                                    $("#ofm1tns4").addClass('nyala-EXP');
+                                    $("#ofm1tns4").removeClass('nyala-ON');
+                                    $("#ofm1tns4").removeClass('nyala-OFF')
+                                } else {
+                                    $("#ofm1tns4").removeClass('nyala-EXP');
+                                }
+                                if (ofm2tns4 === undefined || ofm2tns4 === null) {
+                                    $("#ofm2tns4").addClass('nyala-EXP');
+                                    $("#ofm2tns4").removeClass('nyala-ON');
+                                    $("#ofm2tns4").removeClass('nyala-OFF')
+                                } else {
+                                    $("#ofm2tns4").removeClass('nyala-EXP');
+                                }
+                                if (okl1tns4 === undefined || okl1tns4 === null) {
+                                    $("#okl1tns4").addClass('nyala-EXP');
+                                    $("#okl1tns4").removeClass('nyala-ON');
+                                    $("#okl1tns4").removeClass('nyala-OFF')
+                                } else {
+                                    $("#okl1tns4").removeClass('nyala-EXP');
+                                }
+
+                                $("#rm1tns4").html(rm1tns4);
+                                $("#rm2tns4").html(rm2tns4);
+                                $("#cm1tns4").html(cm1tns4);
+                                $("#cm2tns4").html(cm2tns4);
+                                $("#kl1tns4").html(kl1tns4);
+                                $("#fm1tns4").html(fm1tns4);
+                                $("#fm2tns4").html(fm2tns4);
+
+                                //TONASA 5
+                                ofm1tns5 = dataJson[0].tags[38].props[0].val;
+                                ofm2tns5 = dataJson[0].tags[39].props[0].val;
+                                ocm1tns5 = dataJson[0].tags[37].props[0].val;
+                                orm1tns5 = dataJson[0].tags[41].props[0].val;
+                                okl1tns5 = dataJson[0].tags[40].props[0].val;
+
+                                fm1tns5 = parseFloat(dataJson[0].tags[33].props[0].val).toFixed(2);
+                                fm2tns5 = parseFloat(dataJson[0].tags[34].props[0].val).toFixed(2);
+                                cm1tns5 = parseFloat(dataJson[0].tags[32].props[0].val).toFixed(2);
+                                rm1tns5 = parseFloat(dataJson[0].tags[36].props[0].val).toFixed(2);
+                                kl1tns5 = parseFloat(dataJson[0].tags[35].props[0].val).toFixed(2);
+
+                                if (orm1tns5 == 'True') {
+                                    $("#orm1tns5").addClass('nyala-ON');
+                                    $("#orm1tns5").removeClass('nyala-OFF');
+                                } else {
+                                    $("#orm1tns5").addClass('nyala-OFF');
+                                    $("#orm1tns5").removeClass('nyala-ON');
+                                }
+                                if (ocm1tns5 == 'True') {
+                                    $("#ocm1tns5").addClass('nyala-ON');
+                                    $("#ocm1tns5").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ocm1tns5").addClass('nyala-OFF');
+                                    $("#ocm1tns5").removeClass('nyala-ON');
+                                }
+                                if (okl1tns5 == 'True') {
+                                    $("#okl1tns5").addClass('nyala-ON');
+                                    $("#okl1tns5").removeClass('nyala-OFF');
+                                } else {
+                                    $("#okl1tns5").addClass('nyala-OFF');
+                                    $("#okl1tns5").removeClass('nyala-ON');
+                                }
+                                if (ofm1tns5 == 'True') {
+                                    $("#ofm1tns5").addClass('nyala-ON');
+                                    $("#ofm1tns5").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ofm1tns5").addClass('nyala-OFF');
+                                    $("#ofm1tns5").removeClass('nyala-ON');
+                                }
+                                if (ofm2tns5 == 'True') {
+                                    $("#ofm2tns5").addClass('nyala-ON');
+                                    $("#ofm2tns5").removeClass('nyala-OFF');
+                                } else {
+                                    $("#ofm2tns5").addClass('nyala-OFF');
+                                    $("#ofm2tns5").removeClass('nyala-ON');
+                                }
+
+                                $("#rm1tns5").html(rm1tns5);
+                                $("#cm1tns5").html(cm1tns5);
+                                $("#kl1tns5").html(kl1tns5);
+                                $("#fm1tns5").html(fm1tns5);
+                                $("#fm2tns5").html(fm2tns5);
+                            }
+                        }).done(function (data) {
+                        }).fail(function (data) {
+                        });
+
+                        $.ajax({
+                            url: url_src + '/api/index.php/plant_tonasa/get_silo',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+                                
+                                //TONASA 5
+                                silo_ton41 = parseFloat(dataJson[0].tags[6].props[0].val).toFixed(2);
+                                silo_ton42 = parseFloat(dataJson[0].tags[7].props[0].val).toFixed(2);
+                                silo_ton43 = parseFloat(dataJson[0].tags[8].props[0].val).toFixed(2);
+                                
+                                //TONASA 5
+                                silo_ton51 = parseFloat(dataJson[0].tags[3].props[0].val).toFixed(2);
+                                silo_ton52 = parseFloat(dataJson[0].tags[4].props[0].val).toFixed(2);
+                                silo_ton53 = parseFloat(dataJson[0].tags[5].props[0].val).toFixed(2);
+                                
+                                $("#silo_41").html(silo_ton41);
+                                $("#silo_42").html(silo_ton42);
+                                $("#silo_43").html(silo_ton43);
+                                
+                                $("#silo_51").html(silo_ton51);
+                                $("#silo_52").html(silo_ton52);
+                                $("#silo_53").html(silo_ton53);
+                            }
+                        }).done(function (data) {
+                        }).fail(function (data) {
+                        });
+                    }
+                    ;
+                    setInterval(dataUpdate, 1000);
+//                    var upgradeTime = 7200;
+//                    var seconds = upgradeTime;
+//                    function timer() {
+//                        var days = Math.floor(seconds / 24 / 60 / 60);
+//                        var hoursLeft = Math.floor((seconds) - (days * 86400));
+//                        var hours = Math.floor(hoursLeft / 3600);
+//                        var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+//                        var minutes = Math.floor(minutesLeft / 60);
+//                        var remainingSeconds = seconds % 60;
+//                        if (remainingSeconds < 10) {
+//                            remainingSeconds = "0" + remainingSeconds;
+//                        }
+//                        document.getElementById('runtime_opc').innerHTML = /*days + ":" +*/ hours + ":" + minutes + ":" + remainingSeconds;
+//                        if (seconds == 0) {
+//                            clearInterval(countdownTimer);
+//                            document.getElementById('runtime_opc').innerHTML = "Runtime";
+//                            document.getElementById('keterangan').innerHTML = "OPC Mati";
+//                        } else {
+//                            seconds--;
+//                        }
+//                    }
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

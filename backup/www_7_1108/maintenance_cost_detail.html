@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+        <script src="js/highcharts.js"></script>
+  <!--      <script src="js/highcharts-more.js"></script>-->
+        <script src="js/loader.js"></script>
+        <script src="js/solid-gauge.js"></script>
+		
+		<script src="js/loader.js"></script>
+        <script src="js/paradigma.js"></script>
+		
+        <!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <script type="text/javascript" src="js/Chart.min.js"></script>
+        <title>Maintenance Cost Detail</title>
+        <script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+				
+				$('.selmonth').empty();
+				var opt_month;
+                $.each(month, function(key, val){
+                 if (key+1 <= 12){
+                  if ((key+1) < 10){
+                   var v = '0'+(key+1); 
+                  }else{
+                   var v = key+1;  
+                  }   
+                  if ((key+1) == bulanSekarang){
+                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
+                  }else{
+                   opt_month += '<option value="'+v+'">'+val+'</option>';   
+                  }
+                 }
+
+                })
+
+                $('.selmonth').html(opt_month);
+                				
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x=Number(tahun);x>2014;x--){
+                 if (x == tahun){
+                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
+                 }else{
+                  opt_year += '<option value="'+x+'">'+x+'</option>';   
+                 }
+                }
+                $('.selyear').html(opt_year);
+                
+                
+				$('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                       
+
+                        setParam('3000', bulanSekarang, tahun);
+                        window.location.href = 'maintenance_cost_detail.html';
+                        
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('7000', bulanSekarang, tahun);
+                        window.location.href = 'maintenance_cost_detail.html';
+
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('4000', bulanSekarang, tahun);
+                        window.location.href = 'maintenance_cost_detail.html';
+                        
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        $('#tab-smi').addClass('img_foot2');
+                        setParam('6000', bulanSekarang, tahun);
+                        window.location.href = 'maintenance_cost_detail.html';
+
+                    } else if (r == 'data-sm') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('#tab-smi').removeClass('img_foot2');
+                        window.location.href = 'cash_flow.html';
+                        
+                    }
+                })
+				
+				
+				
+                $('#container').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: 'Cash Detail'
+                    },
+                    yAxis: {
+                        title: '',
+                        allowDecimals: false,
+                        min: 0,
+                        stackLabels: {
+                            enabled: true,
+                            style: {
+                                fontsize: '6px',
+                                color: '#4272F5'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>' + this.x + '</b><br/>' +
+                                    this.series.name + ': ' + this.y + '<br/>' +
+                                    'Total: ' + this.point.stackTotal;
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal'
+                        }
+                    },
+                    series: [{
+                            name: 'All Notif',
+                            color: '#28BF0D',
+                            data: [567, 325, 443, 743, 254, 564, 424, 655, 346, 585, 496, 737]
+                        }, {
+                            name: 'Pending Notif',
+                            color: '#ED112A',
+                            data: [312, 432, 412, 212, 542, 342, 748, 829, 461, 112, 811, 109]
+                        }, {
+                            name: 'All Value',
+                            color: '#4272F5'
+                        }]
+                });
+                var opco = getQueryVariable("i");
+                console.log(opco);
+                $('#opco_label').html(opco.toUpperCase());
+                $('#opco_label2').html(opco.toUpperCase());
+                $('#opco_label3').html(opco.toUpperCase());
+                $('#opco_label4').html(opco.toUpperCase());
+                $('#opco_label5').html(opco.toUpperCase());
+                var labelArrays = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+                var d = moment().format('DD');
+                var m = moment().format('MM');
+                var y = moment().format('YYYY');
+                var today = d + ' ' + labelArrays[parseInt(m) - 1] + ' ' + y;
+                $('#last_updated').html(today);
+                function getQueryVariable(variable) {
+                    var query = window.location.search.substring(1)
+                    var vars = query.split("=");
+                    return vars[1];
+                }
+            }
+			var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = paradigma.bulanNow();
+            var tahun = d.getFullYear();
+            d.getHours(); // => 9
+            d.getMinutes(); // =>  30
+            d.getSeconds(); // => 51
+
+
+
+			</script>
+        <style type="text/css">
+            .bg-white {background:#fff;}
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .text-small {font:normal 10px arial;color:#000;}
+            .center {text-align: center;}
+            .padding5 {padding:5px;}
+            .border {border:1px #cecece solid;}
+            .border-down {
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {text-decoration: none;color:#000;}
+            .osno {width: 24%;margin: 0;display:inline-block;text-align: center;}
+            .nopr {width: 24%;margin: 0;display:inline-block;text-align: center;}
+            .noco {width: 24%;margin: 0;display:inline-block;text-align: center;}
+            .dlfl {width: 24%;margin: 0;display:inline-block;text-align: center;}
+            .fmerah {color: #eb1717;}
+            .merah {background-color : #eb1717;}
+            .violet {background-color : #BF0A5B;}
+            .purple {background-color : #72089C;}
+            .blue {background-color : #0F089E;}
+            .subheader  {text-align: center;padding:10px;color:#fff;}
+            .txt-white {color:#FFF;}
+            .txt-black {color:#000;}
+            .nomargin {margin:0;}
+            .nopadding {padding:0;}
+            .highcharts-credits {
+                display:none;  
+            }
+        </style>
+    </head>
+    <body onLoad="onLoad()" style="font-family: Segoe UI;">
+        <div class="app">
+            <div id="deviceready">
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+				
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> 
+                    </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style=" height: 48px;line-height: 50px; font-size:20px; color: #FFFFFF"><b>MAINTENANCE COST</b></h2>
+                        <div style="width:100%;padding:10px; text-align: center;" class="headsixbg">
+                            <table align="center"><td><img id="logo_cp" src ="img/icKota1.png" align="center" height="60%" /></td>
+                                <td><img src ="img/teks semen indo.png" width="150px" height="10%" align="center" /><br><h4 style="size: 50px; color: #000;"><b>SEMEN INDONESIA <span id="opco_label" class="txt-black"></span></b></h4></td></table>
+							
+                            <div id="data-notification">
+                                <div style="width:100%;text-align: center;">
+                                    <div style="display:inline-block;width:100%;float:right;text-align:center;"><span style="font-size:12px;color:#000;text-align: center;">TOTAL VALUE</span>
+                                        <table align="center"><td><i class="fa fa-caret-up" aria-hidden="true" style="color: #0ACF3F;"></i></td>
+                                            <tr>
+                                                <td><span  style="font-size:20px;margin-top:0px;text-align: center;color: #000;">IDR </span></td>
+                                                <td rowspan="2"><span style="font-size:30px;margin-top:0px;text-align: center;color: #000"><b>45.000 M</b></span></td>
+                                            </tr>
+											<center>
+                                    Month:
+                                    <select id="month" class="selmonth">
+                                    </select>
+                                    <select id="year" class="selyear">
+                                    </select>
+
+                                </center>
+                               
+										</table>
+										<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+                                            <!--<img src="img/ic_finance/income.png"  style="width:40px;">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;">TARGET (A)</span><br>
+ 
+                                            <p class="inex" id="target_rkap_rev" style="color:#FF615D;">5000M</p><!--id=totpay7000-->
+                                        </div>
+										<div class="col-xs-12 noPadding" align="left" style="padding-left: 14px">
+                                            <!--<img src="img/ic_finance/expense.png"  style="width:40px">--> 
+                                            <span class="inex_down dual" style="padding-left: 0px;">TARGET (B)</span><br>
+
+                                            <p class="inex" id="target_actual_rev" style="color:#4c9ed9;">10000M</p> <!--id=totrec7000-->
+                                        </div>
+										
+                                        <div style="display:inline-block;width:100%;text-align: center;"><span style="font-size: 10px;color: #000;text-align: center;">Last Updated : </span><span style="font-size: 12px;text-align: center;color: #000">16 Februari 2017</span></div>
+                                    
+									</div>
+									
+                                    <div style="width:31%;margin-left: 0px"><i class="fa fa-bar-chart" aria-hidden="true"></i><span style="font-size:12px;color:#000;"> Monthly Report</span></div>
+                                    <div class="headsixbg" id="container" style="width: 100%;height: 400px; margin: 0;"></div>
+                                    <div id="container" style="width: 100%;margin: 0 auto;padding: 6px;">
+                                                <table class="table table-striped" style="margin-bottom: 0px;padding-bottom: 100px; font-size:13px;">
+                                                    <thead>
+                                                        <tr class="headtr">
+                                                            <td><strong>RKAP 1</strong></td>
+                                                            <td valign="middle"><strong>RKAP 2</strong></td>
+                                                            <td align="center" valign="middle"><strong>RKAP 3</strong></td>
+                                                            <td align="center" valign="middle"><strong>RKAP 4</strong></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="issueTbody">
+                                                        <tr>
+                                                            <td class="bold_op">Total 1</td>
+                                                            <td><span style="color: black;" id="clinker3000">0</span></td>
+                                                            <td><span style="color: black;" id="cement3000">0</span></td>
+                                                            <td><span style="color: black;" id="sales3000">0</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="bold_op">Total 2</td>
+                                                            <td><span style="color: black;" id="clinker7000">0</span></td>
+                                                            <td><span style="color: black;" id="cement7000">0</span></td>
+                                                            <td><span style="color: black;" id="sales7000">0</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="bold_op">Total 3</td>
+                                                            <td><span style="color: black;" id="clinker4000">0</span></td>
+                                                            <td><span style="color: black;" id="cement4000">0</span></td>
+                                                            <td><span style="color: black;" id="sales4000">0</span></td>
+                                                        </tr>
+                                                        <!-- <tr>
+                                                                <td>Thang Long</td>
+                                                                <td><span id="clinker3000">0</span></td>
+                                                            <td><span id="cement3000">0</span></td>
+                                                            <td><span id="sales3000">0</span></td>
+                                                        </tr> -->
+                                                        
+                                                        
+                                                    </tbody>
+                                                </table>
+                                                <br>
+                                                </div>
+									<div style="width:100%; height: 150px;" class="headsixbg">
+                                        <!--<div style="display:block;width:100%;color:#000;text-align:center;font:normal 16px tahoma;margin-bottom: 5px;">PLANT DETAIL</div>-->
+                                        <!--<div class="col-xs-3 nopadding"><div class="merah subheader"><span id="opco_label2" class="txt-white">SG</span></div></div>
+                                        <div class="col-xs-3 nopadding"><div class="violet subheader"><span id="opco_label3" class="txt-white">SP</span></div></div> 
+                                        <div class="col-xs-3 nopadding"><div class="purple subheader"><span id="opco_label4" class="txt-white">ST</span></div></div>
+                                        <div class="col-xs-3 nopadding"><div class="blue subheader"><span id="opco_label5" class="txt-white">TLCC</span></div></div>
+										<div id="tab-sp" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="maintenance_cost_sp.html" rel="data-sp" >5544<img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+										<div id="tab-sg" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="maintenance_cost_sg.html" rel="data-sg" >6633<img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+										<div id="tab-st" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="maintenance_cost_st.html" rel="data-st" >7722<img src="img/icKota3a.png" style="width:50%;"/></a></div> 
+										<div id="tab-tl" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="maintenance_cost_tlcc.html" rel="data-tl" >8811<img src="img/icKota4a.png" style="width:50%;"/></a></div>--> 
+                                <footer >
+<div class="regular" >
+
+
+                                    <div id="tab-sp" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="maintenance_cost_sp.html" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div> 
+                                    <div id="tab-sg" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="maintenance_cost_sg.html" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div> 
+                                    <div id="tab-st" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="maintenance_cost_st.html" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div> 
+                                    <div id="tab-tl" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="maintenance_cost_tlcc.html" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div> 
+                                 <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+								</div>
+								</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+				
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

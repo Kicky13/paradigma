@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/ip_highcharts.js"></script>
+        <script src="js/ip_highcharts-3d.js"></script>
+        <script src="js/ip_exporting.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+//                var session = getParamFull();
+//                ////=========================
+//                if (sessionStorage.getItem('_com') != 'ALL') {
+//                    $.each(listTab, function (index, el) {
+//                        $('#tab-' + el + ' a').removeAttr('href');
+//                        $('#tab-' + el + ' a').removeAttr('rel');
+//                    })
+//                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+
+                $('.selmonth').empty();
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x = Number(tahun); x > 2016; x--) {
+                    if (x == tahun) {
+                        opt_year += '<option value="' + x + '" selected="selected">' + x + '</option>';
+                    } else {
+                        opt_year += '<option value="' + x + '">' + x + '</option>';
+                    }
+                }
+                $('.selyear').html(opt_year);
+                var opt_month;
+                $.each(month, function (key, val) {
+                    if (key + 1 <= 12) {
+                        if ((key + 1) < 10) {
+                            var v = '0' + (key + 1);
+                        } else {
+                            var v = key + 1;
+                        }
+                        if ((key + 1) == bulanSekarang) {
+                            opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                        } else {
+                            opt_month += '<option value="' + v + '">' + val + '</option>';
+                        }
+                    }
+
+                })
+                $('.selmonth').html(opt_month);
+
+                var myspan = document.getElementById('head');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#data-data').addClass('hidden');
+
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        $('#tab-data').removeClass('act_tb');
+                        myspan.innerText = "Equipment Tuban #1";
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#data-data').addClass('hidden');
+
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        $("#tab-data").removeClass('act_tb');
+                        myspan.innerText = "Equipment Tuban #2";
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-data').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-data').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                        myspan.innerText = "Equipment Tuban #3";
+                    } else if (r == 'data-data') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#data-data').removeClass('hidden');
+
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        $('#tab-data').addClass('act_tb');
+                        myspan.innerText = "Equipment Tuban #4";
+                    }
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active{
+                border-top: 1px solid #1481ed;
+            }
+            .inex{
+                font-size: 25px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+            }
+            .tit_head{
+                background: rgba(255,255,255,1);
+                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+
+            }
+            .tab-active{
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab{
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                font-family: "Open Sans";
+            }
+            .prosen1 {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+            .mencapai {
+                color: #06bf79;
+            }
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <title>Production Report</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                        <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                        <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                        <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                        <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                        <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                        <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                        <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="height: 37px; line-height: 39px; font-size: small;">
+                            <a href="portal_maintenance.html" class="pull-left" style="margin-left:10px;">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            </a>PREDICTIVE EQUIPMENT AVALIABILITY</h2>
+                        <div class=" headsix2 cubesRun2 headone whitebg">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota1.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px;" >
+                                <p class="opco">SEMEN GRESIK</p>
+                                <p class="prodtittle" style="font-size: 20px;" id="head">Equipment Tuban #1</p>
+                            </div>
+                        </div>
+                        <div class="whitebg">
+                            <center>
+                                Month:
+                                <select id="month" class="selmonth" rel="vol"></select>
+                                <select id="year" class="selyear" rel="vol"></select>
+                            </center>
+                            <div style="text-align: center; margin-top: 5px; background-color: #E0E4CC"><strong>Availability Peralatan Total (%)</strong></div>
+                            <div style="text-align: center; margin-top: 2px; font-size: 12px">Periode : <span style="color: black;" id="last_update"></span></div>
+                            <center><div style="overflow-x: scroll; margin-top: 10px;">
+                                    <div id="dash" style="height: 280px; width: 318px;"></div>
+                                </div></center>
+                        </div>                        
+                        <div class="col-xs-12 tab_dual">
+                            <div class="col-xs-12 bg_rds">
+                                <div id="tab-volume" class="col-xs-3 center zero_padd left_tb act_tb">
+                                    <a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/gdg.png" width="18px"> 
+                                        <span class="tx_tab">&nbsp;&nbsp;Tuban 1</span></a></div>
+
+                                <div id="tab-revenue" class="col-xs-3 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-revenue" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                        <span class="tx_tab">&nbsp;&nbsp;Tuban 2</span></a></div>
+
+                                <div id="tab-price" class="col-xs-3 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-price" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                        <span class="tx_tab">&nbsp;&nbsp;Tuban 3</span></a></div>
+
+                                <div id="tab-data" class="col-xs-3 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-data" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                        <span class="tx_tab">&nbsp;&nbsp;Tuban 4</span></a></div>
+                            </div>
+                        </div>
+                        <div id="data-volume">
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Prosentase Kondisi Peralatan (%)</span> </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="piechart1" style="height: 300px; width: 318px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 350px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Kondisi Peralatan Tiap Area (Equipment)</span></div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="columnchart1" style="height: 300px; width: 318px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="overflow-x: scroll; height: 175px; margin-bottom: 56px;">
+                                <div style="font-size: 16px; font-weight: bold;"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i>&nbsp;POTENTIAL PROBLEM [TUBAN #1]</div>
+                                <br>
+                                <div style="overflow-x: scroll; width: 600px;">
+                                    <table border="1px" style="font-size: 14px; color: black;">
+                                        <thead>
+                                        <th>No</th>
+                                        <th>Equipment</th> 
+                                        <th>Problem</th>
+                                        <th>Action Plan</th>
+                                        </thead>
+                                        <tbody id="note_tb1">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>441KL1</td> 
+                                                <td>Tyre 2 & support roll #2 barat crack</td>
+                                                <td>Penggantian tyre & roll saat OVH</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+                        <div id="data-revenue" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Prosentase Kondisi Peralatan (%)</span> </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="piechart2" style="height: 300px; width: 318px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 350px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Kondisi Peralatan Tiap Area (Equipment)</span></div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="columnchart2" style="height: 300px; width: 318px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="overflow-x: scroll; height: 175px; margin-bottom: 56px;">
+                                <div style="font-size: 16px; font-weight: bold;"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i>&nbsp;POTENTIAL PROBLEM [TUBAN #2]</div>
+                                <br>
+                                <div style="overflow-x: scroll; width: 600px;">
+                                    <div style="font-size: 14px; color: black;">
+                                        <ul>
+                                            <li id="note_tb2"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+                        <div id="data-price" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Prosentase Kondisi Peralatan (%)</span> </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="piechart3" style="height: 300px; width: 318px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 350px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Kondisi Peralatan Tiap Area (Equipment)</span></div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="columnchart3" style="height: 300px; width: 318px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="overflow-x: scroll; height: 175px; margin-bottom: 56px;">
+                                <div style="font-size: 16px; font-weight: bold;"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i>&nbsp;POTENTIAL PROBLEM [TUBAN #3]</div>
+                                <br>
+                                <div style="overflow-x: scroll; width: 600px;">
+                                    <div style="font-size: 14px; color: black;">
+                                        <ul>
+                                            <li id="note_tb3"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+                        <div id="data-data" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 330px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; margin-top: 10px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Prosentase Kondisi Peralatan (%)</span> </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="piechart4" style="height: 300px; width: 318px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 350px; margin-bottom: 5px;">
+                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> 
+                                    <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;Kondisi Peralatan Tiap Area (Equipment)</span></div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div>
+                                        <div id="columnchart4" style="height: 300px; width: 318px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow" style="overflow-x: scroll; height: 175px; margin-bottom: 56px;">
+                                <div style="font-size: 16px; font-weight: bold;"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i>&nbsp;POTENTIAL PROBLEM [TUBAN #4]</div>
+                                <br>
+                                <div style="overflow-x: scroll; width: 600px;">
+                                    <div style="font-size: 14px; color: black;">
+                                        <ul>
+                                            <li id="note_tb4"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+                    </div>
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="#" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            $('#month1').html('&nbsp;&nbsp;&nbsp;Report Bulan ' + bulan + ' ' + tahun);
+            $('#month2').html('&nbsp;&nbsp;&nbsp;Report Bulan ' + bulan + ' ' + tahun);
+            $('#month3').html('&nbsp;&nbsp;&nbsp;Report Bulan ' + bulan + ' ' + tahun);
+            $('#month4').html('&nbsp;&nbsp;&nbsp;Report Bulan ' + bulan + ' ' + tahun);
+
+            var m = moment().format('MM');
+            var y = moment().format('YYYY');
+
+            var strBulan = 's' + bulanSekarang;
+            $(".bulan").html(bulan + ' ' + tahun);
+            function n(n) {
+                return n > 9 ? "" + n : "0" + n;
+            }
+            reloadChart(y, m);
+
+            $('.selmonth').change(function () {
+                bulanSekarang = $(this).val();
+                tahun = $('.selyear').val();
+                var t = $(this).attr('rel');
+                if (t == 'vol') {
+                    reloadChart(tahun, bulanSekarang);
+                } else {
+                    reloadChart(tahun, bulanSekarang);
+                }
+            })
+            $('.selyear').change(function () {
+                tahun = $(this).val();
+                bulanSekarang = $('.selmonth').val();
+                var t = $(this).attr('rel');
+                if (t == 'vol') {
+                    reloadChart(tahun, bulanSekarang);
+                } else {
+                    reloadChart(tahun, bulanSekarang);
+                }
+            })
+
+            function reloadChart(my_tahun, my_bulan) {
+                var tag_target = '';
+                var myMonth = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+                var today = myMonth[parseInt(my_bulan) - 1] + ' ' + my_tahun;
+                $('#last_update').html(today);
+
+                run_waitMe('#data-volume', 'ios');
+                tag_target = '#data-volume';
+                run_waitMe('#dash', 'facebook');
+                run_waitMe('#dash', 'facebook');
+                run_waitMe('#piechart1', 'ios');
+                run_waitMe('#piechart2', 'ios');
+                run_waitMe('#piechart3', 'ios');
+                run_waitMe('#piechart4', 'ios');
+                run_waitMe('#columnchart1', 'facebook');
+                run_waitMe('#columnchart2', 'facebook');
+                run_waitMe('#columnchart3', 'facebook');
+                run_waitMe('#columnchart4', 'facebook');
+
+                // stop_waitMe('#columnchart1');
+
+
+                //Dashboard 
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_dash?tahun=' + my_tahun + '&bulan=' + my_bulan,
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD_tbn1 = parseFloat(dataJson.tbn1.good);
+                        var TOTAL_tbn1 = parseFloat(dataJson.tbn1.total);
+                        var GOOD_tbn2 = parseFloat(dataJson.tbn2.good);
+                        var TOTAL_tbn2 = parseFloat(dataJson.tbn2.total);
+                        var GOOD_tbn3 = parseFloat(dataJson.tbn3.good);
+                        var TOTAL_tbn3 = parseFloat(dataJson.tbn3.total);
+                        var GOOD_tbn4 = parseFloat(dataJson.tbn4.good);
+                        var TOTAL_tbn4 = parseFloat(dataJson.tbn4.total);
+
+                        var tbn1 = (GOOD_tbn1 / TOTAL_tbn1) * 100;
+                        var tbn2 = (GOOD_tbn2 / TOTAL_tbn2) * 100;
+                        var tbn3 = (GOOD_tbn3 / TOTAL_tbn3) * 100;
+                        var tbn4 = (GOOD_tbn4 / TOTAL_tbn4) * 100;
+                        var total = ((GOOD_tbn1 + GOOD_tbn2 + GOOD_tbn3 + GOOD_tbn4) / (TOTAL_tbn1 + TOTAL_tbn2 + TOTAL_tbn3 + TOTAL_tbn4)) * 100;
+                        stop_waitMe('#dash');
+                        $('#dash').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: ['Total', 'Tb 1', 'Tb 2', 'Tb 3', 'Tb 4'],
+                                title: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: ''
+                            },
+                            tooltip: {
+                                shared: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y:.1f}%'
+                                    },
+                                    enableMouseTracking: true
+                                }
+                            },
+                            series: [{
+                                    name: 'Data Total',
+                                    data: [{
+                                            name: 'Total',
+                                            color: '#00FF00',
+                                            y: total
+                                        }, {
+                                            name: 'Tuban 1',
+                                            color: '#97CE68',
+                                            y: tbn1
+                                        }, {
+                                            name: 'Tuban 2',
+                                            color: '#97CE68',
+                                            y: tbn2
+                                        }, {
+                                            name: 'Tuban 3',
+                                            color: '#97CE68',
+                                            y: tbn3
+                                        }, {
+                                            name: 'Tuban 4',
+                                            color: '#97CE68',
+                                            y: tbn4
+                                        }]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //Pie Tuban 1
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_report_pie?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn1',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD = parseFloat(dataJson.data.GOOD.jml);
+                        var LOW_RISK = parseFloat(dataJson.data.LOW_RISK.jml);
+                        var MED_RISK = parseFloat(dataJson.data.MED_RISK.jml);
+                        var HIGH_RISK = parseFloat(dataJson.data.HIGH_RISK.jml);
+                        stop_waitMe('#piechart1');
+                        $('#piechart1').highcharts({
+                            chart: {
+                                type: 'pie',
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 45,
+                                    beta: 0
+                                }
+                            },
+                            colors: ['#71BA51', '#FEC606', '#FD5B03', '#E3000E'],
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: '(click on the chart for detail)'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    depth: 35,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.name}'
+                                    }
+                                }
+                            },
+                            series: [{
+                                    type: 'pie',
+                                    name: 'Tuban 1 of ',
+                                    data: [
+                                        ['Good', GOOD],
+                                        ['Low Risk', LOW_RISK],
+                                        ['Med Risk', MED_RISK],
+                                        ['High Risk', HIGH_RISK]
+                                    ]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //Pie Tuban 2
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_report_pie?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn2',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD = parseFloat(dataJson.data.GOOD.jml);
+                        var LOW_RISK = parseFloat(dataJson.data.LOW_RISK.jml);
+                        var MED_RISK = parseFloat(dataJson.data.MED_RISK.jml);
+                        var HIGH_RISK = parseFloat(dataJson.data.HIGH_RISK.jml);
+                        stop_waitMe('#piechart2');
+                        $('#piechart2').highcharts({
+                            chart: {
+                                type: 'pie',
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 45,
+                                    beta: 0
+                                }
+                            },
+                            colors: ['#71BA51', '#FEC606', '#FD5B03', '#E3000E'],
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: '(click on the chart for detail)'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    depth: 35,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.name}'
+                                    }
+                                }
+                            },
+                            series: [{
+                                    type: 'pie',
+                                    name: 'Tuban 2 of ',
+                                    data: [
+                                        ['Good', GOOD],
+                                        ['Low Risk', LOW_RISK],
+                                        ['Med Risk', MED_RISK],
+                                        ['High Risk', HIGH_RISK]
+                                    ]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //Pie Tuban 3
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_report_pie?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn3',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD = parseFloat(dataJson.data.GOOD.jml);
+                        var LOW_RISK = parseFloat(dataJson.data.LOW_RISK.jml);
+                        var MED_RISK = parseFloat(dataJson.data.MED_RISK.jml);
+                        var HIGH_RISK = parseFloat(dataJson.data.HIGH_RISK.jml);
+                        stop_waitMe('#piechart3');
+                        $('#piechart3').highcharts({
+                            chart: {
+                                type: 'pie',
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 45,
+                                    beta: 0
+                                }
+                            },
+                            colors: ['#71BA51', '#FEC606', '#FD5B03', '#E3000E'],
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: '(click on the chart for detail)'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    depth: 35,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.name}'
+                                    }
+                                }
+                            },
+                            series: [{
+                                    type: 'pie',
+                                    name: 'Tuban 3 of ',
+                                    data: [
+                                        ['Good', GOOD],
+                                        ['Low Risk', LOW_RISK],
+                                        ['Med Risk', MED_RISK],
+                                        ['High Risk', HIGH_RISK]
+                                    ]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //Pie Tuban 4
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_report_pie?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn4',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD = parseFloat(dataJson.data.GOOD.jml);
+                        var LOW_RISK = parseFloat(dataJson.data.LOW_RISK.jml);
+                        var MED_RISK = parseFloat(dataJson.data.MED_RISK.jml);
+                        var HIGH_RISK = parseFloat(dataJson.data.HIGH_RISK.jml);
+                        stop_waitMe('#piechart4');
+                        $('#piechart4').highcharts({
+                            chart: {
+                                type: 'pie',
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 45,
+                                    beta: 0
+                                }
+                            },
+                            colors: ['#71BA51', '#FEC606', '#FD5B03', '#E3000E'],
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: '(click on the chart for detail)'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    depth: 35,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.name}'
+                                    }
+                                }
+                            },
+                            series: [{
+                                    type: 'pie',
+                                    name: 'Tuban 4 of ',
+                                    data: [
+                                        ['Good', GOOD],
+                                        ['Low Risk', LOW_RISK],
+                                        ['Med Risk', MED_RISK],
+                                        ['High Risk', HIGH_RISK]
+                                    ]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //Column Chart Tuban 1
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_report_column?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn1',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD_CM = parseFloat(dataJson.GOOD.mesin.COAL_MILL.jml);
+                        var GOOD_CR = parseFloat(dataJson.GOOD.mesin.CRUSHER.jml);
+                        var GOOD_FM = parseFloat(dataJson.GOOD.mesin.FINISH_MILL.jml);
+                        var GOOD_KL = parseFloat(dataJson.GOOD.mesin.KILN.jml);
+                        var GOOD_RM = parseFloat(dataJson.GOOD.mesin.RAW_MILL.jml);
+//                    var GOOD_VM = parseFloat(dataJson.GOOD.mesin.VERTICAL_MILL.jml);
+
+                        var LOW_RISK_CM = parseFloat(dataJson.LOW_RISK.mesin.COAL_MILL.jml);
+                        var LOW_RISK_CR = parseFloat(dataJson.LOW_RISK.mesin.CRUSHER.jml);
+                        var LOW_RISK_FM = parseFloat(dataJson.LOW_RISK.mesin.FINISH_MILL.jml);
+                        var LOW_RISK_KL = parseFloat(dataJson.LOW_RISK.mesin.KILN.jml);
+                        var LOW_RISK_RM = parseFloat(dataJson.LOW_RISK.mesin.RAW_MILL.jml);
+//                    var LOW_RISK_VM = parseFloat(dataJson.LOW_RISK.mesin.VERTICAL_MILL.jml);
+
+                        var MED_RISK_CM = parseFloat(dataJson.MED_RISK.mesin.COAL_MILL.jml);
+                        var MED_RISK_CR = parseFloat(dataJson.MED_RISK.mesin.CRUSHER.jml);
+                        var MED_RISK_FM = parseFloat(dataJson.MED_RISK.mesin.FINISH_MILL.jml);
+                        var MED_RISK_KL = parseFloat(dataJson.MED_RISK.mesin.KILN.jml);
+                        var MED_RISK_RM = parseFloat(dataJson.MED_RISK.mesin.RAW_MILL.jml);
+//                    var MED_RISK_VM = parseFloat(dataJson.MED_RISK.mesin.VERTICAL_MILL.jml);
+
+                        var HIGH_RISK_CM = parseFloat(dataJson.HIGH_RISK.mesin.COAL_MILL.jml);
+                        var HIGH_RISK_CR = parseFloat(dataJson.HIGH_RISK.mesin.CRUSHER.jml);
+                        var HIGH_RISK_FM = parseFloat(dataJson.HIGH_RISK.mesin.FINISH_MILL.jml);
+                        var HIGH_RISK_KL = parseFloat(dataJson.HIGH_RISK.mesin.KILN.jml);
+                        var HIGH_RISK_RM = parseFloat(dataJson.HIGH_RISK.mesin.RAW_MILL.jml);
+//                    var HIGH_RISK_VM = parseFloat(dataJson.HIGH_RISK.mesin.VERTICAL_MILL.jml);
+                        stop_waitMe('#columnchart1');
+                        $('#columnchart1').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2,
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 10,
+                                    beta: 25,
+                                    depth: 70
+                                }
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: '(click on the chart for detail)'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal'
+                                }
+                            },
+                            xAxis: {
+                                categories: ['COAL MILL', 'CRUSHER', 'FINISH MILL', 'KILN', 'RAW MILL']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'HIGH RISK',
+                                    color: '#E3000E',
+                                    stack: 'male',
+                                    data: [HIGH_RISK_CM, HIGH_RISK_CR, HIGH_RISK_FM, HIGH_RISK_KL, HIGH_RISK_RM]
+                                }, {
+                                    name: 'MED RISK',
+                                    color: '#FD5B03',
+                                    stack: 'male',
+                                    data: [MED_RISK_CM, MED_RISK_CR, MED_RISK_FM, MED_RISK_KL, MED_RISK_RM]
+                                }, {
+                                    name: 'LOW RISK',
+                                    color: '#FEC606',
+                                    stack: 'male',
+                                    data: [LOW_RISK_CM, LOW_RISK_CR, LOW_RISK_FM, LOW_RISK_KL, LOW_RISK_RM]
+                                }, {
+                                    name: 'GOOD',
+                                    color: '#71BA51',
+                                    stack: 'male',
+                                    data: [GOOD_CM, GOOD_CR, GOOD_FM, GOOD_KL, GOOD_RM]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Column Chart Tuban 2
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_report_column?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn2',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD_CM = parseFloat(dataJson.GOOD.mesin.COAL_MILL.jml);
+                        var GOOD_CR = parseFloat(dataJson.GOOD.mesin.CRUSHER.jml);
+                        var GOOD_FM = parseFloat(dataJson.GOOD.mesin.FINISH_MILL.jml);
+                        var GOOD_KL = parseFloat(dataJson.GOOD.mesin.KILN.jml);
+                        var GOOD_RM = parseFloat(dataJson.GOOD.mesin.RAW_MILL.jml);
+                        var GOOD_VM = parseFloat(dataJson.GOOD.mesin.VERTICAL_MILL.jml);
+
+                        var LOW_RISK_CM = parseFloat(dataJson.LOW_RISK.mesin.COAL_MILL.jml);
+                        var LOW_RISK_CR = parseFloat(dataJson.LOW_RISK.mesin.CRUSHER.jml);
+                        var LOW_RISK_FM = parseFloat(dataJson.LOW_RISK.mesin.FINISH_MILL.jml);
+                        var LOW_RISK_KL = parseFloat(dataJson.LOW_RISK.mesin.KILN.jml);
+                        var LOW_RISK_RM = parseFloat(dataJson.LOW_RISK.mesin.RAW_MILL.jml);
+                        var LOW_RISK_VM = parseFloat(dataJson.LOW_RISK.mesin.VERTICAL_MILL.jml);
+
+                        var MED_RISK_CM = parseFloat(dataJson.MED_RISK.mesin.COAL_MILL.jml);
+                        var MED_RISK_CR = parseFloat(dataJson.MED_RISK.mesin.CRUSHER.jml);
+                        var MED_RISK_FM = parseFloat(dataJson.MED_RISK.mesin.FINISH_MILL.jml);
+                        var MED_RISK_KL = parseFloat(dataJson.MED_RISK.mesin.KILN.jml);
+                        var MED_RISK_RM = parseFloat(dataJson.MED_RISK.mesin.RAW_MILL.jml);
+                        var MED_RISK_VM = parseFloat(dataJson.MED_RISK.mesin.VERTICAL_MILL.jml);
+
+                        var HIGH_RISK_CM = parseFloat(dataJson.HIGH_RISK.mesin.COAL_MILL.jml);
+                        var HIGH_RISK_CR = parseFloat(dataJson.HIGH_RISK.mesin.CRUSHER.jml);
+                        var HIGH_RISK_FM = parseFloat(dataJson.HIGH_RISK.mesin.FINISH_MILL.jml);
+                        var HIGH_RISK_KL = parseFloat(dataJson.HIGH_RISK.mesin.KILN.jml);
+                        var HIGH_RISK_RM = parseFloat(dataJson.HIGH_RISK.mesin.RAW_MILL.jml);
+                        var HIGH_RISK_VM = parseFloat(dataJson.HIGH_RISK.mesin.VERTICAL_MILL.jml);
+                        stop_waitMe('#columnchart2');
+                        $('#columnchart2').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2,
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 10,
+                                    beta: 25,
+                                    depth: 70
+                                }
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: '(click on the chart for detail)'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal'
+                                }
+                            },
+                            xAxis: {
+                                categories: ['COAL MILL', 'CRUSHER', 'FINISH MILL', 'KILN', 'RAW MILL', 'VERTICAL MILL']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'HIGH RISK',
+                                    color: '#E3000E',
+                                    stack: 'male',
+                                    data: [HIGH_RISK_CM, HIGH_RISK_CR, HIGH_RISK_FM, HIGH_RISK_KL, HIGH_RISK_RM, HIGH_RISK_VM]
+                                }, {
+                                    name: 'MED RISK',
+                                    color: '#FD5B03',
+                                    stack: 'male',
+                                    data: [MED_RISK_CM, MED_RISK_CR, MED_RISK_FM, MED_RISK_KL, MED_RISK_RM, MED_RISK_VM]
+                                }, {
+                                    name: 'LOW RISK',
+                                    color: '#FEC606',
+                                    stack: 'male',
+                                    data: [LOW_RISK_CM, LOW_RISK_CR, LOW_RISK_FM, LOW_RISK_KL, LOW_RISK_RM, LOW_RISK_VM]
+                                }, {
+                                    name: 'GOOD',
+                                    color: '#71BA51',
+                                    stack: 'male',
+                                    data: [GOOD_CM, GOOD_CR, GOOD_FM, GOOD_KL, GOOD_RM, GOOD_VM]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Column Chart Tuban 3
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_report_column?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn3',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD_CM = parseFloat(dataJson.GOOD.mesin.COAL_MILL.jml);
+                        var GOOD_CR = parseFloat(dataJson.GOOD.mesin.CRUSHER.jml);
+                        var GOOD_FM = parseFloat(dataJson.GOOD.mesin.FINISH_MILL.jml);
+                        var GOOD_KL = parseFloat(dataJson.GOOD.mesin.KILN.jml);
+                        var GOOD_RM = parseFloat(dataJson.GOOD.mesin.RAW_MILL.jml);
+//                    var GOOD_VM = parseFloat(dataJson.GOOD.mesin.VERTICAL_MILL.jml);
+
+                        var LOW_RISK_CM = parseFloat(dataJson.LOW_RISK.mesin.COAL_MILL.jml);
+                        var LOW_RISK_CR = parseFloat(dataJson.LOW_RISK.mesin.CRUSHER.jml);
+                        var LOW_RISK_FM = parseFloat(dataJson.LOW_RISK.mesin.FINISH_MILL.jml);
+                        var LOW_RISK_KL = parseFloat(dataJson.LOW_RISK.mesin.KILN.jml);
+                        var LOW_RISK_RM = parseFloat(dataJson.LOW_RISK.mesin.RAW_MILL.jml);
+//                    var LOW_RISK_VM = parseFloat(dataJson.LOW_RISK.mesin.VERTICAL_MILL.jml);
+
+                        var MED_RISK_CM = parseFloat(dataJson.MED_RISK.mesin.COAL_MILL.jml);
+                        var MED_RISK_CR = parseFloat(dataJson.MED_RISK.mesin.CRUSHER.jml);
+                        var MED_RISK_FM = parseFloat(dataJson.MED_RISK.mesin.FINISH_MILL.jml);
+                        var MED_RISK_KL = parseFloat(dataJson.MED_RISK.mesin.KILN.jml);
+                        var MED_RISK_RM = parseFloat(dataJson.MED_RISK.mesin.RAW_MILL.jml);
+//                    var MED_RISK_VM = parseFloat(dataJson.MED_RISK.mesin.VERTICAL_MILL.jml);
+
+                        var HIGH_RISK_CM = parseFloat(dataJson.HIGH_RISK.mesin.COAL_MILL.jml);
+                        var HIGH_RISK_CR = parseFloat(dataJson.HIGH_RISK.mesin.CRUSHER.jml);
+                        var HIGH_RISK_FM = parseFloat(dataJson.HIGH_RISK.mesin.FINISH_MILL.jml);
+                        var HIGH_RISK_KL = parseFloat(dataJson.HIGH_RISK.mesin.KILN.jml);
+                        var HIGH_RISK_RM = parseFloat(dataJson.HIGH_RISK.mesin.RAW_MILL.jml);
+//                    var HIGH_RISK_VM = parseFloat(dataJson.HIGH_RISK.mesin.VERTICAL_MILL.jml);
+                        stop_waitMe('#columnchart3');
+                        $('#columnchart3').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2,
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 10,
+                                    beta: 25,
+                                    depth: 70
+                                }
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: '(click on the chart for detail)'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal'
+                                }
+                            },
+                            xAxis: {
+                                categories: ['COAL MILL', 'CRUSHER', 'FINISH MILL', 'KILN', 'RAW MILL']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'HIGH RISK',
+                                    color: '#E3000E',
+                                    stack: 'male',
+                                    data: [HIGH_RISK_CM, HIGH_RISK_CR, HIGH_RISK_FM, HIGH_RISK_KL, HIGH_RISK_RM]
+                                }, {
+                                    name: 'MED RISK',
+                                    color: '#FD5B03',
+                                    stack: 'male',
+                                    data: [MED_RISK_CM, MED_RISK_CR, MED_RISK_FM, MED_RISK_KL, MED_RISK_RM]
+                                }, {
+                                    name: 'LOW RISK',
+                                    color: '#FEC606',
+                                    stack: 'male',
+                                    data: [LOW_RISK_CM, LOW_RISK_CR, LOW_RISK_FM, LOW_RISK_KL, LOW_RISK_RM]
+                                }, {
+                                    name: 'GOOD',
+                                    color: '#71BA51',
+                                    stack: 'male',
+                                    data: [GOOD_CM, GOOD_CR, GOOD_FM, GOOD_KL, GOOD_RM]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Column Chart Tuban 4
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_report_column?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn4',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+
+                        var GOOD_CM = parseFloat(dataJson.GOOD.mesin.COAL_MILL.jml);
+                        var GOOD_CR = parseFloat(dataJson.GOOD.mesin.CRUSHER.jml);
+                        var GOOD_FM = parseFloat(dataJson.GOOD.mesin.FINISH_MILL.jml);
+                        var GOOD_KL = parseFloat(dataJson.GOOD.mesin.KILN.jml);
+                        var GOOD_RM = parseFloat(dataJson.GOOD.mesin.RAW_MILL.jml);
+//                    var GOOD_VM = parseFloat(dataJson.GOOD.mesin.VERTICAL_MILL.jml);
+
+                        var LOW_RISK_CM = parseFloat(dataJson.LOW_RISK.mesin.COAL_MILL.jml);
+                        var LOW_RISK_CR = parseFloat(dataJson.LOW_RISK.mesin.CRUSHER.jml);
+                        var LOW_RISK_FM = parseFloat(dataJson.LOW_RISK.mesin.FINISH_MILL.jml);
+                        var LOW_RISK_KL = parseFloat(dataJson.LOW_RISK.mesin.KILN.jml);
+                        var LOW_RISK_RM = parseFloat(dataJson.LOW_RISK.mesin.RAW_MILL.jml);
+//                    var LOW_RISK_VM = parseFloat(dataJson.LOW_RISK.mesin.VERTICAL_MILL.jml);
+
+                        var MED_RISK_CM = parseFloat(dataJson.MED_RISK.mesin.COAL_MILL.jml);
+                        var MED_RISK_CR = parseFloat(dataJson.MED_RISK.mesin.CRUSHER.jml);
+                        var MED_RISK_FM = parseFloat(dataJson.MED_RISK.mesin.FINISH_MILL.jml);
+                        var MED_RISK_KL = parseFloat(dataJson.MED_RISK.mesin.KILN.jml);
+                        var MED_RISK_RM = parseFloat(dataJson.MED_RISK.mesin.RAW_MILL.jml);
+//                    var MED_RISK_VM = parseFloat(dataJson.MED_RISK.mesin.VERTICAL_MILL.jml);
+
+                        var HIGH_RISK_CM = parseFloat(dataJson.HIGH_RISK.mesin.COAL_MILL.jml);
+                        var HIGH_RISK_CR = parseFloat(dataJson.HIGH_RISK.mesin.CRUSHER.jml);
+                        var HIGH_RISK_FM = parseFloat(dataJson.HIGH_RISK.mesin.FINISH_MILL.jml);
+                        var HIGH_RISK_KL = parseFloat(dataJson.HIGH_RISK.mesin.KILN.jml);
+                        var HIGH_RISK_RM = parseFloat(dataJson.HIGH_RISK.mesin.RAW_MILL.jml);
+//                    var HIGH_RISK_VM = parseFloat(dataJson.HIGH_RISK.mesin.VERTICAL_MILL.jml);
+                        stop_waitMe('#columnchart4');
+                        $('#columnchart4').highcharts({
+                            chart: {
+                                type: 'column',
+                                spacingBottom: 7,
+                                spacingTop: 2,
+                                spacingLeft: 2,
+                                spacingRight: 2,
+                                marginLeft: 2,
+                                marginRight: 2,
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 10,
+                                    beta: 25,
+                                    depth: 70
+                                }
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: '(click on the chart for detail)'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            exporting: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                column: {
+                                    depth: 25,
+                                    stacking: 'normal'
+                                }
+                            },
+                            xAxis: {
+                                categories: ['COAL MILL', 'CRUSHER', 'FINISH MILL', 'KILN', 'RAW MILL']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: null
+                                }
+                            },
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                itemDistance: 2,
+                                itemStyle: {
+                                    fontSize: '9px'
+                                }
+                            },
+                            series: [{
+                                    name: 'HIGH RISK',
+                                    color: '#E3000E',
+                                    stack: 'male',
+                                    data: [HIGH_RISK_CM, HIGH_RISK_CR, HIGH_RISK_FM, HIGH_RISK_KL, HIGH_RISK_RM]
+                                }, {
+                                    name: 'MED RISK',
+                                    color: '#FD5B03',
+                                    stack: 'male',
+                                    data: [MED_RISK_CM, MED_RISK_CR, MED_RISK_FM, MED_RISK_KL, MED_RISK_RM]
+                                }, {
+                                    name: 'LOW RISK',
+                                    color: '#FEC606',
+                                    stack: 'male',
+                                    data: [LOW_RISK_CM, LOW_RISK_CR, LOW_RISK_FM, LOW_RISK_KL, LOW_RISK_RM]
+                                }, {
+                                    name: 'GOOD',
+                                    color: '#71BA51',
+                                    stack: 'male',
+                                    data: [GOOD_CM, GOOD_CR, GOOD_FM, GOOD_KL, GOOD_RM]
+                                }]
+                        });
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+                stop_waitMe('#data-volume');
+                //Problem Notes Tuban 1
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_notes?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn1',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var obj = dataJson.data;
+                        var count = Object.keys(obj).length;
+                        var catatan = '';
+                        for (var i = 1; i <= count; i++) {
+                            var note = dataJson.data[i].catatan;
+                            var equipment = dataJson.data[i].mesin;
+                            var solution = dataJson.data[i].solusi;
+                            catatan += '<tr><td>' + i + '</td><td>' + equipment + '</td><td>' + note + '</td><td>' + solution + '</td></tr>';
+                        }
+                        $("#note_tb1").html(catatan);
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Problem Notes Tuban 2
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_notes?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn2',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var obj = dataJson.data;
+                        var count = Object.keys(obj).length;
+                        var catatan = '';
+                        for (var i = 1; i <= count; i++) {
+                            var note = dataJson.data[i].catatan;
+                            var equipment = dataJson.data[i].mesin;
+                            var solution = dataJson.data[i].solusi;
+                            catatan += '<li>' + i + '.&nbsp;' + note + '</li>';
+                        }
+                        $("#note_tb2").html(catatan);
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Problem Notes Tuban 3
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_notes?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn3',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var obj = dataJson.data;
+                        var count = Object.keys(obj).length;
+                        var catatan = '';
+                        for (var i = 1; i <= count; i++) {
+                            var note = dataJson.data[i].catatan;
+                            var equipment = dataJson.data[i].mesin;
+                            var solution = dataJson.data[i].solusi;
+                            catatan += '<li>' + i + '.&nbsp;' + note + '</li>';
+                        }
+                        $("#note_tb3").html(catatan);
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+
+                //Problem Notes Tuban 4
+                $.ajax({
+                    url: url_src + '/api/index.php/plant_tuban/get_ip_notes?tahun=' + my_tahun + '&bulan=' + my_bulan + '&plant=tbn4',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+
+                        var dataJson = JSON.parse(data3);
+                        var obj = dataJson.data;
+                        var count = Object.keys(obj).length;
+                        var catatan = '';
+                        for (var i = 1; i <= count; i++) {
+                            var note = dataJson.data[i].catatan;
+                            var equipment = dataJson.data[i].mesin;
+                            var solution = dataJson.data[i].solusi;
+                            catatan += '<li>' + i + '.&nbsp;' + note + '</li>';
+                        }
+                        $("#note_tb4").html(catatan);
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

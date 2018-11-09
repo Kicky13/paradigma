@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+         <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/waitMe.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/highstock.js"></script>
+	
+	   <script src="js/loader.js"></script>
+       <script type="text/javascript" src="js/paradigma.js"></script>
+        <!-- <script src="js/highcharts-3d.js"></script> -->
+        <script src="js/exporting.js"></script>
+		<script src="js/cost_mv.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+      <!--   <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                 $('a[href="#tab-bs"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'asset') {
+                        $('#asset').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#equity').addClass('hidden');
+                        $('#ratio').addClass('hidden');
+                       
+                    } else if (r == 'liability') {
+                        $('#liability').removeClass('hidden');
+                        $('#asset').addClass('hidden');
+                        $('#equity').addClass('hidden');
+                        $('#ratio').addClass('hidden');
+
+                    } else if (r === 'equity') {
+                         $('#equity').removeClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#asset').addClass('hidden');
+                        $('#ratio').addClass('hidden');
+
+                    } else if (r === 'ratio') {
+                         $('#equity').addClass('hidden');
+                        $('#liability').addClass('hidden');
+                        $('#asset').addClass('hidden');
+                        $('#ratio').removeClass('hidden');
+                    }
+                });
+
+
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = '#';
+                        setParam('3000', getParam('bln'),getParam('thn'));
+                        window.location.href = 'fin_cost_dt1_ton.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        setParam('7000', getParam('bln'),getParam('thn'));
+                        window.location.href = 'fin_cost_dt1_ton.html';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = '#';
+                        setParam('4000', getParam('bln'),getParam('thn'));
+                        window.location.href = 'fin_cost_dt1_ton.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = '#';
+                        setParam('6000', getParam('bln'),getParam('thn'));
+                        window.location.href = 'fin_cost_dt1_ton.html';
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = dd+'/'+mm+'/'+yyyy;
+        </script>
+        <script >
+            
+            //  $(function(){
+            //     var opco = 'smi';
+            //     var yearnow = tahun;
+            //      cost_data_detail(bulanSekarang, opco, yearnow);
+
+            //     $('.selmonth').change(function(){
+            //         bulanSekarang = $(this).val();
+            //         tahun = $('.selyear').val();   
+
+            //         cost_data_detail(bulanSekarang, opco, yearnow);
+
+            //     })
+              
+            // })
+        </script>
+        <script >
+            
+             $(function(){
+                var opco = 'smi';
+                var d = new Date();
+                var tahun = d.getFullYear();
+                var yearnow = tahun;
+                var bulanS = '0'+5;
+                var tmp = getParam();
+                var opco = getParam('opco');
+                var thn = getParam('thn');
+                var bln = getParam('bln');
+                if (opco == 7000) {
+                    $('.img_log').attr('src', 'img/icKota1.png');
+                    $('#head_log').text('SEMEN GRESIK');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').removeClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }else if (opco==3000) {
+                    $('.img_log').attr('src', 'img/icKota2.png');
+                    $('#head_log').text('SEMEN PADANG');
+
+                    $('#tab-sp').removeClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }if (opco==4000) {
+                    $('.img_log').attr('src', 'img/icKota3.png');
+                    $('#head_log').text('SEMEN TONASA');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').removeClass('img_foot2');
+                    $('#tab-tl').addClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }if (opco==6000) {
+                    $('.img_log').attr('src', 'img/icKota4.png');
+                    $('#head_log').text('THANG LONG');
+
+                    $('#tab-sp').addClass('img_foot2');
+                    $('#tab-sg').addClass('img_foot2');
+                    $('#tab-st').addClass('img_foot2');
+                    $('#tab-tl').removeClass('img_foot2');
+                    $('#tab-smi').addClass('img_foot2');
+                }
+        
+                 cost_data_detail(bln, opco, thn);
+
+                // $('.selmonth').change(function(){
+                //     bulanS = '0'+5;
+                //     tahun = $('.selyear').val();   
+
+                //     cost_data(bulanS, opco, yearnow);
+
+                // })
+              
+            })
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+
+            .collapse.in {
+                display: block;
+            }
+            tr.collapse.in {
+                display: table-row;
+            }
+            .num {
+                text-align: right;
+            }.inex{
+			        font-size: 14px;
+    font-weight: 300;
+}
+.titl{
+background-color: #e54b37;
+    padding: 9px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.59);
+    font-size: 12px;
+	    margin-bottom: 0px;
+		 border-radius: 3px 3px 0px 0px;
+
+	}
+	.box{
+	/* background-color: #e54b37; */
+    padding: 0px;
+    margin-bottom: 3px;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    /* margin: auto; */
+    min-height: 189px;
+    /* border-radius: 8px; */
+    /* margin-right: 1px; */
+    border: 1px solid rgb(197, 197, 197, 0.7);
+    /*-webkit-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    box-shadow: 0px 0px 36px 0px rgba(240,240,240,1);
+    border-right: 1px solid #b6b6b6;*/
+			}
+.bagan:hover, .bagan:visited {
+	opacity: 0.6;
+}
+.titab{
+    font-weight: 500;
+	    color: white;
+        display: inline-block;
+    font-size: 12px;
+    margin-bottom: 8px;
+	}
+	.lyear{
+	    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    border-left: 3px solid #e54b37;
+	}
+	.ryear{
+	color: black;
+    font-size: 16px;
+    padding-right: 10px;
+    border-right: 3px solid #e54b37;
+	}
+	.jud{
+	    color: #000000;
+        font-size: 18px;
+    font-weight: 600;
+    margin-top: 13px;
+    display: inline-block;
+	}
+	/*.til{
+	    padding-bottom: 1px;
+    border-bottom: 1px solid #b6b6b6;
+	background-color: ghostwhite;
+	}*/
+	.label-success {
+    background-color: #5cb85c;
+    border: 1.5px solid white;
+}
+.label-danger {
+    background-color: #d9534f;
+	border: 1.5px solid white;
+}
+.subox{
+    height: 137px;
+    border-bottom: 3px solid #e54b37;
+}
+.subox2{
+    height: 137px;
+    border-bottom: 3px solid #626262;
+}
+.hijau {color: #669966;}
+.merah {color: #DC0033;}
+.float_bgg {
+    max-width: 100%;
+    height: auto;
+    padding: 4px 12px;;
+    line-height: 1.42857143;
+    background-color: #fff;
+    /*border: 1px solid #e54b37;*/
+    border-radius: 0px 0px 6px 6px;
+    /*-webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;*/
+}
+.htittle{
+            margin: 0px;
+    border-radius: 6px 6px 0px 0px;
+    background-color: #e54b37;
+    height: 27px;
+    text-align: left;
+    font-size: 14px;
+    padding: 5px 0px 4px 9px;
+}
+.dettext{
+        color: #1964bf;
+    font-size: 17px;
+}
+.clmargin{
+        margin-top: 12px;
+}
+.up_dettext{
+        font-size: 10px;
+    font-weight: 300;
+    color: black;
+}
+.borblue{
+    border-bottom: 2px solid rgb(144, 208, 244);
+}
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            
+
+            });
+        </script>
+        <title>Finance Performance</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                          <h2 class="titular" style="        height: 37px;    line-height: 39px;font-size: small;">COST STRUCTURE<a onclick="back_()" class="pull-right" style="margin-right:10px;"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a></h2>
+                        <div class="headsix cubesRun2" style="margin-bottom: 66px; min-height: 218px;"> 
+                          <!--  <img src="img/teks semen indo.png" class="imgsi" style="padding-bottom: 7px; margin-bottom: 2px;"> -->
+                         <div class=" cubesRun2 headone">
+                                    <div class="col-xs-4" style="padding:0px;" align="center"> <img id="img_log" class="img_log"></div>
+                                    <div class="col-xs-8" style="padding:0px; padding-right: 31px;">
+                                         <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                        <p class="prodtittle" id="head_log" style="    font-weight: 600;    font-size: 23px;    display: inline-block;"></p>
+                                       
+                                    </div>
+                                </div>
+                          
+                          <!-- <center>
+                                    Month:
+                                    <select id="month" class="selmonth" rel="vol">undefined<option value="01">January</option><option value="02">February</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">August</option><option value="09">September</option><option value="10">October</option><option value="11" selected="selected">November</option></select>
+                                    
+
+                                </center> -->
+                          <center>
+          
+
+        <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">
+                                    
+                                <script type="text/javascript">
+                                    document.write("Last Update :",today);
+                                </script>
+                                </span>
+          </center>
+          <div class="col-xs-12" align="left" style="    margin: 15px 0px 10px 0px; border-bottom: 1px solid #f9cfd9; padding-bottom: 4px;">
+                                    <i class="fa fa-calendar" aria-hidden="true" style="    font-size: 19px;
+    color: #847f7f;"></i>
+                                    <span style="color: #4d4d4d; font-size: 19px" id="tag_month_selected"> </span>
+                                </div>
+                                    <!-- <div id="donut2" style="height: 250px;  margin: 0 auto; "></div> -->
+                                    <!-- BATAS CHART -->
+                                   
+                                    <div align="center" style="margin-bottom: 10px; margin-top:47px;">                                    
+                                   
+
+
+
+
+
+<!-- ISI ASSET -->
+                                <div class="active" id="asset" style="margin-bottom: 10px;">
+                                <span style="color: #2f2f2f; margin-top: 13px; display: inline-block;">Total COGM (IDR / Ton)</span><br>
+                                <span style="color: #1ba0ec;font-size: 26px; display: inline-block; margin-bottom: 14px;" id="ton_tot_pcost_nw">Loading...</span>
+                                        <table class="table table-striped" style="background: white;">
+                                            <thead style="font-weight: bold; font-size: 10px;" class="borblue">
+                                                <td>Detail Inform</td>
+                                                <td align="right" id="last"><div id="headerSelectedMonth1">This Month</div></td>
+                                                <td align="right" id="past">Month Last Year</td>
+                                            </thead>
+                                            <tfoot>
+                                                
+                                            </tfoot>
+                                            <tbody style=" font-size: 10px;">
+                                                <tr >
+                                                    
+                                                    <td>Raw Material</td>
+                                                    <td class="num"><div id="ton_pcost_rw_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_rw_past">0</div></td>
+                                                </tr>
+                                                <tr>
+                                                    
+                                                    <td>Supporting Material</td>
+                                                    <td class="num"><div id="ton_pcost_sm_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_sm_past">0</div></td>
+                                                </tr>
+                                                 <tr>
+                                                    
+                                                    <td>Fuel</td>
+                                                    <td class="num"><div id="ton_pcost_f_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_f_past">0</div></td>
+                                                </tr>
+                                                 <tr>
+                                                    
+                                                    <td>Electricity</td>
+                                                    <td class="num"><div id="ton_pcost_elc_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_elc_past">0</div></td>
+                                                </tr>
+                                                 <tr>
+                                                    
+                                                    <td>Labor</td>
+                                                    <td class="num"><div id="ton_pcost_lab_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_lab_past">0</div></td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                    
+                                                    <td>Maintenance</td>
+                                                    <td class="num"><div id="ton_pcost_main_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_main_past">0</div></td>
+                                                </tr>
+                                                <tr>
+                                                    
+                                                    <td>Depl. Deprec. and Amortization</td>
+                                                    <td class="num"><div id="ton_pcost_amor_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_amor_past">0</div></td>
+                                                </tr>
+                                                <tr>
+                                                    
+                                                    <td>General & Adminitration</td>
+                                                    <td class="num"><div id="ton_pcost_gadm_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_gadm_past">0</div></td>
+                                                </tr>
+                                                <tr class="borblue">
+                                                    
+                                                    <td>Taxes and Insurance</td>
+                                                    <td class="num"><div id="ton_pcost_tax_now">0</div></td>
+                                                    <td class="num"><div id="ton_pcost_tax_past">0</div></td>
+                                                </tr>
+                                                
+                                                <tr class="active">
+                                                    
+                                                    <td style="font-weight: bold;">COGM</td>
+                                                    <td align="right" style="color: red;"><div id="ton_tot_pcost_nwu">0</div></td>
+                                                    <td align="right" style="color: red;"><div id="ton_tot_pcost_psu">0</div></td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                        </table>
+
+                                        <div id="graphc" style="width: 100%; min-height: 300px; max-height: 600px; margin: 0 auto"></div>
+                                        
+                                </div>
+
+
+
+
+
+<!-- EQUITY -->
+                                
+
+
+
+
+                                         <!-- <div class="col-xs-12" align="left" style="    margin: 0px 0px 15px 0px;">
+                                    <i class="fa fa-paper-plane" aria-hidden="true" style="    font-size: 16px;
+    color: #e5c12e;"></i>
+                                    <span style="color: #4d4d4d; font-size: 16px"> &nbsp; Detail Table</span>
+                                </div>
+
+<table class="table table-striped" style="width: 100%; border: 10px; border-color: #000; display: inline-block; color: #000; font-size: 11px; text-align: center;">
+       <thead style="background-color: #f0cf46; color: #FFF">
+       <tr>
+       
+       <th width="40%"><b><center>Opco</center></b></th>
+       <th width="20%"><b><center>Asset</center></b></th>
+       <th width="20%"><b><center>Liability</center></b></th>
+       <th width="20%"><b><center>Equity</center></b></th>
+       </tr></thead>
+       <tbody>
+       <tr id="isidetaila"><td align="left">Detail 1</td><td align="right">23.762 </td><td align="right">45.726</td><td align="right">6.827</td></tr>
+       <tr id="isidetailb"><td align="left">Detail 2</td><td align="right">679.630,09 </td><td align="right">12.02</td><td align="right">0.89 %</td></tr>
+       <tr id="isidetailc"><td align="left">Detail 3</td><td align="right">517.664,55 </td><td align="right">9.16</td><td align="right">-7.2 %</td></tr>
+       <tr id="isidetailc"><td align="left">Detail 4</td><td align="right">517.664,55 </td><td align="right">9.16</td><td align="right">-7.2 %</td></tr>
+       </tbody>
+       
+       </table> -->
+
+                                         
+                                        
+                                        
+                                       <!--  <div class="col-xs-12" style="padding: 0px">
+                                       <div class="col-xs-6" align="left" style="padding: 0px; margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-pie-chart" aria-hidden="true" style="    font-size: 16px;
+    color: #e54b37;"></i>
+                                    <span style="color: #4d4d4d; font-size: 15px"> &nbsp;  November</span>
+                                    <div id="donut1" style="height: 300px;  margin: 0 auto; "></div></div>
+                                                       
+                                        <div class="col-xs-6" align="left" style="padding: 0px; margin: 15px 0px 15px 0px;     border-left: 1px solid #bdbdbd;">
+                                    &nbsp;<i class="fa fa-pie-chart" aria-hidden="true" style="font-size: 16px; color: #e54b37; padding-left: 6px"></i>
+                                    <span style="color: #4d4d4d; font-size: 15px"> &nbsp; November 2015</span>
+                                
+                                <div id="donut2" style="height: 300px;  margin: 0 auto"></div>
+                                </div>
+                                </div>
+
+                                   <div class="col-xs-12" align="left" style="    margin: 15px 0px 15px 0px;">
+                                    <i class="fa fa-bar-chart" aria-hidden="true" style="    font-size: 16px;
+    color: #e54b37;"></i>
+                                    <span style="color: #4d4d4d; font-size: 16px"> &nbsp; Trend Comparation</span>
+                                </div>
+
+<div id="line" style="width:100%; height: 300px; margin: 0 auto"></div> -->
+                                         
+                                         
+                                                                            
+                                            
+                                                       
+                                                       
+
+                                        
+                                        <br>
+                                        <div align="left">
+                                        <p style="color:black;font-size: 23px; padding-left: 9px;">&nbsp;</p>
+                                        </div>
+                                                     
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                                  
+                                                             
+                            </div>
+         
+          
+                        </div>
+                          
+                        
+                    <footer >
+<div class="regular" >
+
+
+                        <div id="tab-sp" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:48%;" /></a></div>
+                        <div id="tab-sg" class="col-xs-3 noPadding tab_uper" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:50%;" /></a></div>
+                        <div id="tab-st" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:50%;"/></a></div>
+                        <div id="tab-tl" class="col-xs-3 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:50%;"/></a></div>
+                     <div id="tab-kso" class="col-xs-3 noPadding tab_uper img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+            <script>
+//                 $(function () {
+//  Highcharts.chart('donut2', {
+//         chart: {
+//             backgroundColor: 'rgba(0, 255, 0, 0)',
+//             type: 'pie',
+//             margin : [0, 0, 0, 0],
+//             options3d: {
+//                 enabled: true,
+//                 alpha: 45
+//             }
+//         },
+//         colors: ['#EC644B', '#F1A9A0'],
+//         title: {
+//             text: ''
+//         },
+//         credits: {
+//                     enabled: false
+//                 },
+//         tooltip: {
+//                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+//             },
+//         plotOptions: {
+//             pie: {
+//                 allowPointSelect: true,
+//                     cursor: 'pointer',
+//                     dataLabels: {
+//                         enabled: true,
+//                         format: '{point.name}<br><b>{point.percentage:.1f}%</b>',
+//                         // color:'black'
+//                         // enabled: false,
+//                         distance: 10
+//                     },
+//                 innerSize: 40,
+//                 depth: 25,
+//                 showInLegend: false
+//             }
+//         },
+//         exporting: {
+//                     enabled: false
+//                 },
+//         series: [{
+//             name: 'Delivered amount',
+//             data: [
+//                 ['Liability', 8],
+//                 ['Equity', 3],
+//             ]
+//         }]
+//     });
+
+//     Highcharts.chart('donut1', {
+//         chart: {
+//             backgroundColor: 'rgba(0, 255, 0, 0)',
+//             type: 'pie',
+//             options3d: {
+//                 enabled: true,
+//                 alpha: 45
+//             }
+//         },
+//         colors: ['#E9D460', '#FDE3A7'],
+//         title: {
+//             text: ''
+//         },
+//         credits: {
+//                     enabled: false
+//                 },
+//         exporting: {
+//                     enabled: false
+//                 },
+//         plotOptions: {
+//             pie: {
+//                 allowPointSelect: true,
+//                     cursor: 'pointer',
+//                     dataLabels: {
+//                         enabled: false
+//                     },
+//                 innerSize: 40,
+//                 depth: 25,
+//                 showInLegend: true
+//             }
+//         },
+//         series: [{
+//             name: 'Delivered amount',
+//             data: [
+//                 ['liability', 8],
+//                 ['Equity', 3],
+//             ]
+//         }]
+//     });
+    
+// });
+//                 $(function () {
+//  Highcharts.chart('line', {
+//         title: {
+//             text: ''
+//         },
+        
+//         xAxis: {
+//             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+//                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+//         },
+//         yAxis: {
+//             title: {
+//                 text: ''
+//             },
+//             plotLines: [{
+//                 value: 0,
+//                 width: 1,
+//                 color: '#808080'
+//             }]
+//         },
+//         tooltip: {
+//             valueSuffix: ' T'
+//         },
+//         legend: {
+//             borderWidth: 0,
+//             layout: 'horizontal',
+//             align: 'center',
+//             verticalAlign: 'bottom',
+//             x: 0,
+//             y: 0,
+//             backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+//             //shadow: true
+//         },
+//         credits: {
+//                     enabled: false
+//                 },
+//         exporting: {
+//                     enabled: false
+//                 },
+//         series: [{
+//             name: 'Current',
+//             data: [2,4,7,15,3,10,1,9,11,12,7,6,],
+//             color: '#EF4836',
+//             type: 'spline'
+//         }, {
+//             name: 'Dec last Year',
+//             data: [6,6,6,6,6,6,6,6,6,6,6,6],
+//             color: '#E9D460',
+//             type: 'spline'
+//         }]
+//     });
+
+//     Highcharts.chart('container2', {
+//         chart: {
+//             backgroundColor: 'rgba(0, 255, 0, 0)',
+//             plotBackgroundColor: null,
+//             plotBorderWidth: null,
+//             plotShadow: false,
+//             type: 'pie'
+//         },
+//         title: {
+//             text: ''
+//         },
+//         tooltip: {
+//             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+//         },
+//         plotOptions: {
+//             // pie: {
+//             //     allowPointSelect: true,
+//             //     cursor: 'pointer',
+//             //     dataLabels: {
+//             //         enabled: true,
+//             //         format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+//             //         style: {
+//             //             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+//             //         }
+//             //     }
+//             // }
+//             pie: {
+//                     allowPointSelect: true,
+//                     cursor: 'pointer',
+//                     dataLabels: {
+//                         enabled: false
+//                     },
+//                     showInLegend: true
+//                 }
+//         },
+//         exporting: {
+//                     enabled: false
+//                 },
+//         credits: {
+//                     enabled: false
+//                 },
+//         series: [{
+//             name: 'Brands',
+//             colorByPoint: true,
+//             data: [{
+//                 name: 'Liability',
+//                 y: 56.33,
+//                 color: '#6BB9F0'
+//             }, {
+//                 name: 'Equity',
+//                 y: 24.03,
+//                 sliced: false,
+//                 selected: false,
+//                 color: '#2ECC71'
+//             }]
+//         }]
+//     });
+// });
+</script>
+
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

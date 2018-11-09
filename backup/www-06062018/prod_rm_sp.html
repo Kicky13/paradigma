@@ -1,0 +1,1830 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/highstock.js"></script>
+        <!--<script src="js/highcharts.js"></script>-->
+        <script src="js/exporting.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script src="js/loader.js"></script>
+        <!--<script type="text/javascript" src="js/touch-tooltip-fix.js"></script>-->
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $(document).on('click', 'a[href="#raw_material"]', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    window.location.href = 'raw_material_detail.html?i=' + r;
+                })
+                var myspan = document.getElementById('head');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "Cement Production";
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "Clinker Production";
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                        myspan.innerText = "Raw Meal Production";
+                    }
+                })
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_sp.html';
+                    } else if (r == 'data-sg') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_sg.html';
+                    } else if (r == 'data-st') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'prod_rm_st.html';
+                    } else if (r == 'data-tl') {
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'prod_rm_tlcc.html';
+                    }
+                })
+                $(document).on('click', '.gauge', function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('target');
+                    window.location.href = 'backlog_detail.html?i=' + r;
+                })
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader {
+                display: none;
+            }
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active {
+                border-top: 1px solid #1481ed;
+            }
+            .inex {
+                font-size: 25px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+            }
+            .tit_head {
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .tab-active {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                font-family: "Open Sans";
+            }
+            .prosen1 {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+            .mencapai {
+                color: #06bf79;
+            }
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+            });
+        </script>
+        <title>Production Report</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+				<div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                     
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+						<button class="burger-menu burger-menu-x" id="menu-toggle">
+							<span>toggle menu</span>
+						</button>
+						<a class="logopis" href="">PRODUCTION</a>
+						<a class="logo" href="index.html"><img src="img/logo.png"></a>
+					</header>
+                    <div class="wrapper">
+						<div class="head-menu">
+							<ul>
+								<li><a class="active">PROD. REPORT</a></li>
+								<li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+								<li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+								<li class="haschild">
+									<a>MOTOR PERFORM</a>
+									<div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+										<a onclick="goto_opco('motor_perform_rm3sg')">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+										</a>
+										<a onclick="goto_opco('motor_perform_cm3sg')">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+										</a>
+										<a onclick="goto_opco('motor_perform_kl3sg')">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+										</a>                                    
+										<a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry" 		aria-hidden="true"></i>&nbsp;&nbsp;Finish Mill
+										</a>
+									</div>
+								</li>
+								<li class="haschild">
+									<a>ANALITYCAL KILN</a>
+									<div id="myDropdown" class="dropdown-content dd-new" align="left">
+										<a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+										</a>
+										<a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+										</a>
+									</div>
+								</li>
+								<li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+								<li class="haschild">
+									<a>ID FAN KILN</a>
+									<div id="myDropdown" class="dropdown-content dd-new" align="left">
+										<a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+										</a>
+										<a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+											<i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+										</a>
+									</div>
+								</li>
+								<li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+								<li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+								 
+							</ul>
+						</div>
+                        <div class="spacer-menu"></div>
+                        <div class=" headsix2 cubesRun2 headone whitebg">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota2.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px;" >
+                                <p class="opco">SEMEN PADANG</p>
+                                <p class="prodtittle" style="font-size: 20px;" id="head">Cement Production</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 tab_dual">
+                            <div class="col-xs-12 bg_rds">
+                                <div id="tab-volume" class="col-xs-4 center zero_padd left_tb act_tb">
+                                    <a href="#tab-click" rel="data-volume" class="no-text-style"><img src="img/pack.png" width="18px"> 
+                                        <span class="tx_tab">&nbsp;&nbsp;Finish Mill</span></a></div>
+
+                                <div id="tab-revenue" class="col-xs-4 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-revenue" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                        <span class="tx_tab">&nbsp;&nbsp;Kiln</span></a></div>
+
+                                <div id="tab-price" class="col-xs-4 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-price" class="no-text-style"> <img src="img/gdg.png" width="18px">
+                                        <span class="tx_tab">&nbsp;&nbsp;Raw Mill</span></a></div>
+                            </div>
+                        </div>
+                        <div id="data-price" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px;">
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION THIS MONTH (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"> <span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="" style="color:#22A7F0;">0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"> <span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realmonthrm" style="color:#22A7F0;"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="">0</span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION UP TO (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"><span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="" style="color:#22A7F0;">0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"><span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realuptorm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="">0 </span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 15px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;RATE PER DAY</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="raterm" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 10px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER DAY THIS MONTH</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="prodrm" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 56px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER MONTH THIS YEAR</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="monthrm" style="min-height: 300px;width:900px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                        <!--######################menu1###########################-->
+                        <div id="data-revenue" class="hidden">
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION THIS MONTH (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"> <span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="rkapmonthkl" style="color:#22A7F0;"> 0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"> <span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realmonthkl" style="color:#22A7F0;"> 0</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="percentmonthkl"> 0</span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION UP TO (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"><span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="rkapuptokl" style="color:#22A7F0;"> 0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"><span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realuptokl" style="color:#22A7F0;">0</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="percentuptokl"> 0</span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 15px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;RATE PER DAY</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="ratekl" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 10px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER DAY THIS MONTH</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="prodkl" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 56px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER MONTH THIS YEAR</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="monthkl" style="min-height: 300px;width:900px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                        <!--######################menu2###########################-->
+                        <div id="data-volume">
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION THIS MONTH (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"> <span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="rkapmonthfm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"> <span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realmonthfm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="percentmonthfm">0</span><span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <div align="center" class="headsixbg cubesRun2"style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION UP TO (T)</span> </div>
+                                    <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
+                                        <div class="col-xs-6">
+                                            <div class="col-xs-12" style="text-align: left;     margin-bottom: 16px;"><span style="color: #373131;font-size: 13px;">&nbsp;TARGET : </span><br>
+                                                <span class="inex" id="rkapuptofm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                            <div class="col-xs-12"  style="text-align: left; margin-bottom: 0px;"><span style="color: #373131;font-size: 13px;">&nbsp;ACTUAL : </span><br>
+                                                <span class="inex" id="realuptofm" style="color:#22A7F0;">0</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 noPadding" align="right" style="padding-right:15px;     margin-top: 14px;"> <span class="upercent" style="    color: #1b9ab5;font-size: 13px;">ACHIEVEMENT</span><br>
+                                            <span class="prosen1" id="percentuptofm">0</span> <span class="prosen1"> %</span></div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 15px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;RATE PER DAY</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood;">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="ratefm" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 10px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER DAY THIS MONTH</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="prodfm" style="min-height: 300px;width:1600px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPadding box_sdow" style="height: 340px; margin-bottom: 56px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="left" style="    height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;"> <span style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;PRODUCTION PER MONTH THIS YEAR</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div style="overflow-x: scroll;">
+                                            <div id="monthfm" style="min-height: 300px;width:900px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer>
+                        <div class="regular" >
+                            <a href="prod_rm_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;"><img src="img/icKota2a.png" style="width:48%;display:inline;" /></a>
+                            <a href="prod_rm_sgr.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/icKota1a.png" style="width:48%;display:inline;" /></a>
+                            <a href="prod_rm_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
+                            <a href="prod_rm_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/icKota3a.png" style="width:48%;display:inline;" /></a>
+                            <a href="prod_rm_tlcc.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/icKota4a.png" style="width:48%;display:inline;" /></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+        $(document).on('ready', function () {
+               $(".regular").slick({ 
+                    infinite: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    arrows:false,
+                    centerMode: false
+                }); 
+            });
+            var myMonth = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+            var d = moment().format('DD');
+            var m = moment().format('MM');
+            var y = moment().format('YYYY');
+            var today = d + ' ' + myMonth[parseInt(m) - 1] + ' ' + y;
+            $('#last_updated').html(today);
+            var strBulan = 's' + bulanSekarang;
+            $(".bulan").html(bulan + ' ' + tahun);
+            function n(n) {
+                return n > 9 ? "" + n : "0" + n;
+            }
+            $.ajax({
+                url: url_src + '/api/index.php/plant_padang/get_proddaily',
+                type: 'GET',
+                success: function (data) {
+                    var data1 = data.replace("<title>Json</title>", "");
+                    var data2 = data1.replace("(", "[");
+                    var data3 = data2.replace(");", "]");
+
+                    var dataJson = JSON.parse(data3);
+
+                    var obj = dataJson['N22.W2A07_09F1'].produksi;
+                    var count = Object.keys(obj).length;
+
+                    var labelArray = [];
+                    var dataRate1 = [];
+                    var dataProd1 = [];
+                    var dataRate2 = [];
+                    var dataProd2 = [];
+                    var dataRate3 = [];
+                    var dataProd3 = [];
+                    var dataRate4 = [];
+                    var dataProd4 = [];
+                    var dataRate5 = [];
+                    var dataProd5 = [];
+                    var dataRate6 = [];
+                    var dataProd6 = [];
+                    var dataRate7 = [];
+                    var dataProd7 = [];
+
+                    var dataRate1kl = [];
+                    var dataProd1kl = [];
+                    var dataRate2kl = [];
+                    var dataProd2kl = [];
+                    var dataRate3kl = [];
+                    var dataProd3kl = [];
+                    var dataRate4kl = [];
+                    var dataProd4kl = [];
+                    var dataRate5kl = [];
+                    var dataProd5kl = [];
+
+                    var dataRate1fm = [];
+                    var dataProd1fm = [];
+                    var dataRate2fm = [];
+                    var dataProd2fm = [];
+                    var dataRate3fm = [];
+                    var dataProd3fm = [];
+                    var dataRate4fm = [];
+                    var dataProd4fm = [];
+                    var dataRate5fm = [];
+                    var dataProd5fm = [];
+                    var dataRate6fm = [];
+                    var dataProd6fm = [];
+                    var dataRate7fm = [];
+                    var dataProd7fm = [];
+                    var dataRate8fm = [];
+                    var dataProd8fm = [];
+
+                    var totProd4fm = [];
+                    var totProd5fm = [];
+
+                    for (i = 1; i <= count; i++) {
+                        //Raw Mill
+                        labelArray.push(i);
+                        nilaiRate1 = dataJson['N11.R1_MV_TOTAL_ORIGINAL'].produksi[n(i)].rate ? (dataJson['N11.R1_MV_TOTAL_ORIGINAL'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1 = dataJson['N11.R1_MV_TOTAL_ORIGINAL'].produksi[n(i)].prod ? (dataJson['N11.R1_MV_TOTAL_ORIGINAL'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1.push(parseInt(nilaiRate1.replace(',', '.')));
+                        dataProd1.push(parseInt(nilaiProd1.replace(',', '.')));
+
+                        nilaiRate2 = dataJson['N21.R2_MV_TOTAL_ORIGINAL'].produksi[n(i)].rate ? (dataJson['N21.R2_MV_TOTAL_ORIGINAL'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd2 = dataJson['N21.R2_MV_TOTAL_ORIGINAL'].produksi[n(i)].prod ? (dataJson['N21.R2_MV_TOTAL_ORIGINAL'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate2.push(parseInt(nilaiRate2.replace(',', '.')));
+                        dataProd2.push(parseInt(nilaiProd2.replace(',', '.')));
+
+                        //                        nilaiRate3 = dataJson['PIS.4R1_FEED_UN'].produksi[n(i)].rate ? (dataJson['PIS.4R1_FEED_UN'].produksi[n(i)].rate).replace('.', '') : 0;
+                        //                        nilaiProd3 = dataJson['PIS.4R1_FEED_UN'].produksi[n(i)].prod ? (dataJson['PIS.4R1_FEED_UN'].produksi[n(i)].prod).replace('.', '') : 0;
+                        //                        dataRate3.push(parseInt(nilaiRate3.replace(',', '.')));
+                        //                        dataProd3.push(parseInt(nilaiProd3.replace(',', '.')));
+
+                        nilaiRate4 = dataJson['PIS.4R2_FEED'].produksi[n(i)].rate ? (dataJson['PIS.4R2_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd4 = dataJson['PIS.4R2_FEED'].produksi[n(i)].prod ? (dataJson['PIS.4R2_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate4.push(parseInt(nilaiRate4.replace(',', '.')));
+                        dataProd4.push(parseInt(nilaiProd4.replace(',', '.')));
+
+                        var obj2 = dataJson['N22.W2A07_09F1'].produksi;
+                        var count2 = Object.keys(obj2).length;
+                        console.log(count2);
+
+                        nilaiRate5 = dataJson['PIS.5R1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.5R1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd5 = dataJson['PIS.5R1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.5R1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate5.push(parseInt(nilaiRate5.replace(',', '.')));
+                        dataProd5.push(parseInt(nilaiProd5.replace(',', '.')));
+
+                        nilaiRate6 = dataJson['PIS.5R2_FEED'].produksi[n(i)].rate ? (dataJson['PIS.5R2_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd6 = dataJson['PIS.5R2_FEED'].produksi[n(i)].prod ? (dataJson['PIS.5R2_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate6.push(parseInt(nilaiRate6.replace(',', '.')));
+                        dataProd6.push(parseInt(nilaiProd6.replace(',', '.')));
+                        
+                        nilaiRate7 = dataJson['PIS.6R1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.6R1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd7 = dataJson['PIS.6R1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.6R1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate6.push(parseInt(nilaiRate7.replace(',', '.')));
+                        dataProd6.push(parseInt(nilaiProd7.replace(',', '.')));
+                        //console.log(dataRate4);
+
+                        //Kiln
+                        nilaiRate1kl = dataJson['N12.W1A07_09F1'].produksi[n(i)].rate ? (dataJson['N12.W1A07_09F1'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1kl = dataJson['N12.W1A07_09F1'].produksi[n(i)].prod ? (dataJson['N12.W1A07_09F1'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1kl.push(parseInt(nilaiRate1kl.replace(',', '.')));
+                        dataProd1kl.push(parseInt(nilaiProd1kl.replace(',', '.')));
+
+                        nilaiRate2kl = dataJson['N22.W2A07_09F1'].produksi[n(i)].rate ? (dataJson['N22.W2A07_09F1'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd2kl = dataJson['N22.W2A07_09F1'].produksi[n(i)].prod ? (dataJson['N22.W2A07_09F1'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate2kl.push(parseInt(nilaiRate2kl.replace(',', '.')));
+                        dataProd2kl.push(parseInt(nilaiProd2kl.replace(',', '.')));
+
+                        nilaiRate3kl = dataJson['PIS.4W1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.4W1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd3kl = dataJson['PIS.4W1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.4W1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate3kl.push(parseInt(nilaiRate3kl.replace(',', '.')));
+                        dataProd3kl.push(parseInt(nilaiProd3kl.replace(',', '.')));
+
+                        nilaiRate4kl = dataJson['PIS.5W1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.5W1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd4kl = dataJson['PIS.5W1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.5W1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate4kl.push(parseInt(nilaiRate4kl.replace(',', '.')));
+                        dataProd4kl.push(parseInt(nilaiProd4kl.replace(',', '.')));
+
+                        nilaiRate5kl = dataJson['PIS.6W1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.6W1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd5kl = dataJson['PIS.6W1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.6W1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate5kl.push(parseInt(nilaiRate5kl.replace(',', '.')));
+                        dataProd5kl.push(parseInt(nilaiProd5kl.replace(',', '.')));
+                        //console.log(dataRate4kl);
+                        //Finish Mill
+                        nilaiRate1fm = dataJson['N13.Z1_MV_TOTAL'].produksi[n(i)].rate ? (dataJson['N13.Z1_MV_TOTAL'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd1fm = dataJson['N13.Z1_MV_TOTAL'].produksi[n(i)].prod ? (dataJson['N13.Z1_MV_TOTAL'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate1fm.push(parseInt(nilaiRate1fm.replace(',', '.')));
+                        dataProd1fm.push(parseInt(nilaiProd1fm.replace(',', '.')));
+
+                        nilaiRate2fm = dataJson['N23.Z2_MV_TOTAL'].produksi[n(i)].rate ? (dataJson['N23.Z2_MV_TOTAL'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd2fm = dataJson['N23.Z2_MV_TOTAL'].produksi[n(i)].prod ? (dataJson['N23.Z2_MV_TOTAL'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate2fm.push(parseInt(nilaiRate2fm.replace(',', '.')));
+                        dataProd2fm.push(parseInt(nilaiProd2fm.replace(',', '.')));
+
+                        nilaiRate3fm = dataJson['PIS.4Z1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.4Z1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd3fm = dataJson['PIS.4Z1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.4Z1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate3fm.push(parseInt(nilaiRate3fm.replace(',', '.')));
+                        dataProd3fm.push(parseInt(nilaiProd3fm.replace(',', '.')));
+
+                        nilaiRate4fm = dataJson['PIS.4Z2_FEED'].produksi[n(i)].rate ? (dataJson['PIS.4Z2_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd4fm = dataJson['PIS.4Z2_FEED'].produksi[n(i)].prod ? (dataJson['PIS.4Z2_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate4fm.push(parseInt(nilaiRate4fm.replace(',', '.')));
+                        dataProd4fm.push(parseInt(nilaiProd4fm.replace(',', '.')));
+
+                        var temp = parseInt(nilaiProd3fm) + parseInt(nilaiProd4fm);
+                        totProd4fm.push(parseInt(temp));
+
+                        nilaiRate5fm = dataJson['PIS.5Z1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.5Z1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd5fm = dataJson['PIS.5Z1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.5Z1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate5fm.push(parseInt(nilaiRate5fm.replace(',', '.')));
+                        dataProd5fm.push(parseInt(nilaiProd5fm.replace(',', '.')));
+
+                        nilaiRate6fm = dataJson['PIS.5Z2_FEED'].produksi[n(i)].rate ? (dataJson['PIS.5Z2_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd6fm = dataJson['PIS.5Z2_FEED'].produksi[n(i)].prod ? (dataJson['PIS.5Z2_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate6fm.push(parseInt(nilaiRate6fm.replace(',', '.')));
+                        dataProd6fm.push(parseInt(nilaiProd6fm.replace(',', '.')));
+
+                        nilaiRate7fm = dataJson['PIS.6Z1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.6Z1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd7fm = dataJson['PIS.6Z1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.6Z1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate7fm.push(parseInt(nilaiRate7fm.replace(',', '.')));
+                        dataProd7fm.push(parseInt(nilaiProd7fm.replace(',', '.')));
+
+                        nilaiRate8fm = dataJson['PIS.1Z1_FEED'].produksi[n(i)].rate ? (dataJson['PIS.1Z1_FEED'].produksi[n(i)].rate).replace('.', '') : 0;
+                        nilaiProd8fm = dataJson['PIS.1Z1_FEED'].produksi[n(i)].prod ? (dataJson['PIS.1Z1_FEED'].produksi[n(i)].prod).replace('.', '') : 0;
+                        dataRate8fm.push(parseInt(nilaiRate8fm.replace(',', '.')));
+                        dataProd8fm.push(parseInt(nilaiProd8fm.replace(',', '.')));
+
+                        var temp = parseInt(nilaiProd5fm) + parseInt(nilaiProd6fm);
+                        totProd5fm.push(parseInt(temp));
+                    }
+                    $('#raterm').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //gridLineWidth: 1//,
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Indarung 2',
+                                color: '#E74C3C',
+                                data: dataRate1
+                            }, {
+                                name: 'Indarung 3',
+                                color: '#F7CA18',
+                                data: dataRate2
+                            }, {
+                                name: 'Indarung 4.2',
+                                color: '#87D37C',
+                                data: dataRate4
+                            }, {
+                                name: 'Indarung 5.1',
+                                color: '#19B5FE',
+                                data: dataRate5
+                            }, {
+                                name: 'Indarung 5.2',
+                                color: '#BE90D4',
+                                data: dataRate6
+                            }, {
+                                name: 'Indarung 6',
+                                color: '#25373D',
+                                data: dataRate7
+                            }]
+                    });
+                    $('#prodrm').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Indarung 2',
+                                color: '#E74C3C',
+                                data: dataProd1
+                            }, {
+                                name: 'Indarung 3',
+                                color: '#F7CA18',
+                                data: dataProd2
+                            }, {
+                                name: 'Indarung 4.2',
+                                color: '#87D37C',
+                                data: dataProd4
+                            }, {
+                                name: 'Indarung 5.1',
+                                color: '#19B5FE',
+                                data: dataProd5
+                            }, {
+                                name: 'Indarung 5.2',
+                                color: '#9B59B6',
+                                data: dataProd6
+                            }, {
+                                name: 'Indarung 6',
+                                color: '#25373D',
+                                data: dataProd7
+                            }]
+                    });
+
+                    $('#ratekl').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //gridLineWidth: 1//,
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Indarung 2',
+                                color: '#E74C3C',
+                                data: dataRate1kl
+                            }, {
+                                name: 'Indarung 3',
+                                color: '#F7CA18',
+                                data: dataRate2kl
+                            }, {
+                                name: 'Indarung 4',
+                                color: '#87D37C',
+                                data: dataRate3kl
+                            }, {
+                                name: 'Indarung 5',
+                                color: '#19B5FE',
+                                data: dataRate4kl
+                            }, {
+                                name: 'Indarung 6',
+                                color: '#25373D',
+                                data: dataRate5kl
+                            }]
+                    });
+                    $('#prodkl').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Indarung 2',
+                                color: '#E74C3C',
+                                data: dataProd1kl
+                            }, {
+                                name: 'Indarung 3',
+                                color: '#F7CA18',
+                                data: dataProd2kl
+                            }, {
+                                name: 'Indarung 4',
+                                color: '#87D37C',
+                                data: dataProd3kl
+                            }, {
+                                name: 'Indarung 5',
+                                color: '#19B5FE',
+                                data: dataProd4kl
+                            }, {
+                                name: 'Indarung 6',
+                                color: '#25373D',
+                                data: dataProd5kl
+                            }]
+                    });
+
+                    $('#ratefm').highcharts({
+                        chart: {
+                            type: 'spline',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //gridLineWidth: 1//,
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'FM 2',
+                                color: '#2C82C9',
+                                data: dataRate1fm
+                            }, {
+                                name: 'FM 3',
+                                color: '#E22211',
+                                data: dataRate2fm
+                            }, {
+                                name: 'FM 4.1',
+                                color: '#9E8E5A',
+                                data: dataRate3fm
+                            }, {
+                                name: 'FM 4.2',
+                                color: '#249991',
+                                data: dataRate4fm
+                            }, {
+                                name: 'FM 5.1',
+                                color: '#B0DACC',
+                                data: dataRate5fm
+                            }, {
+                                name: 'FM 5.2',
+                                color: '#E22211',
+                                data: dataRate6fm
+                            }, {
+                                name: 'FM 6',
+                                color: '#25373D',
+                                data: dataRate7fm
+                            }, {
+                                name: 'FM 1',
+                                color: '#953163',
+                                data: dataRate8fm
+                            }]
+                    });
+                    $('#prodfm').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Indarung 2',
+                                color: '#E74C3C',
+                                data: dataProd1fm
+                            }, {
+                                name: 'Indarung 3',
+                                color: '#F7CA18',
+                                data: dataProd2fm
+                            }, {
+                                name: 'Indarung 4',
+                                color: '#87D37C',
+                                data: totProd4fm
+                            }, {
+                                name: 'Indarung 5',
+                                color: '#19B5FE',
+                                data: totProd5fm
+                            }, {
+                                name: 'Indarung 6',
+                                color: '#25373D',
+                                data: dataProd7fm
+                            }, {
+                                name: 'Indarung 1',
+                                color: '#953163',
+                                data: dataProd8fm
+                            }]
+                    });
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+
+            //===================== MONTH ======
+            $.ajax({
+                url: url_src + '/api/index.php/plant_padang/get_prodmonth',
+                type: 'GET',
+                success: function (data) {
+                    var data1 = data.replace("<title>Json</title>", "");
+                    var data2 = data1.replace("(", "[");
+                    var data3 = data2.replace(");", "]");
+
+                    var dataJson = JSON.parse(data3);
+                    var myLogData = dataJson['7000'].prod;
+//                    var count = Object.keys(myLogData).length;
+
+                    var labelArray = [];
+                    var index = [];
+
+                    var prodkl2 = [];
+                    var prodkl3 = [];
+                    var prodkl4 = [];
+                    var prodkl5 = [];
+                    var prodkl6 = [];
+
+                    var prodrm2 = [];
+                    var prodrm3 = [];
+                    var prodrm4 = [];
+                    var prodrm5 = [];
+                    var prodrm6 = [];
+
+                    var prodfmind1 = [];
+                    var prodfmind2 = [];
+                    var prodfmind3 = [];
+                    var prodfmind4 = [];
+                    var prodfmind5 = [];
+                    var prodfmind6 = [];
+                    var prodfmdm = [];
+
+                    var rkap_cement = [];
+                    var rkap_clinker = [];
+
+                    for (var x in myLogData) {
+                        index.push(x);
+                        labelArray.push(x);
+                        kl2 = dataJson['7000'].prod[x].kl2;
+                        prodkl2.push(parseFloat(kl2.replace(',', '.')));
+                        kl3 = dataJson['7000'].prod[x].kl3;
+                        prodkl3.push(parseFloat(kl3.replace(',', '.')));
+                        kl4 = dataJson['7000'].prod[x].kl4;
+                        prodkl4.push(parseFloat(kl4.replace(',', '.')));
+                        kl5 = dataJson['7000'].prod[x].kl5;
+                        prodkl5.push(parseFloat(kl5.replace(',', '.')));
+                        kl6 = dataJson['7000'].prod[x].kl6;
+                        prodkl6.push(parseFloat(kl6.replace(',', '.')));
+
+                        rm2 = dataJson['7000'].prod[x].rm2;
+                        prodrm2.push(parseFloat(rm2.replace(',', '.')));
+                        rm3 = dataJson['7000'].prod[x].rm3;
+                        prodrm3.push(parseFloat(rm3.replace(',', '.')));
+                        rm4 = dataJson['7000'].prod[x].rm4;
+                        prodrm4.push(parseFloat(rm4.replace(',', '.')));
+                        rm5 = dataJson['7000'].prod[x].rm5;
+                        prodrm5.push(parseFloat(rm5.replace(',', '.')));
+                        rm6 = dataJson['7000'].prod[x].rm6;
+                        prodrm6.push(parseFloat(rm6.replace(',', '.')));
+
+                        fmind1 = dataJson['7000'].prod[x].fm_ind1;
+                        prodfmind1.push(parseFloat(fmind1.replace(',', '.')));
+                        fmind2 = dataJson['7000'].prod[x].fm_ind2;
+                        prodfmind2.push(parseFloat(fmind2.replace(',', '.')));
+                        fmind3 = dataJson['7000'].prod[x].fm_ind3;
+                        prodfmind3.push(parseFloat(fmind3.replace(',', '.')));
+                        fmind4 = dataJson['7000'].prod[x].fm_ind4;
+                        prodfmind4.push(parseFloat(fmind4.replace(',', '.')));
+                        fmind5 = dataJson['7000'].prod[x].fm_ind5;
+                        prodfmind5.push(parseFloat(fmind5.replace(',', '.')));
+                        fmind6 = dataJson['7000'].prod[x].fm_ind6;
+                        prodfmind6.push(parseFloat(fmind6.replace(',', '.')));
+                        fmdm = dataJson['7000'].prod[x].fm_dm;
+                        prodfmdm.push(parseFloat(fmdm.replace(',', '.')));
+
+                        kl1 = dataJson['7000'].rkap[x].rkap_cement;
+                        rkap_cement.push(parseFloat(kl1.replace(',', '.')));
+
+                        rm1 = dataJson['7000'].rkap[x].rkap_clinker;
+                        rkap_clinker.push(parseFloat(rm1.replace(',', '.')));
+                    }
+
+                    $('#monthrm').highcharts({
+                        chart: {
+                            type: 'column',
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //         //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'Indarung 2',
+                                color: '#E74C3C',
+                                data: prodrm2
+                            }, {
+                                name: 'Indarung 3',
+                                color: '#F7CA18',
+                                data: prodrm3
+                            }, {
+                                name: 'Indarung 4',
+                                color: '#87D37C',
+                                data: prodrm4
+                            }, {
+                                name: 'Indarung 5',
+                                color: '#19B5FE',
+                                data: prodrm5
+                            }, {
+                                name: 'Indarung 6',
+                                color: '#25373D',
+                                data: prodrm6
+                            }]
+                    });
+                    $('#monthkl').highcharts({
+                        chart: {
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //         //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal'
+                            }
+                        },
+                        series: [{
+                                name: 'Indarung 2',
+                                color: '#E74C3C',
+                                type: 'column',
+                                data: prodkl2
+                            }, {
+                                name: 'Indarung 3',
+                                color: '#F7CA18',
+                                type: 'column',
+                                data: prodkl3
+                            }, {
+                                name: 'Indarung 4',
+                                color: '#87D37C',
+                                type: 'column',
+                                data: prodkl4
+                            }, {
+                                name: 'Indarung 5',
+                                color: '#19B5FE',
+                                type: 'column',
+                                data: prodkl5
+                            }, {
+                                name: 'Indarung 6',
+                                color: '#25373D',
+                                type: 'column',
+                                data: prodkl6
+                            }, {
+                                name: 'RKAP',
+                                color: '#ff0000 ',
+                                type: 'spline',
+                                data: rkap_clinker
+                            }]
+                    });
+                    $('#monthfm').highcharts({
+                        chart: {
+                            spacingBottom: 8,
+                            spacingTop: 8,
+                            spacingLeft: 5,
+                            spacingRight: 5,
+                            animation: Highcharts.svg
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: labelArray,
+                            tickInterval: 1,
+                            tickmarkPlacement: 'on',
+                            gridLineWidth: 1
+                                    // min: 0,
+                                    // max: labelArray.length - 1
+                                    //         //min: labelArray.length - 5,
+                                    //max: labelArray.length - 1
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }//,
+                            //tickInterval: 1
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        legend: {
+                            enabled: true,
+                            layout: 'horizontal',
+                            align: 'left',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal'
+                            }
+                        },
+                        series: [{
+                                name: 'Indarung 1',
+                                color: '#953163',
+                                type: 'column',
+                                data: prodfmind1
+                            }, {
+                                name: 'Indarung 2',
+                                color: '#E74C3C',
+                                type: 'column',
+                                data: prodfmind2
+                            }, {
+                                name: 'Indarung 3',
+                                color: '#F7CA18',
+                                type: 'column',
+                                data: prodfmind3
+                            }, {
+                                name: 'Indarung 4',
+                                color: '#87D37C',
+                                type: 'column',
+                                data: prodfmind4
+                            }, {
+                                name: 'Indarung 5',
+                                color: '#19B5FE',
+                                type: 'column',
+                                data: prodfmind5
+                            }, {
+                                name: 'Indarung 6',
+                                color: '#25373D',
+                                type: 'column',
+                                data: prodfmind6
+                            }, {
+                                name: 'Dumai',
+                                color: '#102770',
+                                type: 'column',
+                                data: prodfmdm
+                            }, {
+                                name: 'RKAP',
+                                color: '#9B59B6',
+                                type: 'spline',
+                                data: rkap_cement
+                            }]
+                    });
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            //==================== RAW MILL ====================//
+            $.ajax({
+                url: url_src + '/api/index.php/plant_padang/get_upto',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realuptorm").html(FormatNumberBy3(parseFloat(dataJson.rawmill).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            var alamat = url_src + '/api/index.php/plant_padang/get_totaltahun?bulan=' + bulanSekarang + '&tahun=' + tahun;
+            $.ajax({
+                url: alamat,
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realmonthrm").html(FormatNumberBy3(parseFloat(dataJson.rawmill).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            //==================== KILN ====================//
+            $.ajax({
+                url: url_src + '/api/index.php/plant_padang/get_upto',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realuptokl").html(FormatNumberBy3(parseFloat(dataJson.kiln).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+
+            function real(data_clin) {
+                var alamat = url_src + '/api/index.php/plant_padang/get_totaltahun?bulan=' + bulanSekarang + '&tahun=' + tahun;
+                $.ajax({
+                    url: alamat,
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+                        $("#realmonthkl").html(FormatNumberBy3(parseFloat(dataJson.kiln).toFixed(0), ",", "."));
+                        var data_real = dataJson.kiln;
+                        var prosenprod = (data_real / data_clin) * 100;
+                        $("#percentmonthkl").html(prosenprod.toFixed(2));
+
+                        if (prosenprod >= 100) {
+                            $("#percentmonthkl").addClass('mencapai');
+                        } else {
+                            $("#percentmonthkl").addClass('tidak_mencapai');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+
+            function mine(year_clin) {
+                var alamat = url_src + '/api/index.php/plant_padang/get_upto';
+                $.ajax({
+                    url: alamat,
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+                        var year_real = dataJson.kiln;
+
+                        var prosenyear = (year_real / year_clin) * 100;
+                        $("#percentuptokl").html(prosenyear.toFixed(2));
+
+                        if (prosenyear >= 100) {
+                            $("#percentuptokl").addClass('mencapai');
+                        } else {
+                            $("#percentuptokl").addClass('tidak_mencapai');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+
+            $.ajax({
+                url: url_src + '/api/index.php/rkap/get_rkap_month?company=3000',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    var data_clin = dataJson[strBulan].clinker;
+                    $("#rkapmonthkl").html(FormatNumberBy3(data_clin, ",", "."));
+                    real(data_clin);
+
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+
+            $.ajax({
+                url: url_src + '/api/index.php/rkap/get_rkap_year?company=3000',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    var year_clin = dataJson['s3000'].clinker;
+                    $("#rkapuptokl").html(FormatNumberBy3(dataJson.s3000.clinker, ",", "."));
+                    mine(year_clin);
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            //==================== FINISH MILL ====================//
+            $.ajax({
+                url: url_src + '/api/index.php/plant_padang/get_upto',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realuptofm").html(FormatNumberBy3(parseFloat(dataJson.finishmill).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            var alamat = url_src + '/api/index.php/plant_padang/get_totaltahun?bulan=' + bulanSekarang + '&tahun=' + tahun;
+            $.ajax({
+                url: alamat,
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    $("#realmonthfm").html(FormatNumberBy3(parseFloat(dataJson.finishmill).toFixed(0), ",", "."));
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+            function real_fm(data_cement) {
+                var alamat = url_src + '/api/index.php/plant_padang/get_totaltahun?bulan=' + bulanSekarang + '&tahun=' + tahun;
+                $.ajax({
+                    url: alamat,
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+                        var data_real = dataJson.finishmill;
+
+                        var prosenprod = (data_real / data_cement) * 100;
+                        $("#percentmonthfm").html(prosenprod.toFixed(2));
+
+                        if (prosenprod >= 100) {
+                            $("#percentmonthfm").addClass('mencapai');
+                        } else {
+                            $("#percentmonthfm").addClass('tidak_mencapai');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+
+            function mine_fm(year_cement) {
+                var alamat = url_src + '/api/index.php/plant_padang/get_upto';
+                $.ajax({
+                    url: alamat,
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+                        var year_real = dataJson.finishmill;
+
+                        var prosenyear = (year_real / year_cement) * 100;
+                        $("#percentuptofm").html(prosenyear.toFixed(2));
+
+                        if (prosenyear >= 100) {
+                            $("#percentuptofm").addClass('mencapai');
+                        } else {
+                            $("#percentuptofm").addClass('tidak_mencapai');
+                        }
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+
+                });
+            }
+
+            $.ajax({
+                url: url_src + '/api/index.php/rkap/get_rkap_month?company=3000',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    var data_cement = dataJson[strBulan].cement;
+                    $("#rkapmonthfm").html(FormatNumberBy3(data_cement, ",", "."));
+                    real_fm(data_cement);
+
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+
+            $.ajax({
+                url: url_src + '/api/index.php/rkap/get_rkap_year?company=3000',
+                type: 'GET',
+                success: function (data) {
+                    var dataJson = JSON.parse(data);
+                    var year_cement = dataJson['s3000'].cement;
+                    $("#rkapuptofm").html(FormatNumberBy3(dataJson.s3000.cement, ",", "."));
+                    mine_fm(year_cement);
+                }
+            }).done(function (data) {
+            }).fail(function () {
+
+            });
+        </script>
+    </body>
+</html>

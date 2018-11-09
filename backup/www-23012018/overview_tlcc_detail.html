@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/loader.js"></script>
+
+        <style>
+            table, th, td {
+                /*                border: 1px solid black;
+                */            }
+            .opco{
+                float:left; 
+                font-size:14px; 
+                color:#333333; 
+                margin-top: 10px; 
+                margin-bottom:1px;
+                font-family:"Open Sans";
+
+            }
+            .planttittle{
+                text-align:center; 
+                color:black; 
+                font-size:25px; 
+                font-size:bold; 
+                float:left;
+                font-family:"Open Sans";
+            }
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .box_sdow2{
+                width: 100%;
+                background-color: #FFFFFF;
+                margin-bottom: 13px;
+                /* color: #CCCCCC; */
+                font-size: 9px;
+            }
+            .bg-white {background:#fff;}
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .tab-tittle{
+                font-family:"Open Sans";
+                font-size:10px;
+            }
+            .text-small {font:normal 10px arial;color:#000;}
+            .text-medium {font:normal 11px arial;color:#000;}
+            .center {text-align: center;}
+            .padding5 {padding:5px;}
+            .border-down {
+                border-bottom: 1px #fff solid;
+            }
+            .border-down-active {
+                border-bottom: 1px #e64c65 solid;
+            }
+            .no-text-style, .no-text-style:hover {text-decoration: none;color:#000;}
+            .highcharts-credits {
+                display:none;  
+            }
+            .sticky_bottom {
+                position: absolute;
+                bottom:10px;
+                width: 100%;
+            }
+            .lower_logo {
+                margin:10px;
+            }
+
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .jud {			    color: #434343;
+                         font-size: 16px;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 2px solid #e64c65;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab{
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 15px;
+                font-family: "Open Sans";
+            }
+            .nyala-ON{
+                background-color: #6fc962;
+                text-align: center;
+            }
+            .nyala-OFF{
+                background-color: #e54b37;
+                text-align: center;
+            }
+        </style>
+
+        <script src="js/modernizr.js"></script>
+        <script>
+            //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+
+            function onLoad() {
+                var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com') != 'ALL') {
+                    $.each(listTab, function (index, el) {
+                        $('#tab-' + el + ' a').removeAttr('href');
+                        $('#tab-' + el + ' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                    }
+                })
+            }
+        </script>
+        <title>Plant Overview</title>
+    </head>
+    <body onLoad="onLoad()">
+        <div class="app">
+            <div id="deviceready">
+                <div id="backdrop"></div>
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                            <li class="haschild">
+                                <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                                <ul>
+                                    <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                                    <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li><li><a onclick="goto_opco('overview_offstate')">OVERVIEW OFFSTATE</a></li>
+                                    <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                    <li class="haschild">
+                                        <a>MOTOR PERFORM</a>
+                                        <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                            <a onclick="goto_opco('motor_perform_rm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_cm3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_kl3sg')">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                            </a>
+                                            <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                                Mill
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="haschild">
+                                        <a>ANALITYCAL KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                    <li class="haschild">
+                                        <a>ID FAN KILN</a>
+                                        <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                            <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                            </a>
+                                            <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                    <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                    <li><a>PLANT OPERATION</a></li>
+                                </ul>
+                            </li>
+                            <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle">
+                            <span>toggle menu</span>
+                        </button>
+                        <a class="logopis" href="">PRODUCTION</a>
+                        <a class="logo" href="index.html"><img src="img/logo.png"></a>
+                    </header>
+                    <div class="wrapper">
+                        <div class="head-menu">
+                            <ul>
+                                <li><a onclick="goto_opco('prod_rm_sg')">PROD. REPORT</a></li>
+                                <li><a class="active">PLANT OVERVIEW</a></li>
+                                <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                                <li class="haschild">
+                                    <a>MOTOR PERFORM</a>
+                                    <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                        <a onclick="goto_opco('motor_perform_rm3sg')">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                        </a>
+                                        <a onclick="goto_opco('motor_perform_cm3sg')">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                        </a>
+                                        <a onclick="goto_opco('motor_perform_kl3sg')">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                        </a>                                    
+                                        <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry" 		aria-hidden="true"></i>&nbsp;&nbsp;Finish Mill
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="haschild">
+                                    <a>ANALITYCAL KILN</a>
+                                    <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                        <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                        </a>
+                                        <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                        </a>
+                                    </div>
+                                </li>
+                                <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                                <li class="haschild">
+                                    <a>ID FAN KILN</a>
+                                    <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                        <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                        </a>
+                                        <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                        </a>
+                                    </div>
+                                </li>
+                                <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                                <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                                <li><a>PLANT OPERATION</a></li>
+                            </ul>
+                        </div>
+                        <div class="spacer-menu"></div>
+                        <div class=" headsix add_fix2 cubesRun2 headone whitebg">
+                            <div class="col-xs-4" style="padding:0px;" align="center">
+                                <img src="img/icKota4.png" class="img_log" ></div>
+                            <div class="col-xs-8" style="padding:0px"> <span class="opco">THANG LONG</span><br>
+                                <span class="planttittle">Plant Overview</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" style="background-color: white;">
+                            <div class="col-xs-12 bg_rds">
+                                <div id="tab-volume" align="center" class="col-xs-6 center zero_padd left_tb act_tb" ><a href="#tab-click" rel="data-volume" class="no-text-style">
+
+                                        <span class="tx_tab">&nbsp;&nbsp;Plant Equip</span></a></div>
+
+                                <!--                        <div id="tab-revenue" align="center"  class="col-xs-4 center padding5 border-down " ><a href="#tab-click" rel="data-revenue" class="no-text-style">
+                                                                <span class="tx_tab">&nbsp;&nbsp;Emission</span></a></div>-->
+                                <div id="tab-price" align="center"  class="col-xs-6 center zero_padd right_tb " ><a href="#tab-click" rel="data-price" class="no-text-style">
+                                        <span class="tx_tab">&nbsp;&nbsp;Stock Silo</span></a></div>
+                            </div>
+                        </div>
+
+                        <div id="data-volume">
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <div class="table-responsive" >
+                                        <table class="table whitebg" style="font-size: 13px;">
+                                            <tr class="hidden">
+                                                <td  height="0%"><div align="right">&nbsp;</div></td>
+                                                <td  height="0%">&nbsp;</td>
+                                                <td  height="0%">&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" width="27px"><span class="jud">&nbsp;&nbsp;TLCC</span></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td>ON/OFF</td>
+                                                <td align="right">FEED (T/H)</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Raw Mill</div></td>
+                                                <td align="left"><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="o_tlcc_rm1"></i></td>
+                                                <td><div align="right" id="v_tlcc_rm1"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Kiln</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="o_tlcc_kl1"></i></td>
+                                                <td><div align="right" id="v_tlcc_kl1"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Coal Mill</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="o_tlcc_cm1"></i></td>
+                                                <td><div align="right" id="v_tlcc_cm1"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Finish Mill - MP</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="o_tlcc_fm1"></i></td>
+                                                <td><div align="right" id="v_tlcc_fm1"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Finish Mill - HCM</div></td>
+                                                <td><div align="right"></div></td>
+                                                <td ><i class="fa fa-power-off" style="font-size: 20px; color: white;" aria-hidden="true" id="o_tlcc_fm2"></i></td>
+                                                <td><div align="right" id="v_tlcc_fm2"></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="data-revenue" class="hidden">                           
+
+                            <div id="menu1" class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <div class="table-responsive" >
+                                        <table class="table table-striped" style="font-size: 13px;">
+                                            <tr class="hidden">
+                                                <td  height="0%"><div align="right">&nbsp;</div></td>
+                                                <td  height="0%">&nbsp;</td>
+                                                <!--<td>&nbsp;</td>-->
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td colspan="2"><img src="img/plant_ico.png" alt="" width="27px" /><span class="jud">&nbsp;&nbsp;TLCC</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td colspan="2">EQUIPMENT</td>
+                                                <td style="text-align: right;">RATE (mg/Nm)<sup>3</sup></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Kiln</div></td>
+                                                <td align="left"><div align="right">2W1W01X3</div></td>
+                                                <td><div align="right" id="epkl1tns2"></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="data-price" class="hidden">
+
+                            <div id="menu2" class="col-xs-12 noPadding box_sdow2 tab-pane fade in" style="margin-bottom: 0px">
+                                <div id="container" style="width: 100%;margin: 0 auto;padding: 12px;">
+                                    <div class="table-responsive" >
+                                        <table class="table table-striped" style="font-size: 13px;">
+                                            <tr class="hidden">
+                                                <td  height="0%"><div align="right">&nbsp;</div></td>
+                                                <td  height="0%">&nbsp;</td>
+                                                <!--<td>&nbsp;</td>-->
+                                            </tr>
+                                            <tr style=" font-weight: bold;">
+                                                <td  height="0%"><img src="img/plant_ico.png" width="27px" /><span class="jud">&nbsp;&nbsp;TLCC</span></td>
+                                                <td style="text-align: right;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="background-color: #ececec; font-weight: bold;">
+                                                <td  height="0%">EQUIPMENT</td>
+                                                <td style="text-align: right;">Ton</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 1 MP</div></td>
+                                                <td><div align="right" id="silo1"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 2 MP</div></td>
+                                                <td><div align="right" id="silo2"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 1 HCM</div></td>
+                                                <td><div align="right" id="silo1_hcm"></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"><div align="left">Silo 2 HCM</div></td>
+                                                <td><div align="right" id="silo2_hcm"></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="production-value" >
+                            <div class="chartBox"> <!--style="margin-top: 5px; margin-bottom: 44px;" -->
+                            </div>
+                            <footer >
+                                <div class="regular">
+                                    <a href="overview_sp_detail.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/icKota2a.png" style="width:48%;display:inline;" /></a>
+                                    <a href="overview_sgr_detail.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/icKota1a.png" style="width:48%;display:inline;" /></a>
+                                    <a href="overview_sg_detail.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/icKSO.png" style="width:72%;display:inline;" /></a>
+                                    <a href="overview_st_detail.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;"><img src="img/icKota3a.png" style="width:48%;display:inline;" /></a>
+                                    <a href="overview_tlcc_detail.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;"><img src="img/icKota4a.png" style="width:48%;display:inline;" /></a>
+                                </div>
+                            </footer>
+
+                            <!--<div class="spacer"></div>-->
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function dataUpdate() {
+                        $.ajax({
+                            url: url_src + '/api/index.php/plant_tlcc/get_statefeed',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+
+                                //Raw Mill
+                                tlcc_rm1 = dataJson[0].tags[5].props[0].val;
+                                v_tlcc_rm1 = parseFloat(dataJson[0].tags[0].props[0].val).toFixed(2);
+
+                                if (tlcc_rm1 == 'True') {
+                                    $("#o_tlcc_rm1").addClass('nyala-ON');
+                                    $("#o_tlcc_rm1").removeClass('nyala-OFF');
+                                } else {
+                                    $("#o_tlcc_rm1").addClass('nyala-OFF');
+                                    $("#o_tlcc_rm1").removeClass('nyala-ON');
+                                }
+
+                                //Coal Mill
+                                tlcc_cm1 = dataJson[0].tags[6].props[0].val;
+                                v_tlcc_cm1 = parseFloat(dataJson[0].tags[1].props[0].val).toFixed(2);
+
+                                if (tlcc_cm1 == 'True') {
+                                    $("#o_tlcc_cm1").addClass('nyala-ON');
+                                    $("#o_tlcc_cm1").removeClass('nyala-OFF');
+                                } else {
+                                    $("#o_tlcc_cm1").addClass('nyala-OFF');
+                                    $("#o_tlcc_cm1").removeClass('nyala-ON');
+                                }
+                                //KILN
+                                tlcc_kl1 = dataJson[0].tags[7].props[0].val;
+                                v_tlcc_kl1 = parseFloat(dataJson[0].tags[2].props[0].val).toFixed(2);
+
+                                if (tlcc_kl1 == 'True') {
+                                    $("#o_tlcc_kl1").addClass('nyala-ON');
+                                    $("#o_tlcc_kl1").removeClass('nyala-OFF');
+                                } else {
+                                    $("#o_tlcc_kl1").addClass('nyala-OFF');
+                                    $("#o_tlcc_kl1").removeClass('nyala-ON');
+                                }
+
+                                //Finish Mill
+                                tlcc_fm1 = dataJson[0].tags[8].props[0].val;
+                                tlcc_fm2 = dataJson[0].tags[9].props[0].val;
+                                v_tlcc_fm1 = parseFloat(dataJson[0].tags[3].props[0].val).toFixed(2);
+                                v_tlcc_fm2 = parseFloat(dataJson[0].tags[4].props[0].val).toFixed(2);
+
+                                if (tlcc_fm1 == 'True') {
+                                    $("#o_tlcc_fm1").addClass('nyala-ON');
+                                    $("#o_tlcc_fm1").removeClass('nyala-OFF');
+                                } else {
+                                    $("#o_tlcc_fm1").addClass('nyala-OFF');
+                                    $("#o_tlcc_fm1").removeClass('nyala-ON');
+                                }
+                                if (tlcc_fm2 == 'True') {
+                                    $("#o_tlcc_fm2").addClass('nyala-ON');
+                                    $("#o_tlcc_fm2").removeClass('nyala-OFF');
+                                } else {
+                                    $("#o_tlcc_fm2").addClass('nyala-OFF');
+                                    $("#o_tlcc_fm2").removeClass('nyala-ON');
+                                }
+
+                                $("#v_tlcc_rm1").html(v_tlcc_rm1);
+                                $("#v_tlcc_kl1").html(v_tlcc_kl1);
+                                $("#v_tlcc_cm1").html(v_tlcc_cm1);
+                                $("#v_tlcc_fm1").html(v_tlcc_fm1);
+                                $("#v_tlcc_fm2").html(v_tlcc_fm2);
+                            }
+                        }).done(function (data) {}).fail(function () {
+                        });
+
+                        $.ajax({
+                            url: url_src + '/api/index.php/plant_tlcc/get_silo',
+                            type: 'GET',
+                            success: function (data) {
+                                var data1 = data.replace("<title>Json</title>", "");
+                                var data2 = data1.replace("(", "[");
+                                var data3 = data2.replace(");", "]");
+                                var dataJson = JSON.parse(data3);
+
+                                tonageSilo1 = dataJson[0].tags[0].props[0].val;
+                                tonageSilo2 = dataJson[0].tags[1].props[0].val;
+                                tonageSiloHCM1 = dataJson[0].tags[4].props[0].val;
+                                tonageSiloHCM2 = dataJson[0].tags[5].props[0].val;
+
+                                tonageSilo1 = parseFloat(tonageSilo1.replace(',', '.')).toFixed(2);
+                                tonageSilo2 = parseFloat(tonageSilo2.replace(',', '.')).toFixed(2);
+                                tonageSiloHCM1 = parseFloat(tonageSiloHCM1.replace(',', '.')).toFixed(2);
+                                tonageSiloHCM2 = parseFloat(tonageSiloHCM2.replace(',', '.')).toFixed(2);
+
+
+                                $("#silo1").html(tonageSilo1);
+                                $("#silo2").html(tonageSilo2);
+                                $("#silo1_hcm").html(tonageSiloHCM1);
+                                $("#silo2_hcm").html(tonageSiloHCM2);
+                            }
+                        }).done(function (data) {
+                        }).fail(function () {
+
+                        });
+                    }
+                    ;
+                    setInterval(dataUpdate, 1000);
+                </script>
+            </div>
+        </div>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+                    $(document).on('ready', function () {
+                        $('.single-item').slick();
+                        $('.multiple-items').slick({
+                            infinite: true,
+                            slidesToShow: 4,
+                            slidesToScroll: 4
+                        });
+           $(".regular").slick({ 
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows:false,
+                centerMode: false
+            }); 
+                    });
+        </script>
+    </body>
+</html>

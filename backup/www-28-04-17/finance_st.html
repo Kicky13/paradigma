@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+	<link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+        
+  <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/waitMe.min.js"></script>
+<script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+        <title>Finance</title>
+        <script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sp') {
+                         $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'finance_sp.html';
+                    } else if (r == 'data-sg') {
+                         $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'finance.html';
+                    } else if (r == 'data-st') {
+                         $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'finance_st.html';
+                    } else if (r == 'data-tl') {
+                         $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        window.location.href = 'finance_tl.html';
+                    }
+                    else if (r == 'data-smi') {
+                        $('#tab-smi').removeClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        window.location.href = 'finance_si.html';
+                    }
+                })
+
+                $('a[href="#tab-cashinout"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'h1') {
+                        var opco='4000';
+                        sessionStorage.setItem('com', opco);
+                        window.location.href = 'h1_detail.html';
+                    }else if (r == 'h2'){
+                        var opco='4000';
+                        sessionStorage.setItem('com', opco);
+                        window.location.href = 'h2_detail.html';
+                    }else if (r == 'h3'){
+                        var opco='4000';
+                        sessionStorage.setItem('com', opco);
+                        window.location.href = 'h3_detail.html';
+                    }else if (r == 'w1'){
+                        var opco='4000';
+                        sessionStorage.setItem('com', opco);
+                        window.location.href = 'w1_detail.html';
+                    }else if (r == 'in'){
+                        var opco='4000';
+                        sessionStorage.setItem('com', opco);
+                        window.location.href = 'finance_in_detail.html';
+                    }else if (r == 'out'){
+                        var opco='4000';
+                        sessionStorage.setItem('com', opco);
+                        window.location.href = 'finance_out_detail.html';
+                    }
+                })
+            }
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = dd+'/'+mm+'/'+yyyy;
+            
+
+        </script>
+        <style type="text/css">
+            
+            .style1 {
+                font-size: 12px;
+                color: #333333;
+            }
+            .inex{
+                font-size: 26px;
+                font-family:"Open Sans";
+                color:#000000;
+                margin-bottom:0px;
+            }
+            .inex_down{
+                font-family:"Open Sans";
+                color:#000000;
+            }
+            .h_costom{
+                color:#ffffff;
+            }
+            .h_down{
+                font-family:"Open Sans";
+
+                color: #797979;
+                font-size: 12px;
+            }
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .detail{
+                position: absolute;
+                text-align: right;
+                color: darkgrey;
+                font-size: 15px;
+                padding-left: 330px;
+            }
+			a:hover, a:visited {
+	opacity: 0.5;
+	color:#CC0000;
+}
+            -->
+        </style>
+    </head>
+    <body onLoad="onLoad()" style="font-family: Open Sans;">
+        <div class="app">
+            <div id="deviceready">
+                <nav id="sideMenu">
+                    <ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="portal_sales.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="portal_scm.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="index_login2.html"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+                </nav>X
+                <div id="content" class="animated" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="btnMenuOpen"> <span>toggle menu</span> </button>
+                        <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+                    <div class="wrapper">
+                        <h2 class="titular" style="    height: 37px;    line-height: 39px;font-size: small;">CASH IN & CASH OUT</h2>
+                        <div class=" headsix cubesRun2" style="margin-bottom: 8px;     height: 777px;"> <div class=" cubesRun2 headone">
+                            <div class="col-xs-4" style="padding:0px;" align="center"> <img src="img/icKota3.png" class="img_log"></div>
+                            <div class="col-xs-8" style="padding:0px; padding-right: 31px;">
+                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="prodtittle" id="head" style="    font-weight: 600;    font-size: 23px;    display: inline-block;">SEMEN TONASA</p>
+                               
+                            </div>
+                        </div>
+                            <div align="center" style="    margin-top: 5px; color:#5d5d5d;  margin-bottom: 22px;">
+                               
+                               <h4> <span class="upercent">Cash On Hand</span><br></h4>
+
+                                <span class="prosen" style="color: #5d5d5d;" id="totalSaldo"><div id=""></div></span><br>
+                                <span class="upercent">(in IDR Mio)</span><br>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">
+                                    
+                              <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+
+                                </span>
+
+                            </div>
+
+                            <div class="col-xs-12" align="right"><a href="#"><i class="fa fa-ellipsis-v detail" aria-hidden="true"></i></a></div>
+                            <div align="center"> <a href="#tab-cashinout" rel="in">
+                                   <div class="col-xs-6" style="border-right:1px solid #CCCCCC;">
+                                       <img src="img/ic_finance/income.png"  style="width:40px;"> <p class="inex" id="cashin"></p><!--id=totpay7000-->
+                                        <span class="inex_down"><h6>Receipts (in IDR Mio)</h6></span></div></a>
+                                    
+                                    <a href="#tab-cashinout" rel="out">
+                                    <div class="col-xs-6">
+                                        <img src="img/ic_finance/expense.png"  style="width:40px"> <p class="inex" id="cashout"></p> <!--id=totrec7000-->
+                                        <span class="inex_down"><h6>Disbursement (in IDR Mio)</h6></span>
+                                    </div> </a>
+                                    </div> 
+                                    
+                            <center>
+                            <div class="col-xs-12 noPadding box_sdow" style="height: 84px; margin-bottom:15px"><br>
+                                <div class="col-xs-3 noPadding tab_uper col-ft-3" id="h1"><a href="#tab-cashinout" rel="h1"><p class="h_costom" style="background-color:#ca324b; margin-bottom: 5px; border-radius: 14px;">H+1</p>
+                                        <i class="fa fa-sort-asc" aria-hidden="true" style="color: #7be668;"></i>&nbsp;&nbsp;&nbsp;<span id="payh1" class="h_down"></span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="color: #cc233f;"></i>&nbsp;&nbsp;&nbsp;<span id="rech1" class="h_down"></span><br> </a>
+                                </div>
+                                <div class="col-xs-3 noPadding tab_uper col-ft-3" id="h2"><a href="#tab-cashinout" rel="h2"><p class="h_costom" style="background-color:#a95587; margin-bottom: 5px; border-radius: 14px;">H+2</p>
+                                        <i class="fa fa-sort-asc" aria-hidden="true" style="color: #7be668;"></i>&nbsp;&nbsp;&nbsp;<span id="payh2" class="h_down"></span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="color: #cc233f;"></i>&nbsp;&nbsp;&nbsp;<span id="rech2" class="h_down"></span><br></a>
+                                </div>
+                                <div class="col-xs-3 noPadding tab_uper col-ft-3" id="h3"><a href="#tab-cashinout" rel="h3"><p class="h_costom" style="background-color:#8877c3; margin-bottom: 5px; border-radius: 14px;">H+3</p>
+                                        <i class="fa fa-sort-asc" aria-hidden="true" style="color: #7be668;"></i>&nbsp;&nbsp;&nbsp;<span id="payh3" class="h_down"></span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="color: #cc233f;"></i>&nbsp;&nbsp;&nbsp;<span id="rech3" class="h_down"></span><br></a>
+                                </div>
+                                <div class="col-xs-3 noPadding tab_uper col-ft-3" id="w1"><a href="#tab-cashinout" rel="w1"><p class="h_costom" style="background-color:#6699ff; margin-bottom: 5px; border-radius: 14px;">W+1</p>
+                                        <i class="fa fa-sort-asc" aria-hidden="true" style="color: #7be668;"></i>&nbsp;&nbsp;&nbsp;<span id="payw1" class="h_down"></span><br>
+                                        <i class="fa fa-sort-desc" aria-hidden="true" style="color: #cc233f;"></i>&nbsp;&nbsp;&nbsp;<span id="recw1" class="h_down"></span><br></a>
+                                </div>
+                            </div>
+
+                            </center>
+                            <div id="mainchart" style="width:100%; height:300px; display: inline-block;"></div>
+                            <script src="js/CashInOut_st.js"></script>
+                            <script src="js/highcharts.js"></script>
+
+                            <!--          <h2 class="titularx2" style="background: #EB1717; height: 28px;"> &nbsp &nbsp Income and Expanse</h2> <br>
+                            -->           
+                                    </div>
+
+                        <div align="center" >
+                            
+
+                            <div class="spacer"></div>
+                           <footer >
+<div class="regular" >
+
+
+                         <div id="tab-smi" class="col-xs-4 noPadding tab_uper col-ft-4 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-smi" ><img src="img/smi.png" style="width:43px;" /></a></div>
+                            <div id="tab-sp" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:37px;" /></a></div>
+                            <div id="tab-sg" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:39px;" /></a></div>
+                            <div id="tab-st" class="col-xs-2 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:39px;"/></a></div>
+                            <div id="tab-tl" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:39px;"/></a></div>
+                         <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        var date= new Date();
+        var m= date.getMonth()+1;
+       // var link1='http://10.15.5.150/dev/par4digma/api/index.php/kas';
+          var link1= url_src+'/api/index.php/kas';
+	run_waitMe("#mainchart","ios");
+        $.ajax({
+            url:link1,
+            type:'GET',
+            success: function (data) {
+                var data1 = JSON.parse(data);
+                var last_saldo=parseFloat(data1['s4000'][m].balance).toFixed(0);
+                if(data1['s4000']['s0'] == undefined){
+                    var ap2 = 0; 
+                }else{
+                   var ap2=data1['s4000']['s0'].ap;
+                 }
+                if(data1['s4000']['s0'] == undefined){
+                    var ar2 = 0; 
+                }else{
+                   var ar2=data1['s4000']['s0'].ar;
+                 }
+                var  ap = ap2/1000000;
+                var  ar = ar2/1000000;
+            $('#totalSaldo').html(FormatNumberBy3((last_saldo/1000000).toFixed(2)));
+            $("#cashin").html(parseFloat(ar).toFixed(2) +' M');
+            $("#cashout").html(parseFloat(ap).toFixed(2) +' M');
+
+            if(data1['s4000']['s1'] != undefined){
+            dataPay1=data1['s4000']['s1'].ap/1000000;
+            dataRec1=data1['s4000']['s1'].ar/1000000;
+            }else{
+                dataPay1=0;
+                dataRec1=0;
+            }
+                if(data1['s4000']['s2'] != undefined){
+                dataPay2=data1['s4000']['s2'].ap/1000000;
+                dataRec2=data1['s4000']['s2'].ar/1000000;
+
+            }else{
+                dataPay2=0;
+                dataRec2=0;
+            }
+            if(data1['s4000']['s3'] != undefined){
+                dataPay3=data1['s4000']['s3'].ap/1000000;
+                dataRec3=data1['s4000']['s3'].ar/1000000;
+            }else{
+                dataPay3=0;
+                dataRec3=0;
+            }
+            if(data1['s4000']['s7'] != undefined){
+                dataPay7=data1['s4000']['s7'].ap/1000000;
+                dataRec7=data1['s4000']['s7'].ar/1000000;
+            }else{
+                dataPay7=0;
+                dataRec7=0;
+            }
+
+            $('#payh1').html(parseFloat(dataPay1).toFixed(2) +' M');
+            $('#rech1').html(parseFloat(dataRec1).toFixed(2) +' M');
+
+            $('#payh2').html(parseFloat(dataPay2).toFixed(2) +' M');
+            $('#rech2').html(parseFloat(dataRec2).toFixed(2) +' M');
+
+            $('#payh3').html(parseFloat(dataPay2).toFixed(2) +' M');
+            $('#rech3').html(parseFloat(dataRec3).toFixed(2) +' M');
+            
+            $('#payw1').html(parseFloat(dataPay7).toFixed(2) +' M');
+            $('#recw1').html(parseFloat(dataRec7).toFixed(2) +' M');
+
+            }
+        }).done(function (data) {
+        }).fail(function(){
+
+        });
+        </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

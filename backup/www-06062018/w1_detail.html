@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/archon.css"> -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/production.css">
+<link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+ <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sidenav.css">
+        
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+<script src="js/stupidtable.js?dev"></script>
+<script type="text/javascript" src="js/waitMe.min.js"></script>
+<script src="js/loader.js"></script>
+<script type="text/javascript" src="js/finance_day_detail.js"></script>
+<script type="text/javascript">
+  $(function(){
+    //finance_day_detail('7000', '7');
+     $("table").stupidtable({
+            "formatedNumber": function(a, b){
+                var atemp = parseInt(a.replace(/[, ]+/g, "").trim());
+                var btemp = parseInt(b.replace(/[, ]+/g, "").trim());
+
+                console.log(atemp +" + "+btemp+ "x" + a + " + "+ b);
+                return parseInt(atemp,10) - parseInt(btemp,10);
+            }
+         });
+  });
+</script>
+<script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+        </script>
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<title>Finance</title>
+<script>
+            function onLoad() {
+var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com')!='ALL') {
+                    $.each(listTab, function(index, el){
+                        $('#tab-'+el+' a').removeAttr('href');
+                        $('#tab-'+el+' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+         $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-sm') {
+                        $('#tab-smi').removeClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('2000', '7');
+                        $('#logo').html('<img src="img/smi.png" width="50px">');
+
+                    }
+                   else if (r == 'data-sp') {
+                        $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('3000', '7');
+                        $('#logo').html('<img src="img/icKota2a.png" width="50px">');
+
+                    } else if (r == 'data-sg') {
+                        $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('5000', '7');
+                        $('#logo').html('<img src="img/icKota1a.png" width="50px">');
+
+                    } else if (r == 'data-st') {
+                        $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('4000', '7');
+                        $('#logo').html('<img src="img/icKota3a.png" width="50px">');
+
+                    } else if (r == 'data-tl') {
+                        $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('6000', '7');
+                        $('#logo').html('<img src="img/icKota4a.png" width="50px">');
+
+                    }
+                })
+
+         if (sessionStorage.getItem('com') == '2000') {
+                        $('#tab-smi').removeClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('2000', '7');
+                        $('#logo').html('<img src="img/smi.png" width="50px">');
+                    }
+                    else if (sessionStorage.getItem('com') == '3000') {
+                        $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').removeClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('3000', '7');
+                        $('#logo').html('<img src="img/icKota2a.png" width="50px">');
+                    } else if (sessionStorage.getItem('com') == '5000') {
+                        $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').removeClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('5000', '7');
+                        $('#logo').html('<img src="img/icKota1a.png" width="50px">');
+                    } else if (sessionStorage.getItem('com') == '4000') {
+                        $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').removeClass('img_foot2');
+                        $('#tab-tl').addClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('4000', '7');
+                        $('#logo').html('<img src="img/icKota3a.png" width="50px">');
+                    } else if (sessionStorage.getItem('com') == '6000') {
+                        $('#tab-smi').addClass('img_foot2');
+                        $('#tab-sp').addClass('img_foot2');
+                        $('#tab-sg').addClass('img_foot2');
+                        $('#tab-st').addClass('img_foot2');
+                        $('#tab-tl').removeClass('img_foot2');
+                        $('table tbody').empty();
+                        $('table tfoot').empty();
+                        finance_day_detail('6000', '7');
+                        $('#logo').html('<img src="img/icKota4a.png" width="50px">');
+                    }
+            }
+
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+
+             var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            today = dd+'/'+mm+'/'+yyyy;
+
+        </script>
+<style type="text/css">
+<!--
+.style1 {
+    font-size: 12px;
+    color: #333333;
+}
+.inex{
+    font-size: 26px;
+  font-family:"Open Sans";
+  color:#000000;
+  margin-bottom:0px;
+}
+.inex_down{
+  font-family:"Open Sans";
+  color:#000000;
+}
+.h_costom{
+ color:#ffffff;
+ }
+.h_down{
+  font-family:"Open Sans";
+
+color: #797979;
+    font-size: 12px;
+  }
+  .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+.detail{
+    position: absolute;
+    text-align: right;
+    color: darkgrey;
+    font-size: 15px;
+      padding-left: 330px;
+  }
+.det_tittle{
+font-size: 22px;
+    color: #ca324b;
+    font-family:"Open Sans";
+
+  }
+.font12{font-size: 10px;}
+.indic{
+border-radius: 14px;
+width: 57px;
+text-align: center;
+margin-top: 17px;
+margin-bottom: 12px;
+}
+.dire{
+margin-top: 16px;
+color: #bababa;
+}
+a i:hover {
+color:#ca324b;
+}
+  
+
+  
+-->
+</style>
+</head>
+<body onLoad="onLoad()" style="font-family: Open Sans;">
+<div class="app">
+<div id="deviceready">
+				<div id="backdrop"></div>
+				<!-- Paste this code after body tag -->
+				<div class="se-pre-con"></div>
+				<!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebr/hm.png">&nbsp;&nbsp;HOME</a></li>
+                    <li class="haschild">
+                        <a onclick="goto_opco('prod_rm_sg')"><img src="img/sidebr/pro.png">&nbsp;&nbsp;PRODUCTION</a>
+                        <ul>
+                            <li><a onclick="goto_opco('prod_rm_sg')" class="active">PROD. REPORT</a></li>
+                            <li><a onclick="goto_opco('overview_sg_detail')">PLANT OVERVIEW</a></li><li><a href="overview_offstate.html">OFF-STATE OVERVIEW</a></li>
+                            <li><a onclick="goto_opco('monitor_sg')">PERFORM MONITOR</a></li>
+                            <li class="haschild">
+                                <a>MOTOR PERFORM</a>
+                                <div id="myDropdown2" class="dropdown-content2 dd-new" align="left">
+                                    <a onclick="goto_opco('motor_perform_rm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Raw Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_cm3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Coal Mill
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_kl3sg')">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln
+                                    </a>
+                                    <a onclick="goto_opco('motor_perform_fm7sg')"><i class="fa fa-industry"
+                                                                                     aria-hidden="true"></i>&nbsp;&nbsp;Finish
+                                        Mill
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="haschild">
+                                <a>ANALITYCAL KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('analys_3', 'analys_3', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('analys_4', 'analys_4', '7000')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('sg_emisi_status')">EMISION</a></li>
+                            <li class="haschild">
+                                <a>ID FAN KILN</a>
+                                <div id="myDropdown" class="dropdown-content dd-new" align="left">
+                                    <a onclick="goto_opco('motor_pform_kl3_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                    </a>
+                                    <a onclick="goto_opco('motor_pform_kl4_sg')" tabindex="0">
+                                        <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a onclick="goto_opco('silo_sg')">SILO LEVEL</a></li>
+                            <li><a onclick="goto_opco('power_plant_st', 'power_plant_st')">POWER PLANT</a></li>
+                             
+                        </ul>
+                    </li>
+                    <li><a onclick="goto_opco('sales_dashboard', 'sales_dashboard')"><img src="img/sidebr/sale.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a onclick="goto_opco('stok_bahan', 'stok_bahan')"><img src="img/sidebr/sc.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a onclick="goto_opco('p2_cashposition', 'p2_cashposition')"><img src="img/sidebr/Tr.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a onclick="goto_opco('p2_cli_cem_prod_pc', 'p2_cli_cem_prod_pc')"><img src="img/sidebr/fin.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a onclick="goto_opco('inventory_tracking', 'inventory_tracking')"><img src="img/sidebr/Iv.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a onclick="goto_opco('ip_report_sg', 'ip_report_sg')"><img src="img/sidebr/gr.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a onclick="goto_opco('ppj_proj_gress', 'ppj_proj_gress')"><img src="img/sidebr/pj.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a onclick="goto_opco('p2_qm_siramah', 'p2_qm_siramah')"><img src="img/sidebr/Qm.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a href=""><img src="img/sidebr/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebr/out.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  <nav id="sideMenu"><ul>
+                <li><a href="index.html"><img src="img/sidebr/hm.png" >&nbsp;&nbsp;HOME</a></li>
+                <li><a href="portal_prod1.html"><img src="img/sidebr/pro.png" >&nbsp;&nbsp;PRODUCTION</a></li>
+                <li><a href="sales_dashboard.html"><img src="img/sidebr/sale.png" >&nbsp;&nbsp;SALES</a></li>
+                <li><a href="stok_bahan.html"><img src="img/sidebr/sc.png" >&nbsp;&nbsp;SCM</a>
+                <li><a href="portal_finance.html"><img src="img/sidebr/fin.png" >&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="portal_project.html"><img src="img/sidebr/pj.png" >&nbsp;&nbsp;PROJECT</a>
+                <li><a href="#" id="logout"><img src="img/sidebr/out.png" >&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+  </nav>
+  <div id="content" style="background:#f5f5f5;">
+    <header id="header">
+      <button class="burger-menu burger-menu-x" id="menu-toggle"> <span>toggle menu</span> </button>
+      <a class="logopis" href="index.html"><img src="img/logoPis.png"></a> <a class="logo" href="index.html"><img src="img/logo.png"></a> </header>
+    <div class="wrapper">
+      <div class="headsix add_fix cubesRun2" style="margin-bottom: 0px;     height: 140px;"> 
+      <div align="center">
+        <div class="col-xs-2 noPadding"><a href="h3_detail.html"><i class="fa fa-chevron-left fa-1x dire" aria-hidden="true"></i></a></div>
+       <div class="col-xs-8 noPadding"><p align="center" class="h_costom indic" style="background-color: #6699ff;">W+1</p></div>
+      <div class="col-xs-2 noPadding"></div>
+      </div>
+        <div  style="    margin-top: 5px; color:#8877c3;  margin-bottom: 22px;">
+        <div class="col-xs-3" align="right" id="logo"><img src="img/icKota1a.png" width="50px">
+</div>
+        <div class="col-xs-9"> <span class="upercent">Detail Information</span><br>
+                  <span class="det_tittle" style="font-size: 15px">CASH IN & CASH OUT</span><br>
+                                                     <i class="fa fa-clock-o" aria-hidden="true"></i>  <span class="upercent">
+                               <script type="text/javascript">
+                                    document.write("Last Update :",today);
+                                </script>
+                                                     </span><br>
+</div>
+
+                  </div>
+
+        
+                 
+
+
+          </div>
+                   <div class="col-xs-12 noPadding graph_tab" style="display: inline-table;">
+                   <table class="table" style="    margin-bottom: 64px;">
+                   <thead style="    font-weight: bold;background-color: #f5f5f5;">
+                     <tr >
+                      <th data-sort="string">Dist/ Vendor</th>
+                       <th data-sort="formatedNumber" align="right">
+                                    Cash In (Rp) 
+                                    <i class="fa fa-sort" aria-hidden="true"></i>&nbsp; 
+                                </th>
+                       <th data-sort="formatedNumber" align="right">
+                                    Cash Out (Rp) 
+                                    <i class="fa fa-sort" aria-hidden="true"></i>&nbsp; 
+                                </th>
+                    </tr>
+                   </thead>
+  
+    <tbody>
+
+  </tbody>
+  <tfoot></tfoot>
+</table>
+         
+         </div>
+
+       
+
+<!--          <h2 class="titularx2" style="background: #EB1717; height: 28px;"> &nbsp &nbsp Income and Expanse</h2> <br>
+-->           
+           
+
+         
+
+
+          
+             
+
+</div>
+ <div class="spacer"></div>
+               <footer >
+<div class="regular" >
+
+
+                         <div id="tab-smi" class="col-xs-4 noPadding tab_uper col-ft-4 img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sm" ><img src="img/smi.png" style="width:43px;" /></a></div>
+                            <div id="tab-sp" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sp" ><img src="img/icKota2a.png" style="width:37px;" /></a></div>
+                            <div id="tab-sg" class="col-xs-2 noPadding tab_uper " align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-sg" ><img src="img/icKota1a.png"  style="width:39px;" /></a></div>
+                            <div id="tab-st" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-st" ><img src="img/icKota3a.png" style="width:39px;"/></a></div>
+                            <div id="tab-tl" class="col-xs-2 noPadding tab_uper img_foot2" align="center" style="margin-top: 7px;"><a href="#tab-click" rel="data-tl" ><img src="img/icKota4a.png" style="width:39px;"/></a></div>
+                         <div id="tab-kso" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" align="center" style="margin-top: 5px;"><a href="#tab-click" rel="data-kso" ><img src="img/icKSO.png" style="width:78%;"/></a></div>
+                        </div>
+</footer>
+
+     <!--  <script>
+        $.ajax({
+                                url: url_src+'/FiCoDataGenDetail.php',
+                                type: 'GET',
+                                success: function (data) {
+                                
+                                var data = eval('(' + data + ')');
+                                var pay2000v = parseFloat(data.s2000.acc_pay).toFixed(0);
+                                var pay3000v = parseFloat(data.s3000.acc_pay).toFixed(0);
+                                var pay4000v = parseFloat(data.s4000.acc_pay).toFixed(0);
+                                var pay6000v = parseFloat(data.s6000.acc_pay).toFixed(0);
+                                var pay7000v = parseFloat(data.s7000.acc_pay).toFixed(0);
+                                var rec2000v = parseFloat(data.s2000.acc_rec).toFixed(0);
+                                var rec3000v = parseFloat(data.s3000.acc_rec).toFixed(0);
+                                var rec4000v = parseFloat(data.s4000.acc_rec).toFixed(0);
+                                var rec6000v = parseFloat(data.s6000.acc_rec).toFixed(0);
+                                var rec7000v = parseFloat(data.s7000.acc_rec).toFixed(0);
+                                    
+                                    
+                                $("#pay2000").html(pay2000v);
+                                $("#pay3000").html(pay3000v);
+                                $("#pay4000").html(pay4000v);
+                                $("#pay6000").html(pay6000v);
+                                $("#pay7000").html(pay7000v);
+                                $("#rec2000").html(rec2000v);
+                                $("#rec3000").html(rec3000v);
+                                $("#rec4000").html(rec4000v);
+                                $("#rec6000").html(rec6000v);
+                                $("#rec7000").html(rec7000v);
+                                $("#totpay7000").html(pay7000v);
+                                $("#totrec7000").html(rec7000v);    
+                                    
+                                }
+                            }).done(function (data) {
+                            }).fail(function () {
+
+                            });
+      </script> -->
+<!--       <script type="text/javascript" src="cordova.js"></script>-->
+<script type="text/javascript" src="js/index.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+   $(document).on('ready', function() {
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 5
+                });
+            $(".regular").slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        arrows:true,
+         centerMode: true
+        // variableWidth: true
+      });
+            });
+        </script>
+        </body>
+</html>

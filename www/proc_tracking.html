@@ -1,0 +1,899 @@
+<!DOCTYPE html>sdfsd
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/highstock.js"></script>
+        <script src="js/loader.js"></script>
+        <script src="js/exporting.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+                var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com') != 'ALL') {
+                    $.each(listTab, function (index, el) {
+                        $('#tab-' + el + ' a').removeAttr('href');
+                        $('#tab-' + el + ' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'pr') {
+                        $('#pr').removeClass('hidden');
+                        $('#prrel').addClass('hidden');
+                        $('#rfq').addClass('hidden');
+                        $('#po').addClass('hidden');
+                        $('#gr').addClass('hidden');
+                        $('#tab-pr').addClass('act_tb');
+                        $('#tab-prrel').removeClass('act_tb');
+                        $('#tab-rfq').removeClass('act_tb');
+                        $('#tab-po').removeClass('act_tb');
+                        $('#tab-gr').removeClass('act_tb');
+                    } else if (r == 'prrel') {
+                        $('#pr').addClass('hidden');
+                        $('#prrel').removeClass('hidden');
+                        $('#rfq').addClass('hidden');
+                        $('#po').addClass('hidden');
+                        $('#gr').addClass('hidden');
+                        $('#tab-pr').removeClass('act_tb');
+                        $('#tab-prrel').addClass('act_tb');
+                        $('#tab-rfq').removeClass('act_tb');
+                        $('#tab-po').removeClass('act_tb');
+                        $('#tab-gr').removeClass('act_tb');
+                    } else if (r == 'rfq') {
+                        $('#pr').addClass('hidden');
+                        $('#prrel').addClass('hidden');
+                        $('#rfq').removeClass('hidden');
+                        $('#po').addClass('hidden');
+                        $('#gr').addClass('hidden');
+                        $('#tab-pr').removeClass('act_tb');
+                        $('#tab-prrel').removeClass('act_tb');
+                        $('#tab-rfq').addClass('act_tb');
+                        $('#tab-po').removeClass('act_tb');
+                        $('#tab-gr').removeClass('act_tb');
+                    } else if (r == 'po') {
+                        $('#pr').addClass('hidden');
+                        $('#prrel').addClass('hidden');
+                        $('#rfq').addClass('hidden');
+                        $('#po').removeClass('hidden');
+                        $('#gr').addClass('hidden');
+                        $('#tab-pr').removeClass('act_tb');
+                        $('#tab-prrel').removeClass('act_tb');
+                        $('#tab-rfq').removeClass('act_tb');
+                        $('#tab-po').addClass('act_tb');
+                        $('#tab-gr').removeClass('act_tb');
+                    } else if (r == 'gr') {
+                        $('#pr').addClass('hidden');
+                        $('#prrel').addClass('hidden');
+                        $('#rfq').addClass('hidden');
+                        $('#po').addClass('hidden');
+                        $('#gr').removeClass('hidden');
+                        $('#tab-pr').removeClass('act_tb');
+                        $('#tab-prrel').removeClass('act_tb');
+                        $('#tab-rfq').removeClass('act_tb');
+                        $('#tab-po').removeClass('act_tb');
+                        $('#tab-gr').addClass('act_tb');
+                    }
+                })
+                var myspan = document.getElementById('head');
+                
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth()+1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader {
+                display: none;
+            }
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active {
+                border-top: 1px solid #1481ed;
+            }
+           
+            .tit_head {
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .tab-active {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+            }
+            .col-xs-15,
+			.col-sm-15,
+			.col-md-15,
+			.col-lg-15 {
+			    position: relative;
+			    min-height: 1px;
+			    padding-right: 10px;
+			    padding-left: 10px;
+			}
+			.col-xs-15 {
+			    width: 20%;
+			    float: left;
+			}
+
+			@media (min-width: 768px) {
+			.col-sm-15 {
+			        width: 20%;
+			        float: left;
+			    }
+			}
+
+			@media (min-width: 992px) {
+			    .col-md-15 {
+			        width: 20%;
+			        float: left;
+			    }
+			}
+
+			@media (min-width: 1200px) {
+			    .col-lg-15 {
+			        width: 20%;
+			        float: left;
+			    }
+			}
+			.col-xs-3 {
+			    width: 20%;
+			}
+			.count {
+				color:#5e5e5e;
+				font-size: 18px;
+			}
+			.totval {
+				color:#FF615D;
+				font-size: 24px;
+			}
+            
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+            });
+        </script>
+        <title>Production Report</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <div id="backdrop"></div>
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="#" class="active"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                    <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                    <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+                <div id="content" style="background:#f5f5f5;">
+                <!--title bar-->
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle">
+                            <span>toggle menu</span>
+                        </button>
+                        <b class="logopis">PROCUREMENT TRACKING</b>
+                        <!-- <a class="logo" href="index.html"><img src="img/logo.png"></a> -->
+                    </header>
+                <!--end title bar-->
+                    <div class="wrapper">
+                        <div class="head-menu">
+                        <!--start menu production -->
+                            <ul>
+                                <li><a href="inventory_sp.html">MONTHLY REPORT</a></li>
+                                <li><a class="active">PROCUREMENT TRACKING</a></li>
+                                 
+                            </ul>
+                            <!--  end menu production -->
+                        </div>
+
+                        <!--start header -->
+                        <div class="spacer-menu"></div>
+                        <div class="headsix2 cubesRun2 headone whitebg" style="height: 100px">
+                            <div class="cubesRun2 headone">
+                                    <div align="center">
+                                        <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                        <p class="planttittle" id="head_log" style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">Loading...</p>
+                                        <center>
+                                            Month:<select id="month" class="selmonth" rel="vol"></select><select id="year" class="selyear"></select>
+                                            <input id="company" value="7000" type="hidden">
+                                        </center>
+                                    </div>
+                                </div>
+                                <center>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>  
+                                    <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                                </center>
+                        </div>
+                        
+                        <!--end header -->
+
+                        <!--start tab menu-->
+                        <div class="col-xs-12 tab_dual" style="margin-top: 12px;padding: 0 12px 12px 12px;">
+                            		<div class="col-xs-12 bg_rds">
+		                                <div id="tab-pr" align="center" class="col-md-15 col-xs-3 center zero_padd left_tb act_tb" >
+		                                    <a href="#tab-click" rel="pr" class="no-text-style">
+		                                        <span class="tx_tab">PR</span>
+		                                    </a>
+		                                </div>
+		                                <div id="tab-prrel" align="center"  class="col-md-15 col-xs-3 center zero_padd left_tb" >
+		                                    <a href="#tab-click" rel="prrel" class="no-text-style">
+		                                        <span class="tx_tab">PR Rel</span>
+		                                    </a>
+		                                </div>
+		                                <div id="tab-rfq" align="center"  class="col-md-15 col-xs-3 center zero_padd left_tb" >
+		                                    <a href="#tab-click" rel="rfq" class="no-text-style">
+		                                        <span class="tx_tab">RFQ</span>
+		                                    </a>
+		                                </div>
+		                                <div id="tab-po" align="center"  class="col-md-15 col-xs-3 center zero_padd left_tb" >
+		                                    <a href="#tab-click" rel="po" class="no-text-style">
+		                                        <span class="tx_tab">PO</span>
+		                                    </a>
+		                                </div>
+		                                <div id="tab-gr" align="center"  class="col-md-15 col-xs-3 center zero_padd left_tb" >
+		                                    <a href="#tab-click" rel="gr" class="no-text-style">
+		                                        <span class="tx_tab">GR</span>
+		                                    </a>
+		                                </div>
+		                            </div>
+                        </div>
+                        <!-- end tab menu -->
+
+                        		<div id="pr">
+			                            <div class="col-xs-12 noPadding">
+			                               <div class="col-xs-12"  style="text-align: center; margin-bottom: 0px;">
+			                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request</span><br>
+			                                    <span class="count">0</span><br>
+			                                    <span class="totval">0</span>
+			                                </div>
+			                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding"  style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+		                                    <div align="center" style="overflow-x: scroll; width: 100%;">
+		                                        <div id="grafik_pr" style="height: 220px;"></div>    
+		                                    </div>
+		                                </div>
+		                        </div>
+
+		                        <div id="prrel" class="hidden">
+			                            <div class="col-xs-12 noPadding">
+			                               <div class="col-xs-12"  style="text-align: center; margin-bottom: 0px;">
+			                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request Release</span><br>
+			                                    <span class="count">0</span><br>
+			                                    <span class="totval">0</span>
+			                                </div>
+			                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding"  style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+		                                    <div align="center" style="overflow-x: scroll; width: 100%;">
+		                                        <div id="grafik_prrel" style="height: 220px;"></div>    
+		                                    </div>
+		                                </div>
+		                        </div>
+
+		                        <div id="rfq" class="hidden">
+			                            <div class="col-xs-12 noPadding">
+			                               <div class="col-xs-12"  style="text-align: center; margin-bottom: 0px;">
+			                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Request For Quotation</span><br>
+			                                    <span class="count">0</span><br>
+			                                    <span class="totval">0</span>
+			                                </div>
+			                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding"  style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+		                                    <div align="center" style="overflow-x: scroll; width: 100%;">
+		                                        <div id="grafik_rfq" style="height: 220px;"></div>    
+		                                    </div>
+		                                </div>
+		                        </div>
+
+		                        <div id="po" class="hidden">
+			                            <div class="col-xs-12 noPadding">
+			                               <div class="col-xs-12"  style="text-align: center; margin-bottom: 0px;">
+			                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Order</span><br>
+			                                    <span class="count">0</span><br>
+			                                    <span class="totval">0</span>
+			                                </div>
+			                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding"  style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+		                                    <div align="center" style="overflow-x: scroll; width: 100%;">
+		                                        <div id="grafik_po" style="height: 220px;"></div>    
+		                                    </div>
+		                                </div>
+		                        </div>
+
+		                        <div id="gr" class="hidden">
+			                            <div class="col-xs-12 noPadding">
+			                               <div class="col-xs-12"  style="text-align: center; margin-bottom: 0px;">
+			                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Goods Receipt</span><br>
+			                                    <span class="count">0</span><br>
+			                                    <span class="totval">0</span>
+			                                </div>
+			                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding"  style="text-align: center; margin-bottom: 0px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+			                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+			                                        <span class="count">0</span><br>
+			                                        <span class="totval">0</span>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+		                                    <div align="center" style="overflow-x: scroll; width: 100%;">
+		                                        <div id="grafik_gr" style="height: 220px;"></div>    
+		                                    </div>
+		                                </div>
+		                        </div>
+                    </div>
+                    <!-- start bottom navbar menu -->
+                    <footer>
+                        <div class="regular" >
+                            <a class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" rel="3000" style="margin-top: 7px;">
+                                <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
+                            <a class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" rel="5000" style="margin-top: 7px;">
+                                <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
+                            <a class="col-xs-3 noPadding tab_uper col-ft-3" rel="7000" style="margin-top: 7px;">
+                                <img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
+                            <a class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" rel="4000" style="margin-top: 7px;">
+                                <img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
+                            <a class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" rel="6000" style="margin-top: 7px;">
+                                <img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
+                        </div>
+                    </footer>
+                    <!-- end bottom navbar menu -->
+                </div>
+            </div>
+        </div>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+        	$(document).on('ready', function () {
+               $(".regular").slick({ 
+                    infinite: true,
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    arrows:false,
+                    centerMode: false
+                }); 
+            });
+        </script>
+        <script>
+        	Highcharts.chart('grafik_pr', {
+			    chart: {
+			        type: 'column'
+			    },
+			    title: {
+	                text: ''
+	            },
+			    credits: {
+	                enabled: false
+	            },
+	            exporting: {
+	                enabled: false
+	            },
+			    xAxis: {
+			        categories: [
+			            'Jan',
+			            'Feb',
+			            'Mar',
+			            'Apr',
+			            'May',
+			            'Jun',
+			            'Jul',
+			            'Aug',
+			            'Sep',
+			            'Oct',
+			            'Nov',
+			            'Dec'
+			        ],
+			        crosshair: true
+			    },
+			    yAxis: {
+			        min: 0,
+			    },
+			    tooltip: {
+			        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+			        footerFormat: '</table>',
+			        shared: true,
+			        useHTML: true
+			    },
+			    plotOptions: {
+			        column: {
+			            pointPadding: 0.2,
+			            borderWidth: 0
+			        }
+			    },
+			    series: [{
+			        name: 'Raw Material & Fuel',
+			        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+			    }, {
+			        name: 'Spareparts',
+			        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+			    }, {
+			        name: 'Services',
+			        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+			    }]
+			});
+
+			Highcharts.chart('grafik_prrel', {
+			    chart: {
+			        type: 'column'
+			    },
+			    title: {
+	                text: ''
+	            },
+			    credits: {
+	                enabled: false
+	            },
+	            exporting: {
+	                enabled: false
+	            },
+			    xAxis: {
+			        categories: [
+			            'Jan',
+			            'Feb',
+			            'Mar',
+			            'Apr',
+			            'May',
+			            'Jun',
+			            'Jul',
+			            'Aug',
+			            'Sep',
+			            'Oct',
+			            'Nov',
+			            'Dec'
+			        ],
+			        crosshair: true
+			    },
+			    yAxis: {
+			        min: 0,
+			    },
+			    tooltip: {
+			        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+			        footerFormat: '</table>',
+			        shared: true,
+			        useHTML: true
+			    },
+			    plotOptions: {
+			        column: {
+			            pointPadding: 0.2,
+			            borderWidth: 0
+			        }
+			    },
+			    series: [{
+			        name: 'Raw Material & Fuel',
+			        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+			    }, {
+			        name: 'Spareparts',
+			        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+			    }, {
+			        name: 'Services',
+			        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+			    }]
+			});
+
+			Highcharts.chart('grafik_rfq', {
+			    chart: {
+			        type: 'column'
+			    },
+			    title: {
+	                text: ''
+	            },
+			    credits: {
+	                enabled: false
+	            },
+	            exporting: {
+	                enabled: false
+	            },
+			    xAxis: {
+			        categories: [
+			            'Jan',
+			            'Feb',
+			            'Mar',
+			            'Apr',
+			            'May',
+			            'Jun',
+			            'Jul',
+			            'Aug',
+			            'Sep',
+			            'Oct',
+			            'Nov',
+			            'Dec'
+			        ],
+			        crosshair: true
+			    },
+			    yAxis: {
+			        min: 0,
+			    },
+			    tooltip: {
+			        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+			        footerFormat: '</table>',
+			        shared: true,
+			        useHTML: true
+			    },
+			    plotOptions: {
+			        column: {
+			            pointPadding: 0.2,
+			            borderWidth: 0
+			        }
+			    },
+			    series: [{
+			        name: 'Raw Material & Fuel',
+			        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+			    }, {
+			        name: 'Spareparts',
+			        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+			    }, {
+			        name: 'Services',
+			        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+			    }]
+			});
+
+			Highcharts.chart('grafik_po', {
+			    chart: {
+			        type: 'column'
+			    },
+			    title: {
+	                text: ''
+	            },
+			    credits: {
+	                enabled: false
+	            },
+	            exporting: {
+	                enabled: false
+	            },
+			    xAxis: {
+			        categories: [
+			            'Jan',
+			            'Feb',
+			            'Mar',
+			            'Apr',
+			            'May',
+			            'Jun',
+			            'Jul',
+			            'Aug',
+			            'Sep',
+			            'Oct',
+			            'Nov',
+			            'Dec'
+			        ],
+			        crosshair: true
+			    },
+			    yAxis: {
+			        min: 0,
+			    },
+			    tooltip: {
+			        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+			        footerFormat: '</table>',
+			        shared: true,
+			        useHTML: true
+			    },
+			    plotOptions: {
+			        column: {
+			            pointPadding: 0.2,
+			            borderWidth: 0
+			        }
+			    },
+			    series: [{
+			        name: 'Raw Material & Fuel',
+			        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+			    }, {
+			        name: 'Spareparts',
+			        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+			    }, {
+			        name: 'Services',
+			        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+			    }]
+			});
+
+			Highcharts.chart('grafik_gr', {
+			    chart: {
+			        type: 'column'
+			    },
+			    title: {
+	                text: ''
+	            },
+			    credits: {
+	                enabled: false
+	            },
+	            exporting: {
+	                enabled: false
+	            },
+			    xAxis: {
+			        categories: [
+			            'Jan',
+			            'Feb',
+			            'Mar',
+			            'Apr',
+			            'May',
+			            'Jun',
+			            'Jul',
+			            'Aug',
+			            'Sep',
+			            'Oct',
+			            'Nov',
+			            'Dec'
+			        ],
+			        crosshair: true
+			    },
+			    yAxis: {
+			        min: 0,
+			    },
+			    tooltip: {
+			        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+			        footerFormat: '</table>',
+			        shared: true,
+			        useHTML: true
+			    },
+			    plotOptions: {
+			        column: {
+			            pointPadding: 0.2,
+			            borderWidth: 0
+			        }
+			    },
+			    series: [{
+			        name: 'Raw Material & Fuel',
+			        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+			    }, {
+			        name: 'Spareparts',
+			        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+			    }, {
+			        name: 'Services',
+			        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+			    }]
+			});
+        </script>
+    </body>
+</html>

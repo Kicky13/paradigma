@@ -1,0 +1,39 @@
+if (datas[0].color == '#FFC000') {
+		color1 = '#1E90FF'
+	} else if (datas[0].color == '#00CC00') {
+		color1 = '#2ED573'
+	} else if (datas[0].color == '#0000FF') {
+		color1 = '#FFA502'
+	} else (datas[0].color == '#FF0000') {
+		color1 = '#FF4757'
+	}
+
+	// if (datas[1].color == '#FFC000') {
+	// 	color1 = '#1E90FF';
+	// } else if (datas[1].color == '#00CC00') {
+	// 	color1 = '#2ED573';
+	// } else if (datas[1].color == '#0000FF') {
+	// 	color1 = '#FFA502';
+	// } else (datas[1].color == '#FF0000') {
+	// 	color1 = '#FF4757';
+	// }
+
+	// if (datas[2].color == '#FFC000') {
+	// 	color2 = '#1E90FF';
+	// } else if (datas[2].color == '#00CC00') {
+	// 	color2 = '#2ED573';
+	// } else if (datas[2].color == '#0000FF') {
+	// 	color2 = '#FFA502';
+	// } else (datas[2].color == '#FF0000') {
+	// 	color2 = '#FF4757';
+	// }
+
+	// if (datas[3].color == '#FFC000') {
+	// 	color3 = '#1E90FF';
+	// } else if (datas[3].color == '#00CC00') {
+	// 	color3 = '#2ED573';
+	// } else if (datas[3].color == '#0000FF') {
+	// 	color3 = '#FFA502';
+	// } else (datas[3].color == '#FF0000') {
+	// 	color3 = '#FF4757';
+	// }
