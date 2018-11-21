@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" /> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="css/archon.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <link rel="stylesheet" type="text/css" href="css/waitMe.min.css">
+
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/waitMe.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+    <script src="js/highcharts_working.js"></script>
+    <script src="js/highcharts-more.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/phase2/capex_project_type.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <!--<script src="js/project_dashboard.js"></script>-->
+    <script src="pusb4.js"></script>
+    <script src="js/solid-gauge.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+
+
+    </script>
+    <script type="text/javascript" src="js/Chart.min.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <title>REPORT PROJECT</title>
+    <script>
+        function onLoad() {
+            var session = getParamFull();
+            ////=========================
+            if (sessionStorage.getItem('_com') != 'ALL') {
+                $.each(listTab, function (index, el) {
+                    $('#tab-' + el + ' a').removeAttr('href');
+                    $('#tab-' + el + ' a').removeAttr('rel');
+                })
+            }
+            ////=========================
+            run_waitMe("#reg_expans", 'ios');
+
+            $("#titlemane").hide();
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
+                }
+            });
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'data-report') {
+                    $('#data-report').removeClass('hidden');
+                    $('#data-grafik').addClass('hidden');
+                    $('#tab-report').addClass('act_tb');
+                    $('#tab-grafik').removeClass('act_tb');
+                } else if (r == 'data-grafik') {
+                    $('#data-report').addClass('hidden');
+                    $('#data-grafik').removeClass('hidden');
+                    $('#tab-report').removeClass('act_tb');
+                    $('#tab-grafik').addClass('act_tb');
+                }
+            })
+
+        }
+
+        var d = new Date();
+        var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+        var bulan = month[d.getMonth()];
+        var bulanSekarang = d.getMonth() + 1;
+        var tahun = d.getFullYear();
+
+
+        function show_projet(str) {
+
+
+            $.ajax({
+                type: "POST",
+                url: url_src + "/api/index.php/pusb/strategi/" + str,
+                success: function (data) {
+
+                    $("#reg_expans").html(data);
+                    $("#titlemane").show();
+
+                    stop_waitMe("#reg_expans");
+                }
+
+            });
+
+
+        }
+
+
+    </script>
+    <style type="text/css">
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .overflowing {
+            /*width: 30em;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .ctr_th {
+            text-align: center;
+        }
+
+
+    </style>
+
+</head>
+<body onLoad="onLoad()" style="font-family: Open Sans;">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a>
+                    </li>
+                    <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a href="scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a>
+                    </li>
+                    <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a>
+                    </li>
+                    <li><a href="#" class="active"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                        </li>
+                        <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content" style="background:#f5f5f5;">
+            <header id="header">
+                <button class="burger-menu burger-menu-x backtoparent" id="menu-toggle">
+                    <span>toggle menu</span>
+                </button>
+                <b class="logopis">REPORT PROJECT</b>
+                <a class="logo" href="index.html"><img src="img/logo.png"></a>
+            </header>
+            <div class="wrapper" style="padding-bottom: 40px">
+                <div class="headsix add_fix cubesRun2" style="margin-bottom: 10px;     height: 280px;">
+                    <div class="center">
+                        <img src="img/teks semen indo.png" class="imgsi"
+                             style="padding-bottom: 7px; margin-bottom: 2px;">
+                        <p class="planttittle"
+                           style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN
+                            INDONESIA</p>
+                        <center>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <span class="upercent">
+                                        <script type="text/javascript">document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));</script>
+                                    </span>
+                        </center>
+                    </div>
+
+                    <div class="spacer-menu"></div>
+                    <div class="col-xs-12 tab_dual">
+                        <div class="col-xs-12 bg_rds">
+                            <div id="tab-report" class="col-xs-6 center zero_padd left_tb act_tb">
+                                <a href="#tab-click" rel="data-report" class="no-text-style">
+                                    <span class="tx_tab">Report</span></a></div>
+
+                            <div id="tab-grafik" class="col-xs-6 center zero_padd left_tb">
+                                <a href="#tab-click" rel="data-grafik" class="no-text-style">
+                                    <span class="tx_tab">Grafik</span></a></div>
+                        </div>
+                    </div>
+                    <div id="data-report" class="active"></div>
+                    <div id="data-grafik"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/index.js"></script>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).on('ready', function () {
+        $(".regular").slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            arrows: false,
+            centerMode: false
+        });
+    });
+</script>
+</body>
+</html>

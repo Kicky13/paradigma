@@ -1,0 +1,306 @@
+<div id="deviceready">
+    <div id="backdrop"></div>
+    <!-- Paste this code after body tag -->
+    <div class="se-pre-con"></div>
+    <!-- Ends -->
+    <div id="sidenav">
+        <div class="header">
+            <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+        </div>
+        <div>
+            <ul>
+                <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a>
+                </li>
+                <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a>
+                </li>
+                <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                <li><a href="maint_inspection_sg.html"><img
+                        src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a>
+                </li>
+                <li><a href="#" class="active"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+            <div>
+                <ul>
+                    <li><a onclick="window.location.reload(true);"><img
+                            src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                    <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="content" style="background:#f5f5f5;">
+        <!--title bar-->
+        <header id="header">
+            <button class="burger-menu burger-menu-x" id="menu-toggle">
+                <span>toggle menu</span>
+            </button>
+            <b class="logopis">REPORT PROJECT</b>
+            <!-- <a class="logo" href="index.html"><img src="img/logo.png"></a> -->
+        </header>
+        <!--end title bar-->
+        <div class="wrapper" style="padding-bottom: 40px">
+            <div class="head-menu">
+                <ul>
+                    <li><a href="project_coe_proj.html">COE PROJECTS</a></li>
+                    <li><a href="project_pusb_proj.html">PUSB PROJECTS</a></li>
+                    <li><a href="project_cost_proj.html">COST OF PROJECT</a></li>
+                    <li><a class="active">REPORT PROJECT</a></li>
+                    <li><a href="project_capex_dashboard.html">CAPEX DASHBOARD</a></li>
+                </ul>
+            </div>
+            <div class="spacer-menu"></div>
+            <div class="headsix add_fix cubesRun2" style="margin-bottom: 10px;     height: 280px;">
+                <div class="center">
+                    <img src="img/teks semen indo.png" class="imgsi"
+                         style="padding-bottom: 7px; margin-bottom: 2px;">
+                    <p class="planttittle"
+                       style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN
+                        INDONESIA</p>
+                    <center>
+                        Year : <select id="year" class="selyear"></select><br>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <span class="upercent">
+                                        <script type="text/javascript">document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));</script>
+                                    </span>
+                    </center>
+                </div>
+                <div class="spacer-menu"></div>
+                <div class="col-xs-12 tab_dual">
+                    <div class="col-xs-12 bg_rds">
+                        <div id="tab-report" class="col-xs-6 center zero_padd left_tb act_tb">
+                            <a href="#tab-click" rel="data-report" class="no-text-style">
+                                <span class="tx_tab">Report</span></a></div>
+
+                        <div id="tab-grafik" class="col-xs-6 center zero_padd left_tb">
+                            <a href="#tab-click" rel="data-grafik" class="no-text-style">
+                                <span class="tx_tab">Grafik</span></a></div>
+                    </div>
+                </div>
+                <div id="data-report" class="active">
+                    <div class="col-xs-12 bagan" style="padding: 4px"
+                         onclick="nextPage('7000', bulanSekarang, tahun, '1600','7403')">
+                        <div class="col-xs-12 box" id="report_proj" style="margin-top: 12px">
+                            <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                <span class="undertx" id="headcol_sg"
+                                      style="    font-size: 16px;">Penunjang Operasional</span>
+                                <a href="project_report_proj_detail.html"><i
+                                        class="fa fa-chevron-right right grp_ico" aria-hidden="true" id="ar_bt"></i></a>
+                            </div>
+                            <div style="margin-bottom:0px;">
+                                <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                    <table class="table"
+                                           style="margin-bottom: 0px; padding-bottom: 100px; margin-top: 20px">
+                                        <thead>
+                                        <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Budget</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Actual</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Commitment</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Cash
+                                                Out</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Available</strong>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr rel="asset" class="f19">
+                                            <td valign="middle" align="center" id="or_budget">0</td>
+                                            <td valign="middle" align="center" id="rel_budget">0</td>
+                                            <td valign="middle" align="center" id="avlble">0</td>
+                                            <td valign="middle" align="center" id="commit">0</td>
+                                            <td valign="middle" align="center" id="act">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 bagan" style="padding: 4px"
+                         onclick="nextPage('7000', bulanSekarang, tahun, '1600','7403')">
+                        <div class="col-xs-12 box" id="report_proj" style="margin-top: 12px">
+                            <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Penunjang Kelangsungan Operasional</span>
+                                <a href="project_report_proj_detail.html"><i
+                                        class="fa fa-chevron-right right grp_ico" aria-hidden="true" id="ar_bt"></i></a>
+                            </div>
+                            <div style="margin-bottom:0px;">
+                                <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                    <table class="table"
+                                           style="margin-bottom: 0px; padding-bottom: 100px; margin-top: 20px">
+                                        <thead>
+                                        <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Budget</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Actual</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Commitment</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Cash
+                                                Out</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Available</strong>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr rel="asset" class="f19">
+                                            <td valign="middle" align="center" id="or_budget">0</td>
+                                            <td valign="middle" align="center" id="rel_budget">0</td>
+                                            <td valign="middle" align="center" id="avlble">0</td>
+                                            <td valign="middle" align="center" id="commit">0</td>
+                                            <td valign="middle" align="center" id="act">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 bagan" style="padding: 4px"
+                         onclick="nextPage('7000', bulanSekarang, tahun, '1600','7403')">
+                        <div class="col-xs-12 box" id="report_proj" style="margin-top: 12px">
+                            <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Kelangsungan Operasional</span>
+                                <a href="project_report_proj_detail.html"><i
+                                        class="fa fa-chevron-right right grp_ico" aria-hidden="true" id="ar_bt"></i></a>
+                            </div>
+                            <div style="margin-bottom:0px;">
+                                <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                    <table class="table"
+                                           style="margin-bottom: 0px; padding-bottom: 100px; margin-top: 20px">
+                                        <thead>
+                                        <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Budget</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Actual</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Commitment</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Cash
+                                                Out</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Available</strong>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr rel="asset" class="f19">
+                                            <td valign="middle" align="center" id="or_budget">0</td>
+                                            <td valign="middle" align="center" id="rel_budget">0</td>
+                                            <td valign="middle" align="center" id="avlble">0</td>
+                                            <td valign="middle" align="center" id="commit">0</td>
+                                            <td valign="middle" align="center" id="act">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 bagan" style="padding: 4px"
+                         onclick="nextPage('7000', bulanSekarang, tahun, '1600','7403')">
+                        <div class="col-xs-12 box" id="report_proj" style="margin-top: 12px">
+                            <div class="col-xs-12 noPadding titl" style="padding-top: 10px;">
+                                <span class="undertx" id="headcol_sg" style="    font-size: 16px;">Mandatory</span>
+                                <a href="project_report_proj_detail.html"><i
+                                        class="fa fa-chevron-right right grp_ico" aria-hidden="true" id="ar_bt"></i></a>
+                            </div>
+                            <div style="margin-bottom:0px;">
+                                <div id="container" style="width: 100%; margin: 0 auto; padding: 2%;">
+                                    <table class="table"
+                                           style="margin-bottom: 0px; padding-bottom: 100px; margin-top: 20px">
+                                        <thead>
+                                        <tr>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Budget</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Actual</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Commitment</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th"><strong>Cash
+                                                Out</strong>
+                                            </th>
+                                            <th valign="middle" data-sort="string" class="ctr_th">
+                                                <strong>Available</strong>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr rel="asset" class="f19">
+                                            <td valign="middle" align="center" id="or_budget">0</td>
+                                            <td valign="middle" align="center" id="rel_budget">0</td>
+                                            <td valign="middle" align="center" id="avlble">0</td>
+                                            <td valign="middle" align="center" id="commit">0</td>
+                                            <td valign="middle" align="center" id="act">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="data-grafik" class="hidden">
+                    <div style="height: 300px; margin: 0 auto; width: 100%" id="graph"></div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- start bottom navbar menu -->
+        <footer>
+            <div class="regular">
+                <a href="project_report_proj_smig.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2"
+                   style="margin-top: 7px;">
+                    <img src="img/cement/smig.png" style="width:48%;display:inline;"/></a>
+                <a href="project_report_proj.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2"
+                   style="margin-top: 7px;">
+                    <img src="img/cement/sp.png" style="width:48%;display:inline;"/></a>
+                <a href="project_report_proj.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2"
+                   style="margin-top: 7px;">
+                    <img src="img/cement/sg.png" style="width:48%;display:inline;"/></a>
+                <a href="project_report_proj.html" class="col-xs-3 noPadding tab_uper col-ft-3"
+                   style="margin-top: 7px;">
+                    <img src="img/cement/si.png" style="width:48%;display:inline;"/></a>
+                <a href="project_report_proj.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2"
+                   style="margin-top: 7px;">
+                    <img src="img/cement/st.png" style="width:48%;display:inline;"/></a>
+                <a href="#" onclick="alert('Available Soon')" class="col-xs-3 noPadding col-ft-3 img_foot2"
+                   style="margin-top: 7px;">
+                    <img src="img/cement/tl.png" style="width:48%;display:inline;"/></a>
+            </div>
+        </footer>
+        <!-- end bottom navbar menu -->
+    </div>
+</div>

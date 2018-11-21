@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/highstock.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/exporting.js"></script>
+    <script src="js/paradigma.js"></script>
+    <script src="js/phase2/capex_main.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+    <script>
+        function onLoad() {
+            var session = getParamFull();
+            ////=========================
+            if (sessionStorage.getItem('_com') != 'ALL') {
+                $.each(listTab, function (index, el) {
+                    $('#tab-' + el + ' a').removeAttr('href');
+                    $('#tab-' + el + ' a').removeAttr('rel');
+                })
+            }
+            ////=========================
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
+                }
+            });
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = paradigma.bulanNow();
+            var tahun = d.getFullYear();
+
+            $('.selmonth').empty();
+            var opt_month;
+            $.each(month, function (key, val) {
+                if (key + 1 <= 12) {
+                    if ((key + 1) < 10) {
+                        var v = '0' + (key + 1);
+                    } else {
+                        var v = key + 1;
+                    }
+                    if ((key + 1) == bulanSekarang) {
+                        opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                    } else {
+                        opt_month += '<option value="' + v + '">' + val + '</option>';
+                    }
+                }
+
+            })
+            console.log(opt_month);
+            $('.selmonth').html(opt_month);
+
+            $('.selyear').empty();
+            var opt_year;
+            var x;
+            for (x = Number(tahun); x > 2014; x--) {
+                if (x == tahun) {
+                    opt_year += '<option value="' + x + '" selected="selected">' + x + '</option>';
+                } else {
+                    opt_year += '<option value="' + x + '">' + x + '</option>';
+                }
+            }
+            console.log(opt_year);
+            $('.selyear').html(opt_year);
+
+            var labelArrays = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+            var d = moment().format('DD');
+            var m = moment().format('MM');
+            var y = moment().format('YYYY');
+            var today = d + ' ' + labelArrays[parseInt(m) - 1] + ' ' + y;
+            $('#last_updated').html(today);
+            //console.log(today);
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'data-report') {
+                    $('#data-report').removeClass('hidden');
+                    $('#data-grafik').addClass('hidden');
+                    $('#tab-report').addClass('act_tb');
+                    $('#tab-grafik').removeClass('act_tb');
+                } else if (r == 'data-grafik') {
+                    $('#data-report').addClass('hidden');
+                    $('#data-grafik').removeClass('hidden');
+                    $('#tab-report').removeClass('act_tb');
+                    $('#tab-grafik').addClass('act_tb');
+                }
+            })
+            $(document).on('click', '.text-medium,.linkback', function (e) {
+                e.preventDefault();
+                var r = $(this).attr('href');
+                window.location.href = 'backlog_detail.html?i=' + r;
+            })
+            $(".head-menu").scrollLeft(300);
+        }
+
+    </script>
+    <style>
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .tab_syle {
+            color: #666666;
+            font-size: 12px;
+            border: none;
+            /* padding-left: 8px; */
+            margin-left: 3px;
+        }
+
+        .font-category {
+            font-size: 12px;
+        }
+
+        .overflowing {
+            /*width: 30em;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+        }
+
+        .nav-tabs > li.active {
+            border-top: 1px solid #1481ed;
+        }
+
+        .tit_head {
+            background: rgba(255, 255, 255, 1);
+            background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+        }
+
+        .tab-active > a, .tab-active > a:focus, .tab-active > a:hover {
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-top: 1px solid #1481ed;
+            text-decoration: none;
+        }
+
+        .tab-active {
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-top: 1px solid #1481ed;
+            text-decoration: none;
+        }
+
+        .border-down {
+            height: 41px;
+            cursor: default;
+            background-color: #ffffff;
+            border-bottom-color: transparent;
+        }
+
+        .border-down-active {
+            height: 41px;
+            cursor: default;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-bottom: 1px solid #1481ed;
+        }
+
+        .no-text-style, .no-text-style:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .tx_tab {
+            margin-top: 5px;
+            color: #525252;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .ctr_th {
+            text-align: center;
+        }
+        .val_capex{
+            font-size: 12px;
+        }
+
+    </style>
+    <script src="js/modernizr.js"></script>
+    <script>
+        $(window).load(function () {
+            $(".se-pre-con").fadeOut("slow");
+        });
+    </script>
+    <title>Report Project</title>
+</head>
+<body onLoad="onLoad()">
+<div class="app" id="appContent">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a>
+                    </li>
+                    <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a>
+                    </li>
+                    <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a>
+                    </li>
+                    <li><a href="#" class="active"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content" style="background:#f5f5f5;">
+            <!--title bar-->
+            <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle">
+                    <span>toggle menu</span>
+                </button>
+                <b class="logopis">REPORT PROJECT</b>
+                <!-- <a class="logo" href="index.html"><img src="img/logo.png"></a> -->
+            </header>
+            <!--end title bar-->
+            <div class="wrapper" style="padding-bottom: 40px">
+                <div class="head-menu">
+                    <ul>
+                        <li><a href="project_coe_proj.html">COE PROJECTS</a></li>
+                        <li><a href="project_pusb_proj.html">PUSB PROJECTS</a></li>
+                        <li><a href="project_cost_proj.html">COST OF PROJECT</a></li>
+                        <li><a class="active">REPORT PROJECT</a></li>
+                        <li><a href="project_capex_dashboard.html">CAPEX DASHBOARD</a></li>
+                    </ul>
+                </div>
+                <div class="pageContent" id="pageContent1">
+                    <div class="spacer-menu"></div>
+                    <div class="headsix add_fix cubesRun2" style="margin-bottom: 10px; height: 280px;">
+                        <div class="center">
+                            <img src="img/teks semen indo.png" class="imgsi"
+                                 style="padding-bottom: 7px; margin-bottom: 2px;">
+
+                            <center>
+                                Year : <select id="year" class="selyear">
+                                <option selected>Pick a Year</option>
+                            </select><br>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <span class="upercent">
+                                        <script type="text/javascript">document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));</script>
+                                    </span>
+                            </center>
+                        </div>
+                        <div align="left" class="col-xs-12"
+                             style="font-size: 10px;color: #0092bc;margin:15px 0 10px 0;padding:0 2.7%; "><i
+                                class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;&nbsp;<span class="ttl_fp"></span>Company
+                            Compare
+                        </div>
+                        <div style="margin: 0 auto; width: 100%;overflow-x: scroll; " id="compare_graph"></div>
+                        <div id="dataContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+<script>
+</script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
