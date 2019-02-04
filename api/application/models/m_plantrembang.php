@@ -6,9 +6,84 @@ class M_plantrembang extends CI_Model {
 
     // <editor-fold defaultstate="collapsed" desc="PLANT OVERVIEW">
     public function get_statefeed() {
-        $seta = 'http://10.15.3.146:58725/OPCREST/getdata?message={%22tags%22%3A[{%22name%22%3A%22Rembang.RM1_Feed%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.RM1_Motor%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.CM1_Feed%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.CM1_Motor%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.KL1_Feed%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.KL1_Motor%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.FM1_Feed%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.FM1_Motor%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.FM2_Feed%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}%2C{%22name%22%3A%22Rembang.FM2_Motor%22%2C%22props%22%3A[{%22name%22%3A%22Value%22}]}]%2C%22status%22%3A%22OK%22%2C%22message%22%3A%22%22%2C%22token%22%3A%227e61b230-481d-4551-b24b-ba9046e3d8f2%22}&_=1469589103720';
-//        print file_get_contents($seta);
+        header('Access-Control-Allow-Origin:*');
+        $db = $this->load->database('opcclient', true);
 
+        $query = $db->query("SELECT
+                                    name,
+                                    addr,
+                                    type,
+                                    datatype,
+                                    quality,
+                                    timestamp,
+                                    REPLACE (value, \",\",\".\") AS value,
+                                    alarm,
+                                    severity,
+                                    lo2,
+                                    lo1,
+                                    hi1,
+                                    hi2,
+                                    limlo2,
+                                    limlo1,
+                                    limhi1 limhi2,
+                                    mlo2,
+                                    mlo1,
+                                    mhi1,
+                                    mhi2,
+                                    ket
+                            FROM
+                                    tags_rmb
+                            WHERE
+                                    NAME IN (
+                                            'Rembang.RM1_Feed',
+                                            'Rembang.RM1_Motor_Grinding',
+                                            'Rembang.CM1_Feed',
+                                            'Rembang.CM1_Motor',
+                                            'Rembang.KL1_Feed',
+                                            'Rembang.KL1_Motor',
+                                            'Rembang.FM1_Feed',
+                                            'Rembang.FM1_Motor_Grinding',
+                                            'Rembang.FM2_Feed',
+                                            'Rembang.FM2_Motor_Grinding',
+                                            'Rembang.KL1_Prod'
+                                    )
+                            ORDER BY FIELD(
+                                            NAME,
+                                            'Rembang.RM1_Feed',
+                                            'Rembang.RM1_Motor_Grinding',
+                                            'Rembang.CM1_Feed',
+                                            'Rembang.CM1_Motor',
+                                            'Rembang.KL1_Feed',
+                                            'Rembang.KL1_Motor',
+                                            'Rembang.FM1_Feed',
+                                            'Rembang.FM1_Motor_Grinding',
+                                            'Rembang.FM2_Feed',
+                                            'Rembang.FM2_Motor_Grinding',
+                                            'Rembang.KL1_Prod'
+                                    )");
+
+        foreach ($query->result_array() as $rowID) {
+            if ($rowID['quality'] == 192) {
+                $quality = TRUE;
+            } else {
+                $quality = FALSE;
+            }
+
+            $text[$rowID['name']] [] = array(
+                "datatype" => $rowID['datatype'],
+                "name" => "Value",
+                "quality" => $quality,
+                "val" => $rowID['value']);
+            $go[] = array(
+                "name" => $rowID['name'],
+                "props" => $text[$rowID['name']]
+            );
+        }
+
+        echo '({"message":"' . $rowID['timestamp'] . '","status":"OK","tags":' . json_encode($go) . ',"token":"SISI-agungxfz-160018-2017"});';
+    }
+    
+    public function get_statefeed_alert() {
         header('Access-Control-Allow-Origin:*');
         $db = $this->load->database('opcclient', true);
 
@@ -2479,7 +2554,8 @@ class M_plantrembang extends CI_Model {
                                             'QCX_CM2_C3S',
                                             'QCX_CM2_CaO',
                                             'QCX_CM2_FCaO',
-                                            'QCX_CM2_H2OOut'
+                                            'QCX_CM2_H2OOut',
+                                            'SYSDATETIMEFULL'
                                     )
                             ORDER BY FIELD(
                                             NAME,
@@ -2498,7 +2574,8 @@ class M_plantrembang extends CI_Model {
                                             'QCX_CM2_C3S',
                                             'QCX_CM2_CaO',
                                             'QCX_CM2_FCaO',
-                                            'QCX_CM2_H2OOut'
+                                            'QCX_CM2_H2OOut',
+                                            'SYSDATETIMEFULL'
                                     )");
 
         foreach ($query->result_array() as $rowID) {
@@ -2555,14 +2632,16 @@ class M_plantrembang extends CI_Model {
                                             'QCX_Clinker_C3S',
                                             'QCX_Clinker_FCao',
                                             'QCX_Clinker_LSF',
-                                            'QCX_Clinker_Temp'
+                                            'QCX_Clinker_Temp',
+                                            'SYSDATETIMEFULL'
                                     )
                             ORDER BY FIELD(
                                             NAME,
                                             'QCX_Clinker_C3S',
                                             'QCX_Clinker_FCao',
                                             'QCX_Clinker_LSF',
-                                            'QCX_Clinker_Temp'
+                                            'QCX_Clinker_Temp',
+                                            'SYSDATETIMEFULL'
                                     )");
 
         foreach ($query->result_array() as $rowID) {
@@ -2957,6 +3036,184 @@ class M_plantrembang extends CI_Model {
             );
         }
         echo json_encode($text);
+    }
+
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Electrical Parameter">
+    function get_electical_mainsub() {
+        echo 'Not Available';
+    }
+
+    function get_electical_sub() {
+        header('Access-Control-Allow-Origin:*');
+        $db = $this->load->database('opcclient', true);
+
+        $query = $db->query("SELECT
+                                    name,
+                                    addr,
+                                    type,
+                                    datatype,
+                                    quality,
+                                    timestamp,
+                                    REPLACE (value, \",\",\".\") AS value,
+                                    alarm,
+                                    severity,
+                                    lo2,
+                                    lo1,
+                                    hi1,
+                                    hi2,
+                                    limlo2,
+                                    limlo1,
+                                    limhi1 limhi2,
+                                    mlo2,
+                                    mlo1,
+                                    mhi1,
+                                    mhi2,
+                                    ket
+                            FROM
+                                    tags_rmb
+                            WHERE
+                                    NAME IN (
+                                            'CRS_ER01_LS_Voltage',
+                                            'CRS_ER01_LS_Power',
+                                            'CRS_ER01_Voltage',
+                                            'CRS_ER01_Power',
+                                            'CRS_ER01_CL_Voltage',
+                                            'CRS_ER01_CL_Power',
+                                            'CRS_ER01_Trans_Voltage',
+                                            'CRS_ER01_Trans_Power',
+                                            'CLR_ER07_Voltage',
+                                            'CLR_ER07_Power',
+                                            'RM_ER04_Voltage',
+                                            'RM_ER04_Power',
+                                            'KL_ER05_Voltage',
+                                            'KL_ER05_Power',
+                                            'CM_ER0506_CMTrans_Voltage',
+                                            'CM_ER0506_CMTrans_Power',
+                                            'CM2_ER0809_CMCLTrans_Voltage',
+                                            'CM2_ER0809_CMCLTrans_Power',
+                                            'CM2_ER11_PP_Voltage',
+                                            'CM2_ER11_PP_Power',
+                                            'CM2_ER12_PP_Voltage',
+                                            'CM2_ER12_PP_Power',
+                                            'CM1_ER08_Voltage',
+                                            'CM1_ER08_Power',
+                                            'CM1_ER10_PP_Voltage',
+                                            'CM1_ER10_PP_Power'
+                                    )
+                            ORDER BY FIELD(
+                                            NAME,
+                                            'CRS_ER01_LS_Voltage',
+                                            'CRS_ER01_LS_Power',
+                                            'CRS_ER01_Voltage',
+                                            'CRS_ER01_Power',
+                                            'CRS_ER01_CL_Voltage',
+                                            'CRS_ER01_CL_Power',
+                                            'CRS_ER01_Trans_Voltage',
+                                            'CRS_ER01_Trans_Power',
+                                            'CLR_ER07_Voltage',
+                                            'CLR_ER07_Power',
+                                            'RM_ER04_Voltage',
+                                            'RM_ER04_Power',
+                                            'KL_ER05_Voltage',
+                                            'KL_ER05_Power',
+                                            'CM_ER0506_CMTrans_Voltage',
+                                            'CM_ER0506_CMTrans_Power',
+                                            'CM2_ER0809_CMCLTrans_Voltage',
+                                            'CM2_ER0809_CMCLTrans_Power',
+                                            'CM2_ER11_PP_Voltage',
+                                            'CM2_ER11_PP_Power',
+                                            'CM2_ER12_PP_Voltage',
+                                            'CM2_ER12_PP_Power',
+                                            'CM1_ER08_Voltage',
+                                            'CM1_ER08_Power',
+                                            'CM1_ER10_PP_Voltage',
+                                            'CM1_ER10_PP_Power'
+                                    )");
+
+        foreach ($query->result_array() as $rowID) {
+            if ($rowID['quality'] == 192) {
+                $quality = TRUE;
+            } else {
+                $quality = FALSE;
+            }
+
+            $text[$rowID['name']] [] = array(
+                "datatype" => $rowID['datatype'],
+                "name" => "Value",
+                "quality" => $quality,
+                "val" => $rowID['value']);
+            $go[] = array(
+                "name" => $rowID['name'],
+                "props" => $text[$rowID['name']]
+            );
+        }
+
+        echo '({"message":"' . $rowID['timestamp'] . '","status":"OK","tags":' . json_encode($go) . ',"token":"SISI-agungxfz-160018-2018"});';
+    }
+
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="OEE">
+    function get_oee() {
+        header('Access-Control-Allow-Origin:*');
+        $db = $this->load->database('opcclient', true);
+
+        $query = $db->query("SELECT
+                                    name,
+                                    addr,
+                                    type,
+                                    datatype,
+                                    quality,
+                                    timestamp,
+                                    REPLACE (value, \",\",\".\") AS value,
+                                    alarm,
+                                    severity,
+                                    lo2,
+                                    lo1,
+                                    hi1,
+                                    hi2,
+                                    limlo2,
+                                    limlo1,
+                                    limhi1 limhi2,
+                                    mlo2,
+                                    mlo1,
+                                    mhi1,
+                                    mhi2,
+                                    ket
+                            FROM
+                                    tags_rmb
+                            WHERE
+                                    NAME IN (
+                                            'KILN_AVAILABILITY',
+                                            'KILN_YIELD',
+                                            'KILN_OEE'
+                                    )
+                            ORDER BY FIELD(
+                                            NAME,
+                                            'KILN_AVAILABILITY',
+                                            'KILN_YIELD',
+                                            'KILN_OEE'
+                                    )");
+
+        foreach ($query->result_array() as $rowID) {
+            if ($rowID['quality'] == 192) {
+                $quality = TRUE;
+            } else {
+                $quality = FALSE;
+            }
+
+            $text[$rowID['name']] [] = array(
+                "datatype" => $rowID['datatype'],
+                "name" => "Value",
+                "quality" => $quality,
+                "val" => $rowID['value']);
+            $go[] = array(
+                "name" => $rowID['name'],
+                "props" => $text[$rowID['name']]
+            );
+        }
+
+        echo '({"message":"' . $rowID['timestamp'] . '","status":"OK","tags":' . json_encode($go) . ',"token":"SISI-agungxfz-160018-2018"});';
     }
 
     // </editor-fold>

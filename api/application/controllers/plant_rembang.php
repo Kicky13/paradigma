@@ -14,6 +14,10 @@ class plant_rembang extends CI_Controller {
     public function get_statefeed() {
         $this->m_plantrembang->get_statefeed();
     }
+    
+    public function get_statefeed_alert() {
+        $this->m_plantrembang->get_statefeed_alert();
+    }
 
     public function get_emission() {
         $this->m_plantrembang->get_emission();
@@ -133,7 +137,6 @@ class plant_rembang extends CI_Controller {
         $this->m_plantrembang->qm_clinker();
     }
     // </editor-fold>
-        
     // <editor-fold defaultstate="collapsed" desc="QMO Table Logger 146">
     function dump_qmtbl_cement() {
         $this->m_plantrembang->dump_qmtbl_cement();
@@ -141,6 +144,19 @@ class plant_rembang extends CI_Controller {
     
     function dump_qmtbl_clinker() {
         $this->m_plantrembang->dump_qmtbl_clinker();
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Electrical Parameter">
+    function get_electical_mainsub(){
+        $this->m_plantrembang->get_electical_mainsub();
+    }
+    function get_electical_sub(){
+        $this->m_plantrembang->get_electical_sub();
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="OEE">
+    function get_oee() {
+        $this->m_plantrembang->get_oee();
     }
     // </editor-fold>
 }

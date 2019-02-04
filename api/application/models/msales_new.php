@@ -5,27 +5,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-class msales_new extends CI_Model {
 
-    public function __construct() {
+class msales_new extends CI_Model
+{
+
+    public function __construct()
+    {
         parent::__construct();
         $this->db = $this->load->database('default5', TRUE);
     }
 
-    public function nampil_text(){
+    public function nampil_text()
+    {
         echo "nyoba";
     }
 
-    public function checking_clinker_thisday(){
+    public function getSMIGThisDay() {
+
+    }
+
+    public function checking_clinker_thisday()
+    {
         $sql = "SELECT MATERIAL AS KODE_MATERIAL FROM MV_REVENUE
                 WHERE TO_CHAR(budat, 'yyyymmdd') = TO_CHAR(CURRENT_DATE, 'yyyymmdd') AND MATERIAL IN '121-200'";
 
         $result = $this->db->query($sql);
-  
+
         return $result->row();
     }
 
-    public function get_detail_thisday(){
+    public function get_detail_thisday()
+    {
         $sql = "SELECT TO_CHAR (BUDAT, 'yyyymmdd') AS TANGGAL,
                     MATERIAL AS KODE_MATERIAL,
                     NAMA_MATERIAL,
@@ -39,11 +49,12 @@ class msales_new extends CI_Model {
                 ORDER BY BUDAT DESC";
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function get_detail_thisday_peropco(){
+    public function get_detail_thisday_peropco()
+    {
         $sql = "SELECT VKORG AS COMPANY,
                         TO_CHAR (BUDAT, 'yyyymmdd') AS TANGGAL,
                         SUM(TOTAL_QTY) AS VOLUME,
@@ -56,11 +67,12 @@ class msales_new extends CI_Model {
                 ORDER BY BUDAT DESC";
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function get_rkaprev_thisday_peropco($date){
+    public function get_rkaprev_thisday_peropco($date)
+    {
         $sql = "SELECT REVREAL.VKORG, NVL(REVRKAP.RKAP_REVENU,0) AS RKAP_REVENUE
                 FROM(
                     SELECT VKORG,
@@ -115,20 +127,22 @@ class msales_new extends CI_Model {
                     WHERE VKORG in ('7000','6000','3000','4000') AND REVREAL.DATEDAY = TO_CHAR(CURRENT_DATE,'YYYYMMDD')";
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function checking_clinker_upthisday(){
+    public function checking_clinker_upthisday()
+    {
         $sql = "SELECT MATERIAL AS KODE_MATERIAL FROM MV_REVENUE
                 WHERE TO_CHAR(budat, 'yyyymm') = TO_CHAR(CURRENT_DATE, 'yyyymm') AND MATERIAL IN '121-200'";
 
         $result = $this->db->query($sql);
-  
+
         return $result->row();
     }
 
-    public function get_detail_upthisday(){
+    public function get_detail_upthisday()
+    {
         // $sql = "SELECT MATERIAL AS KODE_MATERIAL,
         //             NAMA_MATERIAL,
         //             SUM(TOTAL_QTY) AS VOLUME,
@@ -159,11 +173,12 @@ class msales_new extends CI_Model {
                 ON SALES_UPDAILY.KODE_MATERIAL = TARREV_UPDAILY.TIPE";
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function get_detail_upthisday_peropco(){
+    public function get_detail_upthisday_peropco()
+    {
         // $sql = "SELECT VKORG AS COMPANY,
         //                 SUM(TOTAL_QTY) AS VOLUME,
         //                 SUM(PENJUALAN)/SUM(TOTAL_QTY) AS PRICE,
@@ -191,21 +206,23 @@ class msales_new extends CI_Model {
                 ON SALES_UPDAILY.COMPANY = TARREV_UPDAILY.COM";
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
 
-    public function checking_clinker_upthismonth(){
+    public function checking_clinker_upthismonth()
+    {
         $sql = "SELECT MATERIAL AS KODE_MATERIAL FROM MV_REVENUE
                 WHERE TO_CHAR(budat, 'yyyy') = TO_CHAR(CURRENT_DATE, 'yyyy') AND MATERIAL IN '121-200'";
 
         $result = $this->db->query($sql);
-  
+
         return $result->row();
     }
 
-    public function get_detail_upthismonth(){
+    public function get_detail_upthismonth()
+    {
         // $sql = "SELECT MATERIAL AS KODE_MATERIAL,
         //             NAMA_MATERIAL,
         //             SUM(TOTAL_QTY) AS VOLUME,
@@ -247,11 +264,12 @@ class msales_new extends CI_Model {
                     ) TARREV_UPDAILY ON SALES_UPDAILY.KODE_MATERIAL = TARREV_UPDAILY.TIPE";
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function get_detail_upthismonth_peropco(){
+    public function get_detail_upthismonth_peropco()
+    {
         // $sql = "SELECT VKORG AS COMPANY,
         //                 SUM(TOTAL_QTY) AS VOLUME,
         //                 SUM(PENJUALAN)/SUM(TOTAL_QTY) AS PRICE,
@@ -279,11 +297,12 @@ class msales_new extends CI_Model {
                 ON SALES_UPDAILY.COMPANY = TARREV_UPDAILY.COM";
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function get_data_tabel_province($comp,$datetype){
+    public function get_data_tabel_province($comp, $datetype)
+    {
         if ($comp == "smi") {
             $sql = "SELECT VKBUR_TXT AS PROVINCE,
                                 SUM(TOTAL_QTY) AS VOLUME,
@@ -309,11 +328,12 @@ class msales_new extends CI_Model {
         }
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function get_data_detail($comp,$datetype){
+    public function get_data_detail($comp, $datetype)
+    {
         if ($comp == "smi") {
             $sql = "SELECT SUM(TOTAL_QTY) AS VOLUME,
                     CASE SUM( TOTAL_QTY ) WHEN 0 THEN 0 ELSE (SUM( PENJUALAN ) / SUM( TOTAL_QTY ))
@@ -335,11 +355,12 @@ class msales_new extends CI_Model {
         }
 
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function get_data_detail_rkapblnini($comp){
+    public function get_data_detail_rkapblnini($comp)
+    {
         if ($comp == "smi") {
             $sql = "SELECT SUM(REVENU_RKAP) AS TARGET_RKAP 
                     FROM ZREPORT_RPTREAL_RESUM 
@@ -355,11 +376,12 @@ class msales_new extends CI_Model {
 
         // echo $sql;
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
 
-    public function get_data_detail_rkapupblnini($comp){
+    public function get_data_detail_rkapupblnini($comp)
+    {
         if ($comp == "smi") {
             $sql = "SELECT SUM(REVENU_RKAP) AS TARGET_RKAP 
                     FROM ZREPORT_RPTREAL_RESUM 
@@ -373,8 +395,73 @@ class msales_new extends CI_Model {
 
         // echo $sql;
         $result = $this->db->query($sql);
-  
+
         return $result->result();
     }
-    
+
+    function getUpdateToday()
+    {
+        $jeniss = array('ZAK', 'Curah', 'Clinker');
+        $data = array();
+        foreach ($jeniss as $jenis) {
+            $rkap = $this->getTodayRKAP($jenis);
+            $mv = $this->getTodayMV($jenis);
+            $data[$jenis] = array(
+                'trev' => (isset($rkap['RKAP_REV']) && $rkap['RKAP_REV'] !== 0) ? $rkap['RKAP_REV'] : 0,
+                'tvol' => (isset($rkap['RKAP_TON']) && $rkap['RKAP_TON'] !== 0) ? $rkap['RKAP_TON'] : 0,
+                'volume' => (isset($mv['VOL']) && $mv['VOL'] !== 0) ? $mv['VOL'] : 0,
+                'revenue' => (isset($mv['REV']) && $mv['REV'] !== 0) ? $mv['REV'] : 0,
+            );
+        }
+        return $data;
+    }
+
+    function getTodayRKAP($jenis)
+    {
+        $part = explode('-', date('Y-m-d'));
+        $query = "SELECT
+	              NVL (SUM(TARGET_RKAP), 0) AS RKAP_TON,
+	              NVL (SUM(REVENU_RKAP), 0) AS RKAP_REV
+                  FROM
+	              (
+		            SELECT
+			          COM,
+			          PROPINSI,
+			          TIPE,
+			        (
+				      CASE TIPE
+				        WHEN '121-301' THEN
+					      'ZAK'
+				        WHEN '121-302' THEN
+					      'Curah'
+				        WHEN '121-200' THEN
+					      'Clinker'
+				      END
+			        ) AS PRODUK,
+			          TAHUN,
+			          BULAN,
+			          TARGET_RKAP,
+			          REVENU_RKAP
+		            FROM
+			          ZREPORT_RPTREAL_RESUM
+		            ORDER BY
+			          TAHUN,
+			          BULAN,
+			          COM DESC
+	              )
+                WHERE
+	              PRODUK = '" . $jenis . "'
+                  AND TAHUN = '" . $part[0] . "'
+                  AND BULAN = '" . $part[1] . "'";
+        $data = $this->db->query($query);
+        return $data->row_array();
+    }
+
+    function getTodayMV($jenis)
+    {
+        $part = explode('-', date('Y-m-d'));
+        $query = "SELECT SUM (TOTAL_QTY) AS VOL, SUM (PENJUALAN) / SUM (TOTAL_QTY) AS PRICE, SUM (PENJUALAN) AS TOTALSALES, SUM (OA) AS OA, SUM (REVENUE) AS REV FROM MV_REVENUE WHERE NAMA_MATERIAL = '" . $jenis . "' AND BUDAT >= TO_DATE ('" . $part[0] . "/" . $part[1] . "/01', 'YYYY/MM/DD') AND BUDAT <= TO_DATE ('" . $part[0] . "/" . $part[1] . "/" . $part[2] . "', 'YYYY/MM/DD')";
+        $data = $this->db->query($query);
+        return $data->row_array();
+    }
 }

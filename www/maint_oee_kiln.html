@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/production.css">
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+        <script src="js/phase2/sidenav.min.js"></script>
+        <script src="js/Session.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/highstock.js"></script>
+        <script src="js/loader.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/accounting.min.js"></script>
+        <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function exitApps() {
+                navigator.app.exitApp();
+            }
+            function onLoad() {
+                $('.selyear').empty();
+                var opt_year;
+                var x;
+                for (x = Number(tahun); x > 2015; x--) {
+                    if (x == tahun) {
+                        opt_year += '<option value="' + x + '" selected="selected">' + x + '</option>';
+                    } else {
+                        opt_year += '<option value="' + x + '">' + x + '</option>';
+                    }
+                }
+                $('.selyear').html(opt_year);
+
+                var session = getParamFull();
+                ////=========================
+                if (sessionStorage.getItem('_com') != 'ALL') {
+                    $.each(listTab, function (index, el) {
+                        $('#tab-' + el + ' a').removeAttr('href');
+                        $('#tab-' + el + ' a').removeAttr('rel');
+                    })
+                }
+                ////=========================
+                $(".burger-menu").click(function (e) {
+                    if ($(this).hasClass("is-active")) {
+                        $(this).removeClass("is-active");
+                        $("#content").removeClass("slideMenu");
+                        $("#content").addClass("closeMenu");
+                    } else {
+                        $(this).addClass("is-active");
+                        $("#content").removeClass("closeMenu");
+                        $("#content").addClass("slideMenu");
+                    }
+                });
+
+                var myspan = document.getElementById('head');
+                $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'data-volume') {
+                        $('#data-volume').removeClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').addClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "Departement";
+                    } else if (r == 'data-revenue') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').removeClass('hidden');
+                        $('#data-price').addClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').addClass('act_tb');
+                        $('#tab-price').removeClass('act_tb');
+                        myspan.innerText = "per Plant";
+                    } else if (r == 'data-price') {
+                        $('#data-volume').addClass('hidden');
+                        $('#data-revenue').addClass('hidden');
+                        $('#data-price').removeClass('hidden');
+                        $('#tab-volume').removeClass('act_tb');
+                        $('#tab-revenue').removeClass('act_tb');
+                        $('#tab-price').addClass('act_tb');
+                        myspan.innerText = "Type of Cost";
+                    }
+                })
+                $(".head-menu").scrollLeft(200);
+            }
+            var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var bulan = month[d.getMonth()];
+            var bulanSekarang = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+        </script>
+        <style>
+            .img_foot2 {
+                filter: gray; /* IE6-9 */
+                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+            }
+            .tab_syle {
+                color: #666666;
+                font-size: 12px;
+                border: none;
+                /* padding-left: 8px; */
+                margin-left: 3px;
+            }
+            .font-category {
+                font-size: 12px;
+            }
+            .overflowing {
+                /*width: 30em;*/
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .no-js #loader {
+                display: none;
+            }
+            .js #loader {
+                display: block;
+                position: absolute;
+                left: 100px;
+                top: 0;
+            }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+            }
+            .nav-tabs>li.active {
+                border-top: 1px solid #1481ed;
+            }
+            .inex {
+                font-size: 25px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+            }
+            .tit_head {
+                background: rgba(255, 255, 255, 1);
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+            }
+            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .tab-active {
+                cursor: default;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-top: 1px solid #1481ed;
+                text-decoration:none;
+            }
+            .border-down {
+                height: 41px;
+                cursor: default;
+                background-color: #ffffff;
+                border-bottom-color: transparent;
+            }
+            .border-down-active {
+                height: 41px;
+                cursor: default;
+                background-color: #fff;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                border-bottom-color: transparent;
+                border-bottom: 1px solid #1481ed;
+            }
+            .no-text-style, .no-text-style:hover {
+                text-decoration: none;
+                color:#000;
+            }
+            .tx_tab {
+                margin-top: 5px;
+                color: #525252;
+                display: inline-block;
+                font-size: 14px;
+                font-family: "Open Sans";
+            }
+            .prosen1 {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 32px;
+                margin-top: 6px;
+                color: darkgray;
+            }
+            .mencapai {
+                color: #06bf79;
+            }
+            .tidak_mencapai {
+                color: #e64c65;
+            }
+            .cls_rkap {
+                font-size: 12px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+                color: #2ED573;
+            }
+
+            .cls_real {
+                font-size: 12px;
+                font-family:"Open Sans";
+                margin-bottom:0px;
+                color: #FF4757;
+            }
+
+            .cls_persen {
+                font-family: "Open Sans";
+                font-weight: bold;
+                font-size: 24px;
+                color: #1E90FF;
+            }
+
+            .pad_bottom {
+                border-bottom: #747D8C 0px solid;
+            }
+
+            .pad_left {
+                border-left: #747D8C 0px solid;
+            }
+            .quarter {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .cls_rkap{
+                font-size: 12px;
+                color: #2ED573;
+            }
+            .cls_real{
+                font-size: 12px;
+                color: #FF4757;
+            }
+            .Avl_yld {
+                color: #000000;
+            }
+        </style>
+        <script src="js/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+            });
+        </script>
+        <title>OEE Report</title>
+    </head>
+    <body onLoad="onLoad()" >
+        <div class="app">
+            <div id="deviceready">
+                <div id="backdrop"></div>
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <div id="sidenav">
+                    <div class="header">
+                        <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                            <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                            <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                            <li><a href="scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                            <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                            <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                            <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a href="#" class="active"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
+                            <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                            <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <ul>
+                                <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content" style="background:#f5f5f5;">
+                    <header id="header">
+                        <button class="burger-menu burger-menu-x" id="menu-toggle">
+                            <span>toggle menu</span>
+                        </button>
+                        <b class="logopis" href="">OEE REPORT</b>
+                        <a class="logo" href="index.html"><img src="img/logo.png"></a>
+                    </header>
+                    <div class="wrapper">
+                        <div class="head-menu">
+                            <ul>
+                                <li><a href="maint_inspection_sg.html">INSPECTION</a></li>
+                                <li><a onclick="alert('Backlog data will available soon')">BACKLOG</a></li>
+                                <li><a href="maint_performance_si.html">PERFORMANCE</a></li>
+                                <li><a href="maint_cost_sg.html">MAINT. COST</a></li>
+                                <li><a href="maint_fmea_si.html">FMEA</a></li>
+                                <li><a class="active">OEE</a></li>
+                            </ul>
+                        </div>
+                        <div class="spacer-menu"></div>
+                        <div class=" headsix2 cubesRun2 headone whitebg" style="min-height: 80px">
+                            <div align="center">
+                                <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
+                                <p class="prodtittle" style="font-weight: 600;font-size: 23px;display: inline-block;float: none;margin-bottom: 6px;">OVERALL EQUIPMENT EFFECTIVENESS</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 tab_dual" style="margin-top: 12px; margin-bottom: 12px">
+                            <div class="col-xs-12 bg_rds">
+                                <div id="tab-volume" class="col-xs-6 center zero_padd left_tb act_tb">
+                                    <a href="#tab-click" rel="data-volume" class="no-text-style">
+                                        <span class="tx_tab">KILN</span></a></div>
+
+                                <div id="tab-revenue" class="col-xs-6 center zero_padd left_tb">
+                                    <a href="#tab-click" rel="data-revenue" class="no-text-style">
+                                        <span class="tx_tab">CEMENT MILL</span></a></div>
+                            </div>
+                        </div>
+                        <div id="data-volume">
+                            <!-- BUSI-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">KILN SEMEN GRESIK (BU-SI)</span> 
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">KILN TUBAN 1</div>
+                                        <div class="col-xs-12 cls_persen" id="tb1_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb1_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="margin-bottom: 6px; padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb1_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">KILN TUBAN 2</div>
+                                        <div class="col-xs-12 cls_persen" id="tb2_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb2_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="margin-bottom: 6px; padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb2_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">KILN TUBAN 3</div>
+                                        <div class="col-xs-12 cls_persen" id="tb3_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb3_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="margin-bottom: 6px; padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb3_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">KILN TUBAN 4</div>
+                                        <div class="col-xs-12 cls_persen" id="tb4_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb4_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="margin-bottom: 6px; padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb4_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SG-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="    height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">KILN SEMEN GRESIK (Rembang)</span>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 pad_bottom" align="center" style="margin-bottom: 15px">
+                                    <div class="col-xs-3"></div>
+                                    <div class="col-xs-6" align="center">
+                                        <div class="col-xs-12">KILN REMBANG</div>
+                                        <div class="col-xs-12 cls_persen" id="rmb_kiln_oee">0</div>
+
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="rmb_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="rmb_kiln_yield">0</span>
+                                        </div>    
+                                    </div>
+                                    <div class="col-xs-3"></div>
+                                </div>
+                            </div>
+                            <!-- SP-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="    height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">KILN SEMEN PADANG</span>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">KILN INDRG 2</div>
+                                        <div class="col-xs-12 cls_persen" id="persen_q1">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q1_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q1_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">KILN INDRG 3</div>
+                                        <div class="col-xs-12 cls_persen" id="persen_q2">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q2_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q2_cost">0</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">KILN INDRG 4</div>
+                                        <div class="col-xs-12 cls_persen" id="persen_q3">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q3_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q3_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">KILN INDRG 5</div>
+                                        <div class="col-xs-12 cls_persen" id="persen_q4">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q4_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q4_cost">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-3"></div>
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-12">KILN INDRG 6</div>
+                                        <div class="col-xs-12 cls_persen" id="ind6_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="ind6_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="ind6_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3"></div>
+                                </div>
+                            </div>
+                            <!-- ST-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="    height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">KILN SEMEN TONASA</span>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-12">KILN TONASA 2</div>
+                                        <div class="col-xs-12 cls_persen" id="tns2_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tns2_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tns2_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">KILN TONASA 3</div>
+                                        <div class="col-xs-12 cls_persen" id="tns3_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tns3_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tns3_kiln_yield">0</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">KILN TONASA 4</div>
+                                        <div class="col-xs-12 cls_persen" id="tns4_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tns4_kiln_avail">0</span>
+                                        </div>
+
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tns4_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">KILN TONASA 5</div>
+                                        <div class="col-xs-12 cls_persen" id="tns5_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tns5_kiln_avail"></span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tns5_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- TLCC-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="    height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">KILN THANG LONG JSC</span>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 ">
+                                    <div class="col-xs-3"></div>
+                                    <div class="col-xs-6 pad_bottom" style="margin-bottom: 15px">
+                                        <div class="col-xs-12">KILN QUANG NINH</div>
+                                        <div class="col-xs-12 cls_persen" id="persen_q1">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q1_rkap">0</span>
+                                        </div>
+
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q1_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3"></div>
+                                </div>
+                            </div>
+                            <!-- OEE KILN CHART -->
+                            <div align="center" class="headsixbg cubesRun2" style="margin-top: 0px; border-bottom: 1px;">
+                                <div class="col-xs-12 noPadding tit_head" align="center" style="height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"><span style="color: #2b2b2b;font-size: 13px;">KILN COMPARISON CHART</span> </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div id="chart_oee_kiln" style="width:100%;overflow-x: scroll;"></div>
+                                </div>
+                            </div>
+                            <!-- AVL KILN CHART -->
+                            <div align="center" class="headsixbg cubesRun2" style="margin-top: 0px; border-bottom: 1px;">
+                                <div class="col-xs-12 noPadding tit_head" align="center" style="height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"><span style="color: #2b2b2b;font-size: 13px;">KILN COMPARISON CHART</span> </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div id="chart_avl_kiln" style="width:100%;overflow-x: scroll;"></div>
+                                </div>
+                            </div>
+                            <!-- YLD KILN CHART -->
+                            <div align="center" class="headsixbg cubesRun2" style="margin-top: 0px; border-bottom: 1px;">
+                                <div class="col-xs-12 noPadding tit_head" align="center" style="height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"><span style="color: #2b2b2b;font-size: 13px;">KILN COMPARISON CHART</span> </div>
+                                <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                    <div id="chart_yld_kiln" style="width:100%;overflow-x: scroll;"></div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </div>
+
+
+                        <div id="data-revenue" class="hidden">
+                            <!-- BUSI-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">CM. MILL SEMEN GRESIK (BU-SI)</span> 
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL TBN 1</div>
+                                        <div class="col-xs-12 cls_persen" id="tb1_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb1_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb1_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL TBN 2</div>
+                                        <div class="col-xs-12 cls_persen" id="tb2_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb2_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb2_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL TBN 3</div>
+                                        <div class="col-xs-12 cls_persen" id="tb3_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb3_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb3_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL TBN 4</div>
+                                        <div class="col-xs-12 cls_persen" id="tb4_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb4_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb4_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL TBN 5</div>
+                                        <div class="col-xs-12 cls_persen" id="tb3_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb3_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb3_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL TBN 6</div>
+                                        <div class="col-xs-12 cls_persen" id="tb4_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb4_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb4_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL TBN 7</div>
+                                        <div class="col-xs-12 cls_persen" id="tb3_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb3_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb3_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL TBN 8</div>
+                                        <div class="col-xs-12 cls_persen" id="tb4_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb4_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb4_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12">CM. MILL TBN 9</div>
+                                        <div class="col-xs-12 cls_persen" id="tb3_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="tb3_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="tb3_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SG-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="    height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">CM. MILL SEMEN GRESIK (Rembang)</span>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-12">CM. MILL RMB 1</div>
+                                        <div class="col-xs-12 cls_persen" id="rmb_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="rmb_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="rmb_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-12">CM. MILL RMB 2</div>
+                                        <div class="col-xs-12 cls_persen" id="rmb_kiln_oee">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="rmb_kiln_avail">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="rmb_kiln_yield">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SP-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="    height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">CM. MILL SEMEN PADANG</span>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL INDRG 2</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q1">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q1_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q1_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL INDRG 3</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q2">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q2_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q2_cost">0</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL INDRG 4.1</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q3">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q3_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q3_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL INDRG 4.2</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q4">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q4_rkap"></span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q4_cost">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL INDRG 5.1</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q3">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q3_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q3_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL INDRG 5.2</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q4">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q4_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q4_cost">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-3"></div>
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-12">CM. MILL INDRG 6</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q3">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q3_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q3_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3"></div>
+                                </div>
+                            </div>
+                            <!-- ST-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="    height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">CM. MILL SEMEN TONASA</span>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL TNS 2</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q1">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q1_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q1_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL TNS 3</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q2">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q2_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q2_cost">0</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL TNS 4.1</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q3">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q3_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q3_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL TNS 4.2</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q4">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q4_rkap"></span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q4_cost">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+                                    <div class="col-xs-6 ">
+                                        <div class="col-xs-12">CM. MILL TNS 5.1</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q3">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q3_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q3_cost">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 pad_left">
+                                        <div class="col-xs-12">CM. MILL TNS 5.2</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q4">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q4_rkap"></span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q4_cost">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- TLCC-->
+                            <div class="col-xs-12 noPadding tit_head" align="center" style="    height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;">
+                                <span style="color: #2b2b2b;font-size: 13px;">KILN THANG LONG JSC</span>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px;">
+                                <div class="col-xs-6 ">
+                                    <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+
+                                        <div class="col-xs-12">CM. MILL QN</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q1">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q1_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q1_cost">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 ">
+                                    <div class="col-xs-12 pad_bottom" style="margin-bottom: 15px">
+
+                                        <div class="col-xs-12">CM. MILL HCM</div>
+
+                                        <div class="col-xs-12 cls_persen" id="persen_q1">0</div>
+                                        <div class="col-xs-6" style="padding: 0;font-size: 12px">
+                                            <span class="Avl_yld">Avl&nbsp;</span>
+                                            <span class="cls_rkap" id="q1_rkap">0</span>
+                                        </div>
+                                        <div class="col-xs-6" style="padding: 0;margin-bottom: 6px;font-size: 12px">
+                                            <span class="Avl_yld">Yld&nbsp;</span>
+                                            <span class="cls_real" id="q1_cost">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding box_sdow2 tab-pane fade in" align="center" style="margin-bottom: 0px">
+                                <!-- CM. MILL OEE CHART -->
+                                <div align="center" class="headsixbg cubesRun2" style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="center" style="height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"><span style="color: #2b2b2b;font-size: 13px;">CM. MILL COMPARISON CHART</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div id="chart_oee_cement" style="width:100%;overflow-x: scroll;"></div>
+                                    </div>
+                                </div>
+                                <!-- CM. MILL AVL CHART -->
+                                <div align="center" class="headsixbg cubesRun2" style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="center" style="height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"><span style="color: #2b2b2b;font-size: 13px;">CM. MILL COMPARISON CHART</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div id="chart_avl_cement" style="width:100%;overflow-x: scroll;"></div>
+                                    </div>
+                                </div>
+                                <!-- CM. MILL YLD CHART -->
+                                <div align="center" class="headsixbg cubesRun2" style="margin-top: 0px; border-bottom: 1px;">
+                                    <div class="col-xs-12 noPadding tit_head" align="center" style="height: 28px; margin-bottom: 12px; border-bottom: 1px solid #6fbbfe;"><span style="color: #2b2b2b;font-size: 13px;">CM. MILL COMPARISON CHART</span> </div>
+                                    <div class="col-xs-12 noPadding tab_uper" align="center" style="border-top: 1px solid burlywood">
+                                        <div id="chart_yld_cement" style="width:100%;overflow-x: scroll;"></div>
+                                    </div>
+                                </div>
+                                <div class="spacer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var arr_lbloeekiln = [];
+            var arr_oeekiln = [];
+            var arr_yieldkiln = [];
+            var arr_availkiln = [];
+
+            var arr_lbloeecement = [];
+            var arr_oee_cement = [];
+            var arr_yield_cement = [];
+            var arr_yield_cement = [];
+
+            Highcharts.chart('chart_avl_kiln', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'KILN Availability Comparison'
+                },
+                subtitle: {
+                    text: 'Real time from Central Control Room'
+                },
+                xAxis: {
+                    categories: ['Indarung 2', 'Indarung 3', 'Indarung 4', 'Indarung 5', 'Indarung 6', 'Tuban 1', 'Tuban 2', 'Tuban 3', 'Tuban 4', 'Rembang', 'Tonasa 2', 'Tonasa 3', 'Tonasa 4', 'Tonasa 5', 'Quang Ninh'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Percentage (%)',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: 0,
+                    y: 0,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                        name: 'Availability',
+                        data: [100, 99, 100, 75, 100, 80, 100, 96, 100, 84, 100, 72, 100, 78, 100]
+                    }]
+            });
+            Highcharts.chart('chart_yld_kiln', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'KILN Yield Comparison'
+                },
+                subtitle: {
+                    text: 'Real time from Central Control Room'
+                },
+                xAxis: {
+                    categories: ['Indarung 2', 'Indarung 3', 'Indarung 4', 'Indarung 5', 'Indarung 6', 'Tuban 1', 'Tuban 2', 'Tuban 3', 'Tuban 4', 'Rembang', 'Tonasa 2', 'Tonasa 3', 'Tonasa 4', 'Tonasa 5', 'Quang Ninh'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Percentage (%)',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: 0,
+                    y: 0,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                        name: 'Yield',
+                        data: [100, 99, 100, 75, 100, 80, 100, 96, 100, 84, 100, 72, 100, 78, 100]
+                    }]
+            });
+
+            Highcharts.chart('chart_oee_cement', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Cement Mill OEE Comparison'
+                },
+                subtitle: {
+                    text: 'Real time from Central Control Room'
+                },
+                xAxis: {
+                    categories: ['Indarung 2', 'Indarung 3', 'Indarung 4.1', 'Indarung 4.2', 'Indarung 5.1', 'Indarung 5.2', 'Indarung 6', 'Tuban FM1', 'Tuban FM2', 'Tuban FM3', 'Tuban FM4', 'Tuban FM5', 'Tuban FM6', 'Tuban FM7', 'Tuban FM8', 'Tuban FM9', 'Rembang FM1', 'Rembang FM2', 'Tonasa 2', 'Tonasa 3', 'Tonasa 4.1', 'Tonasa 4.2', 'Tonasa 5.1', 'Tonasa 5.2', 'Quang Ninh', 'Ho Chi Minh'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Percentage (%)',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: 0,
+                    y: 0,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                        name: 'OEE',
+                        data: [96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 87, 89]
+                    }]
+            });
+            Highcharts.chart('chart_avl_cement', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Cement Mill Availability Comparison'
+                },
+                subtitle: {
+                    text: 'Real time from Central Control Room'
+                },
+                xAxis: {
+                    categories: ['Indarung 2', 'Indarung 3', 'Indarung 4.1', 'Indarung 4.2', 'Indarung 5.1', 'Indarung 5.2', 'Indarung 6', 'Tuban FM1', 'Tuban FM2', 'Tuban FM3', 'Tuban FM4', 'Tuban FM5', 'Tuban FM6', 'Tuban FM7', 'Tuban FM8', 'Tuban FM9', 'Rembang FM1', 'Rembang FM2', 'Tonasa 2', 'Tonasa 3', 'Tonasa 4.1', 'Tonasa 4.2', 'Tonasa 5.1', 'Tonasa 5.2', 'Quang Ninh', 'Ho Chi Minh'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Percentage (%)',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: 0,
+                    y: 0,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                        name: 'Availability',
+                        data: [96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 87, 89]
+                    }]
+            });
+            Highcharts.chart('chart_yld_cement', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Cement Mill Yield Comparison'
+                },
+                subtitle: {
+                    text: 'Real time from Central Control Room'
+                },
+                xAxis: {
+                    categories: ['Indarung 2', 'Indarung 3', 'Indarung 4.1', 'Indarung 4.2', 'Indarung 5.1', 'Indarung 5.2', 'Indarung 6', 'Tuban FM1', 'Tuban FM2', 'Tuban FM3', 'Tuban FM4', 'Tuban FM5', 'Tuban FM6', 'Tuban FM7', 'Tuban FM8', 'Tuban FM9', 'Rembang FM1', 'Rembang FM2', 'Tonasa 2', 'Tonasa 3', 'Tonasa 4.1', 'Tonasa 4.2', 'Tonasa 5.1', 'Tonasa 5.2', 'Quang Ninh', 'Ho Chi Minh'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Percentage (%)',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: 0,
+                    y: 0,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                        name: 'Yield',
+                        data: [96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 96, 73, 85, 100, 99, 76, 87, 89]
+                    }]
+            });
+
+            function reloadChart() {
+                reset();
+                //==================== TUBAN ====================//
+                $.ajax({
+                    url: 'http://10.15.5.150/dev/par4digma/api/index.php/plant_tuban/get_oee',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+                        var dataJson = JSON.parse(data3);
+
+                        var tb1_kiln_avail = dataJson[0].tags[0].props[0].val;
+                        var tb1_kiln_oee = dataJson[0].tags[1].props[0].val;
+                        var tb1_kiln_yield = dataJson[0].tags[2].props[0].val;
+
+                        var tb1_fm1_avail = dataJson[0].tags[3].props[0].val;
+                        var tb1_fm1_oee = dataJson[0].tags[4].props[0].val;
+                        var tb1_fm1_yield = dataJson[0].tags[5].props[0].val;
+
+                        var tb1_fm2_avail = dataJson[0].tags[6].props[0].val;
+                        var tb1_fm2_oee = dataJson[0].tags[7].props[0].val;
+                        var tb1_fm2_yield = dataJson[0].tags[8].props[0].val;
+
+                        var tb1_fm9_avail = dataJson[0].tags[9].props[0].val;
+                        var tb1_fm9_oee = dataJson[0].tags[10].props[0].val;
+                        var tb1_fm9_yield = dataJson[0].tags[11].props[0].val;
+
+                        var tb2_kiln_avail = dataJson[0].tags[12].props[0].val;
+                        var tb2_kiln_oee = dataJson[0].tags[13].props[0].val;
+                        var tb2_kiln_yield = dataJson[0].tags[14].props[0].val;
+
+                        var tb2_fm3_avail = dataJson[0].tags[15].props[0].val;
+                        var tb2_fm3_oee = dataJson[0].tags[16].props[0].val;
+                        var tb2_fm3_yield = dataJson[0].tags[17].props[0].val;
+
+                        var tb2_fm4_avail = dataJson[0].tags[18].props[0].val;
+                        var tb2_fm4_oee = dataJson[0].tags[19].props[0].val;
+                        var tb2_fm4_yield = dataJson[0].tags[20].props[0].val;
+
+                        var tb3_kiln_avail = dataJson[0].tags[21].props[0].val;
+                        var tb3_kiln_oee = dataJson[0].tags[22].props[0].val;
+                        var tb3_kiln_yield = dataJson[0].tags[23].props[0].val;
+
+                        var tb3_fm5_avail = dataJson[0].tags[24].props[0].val;
+                        var tb3_fm5_oee = dataJson[0].tags[25].props[0].val;
+                        var tb3_fm5_yield = dataJson[0].tags[26].props[0].val;
+
+                        var tb3_fm6_avail = dataJson[0].tags[27].props[0].val;
+                        var tb3_fm6_oee = dataJson[0].tags[28].props[0].val;
+                        var tb3_fm6_yield = dataJson[0].tags[29].props[0].val;
+
+                        var tb4_kiln_avail = dataJson[0].tags[30].props[0].val;
+                        var tb4_kiln_oee = dataJson[0].tags[31].props[0].val;
+                        var tb4_kiln_yield = dataJson[0].tags[32].props[0].val;
+
+                        var tb4_fm7_avail = dataJson[0].tags[33].props[0].val;
+                        var tb4_fm7_oee = dataJson[0].tags[34].props[0].val;
+                        var tb4_fm7_yield = dataJson[0].tags[35].props[0].val;
+
+                        var tb4_fm8_avail = dataJson[0].tags[36].props[0].val;
+                        var tb4_fm8_oee = dataJson[0].tags[37].props[0].val;
+                        var tb4_fm8_yield = dataJson[0].tags[38].props[0].val;
+
+                        arr_lbloeekiln.push('Tuban 1', 'Tuban 2', 'Tuban 3', 'Tuban 4');
+                        arr_oeekiln.push(parseFloat(tb1_kiln_oee), parseFloat(tb2_kiln_oee), parseFloat(tb3_kiln_oee), parseFloat(tb4_kiln_oee));
+                        checking(arr_oeekiln);
+
+                        $('#tb1_kiln_avail').html(parseFloat(tb1_kiln_avail).toFixed(2) + ' %');
+                        $('#tb1_kiln_oee').html(parseFloat(tb1_kiln_oee).toFixed(2) + ' %');
+                        $('#tb1_kiln_yield').html(parseFloat(tb1_kiln_yield).toFixed(2) + ' %');
+                        $('#tb1_fm1_avail').html(parseFloat(tb1_fm1_avail).toFixed(2) + ' %');
+                        $('#tb1_fm1_oee').html(parseFloat(tb1_fm1_oee).toFixed(2) + ' %');
+                        $('#tb1_fm1_yield').html(parseFloat(tb1_fm1_yield).toFixed(2) + ' %');
+                        $('#tb1_fm2_avail').html(parseFloat(tb1_fm2_avail).toFixed(2) + ' %');
+                        $('#tb1_fm2_oee').html(parseFloat(tb1_fm2_oee).toFixed(2) + ' %');
+                        $('#tb1_fm2_yield').html(parseFloat(tb1_fm2_yield).toFixed(2) + ' %');
+                        $('#tb1_fm9_avail').html(parseFloat(tb1_fm9_avail).toFixed(2) + ' %');
+                        $('#tb1_fm9_oee').html(parseFloat(tb1_fm9_oee).toFixed(2) + ' %');
+                        $('#tb1_fm9_yield').html(parseFloat(tb1_fm9_yield).toFixed(2) + ' %');
+                        $('#tb2_kiln_avail').html(parseFloat(tb2_kiln_avail).toFixed(2) + ' %');
+                        $('#tb2_kiln_oee').html(parseFloat(tb2_kiln_oee).toFixed(2) + ' %');
+                        $('#tb2_kiln_yield').html(parseFloat(tb2_kiln_yield).toFixed(2) + ' %');
+                        $('#tb2_fm3_avail').html(parseFloat(tb2_fm3_avail).toFixed(2) + ' %');
+                        $('#tb2_fm3_oee').html(parseFloat(tb2_fm3_oee).toFixed(2) + ' %');
+                        $('#tb2_fm3_yield').html(parseFloat(tb2_fm3_yield).toFixed(2) + ' %');
+                        $('#tb2_fm4_avail').html(parseFloat(tb2_fm4_avail).toFixed(2) + ' %');
+                        $('#tb2_fm4_oee').html(parseFloat(tb2_fm4_oee).toFixed(2) + ' %');
+                        $('#tb2_fm4_yield').html(parseFloat(tb2_fm4_yield).toFixed(2) + ' %');
+                        $('#tb3_kiln_avail').html(parseFloat(tb3_kiln_avail).toFixed(2) + ' %');
+                        $('#tb3_kiln_oee').html(parseFloat(tb3_kiln_oee).toFixed(2) + ' %');
+                        $('#tb3_kiln_yield').html(parseFloat(tb3_kiln_yield).toFixed(2) + ' %');
+                        $('#tb3_fm5_avail').html(parseFloat(tb3_fm5_avail).toFixed(2) + ' %');
+                        $('#tb3_fm5_oee').html(parseFloat(tb3_fm5_oee).toFixed(2) + ' %');
+                        $('#tb3_fm5_yield').html(parseFloat(tb3_fm5_yield).toFixed(2) + ' %');
+                        $('#tb3_fm6_avail').html(parseFloat(tb3_fm6_avail).toFixed(2) + ' %');
+                        $('#tb3_fm6_oee').html(parseFloat(tb3_fm6_oee).toFixed(2) + ' %');
+                        $('#tb3_fm6_yield').html(parseFloat(tb3_fm6_yield).toFixed(2) + ' %');
+                        $('#tb4_kiln_avail').html(parseFloat(tb4_kiln_avail).toFixed(2) + ' %');
+                        $('#tb4_kiln_oee').html(parseFloat(tb4_kiln_oee).toFixed(2) + ' %');
+                        $('#tb4_kiln_yield').html(parseFloat(tb4_kiln_yield).toFixed(2) + ' %');
+                        $('#tb4_fm7_avail').html(parseFloat(tb4_fm7_avail).toFixed(2) + ' %');
+                        $('#tb4_fm7_oee').html(parseFloat(tb4_fm7_oee).toFixed(2) + ' %');
+                        $('#tb4_fm7_yield').html(parseFloat(tb4_fm7_yield).toFixed(2) + ' %');
+                        $('#tb4_fm8_avail').html(parseFloat(tb4_fm8_avail).toFixed(2) + ' %');
+                        $('#tb4_fm8_oee').html(parseFloat(tb4_fm8_oee).toFixed(2) + ' %');
+                        $('#tb4_fm8_yield').html(parseFloat(tb4_fm8_yield).toFixed(2) + ' %');
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //==================== TONASA ====================//
+                $.ajax({
+                    url: 'http://10.15.5.150/dev/par4digma/api/index.php/plant_tonasa/get_oee',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+                        var dataJson = JSON.parse(data3);
+
+                        var tns5_kiln_avail = dataJson[0].tags[0].props[0].val;
+                        var tns5_kiln_oee = dataJson[0].tags[1].props[0].val;
+                        var tns5_kiln_yield = dataJson[0].tags[2].props[0].val;
+
+                        var tns5_fm1_avail = dataJson[0].tags[3].props[0].val;
+                        var tns5_fm1_oee = dataJson[0].tags[4].props[0].val;
+                        var tns5_fm1_yield = dataJson[0].tags[5].props[0].val;
+
+                        var tns5_fm2_avail = dataJson[0].tags[6].props[0].val;
+                        var tns5_fm2_oee = dataJson[0].tags[7].props[0].val;
+                        var tns5_fm2_yield = dataJson[0].tags[8].props[0].val;
+
+                        var tns4_kiln_avail = dataJson[0].tags[9].props[0].val;
+                        var tns4_kiln_oee = dataJson[0].tags[10].props[0].val;
+                        var tns4_kiln_yield = dataJson[0].tags[11].props[0].val;
+
+                        var tns4_fm1_avail = dataJson[0].tags[12].props[0].val;
+                        var tns4_fm1_oee = dataJson[0].tags[13].props[0].val;
+                        var tns4_fm1_yield = dataJson[0].tags[14].props[0].val;
+
+                        var tns4_fm2_avail = dataJson[0].tags[15].props[0].val;
+                        var tns4_fm2_oee = dataJson[0].tags[16].props[0].val;
+                        var tns4_fm2_yield = dataJson[0].tags[17].props[0].val;
+
+                        var tns3_kiln_avail = dataJson[0].tags[18].props[0].val;
+                        var tns3_kiln_oee = dataJson[0].tags[19].props[0].val;
+                        var tns3_kiln_yield = dataJson[0].tags[20].props[0].val;
+
+                        var tns3_fm_avail = dataJson[0].tags[21].props[0].val;
+                        var tns3_fm_oee = dataJson[0].tags[22].props[0].val;
+                        var tns3_fm_yield = dataJson[0].tags[23].props[0].val;
+
+                        var tns2_kiln_avail = dataJson[0].tags[24].props[0].val;
+                        var tns2_kiln_oee = dataJson[0].tags[25].props[0].val;
+                        var tns2_kiln_yield = dataJson[0].tags[26].props[0].val;
+
+                        var tns2_fm_avail = dataJson[0].tags[27].props[0].val;
+                        var tns2_fm_oee = dataJson[0].tags[28].props[0].val;
+                        var tns2_fm_yield = dataJson[0].tags[29].props[0].val;
+
+                        arr_lbloeekiln.push('Tonasa 2', 'Tonasa 3', 'Tonasa 4', 'Tonasa 5');
+                        arr_oeekiln.push(parseFloat(tns2_kiln_oee), parseFloat(tns3_kiln_oee), parseFloat(tns4_kiln_oee), parseFloat(tns5_kiln_oee));
+                        checking(arr_oeekiln);
+
+                        $('#tns5_kiln_avail').html(parseFloat(tns5_kiln_avail).toFixed(2) + ' %');
+                        $('#tns5_kiln_oee').html(parseFloat(tns5_kiln_oee).toFixed(2) + ' %');
+                        $('#tns5_kiln_yield').html(parseFloat(tns5_kiln_yield).toFixed(2) + ' %');
+                        $('#tns5_fm1_avail').html(parseFloat(tns5_fm1_avail).toFixed(2) + ' %');
+                        $('#tns5_fm1_oee').html(parseFloat(tns5_fm1_oee).toFixed(2) + ' %');
+                        $('#tns5_fm1_yield').html(parseFloat(tns5_fm1_yield).toFixed(2) + ' %');
+                        $('#tns5_fm2_avail').html(parseFloat(tns5_fm2_avail).toFixed(2) + ' %');
+                        $('#tns5_fm2_oee').html(parseFloat(tns5_fm2_oee).toFixed(2) + ' %');
+                        $('#tns5_fm2_yield').html(parseFloat(tns5_fm2_yield).toFixed(2) + ' %');
+                        $('#tns4_kiln_avail').html(parseFloat(tns4_kiln_avail).toFixed(2) + ' %');
+                        $('#tns4_kiln_oee').html(parseFloat(tns4_kiln_oee).toFixed(2) + ' %');
+                        $('#tns4_kiln_yield').html(parseFloat(tns4_kiln_yield).toFixed(2) + ' %');
+                        $('#tns4_fm1_avail').html(parseFloat(tns4_fm1_avail).toFixed(2) + ' %');
+                        $('#tns4_fm1_oee').html(parseFloat(tns4_fm1_oee).toFixed(2) + ' %');
+                        $('#tns4_fm1_yield').html(parseFloat(tns4_fm1_yield).toFixed(2) + ' %');
+                        $('#tns4_fm2_avail').html(parseFloat(tns4_fm2_avail).toFixed(2) + ' %');
+                        $('#tns4_fm2_oee').html(parseFloat(tns4_fm2_oee).toFixed(2) + ' %');
+                        $('#tns4_fm2_yield').html(parseFloat(tns4_fm2_yield).toFixed(2) + ' %');
+                        $('#tns3_kiln_avail').html(parseFloat(tns3_kiln_avail).toFixed(2) + ' %');
+                        $('#tns3_kiln_oee').html(parseFloat(tns3_kiln_oee).toFixed(2) + ' %');
+                        $('#tns3_kiln_yield').html(parseFloat(tns3_kiln_yield).toFixed(2) + ' %');
+                        $('#tns3_fm_avail').html(parseFloat(tns3_fm_avail).toFixed(2) + ' %');
+                        $('#tns3_fm_oee').html(parseFloat(tns3_fm_oee).toFixed(2) + ' %');
+                        $('#tns3_fm_yield').html(parseFloat(tns3_fm_yield).toFixed(2) + ' %');
+                        $('#tns2_kiln_avail').html(parseFloat(tns2_kiln_avail).toFixed(2) + ' %');
+                        $('#tns2_kiln_oee').html(parseFloat(tns2_kiln_oee).toFixed(2) + ' %');
+                        $('#tns2_kiln_yield').html(parseFloat(tns2_kiln_yield).toFixed(2) + ' %');
+                        $('#tns2_fm_avail').html(parseFloat(tns2_fm_avail).toFixed(2) + ' %');
+                        $('#tns2_fm_oee').html(parseFloat(tns2_fm_oee).toFixed(2) + ' %');
+                        $('#tns2_fm_yield').html(parseFloat(tns2_fm_yield).toFixed(2) + ' %');
+
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //==================== REMBANG ====================//
+                $.ajax({
+                    url: 'http://10.15.5.150/dev/par4digma/api/index.php/plant_rembang/get_oee',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+                        var dataJson = JSON.parse(data3);
+
+                        var rmb_kiln_avail = dataJson[0].tags[0].props[0].val;
+                        var rmb_kiln_oee = dataJson[0].tags[2].props[0].val;
+                        var rmb_kiln_yield = dataJson[0].tags[1].props[0].val;
+
+                        var rmb_fm1_avail = 0;
+                        var rmb_fm1_oee = 0;
+                        var rmb_fm1_yield = 0;
+
+                        var rmb_fm2_avail = 0;
+                        var rmb_fm2_oee = 0;
+                        var rmb_fm2_yield = 0;
+
+                        arr_lbloeekiln.push('Rembang');
+                        arr_oeekiln.push(parseFloat(rmb_kiln_oee));
+                        checking(arr_oeekiln);
+
+                        $('#rmb_kiln_avail').html(parseFloat(rmb_kiln_avail).toFixed(2) + ' %');
+                        $('#rmb_kiln_oee').html(parseFloat(rmb_kiln_oee).toFixed(2) + ' %');
+                        $('#rmb_kiln_yield').html(parseFloat(rmb_kiln_yield).toFixed(2) + ' %');
+
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //==================== PADANG ====================//
+                $.ajax({
+                    url: 'http://10.15.5.150/dev/par4digma/api/index.php/plant_padang/get_oee',
+                    type: 'GET',
+                    success: function (data) {
+                        var dataJson = JSON.parse(data);
+
+                        var ind6_kiln_avail = dataJson.values[0];
+                        var ind6_kiln_oee = dataJson.values[1];
+                        var ind6_kiln_yield = dataJson.values[2];
+
+                        arr_lbloeekiln.push('Indarung 2', 'Indarung 3', 'Indarung 4', 'Indarung 5', 'Indarung 6');
+                        arr_oeekiln.push(0, 0, 0, 0, parseFloat(ind6_kiln_oee));
+                        checking(arr_oeekiln);
+
+                        $('#ind6_kiln_avail').html(parseFloat(ind6_kiln_avail).toFixed(2) + ' %');
+                        $('#ind6_kiln_oee').html(parseFloat(ind6_kiln_oee).toFixed(2) + ' %');
+                        $('#ind6_kiln_yield').html(parseFloat(ind6_kiln_yield).toFixed(2) + ' %');
+
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+
+                //==================== TLCC ====================//
+                $.ajax({
+                    url: 'http://10.15.5.150/dev/par4digma/api/index.php/plant_tlcc/get_oee',
+                    type: 'GET',
+                    success: function (data) {
+                        var data1 = data.replace("<title>Json</title>", "");
+                        var data2 = data1.replace("(", "[");
+                        var data3 = data2.replace(");", "]");
+                        var dataJson = JSON.parse(data3);
+
+                        var tlcc_kiln_avail = dataJson[0].tags[6].props[0].val;
+                        var tlcc_kiln_oee = dataJson[0].tags[7].props[0].val;
+                        var tlcc_kiln_yield = dataJson[0].tags[8].props[0].val;
+
+                        var tlcc_fm1_avail = dataJson[0].tags[0].props[0].val;
+                        var tlcc_fm1_oee = dataJson[0].tags[1].props[0].val;
+                        var tlcc_fm1_yield = dataJson[0].tags[2].props[0].val;
+
+                        var tlcc_fm2_avail = dataJson[0].tags[3].props[0].val;
+                        var tlcc_fm2_oee = dataJson[0].tags[4].props[0].val;
+                        var tlcc_fm2_yield = dataJson[0].tags[5].props[0].val;
+
+
+                        arr_lbloeekiln.push('TLCC');
+                        arr_oeekiln.push(parseFloat(tlcc_kiln_oee));
+                        checking(arr_oeekiln);
+
+                        $('#tlcc_kiln_avail').html(parseFloat(tlcc_kiln_avail).toFixed(2) + ' %');
+                        $('#tlcc_kiln_oee').html(parseFloat(tlcc_kiln_oee).toFixed(2) + ' %');
+                        $('#tlcc_kiln_yield').html(parseFloat(tlcc_kiln_yield).toFixed(2) + ' %');
+
+                        $('#tlcc_fm1_avail').html(parseFloat(tlcc_fm1_avail).toFixed(2) + ' %');
+                        $('#tlcc_fm1_oee').html(parseFloat(tlcc_fm1_oee).toFixed(2) + ' %');
+                        $('#tlcc_fm1_yield').html(parseFloat(tlcc_fm1_yield).toFixed(2) + ' %');
+
+                        $('#tlcc_fm2_avail').html(parseFloat(tlcc_fm2_avail).toFixed(2) + ' %');
+                        $('#tlcc_fm2_oee').html(parseFloat(tlcc_fm2_oee).toFixed(2) + ' %');
+                        $('#tlcc_fm2_yield').html(parseFloat(tlcc_fm2_yield).toFixed(2) + ' %');
+
+                    }
+                }).done(function (data) {
+                }).fail(function () {
+                });
+            }
+
+            function reset() {
+                arr_oeekiln = [];
+                arr_lbloeekiln = [];
+            }
+
+            function checking(data) {
+                if (data.length == 15) {
+                    console.log(arr_oeekiln);
+                    console.log(arr_lbloeekiln);
+                    
+                    Highcharts.chart('chart_oee_kiln', {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: 'KILN OEE Comparison'
+                        },
+                        subtitle: {
+                            text: 'Real time from Central Control Room'
+                        },
+                        xAxis: {
+                            categories: arr_lbloeekiln,
+                            title: {
+                                text: null
+                            }
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'Percentage (%)',
+                                align: 'high'
+                            },
+                            labels: {
+                                overflow: 'justify'
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: ' %',
+                            pointFormat: '{point.y:.1f}'
+                        },
+                        plotOptions: {
+                            bar: {
+                                dataLabels: {
+                                    enabled: true
+                                }
+                            }
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: 0,
+                            y: 0,
+                            floating: true,
+                            borderWidth: 1,
+                            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                            shadow: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                                name: 'OEE',
+                                data: arr_oeekiln
+                            }]
+                    });
+                }
+            }
+            setInterval(reloadChart, 1000);
+        </script>
+    </body>
+</html>

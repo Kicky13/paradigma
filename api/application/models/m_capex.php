@@ -34,178 +34,58 @@ class m_capex extends CI_Model
 
     function getCAPEXByCompanyYear($comp, $year)
     {
-        $query = "SELECT COMPANY,
-	              SUM (COST_BUD) AS COST_BUD,
-	              SUM (COST_ACT) AS COST_ACT,
-	              SUM (COST_COMIT) AS COST_COMIT,
-	              SUM (COST_ROP) AS COST_ROP,
-	              SUM (COST_ASSIG) AS COST_ASSIG,
-	              SUM (COST_AVB) AS COST_AVB,
-	              SUM (NVL(COST_CO, 0)) AS COST_CO
-                  FROM(
-		                SELECT
-			              PRIORITY,
-			              COMPANY,
-			              COST_BUD,
-			              COST_ACT,
-			              COST_COMIT,
-			              COST_ROP,
-			              COST_ASSIG,
-			              COST_AVB,
-			              SUM (NVL(COST_CO, 0)) AS COST_CO
-		                  FROM
-			              (
-				            SELECT
-					          B.PSPRI PRIORITY,
-					          B.CURR_PROJECT_C,
-					          COMPANY,
-					          SUM (BUDGET) AS COST_BUD,
-					          SUM (ACTUAL) AS COST_ACT,
-					          SUM (COMMITED) AS COST_COMIT,
-					          SUM (RMORP) AS COST_ROP,
-					          SUM (ASSIGMENT_COST) AS COST_ASSIG,
-					          SUM (AVAILABLE) AS COST_AVB
-				              FROM
-					            CAPEX_SAP A
-				                JOIN M_WBS B ON A .CURR_PROJECT = B.CURR_PROJECT_C
-				                JOIN M_TYPE_INVESTASI C ON B.PSPRI = C.TYPE_INVESTASI_ACT
-				                WHERE
-					              A .GJAHR = '" . $year ."'
-				                  AND B.LEVEL1 = '1'
-				                  AND COMPANY = '" . $comp ."'
-				                  AND B.CURR_PROJECT_C NOT LIKE 'P1%'
-				              GROUP BY
-					            B.PSPRI,
-					            B.CURR_PROJECT_C,
-					            COMPANY
-				              ORDER BY
-					            B.PSPRI
-			              ) SAP
-		                LEFT JOIN (
-			              SELECT
-				            PSPRI,
-				            BUKRS,
-				            PSPEL_TXT AS WBS,
-				            SUM (NVL(FI_DMBTR, 0)) AS COST_CO
-			            FROM
-				          CAPEX_ACT
-			            WHERE
-				          FI_AUGDT LIKE '" . $year ."%'
-			              AND BUKRS = '" . $comp ."'
-			              AND CATEGORY = 'ACT'
-			            GROUP BY
-				          PSPRI,
-				          BUKRS,
-				          PSPEL_TXT
-		                ) ACT ON ACT.WBS LIKE CONCAT (SAP.CURR_PROJECT_C, '%')
-		              GROUP BY
-			            PRIORITY,
-			            COMPANY,
-			            COST_BUD,
-			            COST_ACT,
-			            COST_COMIT,
-			            COST_ROP,
-			            COST_ASSIG,
-			            COST_AVB
-		      ORDER BY
-			      PRIORITY
-	          )
-        GROUP BY
-	      COMPANY
-        ORDER BY
-	      COMPANY";
+        $query = "SELECT
+	                COMPANY,
+	                SUM (BUDGET) AS COST_BUD,
+	                SUM (ACTUAL) AS COST_ACT,
+	                SUM (COMMITED) AS COST_COMIT,
+	                SUM (RMORP) AS COST_ROP,
+	                SUM (ASSIGMENT_COST) AS COST_ASSIG,
+	                SUM (AVAILABLE) AS COST_AVB,
+	                SUM (NVL(CASHOUT,0)*100) AS COST_CO
+                  FROM
+	                CAPEX_SAP A
+                  JOIN M_WBS B ON A .CURR_PROJECT = B.CURR_PROJECT_C
+                  JOIN M_TYPE_INVESTASI C ON B.PSPRI = C.TYPE_INVESTASI_ACT
+                  WHERE
+	                A .GJAHR = '" . $year . "'
+                    AND B.LEVEL1 = '1'
+                    AND COMPANY = '" . $comp . "'
+                    AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                  GROUP BY
+	                COMPANY";
         $data = $this->db->query($query);
         return $data->row_array();
     }
 
     function getCAPEXwDetailPSPRI($comp, $year)
     {
-        $query = "SELECT PRIORITY, COMPANY, DESCRIPTION,
-	              SUM (COST_BUD) AS COST_BUD,
-	              SUM (COST_ACT) AS COST_ACT,
-	              SUM (COST_COMIT) AS COST_COMIT,
-	              SUM (COST_ROP) AS COST_ROP,
-	              SUM (COST_ASSIG) AS COST_ASSIG,
-	              SUM (COST_AVB) AS COST_AVB,
-	              SUM (NVL(COST_CO, 0)) AS COST_CO
-                  FROM(
-		                SELECT
-		                  DESCRIPTION,
-			              PRIORITY,
-			              COMPANY,
-			              COST_BUD,
-			              COST_ACT,
-			              COST_COMIT,
-			              COST_ROP,
-			              COST_ASSIG,
-			              COST_AVB,
-			              SUM (NVL(COST_CO, 0)) AS COST_CO
-		                  FROM
-			              (
-				            SELECT
-				            C.DESCRIPTION DESCRIPTION,
-					          B.PSPRI PRIORITY,
-					          B.CURR_PROJECT_C,
-					          COMPANY,
-					          SUM (BUDGET) AS COST_BUD,
-					          SUM (ACTUAL) AS COST_ACT,
-					          SUM (COMMITED) AS COST_COMIT,
-					          SUM (RMORP) AS COST_ROP,
-					          SUM (ASSIGMENT_COST) AS COST_ASSIG,
-					          SUM (AVAILABLE) AS COST_AVB
-				              FROM
-					            CAPEX_SAP A
-				                JOIN M_WBS B ON A .CURR_PROJECT = B.CURR_PROJECT_C
-				                JOIN M_TYPE_INVESTASI C ON B.PSPRI = C.TYPE_INVESTASI_ACT
-				                WHERE
-					              A .GJAHR = '" . $year ."'
-				                  AND B.LEVEL1 = '1'
-				                  AND COMPANY = '" . $comp ."'
-				                  AND B.CURR_PROJECT_C NOT LIKE 'P1%'
-				              GROUP BY
-											C.DESCRIPTION,
-					            B.PSPRI,
-					            B.CURR_PROJECT_C,
-					            COMPANY
-				              ORDER BY
-					            B.PSPRI
-			              ) SAP
-		                LEFT JOIN (
-			              SELECT
-				            PSPRI,
-				            BUKRS,
-				            PSPEL_TXT AS WBS,
-				            SUM (NVL(FI_DMBTR, 0)) AS COST_CO
-			            FROM
-				          CAPEX_ACT
-			            WHERE
-				          FI_AUGDT LIKE '" . $year ."%'
-			              AND BUKRS = '" . $comp . "'
-			              AND CATEGORY = 'ACT'
-			            GROUP BY
-				          PSPRI,
-				          BUKRS,
-				          PSPEL_TXT
-		                ) ACT ON ACT.WBS LIKE CONCAT (SAP.CURR_PROJECT_C, '%')
-		              GROUP BY
-									DESCRIPTION,
-			            PRIORITY,
-			            COMPANY,
-			            COST_BUD,
-			            COST_ACT,
-			            COST_COMIT,
-			            COST_ROP,
-			            COST_ASSIG,
-			            COST_AVB
-		      ORDER BY
-			      PRIORITY
-	          )
-        GROUP BY
-        PRIORITY,
-	      COMPANY,
-	      DESCRIPTION
-        ORDER BY
-	      COMPANY, PRIORITY, DESCRIPTION";
+        $query = "SELECT
+	                B.PSPRI PRIORITY,
+	                C.DESCRIPTION,
+	                COMPANY,
+	                SUM (BUDGET) AS COST_BUD,
+	                SUM (ACTUAL) AS COST_ACT,
+	                SUM (COMMITED) AS COST_COMIT,
+	                SUM (RMORP) AS COST_ROP,
+	                SUM (ASSIGMENT_COST) AS COST_ASSIG,
+	                SUM (AVAILABLE) AS COST_AVB,
+	                SUM (NVL(CASHOUT,0)*100) AS COST_CO
+                  FROM
+	                CAPEX_SAP A
+                  JOIN M_WBS B ON A .CURR_PROJECT = B.CURR_PROJECT_C
+                  JOIN M_TYPE_INVESTASI C ON B.PSPRI = C.TYPE_INVESTASI_ACT
+                  WHERE
+	                A .GJAHR = '" . $year . "'
+                    AND B.LEVEL1 = '1'
+                    AND COMPANY = '" . $comp . "'
+                    AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                  GROUP BY
+	                B.PSPRI,
+	                C.DESCRIPTION,
+	                COMPANY
+                  ORDER BY
+	                B.PSPRI";
         $data = $this->db->query($query);
         return $data->result_array();
     }
@@ -265,75 +145,197 @@ class m_capex extends CI_Model
     function getCurrentProject($company, $year, $priority)
     {
         $query = "SELECT
-	PRIORITY,
-	COMPANY,
-	SAP.CURR_PROJECT,
-	COST_BUD,
-	COST_ACT,
-	COST_COMIT,
-	COST_ROP,
-	COST_ASSIG,
-	COST_AVB,
-	SUM (NVL(COST_CO, 0)) AS COST_CO
-FROM
-	(
-		SELECT
-			B.PSPRI AS PRIORITY,
-			A .CURR_PROJECT,
-			B.DESCRIPTION,
-			COMPANY,
-			SUM (BUDGET) AS COST_BUD,
-			SUM (ASSIGMENT_COST) AS COST_ASSIG,
-			SUM (RMORP) AS COST_ROP,
-			SUM (AVAILABLE) AS COST_AVB,
-			SUM (COMMITED) AS COST_COMIT,
-			SUM (ACTUAL) AS COST_ACT
-		FROM
-			CAPEX_SAP A
-		LEFT JOIN M_WBS B ON A .CURR_PROJECT = B.CURR_PROJECT_C
-		AND B.COMPANY_CODE = A .COMPANY
-		AND B.LEVEL1 = '1'
-		WHERE
-			A .GJAHR = '" . $year ."'
-		AND COMPANY = '" . $company ."'
-		AND B.PSPRI = '" . $priority ."'
-		AND B.CURR_PROJECT_C NOT LIKE 'P1%'
-		GROUP BY
-			B.PSPRI,
-			COMPANY,
-			A .CURR_PROJECT,
-			B.DESCRIPTION
-		ORDER BY
-			B.PSPRI,
-			A .CURR_PROJECT
-	) SAP
-LEFT JOIN (
-	SELECT
-		PSPRI,
-		BUKRS,
-		PSPEL_TXT AS WBS,
-		SUM (NVL(FI_DMBTR, 0)) AS COST_CO
-	FROM
-		CAPEX_ACT
-	WHERE
-		FI_AUGDT LIKE '" . $year ."%'
-	AND BUKRS = '" . $company . "'
-	AND CATEGORY = 'ACT'
-	GROUP BY
-		PSPRI,
-		BUKRS,
-		PSPEL_TXT
-) ACT ON ACT.WBS LIKE CONCAT (SAP.CURR_PROJECT, '%')
-GROUP BY
-	PRIORITY,
-	COMPANY,
-	SAP.CURR_PROJECT,
-	COST_BUD,
-	COST_ACT,
-	COST_COMIT,
-	COST_ROP,
-	COST_ASSIG,
-	COST_AVB";
+	                B.PSPRI AS PRIORITY,
+	                A .CURR_PROJECT,
+	                B.DESCRIPTION,
+	                COMPANY,
+	                SUM (BUDGET) AS COST_BUD,
+	                SUM (ACTUAL) AS COST_ACT,
+	                SUM (COMMITED) AS COST_COMIT,
+	                SUM (RMORP) AS COST_ROP,
+	                SUM (ASSIGMENT_COST) AS COST_ASSIG,
+	                SUM (AVAILABLE) AS COST_AVB,
+	                SUM (NVL(CASHOUT,0)*100) AS COST_CO
+                  FROM
+	                CAPEX_SAP A
+                  LEFT JOIN M_WBS B ON A .CURR_PROJECT = B.CURR_PROJECT_C
+                    AND B.COMPANY_CODE = A .COMPANY
+                    AND B.LEVEL1 = '1'
+                    AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                  WHERE
+	                A .GJAHR = '" . $year . "'
+                    AND COMPANY = '" . $company . "'
+                    AND B.PSPRI = '" . $priority . "'
+                  GROUP BY
+	                B.PSPRI,
+	                COMPANY,
+	                A .CURR_PROJECT,
+	                B.DESCRIPTION
+                  ORDER BY
+	                COMPANY,
+	                B.PSPRI,
+	                A .CURR_PROJECT";
+        $data = $this->db->query($query);
+        return $data->result_array();
+    }
+
+    function getDataByProject($year)
+    {
+        $data = array();
+        $comps = array(
+            '2000',
+            '3000',
+            '4000',
+            '5000',
+            '7000'
+        );
+        foreach ($comps as $comp) {
+            $capex = $this->getProjectPerCompany($comp, $year);
+            if (count($capex) > 0) {
+                $temp = array(
+                    'company' => $comp,
+                    'company_name' => $this->getCompanyName($comp),
+                    'data' => $capex
+                );
+                array_push($data, $temp);
+            }
+        }
+        return $data;
+    }
+
+    function getDataByType($year)
+    {
+        $data = array();
+        $comps = array(
+            '2000',
+            '3000',
+            '4000',
+            '5000',
+            '7000'
+        );
+        foreach ($comps as $comp) {
+            $capex = $this->getTypePerCompany($comp, $year);
+            if (count($capex) > 0) {
+                $temp = array(
+                    'company' => $comp,
+                    'company_name' => $this->getCompanyName($comp),
+                    'data' => $capex
+                );
+                array_push($data, $temp);
+            }
+        }
+        return $data;
+    }
+
+    function getProjectPerCompany($comp, $year)
+    {
+        $query = "SELECT
+	              A .CURR_PROJECT,
+	              B.DESCRIPTION,
+	              SUM (BUDGET) AS COST_BUD,
+	              SUM (ACTUAL) AS COST_ACT,
+	              SUM (COMMITED) AS COST_COMIT,
+	              SUM (RMORP) AS COST_ROP,
+	              SUM (ASSIGMENT_COST) AS COST_ASSIG,
+	              SUM (AVAILABLE) AS COST_AVB,
+	              SUM (NVL(CASHOUT, 0) * 100) AS COST_CO
+                  FROM CAPEX_SAP A
+                  JOIN M_WBS B ON A .CURR_PROJECT = B.CURR_PROJECT_C
+                  WHERE
+	                A .GJAHR = '" . $year . "'
+                    AND B.LEVEL1 = '1'
+                    AND COMPANY = '" . $comp . "'
+                    AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                  GROUP BY
+	                A .CURR_PROJECT,
+	                B.DESCRIPTION
+                  ORDER BY
+	                A .CURR_PROJECT,
+	                B.DESCRIPTION";
+        $data = $this->db->query($query);
+        return $data->result_array();
+    }
+
+    function getTypePerCompany($comp, $year)
+    {
+        $query = "SELECT
+	              B.PSPRI AS PRIORITY,
+	              C.DESCRIPTION,
+	              SUM (BUDGET) AS COST_BUD,
+	              SUM (ACTUAL) AS COST_ACT,
+	              SUM (COMMITED) AS COST_COMIT,
+	              SUM (RMORP) AS COST_ROP,
+	              SUM (ASSIGMENT_COST) AS COST_ASSIG,
+	              SUM (AVAILABLE) AS COST_AVB,
+	              SUM (NVL(CASHOUT, 0) * 100) AS COST_CO
+                  FROM
+	              CAPEX_SAP A
+                  LEFT JOIN M_WBS B ON A .WBS = B.WBS
+                  AND B.COMPANY_CODE = A .COMPANY
+                  JOIN M_TYPE_INVESTASI C ON B.PSPRI = C.TYPE_INVESTASI_ACT
+                  WHERE
+	                A .GJAHR = '" . $year . "'
+                    AND COMPANY = '" . $comp . "'
+                    AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                    AND A .LEVEL1 IN (
+	                SELECT
+		            MAX (LEVEL1)
+	                FROM
+		              CAPEX_SAP
+	                  WHERE
+		                A .GJAHR = '" . $year . "'
+	                    AND COMPANY = '" . $comp . "'
+	                    AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                    )
+                  GROUP BY
+	                C.DESCRIPTION,
+	                B.PSPRI
+                  ORDER BY
+	                B.PSPRI";
+        $data = $this->db->query($query);
+        return $data->result_array();
+    }
+    
+    function getDetailProject($comp, $project, $year)
+    {
+        $query = "SELECT
+	                B.PSPRI AS PRIORITY,
+	                C.DESCRIPTION,
+	                A.CURR_PROJECT,
+	                SUM (BUDGET) AS COST_BUD,
+	                SUM (ACTUAL) AS COST_ACT,
+	                SUM (COMMITED) AS COST_COMIT,
+	                SUM (RMORP) AS COST_ROP,
+	                SUM (ASSIGMENT_COST) AS COST_ASSIG,
+	                SUM (AVAILABLE) AS COST_AVB,
+	                SUM (NVL(CASHOUT, 0) * 100) AS COST_CO
+                  FROM
+	                CAPEX_SAP A
+                  LEFT JOIN M_WBS B ON A .WBS = B.WBS
+                  AND B.COMPANY_CODE = A .COMPANY
+                  JOIN M_TYPE_INVESTASI C ON B.PSPRI = C.TYPE_INVESTASI_ACT
+                  WHERE
+	                A .GJAHR = '" . $year . "'
+                    AND COMPANY = '" . $comp . "'
+                    AND A .CURR_PROJECT = '" . $project . "'
+                    AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                    AND A .LEVEL1 IN (
+	              SELECT
+		            MAX (LEVEL1)
+	              FROM
+		            CAPEX_SAP
+	              WHERE
+		            A .GJAHR = '" . $year . "'
+	                AND COMPANY = '" . $comp . "'
+	                AND A .CURR_PROJECT = '" . $project . "'
+	                AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                  )
+                  GROUP BY
+	                A.CURR_PROJECT,
+	                C.DESCRIPTION,
+	                B.PSPRI
+                  ORDER BY
+	                B.PSPRI";
         $data = $this->db->query($query);
         return $data->result_array();
     }

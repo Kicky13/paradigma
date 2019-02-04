@@ -58,4 +58,8 @@ class plant_padang extends CI_Controller {
     public function get_pm_note() {
         $this->m_plantpadang->get_pm_note();
     }
+    
+    public function get_oee() {
+        $this->m_plantpadang->get_oee();
+    }
 }

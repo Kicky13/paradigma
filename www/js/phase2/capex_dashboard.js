@@ -1,4 +1,4 @@
-var temp_url = 'http://10.15.5.150/dev/par4digma';
+// var api_url = 'http://10.15.5.150/dev/par4digma';
 var api_url = 'http://par4digma.semenindonesia.com';
 var currentTime = new Date();
 
@@ -70,7 +70,7 @@ function workingOnChart(company, str_bud, str_act, pko_bud, pko_act, po_bud, po_
             plotBorderWidth: null,
             plotShadow: false,
             type: 'pie',
-            marginTop: 50
+            marginTop:10
         },
         title: {
             text: 'Budget',
@@ -84,7 +84,7 @@ function workingOnChart(company, str_bud, str_act, pko_bud, pko_act, po_bud, po_
         },
         plotOptions: {
             pie: {
-                size: 50,
+                size: 100,
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {
@@ -122,7 +122,8 @@ function workingOnChart(company, str_bud, str_act, pko_bud, pko_act, po_bud, po_
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'pie'
+            type: 'pie',
+            marginTop:10,
         },
         title: {
             text: 'Actual'
@@ -135,7 +136,7 @@ function workingOnChart(company, str_bud, str_act, pko_bud, pko_act, po_bud, po_
         },
         plotOptions: {
             pie: {
-                size: 50,
+                size: 100,
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {

@@ -48,7 +48,6 @@ class sales_new extends CI_Controller {
             );
         }
 
-
         $result_peropco = $this->msales_new->get_detail_thisday_peropco();
         $result_rkaprev = $this->msales_new->get_rkaprev_thisday_peropco($yearmonth);
         
@@ -74,6 +73,11 @@ class sales_new extends CI_Controller {
 
         echo json_encode($return);
         
+    }
+
+    function getSMIGThisDay() {
+        $data = $this->msales_new->getSMIGThisDay();
+        echo json_encode($data);
     }
 
     function get_smig_uptothisday(){
@@ -240,5 +244,10 @@ class sales_new extends CI_Controller {
 
         echo json_encode($return);    
     }
- 
+
+    function updateToday()
+    {
+        $data = $this->msales_new->getUpdateToday();
+        echo json_encode($data);
+    }
 }

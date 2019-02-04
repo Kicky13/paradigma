@@ -149,14 +149,15 @@ $db['default4']['swap_pre'] = '';
 $db['default4']['autoinit'] = TRUE;
 $db['default4']['stricton'] = FALSE;
 
-$db['default5']['hostname'] = '10.15.3.144/pdbsi';
+//$db['default5']['hostname'] = '10.15.3.144/pdbsi';
+$db['default5']['hostname'] = '(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.15.3.144)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = pdbsi)))';
 $db['default5']['username'] = 'APPBISD';
-$db['default5']['password'] = 'gresik45smigone';
+$db['default5']['password'] = 'gresik45smigone1';
 $db['default5']['database'] = '';
 $db['default5']['dbdriver'] = 'oci8';
 $db['default5']['dbprefix'] = '';
 $db['default5']['pconnect'] = FALSE;
-$db['default5']['db_debug'] = TRUE;
+$db['default5']['db_debug'] = FALSE;
 $db['default5']['cache_on'] = FALSE;
 $db['default5']['cachedir'] = '';
 $db['default5']['char_set'] = 'utf8';

@@ -1,0 +1,1783 @@
+<!DOCTYPE html>sdfsd
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script src="js/phase2/inventory_proc_tracking.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/highstock.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/exporting.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    	 var opco = "1000";
+        var selectedDate;
+        var selectedLastYear;
+        function exitApps() {
+            navigator.app.exitApp();
+        }
+
+        function onLoad() {
+
+        	var d = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var pengurang = 0;
+            var bulan = month[moment().subtract(pengurang, 'months').format('MM')];
+            var bulanSekarang = moment().subtract(pengurang, 'months').format('MM');
+            var tahun = moment().subtract(pengurang, 'months').format('YYYY');
+            var dd = d.getDate();
+            var mm = d.getMonth() + 1; //January is 0!
+            var yyyy = d.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            $("#tag_ly1").html("Real "+(tahun-1));
+            $("#tag_ly2").html("Real "+(tahun-1));
+            var today = dd + '/' + mm + '/' + yyyy;
+            $('.last-update').html('Last Update : ' + today);
+            setParam(opco, tahun, bulanSekarang);
+
+            var yearnow = tahun;
+            var data_active = 1;
+
+            $('.selmonth').empty();
+            var opt_month;
+            $.each(month, function (key, val) {
+                if (key + 1 <= 12) {
+                    if ((key + 1) < 10) {
+                        var v = '0' + (key + 1);
+                    } else {
+                        var v = key + 1;
+                    }
+                    if ((key + 1) == bulanSekarang) {
+                        opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                    } else {
+                        opt_month += '<option value="' + v + '">' + val + '</option>';
+                    }
+                }
+
+            })
+            $('.selmonth').html(opt_month);
+            var yearnow = tahun;
+            var labels = bulanSekarang;
+            $('.selmonth').change(function () {
+                bulanSekarang = $(this).val();
+                tahun = $('.selyear').val();
+                setParam(opco, tahun, bulanSekarang);
+            })
+            var opt_year;
+            for (var thn = 2010; thn <= yyyy; thn++) {
+                if (thn == yyyy) {
+                    opt_year += '<option value="' + thn + '" selected="selected">' + thn + '</option>';
+                } else {
+                    opt_year += '<option value="' + thn + '">' + thn + '</option>';
+                }
+            }
+            $('.selyear').html(opt_year);
+            $('.selyear').change(function () {
+                bulanSekarang = $('.selmonth').val();
+                tahun = $(this).val();
+                $("#tag_ly1").html("Real "+(tahun-1));
+                $("#tag_ly2").html("Real "+(tahun-1));
+                setParam(opco, tahun, bulanSekarang);
+            })
+
+            var session = getParamFull();
+            ////=========================
+            if (sessionStorage.getItem('_com') != 'ALL') {
+                $.each(listTab, function (index, el) {
+                    $('#tab-' + el + ' a').removeAttr('href');
+                    $('#tab-' + el + ' a').removeAttr('rel');
+                })
+            }
+            ////=========================
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
+                }
+            });
+            var myspan = document.getElementById('head');
+
+        }
+    </script>
+    <style>
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .tab_syle {
+            color: #666666;
+            font-size: 12px;
+            border: none;
+            /* padding-left: 8px; */
+            margin-left: 3px;
+        }
+
+        .font-category {
+            font-size: 12px;
+        }
+
+        .overflowing {
+            /*width: 30em;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+        }
+
+        .nav-tabs > li.active {
+            border-top: 1px solid #1481ed;
+        }
+
+        .tit_head {
+            background: rgba(255, 255, 255, 1);
+            background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+        }
+
+        .tab-active > a, .tab-active > a:focus, .tab-active > a:hover {
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-top: 1px solid #1481ed;
+            text-decoration: none;
+        }
+
+        .tab-active {
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-top: 1px solid #1481ed;
+            text-decoration: none;
+        }
+
+        .border-down {
+            height: 41px;
+            cursor: default;
+            background-color: #ffffff;
+            border-bottom-color: transparent;
+        }
+
+        .border-down-active {
+            height: 41px;
+            cursor: default;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-bottom: 1px solid #1481ed;
+        }
+
+        .no-text-style, .no-text-style:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .tx_tab {
+            margin-top: 5px;
+            color: #525252;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .col-xs-15,
+        .col-sm-15,
+        .col-md-15,
+        .col-lg-15 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        .col-xs-15 {
+            width: 20%;
+            float: left;
+        }
+
+        @media (min-width: 768px) {
+            .col-sm-15 {
+                width: 20%;
+                float: left;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .col-md-15 {
+                width: 20%;
+                float: left;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .col-lg-15 {
+                width: 20%;
+                float: left;
+            }
+        }
+
+        .col-xs-3 {
+            width: 20%;
+        }
+
+        .count {
+            color: #5e5e5e;
+            font-size: 18px;
+        }
+
+        .totval {
+            color: #FF615D;
+            font-size: 24px;
+        }
+
+        .spinner {
+            margin: 12px auto 6px;
+            width: 70px;
+            /*text-align: center;*/
+        }
+
+        .spinner > div {
+            width: 10px;
+            height: 10px;
+            background-color: #333;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(0.3)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
+        }
+
+        .loader {
+            border: 10px solid #f3f3f3; /* Light grey */
+            border-top: 10px solid #3498db; /* Blue */
+            border-radius: 50%;
+            margin: 100px auto 0;
+            width: 80px;
+            height: 80px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+    <script src="js/modernizr.js"></script>
+    <script>
+        $(window).load(function () {
+            $(".se-pre-con").fadeOut("slow");
+        });
+    </script>
+    <title>Production Report</title>
+</head>
+<body onLoad="onLoad()">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
+        <div id="sidenav">
+            <div class="header">
+                <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
+                    <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a>
+                    </li>
+                    <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
+                    <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
+                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a>
+                    </li>
+                    <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
+                    <li><a href="#" class="active"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a>
+                    </li>
+                    <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer">
+                <div>
+                    <ul>
+                        <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                        <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content" style="background:#f5f5f5;">
+            <!--title bar-->
+            <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle">
+                    <span>toggle menu</span>
+                </button>
+                <b class="logopis">PROCUREMENT TRACKING</b>
+                <!-- <a class="logo" href="index.html"><img src="img/logo.png"></a> -->
+            </header>
+            <!--end title bar-->
+            <div class="wrapper">
+                <div class="head-menu">
+                    <!--start menu production -->
+                    <ul>
+                        <li><a href="inventory_monthly_rep.html">MONTHLY REPORT</a></li>
+                        <li><a class="active">PROCUREMENT TRACKING</a></li>
+
+                    </ul>
+                    <!--  end menu production -->
+                </div>
+
+                <!--start header -->
+                <div class="spacer-menu"></div>
+                <div class="headsix2 cubesRun2 headone whitebg" style="height: 100px">
+                    <div class="cubesRun2 headone">
+                        <div align="center">
+                            <img src="img/teks semen indo.png" class="imgsi"
+                                 style="padding-top: 12px;width: 131px; margin: 0;">
+                            <p class="planttittle" id="head_log" style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">Semen Indonesia</p>
+                            <!-- <div class="spinner">
+                              <div class="bounce1"></div>
+                              <div class="bounce2"></div>
+                              <div class="bounce3"></div>
+                            </div> -->
+                            <center>
+                            Bulan : <select id="month" class="selmonth" rel="vol"></select>
+                            Tahun : <select id="year" class="selyear"></select>
+                        </center>
+                        </div>
+                    </div>
+                    <center>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <span class="upercent">
+                                        <script type="text/javascript">
+                                            document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));
+                                        </script>
+                                    </span>
+                    </center>
+                </div>
+
+                <!--end header -->
+
+                <!--start tab menu-->
+                <div id="content-company3000" class="content-company">
+                    <div id="loading-3000" class="loader"></div>
+                    <div id="content-3000">
+                        <div class="col-xs-12 tab_dual" style="margin-top: 12px;padding: 0 12px 12px 12px;">
+                            <div class="col-xs-12 bg_rds">
+                                <div align="center" class="tab-pr col-md-15 col-xs-3 center zero_padd left_tb act_tb">
+                                    <a href=".tab-click" rel="pr" class="no-text-style">
+                                        <span class="tx_tab">PR</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-prrel col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="prrel" class="no-text-style">
+                                        <span class="tx_tab">PR Rel</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-rfq col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="rfq" class="no-text-style">
+                                        <span class="tx_tab">RFQ</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-po col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="po" class="no-text-style">
+                                        <span class="tx_tab">PO</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-gr col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="gr" class="no-text-style">
+                                        <span class="tx_tab">GR</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end tab menu -->
+                        <div class="pr">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request</span><br>
+                                    <span class="count" id="countpr-3000">0</span><br>
+                                    <span class="totval" id="totvalpr-3000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpr-3000">0</span><br>
+                                        <span class="totval" id="rawtotvalpr-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpr-3000">0</span><br>
+                                        <span class="totval" id="partstotvalpr-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpr-3000">0</span><br>
+                                        <span class="totval" id="servicetotvalpr-3000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpr-3000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prrel hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request Release</span><br>
+                                    <span class="count" id="countprrel-3000">0</span><br>
+                                    <span class="totval" id="totvalprrel-3000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountprrel-3000">0</span><br>
+                                        <span class="totval" id="rawtotvalprrel-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountprrel-3000">0</span><br>
+                                        <span class="totval" id="partstotvalprrel-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountprrel-3000">0</span><br>
+                                        <span class="totval" id="servicetotvalprrel-3000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikprrel-3000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rfq hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Request For Quotation</span><br>
+                                    <span class="count" id="countrfq-3000">0</span><br>
+                                    <span class="totval" id="totvalrfq-3000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountrfq-3000">0</span><br>
+                                        <span class="totval" id="rawtotvalrfq-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountrfq-3000">0</span><br>
+                                        <span class="totval" id="partstotvalrfq-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountrfq-3000">0</span><br>
+                                        <span class="totval" id="servicetotvalrfq-3000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikrfq-3000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="po hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Order</span><br>
+                                    <span class="count" id="countpo-3000">0</span><br>
+                                    <span class="totval" id="totvalpo-3000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpo-3000">0</span><br>
+                                        <span class="totval" id="rawtotvalpo-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpo-3000">0</span><br>
+                                        <span class="totval" id="partstotvalpo-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpo-3000">0</span><br>
+                                        <span class="totval" id="servicetotvalpo-3000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpo-3000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gr hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Goods Receipt</span><br>
+                                    <span class="count" id="countgr-3000">0</span><br>
+                                    <span class="totval" id="totvalgr-3000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountgr-3000">0</span><br>
+                                        <span class="totval" id="rawtotvalgr-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountgr-3000">0</span><br>
+                                        <span class="totval" id="partstotvalgr-3000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountgr-3000">0</span><br>
+                                        <span class="totval" id="servicetotvalgr-3000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikgr-3000" class="grafikgr" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-company4000" class="content-company">
+                    <div id="loading-4000" class="loader"></div>
+                    <div id="content-4000">
+                        <div class="col-xs-12 tab_dual" style="margin-top: 12px;padding: 0 12px 12px 12px;">
+                            <div class="col-xs-12 bg_rds">
+                                <div align="center" class="tab-pr col-md-15 col-xs-3 center zero_padd left_tb act_tb">
+                                    <a href=".tab-click" rel="pr" class="no-text-style">
+                                        <span class="tx_tab">PR</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-prrel col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="prrel" class="no-text-style">
+                                        <span class="tx_tab">PR Rel</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-rfq col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="rfq" class="no-text-style">
+                                        <span class="tx_tab">RFQ</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-po col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="po" class="no-text-style">
+                                        <span class="tx_tab">PO</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-gr col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="gr" class="no-text-style">
+                                        <span class="tx_tab">GR</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end tab menu -->
+                        <div class="pr">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request</span><br>
+                                    <span class="count" id="countpr-4000">0</span><br>
+                                    <span class="totval" id="totvalpr-4000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpr-4000">0</span><br>
+                                        <span class="totval" id="rawtotvalpr-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpr-4000">0</span><br>
+                                        <span class="totval" id="partstotvalpr-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpr-4000">0</span><br>
+                                        <span class="totval" id="servicetotvalpr-4000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpr-4000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prrel hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request Release</span><br>
+                                    <span class="count" id="countprrel-4000">0</span><br>
+                                    <span class="totval" id="totvalprrel-4000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountprrel-4000">0</span><br>
+                                        <span class="totval" id="rawtotvalprrel-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountprrel-4000">0</span><br>
+                                        <span class="totval" id="partstotvalprrel-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountprrel-4000">0</span><br>
+                                        <span class="totval" id="servicetotvalprrel-4000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikprrel-4000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rfq hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Request For Quotation</span><br>
+                                    <span class="count" id="countrfq-4000">0</span><br>
+                                    <span class="totval" id="totvalrfq-4000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountrfq-4000">0</span><br>
+                                        <span class="totval" id="rawtotvalrfq-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountrfq-4000">0</span><br>
+                                        <span class="totval" id="partstotvalrfq-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountrfq-4000">0</span><br>
+                                        <span class="totval" id="servicetotvalrfq-4000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikrfq-4000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="po hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Order</span><br>
+                                    <span class="count" id="countpo-4000">0</span><br>
+                                    <span class="totval" id="totvalpo-4000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpo-4000">0</span><br>
+                                        <span class="totval" id="rawtotvalpo-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpo-4000">0</span><br>
+                                        <span class="totval" id="partstotvalpo-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpo-4000">0</span><br>
+                                        <span class="totval" id="servicetotvalpo-4000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpo-4000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gr hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Goods Receipt</span><br>
+                                    <span class="count" id="countgr-4000">0</span><br>
+                                    <span class="totval" id="totvalgr-4000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountgr-4000">0</span><br>
+                                        <span class="totval" id="rawtotvalgr-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountgr-4000">0</span><br>
+                                        <span class="totval" id="partstotvalgr-4000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountgr-4000">0</span><br>
+                                        <span class="totval" id="servicetotvalgr-4000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikgr-4000" class="grafikgr" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-company5000" class="content-company">
+                    <div id="loading-5000" class="loader"></div>
+                    <div id="content-5000">
+                        <div class="col-xs-12 tab_dual" style="margin-top: 12px;padding: 0 12px 12px 12px;">
+                            <div class="col-xs-12 bg_rds">
+                                <div align="center" class="tab-pr col-md-15 col-xs-3 center zero_padd left_tb act_tb">
+                                    <a href=".tab-click" rel="pr" class="no-text-style">
+                                        <span class="tx_tab">PR</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-prrel col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="prrel" class="no-text-style">
+                                        <span class="tx_tab">PR Rel</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-rfq col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="rfq" class="no-text-style">
+                                        <span class="tx_tab">RFQ</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-po col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="po" class="no-text-style">
+                                        <span class="tx_tab">PO</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-gr col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="gr" class="no-text-style">
+                                        <span class="tx_tab">GR</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end tab menu -->
+                        <div class="pr">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request</span><br>
+                                    <span class="count" id="countpr-5000">0</span><br>
+                                    <span class="totval" id="totvalpr-5000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpr-5000">0</span><br>
+                                        <span class="totval" id="rawtotvalpr-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpr-5000">0</span><br>
+                                        <span class="totval" id="partstotvalpr-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpr-5000">0</span><br>
+                                        <span class="totval" id="servicetotvalpr-5000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpr-5000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prrel hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request Release</span><br>
+                                    <span class="count" id="countprrel-5000">0</span><br>
+                                    <span class="totval" id="totvalprrel-5000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountprrel-5000">0</span><br>
+                                        <span class="totval" id="rawtotvalprrel-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountprrel-5000">0</span><br>
+                                        <span class="totval" id="partstotvalprrel-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountprrel-5000">0</span><br>
+                                        <span class="totval" id="servicetotvalprrel-5000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikprrel-5000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rfq hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Request For Quotation</span><br>
+                                    <span class="count" id="countrfq-5000">0</span><br>
+                                    <span class="totval" id="totvalrfq-5000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountrfq-5000">0</span><br>
+                                        <span class="totval" id="rawtotvalrfq-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountrfq-5000">0</span><br>
+                                        <span class="totval" id="partstotvalrfq-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountrfq-5000">0</span><br>
+                                        <span class="totval" id="servicetotvalrfq-5000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikrfq-5000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="po hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Order</span><br>
+                                    <span class="count" id="countpo-5000">0</span><br>
+                                    <span class="totval" id="totvalpo-5000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpo-5000">0</span><br>
+                                        <span class="totval" id="rawtotvalpo-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpo-5000">0</span><br>
+                                        <span class="totval" id="partstotvalpo-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpo-5000">0</span><br>
+                                        <span class="totval" id="servicetotvalpo-5000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpo-5000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gr hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Goods Receipt</span><br>
+                                    <span class="count" id="countgr-5000">0</span><br>
+                                    <span class="totval" id="totvalgr-5000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountgr-5000">0</span><br>
+                                        <span class="totval" id="rawtotvalgr-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountgr-5000">0</span><br>
+                                        <span class="totval" id="partstotvalgr-5000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountgr-5000">0</span><br>
+                                        <span class="totval" id="servicetotvalgr-5000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikgr-5000" class="grafikgr" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-company6000" class="content-company">
+                    <div id="loading-6000" class="loader"></div>
+                    <div id="content-6000">
+                        <div class="col-xs-12 tab_dual" style="margin-top: 12px;padding: 0 12px 12px 12px;">
+                            <div class="col-xs-12 bg_rds">
+                                <div align="center" class="tab-pr col-md-15 col-xs-3 center zero_padd left_tb act_tb">
+                                    <a href=".tab-click" rel="pr" class="no-text-style">
+                                        <span class="tx_tab">PR</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-prrel col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="prrel" class="no-text-style">
+                                        <span class="tx_tab">PR Rel</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-rfq col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="rfq" class="no-text-style">
+                                        <span class="tx_tab">RFQ</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-po col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="po" class="no-text-style">
+                                        <span class="tx_tab">PO</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-gr col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="gr" class="no-text-style">
+                                        <span class="tx_tab">GR</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end tab menu -->
+                        <div class="pr">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request</span><br>
+                                    <span class="count" id="countpr-6000">0</span><br>
+                                    <span class="totval" id="totvalpr-6000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpr-6000">0</span><br>
+                                        <span class="totval" id="rawtotvalpr-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpr-6000">0</span><br>
+                                        <span class="totval" id="partstotvalpr-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpr-6000">0</span><br>
+                                        <span class="totval" id="servicetotvalpr-6000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpr-6000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prrel hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request Release</span><br>
+                                    <span class="count" id="countprrel-6000">0</span><br>
+                                    <span class="totval" id="totvalprrel-6000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountprrel-6000">0</span><br>
+                                        <span class="totval" id="rawtotvalprrel-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountprrel-6000">0</span><br>
+                                        <span class="totval" id="partstotvalprrel-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountprrel-6000">0</span><br>
+                                        <span class="totval" id="servicetotvalprrel-6000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikprrel-6000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rfq hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Request For Quotation</span><br>
+                                    <span class="count" id="countrfq-6000">0</span><br>
+                                    <span class="totval" id="totvalrfq-6000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountrfq-6000">0</span><br>
+                                        <span class="totval" id="rawtotvalrfq-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountrfq-6000">0</span><br>
+                                        <span class="totval" id="partstotvalrfq-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountrfq-6000">0</span><br>
+                                        <span class="totval" id="servicetotvalrfq-6000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikrfq-6000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="po hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Order</span><br>
+                                    <span class="count" id="countpo-6000">0</span><br>
+                                    <span class="totval" id="totvalpo-6000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpo-6000">0</span><br>
+                                        <span class="totval" id="rawtotvalpo-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpo-6000">0</span><br>
+                                        <span class="totval" id="partstotvalpo-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpo-6000">0</span><br>
+                                        <span class="totval" id="servicetotvalpo-6000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpo-6000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gr hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Goods Receipt</span><br>
+                                    <span class="count" id="countgr-6000">0</span><br>
+                                    <span class="totval" id="totvalgr-6000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountgr-6000">0</span><br>
+                                        <span class="totval" id="rawtotvalgr-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountgr-6000">0</span><br>
+                                        <span class="totval" id="partstotvalgr-6000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountgr-6000">0</span><br>
+                                        <span class="totval" id="servicetotvalgr-6000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikgr-6000" class="grafikgr" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-company7000" class="content-company">
+                    <div id="loading-7000" class="loader"></div>
+                    <div id="content-7000">
+                        <div class="col-xs-12 tab_dual" style="margin-top: 12px;padding: 0 12px 12px 12px;">
+                            <div class="col-xs-12 bg_rds">
+                                <div align="center" class="tab-pr col-md-15 col-xs-3 center zero_padd left_tb act_tb">
+                                    <a href=".tab-click" rel="pr" class="no-text-style">
+                                        <span class="tx_tab">PR</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-prrel col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="prrel" class="no-text-style">
+                                        <span class="tx_tab">PR Rel</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-rfq col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="rfq" class="no-text-style">
+                                        <span class="tx_tab">RFQ</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-po col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="po" class="no-text-style">
+                                        <span class="tx_tab">PO</span>
+                                    </a>
+                                </div>
+                                <div align="center" class="tab-gr col-md-15 col-xs-3 center zero_padd left_tb">
+                                    <a href=".tab-click" rel="gr" class="no-text-style">
+                                        <span class="tx_tab">GR</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end tab menu -->
+                        <div class="pr">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request</span><br>
+                                    <span class="count" id="countpr-7000">0</span><br>
+                                    <span class="totval" id="totvalpr-7000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpr-7000">0</span><br>
+                                        <span class="totval" id="rawtotvalpr-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpr-7000">0</span><br>
+                                        <span class="totval" id="partstotvalpr-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpr-7000">0</span><br>
+                                        <span class="totval" id="servicetotvalpr-7000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpr-7000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prrel hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Request Release</span><br>
+                                    <span class="count" id="countprrel-7000">0</span><br>
+                                    <span class="totval" id="totvalprrel-7000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountprrel-7000">0</span><br>
+                                        <span class="totval" id="rawtotvalprrel-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountprrel-7000">0</span><br>
+                                        <span class="totval" id="partstotvalprrel-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountprrel-7000">0</span><br>
+                                        <span class="totval" id="servicetotvalprrel-7000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikprrel-7000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rfq hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Request For Quotation</span><br>
+                                    <span class="count" id="countrfq-7000">0</span><br>
+                                    <span class="totval" id="totvalrfq-7000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountrfq-7000">0</span><br>
+                                        <span class="totval" id="rawtotvalrfq-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountrfq-7000">0</span><br>
+                                        <span class="totval" id="partstotvalrfq-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountrfq-7000">0</span><br>
+                                        <span class="totval" id="servicetotvalrfq-7000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikrfq-7000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="po hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Purchase Order</span><br>
+                                    <span class="count" id="countpo-7000">0</span><br>
+                                    <span class="totval" id="totvalpo-7000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountpo-7000">0</span><br>
+                                        <span class="totval" id="rawtotvalpo-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountpo-7000">0</span><br>
+                                        <span class="totval" id="partstotvalpo-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountpo-7000">0</span><br>
+                                        <span class="totval" id="servicetotvalpo-7000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikpo-7000" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gr hidden">
+                            <div class="col-xs-12 noPadding">
+                                <div class="col-xs-12" style="text-align: center; margin-bottom: 0px;">
+                                    <span style="color:#adadad ;font-size: 16px;font-weight: bold">Goods Receipt</span><br>
+                                    <span class="count" id="countgr-7000">0</span><br>
+                                    <span class="totval" id="totvalgr-7000">0</span>
+                                </div>
+                                <div class="col-xs-12 noPadding" style="margin-top: 12px">
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Raw Material & Fuel</span><br>
+                                        <span class="count" id="rawcountgr-7000">0</span><br>
+                                        <span class="totval" id="rawtotvalgr-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 0px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Spareparts</span><br>
+                                        <span class="count" id="partscountgr-7000">0</span><br>
+                                        <span class="totval" id="partstotvalgr-7000">0</span>
+                                    </div>
+                                    <div class="col-xs-4 noPadding" style="text-align: center; margin-bottom: 16px;">
+                                        <span style="color: #4c9ed9;font-size: 12px;">Services</span><br>
+                                        <span class="count" id="servicecountgr-7000">0</span><br>
+                                        <span class="totval" id="servicetotvalgr-7000">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 noPadding" style="border-top: 0px solid burlywood;margin-bottom: 120px;">
+                                <div align="center" style="overflow-x: scroll; width: 100%;">
+                                    <div id="grafikgr-7000" class="grafikgr" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- start bottom navbar menu -->
+            <footer>
+                <div class="regular">
+                    <a id="logocomp-3000" class="footer-logo col-xs-3 noPadding tab_uper col-ft-3 img_foot2" rel="3000" data-status="0" style="margin-top: 7px;">
+                        <img src="img/cement/sp.png" style="width:48%;display:inline;"/></a>
+                    <a id="logocomp-5000" class="footer-logo col-xs-3 noPadding tab_uper col-ft-3 img_foot2" rel="5000" data-status="0" style="margin-top: 7px;">
+                        <img src="img/cement/sg.png" style="width:48%;display:inline;"/></a>
+                    <a id="logocomp-7000" class="footer-logo col-xs-3 noPadding tab_uper col-ft-3" rel="7000" data-status="0" style="margin-top: 7px;">
+                        <img src="img/cement/si.png" style="width:48%;display:inline;"/></a>
+                    <a id="logocomp-4000" class="footer-logo col-xs-3 noPadding tab_uper col-ft-3 img_foot2" rel="4000" data-status="0" style="margin-top: 7px;">
+                        <img src="img/cement/st.png" style="width:48%;display:inline;"/></a>
+                    <a id="logocomp-6000" class="footer-logo col-xs-3 noPadding tab_uper col-ft-3 img_foot2" rel="6000" data-status="0" style="margin-top: 7px;">
+                        <img src="img/cement/tl.png" style="width:48%;display:inline;"/></a>
+                </div>
+            </footer>
+            <!-- end bottom navbar menu -->
+        </div>
+    </div>
+</div>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).on('ready', function () {
+        $(".regular").slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            arrows: false,
+            centerMode: false
+        });
+    });
+</script>
+<script>
+    Highcharts.chart('grafik_pr', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Raw Material & Fuel',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        }, {
+            name: 'Spareparts',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        }, {
+            name: 'Services',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        }]
+    });
+
+    Highcharts.chart('grafik_prrel', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Raw Material & Fuel',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        }, {
+            name: 'Spareparts',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        }, {
+            name: 'Services',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        }]
+    });
+
+    Highcharts.chart('grafik_rfq', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Raw Material & Fuel',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        }, {
+            name: 'Spareparts',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        }, {
+            name: 'Services',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        }]
+    });
+
+    Highcharts.chart('grafik_po', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Raw Material & Fuel',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        }, {
+            name: 'Spareparts',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        }, {
+            name: 'Services',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        }]
+    });
+
+    Highcharts.chart('grafik_gr', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Raw Material & Fuel',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        }, {
+            name: 'Spareparts',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        }, {
+            name: 'Services',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        }]
+    });
+</script>
+</body>
+</html>

@@ -78,4 +78,26 @@ class plant_tonasa extends CI_Controller {
     public function get_pm_note() {
         $this->m_planttonasa->get_pm_note();
     }
+    
+    public function get_oee() {
+        $this->m_planttonasa->get_oee();
+    }
+    
+    public function get_electical_sub() {
+        $this->m_planttonasa->get_electical_sub();
+    }
+    
+    public function get_data_prod() {
+        $this->m_planttonasa->get_data_prod();
+    }
+    
+    // <editor-fold defaultstate="collapsed" desc="QCX">
+    function qm_cement() {
+        $this->m_planttonasa->qm_cement();
+    }
+    
+    function qm_clinker() {
+        $this->m_planttonasa->qm_clinker();
+    }
+    // </editor-fold>
 }

@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e14e9542-2f41-4490-877e-051f5d531edb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index_login2.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index_login2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/prod_report_sg.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/prod_report_sg.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/project_coe_proj.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/project_coe_proj.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/project_cost_proj.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/project_cost_proj.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/project_pusb_proj.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/project_pusb_proj.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +14,7 @@
     <session id="2091826164">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.30" value="1" />
@@ -29,7 +23,7 @@
           <entry key="project.open.time.35" value="3" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.42" value="1" />
-          <entry key="project.open.time.45" value="1" />
+          <entry key="project.open.time.45" value="2" />
           <entry key="project.open.time.47" value="2" />
           <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.58" value="1" />
@@ -37,14 +31,14 @@
           <entry key="project.open.time.69" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.72" value="1" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="18" />
-          <entry key="js" value="36" />
-          <entry key="php" value="15" />
+          <entry key="js" value="37" />
+          <entry key="php" value="27" />
           <entry key="ts" value="1" />
           <entry key="xml" value="3" />
         </counts>
@@ -52,8 +46,8 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="18" />
-          <entry key="JavaScript" value="36" />
-          <entry key="PHP" value="15" />
+          <entry key="JavaScript" value="37" />
+          <entry key="PHP" value="27" />
           <entry key="TypeScript" value="1" />
           <entry key="XML" value="3" />
         </counts>
@@ -62,7 +56,7 @@
         <counts>
           <entry key="html" value="1247" />
           <entry key="js" value="8405" />
-          <entry key="php" value="3484" />
+          <entry key="php" value="4219" />
           <entry key="xml" value="110" />
         </counts>
       </usages-collector>
@@ -70,96 +64,15 @@
         <counts>
           <entry key="HTML" value="1247" />
           <entry key="JavaScript" value="8405" />
-          <entry key="PHP" value="2852" />
-          <entry key="SQL" value="632" />
+          <entry key="PHP" value="2957" />
+          <entry key="SQL" value="1262" />
           <entry key="XML" value="110" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/js/phase2/capex_company_detail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/index_login2.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11271">
-              <caret line="663" column="52" selection-start-line="663" selection-start-column="52" selection-end-line="663" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4794">
-              <caret line="282" column="15" selection-start-line="282" selection-start-column="15" selection-end-line="282" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/phase2/capex_dashboard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="50" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/phase2/capex_main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
-              <caret line="94" column="10" selection-start-line="94" selection-start-column="10" selection-end-line="94" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/phase2/capex_project_type.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
-              <caret line="65" column="1" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/phase2/cash_flow.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -184,6 +97,9 @@
       <find>numberFormat</find>
       <find>setParam</find>
       <find>inputLogin</find>
+      <find>saveShi</find>
+      <find>getPO</find>
+      <find>save</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -211,6 +127,8 @@
         <option value="$PROJECT_DIR$/www/js/phase2/capex_company_detail.js" />
         <option value="$PROJECT_DIR$/www/index_login2.html" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/m_capex.php" />
+        <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/database 2.php" />
       </list>
     </option>
   </component>
@@ -332,7 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -380,12 +297,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/WORKING/Tutsnare" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eproc_pub_devprod" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -429,18 +347,18 @@
       <workItem from="1542159311660" duration="722000" />
       <workItem from="1542254966392" duration="291000" />
       <workItem from="1542329512890" duration="46000" />
-      <workItem from="1542762784339" duration="234000" />
+      <workItem from="1542762784339" duration="7722000" />
+      <workItem from="1542783886771" duration="663000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97539000" />
+    <option name="totallyTimeSpent" value="105668000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3260212" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33131617" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -484,28 +402,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/application/controllers/model/m_stokgudang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-279" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/application/controllers/cashflow.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="849" column="13" lean-forward="true" selection-start-line="849" selection-start-column="13" selection-end-line="849" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/application/controllers/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4508" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/application/controllers/balance_report.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/project_cost_proj.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-11322" />
@@ -664,23 +560,10 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/project_coe_proj.html" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/index.html" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/index.php" />
     <entry file="file://$PROJECT_DIR$/www/js/phase2/capex_company_detail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -726,6 +609,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2982" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/EC_Shipment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="426" column="90" lean-forward="true" selection-start-line="426" selection-start-column="90" selection-end-line="426" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/EC_shipment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="1573" column="10" lean-forward="true" selection-start-line="1573" selection-start-column="10" selection-end-line="1573" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/index 2.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/m_capex.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2941">
+          <caret line="173" column="26" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/database 2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/EC_Good_Receipt_PL.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" column="70" selection-start-line="68" selection-start-column="70" selection-end-line="68" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ec_goodreceipt_m.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="74" lean-forward="true" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/EC_Shipment 2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="412" column="66" lean-forward="true" selection-start-line="412" selection-start-column="66" selection-end-line="412" selection-end-column="66" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ec_shipment_m.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="496" column="51" lean-forward="true" selection-start-line="496" selection-start-column="51" selection-end-line="496" selection-end-column="51" />
         </state>
       </provider>
     </entry>

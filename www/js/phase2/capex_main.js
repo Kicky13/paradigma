@@ -1,4 +1,4 @@
-var temp_url = 'http://10.15.5.150/dev/par4digma';
+// var api_url = 'http://10.15.5.150/dev/par4digma';
 var api_url = 'http://par4digma.semenindonesia.com';
 var currentTime = new Date();
 

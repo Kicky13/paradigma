@@ -9,6 +9,7 @@ class plant_tuban extends CI_Controller {
         parent::__construct();
         $this->load->model('m_planttuban');
     }
+
     // <editor-fold defaultstate="collapsed" desc="Tuban Real Time">
     public function get_statefeed() {
         $this->m_planttuban->get_statefeed();
@@ -33,6 +34,7 @@ class plant_tuban extends CI_Controller {
     public function get_silotb12() {
         $this->m_planttuban->get_silotb12();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="PIS Real Time Dashboard">
     public function get_mimic_tb34() {
@@ -50,7 +52,7 @@ class plant_tuban extends CI_Controller {
     public function finish_mill8_tb4() {
         $this->m_planttuban->finish_mill8_tb4();
     }
-    
+
     public function kiln_tb4() {
         $this->m_planttuban->kiln_tb4();
     }
@@ -58,6 +60,7 @@ class plant_tuban extends CI_Controller {
     public function cooler_tb4() {
         $this->m_planttuban->cooler_tb4();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Production">
     public function get_prodjop() {
@@ -71,7 +74,7 @@ class plant_tuban extends CI_Controller {
     public function get_upto() {
         $this->m_planttuban->get_upto();
     }
-    
+
     public function get_prodmonth() {
         $this->m_planttuban->get_prodmonth();
     }
@@ -79,6 +82,7 @@ class plant_tuban extends CI_Controller {
     public function get_proddaily() {
         $this->m_planttuban->get_proddaily();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Inspection">
     public function get_ip_report_pie() {
@@ -104,6 +108,7 @@ class plant_tuban extends CI_Controller {
     public function get_ip_report_detail() {
         $this->m_planttuban->get_ip_report_detail();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Performance">
 
@@ -118,6 +123,7 @@ class plant_tuban extends CI_Controller {
     public function get_pm_note() {
         $this->m_planttuban->get_pm_note();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Real Time Cigading">
 
@@ -132,6 +138,7 @@ class plant_tuban extends CI_Controller {
     public function get_emisicgd() {
         $this->m_planttuban->get_emisicgd();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Real Time Gresik">
 
@@ -142,6 +149,7 @@ class plant_tuban extends CI_Controller {
     public function get_statefeedgrs() {
         $this->m_planttuban->get_statefeedgrs();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="FMEA">
     public function get_fmea_level() {
@@ -151,6 +159,7 @@ class plant_tuban extends CI_Controller {
     public function get_fmea_exec() {
         $this->m_planttuban->get_fmea_exec();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Maintenance Cost">
 
@@ -181,22 +190,46 @@ class plant_tuban extends CI_Controller {
     public function get_mt_rr_year() {
         $this->m_planttuban->get_mt_rr_year();
     }
+
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="PdM Concept by Akbar & Boss VIP">
     function get_pdmsampledata() {
         $this->m_planttuban->get_pdmsampledata();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="ARA : PdM">
-    function ara_pdm(){
+    function ara_pdm() {
         $this->m_planttuban->ara_pdm();
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="SHE Room Temp">
-    function get_tb34_roomtemp(){
+    function get_tb34_roomtemp() {
         $this->m_planttuban->get_tb34_roomtemp();
     }
-    // </editor-fold>
 
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="OEE">
+    function get_oee() {
+        $this->m_planttuban->get_oee();
+    }
+
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Third-party Material">
+    function get_m3_tb34() {
+        $this->m_planttuban->get_m3_tb34();
+    }
+
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="OPFM">
+    function get_ofpm_fm7() {
+        $this->m_planttuban->get_ofpm_fm7();
+    }
+    
+    function get_ofpm_fm8() {
+        $this->m_planttuban->get_ofpm_fm8();
+    }
+
+    // </editor-fold>
 }

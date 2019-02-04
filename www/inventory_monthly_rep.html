@@ -157,7 +157,7 @@
             function viewData(comp, month, year){
             	$(".year").html(year);
             	run_waitMe('.wrapper', 'ios');
-	            $.getJSON('http://10.15.5.150/dev/par4digma/api/index.php/inventory/get_data?comp='+comp+'&year='+year+'&month='+month,function (data) {
+	            $.getJSON('http://par4digma.semenindonesia.com/api/index.php/inventory/get_data?comp='+comp+'&year='+year+'&month='+month,function (data) {
 
 	            	var nilai_po = data.total_po_value.TOTAL_POVAL/1000000;
 	            	var po_barang = data.total_po_barang.TOTAL_POBAR/1000000;
@@ -629,7 +629,7 @@
                       <div>
                         <ul>
                             <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
-                            <li><a href="production_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                            <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
                             <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
                             <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
                             <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
@@ -660,7 +660,7 @@
                         <!--start menu production -->
                             <ul>
                                 <li><a class="active">MONTHLY REPORT</a></li>
-                                <li><a href="proc_tracking.html">PROCUREMENT TRACKING</a></li>
+                                <li><a href="inventory_proc_tracking.html">PROCUREMENT TRACKING</a></li>
                                  
                             </ul>
                             <!--  end menu production -->

@@ -37,4 +37,27 @@ class capex extends CI_Controller {
         $data = $this->m_capex->getCAPEXPerCompany($year);
         echo json_encode($data);
     }
+
+    function getByProject()
+    {
+        $year = $this->input->get('year', TRUE);
+        $data = $this->m_capex->getDataByProject($year);
+        echo json_encode($data);
+    }
+
+    function getByType()
+    {
+        $year = $this->input->get('year', TRUE);
+        $data = $this->m_capex->getDataByType($year);
+        echo json_encode($data);
+    }
+
+    function getDetailProject()
+    {
+        $year = $this->input->get('year', TRUE);
+        $project = $this->input->get('project', TRUE);
+        $company = $this->input->get('company', TRUE);
+        $data = $this->m_capex->getDetailProject($company, $project, $year);
+        echo json_encode($data);
+    }
 }

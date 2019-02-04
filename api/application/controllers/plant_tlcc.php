@@ -57,4 +57,11 @@ class plant_tlcc extends CI_Controller {
     public function get_pm_note() {
         $this->M_planttlcc->get_pm_note();
     }
+    
+    // <editor-fold defaultstate="collapsed" desc="OEE">
+    function get_oee() {
+        $this->M_planttlcc->get_oee();
+    }
+    // </editor-fold>
+
 }

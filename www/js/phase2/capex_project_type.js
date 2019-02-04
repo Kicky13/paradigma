@@ -1,5 +1,5 @@
-var activeCompany, priority, years;
-var temp_url = 'http://10.15.5.150/dev/par4digma';
+var activeCompany, project, years;
+// var api_url = 'http://10.15.5.150/dev/par4digma';
 var api_url = 'http://par4digma.semenindonesia.com';
 
 $(document).ready(function () {
@@ -8,21 +8,21 @@ $(document).ready(function () {
     var url_address = window.location.href;
     var url = new URL(url_address);
     activeCompany = url.searchParams.get("company");
-    priority = url.searchParams.get("priority");
+    project = url.searchParams.get("project");
     years = url.searchParams.get("year");
 
     loadData()
 });
 
 function loadData() {
-    console.log(activeCompany + ' ' + priority + ' ' + years);
+    console.log(activeCompany + ' ' + project + ' ' + years);
     $.ajax({
-        url: api_url + '/api/index.php/capex/getCurrentProject',
-        type: 'POST',
+        url: api_url + '/api/index.php/capex/getDetailProject',
+        type: 'GET',
         dataType: 'JSON',
         data: {
             company: activeCompany,
-            priority: priority,
+            project: project,
             year: years
         }
     }).done(function (data) {
@@ -32,7 +32,7 @@ function loadData() {
             an += '<div class="col-xs-12 bagan" style="padding: 5px">';
             an += '<div class="col-xs-12 box" style="margin-top: 12px">';
             an += '<div class="col-xs-12 noPadding titl" style="padding-top: 10px;">';
-            an += '<span class="undertx" style="font-size: 16px;">' + data[i].CURR_PROJECT + '</span>';
+            an += '<span class="undertx" style="font-size: 16px;">' + data[i].DESCRIPTION + '</span>';
             an += '</div>';
             an += '<div style="margin-bottom:0px;">';
             an += '<div style="width: 100%; margin: 0 auto; padding: 2%;">';

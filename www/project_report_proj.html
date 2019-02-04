@@ -277,7 +277,7 @@
                     <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a>
                     </li>
                     <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
-                    <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                    <li><a href="inventory_monthly_rep.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
                     <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a>
                     </li>
                     <li><a href="#" class="active"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
@@ -323,7 +323,11 @@
                            style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN
                             INDONESIA</p>
                         <center>
-                            Year : <select id="year" class="selyear"></select><br>
+                            Year : <select id="year" class="selyear"></select>
+                                   <select id="typeOf" class="typeOf">
+                                       <option value="1"> Project</option>
+                                       <option value="2"> Type</option>
+                                   </select><br>
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                             <span class="upercent">
                                         <script type="text/javascript">document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));</script>
@@ -342,8 +346,13 @@
                                     <span class="tx_tab">Grafik</span></a></div>
                         </div>
                     </div>
-                    <div id="data-report" class="active" style="overflow-y: auto; display: inline-block;margin-bottom: 50px">
+                    <div id="data-report" class="active" style="overflow-y: auto; display: inline-block;margin-bottom: 50px; width: 100%">
                         <div id="data-content">
+                            <div id="dataproj2000" class="dataproj"></div>
+                            <div id="dataproj3000" class="dataproj"></div>
+                            <div id="dataproj4000" class="dataproj"></div>
+                            <div id="dataproj5000" class="dataproj"></div>
+                            <div id="dataproj7000" class="dataproj"></div>
                             <div id="datacomp2000" class="datacomp"></div>
                             <div id="datacomp3000" class="datacomp"></div>
                             <div id="datacomp4000" class="datacomp"></div>
