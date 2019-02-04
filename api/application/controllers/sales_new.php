@@ -75,8 +75,21 @@ class sales_new extends CI_Controller {
         
     }
 
-    function getSMIGThisDay() {
+    function getSMIGThisDay()
+    {
         $data = $this->msales_new->getSMIGThisDay();
+        echo json_encode($data);
+    }
+
+    function getSMIGUpToday()
+    {
+        $data = $this->msales_new->getSMIGUpToday();
+        echo json_encode($data);
+    }
+
+    function getSMIGUpToMonth()
+    {
+        $data = $this->msales_new->getSMIGUpToMonth();
         echo json_encode($data);
     }
 

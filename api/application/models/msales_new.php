@@ -20,8 +20,19 @@ class msales_new extends CI_Model
         echo "nyoba";
     }
 
-    public function getSMIGThisDay() {
+    public function getSMIGThisDay()
+    {
+        $data = array();
+    }
 
+    public function getSMIGUpToday()
+    {
+        $data = array();
+    }
+
+    public function getSMIGUpToMonth()
+    {
+        $data = array();
     }
 
     public function checking_clinker_thisday()
