@@ -23,16 +23,102 @@ class msales_new extends CI_Model
     public function getSMIGThisDay()
     {
         $data = array();
+        $tempDay = $this->get_detail_thisday();
+        foreach ($tempDay as $value) {
+            $data['perDay'][$value['NAMA_MATERIAL']] = $value;
+        }
+        $clinker = $this->checking_clinker_thisday();
+        $checkClinker = $this->checkClinker($clinker);
+        if ($checkClinker == 0) {
+            $data['perDay']['CLINKER']['PRICE'] = 0;
+            $data['perDay']['CLINKER']['REVENUE'] = 0;
+            $data['perDay']['CLINKER']['VOLUME'] = 0;
+        }
+        $tempOpco = $this->get_detail_thisday_peropco();
+        foreach ($tempOpco as $opco) {
+            $data['perOpco'][$this->getCompanyName($opco['COMPANY'])] = $opco;
+        }
+
+        return $data;
+    }
+
+    public function checkClinker($data)
+    {
+        if ($data == '' || empty($data) || $data == null) {
+            $clink_stat = 0;
+        } else {
+            $clink_stat = 1;
+        }
+        return $clink_stat;
     }
 
     public function getSMIGUpToday()
     {
         $data = array();
+        $tempDay = $this->get_detail_upthisday();
+        foreach ($tempDay as $value) {
+            $data['upToday'][$value['NAMA_MATERIAL']] = $value;
+        }
+        $clinker = $this->checking_clinker_upthisday();
+        $checkClinker = $this->checkClinker($clinker);
+        if ($checkClinker == 0) {
+            $data['upToday']['CLINKER']['PRICE'] = 0;
+            $data['upToday']['CLINKER']['REVENUE'] = 0;
+            $data['upToday']['CLINKER']['VOLUME'] = 0;
+        }
+        $tempOpco = $this->get_detail_upthisday_peropco();
+        foreach ($tempOpco as $opco) {
+            $data['perOpco'][$this->getCompanyName($opco['COMPANY'])] = $opco;
+        }
+
+        return $data;
     }
 
     public function getSMIGUpToMonth()
     {
         $data = array();
+        $tempDay = $this->get_detail_upthismonth();
+        foreach ($tempDay as $value) {
+            $data['perMonth'][$value['NAMA_MATERIAL']] = $value;
+        }
+        $clinker = $this->checking_clinker_upthismonth();
+        $checkClinker = $this->checkClinker($clinker);
+        if ($checkClinker == 0) {
+            $data['perMonth']['CLINKER']['PRICE'] = 0;
+            $data['perMonth']['CLINKER']['REVENUE'] = 0;
+            $data['perMonth']['CLINKER']['VOLUME'] = 0;
+        }
+        $tempOpco = $this->get_detail_upthismonth_peropco();
+        foreach ($tempOpco as $opco) {
+            $data['perOpco'][$this->getCompanyName($opco['COMPANY'])] = $opco;
+        }
+
+        return $data;
+    }
+
+    public function getCompanyName($company)
+    {
+        switch ($company) {
+            case '2000':
+                $opco = 'SI';
+                break;
+            case '3000':
+                $opco = 'SP';
+                break;
+            case '4000':
+                $opco = 'ST';
+                break;
+            case '5000':
+                $opco = 'SG';
+                break;
+            case '6000':
+                $opco = 'TL';
+                break;
+            default:
+                $opco = 'SI';
+                break;
+        }
+        return $opco;
     }
 
     public function checking_clinker_thisday()
@@ -61,7 +147,7 @@ class msales_new extends CI_Model
 
         $result = $this->db->query($sql);
 
-        return $result->result();
+        return $result->result_array();
     }
 
     public function get_detail_thisday_peropco()
@@ -79,7 +165,7 @@ class msales_new extends CI_Model
 
         $result = $this->db->query($sql);
 
-        return $result->result();
+        return $result->result_array();
     }
 
     public function get_rkaprev_thisday_peropco($date)
@@ -185,7 +271,7 @@ class msales_new extends CI_Model
 
         $result = $this->db->query($sql);
 
-        return $result->result();
+        return $result->result_array();
     }
 
     public function get_detail_upthisday_peropco()
@@ -218,7 +304,7 @@ class msales_new extends CI_Model
 
         $result = $this->db->query($sql);
 
-        return $result->result();
+        return $result->result_array();
     }
 
 
@@ -276,7 +362,7 @@ class msales_new extends CI_Model
 
         $result = $this->db->query($sql);
 
-        return $result->result();
+        return $result->result_array();
     }
 
     public function get_detail_upthismonth_peropco()
@@ -309,7 +395,7 @@ class msales_new extends CI_Model
 
         $result = $this->db->query($sql);
 
-        return $result->result();
+        return $result->result_array();
     }
 
     public function get_data_tabel_province($comp, $datetype)
