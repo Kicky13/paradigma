@@ -81,7 +81,7 @@ function dataThisDay() {
         document.getElementById('STRD').innerHTML = (data.perOpco.ST.REVENUE/1000000).toFixed(2);
         document.getElementById('TLCCVD').innerHTML = (data.perOpco.TL.VOLUME/1).toFixed(2);
         document.getElementById('TLCCPD').innerHTML = (data.perOpco.TL.PRICE/1).toFixed(2);
-        document.getElementById('TLCCRD').innerHTML = (data.perOpco.TL.REVENUE/100000g0).toFixed(2);
+        document.getElementById('TLCCRD').innerHTML = (data.perOpco.TL.REVENUE/1000000).toFixed(2);
     }).always(function (data) {
         console.log(data);
         uploadControl(JSON.stringify(data), 'SalesDaily', 'Sales/Daily');
