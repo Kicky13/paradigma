@@ -30,9 +30,9 @@ class msales_new extends CI_Model
         $clinker = $this->checking_clinker_thisday();
         $checkClinker = $this->checkClinker($clinker);
         if ($checkClinker == 0) {
-            $data['perDay']['CLINKER']['PRICE'] = 0;
-            $data['perDay']['CLINKER']['REVENUE'] = 0;
-            $data['perDay']['CLINKER']['VOLUME'] = 0;
+            $data['perDay']['Clinker']['PRICE'] = 0;
+            $data['perDay']['Clinker']['REVENUE'] = 0;
+            $data['perDay']['Clinker']['VOLUME'] = 0;
         }
         $tempOpco = $this->get_detail_thisday_peropco();
         foreach ($tempOpco as $opco) {
@@ -62,9 +62,9 @@ class msales_new extends CI_Model
         $clinker = $this->checking_clinker_upthisday();
         $checkClinker = $this->checkClinker($clinker);
         if ($checkClinker == 0) {
-            $data['upToday']['CLINKER']['PRICE'] = 0;
-            $data['upToday']['CLINKER']['REVENUE'] = 0;
-            $data['upToday']['CLINKER']['VOLUME'] = 0;
+            $data['upToday']['Clinker']['PRICE'] = 0;
+            $data['upToday']['Clinker']['REVENUE'] = 0;
+            $data['upToday']['Clinker']['VOLUME'] = 0;
         }
         $tempOpco = $this->get_detail_upthisday_peropco();
         foreach ($tempOpco as $opco) {
@@ -84,9 +84,9 @@ class msales_new extends CI_Model
         $clinker = $this->checking_clinker_upthismonth();
         $checkClinker = $this->checkClinker($clinker);
         if ($checkClinker == 0) {
-            $data['perMonth']['CLINKER']['PRICE'] = 0;
-            $data['perMonth']['CLINKER']['REVENUE'] = 0;
-            $data['perMonth']['CLINKER']['VOLUME'] = 0;
+            $data['perMonth']['Clinker']['PRICE'] = 0;
+            $data['perMonth']['Clinker']['REVENUE'] = 0;
+            $data['perMonth']['Clinker']['VOLUME'] = 0;
         }
         $tempOpco = $this->get_detail_upthismonth_peropco();
         foreach ($tempOpco as $opco) {

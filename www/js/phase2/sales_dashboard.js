@@ -82,6 +82,7 @@ function dataThisDay() {
         document.getElementById('TLCCVD').innerHTML = (data.perOpco.TL.VOLUME/1).toFixed(2);
         document.getElementById('TLCCPD').innerHTML = (data.perOpco.TL.PRICE/1).toFixed(2);
         document.getElementById('TLCCRD').innerHTML = (data.perOpco.TL.REVENUE/1000000).toFixed(2);
+        document.getElementById('TOTRD').innerHTML = ((parseFloat(data.perDay.ZAK.REVENUE) + parseFloat(data.perDay.Clinker.REVENUE) + parseFloat(data.perDay.Curah.REVENUE))/1000000).toFixed(2);
     }).always(function (data) {
         console.log(data);
         uploadControl(JSON.stringify(data), 'SalesDaily', 'Sales/Daily');
@@ -95,6 +96,34 @@ function dataDayUpTo() {
         url: api_url + '/sales_new/getSMIGUpToday'
     }).done(function (data) {
         console.log(data);
+        document.getElementById('ZAKVUD').innerHTML = (data.upToday.ZAK.VOLUME/1).toFixed(2);
+        document.getElementById('ZAKPUD').innerHTML = (data.upToday.ZAK.PRICE/1).toFixed(2);
+        document.getElementById('ZAKPRSUD').innerHTML = 0;
+        document.getElementById('ZAKRUD').innerHTML = (data.upToday.ZAK.REVENUE/1000000).toFixed(2);
+        document.getElementById('CRHVUD').innerHTML = (data.upToday.Curah.VOLUME/1).toFixed(2);
+        document.getElementById('CRHPUD').innerHTML = (data.upToday.Curah.PRICE/1).toFixed(2);
+        document.getElementById('CRHPRSUD').innerHTML = 0;
+        document.getElementById('CRHRUD').innerHTML = (data.upToday.Curah.REVENUE/1000000).toFixed(2);
+        document.getElementById('CLINKVUD').innerHTML = (data.upToday.Clinker.VOLUME/1).toFixed(2);
+        document.getElementById('CLINKPUD').innerHTML = (data.upToday.Clinker.PRICE/1).toFixed(2);
+        document.getElementById('CLINKPRSUD').innerHTML = 0;
+        document.getElementById('CLINKRUD').innerHTML = (data.upToday.Clinker.REVENUE/1000000).toFixed(2);
+        document.getElementById('KSOVUD').innerHTML = (data.perOpco.SI.VOLUME/1).toFixed(2);
+        document.getElementById('KSOPUD').innerHTML = (data.perOpco.SI.PRICE/1).toFixed(2);
+        document.getElementById('KSORUD').innerHTML = (data.perOpco.SI.REVENUE/1000000).toFixed(2);
+        document.getElementById('SGVUD').innerHTML = (data.perOpco.SG.VOLUME/1).toFixed(2);
+        document.getElementById('SGPUD').innerHTML = (data.perOpco.SG.PRICE/1).toFixed(2);
+        document.getElementById('SGRUD').innerHTML = (data.perOpco.SG.REVENUE/1000000).toFixed(2);
+        document.getElementById('SPVUD').innerHTML = (data.perOpco.SP.VOLUME/1).toFixed(2);
+        document.getElementById('SPPUD').innerHTML = (data.perOpco.SP.PRICE/1).toFixed(2);
+        document.getElementById('SPRUD').innerHTML = (data.perOpco.SP.REVENUE/1000000).toFixed(2);
+        document.getElementById('STVUD').innerHTML = (data.perOpco.ST.VOLUME/1).toFixed(2);
+        document.getElementById('STPUD').innerHTML = (data.perOpco.ST.PRICE/1).toFixed(2);
+        document.getElementById('STRUD').innerHTML = (data.perOpco.ST.REVENUE/1000000).toFixed(2);
+        document.getElementById('TLCCVUD').innerHTML = (data.perOpco.TL.VOLUME/1).toFixed(2);
+        document.getElementById('TLCCPUD').innerHTML = (data.perOpco.TL.PRICE/1).toFixed(2);
+        document.getElementById('TLCCRUD').innerHTML = (data.perOpco.TL.REVENUE/1000000).toFixed(2);
+        document.getElementById('TOTRUD').innerHTML = ((parseFloat(data.upToday.ZAK.REVENUE) + parseFloat(data.upToday.Clinker.REVENUE) + parseFloat(data.upToday.Curah.REVENUE))/1000000).toFixed(2);
     }).always(function (data) {
         console.log(data);
         uploadControl(JSON.stringify(data), 'SalesDailyUpTo', 'Sales/DailyUpTo');
@@ -108,6 +137,34 @@ function dataMonthUpTo() {
         url: api_url + '/sales_new/getSMIGUpToMonth'
     }).done(function (data) {
         console.log(data);
+        document.getElementById('ZAKVUM').innerHTML = (data.perMonth.ZAK.VOLUME/1).toFixed(2);
+        document.getElementById('ZAKPUM').innerHTML = (data.perMonth.ZAK.PRICE/1).toFixed(2);
+        document.getElementById('ZAKPRSUM').innerHTML = 0;
+        document.getElementById('ZAKRUM').innerHTML = (data.perMonth.ZAK.REVENUE/1000000).toFixed(2);
+        document.getElementById('CRHVUM').innerHTML = (data.perMonth.Curah.VOLUME/1).toFixed(2);
+        document.getElementById('CRHPUM').innerHTML = (data.perMonth.Curah.PRICE/1).toFixed(2);
+        document.getElementById('CRHPRSUM').innerHTML = 0;
+        document.getElementById('CRHRUM').innerHTML = (data.perMonth.Curah.REVENUE/1000000).toFixed(2);
+        document.getElementById('CLINKVUM').innerHTML = (data.perMonth.Clinker.VOLUME/1).toFixed(2);
+        document.getElementById('CLINKPUM').innerHTML = (data.perMonth.Clinker.PRICE/1).toFixed(2);
+        document.getElementById('CLINKPRSUM').innerHTML = 0;
+        document.getElementById('CLINKRUM').innerHTML = (data.perMonth.Clinker.REVENUE/1000000).toFixed(2);
+        document.getElementById('KSOVUM').innerHTML = (data.perOpco.SI.VOLUME/1).toFixed(2);
+        document.getElementById('KSOPUM').innerHTML = (data.perOpco.SI.PRICE/1).toFixed(2);
+        document.getElementById('KSORUM').innerHTML = (data.perOpco.SI.REVENUE/1000000).toFixed(2);
+        document.getElementById('SGVUM').innerHTML = (data.perOpco.SG.VOLUME/1).toFixed(2);
+        document.getElementById('SGPUM').innerHTML = (data.perOpco.SG.PRICE/1).toFixed(2);
+        document.getElementById('SGRUM').innerHTML = (data.perOpco.SG.REVENUE/1000000).toFixed(2);
+        document.getElementById('SPVUM').innerHTML = (data.perOpco.SP.VOLUME/1).toFixed(2);
+        document.getElementById('SPPUM').innerHTML = (data.perOpco.SP.PRICE/1).toFixed(2);
+        document.getElementById('SPRUM').innerHTML = (data.perOpco.SP.REVENUE/1000000).toFixed(2);
+        document.getElementById('STVUM').innerHTML = (data.perOpco.ST.VOLUME/1).toFixed(2);
+        document.getElementById('STPUM').innerHTML = (data.perOpco.ST.PRICE/1).toFixed(2);
+        document.getElementById('STRUM').innerHTML = (data.perOpco.ST.REVENUE/1000000).toFixed(2);
+        document.getElementById('TLCCVUM').innerHTML = (data.perOpco.TL.VOLUME/1).toFixed(2);
+        document.getElementById('TLCCPUM').innerHTML = (data.perOpco.TL.PRICE/1).toFixed(2);
+        document.getElementById('TLCCRUM').innerHTML = (data.perOpco.TL.REVENUE/1000000).toFixed(2);
+        document.getElementById('TOTRUM').innerHTML = ((parseFloat(data.perMonth.ZAK.REVENUE) + parseFloat(data.perMonth.Clinker.REVENUE) + parseFloat(data.perMonth.Curah.REVENUE))/1000000).toFixed(2);
     }).always(function (data) {
         console.log(data);
         uploadControl(JSON.stringify(data), 'SalesMonthly', 'Sales/MonthlyUpTo');
