@@ -24,4 +24,8 @@ class plant_gresik extends CI_Controller {
 
         $this->M_plantgresik->get_silo();
     }
+
+    public function get_totaltahun(){
+        $this->M_plantgresik->get_totaltahun();
+    }
 }

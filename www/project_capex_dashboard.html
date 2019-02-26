@@ -68,6 +68,48 @@
             var bulanSekarang = paradigma.bulanNow();
             var tahun = d.getFullYear();
 
+            $('a[href="#tab-click"]').click(function (e) {
+                    e.preventDefault();
+                    var r = $(this).attr('rel');
+                    if (r == 'capex-sp') {
+                        $('#capex-sp').removeClass('hidden');
+                        $('#capex-sg').addClass('hidden');
+                        $('#capex-si').addClass('hidden');
+                        $('#capex-st').addClass('hidden');
+                        $('#tab-capex-sp').addClass('act_tb');
+                        $('#tab-capex-sg').removeClass('act_tb');
+                        $('#tab-capex-si').removeClass('act_tb');
+                        $('#tab-capex-st').removeClass('act_tb');
+                    } else if (r == 'capex-sg') {
+                        $('#capex-sg').removeClass('hidden');
+                        $('#capex-sp').addClass('hidden');
+                        $('#capex-si').addClass('hidden');
+                        $('#capex-st').addClass('hidden');
+                        $('#tab-capex-sg').addClass('act_tb');
+                        $('#tab-capex-sp').removeClass('act_tb');
+                        $('#tab-capex-si').removeClass('act_tb');
+                        $('#tab-capex-st').removeClass('act_tb');
+                    } else if (r == 'capex-si') {
+                        $('#capex-si').removeClass('hidden');
+                        $('#capex-sg').addClass('hidden');
+                        $('#capex-sp').addClass('hidden');
+                        $('#capex-st').addClass('hidden');
+                        $('#tab-capex-si').addClass('act_tb');
+                        $('#tab-capex-sg').removeClass('act_tb');
+                        $('#tab-capex-sp').removeClass('act_tb');
+                        $('#tab-capex-st').removeClass('act_tb');
+                    } else if (r == 'capex-st') {
+                        $('#capex-st').removeClass('hidden');
+                        $('#capex-sp').addClass('hidden');
+                        $('#capex-sg').addClass('hidden');
+                        $('#capex-si').addClass('hidden');
+                        $('#tab-capex-st').addClass('act_tb');
+                        $('#tab-capex-sp').removeClass('act_tb');
+                        $('#tab-capex-sg').removeClass('act_tb');
+                        $('#tab-capex-si').removeClass('act_tb');
+                    }
+                })
+
             $('.selmonth').empty();
                 var opt_month;
                 $.each(month, function(key, val){
@@ -305,7 +347,70 @@
                                 </center>
                             </div>
                             
-                            <div id="card_data2000" align="center" class="headsix add_fixbg cubesRun2 card_data" style="margin-top: 0px; border-bottom: 1px;">
+                            <div class="capex-smig">
+                                <div align="center" style="padding:30px 0px 20px 0px;font-size: 18px;font-weight:600">
+                                    CAPEX SMIG UP TO THIS MONTH
+                                </div>
+                                <div style="width:100%;overflow-x:scroll;">
+                                    <div class="chart-capex-smig" id="chart-capex-smig" style="width:100%;height:250px;"></div>
+                                </div>
+                            </div>
+                            <div class="spacer-menu"></div>
+
+                            <div class="col-xs-12 tab_dual">
+                                <div class="col-xs-12 bg_rds">
+                                    <div id="tab-capex-sp" class="col-xs-3 center zero_padd left_tb act_tb">
+                                        <a href="#tab-click" rel="capex-sp" class="no-text-style">
+                                            <span class="tx_tab">SP</span></a></div>
+
+                                    <div id="tab-capex-sg" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-click" rel="capex-sg" class="no-text-style">
+                                            <span class="tx_tab">SG</span></a></div>
+
+                                    <div id="tab-capex-si" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-click" rel="capex-si" class="no-text-style">
+                                            <span class="tx_tab">SI</span></a></div>
+
+                                    <div id="tab-capex-st" class="col-xs-3 center zero_padd left_tb">
+                                        <a href="#tab-click" rel="capex-st" class="no-text-style">
+                                            <span class="tx_tab">ST</span></a></div>
+                                </div>
+                            </div>
+                            <div id="capex-sp">
+                                <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
+                                    CAPEX SEMEN PADANG UP TO THIS MONTH
+                                </div>
+                                <div style="width:100%;overflow-x:scroll;">
+                                    <div class="chart-capex-sp" id="chart-capex-sp" style="width:100%;height:250px;"></div>
+                                </div>
+                            </div>
+                            <div id="capex-sg" class="hidden">
+                                <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
+                                    CAPEX SEMEN GRESIK UP TO THIS MONTH
+                                </div>
+                                <div style="width:100%;overflow-x:scroll;">
+                                    <div class="chart-capex-sg" id="chart-capex-sg" style="width:100%;height:250px;"></div>
+                                </div>
+                            </div>
+                            <div id="capex-si" class="hidden">
+                                <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
+                                    CAPEX SEMEN INDONESIA UP TO THIS MONTH
+                                </div>
+                                <div style="width:100%;overflow-x:scroll;">
+                                    <div class="chart-capex-si" id="chart-capex-si" style="width:100%;height:250px;"></div>
+                                </div>
+                            </div>
+                            <div id="capex-st" class="hidden">
+                                <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
+                                    CAPEX SEMEN TONASA UP TO THIS MONTH
+                                </div>
+                                <div style="width:100%;overflow-x:scroll;">
+                                    <div class="chart-capex-st" id="chart-capex-st" style="width:100%;height:250px;"></div>
+                                </div>
+                            </div>
+
+                            
+                           <!--  <div id="card_data2000" align="center" class="headsix add_fixbg cubesRun2 card_data" style="margin-top: 0px; border-bottom: 1px;">
                                 <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;">
                                     <span id="chart_title2000" style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;SEMEN INDONESIA GROUP</span>
                                 </div>
@@ -387,7 +492,7 @@
                                         <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_budget6000"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!-- start bottom navbar menu -->
@@ -422,6 +527,319 @@
                     centerMode: false
                 }); 
             });
+
+            Highcharts.chart('chart-capex-sp', {
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec'
+                    ],
+                    crosshair: true
+                },
+                exporting: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'column',
+                    name: 'Rencana',
+                    color: '#FF3636',
+                    data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
+                }, {
+                    type: 'column',
+                    name: 'Real',
+                    color:'#ABAAAA',
+                    data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
+                }, {
+                    type: 'spline',
+                    name: 'Upt To Rencana',
+                    color: '#FF3636',
+                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
+                    marker: {
+                        lineWidth: 4,
+                        lineColor: '#FF3636',
+                        fillColor: 'white'
+                    }
+                }, {
+                    type: 'spline',
+                    name: 'Up To Real',
+                    color: '#ABAAAA',
+                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
+                    marker: {
+                        lineWidth: 4,
+                        lineColor: '#ABAAAA',
+                        fillColor: 'white'
+                    }
+                }]
+            });
+            
+            Highcharts.chart('chart-capex-sg', {
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec'
+                    ],
+                    crosshair: true
+                },
+                exporting: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'column',
+                    name: 'Rencana',
+                    color: '#FF3636',
+                    data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
+                }, {
+                    type: 'column',
+                    name: 'Real',
+                    color:'#ABAAAA',
+                    data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
+                }, {
+                    type: 'spline',
+                    name: 'Upt To Rencana',
+                    color: '#FF3636',
+                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
+                    marker: {
+                        lineWidth: 4,
+                        lineColor: '#FF3636',
+                        fillColor: 'white'
+                    }
+                }, {
+                    type: 'spline',
+                    name: 'Up To Real',
+                    color: '#ABAAAA',
+                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
+                    marker: {
+                        lineWidth: 4,
+                        lineColor: '#ABAAAA',
+                        fillColor: 'white'
+                    }
+                }]
+            });
+            
+            Highcharts.chart('chart-capex-si', {
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec'
+                    ],
+                    crosshair: true
+                },
+                exporting: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'column',
+                    name: 'Rencana',
+                    color: '#FF3636',
+                    data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
+                }, {
+                    type: 'column',
+                    name: 'Real',
+                    color:'#ABAAAA',
+                    data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
+                }, {
+                    type: 'spline',
+                    name: 'Upt To Rencana',
+                    color: '#FF3636',
+                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
+                    marker: {
+                        lineWidth: 4,
+                        lineColor: '#FF3636',
+                        fillColor: 'white'
+                    }
+                }, {
+                    type: 'spline',
+                    name: 'Up To Real',
+                    color: '#ABAAAA',
+                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
+                    marker: {
+                        lineWidth: 4,
+                        lineColor: '#ABAAAA',
+                        fillColor: 'white'
+                    }
+                }]
+            });
+            
+            Highcharts.chart('chart-capex-st', {
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec'
+                    ],
+                    crosshair: true
+                },
+                exporting: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'column',
+                    name: 'Rencana',
+                    color: '#FF3636',
+                    data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
+                }, {
+                    type: 'column',
+                    name: 'Real',
+                    color:'#ABAAAA',
+                    data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
+                }, {
+                    type: 'spline',
+                    name: 'Upt To Rencana',
+                    color: '#FF3636',
+                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
+                    marker: {
+                        lineWidth: 4,
+                        lineColor: '#FF3636',
+                        fillColor: 'white'
+                    }
+                }, {
+                    type: 'spline',
+                    name: 'Up To Real',
+                    color: '#ABAAAA',
+                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
+                    marker: {
+                        lineWidth: 4,
+                        lineColor: '#ABAAAA',
+                        fillColor: 'white'
+                    }
+                }]
+            });
+
+            Highcharts.chart('chart-capex-smig', {
+
+                title: {
+                    text: ''
+                },
+
+                subtitle: {
+                    text: ''
+                },
+
+                yAxis: {
+                    title: {
+                        text: ''
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        stickyTracking: false,
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: 1,
+                    }
+                },
+
+                series: [{
+                    name: 'Semen Rencana',
+                    data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                }, {
+                    name: 'Semen Real',
+                    data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+                }, {
+                    name: 'NonSemen Rencana',
+                    data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+                }, {
+                    name: 'NonSemen Real',
+                    data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+                }, {
+                    name: 'Total Rencana',
+                    data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+                }, {
+                    name: 'Total Real',
+                    data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+
+
         </script>
     </body>
 </html>

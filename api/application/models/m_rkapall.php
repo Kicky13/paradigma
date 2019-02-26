@@ -31,23 +31,17 @@ class M_rkapall extends CI_Model {
             $myCompany = "";
         }
 
-        if (!empty($_GET['tahun'])) {
+        if (!empty($_GET['tahun']) && !empty($_GET['bulan'])) {
             $tahun = $_GET['tahun'];
+            $bulan = $_GET['bulan'];
         } else {
             $tahun = date('Y');
+            $bulan = date('n');
         }
 
-        $query = $db->query("SELECT
-                                    BULAN,
-                                    TAHUN,
-                                    CLINKER,
-                                    CEMENT
-                            FROM
-                                    PIS_RKAP_TOTAL
-                            $myCompany
-                            AND TAHUN = $tahun");
-
-        foreach ($query->result_array() as $rowID) {
+        $query = "SELECT BULAN, TAHUN, CLINKER, CEMENT FROM PIS_RKAP_TOTAL " . $myCompany . " AND BULAN = " . $bulan . " AND TAHUN = '" . $tahun . "'";
+        $exec = $db->query($query);
+        foreach ($exec->result_array() as $rowID) {
             $bulan = $rowID['BULAN'];
             $clinker = $rowID['CLINKER'];
             $cement = $rowID['CEMENT'];

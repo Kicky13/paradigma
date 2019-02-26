@@ -278,8 +278,8 @@
     </div>
 </div>
 <script>
-var url_live="http://par4digma.semenindonesia.com/";
-// var url_live="http://10.15.5.150/dev/par4digma/";
+// var url_live="http://par4digma.semenindonesia.com/";
+var url_live="http://10.15.5.150/dev/par4digma/";
 $(function () {
 
     run_waitMe('.wrapper', 'ios');
@@ -415,9 +415,9 @@ $(function () {
 
 	var prodsi = $.getJSON(url_live+'api/index.php/plant_tuban/get_totaltahun?bulan='+curmonth+'&tahun='+curyear, function(data_si){
 		var prodsp = $.getJSON(url_live+'api/index.php/plant_padang/get_totaltahun?bulan='+curmonth+'&tahun='+curyear, function(data_sp){
-			var prodst = $.getJSON(url_live+'api/index.php/plant_padang/get_totaltahun?bulan='+curmonth+'&tahun='+curyear, function(data_st){
-				var prodsg = $.getJSON(url_live+'api/index.php/plant_padang/get_totaltahun?bulan='+curmonth+'&tahun='+curyear, function(data_sg){
-					var prodtlcc = $.getJSON(url_live+'api/index.php/plant_padang/get_totaltahun?bulan='+curmonth+'&tahun='+curyear, function(data_tlcc){
+			var prodst = $.getJSON(url_live+'api/index.php/plant_tonasa/get_totaltahun?bulan='+curmonth+'&tahun='+curyear, function(data_st){
+				var prodsg = $.getJSON(url_live+'api/index.php/plant_gresik/get_totaltahun?bulan='+curmonth+'&tahun='+curyear, function(data_sg){
+					var prodtlcc = $.getJSON(url_live+'api/index.php/plant_tlcc/get_totaltahun?bulan='+curmonth+'&tahun='+curyear, function(data_tlcc){
 						var rkapsi = $.getJSON(url_live+'api/index.php/rkap/get_rkap_month?company=7000', function(data_rkapsi){
 							var rkapsp = $.getJSON(url_live+'api/index.php/rkap/get_rkap_month?company=3000', function(data_rkapsp){
 								var rkapst = $.getJSON(url_live+'api/index.php/rkap/get_rkap_month?company=4000', function(data_rkapst){
