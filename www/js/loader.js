@@ -1,6 +1,6 @@
  var url_ol = 'http://par4digma.semenindonesia.com';
- // var url_src = 'http://par4digma.semenindonesia.com';
- var url_src = url_ol;
+ var url_src = 'http://10.15.5.150/dev/par4digma';
+ // var url_src = url_ol;
  var url_opc = 'http://10.15.3.146/android';
  var url_tmp = 'http://10.15.5.150/dev/Android';
 

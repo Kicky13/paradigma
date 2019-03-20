@@ -1,5 +1,5 @@
-var api_url = 'http://10.15.5.150/dev/par4digma/api/index.php';
-// var api_url = 'http://par4digma.semenindonesia.com/api/index.php';
+// var api_url = 'http://10.15.5.150/dev/par4digma/api/index.php';
+var api_url = 'http://par4digma.semenindonesia.com/api/index.php';
 
 $(document).ready(function () {
     console.log("Test");
