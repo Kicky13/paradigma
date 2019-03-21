@@ -13,14 +13,14 @@
         <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick.css"/>
         <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
         <link rel="stylesheet" type="text/css" href="css/production.css">
         <script type="text/javascript" src="js/loader.js"></script>
         <script src="js/loader.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/sidenav.css">
-        
+
         <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/JsNumberFormat.js"></script>
@@ -29,12 +29,12 @@
                 navigator.app.exitApp();
             }
             function onLoad() {
-var session = getParamFull();
+                var session = getParamFull();
                 ////=========================
-                if (sessionStorage.getItem('_com')!='ALL') {
-                    $.each(listTab, function(index, el){
-                        $('#tab-'+el+' a').removeAttr('href');
-                        $('#tab-'+el+' a').removeAttr('rel');
+                if (sessionStorage.getItem('_com') != 'ALL') {
+                    $.each(listTab, function (index, el) {
+                        $('#tab-' + el + ' a').removeAttr('href');
+                        $('#tab-' + el + ' a').removeAttr('rel');
                     })
                 }
                 ////=========================
@@ -49,7 +49,7 @@ var session = getParamFull();
                         $("#content").addClass("slideMenu");
                     }
                 });
-			   $( ".head-menu" ).scrollLeft(660);
+                $(".head-menu").scrollLeft(660);
             }
         </script>
         <style>
@@ -209,7 +209,7 @@ var session = getParamFull();
             .noPadding {
                 padding: 2px;
             }
-            
+
         </style>
         <script src="js/modernizr.js"></script>
         <script>
@@ -223,15 +223,15 @@ var session = getParamFull();
     <body onLoad="onLoad()" >
         <div class="app">
             <div id="deviceready">
-				<div id="backdrop"></div>
-				<!-- Paste this code after body tag -->
-				<div class="se-pre-con"></div>
-				<!-- Ends -->
-				<div id="sidenav">
-                     <div class="header">
+                <div id="backdrop"></div>
+                <!-- Paste this code after body tag -->
+                <div class="se-pre-con"></div>
+                <!-- Ends -->
+                <div id="sidenav">
+                    <div class="header">
                         <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
-                      </div>
-                      <div>
+                    </div>
+                    <div>
                         <ul>
                             <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
                             <li><a href="#" class="active"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
@@ -239,34 +239,34 @@ var session = getParamFull();
                             <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
                             <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
                             <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
-                            <li><a href="inventory_monthly_rep.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
                             <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
                             <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
                             <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
                         </ul>
-                      </div>
-                      <div class="footer">
+                    </div>
+                    <div class="footer">
                         <div>
                             <ul>
-                              <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
-                              <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                                <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
                             </ul>
                         </div>
-                      </div>
+                    </div>
                 </div>
                 <div id="content" style="background:#f5f5f5;">
                     <!--title bar-->
-                      <header id="header">
+                    <header id="header">
                         <button class="burger-menu burger-menu-x" id="menu-toggle">
-                          <span>toggle menu</span>
+                            <span>toggle menu</span>
                         </button>
-                         <b class="logopis">EMISION - TLCC</b>
+                        <b class="logopis">EMISION - TLCC</b>
                         <!-- <a class="logo" href="index.html"><img src="img/logo.png"></a> -->
-                      </header>
+                    </header>
                     <!--end title bar-->
                     <div class="wrapper">
-						<div class="head-menu">
-							<!--start menu production -->
+                        <div class="head-menu">
+                            <!--start menu production -->
                             <ul>
                                 <li><a href="prod_report_tl.html">PROD. REPORT</a></li>
                                 <li><a href="prod_overview_tl.html">PLANT OVERVIEW</a></li>
@@ -301,22 +301,22 @@ var session = getParamFull();
                                 <li><a class="active">EMISION</a></li>
                                 <li class="haschild"><a>ID FAN KILN</a>
                                     <div id="myDropdown" class="dropdown-content dd-new" align="left">
-                                            <a href="prod_idfan_kiln3_sg.html">
-                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
-                                            </a>
-                                            <a href="prod_idfan_kiln4_sg.html">
-                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
-                                            </a>
+                                        <a href="prod_idfan_kiln3_sg.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                        </a>
+                                        <a href="prod_idfan_kiln4_sg.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                        </a>
                                     </div>
                                 </li>
                                 <li><a href="prod_silo_tl.html">SILO LEVEL</a></li>
                                 <li><a href="prod_powerplant_st.html">POWER PLANT</a></li>
-                                 
+
                             </ul>
                             <!--  end menu production -->
-						</div>
+                        </div>
                         <div class="spacer-menu"></div>
-						<!--start header -->
+                        <!--start header -->
                         <div class="headsix2 cubesRun2 headone whitebg">
                             <div align="center">
                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
@@ -353,83 +353,83 @@ var session = getParamFull();
                         </div>
                     </div>
                     <div class="production-value" >
-                            <div class="chartBox"> <!--style="margin-top: 5px; margin-bottom: 44px;" -->
-                            </div>
-                            <!-- start bottom navbar menu -->
-                            <footer>
-                                <div class="regular" >
-                                    <a href="prod_emision_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                            <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
-                                    <a href="prod_emision_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                        <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
-                                    <a href="prod_emision_kso.html" class="col-xs-3 noPadding tab_uper col-ft-3  img_foot2" style="margin-top: 7px;">
-                                        <img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
-                                    <a href="prod_emision_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                        <img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
-                                    <a href="prod_emision_tl.html" class="col-xs-3 noPadding col-ft-3" style="margin-top: 7px;">
-                                        <img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>  
-                                </div>
-                            </footer>
-                            <!-- end bottom navbar menu -->
-                            <div class="spacer"></div>  
+                        <div class="chartBox"> <!--style="margin-top: 5px; margin-bottom: 44px;" -->
                         </div>
+                        <!-- start bottom navbar menu -->
+                        <footer>
+                            <div class="regular" >
+                                <a href="prod_emision_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                    <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
+                                <a href="prod_emision_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                    <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
+                                <a href="prod_emision_kso.html" class="col-xs-3 noPadding tab_uper col-ft-3  img_foot2" style="margin-top: 7px;">
+                                    <img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
+                                <a href="prod_emision_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                    <img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
+                                <a href="prod_emision_tl.html" class="col-xs-3 noPadding col-ft-3" style="margin-top: 7px;">
+                                    <img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>  
+                            </div>
+                        </footer>
+                        <!-- end bottom navbar menu -->
+                        <div class="spacer"></div>  
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            function dataOnOff() {
-                $.ajax({
-                    url: url_src+'/api/index.php/plant_tlcc/get_statefeed',
-                    type: 'GET',
-                    success: function (data) {
-                        var data1 = data.replace("<title>Json</title>", "");
-                        var data2 = data1.replace("(", "[");
-                        var data3 = data2.replace(");", "]");
-                        var dataJson = JSON.parse(data3);
+    </div>
+    <script>
+        function dataOnOff() {
+            $.ajax({
+                url: url_src + '/api/index.php/plant_tlcc/get_statefeed',
+                type: 'GET',
+                success: function (data) {
+                    var data1 = data.replace("<title>Json</title>", "");
+                    var data2 = data1.replace("(", "[");
+                    var data3 = data2.replace(");", "]");
+                    var dataJson = JSON.parse(data3);
 
-                        //Raw Mill
-                        tlcc_rm1 = parseFloat(dataJson[0].tags[11].props[0].val).toFixed(2);
+                    //Raw Mill
+                    tlcc_rm1 = parseFloat(dataJson[0].tags[11].props[0].val).toFixed(2);
 
-                        if (tlcc_rm1 >= 80) {
-                            $("#o_tlcc_rm1").addClass('stateOFFbox');
-                            $("#oo_tlcc_rm1").addClass('stateOFFHead');
-                            $("#alr_tlcc_rm1").addClass('blink_me');
-                            $("#alr_tlcc_rm1").html("UNSAFE");
-                            
-                            $("#o_tlcc_rm1").removeClass('stateONbox');
-                            $("#oo_tlcc_rm1").removeClass('stateONHead');
-                        } else {
-                            $("#o_tlcc_rm1").addClass('stateONbox');
-                            $("#oo_tlcc_rm1").addClass('stateONHead');
-                            $("#alr_tlcc_rm1").html("SAFE");
-                            
-                            $("#o_tlcc_rm1").removeClass('stateOFFbox');
-                            $("#oo_tlcc_rm1").removeClass('stateOFFHead');
-                            $("#alr_tlcc_rm1").removeClass('blink_me');
-                        }
-                        
-                        tlcc_cm1 = parseFloat(dataJson[0].tags[12].props[0].val).toFixed(2);
+                    if (tlcc_rm1 >= 70) {
+                        $("#o_tlcc_rm1").addClass('stateOFFbox');
+                        $("#oo_tlcc_rm1").addClass('stateOFFHead');
+                        $("#alr_tlcc_rm1").addClass('blink_me');
+                        $("#alr_tlcc_rm1").html("UNSAFE");
 
-                        if (tlcc_cm1 >= 80) {
-                            $("#o_tlcc_cm1").addClass('stateOFFbox');
-                            $("#oo_tlcc_cm1").addClass('stateOFFHead');
-                            $("#alr_tlcc_cm1").addClass('blink_me');
-                            $("#alr_tlcc_cm1").html("UNSAFE");
-                            
-                            $("#o_tlcc_cm1").removeClass('stateONbox');
-                            $("#oo_tlcc_cm1").removeClass('stateONHead');
-                        } else {
-                            $("#o_tlcc_cm1").addClass('stateONbox');
-                            $("#oo_tlcc_cm1").addClass('stateONHead');
-                            $("#alr_tlcc_cm1").html("SAFE");
-                            
-                            $("#o_tlcc_cm1").removeClass('stateOFFbox');
-                            $("#oo_tlcc_cm1").removeClass('stateOFFHead');
-                            $("#alr_tlcc_cm1").removeClass('blink_me');
-                        }
+                        $("#o_tlcc_rm1").removeClass('stateONbox');
+                        $("#oo_tlcc_rm1").removeClass('stateONHead');
+                    } else {
+                        $("#o_tlcc_rm1").addClass('stateONbox');
+                        $("#oo_tlcc_rm1").addClass('stateONHead');
+                        $("#alr_tlcc_rm1").html("SAFE");
 
-                        //KILN
+                        $("#o_tlcc_rm1").removeClass('stateOFFbox');
+                        $("#oo_tlcc_rm1").removeClass('stateOFFHead');
+                        $("#alr_tlcc_rm1").removeClass('blink_me');
+                    }
+
+                    tlcc_cm1 = parseFloat(dataJson[0].tags[12].props[0].val).toFixed(2);
+
+                    if (tlcc_cm1 >= 70) {
+                        $("#o_tlcc_cm1").addClass('stateOFFbox');
+                        $("#oo_tlcc_cm1").addClass('stateOFFHead');
+                        $("#alr_tlcc_cm1").addClass('blink_me');
+                        $("#alr_tlcc_cm1").html("UNSAFE");
+
+                        $("#o_tlcc_cm1").removeClass('stateONbox');
+                        $("#oo_tlcc_cm1").removeClass('stateONHead');
+                    } else {
+                        $("#o_tlcc_cm1").addClass('stateONbox');
+                        $("#oo_tlcc_cm1").addClass('stateONHead');
+                        $("#alr_tlcc_cm1").html("SAFE");
+
+                        $("#o_tlcc_cm1").removeClass('stateOFFbox');
+                        $("#oo_tlcc_cm1").removeClass('stateOFFHead');
+                        $("#alr_tlcc_cm1").removeClass('blink_me');
+                    }
+
+                    //KILN
 //                        tlcc_kl1 = parseFloat(dataJson[0].tags[11].props[0].val).toFixed(2);
 //
 //                        if (tlcc_kl1 >= 80) {
@@ -450,27 +450,27 @@ var session = getParamFull();
 //                            $("#alr_tlcc_kl1").removeClass('blink_me');
 //                        }
 
-                        $("#vtlcc_rm1").html(FormatNumberBy3(tlcc_rm1, ",", "."));
-                        $("#vtlcc_cm1").html(FormatNumberBy3(tlcc_cm1, ",", "."));
+                    $("#vtlcc_rm1").html(FormatNumberBy3(tlcc_rm1, ",", "."));
+                    $("#vtlcc_cm1").html(FormatNumberBy3(tlcc_cm1, ",", "."));
 //                        $("#vtlcc_kl1").html(FormatNumberBy3(tlcc_kl1, ",", "."));
-                    }
-                }).done(function (data) {}).fail(function () {
-                });
-            }
-            ;
-            setInterval(dataOnOff, 1000);
-        </script>
-    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript">
-            $(document).on('ready', function () {
-               $(".regular").slick({ 
-                    infinite: true,
-                    slidesToShow: 5,
-                    slidesToScroll: 5,
-                    arrows:false,
-                    centerMode: false
-                }); 
+                }
+            }).done(function (data) {}).fail(function () {
             });
-        </script>
-        </body>
+        }
+        ;
+        setInterval(dataOnOff, 1000);
+    </script>
+    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).on('ready', function () {
+            $(".regular").slick({
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                arrows: false,
+                centerMode: false
+            });
+        });
+    </script>
+</body>
 </html>

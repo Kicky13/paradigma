@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="fontA/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="slick.css"/>
+        <link rel="stylesheet" type="text/css" href="slick.css"/>
         <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
         <link rel="stylesheet" type="text/css" href="css/production.css">
         <script type="text/javascript" src="js/loader.js"></script>
@@ -21,7 +21,7 @@
         <script src="js/loader.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/sidenav.css">
-        
+
         <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/JsNumberFormat.js"></script>
@@ -30,16 +30,16 @@
                 navigator.app.exitApp();
             }
             function onLoad() {
-var session = getParamFull();
+                var session = getParamFull();
                 ////=========================
-                if (sessionStorage.getItem('_com')!='ALL') {
-                    $.each(listTab, function(index, el){
-                        $('#tab-'+el+' a').removeAttr('href');
-                        $('#tab-'+el+' a').removeAttr('rel');
+                if (sessionStorage.getItem('_com') != 'ALL') {
+                    $.each(listTab, function (index, el) {
+                        $('#tab-' + el + ' a').removeAttr('href');
+                        $('#tab-' + el + ' a').removeAttr('rel');
                     })
                 }
                 ////=========================
-$(".burger-menu").click(function (e) {
+                $(".burger-menu").click(function (e) {
                     if ($(this).hasClass("is-active")) {
                         $(this).removeClass("is-active");
                         $("#content").removeClass("slideMenu");
@@ -91,7 +91,7 @@ $(".burger-menu").click(function (e) {
 //                        $('#tab-tuban4').addClass('border-down-active');
 //                    }
 //                })
-               $( ".head-menu" ).scrollLeft(660);
+                $(".head-menu").scrollLeft(660);
             }
         </script>
         <style>
@@ -230,15 +230,15 @@ $(".burger-menu").click(function (e) {
             .text_val {
                 font-size: x-large;
             }
-/*            .stateONbox{
-                background-color: #6fc962;
-            }*/
+            /*            .stateONbox{
+                            background-color: #6fc962;
+                        }*/
             .stateONHead{
                 background-color: #54a846;
             }
-/*            .stateOFFbox{
-                background-color: #e54b37;
-            }*/
+            /*            .stateOFFbox{
+                            background-color: #e54b37;
+                        }*/
             .stateOFFHead{
                 background-color: #c53a27;
             }
@@ -269,10 +269,10 @@ $(".burger-menu").click(function (e) {
                 <div class="se-pre-con"></div>
                 <!-- Ends -->
                 <div id="sidenav">
-                     <div class="header">
+                    <div class="header">
                         <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
-                      </div>
-                      <div>
+                    </div>
+                    <div>
                         <ul>
                             <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
                             <li><a href="#" class="active"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
@@ -280,30 +280,30 @@ $(".burger-menu").click(function (e) {
                             <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
                             <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
                             <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
-                            <li><a href="inventory_monthly_rep.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
+                            <li><a href="inventory_sg.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
                             <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
                             <li><a href="project_coe_proj.html"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
                             <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
                         </ul>
-                      </div>
-                      <div class="footer">
+                    </div>
+                    <div class="footer">
                         <div>
                             <ul>
-                              <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
-                              <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
+                                <li><a onclick="window.location.reload(true);"><img src="img/sidebar/about.png">&nbsp;&nbsp;ABOUT</a>
+                                <li><a href="#" id="logout"><img src="img/sidebar/logout.png">&nbsp;&nbsp;LOGOUT</a>
                             </ul>
                         </div>
-                      </div>
+                    </div>
                 </div>
                 <div id="content" style="background:#f5f5f5;">
                     <!--title bar-->
-                      <header id="header">
+                    <header id="header">
                         <button class="burger-menu burger-menu-x" id="menu-toggle">
-                          <span>toggle menu</span>
+                            <span>toggle menu</span>
                         </button>
-                         <b class="logopis">EMISION - TUBAN</b>
+                        <b class="logopis">EMISION - TUBAN</b>
                         <!-- <a class="logo" href="index.html"><img src="img/logo.png"></a> -->
-                      </header>
+                    </header>
                     <!--end title bar-->
                     <div class="wrapper">
                         <div class="head-menu">
@@ -342,17 +342,17 @@ $(".burger-menu").click(function (e) {
                                 <li><a class="active">EMISION</a></li>
                                 <li class="haschild"><a>ID FAN KILN</a>
                                     <div id="myDropdown" class="dropdown-content dd-new" align="left">
-                                            <a href="prod_idfan_kiln3_sg.html">
-                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
-                                            </a>
-                                            <a href="prod_idfan_kiln4_sg.html">
-                                                <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
-                                            </a>
+                                        <a href="prod_idfan_kiln3_sg.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 3
+                                        </a>
+                                        <a href="prod_idfan_kiln4_sg.html">
+                                            <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;&nbsp;Kiln 4
+                                        </a>
                                     </div>
                                 </li>
                                 <li><a href="prod_silo_sg.html">SILO LEVEL</a></li>
                                 <li><a href="prod_powerplant_st.html">POWER PLANT</a></li>
-                                 
+
                             </ul>
                             <!--  end menu production -->
                         </div>
@@ -362,9 +362,9 @@ $(".burger-menu").click(function (e) {
                             <div align="center">
                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-top: 12px;width: 131px; margin: 0;">
                                 <p class="planttittle" style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN INDONESIA</p>
-                               <!--  <div  class="planttittle" style="width: 100%;font-size: 20px; margin-top: 6px; text-align: center;">
-                                    TUBAN
-                                </div> -->
+                                <!--  <div  class="planttittle" style="width: 100%;font-size: 20px; margin-top: 6px; text-align: center;">
+                                     TUBAN
+                                 </div> -->
                             </div>
                         </div>
                         <!--end header -->
@@ -385,7 +385,7 @@ $(".burger-menu").click(function (e) {
                                     <div class="col-xs-6 box" style="max-height: 100px" id="oo_tbn1_rm1">
                                         <div class="col-xs-12 noPadding titl" id="o_tbn1_rm1">
                                             <span style="float:left" class="boldon">Raw Mill - 1</span></div>
-                                        
+
                                         <div class="col-xs-12 inex" align="center" id="alr_tbn1_rm1"></div>
                                         <div class="col-xs-12 noPadding" align="left">
                                             <span id="vtbn1_rm1" style="font-size: 25px;font-weight: bold;">0</span>
@@ -395,7 +395,7 @@ $(".burger-menu").click(function (e) {
                                     <div class="col-xs-6 box" style="max-height: 100px" id="oo_tbn1_kl1">
                                         <div class="col-xs-12 noPadding titl" id="o_tbn1_kl1">
                                             <span style="float:left" class="boldon">Kiln - 1</span></div>
-                                        
+
                                         <div class="col-xs-12 inex" align="center" id="alr_tbn1_kl1"></div>
                                         <div class="col-xs-12 noPadding" align="left">
                                             <span id="vtbn1_kl1" style="font-size: 25px;font-weight: bold;">0</span>
@@ -406,7 +406,7 @@ $(".burger-menu").click(function (e) {
                                     <div class="col-xs-6 box" style="max-height: 100px" id="oo_tbn2_rm1">
                                         <div class="col-xs-12 noPadding titl" id="o_tbn2_rm1">
                                             <span style="float:left" class="boldon">Raw Mill - 2</span></div>
-                                        
+
                                         <div class="col-xs-12 inex" align="center" id="alr_tbn2_rm1"></div>
                                         <div class="col-xs-12 noPadding" align="left">
                                             <span id="vtbn2_rm1" style="font-size: 25px;font-weight: bold;">0</span>
@@ -416,7 +416,7 @@ $(".burger-menu").click(function (e) {
                                     <div class="col-xs-6 box" style="max-height: 100px" id="oo_tbn2_kl1">
                                         <div class="col-xs-12 noPadding titl" id="o_tbn2_kl1">
                                             <span style="float:left" class="boldon">Kiln - 2</span></div>
-                                        
+
                                         <div class="col-xs-12 inex" align="center" id="alr_tbn2_kl1"></div>
                                         <div class="col-xs-12 noPadding" align="left">
                                             <span id="vtbn2_kl1" style="font-size: 25px;font-weight: bold;">0</span>
@@ -427,7 +427,7 @@ $(".burger-menu").click(function (e) {
                                     <div class="col-xs-6 box" style="max-height: 100px" id="oo_tbn3_rm1">
                                         <div class="col-xs-12 noPadding titl" id="o_tbn3_rm1">
                                             <span style="float:left" class="boldon">Raw Mill - 3</span></div>
-                                        
+
                                         <div class="col-xs-12 inex" align="center" id="alr_tbn3_rm1"></div>
                                         <div class="col-xs-12 noPadding" align="left">
                                             <span id="vtbn3_rm1" style="font-size: 25px;font-weight: bold;">0</span>
@@ -437,7 +437,7 @@ $(".burger-menu").click(function (e) {
                                     <div class="col-xs-6 box" style="max-height: 100px" id="oo_tbn3_kl1">
                                         <div class="col-xs-12 noPadding titl" id="o_tbn3_kl1">
                                             <span style="float:left" class="boldon">Kiln - 3</span></div>
-                                        
+
                                         <div class="col-xs-12 inex" align="center" id="alr_tbn3_kl1"></div>
                                         <div class="col-xs-12 noPadding" align="left">
                                             <span id="vtbn3_kl1" style="font-size: 25px;font-weight: bold;">0</span>
@@ -448,7 +448,7 @@ $(".burger-menu").click(function (e) {
                                     <div class="col-xs-6 box" style="max-height: 100px" id="oo_tbn4_rm1">
                                         <div class="col-xs-12 noPadding titl" id="o_tbn4_rm1">
                                             <span style="float:left" class="boldon">Raw Mill - 4</span></div>
-                                        
+
                                         <div class="col-xs-12 inex" align="center" id="alr_tbn4_rm1"></div>
                                         <div class="col-xs-12 noPadding" align="left">
                                             <span id="vtbn4_rm1" style="font-size: 25px;font-weight: bold;">0</span>
@@ -458,7 +458,7 @@ $(".burger-menu").click(function (e) {
                                     <div class="col-xs-6 box" style="max-height: 100px" id="oo_tbn4_kl1">
                                         <div class="col-xs-12 noPadding titl" id="o_tbn4_kl1">
                                             <span style="float:left" class="boldon">Kiln - 4</span></div>
-                                        
+
                                         <div class="col-xs-12 inex" align="center" id="alr_tbn4_kl1"></div>
                                         <div class="col-xs-12 noPadding" align="left">
                                             <span id="vtbn4_kl1" style="font-size: 25px;font-weight: bold;">0</span>
@@ -468,95 +468,95 @@ $(".burger-menu").click(function (e) {
                                 </div>
                             </div>
                         </div>
-<!--                        <div id="data-tuban2">
-                            <div class="headsix add_fix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
-                                <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
-                                    <div class="col-xs-12 box" id="oo_tbn2_rm1">
-                                        <div class="col-xs-12 noPadding titl" id="o_tbn2_rm1">
-                                            <span style="float:left" class="boldon">Raw Mill - </span></div>
-                                        <div align="right" style="margin-bottom:12px;">
-                                            <span class="inex" id="vtbn2_rm1">0</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 box" id="oo_tbn2_kl1">
-                                        <div class="col-xs-12 noPadding titl" id="o_tbn2_kl1">
-                                            <span style="float:left" class="boldon">Kiln - </span></div>
-                                        <div align="right" style="margin-bottom:12px;">
-                                            <span class="inex" id="vtbn2_kl1">0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="data-tuban3">
-                            <div class="headsix add_fix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
-                                <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
-                                    <div class="col-xs-12 box" id="oo_tbn3_rm1">
-                                        <div class="col-xs-12 noPadding titl" id="o_tbn3_rm1">
-                                            <span style="float:left" class="boldon">Raw Mill - </span></div>
-                                        <div align="right" style="margin-bottom:12px;">
-                                            <span class="inex" id="vtbn3_rm1">0</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 box" id="oo_tbn3_kl1">
-                                        <div class="col-xs-12 noPadding titl" id="o_tbn3_kl1">
-                                            <span style="float:left" class="boldon">Kiln - </span></div>
-                                        <div align="right" style="margin-bottom:12px;">
-                                            <span class="inex" id="vtbn3_kl1">0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="data-tuban4">
-                            <div class="headsix add_fix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
-                                <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
-                                    <div class="col-xs-12 box" id="oo_tbn4_rm1">
-                                        <div class="col-xs-12 noPadding titl" id="o_tbn4_rm1">
-                                            <span style="float:left" class="boldon">Raw Mill - </span></div>
-                                        <div align="right" style="margin-bottom:12px;">
-                                            <span class="inex" id="vtbn4_rm1">0</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 box" id="oo_tbn4_kl1">
-                                        <div class="col-xs-12 noPadding titl" id="o_tbn4_kl1">
-                                            <span style="float:left" class="boldon">Kiln - </span></div>
-                                        <div align="right" style="margin-bottom:12px;">
-                                            <span class="inex" id="vtbn4_kl1">0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
+                        <!--                        <div id="data-tuban2">
+                                                    <div class="headsix add_fix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
+                                                        <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                                            <div class="col-xs-12 box" id="oo_tbn2_rm1">
+                                                                <div class="col-xs-12 noPadding titl" id="o_tbn2_rm1">
+                                                                    <span style="float:left" class="boldon">Raw Mill - </span></div>
+                                                                <div align="right" style="margin-bottom:12px;">
+                                                                    <span class="inex" id="vtbn2_rm1">0</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 box" id="oo_tbn2_kl1">
+                                                                <div class="col-xs-12 noPadding titl" id="o_tbn2_kl1">
+                                                                    <span style="float:left" class="boldon">Kiln - </span></div>
+                                                                <div align="right" style="margin-bottom:12px;">
+                                                                    <span class="inex" id="vtbn2_kl1">0</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="data-tuban3">
+                                                    <div class="headsix add_fix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
+                                                        <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                                            <div class="col-xs-12 box" id="oo_tbn3_rm1">
+                                                                <div class="col-xs-12 noPadding titl" id="o_tbn3_rm1">
+                                                                    <span style="float:left" class="boldon">Raw Mill - </span></div>
+                                                                <div align="right" style="margin-bottom:12px;">
+                                                                    <span class="inex" id="vtbn3_rm1">0</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 box" id="oo_tbn3_kl1">
+                                                                <div class="col-xs-12 noPadding titl" id="o_tbn3_kl1">
+                                                                    <span style="float:left" class="boldon">Kiln - </span></div>
+                                                                <div align="right" style="margin-bottom:12px;">
+                                                                    <span class="inex" id="vtbn3_kl1">0</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="data-tuban4">
+                                                    <div class="headsix add_fix cubesRun2 tab-pane fade in" style="margin-bottom: 116px; min-height: 740px; margin-top: 19px;"> 
+                                                        <div align="center" style="margin-bottom: 10px; margin-top:10px;"> 
+                                                            <div class="col-xs-12 box" id="oo_tbn4_rm1">
+                                                                <div class="col-xs-12 noPadding titl" id="o_tbn4_rm1">
+                                                                    <span style="float:left" class="boldon">Raw Mill - </span></div>
+                                                                <div align="right" style="margin-bottom:12px;">
+                                                                    <span class="inex" id="vtbn4_rm1">0</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 box" id="oo_tbn4_kl1">
+                                                                <div class="col-xs-12 noPadding titl" id="o_tbn4_kl1">
+                                                                    <span style="float:left" class="boldon">Kiln - </span></div>
+                                                                <div align="right" style="margin-bottom:12px;">
+                                                                    <span class="inex" id="vtbn4_kl1">0</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                     </div>
                     <div class="production-value" >
-                            <div class="chartBox"> <!--style="margin-top: 5px; margin-bottom: 44px;" -->
-                            </div>
-                            <!-- start bottom navbar menu -->
-                            <footer>
-                                <div class="regular" >
-                                    <a href="prod_emision_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                            <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
-                                    <a href="prod_emision_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                        <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
-                                    <a href="prod_emision_kso.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;">
-                                        <img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
-                                    <a href="prod_emision_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                        <img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
-                                    <a href="prod_emision_tl.html" class="col-xs-3 noPadding col-ft-3 img_foot2" style="margin-top: 7px;">
-                                        <img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
-                                </div>
-                            </footer>
-                            <!-- end bottom navbar menu -->
-                            <div class="spacer"></div>  
+                        <div class="chartBox"> <!--style="margin-top: 5px; margin-bottom: 44px;" -->
                         </div>
+                        <!-- start bottom navbar menu -->
+                        <footer>
+                            <div class="regular" >
+                                <a href="prod_emision_sp.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                    <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
+                                <a href="prod_emision_sg.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                    <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
+                                <a href="prod_emision_kso.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;">
+                                    <img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
+                                <a href="prod_emision_st.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                                    <img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
+                                <a href="prod_emision_tl.html" class="col-xs-3 noPadding col-ft-3 img_foot2" style="margin-top: 7px;">
+                                    <img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
+                            </div>
+                        </footer>
+                        <!-- end bottom navbar menu -->
+                        <div class="spacer"></div>  
+                    </div>
                 </div>
             </div>
         </div>
         <script>
             function dataOnOff() {
                 $.ajax({
-                    url: url_src+'/api/index.php/plant_tuban/get_emissiontb12',
+                    url: url_src + '/api/index.php/plant_tuban/get_emissiontb12',
                     type: 'GET',
                     success: function (data) {
                         var data1 = data.replace("<title>Json</title>", "");
@@ -569,73 +569,73 @@ $(".burger-menu").click(function (e) {
                         EPRM1 = parseFloat(dataJson[0].tags[1].props[0].val).toFixed(2);
                         EPRM2 = parseFloat(dataJson[0].tags[2].props[0].val).toFixed(2);
 
-                        if (EPKL1 >= 80) {
+                        if (EPKL1 >= 70) {
                             $("#o_tbn1_kl1").addClass('stateOFFbox');
                             $("#oo_tbn1_kl1").addClass('stateOFFHead');
                             $("#alr_tbn1_kl1").addClass('blink_me');
                             $("#alr_tbn1_kl1").html("UNSAFE");
-                            
+
                             $("#o_tbn1_kl1").removeClass('stateONbox');
                             $("#oo_tbn1_kl1").removeClass('stateONHead');
                         } else {
                             $("#o_tbn1_kl1").addClass('stateONbox');
                             $("#oo_tbn1_kl1").addClass('stateONHead');
                             $("#alr_tbn1_kl1").html("SAFE");
-                            
+
                             $("#o_tbn1_kl1").removeClass('stateOFFbox');
                             $("#oo_tbn1_kl1").removeClass('stateOFFHead');
                             $("#alr_tbn1_kl1").removeClass('blink_me');
                         }
 
-                        if (EPKL2 >= 80) {
+                        if (EPKL2 >= 70) {
                             $("#o_tbn2_kl1").addClass('stateOFFbox');
                             $("#oo_tbn2_kl1").addClass('stateOFFHead');
                             $("#alr_tbn2_kl1").addClass('blink_me');
                             $("#alr_tbn2_kl1").html("UNSAFE");
-                            
+
                             $("#o_tbn2_kl1").removeClass('stateONbox');
                             $("#oo_tbn2_kl1").removeClass('stateONHead');
                         } else {
                             $("#o_tbn2_kl1").addClass('stateONbox');
                             $("#oo_tbn2_kl1").addClass('stateONHead');
                             $("#alr_tbn2_kl1").html("SAFE");
-                            
+
                             $("#o_tbn2_kl1").removeClass('stateOFFbox');
                             $("#oo_tbn2_kl1").removeClass('stateOFFHead');
                             $("#alr_tbn2_kl1").removeClass('blink_me');
                         }
 
-                        if (EPRM1 >= 80) {
+                        if (EPRM1 >= 70) {
                             $("#o_tbn1_rm1").addClass('stateOFFbox');
                             $("#oo_tbn1_rm1").addClass('stateOFFHead');
                             $("#alr_tbn1_rm1").addClass('blink_me');
                             $("#alr_tbn1_rm1").html("UNSAFE");
-                            
+
                             $("#o_tbn1_rm1").removeClass('stateONbox');
                             $("#oo_tbn1_rm1").removeClass('stateONHead');
                         } else {
                             $("#o_tbn1_rm1").addClass('stateONbox');
                             $("#oo_tbn1_rm1").addClass('stateONHead');
                             $("#alr_tbn1_rm1").html("SAFE");
-                            
+
                             $("#o_tbn1_rm1").removeClass('stateOFFbox');
                             $("#oo_tbn1_rm1").removeClass('stateOFFHead');
                             $("#alr_tbn1_rm1").removeClass('blink_me');
                         }
 
-                        if (EPRM2 >= 80) {
+                        if (EPRM2 >= 70) {
                             $("#o_tbn2_rm1").addClass('stateOFFbox');
                             $("#oo_tbn2_rm1").addClass('stateOFFHead');
                             $("#alr_tbn2_rm1").addClass('blink_me');
                             $("#alr_tbn2_rm1").html("UNSAFE");
-                            
+
                             $("#o_tbn2_rm1").removeClass('stateONbox');
                             $("#oo_tbn2_rm1").removeClass('stateONHead');
                         } else {
                             $("#o_tbn2_rm1").addClass('stateONbox');
                             $("#oo_tbn2_rm1").addClass('stateONHead');
                             $("#alr_tbn2_rm1").html("SAFE");
-                            
+
                             $("#o_tbn2_rm1").removeClass('stateOFFbox');
                             $("#oo_tbn2_rm1").removeClass('stateOFFHead');
                             $("#alr_tbn2_rm1").removeClass('blink_me');
@@ -650,7 +650,7 @@ $(".burger-menu").click(function (e) {
                 });
 
                 $.ajax({
-                    url: url_src+'/api/index.php/plant_tuban/get_emission',
+                    url: url_src + '/api/index.php/plant_tuban/get_emission',
                     type: 'GET',
                     success: function (data) {
                         var data1 = data.replace("<title>Json</title>", "");
@@ -663,73 +663,73 @@ $(".burger-menu").click(function (e) {
                         EPRM1 = parseFloat(dataJson[0].tags[2].props[0].val).toFixed(2);
                         EPRM2 = parseFloat(dataJson[0].tags[3].props[0].val).toFixed(2);
 
-                        if (EPKL1 >= 80) {
+                        if (EPKL1 >= 70) {
                             $("#o_tbn3_kl1").addClass('stateOFFbox');
                             $("#oo_tbn3_kl1").addClass('stateOFFHead');
                             $("#alr_tbn3_kl1").addClass('blink_me');
                             $("#alr_tbn3_kl1").html("UNSAFE");
-                            
+
                             $("#o_tbn3_kl1").removeClass('stateONbox');
                             $("#oo_tbn3_kl1").removeClass('stateONHead');
                         } else {
                             $("#o_tbn3_kl1").addClass('stateONbox');
                             $("#oo_tbn3_kl1").addClass('stateONHead');
                             $("#alr_tbn3_kl1").html("SAFE");
-                            
+
                             $("#o_tbn3_kl1").removeClass('stateOFFbox');
                             $("#oo_tbn3_kl1").removeClass('stateOFFHead');
                             $("#alr_tbn3_kl1").removeClass('blink_me');
                         }
 
-                        if (EPKL2 >= 80) {
+                        if (EPKL2 >= 70) {
                             $("#o_tbn4_kl1").addClass('stateOFFbox');
                             $("#oo_tbn4_kl1").addClass('stateOFFHead');
                             $("#alr_tbn4_kl1").addClass('blink_me');
                             $("#alr_tbn4_kl1").html("UNSAFE");
-                            
+
                             $("#o_tbn4_kl1").removeClass('stateONbox');
                             $("#oo_tbn4_kl1").removeClass('stateONHead');
                         } else {
                             $("#o_tbn4_kl1").addClass('stateONbox');
                             $("#oo_tbn4_kl1").addClass('stateONHead');
                             $("#alr_tbn4_kl1").html("SAFE");
-                            
+
                             $("#o_tbn4_kl1").removeClass('stateOFFbox');
                             $("#oo_tbn4_kl1").removeClass('stateOFFHead');
                             $("#alr_tbn4_kl1").removeClass('blink_me');
                         }
 
-                        if (EPRM1 >= 80) {
+                        if (EPRM1 >= 70) {
                             $("#o_tbn3_rm1").addClass('stateOFFbox');
                             $("#oo_tbn3_rm1").addClass('stateOFFHead');
                             $("#alr_tbn3_rm1").addClass('blink_me');
                             $("#alr_tbn3_rm1").html("UNSAFE");
-                            
+
                             $("#o_tbn3_rm1").removeClass('stateONbox');
                             $("#oo_tbn3_rm1").removeClass('stateONHead');
                         } else {
                             $("#o_tbn3_rm1").addClass('stateONbox');
                             $("#oo_tbn3_rm1").addClass('stateONHead');
                             $("#alr_tbn3_rm1").html("SAFE");
-                            
+
                             $("#o_tbn3_rm1").removeClass('stateOFFbox');
                             $("#oo_tbn3_rm1").removeClass('stateOFFHead');
                             $("#alr_tbn3_rm1").removeClass('blink_me');
                         }
 
-                        if (EPRM2 >= 80) {
+                        if (EPRM2 >= 70) {
                             $("#o_tbn4_rm1").addClass('stateOFFbox');
                             $("#oo_tbn4_rm1").addClass('stateOFFHead');
                             $("#alr_tbn4_rm1").addClass('blink_me');
                             $("#alr_tbn4_rm1").html("UNSAFE");
-                            
+
                             $("#o_tbn4_rm1").removeClass('stateONbox');
                             $("#oo_tbn4_rm1").removeClass('stateONHead');
                         } else {
                             $("#o_tbn4_rm1").addClass('stateONbox');
                             $("#oo_tbn4_rm1").addClass('stateONHead');
                             $("#alr_tbn4_rm1").html("SAFE");
-                            
+
                             $("#o_tbn4_rm1").removeClass('stateOFFbox');
                             $("#oo_tbn4_rm1").removeClass('stateOFFHead');
                             $("#alr_tbn4_rm1").removeClass('blink_me');
@@ -746,17 +746,17 @@ $(".burger-menu").click(function (e) {
             ;
             setInterval(dataOnOff, 1000);
         </script>
-    <script src="slick.js" type="text/javascript" charset="utf-8"></script>
+        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">
             $(document).on('ready', function () {
-               $(".regular").slick({ 
+                $(".regular").slick({
                     infinite: true,
                     slidesToShow: 5,
                     slidesToScroll: 5,
-                    arrows:false,
+                    arrows: false,
                     centerMode: false
-                }); 
+                });
             });
         </script>
-        </body>
+    </body>
 </html>

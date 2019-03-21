@@ -71,42 +71,18 @@
             $('a[href="#tab-click"]').click(function (e) {
                     e.preventDefault();
                     var r = $(this).attr('rel');
-                    if (r == 'capex-sp') {
-                        $('#capex-sp').removeClass('hidden');
-                        $('#capex-sg').addClass('hidden');
-                        $('#capex-si').addClass('hidden');
-                        $('#capex-st').addClass('hidden');
-                        $('#tab-capex-sp').addClass('act_tb');
-                        $('#tab-capex-sg').removeClass('act_tb');
-                        $('#tab-capex-si').removeClass('act_tb');
-                        $('#tab-capex-st').removeClass('act_tb');
-                    } else if (r == 'capex-sg') {
-                        $('#capex-sg').removeClass('hidden');
-                        $('#capex-sp').addClass('hidden');
-                        $('#capex-si').addClass('hidden');
-                        $('#capex-st').addClass('hidden');
-                        $('#tab-capex-sg').addClass('act_tb');
-                        $('#tab-capex-sp').removeClass('act_tb');
-                        $('#tab-capex-si').removeClass('act_tb');
-                        $('#tab-capex-st').removeClass('act_tb');
-                    } else if (r == 'capex-si') {
-                        $('#capex-si').removeClass('hidden');
-                        $('#capex-sg').addClass('hidden');
-                        $('#capex-sp').addClass('hidden');
-                        $('#capex-st').addClass('hidden');
-                        $('#tab-capex-si').addClass('act_tb');
-                        $('#tab-capex-sg').removeClass('act_tb');
-                        $('#tab-capex-sp').removeClass('act_tb');
-                        $('#tab-capex-st').removeClass('act_tb');
-                    } else if (r == 'capex-st') {
-                        $('#capex-st').removeClass('hidden');
-                        $('#capex-sp').addClass('hidden');
-                        $('#capex-sg').addClass('hidden');
-                        $('#capex-si').addClass('hidden');
-                        $('#tab-capex-st').addClass('act_tb');
-                        $('#tab-capex-sp').removeClass('act_tb');
-                        $('#tab-capex-sg').removeClass('act_tb');
-                        $('#tab-capex-si').removeClass('act_tb');
+                    if (r == 'capex-table') {
+                        $('#capex-table').removeClass('hidden');
+                        $('#capex-chart').addClass('hidden');
+                       
+                        $('#tab-capex-table').addClass('act_tb');
+                        $('#tab-capex-chart').removeClass('act_tb');
+                    } else if (r == 'capex-chart') {
+                        $('#capex-chart').removeClass('hidden');
+                        $('#capex-table').addClass('hidden');
+
+                        $('#tab-capex-chart').addClass('act_tb');
+                        $('#tab-capex-table').removeClass('act_tb');
                     }
                 })
 
@@ -337,9 +313,14 @@
                         <div class="headsix add_fix cubesRun2" style="margin-bottom: 10px; height: 280px;"> 
                             <div class="center">
                                 <img src="img/teks semen indo.png" class="imgsi" style="padding-bottom: 7px; margin-bottom: 2px;">
+                                <p class="planttittle" style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN GRESIK</p>
                                 
                                 <center>
-                                    Year : <select id="year" class="selyear"></select><br>
+                                    Year : <select id="year" class="selyear"></select>
+                                    <select id="typeOf" class="typeOf">
+                                       <option value="1"> AWS</option>
+                                       <option value="2"> Type</option>
+                                    </select><br>
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                                     <span class="upercent">
                                         <script type="text/javascript">document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));</script>
@@ -347,36 +328,22 @@
                                 </center>
                             </div>
                             
-                            <div class="capex-smig">
-                                <div align="center" style="padding:30px 0px 20px 0px;font-size: 18px;font-weight:600">
-                                    CAPEX SMIG UP TO THIS MONTH
-                                </div>
-                                <div style="width:100%;overflow-x:scroll;">
-                                    <div class="chart-capex-smig" id="chart-capex-smig" style="width:100%;height:250px;"></div>
-                                </div>
-                            </div>
                             <div class="spacer-menu"></div>
 
                             <div class="col-xs-12 tab_dual">
                                 <div class="col-xs-12 bg_rds">
-                                    <div id="tab-capex-sp" class="col-xs-3 center zero_padd left_tb act_tb">
-                                        <a href="#tab-click" rel="capex-sp" class="no-text-style">
-                                            <span class="tx_tab">SP</span></a></div>
+                                    <div id="tab-capex-table" class="col-xs-6 center zero_padd left_tb act_tb ">
+                                        <a href="#tab-click" rel="capex-table" class="no-text-style">
+                                            <span class="tx_tab">Table</span></a></div>
 
-                                    <div id="tab-capex-sg" class="col-xs-3 center zero_padd left_tb">
-                                        <a href="#tab-click" rel="capex-sg" class="no-text-style">
-                                            <span class="tx_tab">SG</span></a></div>
+                                    <div id="tab-capex-chart" class="col-xs-6 center zero_padd left_tb">
+                                        <a href="#tab-click" rel="capex-chart" class="no-text-style">
+                                            <span class="tx_tab">Chart</span></a></div>
 
-                                    <div id="tab-capex-si" class="col-xs-3 center zero_padd left_tb">
-                                        <a href="#tab-click" rel="capex-si" class="no-text-style">
-                                            <span class="tx_tab">SI</span></a></div>
-
-                                    <div id="tab-capex-st" class="col-xs-3 center zero_padd left_tb">
-                                        <a href="#tab-click" rel="capex-st" class="no-text-style">
-                                            <span class="tx_tab">ST</span></a></div>
+                                    
                                 </div>
                             </div>
-                            <div id="capex-sp">
+                            <div id="capex-table">
                                 <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
                                     CAPEX SEMEN PADANG UP TO THIS MONTH
                                 </div>
@@ -384,28 +351,12 @@
                                     <div class="chart-capex-sp" id="chart-capex-sp" style="width:100%;height:250px;"></div>
                                 </div>
                             </div>
-                            <div id="capex-sg" class="hidden">
+                            <div id="capex-chart" class="hidden">
                                 <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
                                     CAPEX SEMEN GRESIK UP TO THIS MONTH
                                 </div>
                                 <div style="width:100%;overflow-x:scroll;">
                                     <div class="chart-capex-sg" id="chart-capex-sg" style="width:100%;height:250px;"></div>
-                                </div>
-                            </div>
-                            <div id="capex-si" class="hidden">
-                                <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
-                                    CAPEX SEMEN INDONESIA UP TO THIS MONTH
-                                </div>
-                                <div style="width:100%;overflow-x:scroll;">
-                                    <div class="chart-capex-si" id="chart-capex-si" style="width:100%;height:250px;"></div>
-                                </div>
-                            </div>
-                            <div id="capex-st" class="hidden">
-                                <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
-                                    CAPEX SEMEN TONASA UP TO THIS MONTH
-                                </div>
-                                <div style="width:100%;overflow-x:scroll;">
-                                    <div class="chart-capex-st" id="chart-capex-st" style="width:100%;height:250px;"></div>
                                 </div>
                             </div>
 
@@ -498,11 +449,11 @@
                     <!-- start bottom navbar menu -->
                     <footer>
                         <div class="regular" >
-                            <a href="project_capex_dashboard.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;">
+                            <a href="project_capex_dashboard.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
                                 <img src="img/cement/smig.png" style="width:48%;display:inline;" /></a>
                             <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
                                 <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
-                            <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
+                            <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;">
                                 <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
                             <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
                                 <img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
