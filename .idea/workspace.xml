@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e14e9542-2f41-4490-877e-051f5d531edb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/phase2/sales_dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/phase2/sales_dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/prod_emision_kso.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/prod_emision_kso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/prod_emision_sg.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/prod_emision_sg.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/prod_emision_sp.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/prod_emision_sp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/prod_emision_st.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/prod_emision_st.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/prod_emision_tl.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/prod_emision_tl.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/project_capex_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/project_capex_dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/application/controllers/capex.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/application/controllers/capex.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/application/models/m_capex.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/application/models/m_capex.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/phase2/capex_dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/phase2/capex_dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/project_capex_dashboard_si.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/project_capex_dashboard_si.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,14 +18,14 @@
     <session id="2091826164">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="27" />
+          <entry key="project.closed" value="28" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.33" value="2" />
-          <entry key="project.open.time.34" value="2" />
+          <entry key="project.open.time.34" value="4" />
           <entry key="project.open.time.35" value="3" />
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.37" value="3" />
@@ -39,7 +35,7 @@
           <entry key="project.open.time.41" value="3" />
           <entry key="project.open.time.42" value="2" />
           <entry key="project.open.time.44" value="1" />
-          <entry key="project.open.time.45" value="2" />
+          <entry key="project.open.time.45" value="3" />
           <entry key="project.open.time.47" value="2" />
           <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.58" value="1" />
@@ -47,14 +43,14 @@
           <entry key="project.open.time.69" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.72" value="1" />
-          <entry key="project.opened" value="36" />
+          <entry key="project.opened" value="39" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="27" />
-          <entry key="js" value="52" />
-          <entry key="php" value="81" />
+          <entry key="js" value="53" />
+          <entry key="php" value="83" />
           <entry key="ts" value="1" />
           <entry key="txt" value="1" />
           <entry key="xml" value="3" />
@@ -63,8 +59,8 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="27" />
-          <entry key="JavaScript" value="52" />
-          <entry key="PHP" value="81" />
+          <entry key="JavaScript" value="53" />
+          <entry key="PHP" value="83" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="TypeScript" value="1" />
           <entry key="XML" value="3" />
@@ -73,16 +69,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="1410" />
-          <entry key="js" value="10424" />
-          <entry key="php" value="6310" />
+          <entry key="js" value="10657" />
+          <entry key="php" value="7733" />
           <entry key="xml" value="110" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1410" />
-          <entry key="JavaScript" value="10424" />
-          <entry key="PHP" value="5048" />
+          <entry key="JavaScript" value="10657" />
+          <entry key="PHP" value="6471" />
           <entry key="SQL" value="1262" />
           <entry key="XML" value="110" />
         </counts>
@@ -93,13 +89,44 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/project_capex_dashboard_si.html">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="49" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="49" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/js/phase2/capex_dashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/application/controllers/capex.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="568">
+              <caret line="65" column="61" selection-start-line="65" selection-start-column="61" selection-end-line="65" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/application/models/m_capex.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="638" column="24" lean-forward="true" selection-start-line="638" selection-start-column="24" selection-end-line="638" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2720">
+            <state relative-caret-position="7157">
               <caret line="421" column="81" selection-start-line="421" selection-start-column="81" selection-end-line="421" selection-end-column="81" />
             </state>
           </provider>
@@ -145,6 +172,7 @@
       <find>longfeed</find>
       <find>10.15.3.146</find>
       <find>oram</find>
+      <find>capex_dashboard.js</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,13 +190,10 @@
         <option value="$PROJECT_DIR$/www/js/capexDetail.js" />
         <option value="$PROJECT_DIR$/www/project_report_proj.html" />
         <option value="$PROJECT_DIR$/www/project_report_proj_smig.html" />
-        <option value="$PROJECT_DIR$/api/application/controllers/capex.php" />
         <option value="$PROJECT_DIR$/www/project_capex_dashboard.html" />
-        <option value="$PROJECT_DIR$/api/application/models/m_capex.php" />
         <option value="$PROJECT_DIR$/www/js/phase2/capex_project_type.js" />
         <option value="$PROJECT_DIR$/www/js/phase2/capex_main.js" />
         <option value="D:/WORKING/SISI/par4digma/config.xml" />
-        <option value="$PROJECT_DIR$/www/js/phase2/capex_dashboard.js" />
         <option value="$PROJECT_DIR$/www/js/phase2/capex_company_detail.js" />
         <option value="$PROJECT_DIR$/www/index_login2.html" />
         <option value="$USER_HOME$/AppData/Local/Temp/fz3temp-2/m_capex.php" />
@@ -185,6 +210,10 @@
         <option value="$PROJECT_DIR$/api/application/models/m_rkapall.php" />
         <option value="$PROJECT_DIR$/www/js/loader.js" />
         <option value="$PROJECT_DIR$/../dashboardBOD/assets/js/finance_dashboard.js" />
+        <option value="$PROJECT_DIR$/www/project_capex_dashboard_si.html" />
+        <option value="$PROJECT_DIR$/www/js/phase2/capex_dashboard.js" />
+        <option value="$PROJECT_DIR$/api/application/controllers/capex.php" />
+        <option value="$PROJECT_DIR$/api/application/models/m_capex.php" />
       </list>
     </option>
   </component>
@@ -317,7 +346,45 @@
             <path>
               <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
               <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paradigma_dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paradigma_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="phase2" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -390,16 +457,20 @@
       <workItem from="1551318964900" duration="5913000" />
       <workItem from="1551626645239" duration="97000" />
       <workItem from="1553049285829" duration="4195000" />
+      <workItem from="1553190355416" duration="8881000" />
+      <workItem from="1553405363708" duration="2495000" />
+      <workItem from="1553450410681" duration="279000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173919000" />
+    <option name="totallyTimeSpent" value="185574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26399395" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2753404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -443,20 +514,12 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/m_capex.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/database 2.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/EC_Good_Receipt_PL.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ec_goodreceipt_m.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/database.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/EC_Shipment 2.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/ec_shipment_m.php" />
-    <entry file="file://$PROJECT_DIR$/api/application/controllers/capex.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/application/models/m_cashflow.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2509" />
@@ -477,13 +540,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/application/models/m_fin_sales.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/application/models/m_capex.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="96" column="19" selection-start-line="96" selection-start-column="18" selection-end-line="96" selection-end-column="19" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../dashboardBOD/application/controllers/cogs_upload.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -683,9 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -704,12 +757,37 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/project_capex_dashboard_si.html">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="49" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="49" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
+        <state relative-caret-position="7157">
           <caret line="421" column="81" selection-start-line="421" selection-start-column="81" selection-end-line="421" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/application/models/m_capex.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="638" column="24" lean-forward="true" selection-start-line="638" selection-start-column="24" selection-end-line="638" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/application/controllers/capex.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="65" column="61" selection-start-line="65" selection-start-column="61" selection-end-line="65" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/phase2/capex_dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
         </state>
       </provider>
     </entry>

@@ -60,4 +60,10 @@ class capex extends CI_Controller {
         $data = $this->m_capex->getDetailProject($company, $project, $year);
         echo json_encode($data);
     }
+
+    function getDataDashboardNew($year)
+    {
+        $data = $this->m_capex->capexDashboardControl($year);
+        echo json_encode($data);
+    }
 }

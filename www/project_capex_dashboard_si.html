@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/animate.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
-        <link rel="stylesheet" type="text/css" href="slick.css"/>
-        <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/production.css">
-        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="fontA/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/production.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
 
-        <script src="js/phase2/sidenav.min.js"></script><script src="js/Session.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/JsNumberFormat.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script src="js/highstock.js"></script>
-        <script src="js/loader.js"></script>
-        <script src="js/exporting.js"></script>
-        <script src="js/paradigma.js"></script>
-        <script src="js/phase2/capex_dashboard.js"></script>
-        <script type="text/javascript" src="js/moment.min.js"></script>
-        <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
-        <script>
-            function onLoad() {
+    <script src="js/phase2/sidenav.min.js"></script>
+    <script src="js/Session.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/JsNumberFormat.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/highstock.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/exporting.js"></script>
+    <script src="js/paradigma.js"></script>
+    <script src="js/phase2/capex_dashboard.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/touch-tooltip-fix.js"></script>
+    <script>
+        function onLoad() {
             var session = getParamFull();
-                ////=========================
-                if (sessionStorage.getItem('_com')!='ALL') {
-                    $.each(listTab, function(index, el){
-                        $('#tab-'+el+' a').removeAttr('href');
-                        $('#tab-'+el+' a').removeAttr('rel');
-                    })
+            ////=========================
+            if (sessionStorage.getItem('_com') != 'ALL') {
+                $.each(listTab, function (index, el) {
+                    $('#tab-' + el + ' a').removeAttr('href');
+                    $('#tab-' + el + ' a').removeAttr('rel');
+                })
+            }
+            ////=========================
+            $(".burger-menu").click(function (e) {
+                if ($(this).hasClass("is-active")) {
+                    $(this).removeClass("is-active");
+                    $("#content").removeClass("slideMenu");
+                    $("#content").addClass("closeMenu");
+                } else {
+                    $(this).addClass("is-active");
+                    $("#content").removeClass("closeMenu");
+                    $("#content").addClass("slideMenu");
                 }
-                ////=========================
-                $(".burger-menu").click(function (e) {
-                    if ($(this).hasClass("is-active")) {
-                        $(this).removeClass("is-active");
-                        $("#content").removeClass("slideMenu");
-                        $("#content").addClass("closeMenu");
-                    } else {
-                        $(this).addClass("is-active");
-                        $("#content").removeClass("closeMenu");
-                        $("#content").addClass("slideMenu");
-                    }
-                });
+            });
             var d = new Date();
             var month = new Array();
             month[0] = "January";
@@ -69,199 +71,212 @@
             var tahun = d.getFullYear();
 
             $('a[href="#tab-click"]').click(function (e) {
-                    e.preventDefault();
-                    var r = $(this).attr('rel');
-                    if (r == 'capex-table') {
-                        $('#capex-table').removeClass('hidden');
-                        $('#capex-chart').addClass('hidden');
-                       
-                        $('#tab-capex-table').addClass('act_tb');
-                        $('#tab-capex-chart').removeClass('act_tb');
-                    } else if (r == 'capex-chart') {
-                        $('#capex-chart').removeClass('hidden');
-                        $('#capex-table').addClass('hidden');
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'capex-table') {
+                    $('#capex-table').removeClass('hidden');
+                    $('#capex-chart').addClass('hidden');
 
-                        $('#tab-capex-chart').addClass('act_tb');
-                        $('#tab-capex-table').removeClass('act_tb');
-                    }
-                })
+                    $('#tab-capex-table').addClass('act_tb');
+                    $('#tab-capex-chart').removeClass('act_tb');
+                } else if (r == 'capex-chart') {
+                    $('#capex-chart').removeClass('hidden');
+                    $('#capex-table').addClass('hidden');
+
+                    $('#tab-capex-chart').addClass('act_tb');
+                    $('#tab-capex-table').removeClass('act_tb');
+                }
+            })
 
             $('.selmonth').empty();
-                var opt_month;
-                $.each(month, function(key, val){
-                 if (key+1 <= 12){
-                  if ((key+1) < 10){
-                   var v = '0'+(key+1); 
-                  }else{
-                   var v = key+1;  
-                  }   
-                  if ((key+1) == bulanSekarang){
-                   opt_month += '<option value="'+v+'" selected="selected">'+val+'</option>'; 
-                  }else{
-                   opt_month += '<option value="'+v+'">'+val+'</option>';   
-                  }
-                 }
-
-                })
-                console.log(opt_month);
-                $('.selmonth').html(opt_month);
-                                
-                $('.selyear').empty();
-                var opt_year;
-                var x;
-                for (x=Number(tahun);x>2014;x--){
-                 if (x == tahun){
-                  opt_year += '<option value="'+x+'" selected="selected">'+x+'</option>'; 
-                 }else{
-                  opt_year += '<option value="'+x+'">'+x+'</option>';   
-                 }
-                }
-                console.log(opt_year);
-                $('.selyear').html(opt_year);
-
-                var labelArrays = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
-                var d = moment().format('DD');
-                var m = moment().format('MM');
-                var y = moment().format('YYYY');
-                var today = d + ' ' + labelArrays[parseInt(m) - 1] + ' ' + y;
-                $('#last_updated').html(today);
-                //console.log(today);
-                $('a[href="#tab-click"]').click(function (e) {
-                    e.preventDefault();
-                    var r = $(this).attr('rel');
-                    if (r == 'data-report') {
-                        $('#data-report').removeClass('hidden');
-                        $('#data-grafik').addClass('hidden');
-                        $('#tab-report').addClass('act_tb');
-                        $('#tab-grafik').removeClass('act_tb');
-                    } else if (r == 'data-grafik') {
-                        $('#data-report').addClass('hidden');
-                        $('#data-grafik').removeClass('hidden');
-                        $('#tab-report').removeClass('act_tb');
-                        $('#tab-grafik').addClass('act_tb');
+            var opt_month;
+            $.each(month, function (key, val) {
+                if (key + 1 <= 12) {
+                    if ((key + 1) < 10) {
+                        var v = '0' + (key + 1);
+                    } else {
+                        var v = key + 1;
                     }
-                })
-                $(document).on('click', '.text-medium,.linkback', function (e) {
-                    e.preventDefault();
-                    var r = $(this).attr('href');
-                    window.location.href = 'backlog_detail.html?i=' + r;
-                })
-               $( ".head-menu" ).scrollLeft(350);
-            }
+                    if ((key + 1) == bulanSekarang) {
+                        opt_month += '<option value="' + v + '" selected="selected">' + val + '</option>';
+                    } else {
+                        opt_month += '<option value="' + v + '">' + val + '</option>';
+                    }
+                }
 
-        </script>
-        <style>
-            .img_foot2 {
-                filter: gray; /* IE6-9 */
-                filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
-                -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
-            }
-            .tab_syle {
-                color: #666666;
-                font-size: 12px;
-                border: none;
-                /* padding-left: 8px; */
-                margin-left: 3px;
-            }
-            .font-category {
-                font-size: 12px;
-            }
-            .overflowing {
-                /*width: 30em;*/
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-            .no-js #loader {
-                display: none;
-            }
-            .js #loader {
-                display: block;
-                position: absolute;
-                left: 100px;
-                top: 0;
-            }
-            .se-pre-con {
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 9999;
-                background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
-            }
-            .nav-tabs>li.active {
-                border-top: 1px solid #1481ed;
-            }
-           
-            .tit_head {
-                background: rgba(255, 255, 255, 1);
-                background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-                background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
-                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-                background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-                background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
-            }
-            .tab-active>a, .tab-active>a:focus, .tab-active>a:hover {
-                cursor: default;
-                background-color: #fff;
-                border: 1px solid #ddd;
-                border-bottom-color: transparent;
-                border-top: 1px solid #1481ed;
-                text-decoration:none;
-            }
-            .tab-active {
-                cursor: default;
-                background-color: #fff;
-                border: 1px solid #ddd;
-                border-bottom-color: transparent;
-                border-top: 1px solid #1481ed;
-                text-decoration:none;
-            }
-            .border-down {
-                height: 41px;
-                cursor: default;
-                background-color: #ffffff;
-                border-bottom-color: transparent;
-            }
-            .border-down-active {
-                height: 41px;
-                cursor: default;
-                background-color: #fff;
-                border-right: 1px solid #ddd;
-                border-left: 1px solid #ddd;
-                border-bottom-color: transparent;
-                border-bottom: 1px solid #1481ed;
-            }
-            .no-text-style, .no-text-style:hover {
-                text-decoration: none;
-                color:#000;
-            }
-            .tx_tab {
-                margin-top: 5px;
-                color: #525252;
-                display: inline-block;
-                font-size: 14px;
-            }
+            })
+            console.log(opt_month);
+            $('.selmonth').html(opt_month);
 
-            
-        </style>
-        <script src="js/modernizr.js"></script>
-        <script>
-            $(window).load(function () {
-                $(".se-pre-con").fadeOut("slow");
-            });
-        </script>
-        <title>Capex Dashboard</title>
-    </head>
-    <body onLoad="onLoad()" >
-        <div class="app">
-            <div id="deviceready">
-                <div id="backdrop"></div>
-                <!-- Paste this code after body tag -->
-                <div class="se-pre-con"></div>
-                <!-- Ends -->
+            $('.selyear').empty();
+            var opt_year;
+            var x;
+            for (x = Number(tahun); x > 2014; x--) {
+                if (x == tahun) {
+                    opt_year += '<option value="' + x + '" selected="selected">' + x + '</option>';
+                } else {
+                    opt_year += '<option value="' + x + '">' + x + '</option>';
+                }
+            }
+            console.log(opt_year);
+            $('.selyear').html(opt_year);
+
+            var labelArrays = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+            var d = moment().format('DD');
+            var m = moment().format('MM');
+            var y = moment().format('YYYY');
+            var today = d + ' ' + labelArrays[parseInt(m) - 1] + ' ' + y;
+            $('#last_updated').html(today);
+            //console.log(today);
+            $('a[href="#tab-click"]').click(function (e) {
+                e.preventDefault();
+                var r = $(this).attr('rel');
+                if (r == 'data-report') {
+                    $('#data-report').removeClass('hidden');
+                    $('#data-grafik').addClass('hidden');
+                    $('#tab-report').addClass('act_tb');
+                    $('#tab-grafik').removeClass('act_tb');
+                } else if (r == 'data-grafik') {
+                    $('#data-report').addClass('hidden');
+                    $('#data-grafik').removeClass('hidden');
+                    $('#tab-report').removeClass('act_tb');
+                    $('#tab-grafik').addClass('act_tb');
+                }
+            })
+            $(document).on('click', '.text-medium,.linkback', function (e) {
+                e.preventDefault();
+                var r = $(this).attr('href');
+                window.location.href = 'backlog_detail.html?i=' + r;
+            })
+            $(".head-menu").scrollLeft(350);
+        }
+
+    </script>
+    <style>
+        .img_foot2 {
+            filter: gray; /* IE6-9 */
+            filter: grayscale(100%); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(100%); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .tab_syle {
+            color: #666666;
+            font-size: 12px;
+            border: none;
+            /* padding-left: 8px; */
+            margin-left: 3px;
+        }
+
+        .font-category {
+            font-size: 12px;
+        }
+
+        .overflowing {
+            /*width: 30em;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
+        }
+
+        .nav-tabs > li.active {
+            border-top: 1px solid #1481ed;
+        }
+
+        .tit_head {
+            background: rgba(255, 255, 255, 1);
+            background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+            background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+        }
+
+        .tab-active > a, .tab-active > a:focus, .tab-active > a:hover {
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-top: 1px solid #1481ed;
+            text-decoration: none;
+        }
+
+        .tab-active {
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-top: 1px solid #1481ed;
+            text-decoration: none;
+        }
+
+        .border-down {
+            height: 41px;
+            cursor: default;
+            background-color: #ffffff;
+            border-bottom-color: transparent;
+        }
+
+        .border-down-active {
+            height: 41px;
+            cursor: default;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-bottom-color: transparent;
+            border-bottom: 1px solid #1481ed;
+        }
+
+        .no-text-style, .no-text-style:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .tx_tab {
+            margin-top: 5px;
+            color: #525252;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+
+    </style>
+    <script src="js/modernizr.js"></script>
+    <script>
+        $(window).load(function () {
+            $(".se-pre-con").fadeOut("slow");
+        });
+    </script>
+    <title>Capex Dashboard</title>
+</head>
+<body onLoad="onLoad()">
+<div class="app">
+    <div id="deviceready">
+        <div id="backdrop"></div>
+        <!-- Paste this code after body tag -->
+        <div class="se-pre-con"></div>
+        <!-- Ends -->
         <div id="sidenav">
             <div class="header">
                 <div class="avatar"><img src="img/ic-user.png"><span id="usernames"></span></div>
@@ -269,15 +284,20 @@
             <div>
                 <ul>
                     <li><a href="index.html"><img src="img/sidebar/home.png">&nbsp;&nbsp;HOME</a></li>
-                    <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a></li>
+                    <li><a href="prod_report_sg.html"><img src="img/sidebar/production.png">&nbsp;&nbsp;PRODUCTION</a>
+                    </li>
                     <li><a href="sales_dashboard.html"><img src="img/sidebar/sales.png">&nbsp;&nbsp;SALES</a></li>
                     <li><a href=" scm_ms_sg.html"><img src="img/sidebar/scm.png">&nbsp;&nbsp;SCM</a></li>
-                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a></li>
+                    <li><a href="treasury_cp.html#5000"><img src="img/sidebar/treasury.png">&nbsp;&nbsp;TREASURY</a>
+                    </li>
                     <li><a href="finance_prod_si.html"><img src="img/sidebar/finance.png">&nbsp;&nbsp;FINANCE</a></li>
-                    <li><a href="inventory_monthly_rep.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a></li>
-                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a></li>
-                    <li><a href="#"  class="active"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
-                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a></li>
+                    <li><a href="inventory_monthly_rep.html"><img src="img/sidebar/inventory.png">&nbsp;&nbsp;INVENTORY</a>
+                    </li>
+                    <li><a href="maint_inspection_sg.html"><img src="img/sidebar/maintenance.png">&nbsp;&nbsp;MAINTENANCE</a>
+                    </li>
+                    <li><a href="#" class="active"><img src="img/sidebar/project.png">&nbsp;&nbsp;PROJECT</a></li>
+                    <li><a href="quality_siramah.html"><img src="img/sidebar/quality.png">&nbsp;&nbsp;QUALITY MANAGEMENT</a>
+                    </li>
                 </ul>
             </div>
             <div class="footer">
@@ -289,508 +309,431 @@
                 </div>
             </div>
         </div>
-                <div id="content" style="background:#f5f5f5;">
-                <!--title bar-->
-                    <header id="header">
-                        <button class="burger-menu burger-menu-x" id="menu-toggle">
-                            <span>toggle menu</span>
-                        </button>
-                        <b class="logopis">CAPEX DASHBOARD</b>
-                        <!-- <a class="logo" href="index.html"><img src="img/logo.png"></a> -->
-                    </header>
-                <!--end title bar-->
-                    <div class="wrapper" style="padding-bottom: 40px">
-                        <div class="head-menu">
-                            <ul>
-                                <li><a href="project_coe_proj.html">COE PROJECTS</a></li>
-                                <li><a href="project_pusb_proj.html">PUSB PROJECTS</a></li>
-                                <li><a href="project_cost_proj.html">COST OF PROJECT</a></li>
-                                <li><a href="project_report_proj_smig.html">REPORT PROJECT</a></li>
-                                <li><a class="active">CAPEX DASHBOARD</a></li>
-                            </ul>
-                        </div>
-                        <div class="spacer-menu"></div>
-                        <div class="headsix add_fix cubesRun2" style="margin-bottom: 10px; height: 280px;"> 
-                            <div class="center">
-                                <img src="img/teks semen indo.png" class="imgsi" style="padding-bottom: 7px; margin-bottom: 2px;">
-                                <p class="planttittle" style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN GRESIK</p>
-                                
-                                <center>
-                                    Year : <select id="year" class="selyear"></select>
-                                    <select id="typeOf" class="typeOf">
-                                       <option value="1"> AWS</option>
-                                       <option value="2"> Type</option>
-                                    </select><br>
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                    <span class="upercent">
-                                        <script type="text/javascript">document.write("Last Update :",moment().format('MM/DD/YYYY HH:mm'));</script>
+        <div id="content" style="background:#f5f5f5;">
+            <!--title bar-->
+            <header id="header">
+                <button class="burger-menu burger-menu-x" id="menu-toggle">
+                    <span>toggle menu</span>
+                </button>
+                <b class="logopis">CAPEX DASHBOARD</b>
+                <!-- <a class="logo" href="index.html"><img src="img/logo.png"></a> -->
+            </header>
+            <!--end title bar-->
+            <div class="wrapper" style="padding-bottom: 40px">
+                <div class="head-menu">
+                    <ul>
+                        <li><a href="project_coe_proj.html">COE PROJECTS</a></li>
+                        <li><a href="project_pusb_proj.html">PUSB PROJECTS</a></li>
+                        <li><a href="project_cost_proj.html">COST OF PROJECT</a></li>
+                        <li><a href="project_report_proj_smig.html">REPORT PROJECT</a></li>
+                        <li><a class="active">CAPEX DASHBOARD</a></li>
+                    </ul>
+                </div>
+                <div class="spacer-menu"></div>
+                <div class="headsix add_fix cubesRun2" style="margin-bottom: 10px; height: 280px;">
+                    <div class="center">
+                        <img src="img/teks semen indo.png" class="imgsi"
+                             style="padding-bottom: 7px; margin-bottom: 2px;">
+                        <p class="planttittle"
+                           style="font-weight: 600; font-size: 23px;display: inline-block;float: none;">SEMEN GRESIK</p>
+
+                        <center>
+                            Year : <select id="year" class="selyear"></select>
+                            <select id="typeOf" class="typeOf">
+                                <option value="1"> AWS</option>
+                                <option value="2"> Type</option>
+                            </select><br>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <span class="upercent">
+                                        <script type="text/javascript">document.write("Last Update :", moment().format('MM/DD/YYYY HH:mm'));</script>
                                     </span>
-                                </center>
-                            </div>
-                            
-                            <div class="spacer-menu"></div>
+                        </center>
+                    </div>
 
-                            <div class="col-xs-12 tab_dual">
-                                <div class="col-xs-12 bg_rds">
-                                    <div id="tab-capex-table" class="col-xs-6 center zero_padd left_tb act_tb ">
-                                        <a href="#tab-click" rel="capex-table" class="no-text-style">
-                                            <span class="tx_tab">Table</span></a></div>
+                    <div class="spacer-menu"></div>
 
-                                    <div id="tab-capex-chart" class="col-xs-6 center zero_padd left_tb">
-                                        <a href="#tab-click" rel="capex-chart" class="no-text-style">
-                                            <span class="tx_tab">Chart</span></a></div>
+                    <div class="col-xs-12 tab_dual">
+                        <div class="col-xs-12 bg_rds">
+                            <div id="tab-capex-table" class="col-xs-6 center zero_padd left_tb act_tb ">
+                                <a href="#tab-click" rel="capex-table" class="no-text-style">
+                                    <span class="tx_tab">Table</span></a></div>
 
-                                    
-                                </div>
-                            </div>
-                            <div id="capex-table">
-                                <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
-                                    CAPEX SEMEN PADANG UP TO THIS MONTH
-                                </div>
-                                <div style="width:100%;overflow-x:scroll;">
-                                    <div class="chart-capex-sp" id="chart-capex-sp" style="width:100%;height:250px;"></div>
-                                </div>
-                            </div>
-                            <div id="capex-chart" class="hidden">
-                                <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
-                                    CAPEX SEMEN GRESIK UP TO THIS MONTH
-                                </div>
-                                <div style="width:100%;overflow-x:scroll;">
-                                    <div class="chart-capex-sg" id="chart-capex-sg" style="width:100%;height:250px;"></div>
-                                </div>
-                            </div>
+                            <div id="tab-capex-chart" class="col-xs-6 center zero_padd left_tb">
+                                <a href="#tab-click" rel="capex-chart" class="no-text-style">
+                                    <span class="tx_tab">Chart</span></a></div>
 
-                            
-                           <!--  <div id="card_data2000" align="center" class="headsix add_fixbg cubesRun2 card_data" style="margin-top: 0px; border-bottom: 1px;">
-                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;">
-                                    <span id="chart_title2000" style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;SEMEN INDONESIA GROUP</span>
-                                </div>
-                                <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
-                                    <div class="col-xs-6 noPadding tab_uper">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_actual2000"></div>
-                                    </div>
-                                    <div class="col-xs-6 noPadding">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_budget2000"></div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div id="card_data3000" align="center" class="headsix add_fixbg cubesRun2 card_data" style="margin-top: 0px; border-bottom: 1px;">
-                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;">
-                                    <span id="chart_title3000" style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;SEMEN PADANG</span>
-                                </div>
-                                <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
-                                    <div class="col-xs-6 noPadding tab_uper">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_actual3000"></div>
-                                    </div>
-                                    <div class="col-xs-6 noPadding">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_budget3000"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="card_data5000" align="center" class="headsix add_fixbg cubesRun2 card_data" style="margin-top: 0px; border-bottom: 1px;">
-                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;">
-                                    <span id="chart_title5000" style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;SEMEN GRESIK</span>
-                                </div>
-                                <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
-                                    <div class="col-xs-6 noPadding tab_uper">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_actual5000"></div>
-                                    </div>
-                                    <div class="col-xs-6 noPadding">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_budget5000"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="card_data7000" align="center" class="headsix add_fixbg cubesRun2 card_data" style="margin-top: 0px; border-bottom: 1px;">
-                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;">
-                                    <span id="chart_title7000" style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;SEMEN INDONESIA</span>
-                                </div>
-                                <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
-                                    <div class="col-xs-6 noPadding tab_uper">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_actual7000"></div>
-                                    </div>
-                                    <div class="col-xs-6 noPadding">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_budget7000"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="card_data4000" align="center" class="headsix add_fixbg cubesRun2 card_data" style="margin-top: 0px; border-bottom: 1px;">
-                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;">
-                                    <span id="chart_title4000" style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;SEMEN TONASA</span>
-                                </div>
-                                <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
-                                    <div class="col-xs-6 noPadding tab_uper">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_actual4000"></div>
-                                    </div>
-                                    <div class="col-xs-6 noPadding">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_budget4000"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="card_data6000" align="center" class="headsix add_fixbg cubesRun2 card_data" style="margin-top: 0px; border-bottom: 1px;">
-                                <div class="col-xs-12 noPadding tit_head" align="left" style=" height: 28px; margin-bottom: 12px; BORDER-BOTTOM: 1PX solid #6fbbfe;"> <img src="img/clo.png" width="15px" style="margin-left: 5px;">
-                                    <span id="chart_title6000" style="color: #2b2b2b;font-size: 13px;">&nbsp;&nbsp;&nbsp;THANGLONG CEMENT</span>
-                                </div>
-                                <div class="row" align="center" style="color:#656565; margin-top: 9px; margin-bottom: 15px; width:100%">
-                                    <div class="col-xs-6 noPadding tab_uper">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_actual6000"></div>
-                                    </div>
-                                    <div class="col-xs-6 noPadding">
-                                        <div style="height: 300px; margin: 0 auto; width: 100%" id="graph_budget6000"></div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
-                    <!-- start bottom navbar menu -->
-                    <footer>
-                        <div class="regular" >
-                            <a href="project_capex_dashboard.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                <img src="img/cement/smig.png" style="width:48%;display:inline;" /></a>
-                            <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                <img src="img/cement/sp.png" style="width:48%;display:inline;" /></a>
-                            <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3" style="margin-top: 7px;">
-                                <img src="img/cement/sg.png" style="width:48%;display:inline;" /></a>
-                            <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                <img src="img/cement/si.png" style="width:48%;display:inline;" /></a>
-                            <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2" style="margin-top: 7px;">
-                                <img src="img/cement/st.png" style="width:48%;display:inline;" /></a>
-                            <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding col-ft-3 img_foot2" style="margin-top: 7px;">
-                                <img src="img/cement/tl.png" style="width:48%;display:inline;" /></a>
+                    <div id="capex-table">
+                        <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
+                            CAPEX SEMEN PADANG UP TO THIS MONTH
                         </div>
-                    </footer>
-                    <!-- end bottom navbar menu -->
+                        <div style="width:100%;overflow-x:scroll;">
+                            <div class="chart-capex-sp" id="chart-capex-sp" style="width:100%;height:250px;"></div>
+                        </div>
+                    </div>
+                    <div id="capex-chart" class="hidden">
+                        <div align="center" style="padding:60px 0px 20px 0px;font-size: 18px;font-weight:600">
+                            CAPEX SEMEN GRESIK UP TO THIS MONTH
+                        </div>
+                        <div style="width:100%;overflow-x:scroll;">
+                            <div class="chart-capex-sg" id="chart-capex-sg" style="width:100%;height:250px;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- start bottom navbar menu -->
+            <footer>
+                <div class="regular">
+                    <a href="project_capex_dashboard.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2"
+                       style="margin-top: 7px;">
+                        <img src="img/cement/smig.png" style="width:48%;display:inline;"/></a>
+                    <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2"
+                       style="margin-top: 7px;">
+                        <img src="img/cement/sp.png" style="width:48%;display:inline;"/></a>
+                    <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3"
+                       style="margin-top: 7px;">
+                        <img src="img/cement/sg.png" style="width:48%;display:inline;"/></a>
+                    <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2"
+                       style="margin-top: 7px;">
+                        <img src="img/cement/si.png" style="width:48%;display:inline;"/></a>
+                    <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding tab_uper col-ft-3 img_foot2"
+                       style="margin-top: 7px;">
+                        <img src="img/cement/st.png" style="width:48%;display:inline;"/></a>
+                    <a href="project_capex_dashboard_si.html" class="col-xs-3 noPadding col-ft-3 img_foot2"
+                       style="margin-top: 7px;">
+                        <img src="img/cement/tl.png" style="width:48%;display:inline;"/></a>
+                </div>
+            </footer>
+            <!-- end bottom navbar menu -->
         </div>
-        <script src="slick.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            $(document).on('ready', function () {
-               $(".regular").slick({ 
-                    infinite: true,
-                    slidesToShow: 5,
-                    slidesToScroll: 6,
-                    arrows:false,
-                    centerMode: false
-                }); 
-            });
+    </div>
+</div>
+<script src="slick.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).on('ready', function () {
+        $(".regular").slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 6,
+            arrows: false,
+            centerMode: false
+        });
+    });
 
-            Highcharts.chart('chart-capex-sp', {
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                exporting: {
-                    enabled: false
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    type: 'column',
-                    name: 'Rencana',
-                    color: '#FF3636',
-                    data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
-                }, {
-                    type: 'column',
-                    name: 'Real',
-                    color:'#ABAAAA',
-                    data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
-                }, {
-                    type: 'spline',
-                    name: 'Upt To Rencana',
-                    color: '#FF3636',
-                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
-                    marker: {
-                        lineWidth: 4,
-                        lineColor: '#FF3636',
-                        fillColor: 'white'
-                    }
-                }, {
-                    type: 'spline',
-                    name: 'Up To Real',
-                    color: '#ABAAAA',
-                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
-                    marker: {
-                        lineWidth: 4,
-                        lineColor: '#ABAAAA',
-                        fillColor: 'white'
-                    }
-                }]
-            });
-            
-            Highcharts.chart('chart-capex-sg', {
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                exporting: {
-                    enabled: false
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    type: 'column',
-                    name: 'Rencana',
-                    color: '#FF3636',
-                    data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
-                }, {
-                    type: 'column',
-                    name: 'Real',
-                    color:'#ABAAAA',
-                    data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
-                }, {
-                    type: 'spline',
-                    name: 'Upt To Rencana',
-                    color: '#FF3636',
-                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
-                    marker: {
-                        lineWidth: 4,
-                        lineColor: '#FF3636',
-                        fillColor: 'white'
-                    }
-                }, {
-                    type: 'spline',
-                    name: 'Up To Real',
-                    color: '#ABAAAA',
-                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
-                    marker: {
-                        lineWidth: 4,
-                        lineColor: '#ABAAAA',
-                        fillColor: 'white'
-                    }
-                }]
-            });
-            
-            Highcharts.chart('chart-capex-si', {
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                exporting: {
-                    enabled: false
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    type: 'column',
-                    name: 'Rencana',
-                    color: '#FF3636',
-                    data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
-                }, {
-                    type: 'column',
-                    name: 'Real',
-                    color:'#ABAAAA',
-                    data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
-                }, {
-                    type: 'spline',
-                    name: 'Upt To Rencana',
-                    color: '#FF3636',
-                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
-                    marker: {
-                        lineWidth: 4,
-                        lineColor: '#FF3636',
-                        fillColor: 'white'
-                    }
-                }, {
-                    type: 'spline',
-                    name: 'Up To Real',
-                    color: '#ABAAAA',
-                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
-                    marker: {
-                        lineWidth: 4,
-                        lineColor: '#ABAAAA',
-                        fillColor: 'white'
-                    }
-                }]
-            });
-            
-            Highcharts.chart('chart-capex-st', {
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                exporting: {
-                    enabled: false
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    type: 'column',
-                    name: 'Rencana',
-                    color: '#FF3636',
-                    data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
-                }, {
-                    type: 'column',
-                    name: 'Real',
-                    color:'#ABAAAA',
-                    data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
-                }, {
-                    type: 'spline',
-                    name: 'Upt To Rencana',
-                    color: '#FF3636',
-                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
-                    marker: {
-                        lineWidth: 4,
-                        lineColor: '#FF3636',
-                        fillColor: 'white'
-                    }
-                }, {
-                    type: 'spline',
-                    name: 'Up To Real',
-                    color: '#ABAAAA',
-                    data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
-                    marker: {
-                        lineWidth: 4,
-                        lineColor: '#ABAAAA',
-                        fillColor: 'white'
-                    }
-                }]
-            });
+    Highcharts.chart('chart-capex-sp', {
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            type: 'column',
+            name: 'Rencana',
+            color: '#FF3636',
+            data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
+        }, {
+            type: 'column',
+            name: 'Real',
+            color: '#ABAAAA',
+            data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
+        }, {
+            type: 'spline',
+            name: 'Upt To Rencana',
+            color: '#FF3636',
+            data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
+            marker: {
+                lineWidth: 4,
+                lineColor: '#FF3636',
+                fillColor: 'white'
+            }
+        }, {
+            type: 'spline',
+            name: 'Up To Real',
+            color: '#ABAAAA',
+            data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
+            marker: {
+                lineWidth: 4,
+                lineColor: '#ABAAAA',
+                fillColor: 'white'
+            }
+        }]
+    });
 
-            Highcharts.chart('chart-capex-smig', {
+    Highcharts.chart('chart-capex-sg', {
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            type: 'column',
+            name: 'Rencana',
+            color: '#FF3636',
+            data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
+        }, {
+            type: 'column',
+            name: 'Real',
+            color: '#ABAAAA',
+            data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
+        }, {
+            type: 'spline',
+            name: 'Upt To Rencana',
+            color: '#FF3636',
+            data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
+            marker: {
+                lineWidth: 4,
+                lineColor: '#FF3636',
+                fillColor: 'white'
+            }
+        }, {
+            type: 'spline',
+            name: 'Up To Real',
+            color: '#ABAAAA',
+            data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
+            marker: {
+                lineWidth: 4,
+                lineColor: '#ABAAAA',
+                fillColor: 'white'
+            }
+        }]
+    });
 
-                title: {
-                    text: ''
+    Highcharts.chart('chart-capex-si', {
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            type: 'column',
+            name: 'Rencana',
+            color: '#FF3636',
+            data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
+        }, {
+            type: 'column',
+            name: 'Real',
+            color: '#ABAAAA',
+            data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
+        }, {
+            type: 'spline',
+            name: 'Upt To Rencana',
+            color: '#FF3636',
+            data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
+            marker: {
+                lineWidth: 4,
+                lineColor: '#FF3636',
+                fillColor: 'white'
+            }
+        }, {
+            type: 'spline',
+            name: 'Up To Real',
+            color: '#ABAAAA',
+            data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
+            marker: {
+                lineWidth: 4,
+                lineColor: '#ABAAAA',
+                fillColor: 'white'
+            }
+        }]
+    });
+
+    Highcharts.chart('chart-capex-st', {
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            type: 'column',
+            name: 'Rencana',
+            color: '#FF3636',
+            data: [22.000, 35.000, 18.000, 21.000, 12.000, 13.000, 30.000, 29.000, 13.000, 38.000, 19.000, 51.000]
+        }, {
+            type: 'column',
+            name: 'Real',
+            color: '#ABAAAA',
+            data: [22.800, 29.900, 18.000, 28.000, 13.000, 12.000, 30.000, 28.000, 13.000, 19.000, 19.000, 28.000]
+        }, {
+            type: 'spline',
+            name: 'Upt To Rencana',
+            color: '#FF3636',
+            data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 32.000, 40.000, 42.000, 53.000],
+            marker: {
+                lineWidth: 4,
+                lineColor: '#FF3636',
+                fillColor: 'white'
+            }
+        }, {
+            type: 'spline',
+            name: 'Up To Real',
+            color: '#ABAAAA',
+            data: [5.000, 10.000, 11.000, 18.000, 20.000, 20.500, 29.000, 31.000, 31.800, 39.000, 40.000, 43.000],
+            marker: {
+                lineWidth: 4,
+                lineColor: '#ABAAAA',
+                fillColor: 'white'
+            }
+        }]
+    });
+
+    Highcharts.chart('chart-capex-smig', {
+
+        title: {
+            text: ''
+        },
+
+        subtitle: {
+            text: ''
+        },
+
+        yAxis: {
+            title: {
+                text: ''
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+
+        plotOptions: {
+            series: {
+                stickyTracking: false,
+                label: {
+                    connectorAllowed: false
                 },
+                pointStart: 1,
+            }
+        },
 
-                subtitle: {
-                    text: ''
+        series: [{
+            name: 'Semen Rencana',
+            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+        }, {
+            name: 'Semen Real',
+            data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+        }, {
+            name: 'NonSemen Rencana',
+            data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+        }, {
+            name: 'NonSemen Real',
+            data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+        }, {
+            name: 'Total Rencana',
+            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+        }, {
+            name: 'Total Real',
+            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+        }],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
                 },
-
-                yAxis: {
-                    title: {
-                        text: ''
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
                     }
-                },
-                credits: {
-                    enabled: false
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle'
-                },
-
-                plotOptions: {
-                    series: {
-                        stickyTracking: false,
-                        label: {
-                            connectorAllowed: false
-                        },
-                        pointStart: 1,
-                    }
-                },
-
-                series: [{
-                    name: 'Semen Rencana',
-                    data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-                }, {
-                    name: 'Semen Real',
-                    data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-                }, {
-                    name: 'NonSemen Rencana',
-                    data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-                }, {
-                    name: 'NonSemen Real',
-                    data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-                }, {
-                    name: 'Total Rencana',
-                    data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-                }, {
-                    name: 'Total Real',
-                    data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-                }],
-
-                responsive: {
-                    rules: [{
-                        condition: {
-                            maxWidth: 500
-                        },
-                        chartOptions: {
-                            legend: {
-                                layout: 'horizontal',
-                                align: 'center',
-                                verticalAlign: 'bottom'
-                            }
-                        }
-                    }]
                 }
+            }]
+        }
 
-            });
+    });
 
 
-        </script>
-    </body>
+</script>
+</body>
 </html>
