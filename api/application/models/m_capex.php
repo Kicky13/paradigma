@@ -647,9 +647,11 @@ class m_capex extends CI_Model
         return $data->result_array();
     }
 
-    function getDataCAPEXDashboardPerYear($opco = '7000', $pastDate = 0, $thisDate = 0)
+    function getTableDashboard($opco = '7000')
     {
-        $string = 'Masih Kosong';
-        return $string;
+        $pastDate = date('Ym', strtotime('-11 month')) . '00';
+        $thisDate = date('Ym') . '31';
+        $data = $this->getDataCAPEXDashboardSMIG($opco, $pastDate, $thisDate);
+        return $data;
     }
 }
