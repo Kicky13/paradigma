@@ -67,9 +67,21 @@ class capex extends CI_Controller {
         echo json_encode($data);
     }
 
-    function getTableDashboard($opco)
+    function getTableDashboard($opco, $inv)
     {
-        $data = $this->m_capex->getTableDashboard($opco);
+        $data = $this->m_capex->getTableDashboard($opco, $inv);
+        echo json_encode($data);
+    }
+
+    function getChartDashboard($opco, $inv)
+    {
+        $data = $this->m_capex->getChartDashboard($opco, $inv);
+        echo json_encode($data);
+    }
+
+    function getChartUpToMonth($opco)
+    {
+        $data = $this->m_capex->getChartUpToMonth($opco);
         echo json_encode($data);
     }
 }

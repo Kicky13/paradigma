@@ -295,7 +295,7 @@ class m_capex extends CI_Model
         $data = $this->db->query($query);
         return $data->result_array();
     }
-    
+
     function getDetailProject($comp, $project, $year)
     {
         $query = "SELECT
@@ -350,8 +350,8 @@ class m_capex extends CI_Model
             '5000',
             '7000'
         );
-        foreach ($opcos as $opco){
-            if ($opco == '2000'){
+        foreach ($opcos as $opco) {
+            if ($opco == '2000') {
                 $pastDate = date('Ym', strtotime('-11 month')) . '00';
                 $thisDate = date('Ym') . '31';
                 $temp = array(
@@ -361,7 +361,7 @@ class m_capex extends CI_Model
                 );
             } else {
                 $perMonth = array();
-                for ($i = 0; $i < 12; $i++){
+                for ($i = 0; $i < 12; $i++) {
                     if ($i != 0) {
                         $countDate = '-' . $i;
                         $thisDate = date('Ym', strtotime($countDate . ' month')) . '31';
@@ -388,9 +388,15 @@ class m_capex extends CI_Model
         return $data;
     }
 
-    function getDataCAPEXDashboardSMIG($opco = '7000', $pastDate = 0, $thisDate = 0)
+    function getDataCAPEXDashboardSMIG($opco = '7000', $pastDate = 0, $thisDate = 0, $type = 'a')
     {
+        if ($type == 'a') {
+            $pspri = "IS NOT NULL";
+        } else {
+            $pspri = "= " . $type;
+        }
         $query = "SELECT * FROM (
+            SELECT * FROM (
                 SELECT
                     WBS,
                     DESCRIPTION,
@@ -431,11 +437,11 @@ class m_capex extends CI_Model
                                 CAPEX_SAP A
                                 LEFT JOIN M_WBS B ON A .WBS = B.WBS
                             WHERE
-                                A .GJAHR IN ('2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019')
+                                A .GJAHR IN ('2019')
                                 
                                 
-                                AND B.COMPANY_CODE = '" . $opco ."'
-                                AND B.PSPRI IS NOT NULL
+                                AND B.COMPANY_CODE = '" . $opco . "'
+                                AND B.PSPRI " . $pspri . " 
                                 AND B.CURR_PROJECT_C NOT LIKE 'P1%'
                                 -- AND A .BUDGET != '0'
                                 AND A .LEVEL1 IN (
@@ -445,7 +451,7 @@ class m_capex extends CI_Model
                                             CAPEX_SAP AA
                                             LEFT JOIN M_WBS BB ON AA.WBS = BB.WBS
                                         WHERE
-                                            AA.GJAHR IN ('2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019')
+                                            AA.GJAHR IN ('2019')
                                             AND BB.COMPANY_CODE = B.COMPANY_CODE
                                             AND BB.CURR_PROJECT_C = B.CURR_PROJECT_C
 				)
@@ -470,8 +476,8 @@ class m_capex extends CI_Model
                                 B.CURR_PROJECT_C NOT LIKE 'P1%'
                                 
                                 
-                                AND B.COMPANY_CODE = '" . $opco ."'
-                                AND B.PSPRI IS NOT NULL
+                                AND B.COMPANY_CODE = '" . $opco . "'
+                                AND B.PSPRI " . $pspri . " 
                                 AND A .LEVEL1 IN (
                                     SELECT
                                         MAX (A .LEVEL1)
@@ -500,10 +506,10 @@ class m_capex extends CI_Model
                     ----------------------- PR PO -------------------------
                 UNION ALL
                     SELECT
-                        A.PSPEL_TXT AS WBS,
-                        B.DESCRIPTION,
+                        WBS,
+                        DESCRIPTION,
                         BUKRS,
-                        B.PSPRI,
+                        PSPRI,
                         0 AS BUDGET,
                         0 AS TOT_BUDGET,
                         SUM (MENGE_PR_SUM) AS PR,
@@ -513,21 +519,39 @@ class m_capex extends CI_Model
                         0 AS INVOICE,
                         0 AS CASHOUT
                     FROM
-                        CAPEX_ACT A
-                        LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
-                    WHERE
-                        ERDAT BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
-                        
-                        
-                        AND BUKRS = '7000'
-                        AND B.PSPRI IS NOT NULL
-                        AND CATEGORY = 'ACT'
-                        AND PSPEL_TXT NOT LIKE 'P1-%'
-                    GROUP BY
-                        A.PSPEL_TXT,
-                        B.DESCRIPTION,
-                        BUKRS,
-                        B.PSPRI
+                        (
+                        SELECT
+                            A.PSPEL_TXT AS WBS,
+                            B.DESCRIPTION,
+                            BUKRS,
+                            B.PSPRI,
+                            BANFN,
+                            MENGE_PR_SUM,
+                            PONETWR_LC
+                        FROM
+                            CAPEX_ACT A
+                            LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
+                        WHERE
+                            SUBSTR(ERDAT,0,6) BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
+                            
+                            
+                            AND BUKRS = '" . $opco . "'
+                            AND B.PSPRI " . $pspri . " 
+                            AND CATEGORY = 'ACT'
+                            AND PSPEL_TXT NOT LIKE 'P1-%'
+                        GROUP BY
+                            A.PSPEL_TXT,
+                            B.DESCRIPTION,
+                            BUKRS,
+                            BANFN,
+                            B.PSPRI,
+                            MENGE_PR_SUM,
+                            PONETWR_LC
+                        )GROUP BY
+                            WBS,
+                            DESCRIPTION,
+                            BUKRS,
+                            PSPRI
                 ----------------------- GR (DATA SAP) ----------------------
                 UNION ALL
                     SELECT
@@ -547,11 +571,11 @@ class m_capex extends CI_Model
                         CAPEX_ACT A
                         LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
                     WHERE
-                        BUDAT BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
+                        SUBSTR(BUDAT,0,6) BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
                         
                         
-                        AND BUKRS = '7000'
-                        AND B.PSPRI IS NOT NULL
+                        AND BUKRS = '" . $opco . "'
+                        AND B.PSPRI " . $pspri . " 
                         AND CATEGORY = 'ACT'
                         AND PSPEL_TXT NOT LIKE 'P1-%'
                         AND TWAER = 'IDR'
@@ -580,11 +604,11 @@ class m_capex extends CI_Model
                         CAPEX_ACT A
                         LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
                     WHERE
-                        BUDAT BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
+                        SUBSTR(BUDAT,0,6) BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
                         
                         
-                        AND BUKRS = '" . $opco ."'
-                        AND B.PSPRI IS NOT NULL
+                        AND BUKRS = '" . $opco . "'
+                        AND B.PSPRI " . $pspri . " 
                         AND CATEGORY = 'ACT'
                         AND PSPEL_TXT NOT LIKE 'P1-%'
                         AND TWAER = 'IDR'
@@ -614,11 +638,11 @@ class m_capex extends CI_Model
                         CAPEX_ACT A
                         LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
                     WHERE
-                        BUDAT BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
+                        SUBSTR(BUDAT,0,6) BETWEEN '" . $pastDate . "' AND '" . $thisDate ."'
                         
                         
-                        AND BUKRS = '" . $opco ."'
-                        AND B.PSPRI IS NOT NULL
+                        AND BUKRS = '" . $opco . "'
+                        AND B.PSPRI " . $pspri . "
                         AND CATEGORY = 'ACT'
                         AND PSPEL_TXT NOT LIKE 'P1-%'
                         AND TWAER = 'IDR'
@@ -627,7 +651,7 @@ class m_capex extends CI_Model
                         B.DESCRIPTION,
                         BUKRS,
                         B.PSPRI
-                )WHERE
+                ) WHERE
                     TOT_BUDGET != '0'
                     OR BUDGET != '0'
                     OR PR != '0'
@@ -641,17 +665,336 @@ class m_capex extends CI_Model
                     BUKRS,
                     PSPRI,
                     DESCRIPTION
-            )ORDER BY WBS DESC, BUKRS, PSPRI
-            OFFSET 0 ROWS FETCH NEXT 20 ROWS ONLY";
+            ) WHERE
+                PR != '0'
+                OR PLANNING != '0'
+                OR PO != '0'
+                OR GR != '0'
+                OR INVOICE != '0'
+                OR CASHOUT != '0'
+        ) ORDER BY WBS DESC, BUKRS, PSPRI";
         $data = $this->db->query($query);
         return $data->result_array();
     }
 
-    function getTableDashboard($opco = '7000')
+    function getTableDashboard($opco = '7000', $type = 'a')
     {
         $pastDate = date('Ym', strtotime('-11 month')) . '00';
         $thisDate = date('Ym') . '31';
         $data = $this->getDataCAPEXDashboardSMIG($opco, $pastDate, $thisDate);
         return $data;
+    }
+
+    function getChartDashboard($opco, $type = 'a')
+    {
+        $pastDate = date('Ym', strtotime('-11 month')) . '00';
+        $thisDate = date('Ym') . '31';
+        $data = $this->runQueryChartDashboard($opco, $pastDate, $thisDate);
+        return $data;
+    }
+
+    function getChartUpToMonth($opco)
+    {
+        $data = array();
+        for ($i = 0; $i < 12; $i++) {
+            if ($i != 0) {
+                $time = '-' . $i . ' month';
+                $pastDate = date('Ym', strtotime($time)) . '00';
+                $thisDate = date('Ym', strtotime($time)) . '31';
+                $bulan = date('M-y', strtotime($time));
+            } else {
+                $pastDate = date('Ym') . '00';
+                $thisDate = date('Ymd');
+                $bulan = date('M-y');
+            }
+            $get = $this->runQueryChartDashboard($opco, $pastDate, $thisDate);
+            $temp = array(
+                'DATE' => $bulan,
+                'OPCO' => $opco,
+                'CASHOUT' => $get['CASHOUT'],
+                'GR' => $get['GR'],
+                'INVOICE' => $get['INVOICE'],
+                'PO' => $get['PO'],
+                'PR' => $get['PR'],
+                'PLANNING' => $get['PLANNING']
+            );
+            array_push($data, $temp);
+        }
+        return array_reverse($data);
+    }
+
+    function runQueryChartDashboard($opco, $pastDate, $thisDate, $type = 'a')
+    {
+        if ($type == 'a') {
+            $pspri = "IS NOT NULL";
+        } else {
+            $pspri = "= " . $type;
+        }
+        $query = "SELECT
+                    SUM (BUDGET) / 1000000 AS BUDGET,
+                    SUM (PR) / 10000 AS PR,
+                    SUM (PO) / 10000 AS PO,
+                    SUM (PLANNING) / 1000000 AS PLANNING,
+                    SUM (GR) / 10000 AS GR,
+                    SUM (INVOICE) / 10000 AS INVOICE,
+                    SUM (CASHOUT) / 10000 AS CASHOUT
+                FROM (
+                    SELECT
+                        A1.WBS,
+                        A1.DESCRIPTION,
+                        A1.COMPANY_CODE AS BUKRS,
+                        A1.PSPRI,
+                        SUM (A1.BUDGET) AS BUDGET,
+                        SUM (B1.TOT_BUDGET) AS TOT_BUDGET,
+                        0 AS PR,
+                        0 AS PO,
+                        0 AS PLANNING,
+                        0 AS GR,
+                        0 AS INVOICE,
+                        0 AS CASHOUT
+                    FROM
+			(
+                            ---------------- ORIGINAL BUDGET IN YEAR -----------
+                            SELECT
+                                A .WBS,
+                                B.DESCRIPTION,
+                                B.PSPRI,
+                                B.COMPANY_CODE,
+                                SUM (BUDGET) AS BUDGET
+                            FROM
+                                CAPEX_SAP A
+                                LEFT JOIN M_WBS B ON A .WBS = B.WBS
+                            WHERE
+                                A .GJAHR IN ('2019')
+                                
+                                
+                                AND B.COMPANY_CODE = '" . $opco . "'
+                                AND B.PSPRI " . $pspri . " 
+                                AND B.CURR_PROJECT_C NOT LIKE 'P1%'
+                                -- AND A .BUDGET != '0'
+                                AND A .LEVEL1 IN (
+                                        SELECT
+                                            MAX (A .LEVEL1)
+                                        FROM
+                                            CAPEX_SAP AA
+                                            LEFT JOIN M_WBS BB ON AA.WBS = BB.WBS
+                                        WHERE
+                                            AA.GJAHR IN ('2019')
+                                            AND BB.COMPANY_CODE = B.COMPANY_CODE
+                                            AND BB.CURR_PROJECT_C = B.CURR_PROJECT_C
+				)
+                            GROUP BY
+                                A .WBS,
+                                B.DESCRIPTION,
+                                B.PSPRI,
+                                B.COMPANY_CODE
+                            ------------ END ORIGINAL BUDGET IN YEAR -----------
+			) A1 LEFT JOIN (
+                            ------------------ TOTAL BUDGET --------------------
+                            SELECT
+                                A .WBS,
+                                B.DESCRIPTION,
+                                B.PSPRI,
+                                B.COMPANY_CODE,
+                                SUM (BUDGET) AS TOT_BUDGET
+                            FROM
+                                CAPEX_SAP A
+                                LEFT JOIN M_WBS B ON A .WBS = B.WBS
+                            WHERE
+                                B.CURR_PROJECT_C NOT LIKE 'P1%'
+                                
+                                
+                                AND B.COMPANY_CODE = '" . $opco . "'
+                                AND B.PSPRI " . $pspri . " 
+                                AND A .LEVEL1 IN (
+                                    SELECT
+                                        MAX (A .LEVEL1)
+                                    FROM
+                                        CAPEX_SAP AA
+                                        LEFT JOIN M_WBS BB ON AA.WBS = BB.WBS
+                                    WHERE
+                                        BB.COMPANY_CODE = B.COMPANY_CODE
+                                        AND BB.CURR_PROJECT_C = B.CURR_PROJECT_C
+                                )
+                            GROUP BY
+                                A .WBS,
+                                B .DESCRIPTION,
+                                B.PSPRI,
+                                B.COMPANY_CODE
+                            ---------------- END TOTAL BUDGET ------------------
+			) B1 ON A1.WBS = B1.WBS
+                            AND A1.DESCRIPTION = B1.DESCRIPTION
+                            AND A1.PSPRI = B1.PSPRI
+                            AND A1.COMPANY_CODE = B1.COMPANY_CODE
+                        GROUP BY
+                            A1.WBS,
+                            A1.DESCRIPTION,
+                            A1.COMPANY_CODE,
+                            A1.PSPRI
+                    ----------------------- PR PO -------------------------
+                UNION ALL
+                    SELECT
+                        WBS,
+                        DESCRIPTION,
+                        BUKRS,
+                        PSPRI,
+                        0 AS BUDGET,
+                        0 AS TOT_BUDGET,
+                        SUM (MENGE_PR_SUM) AS PR,
+                        SUM (PONETWR_LC) AS PO,
+                        0 AS PLANNING,
+                        0 AS GR,
+                        0 AS INVOICE,
+                        0 AS CASHOUT
+                    FROM
+                        (
+                        SELECT
+                            A.PSPEL_TXT AS WBS,
+                            B.DESCRIPTION,
+                            BUKRS,
+                            B.PSPRI,
+                            BANFN,
+                            MENGE_PR_SUM,
+                            PONETWR_LC
+                        FROM
+                            CAPEX_ACT A
+                            LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
+                        WHERE
+                            SUBSTR(ERDAT,0,6) BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
+                            
+                            
+                            AND BUKRS = '" . $opco . "'
+                            AND B.PSPRI " . $pspri . " 
+                            AND CATEGORY = 'ACT'
+                            AND PSPEL_TXT NOT LIKE 'P1-%'
+                        GROUP BY
+                            A.PSPEL_TXT,
+                            B.DESCRIPTION,
+                            BUKRS,
+                            BANFN,
+                            B.PSPRI,
+                            MENGE_PR_SUM,
+                            PONETWR_LC
+                        )GROUP BY
+                            WBS,
+                            DESCRIPTION,
+                            BUKRS,
+                            PSPRI
+                ----------------------- GR (DATA SAP) ----------------------
+                UNION ALL
+                    SELECT
+                        A.PSPEL_TXT AS WBS,
+                        B.DESCRIPTION,
+                        BUKRS,
+                        B.PSPRI,
+                        0 AS BUDGET,
+                        0 AS TOT_BUDGET,
+                        0 AS PR,
+                        0 AS PO,
+                        0 AS PLANNING,
+                        SUM (WTGBTR) AS GR,
+                        0 AS INVOICE,
+                        0 AS CASHOUT
+                    FROM
+                        CAPEX_ACT A
+                        LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
+                    WHERE
+                        SUBSTR(BUDAT,0,6) BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
+                        
+                        
+                        AND BUKRS = '" . $opco . "'
+                        AND B.PSPRI " . $pspri . " 
+                        AND CATEGORY = 'ACT'
+                        AND PSPEL_TXT NOT LIKE 'P1-%'
+                        AND TWAER = 'IDR'
+                        AND BLART = 'WE'
+                    GROUP BY
+                        A.PSPEL_TXT,
+                        B.DESCRIPTION,
+                        BUKRS,
+                        B.PSPRI
+                ----------------------- INVOICE (DATA SAP) ----------------------
+                UNION ALL
+                    SELECT
+                        A.PSPEL_TXT AS WBS,
+                        B.DESCRIPTION,
+                        BUKRS,
+                        B.PSPRI,
+                        0 AS BUDGET,
+                        0 AS TOT_BUDGET,
+                        0 AS PR,
+                        0 AS PO,
+                        0 AS PLANNING,
+                        0 AS GR,
+                        SUM (WTGBTR) AS INVOICE,
+                        0 AS CASHOUT
+                    FROM
+                        CAPEX_ACT A
+                        LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
+                    WHERE
+                        SUBSTR(BUDAT,0,6) BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
+                        
+                        
+                        AND BUKRS = '" . $opco . "'
+                        AND B.PSPRI " . $pspri . " 
+                        AND CATEGORY = 'ACT'
+                        AND PSPEL_TXT NOT LIKE 'P1-%'
+                        AND TWAER = 'IDR'
+                        AND BLART = 'RE'
+                    GROUP BY
+                        A.PSPEL_TXT,
+                        B.DESCRIPTION,
+                        BUKRS,
+                        B.PSPRI
+                    ----------------------- PLANNING  CASHOUT ----------------------
+                    ----------------------- GR INVOICE (DATA NON SAP) ----------------------
+                UNION ALL
+                    SELECT
+                        A.PSPEL_TXT AS WBS,
+                        B.DESCRIPTION,
+                        BUKRS,
+                        B.PSPRI,
+                        0 AS BUDGET,
+                        0 AS TOT_BUDGET,
+                        0 AS PR,
+                        0 AS PO,
+                        SUM (PLANNING) AS PLANNING,
+                        SUM (GR) AS GR,
+                        SUM (INVOICE) AS INVOICE,
+                        SUM (WKGBTR) AS CASHOUT
+                    FROM
+                        CAPEX_ACT A
+                        LEFT JOIN M_WBS B ON A .PSPEL_TXT = B.WBS
+                    WHERE
+                        SUBSTR(BUDAT,0,6) BETWEEN '" . $pastDate . "' AND '" . $thisDate . "'
+                        
+                        
+                        AND BUKRS = '" . $opco . "'
+                        AND B.PSPRI " . $pspri . " 
+                        AND CATEGORY = 'ACT'
+                        AND PSPEL_TXT NOT LIKE 'P1-%'
+                        AND TWAER = 'IDR'
+                    GROUP BY
+                        A.PSPEL_TXT,
+                        B.DESCRIPTION,
+                        BUKRS,
+                        B.PSPRI
+                )";
+        $data = $this->db->query($query);
+        return $data->row_array();
+    }
+
+    function sumChartAttr($data, $opco)
+    {
+        $temp = array();
+        $temp['OPCO'] = $opco;
+        foreach ($data as $item) {
+            if (isset($temp[$item['TTL']])){
+                $temp[$item['TTL']] += $item['BYY'];
+            } else {
+                $temp[$item['TTL']] = $item['BYY'];
+            }
+        }
+        return $temp;
     }
 }

@@ -5,6 +5,8 @@ var currentTime = new Date();
 $(document).ready(function () {
     console.log('Ready Func');
     loadDataTable();
+    loadDataChart();
+    loadUpToMontth();
 
     $('a[href="#tab-opco"]').click(function (e) {
         e.preventDefault();
@@ -26,11 +28,24 @@ $(document).ready(function () {
     $('.footer-logo').click(function () {
         changeOpco(this.getAttribute('data-opco'));
     });
+    $('#typeOf').change(function () {
+        console.log($(this).val());
+    });
 });
 
 function loadDataTable() {
     var semuaOpco = ['3000', '4000', '5000', '7000'];
     semuaOpco.forEach(getTableDashboard);
+}
+
+function loadDataChart() {
+    var semuaOpco = ['3000', '4000', '5000', '7000'];
+    semuaOpco.forEach(getChartDashboard);
+}
+
+function loadUpToMontth() {
+    var semuaOpco = ['3000', '4000', '5000', '7000'];
+    semuaOpco.forEach(getChartSMIGUpToMonth);
 }
 
 function test(opco) {
@@ -84,8 +99,9 @@ function changeTitle(opco) {
 
 function getTableDashboard(opco) {
     console.log('Loading Get Data ' + opco);
+    invType = $('#typeOf').val();
     $.ajax({
-        url: api_url + '/api/index.php/capex/getTableDashboard/' + opco,
+        url: api_url + '/api/index.php/capex/getTableDashboard/' + opco + '/' + invType,
         type: 'GET',
         dataType: 'JSON',
     }).done(function (data) {
@@ -130,6 +146,141 @@ function getTableDashboard(opco) {
             }
             document.getElementById('table-' + opco).innerHTML = txt;
         }
+    });
+}
+
+function getChartDashboard(opco)
+{
+    console.log('Loading Get Chart ' + opco);
+    invType = $('#typeOf').val();
+    $.ajax({
+        url: api_url + '/api/index.php/capex/getChartDashboard/' + opco + '/' + invType,
+        type: 'GET',
+        dataType: 'JSON',
+    }).done(function (data) {
+        console.log(typeof data.PR);
+        txt = '';
+        txt += '<div style="width:100%;overflow-x:scroll;">';
+        txt += '<div class="chart-val" id="val-"' + opco + ' style="width:100%;height:250px;"></div>';
+        txt += '</div>';
+        document.getElementById('chart-' + opco).innerHTML = txt;
+
+        Highcharts.chart('chart-' + opco, {
+            title: {
+                text: ''
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                type: 'column',
+                name: 'PR',
+                color: '#7CB5EC',
+                data: [parseFloat(data.PR)]
+            }, {
+                type: 'column',
+                name: 'PO',
+                color: '#5C5C61',
+                data: [parseFloat(data.PO)]
+            }, {
+                type: 'column',
+                name: 'GR',
+                color: '#4FFF62',
+                data: [parseFloat(data.GR)],
+            }, {
+                type: 'column',
+                name: 'Invoice',
+                color: '#FF5554',
+                data: [parseFloat(data.INVOICE)],
+            }, {
+                type: 'column',
+                name: 'Cash Out',
+                color: '#263161',
+                data: [parseFloat(data.CASHOUT)],
+            }]
+        });
+    });
+}
+
+
+
+function getChartSMIGUpToMonth(opco)
+{
+    $.ajax({
+        url: api_url + '/api/index.php/capex/getChartUpToMonth/' + opco,
+        type: 'GET',
+        dataType: 'JSON'
+    }).done(function (data) {
+        utreal = 0;
+        utrencana = 0;
+        var bulan = [];
+        var rencana = [];
+        var real = [];
+        var uptoreal = [];
+        var uptorencana = [];
+        for (var i = 0; i < data.length; i++) {
+            bulan.push(data[i].DATE);
+            rencana.push(data[i].PLANNING);
+            real.push(data[i].GR);
+            utreal += parseFloat(data[i].GR);
+            utrencana += parseFloat(data[i].PLANNING);
+            uptoreal.push(utreal);
+            uptorencana.push(utrencana);
+        }
+        console.log(bulan);
+        console.log(rencana);
+        console.log(real);
+        console.log(uptoreal);
+        console.log(uptorencana);
+        Highcharts.chart('chart-capex-' + opco, {
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: bulan,
+                crosshair: true
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                type: 'column',
+                name: 'Rencana',
+                color: '#FF3636',
+                data: rencana,
+            }, {
+                type: 'column',
+                name: 'Real',
+                color: '#ABAAAA',
+                data: real,
+            }, {
+                type: 'spline',
+                name: 'Upt To Rencana',
+                color: '#FF3636',
+                data: uptorencana,
+                marker: {
+                    lineWidth: 4,
+                    lineColor: '#FF3636',
+                    fillColor: 'white'
+                }
+            }, {
+                type: 'spline',
+                name: 'Up To Real',
+                color: '#ABAAAA',
+                data: uptoreal,
+                marker: {
+                    lineWidth: 4,
+                    lineColor: '#ABAAAA',
+                    fillColor: 'white'
+                }
+            }]
+        });
     });
 }
 
